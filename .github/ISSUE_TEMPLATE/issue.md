@@ -1,8 +1,8 @@
 ---
-name: docs
-about: '문서 변경 '
+name: issue
+about: 새로운 issue 추가
 title: ''
-labels: docs
+labels: ''
 assignees: ''
 ---
 
