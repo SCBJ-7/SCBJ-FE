@@ -11,7 +11,8 @@
     "prepare": "husky install"
   },
   "lint-staged": {
-    "*.{js,ts}": "eslint --fix"
+    "*.{js,ts}": "eslint --fix",
+    "*.{ts,tsx}": "eslint --cache --fix"
   },
   "dependencies": {
     "@tanstack/react-query": "^5.15.0",
