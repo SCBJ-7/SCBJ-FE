@@ -1,15 +1,19 @@
 import { useRef, useState } from "react";
 
-export const useCarousel = (totalSlides: number) => {
+export const useCarousel = (totalSlides: number, infinite: boolean) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const sliderRef = useRef<HTMLDivElement>(null);
 
   const handleNext = () => {
-    setCurrentIndex((prev) => (prev + 1) % totalSlides);
+    setCurrentIndex((prev) =>
+      infinite ? (prev + 1) % totalSlides : Math.min(prev + 1, totalSlides - 1),
+    );
   };
 
   const handlePrev = () => {
-    setCurrentIndex((prev) => (prev - 1 + totalSlides) % totalSlides);
+    setCurrentIndex((prev) =>
+      infinite ? (prev - 1 + totalSlides) % totalSlides : Math.max(prev - 1, 0),
+    );
   };
 
   const getSliderStyle = () => {

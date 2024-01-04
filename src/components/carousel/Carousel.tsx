@@ -6,6 +6,7 @@ interface CarouselProps {
   width?: number | string;
   height?: number;
   arrows?: boolean;
+  infinite?: boolean;
 }
 
 const Carousel = ({
@@ -13,9 +14,10 @@ const Carousel = ({
   height = 300,
   images,
   arrows = true,
+  infinite = false,
 }: CarouselProps) => {
   const { sliderRef, currentIndex, handleNext, handlePrev, getSliderStyle } =
-    useCarousel(images.length);
+    useCarousel(images.length, infinite);
 
   return (
     <S.CarouselContainer $width={width} $height={height}>
@@ -37,14 +39,14 @@ const Carousel = ({
           <S.LeftButton
             aria-label="뒤로가기"
             onClick={handlePrev}
-            $visible={currentIndex > 0}
+            $visible={infinite || currentIndex > 0}
           >
             <S.LeftIcon />
           </S.LeftButton>
           <S.RightButton
             aria-label="앞으로가기"
             onClick={handleNext}
-            $visible={currentIndex < images.length - 1}
+            $visible={infinite || currentIndex < images.length - 1}
           >
             <S.RightIcon />
           </S.RightButton>
