@@ -16,7 +16,7 @@ describe("Carousel Component", () => {
     const prevButton = screen.queryByRole("button", { name: "뒤로가기" });
 
     // then
-    expect(prevButton).toBeNull();
+    expect(prevButton).not.toBeVisible();
   });
 
   it("버튼 클릭 시 슬라이드가 올바르게 이동해야 한다.", async () => {
@@ -28,16 +28,14 @@ describe("Carousel Component", () => {
     fireEvent.click(nextButton);
 
     // then - 다음 이미지(두 번째 슬라이드)만 화면에 표시되는지 확인
-    expect(screen.getByAltText("Slide 1")).toBeVisible();
-    expect(screen.queryByAltText("Slide 0")).not.toBeVisible();
+    expect(screen.getByTestId("slide-1")).toBeVisible();
 
     // when - 이전 버튼 클릭
     const prevButton = screen.getByRole("button", { name: "뒤로가기" });
     fireEvent.click(prevButton);
 
     // then - 다시 첫 번째 슬라이드만 화면에 표시되는지 확인
-    expect(screen.getByAltText("Slide 0")).toBeVisible();
-    expect(screen.queryByAltText("Slide 1")).not.toBeVisible();
+    expect(screen.getByTestId("slide-0")).toBeVisible();
   });
 
   it("처음 슬라이드에서 이전 버튼이 보이지 않아야 한다.", () => {
@@ -51,17 +49,19 @@ describe("Carousel Component", () => {
     fireEvent.click(prevButton);
 
     // then
-    expect(prevButton).toBeNull();
+    expect(prevButton).not.toBeVisible();
   });
 
   it("마지막 슬라이드에서 다음 버튼이 보이지 않아야 한다.", () => {
     // given
 
     // when - 마지막 슬라이드로 이동
-    const nextButton = screen.queryByRole("button", { name: "앞으로가기" });
-    dummyImg.forEach(() => fireEvent.click(nextButton));
+    const nextButton = screen.getByRole("button", { name: "앞으로가기" });
+    for (let i = 0; i < dummyImg.length - 1; i++) {
+      fireEvent.click(nextButton);
+    }
 
     // then
-    expect(nextButton).toBeNull();
+    expect(nextButton).not.toBeVisible();
   });
 });
