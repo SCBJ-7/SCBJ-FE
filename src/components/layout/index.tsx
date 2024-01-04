@@ -9,7 +9,7 @@ export const Container = styled.div`
   justify-content: center;
   align-items: center;
 
-  background-color: ${(props) => props.theme.color.greyScale6};
+  background-color: ${({ theme }) => theme.color.greyScale6};
 `;
 
 export const Wrapper = styled.div`
@@ -26,6 +26,6 @@ SHeader에 들어갈 컴포넌트 예시입니다.
 export const SHeader = styled.div`
   width: 100%;
   height: 56px;
-  background-color: ${(props) => props.theme.color.greyScale2};
+  background-color: ${({theme}) => theme.color.greyScale2};
 `;
 */

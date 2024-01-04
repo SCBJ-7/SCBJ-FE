@@ -1,5 +1,5 @@
 import { Outlet } from "react-router-dom";
-import * as S from "./App.styled";
+import * as S from "./components/layout";
 
 function App() {
   return (
