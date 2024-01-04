@@ -65,3 +65,22 @@ describe("Carousel Component", () => {
     expect(nextButton).not.toBeVisible();
   });
 });
+
+describe("Carousel Component with Infinite loop", () => {
+  beforeEach(() => {
+    render(<Carousel images={dummyImg} infinite={true} />);
+  });
+
+  it("처음 슬라이드에서 이전 버튼을 클릭했을 때 마지막 슬라이드에 있어야 한다.", () => {
+    // given - 첫 번째 슬라이드 확인
+    expect(screen.getByAltText("Slide 0")).toBeVisible();
+
+    // when - 처음 슬라이드에서 이전 버튼 클릭
+    const prevButton = screen.getByRole("button", { name: "뒤로가기" });
+    fireEvent.click(prevButton);
+
+    // then - 마지막 슬라이드만 화면에 표시되는지 확인
+    const lastSlideIndex = dummyImg.length - 1;
+    expect(screen.getByTestId(`slide-${lastSlideIndex}`)).toBeVisible();
+  });
+});
