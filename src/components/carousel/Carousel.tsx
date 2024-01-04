@@ -20,7 +20,11 @@ const Carousel = ({
   return (
     <S.CarouselContainer $width={width} $height={height}>
       <S.SliderWrapper>
-        <S.SliderContainer ref={sliderRef} style={getSliderStyle()}>
+        <S.SliderContainer
+          ref={sliderRef}
+          style={getSliderStyle()}
+          data-testid={`slide-${currentIndex}`}
+        >
           {images.map((imageUrl, index) => (
             <S.ImageWrapper key={index} $width={width} $height={height}>
               <img src={imageUrl} alt={`Slide ${index}`} />
