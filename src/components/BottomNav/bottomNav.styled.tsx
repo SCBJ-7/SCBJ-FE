@@ -40,7 +40,7 @@ export const BottomNavCell = styled(NavLink)`
 
   color: white;
   &.active {
-    color: orange;
+    color: ${({ theme }) => theme.color.primary};
   }
 `;
 

@@ -1,6 +1,6 @@
 import { Outlet } from "react-router-dom";
 import * as S from "./components/layout";
-import BottomNav from "./components/BottomNav";
+import BottomNav from "./components/bottomNav";
 
 function App() {
   return (
