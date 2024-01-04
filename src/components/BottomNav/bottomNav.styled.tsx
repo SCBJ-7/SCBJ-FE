@@ -1,12 +1,12 @@
 import { NavLink } from "react-router-dom";
 import { typo } from "../../styles/typography";
 import styled from "styled-components";
-// import navHome from "";
 
 // icons
 import { PiNewspaperClippingFill } from "react-icons/pi";
 import { PiListMagnifyingGlassFill } from "react-icons/pi";
 import { PiUserFill } from "react-icons/pi";
+import NavIconHome from "@/assets/icons/NavHome";
 
 export const BottomNavContainer = styled.section`
   width: 100%;
@@ -37,9 +37,14 @@ export const BottomNavCell = styled(NavLink)`
   gap: 2px;
 
   ${typo.caption3}
+
+  color: white;
+  &.active {
+    color: orange;
+  }
 `;
 
-// export const NavIconHome = styled(NavHome);
+export const NavIconHomes = styled(NavIconHome)``;
 
 export const NavIconTransfer = styled(PiNewspaperClippingFill)`
   font-size: 32px;
