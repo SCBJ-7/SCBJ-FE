@@ -1,5 +1,6 @@
 import { Outlet } from "react-router-dom";
 import * as S from "./components/layout";
+import BottomNav from "./components/BottomNav";
 
 function App() {
   return (
@@ -8,7 +9,7 @@ function App() {
       <S.Wrapper>
         <Outlet />
       </S.Wrapper>
-      {/* <SFooter/> */}
+      <BottomNav />
     </S.Container>
   );
 }
