@@ -12,9 +12,6 @@ const Home = () => {
     roomPicture: string;
   }
 
-  const [placeName, setPlaceName] = useState<string>("");
-  const [placeLoc, setPlaceLoc] = useState<string>("");
-  const [placePic, setPlacePic] = useState<string>("");
   const [rooms, setRooms] = useState<Room[]>([]);
   // const { id } = useParams<Params>();
 
@@ -23,11 +20,6 @@ const Home = () => {
       try {
         const res = await axios.get("/api/roomId");
         setRooms(res.data);
-
-        const res2 = await axios.get("/api/placeId");
-        setPlaceName(res2.data[0].name);
-        setPlaceLoc(res2.data[0].place);
-        setPlacePic(res2.data[0].picture);
       } catch (error) {
         console.error(error);
       }
