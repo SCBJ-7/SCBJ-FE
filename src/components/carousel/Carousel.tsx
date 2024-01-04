@@ -1,5 +1,5 @@
 import { useCarousel } from "@hooks/useCarousel";
-import * as S from "./Carousel.styles";
+import * as S from "./Carousel.style.ts";
 
 interface CarouselProps {
   images: string[];
