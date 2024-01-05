@@ -47,16 +47,19 @@ export const HeaderCell = styled.div`
 `;
 
 export const UndoIcon = styled(PiCaretLeftBold)`
+  cursor: pointer;
   font-size: 24px;
   color: ${({ theme }) => theme.color.black};
 `;
 
 export const AlarmIcon = styled(PiBellBold)`
+  cursor: pointer;
   font-size: 24px;
   color: ${({ theme }) => theme.color.black};
 `;
 
 export const SettingIcon = styled(PiGearBold)`
+  cursor: pointer;
   font-size: 24px;
   color: ${({ theme }) => theme.color.black};
 `;

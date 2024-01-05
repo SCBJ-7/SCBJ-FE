@@ -32,6 +32,12 @@ const Header = () => {
         setTitle("양도글");
         setUndo(true);
         break;
+      case PATH.MY_PAGE:
+        setAlarmIC(true);
+        setSettingIC(true);
+        setTitle("양도글");
+        setUndo(true);
+        break;
       default: // 없음
         setAlarmIC(false);
         setSettingIC(false);
