@@ -1,15 +1,11 @@
 import { Outlet } from "react-router-dom";
-import * as S from "./components/layout";
+import Layout from "./components/layout/index.tsx";
 
 function App() {
   return (
-    <S.Container>
-      {/* <SHeader /> */}
-      <S.Wrapper>
-        <Outlet />
-      </S.Wrapper>
-      {/* <SFooter/> */}
-    </S.Container>
+    <Layout>
+      <Outlet />
+    </Layout>
   );
 }
 
