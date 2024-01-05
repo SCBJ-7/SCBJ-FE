@@ -1,11 +1,11 @@
-import { useLocation } from "react-router-dom";
-import * as S from "./header.styled";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
+import * as S from "./header.styled";
 import { PATH } from "@/constants/path";
-PATH;
 
 const Header = () => {
   const { pathname } = useLocation();
+  const navigate = useNavigate();
 
   const [alarmIC, setAlarmIC] = useState(false);
   const [settingIC, setSettingIC] = useState(false);
@@ -40,14 +40,26 @@ const Header = () => {
     }
   }, [pathname]);
 
+  const undoHandler = () => {
+    navigate(-1);
+  };
+
+  const alarmHandler = () => {
+    // navigate("/...")
+  };
+
+  const settingHandler = () => {
+    // navigate("/...")
+  };
+
   return (
     <S.HeaderContainer>
       <S.HeaderWrapper>
-        <S.HeaderCell>{undo && <S.UndoIcon />}</S.HeaderCell>
+        <S.HeaderCell>{undo && <S.UndoIcon onClick={undoHandler} />}</S.HeaderCell>
         <S.HeaderCell>{title}</S.HeaderCell>
         <S.HeaderCell>
-          {settingIC && <S.AlarmIcon />}
-          {alarmIC && <S.SettingIcon />}
+          {settingIC && <S.AlarmIcon onClick={alarmHandler} />}
+          {alarmIC && <S.SettingIcon onClick={settingHandler} />}
         </S.HeaderCell>
       </S.HeaderWrapper>
     </S.HeaderContainer>
