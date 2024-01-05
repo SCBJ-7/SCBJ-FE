@@ -1,16 +1,11 @@
 import { Outlet } from "react-router-dom";
-import * as S from "./components/layout";
-import BottomNav from "./components/navBottom";
+import Layout from "./components/layout/index.tsx";
 
 function App() {
   return (
-    <S.Container>
-      {/* <SHeader /> */}
-      <S.Wrapper>
-        <Outlet />
-      </S.Wrapper>
-      <BottomNav />
-    </S.Container>
+    <Layout>
+      <Outlet />
+    </Layout>
   );
 }
 

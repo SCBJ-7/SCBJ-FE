@@ -1,5 +1,5 @@
 import { NavLink } from "react-router-dom";
-import { typo } from "../../styles/typography";
+import { typo } from "@/styles/typography";
 import styled from "styled-components";
 
 // icons
