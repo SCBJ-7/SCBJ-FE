@@ -1,4 +1,5 @@
 import * as S from "./index";
+import Header from "./header";
 import BottomNav from "./navBottom/index";
 
 interface ChildrenProps {
@@ -8,6 +9,7 @@ interface ChildrenProps {
 const Layout = ({ children }: ChildrenProps) => {
   return (
     <S.Container>
+      <Header />
       <S.Wrapper>{children}</S.Wrapper>
       <BottomNav />
     </S.Container>
