@@ -1,4 +1,5 @@
 import { NavLink } from "react-router-dom";
+import { typo } from "@/styles/typography";
 import styled from "styled-components";
 
 // icons
@@ -38,7 +39,7 @@ export const BottomNavCell = styled(NavLink)`
   align-items: center;
   gap: 2px;
 
-  ${({ theme }) => theme.typo.caption3}
+  ${typo.caption3}
 
   color: white;
   &.active {

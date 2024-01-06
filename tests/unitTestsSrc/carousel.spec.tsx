@@ -46,7 +46,7 @@ describe("Carousel Component", () => {
     const nextButton = screen.getByRole("button", { name: "앞으로가기" });
     fireEvent.click(nextButton);
     const prevButton = screen.queryByRole("button", { name: "뒤로가기" });
-    fireEvent.click(prevButton);
+    fireEvent.click(prevButton as HTMLElement);
 
     // then
     expect(prevButton).not.toBeVisible();
