@@ -1,14 +1,14 @@
 import * as S from "./TransferItem.style";
 
 interface ItemProps {
-  item: string;
+  item: number;
 }
 
 const TransferItem = (props: ItemProps) => {
   return (
     <S.ItemContainer>
       <S.ItemTitle>
-        {props.item}
+        체크인까지 {props.item}일 남았어요!
         <S.ItemTitleBtn>
           판매하기
           <S.ItemTitleBtnIcon />
