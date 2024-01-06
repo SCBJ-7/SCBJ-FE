@@ -15,6 +15,9 @@ export const BottomNavContainer = styled.section`
   display: flex;
   justify-content: center;
 
+  position: fixed;
+  bottom: 0;
+
   background-color: ${({ theme }) => theme.color.black};
 `;
 

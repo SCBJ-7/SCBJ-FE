@@ -9,6 +9,10 @@ export const HeaderContainer = styled.section`
   display: flex;
   justify-content: center;
 
+  position: fixed;
+  top: 0;
+  z-index: 10;
+
   background-color: white;
 `;
 
