@@ -1,7 +1,10 @@
+import { useEffect } from "react";
 import * as S from "./TransferWriting.styled";
 import TransferItem from "./transferItemList/transferItem/TransferItem";
 
 const TransferWriting = () => {
+  useEffect(() => {}, []);
+
   const list = [2, 2, 3, 4, 5];
 
   return (
