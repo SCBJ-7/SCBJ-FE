@@ -39,19 +39,23 @@ export const router = createBrowserRouter([
       {
         path: PATH.MY_PAGE,
         element: <My />,
+        children: [
+          {
+            path: `${PATH.MY_PAGE}${PATH.PURCHASE_LIST}`,
+            element: <TransferPurchase />,
+          },
+
+          {
+            path: `${PATH.MY_PAGE}${PATH.SALE_LIST}`,
+            element: <TransferSale />,
+          },
+        ],
       },
       {
         path: PATH.WRITE_TRANSFER,
         element: <TransferWriting />,
       },
-      {
-        path: PATH.SALE_LIST,
-        element: <TransferSale />,
-      },
-      {
-        path: PATH.PURCHASE_LIST,
-        element: <TransferPurchase />,
-      },
+
       {
         path: PATH.DETIAIL_ROOMS,
         element: <Detail />,
