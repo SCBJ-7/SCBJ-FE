@@ -9,6 +9,7 @@ export const PATH = {
   SIGNUP: "/signup",
   LOGIN: "/signin",
   MY_PAGE: "/my-page",
+  SETTING: "/setting",
   REDIRECT: "/auth/:provider",
   RELOAD: 0,
 } as const;
