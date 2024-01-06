@@ -9,15 +9,18 @@ const typoCreator = (fontSize: string, fontWeight: number) => {
 
 export const theme = {
   color: {
-    primaryLight: "#FFECDB",
-    primary: "#FF7C17",
-    primaryDark: "#CB5A04",
+    lightOrange: "#FFEDDA",
+    percentOrange: "#FF7C17",
+    darkOrange: "#E76500",
 
-    secondaryLight: "#CDEDFF",
-    secondary: "#519EC9",
-    secondaryDark: "#0072B1",
+    lightBlue: "#D5EBFF",
+    percentBlue: "#0A76DA",
+    darkBlue: "#004789",
+
+    cautionRed: "#FF4949",
 
     black: "#151515",
+    white: "#FFFFFF",
 
     greyScale1: "#404040",
     greyScale2: "#686868",
@@ -25,26 +28,27 @@ export const theme = {
     greyScale4: "#B8B8B8",
     greyScale5: "#CDCDCD",
     greyScale6: "#E9E9E9",
+    greyScale7: "#F6F6F6",
   },
   typo: {
     title1: typoCreator("1.625rem", 700),
-    title2: typoCreator("1.375rem", 600),
-    title3: typoCreator("1.125rem", 600),
-    title4: typoCreator("1rem", 500),
-    title5: typoCreator("0.875rem", 500),
+    title2: typoCreator("1.125rem", 600),
+    title3: typoCreator("1rem", 500),
+    title4: typoCreator("0.875rem", 500),
 
-    body1: typoCreator("1rem", 500),
-    body2: typoCreator("0.875rem", 500),
-    body3: typoCreator("0.75rem", 500),
+    body1: typoCreator("1rem", 700),
+    body2: typoCreator("1rem", 600),
+    body3: typoCreator("0.875rem", 600),
+    body4: typoCreator("0.875rem", 500),
+    body5: typoCreator("0.75rem", 500),
 
     button1: typoCreator("0.875rem", 500),
-    button2: typoCreator("0.75rem", 500),
+    button2: typoCreator("0.875rem", 700),
+    button3: typoCreator("0.875rem", 600),
+    button4: typoCreator("0.75rem", 500),
 
-    link1: typoCreator("0.875rem", 500),
-    link2: typoCreator("0.75rem", 500),
-
-    caption1: typoCreator("0.875rem", 500),
-    caption2: typoCreator("0.75rem", 400),
-    caption3: typoCreator("0.625rem", 400),
+    caption1: typoCreator("0.875rem", 400),
+    caption2: typoCreator("0.625rem", 700),
+    caption3: typoCreator("0.625rem", 500),
   },
 };
