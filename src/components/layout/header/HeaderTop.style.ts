@@ -1,4 +1,3 @@
-import { typo } from "@/styles/typography";
 import { styled } from "styled-components";
 import { PiCaretLeftBold, PiBellBold, PiGearBold } from "react-icons/pi";
 
@@ -38,7 +37,7 @@ export const HeaderCell = styled.div`
   }
 
   &:nth-child(2) {
-    ${typo.body1}
+    ${({ theme }) => theme.typo.body1}
     width: 50%;
     justify-content: center;
   }

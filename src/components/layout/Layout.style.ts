@@ -2,7 +2,7 @@ import { styled } from "styled-components";
 
 export const Container = styled.div`
   width: 100vw;
-  height: 100vh;
+  height: 100%;
 
   display: flex;
   flex-direction: column;
@@ -19,6 +19,7 @@ export const Wrapper = styled.div`
   height: 100%;
 
   padding: 56px 0 80px;
+  position: relative;
 
   background-color: white;
 `;

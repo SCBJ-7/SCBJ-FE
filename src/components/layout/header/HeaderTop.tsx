@@ -29,13 +29,13 @@ const Header = () => {
       case PATH.WRITE_TRANSFER:
         setAlarmIC(false);
         setSettingIC(false);
-        setTitle("양도글");
-        setUndo(true);
+        setTitle("판매할 내역 선택");
+        setUndo(false);
         break;
       case PATH.MY_PAGE:
         setAlarmIC(true);
         setSettingIC(true);
-        setTitle("양도글");
+        setTitle("마이페이지");
         setUndo(true);
         break;
       default: // 없음
