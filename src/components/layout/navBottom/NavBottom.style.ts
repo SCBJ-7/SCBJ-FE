@@ -14,6 +14,9 @@ export const BottomNavContainer = styled.section`
   display: flex;
   justify-content: center;
 
+  position: fixed;
+  bottom: 0;
+
   background-color: ${({ theme }) => theme.color.black};
 `;
 
@@ -35,7 +38,7 @@ export const BottomNavCell = styled(NavLink)`
   align-items: center;
   gap: 2px;
 
-  ${({theme}) => theme.typo.caption3}
+  ${({ theme }) => theme.typo.caption3}
 
   color: white;
   &.active {
