@@ -5,11 +5,11 @@ import NotFound from "../pages/notFoundPage";
 import Search from "../pages/searchPage";
 import SignUp from "../pages/signUpPage";
 import SignIn from "../pages/signInPage";
-import My from "../pages/myPage";
+import My from "../pages/myPage/MyPage";
 import TransferWriting from "../pages/transferWritingPage";
 import TransferSale from "../pages/transferSalePage";
 import Detail from "../pages/detailPage";
-import TransferPurchase from "../pages/transferPurchasePage";
+import TransferPurchase from "../pages/transferPurchasePage/TransferPurchase";
 import { PATH } from "../constants/path";
 import App from "../App";
 

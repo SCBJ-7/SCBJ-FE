@@ -3,7 +3,7 @@ export const PATH = {
   SEARCHLIST: "/search",
   CREATE_TRIP: "/trip-new",
   SALE_LIST: "/sale-list",
-  PURCHASE_LIST: "/purchase-list/:pagename",
+  PURCHASE_LIST: "/purchase-list",
   DETIAIL_ROOMS: "/rooms",
   WRITE_TRANSFER: "/hotels/new",
   SIGNUP: "/signup",

@@ -4,12 +4,31 @@ import { useLocation } from "react-router-dom";
 
 const BottomNav = () => {
   const { pathname } = useLocation();
-
   const navList = [
-    { id: 1, name: "홈", path: PATH.ROOT, icon: <S.NavIconHomes isActive={pathname === PATH.ROOT ? true : false} /> },
-    { id: 2, name: "양도하기", path: PATH.WRITE_TRANSFER, icon: <S.NavIconTransfer /> },
-    { id: 3, name: "호텔검색", path: PATH.SEARCHLIST, icon: <S.NavIconSearch /> },
-    { id: 4, name: "마이", path: PATH.MY_PAGE, icon: <S.NavIconMy /> },
+    {
+      id: 1,
+      name: "홈",
+      path: PATH.ROOT,
+      icon: <S.NavIconHomes isActive={pathname === PATH.ROOT ? true : false} />,
+    },
+    {
+      id: 2,
+      name: "양도하기",
+      path: PATH.WRITE_TRANSFER,
+      icon: <S.NavIconTransfer />,
+    },
+    {
+      id: 3,
+      name: "호텔검색",
+      path: PATH.SEARCHLIST,
+      icon: <S.NavIconSearch />,
+    },
+    {
+      id: 4,
+      name: "마이",
+      path: `${PATH.MY_PAGE}`,
+      icon: <S.NavIconMy />,
+    },
   ];
 
   return (

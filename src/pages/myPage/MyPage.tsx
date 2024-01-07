@@ -1,9 +1,10 @@
 import { Outlet } from "react-router-dom";
+import MyPageNav from "./components/myPageNav/MyPageNav";
 
 const My = () => {
   return (
     <div>
-      My
+      <MyPageNav />
       <Outlet />
     </div>
   );
