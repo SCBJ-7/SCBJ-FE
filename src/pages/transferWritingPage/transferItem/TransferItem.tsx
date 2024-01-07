@@ -5,17 +5,26 @@ import { PATH } from "@/constants/path";
 import priceFormat from "@utils/priceFormat";
 import { motion, useAnimate } from "framer-motion";
 import { theme } from "@/styles/theme";
+import { format } from "date-fns/format";
+import { ko } from "date-fns/locale";
 
 const TransferItem = (props: IReservation) => {
   const navigate = useNavigate();
   const [scope, animate] = useAnimate();
+
+  const startDate = format(props.startDate, "yyyy. mm. dd (ccc)", {
+    locale: ko,
+  });
+  const endDate = format(props.endDate, "yyyy. mm. dd (ccc)", {
+    locale: ko,
+  });
 
   const navigateHandler = async () => {
     await new Promise((resolve) => {
       animate(
         scope.current,
         {
-          border: `2px solid ${theme.color.percentOrange}`,
+          border: `1px solid ${theme.color.percentOrange}`,
           boxShadow: "4px 4px 40px 0 rgba(255, 124, 23, 0.06)",
         },
         { duration: 0.1 },
@@ -52,7 +61,7 @@ const TransferItem = (props: IReservation) => {
           <S.DescHotelName>{props.hotelName}</S.DescHotelName>
           <S.DescRoomName>{props.roomName}</S.DescRoomName>
           <S.DescDates>
-            {props.startDate.toString()} ~ {props.endDate.toString()}
+            {startDate} ~ {endDate}
           </S.DescDates>
         </S.itemInfoDesc>
       </S.ItemInfo>
