@@ -1,8 +1,9 @@
 import styled from "styled-components";
 
 import { PiCaretRightBold } from "react-icons/pi";
+import { motion } from "framer-motion";
 
-export const ItemContainer = styled.div`
+export const ItemContainer = styled(motion.div)`
   height: 214px;
   margin: 20px;
 
@@ -85,12 +86,12 @@ export const itemInfoDesc = styled.div`
   color: ${({ theme }) => theme.color.black};
 `;
 
-export const DescTitle = styled.span`
+export const DescHotelName = styled.span`
   ${({ theme }) => theme.typo.body3};
   font-weight: 600;
 `;
 
-export const DescOption = styled.span`
+export const DescRoomName = styled.span`
   ${({ theme }) => theme.typo.body5};
   font-weight: 600;
 `;

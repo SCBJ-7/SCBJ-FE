@@ -15,6 +15,15 @@ export const Subtitle = styled.p`
 
 export const TransferItemList = styled.div`
   width: 100%;
+  height: 100%;
   padding-top: 4px;
-  padding-bottom: 60px;
+  padding-bottom: 160px;
+  overflow-y: scroll;
+
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+
+  &::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera*/
+  }
 `;
