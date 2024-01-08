@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import * as S from "./MyPageNav.style";
 import { useLocation } from "react-router-dom";
 import { PATH } from "../../../../constants/path";

@@ -1,4 +1,4 @@
-import * as S from "./bottomNav.styled";
+import * as S from "./NavBottom.style";
 import { PATH } from "@/constants/path";
 import { useLocation } from "react-router-dom";
 
@@ -23,12 +23,7 @@ const BottomNav = () => {
       path: PATH.SEARCHLIST,
       icon: <S.NavIconSearch />,
     },
-    {
-      id: 4,
-      name: "마이",
-      path: `${PATH.MY_PAGE}`,
-      icon: <S.NavIconMy />,
-    },
+    { id: 4, name: "마이", path: PATH.MY_PAGE, icon: <S.NavIconMy /> },
   ];
 
   return (

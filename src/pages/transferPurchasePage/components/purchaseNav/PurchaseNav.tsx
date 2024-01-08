@@ -16,7 +16,7 @@ const PurchaseNav = () => {
     if (!status) {
       setSearchParams({ status: "all" });
     }
-  }, []);
+  }, [searchParams]);
 
   return (
     <S.PurchaseNavContainer>

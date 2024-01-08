@@ -1,7 +1,12 @@
 import PurchaseNav from "./components/purchaseNav/PurchaseNav";
-
+import PurchaseItem from "./components/puchaseItem/PuchaseItem";
 const TransferPurchase = () => {
-  return <PurchaseNav></PurchaseNav>;
+  return (
+    <>
+      <PurchaseNav />
+      <PurchaseItem />
+    </>
+  );
 };
 
 export default TransferPurchase;
