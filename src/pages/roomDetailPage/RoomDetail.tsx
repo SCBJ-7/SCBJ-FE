@@ -1,4 +1,5 @@
 import Carousel from "@components/carousel/Carousel";
+import RoomHeader from "@pages/roomDetailPage/components/roomHeader/RoomHeader";
 import RoomInfo from "@pages/roomDetailPage/components/roomInfo/RoomInfo";
 import RoomNavBar from "@pages/roomDetailPage/components/roomNavBar/RoomNavBar";
 import { dummyData } from "./RoomDetail.data";
@@ -10,12 +11,14 @@ const RoomDetail = () => {
 
   return (
     <S.Container>
+      <RoomHeader title={data.hotelName} />
       <Carousel
         images={data.hotelImageUrl}
         width="100%"
         height={300}
         arrows={true}
         infinite={false}
+        innerShadow={true}
       />
       <RoomInfo room={data} />
       <RoomNavBar room={data} />
