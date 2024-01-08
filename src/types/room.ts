@@ -1,6 +1,7 @@
 export type RoomData = {
   hotelName: string;
   roomName: string;
+  hotelImageUrl: string[];
   checkIn: string;
   checkOut: string;
   originalPrice: number;
