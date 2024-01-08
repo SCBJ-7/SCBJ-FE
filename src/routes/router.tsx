@@ -3,7 +3,7 @@ import { createBrowserRouter } from "react-router-dom";
 import Home from "../pages/homePage";
 import NotFound from "../pages/notFoundPage";
 import Search from "../pages/searchPage";
-import SignUp from "../pages/signUpPage";
+import SignUp from "../pages/signUpPage/SignUp";
 import SignIn from "../pages/signInPage";
 import My from "../pages/myPage";
 import TransferWriting from "../pages/transferWritingPage/TransferWriting";
