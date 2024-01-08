@@ -19,7 +19,7 @@ const RoomHeader = ({ title }: RoomHeaderProps) => {
       <S.HeaderContainer $visible={isVisible}>
         <S.Wrapper>
           <div className="wrap-left">
-            <button className="btn-back">
+            <button type="button" className="btn-back" aria-label="뒤로가기">
               <S.BackIcon $visible={isVisible} />
             </button>
           </div>

@@ -1,9 +1,8 @@
-import styled from "styled-components";
 import { PiCaretLeftBold } from "react-icons/pi";
+import styled from "styled-components";
 
 export const ScrollObserver = styled.div`
   width: 100%;
-  height: 1px;
   overflow: hidden;
   position: relative;
 `;
@@ -19,7 +18,12 @@ export const HeaderContainer = styled.header<{ $visible: boolean }>`
   z-index: 2;
   background-color: ${({ $visible, theme }) =>
     $visible ? "none" : theme.color.white};
-  transition: background-color 0.5s ease-in;
+  border-bottom: ${({ $visible, theme }) =>
+    $visible ? "none" : `1px solid ${theme.color.greyScale7}`};
+
+  transition:
+    border-bottom,
+    background-color 0.5s ease-in;
 `;
 
 export const Wrapper = styled.div`
