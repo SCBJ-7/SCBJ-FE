@@ -1,16 +1,12 @@
 import IconBed from "@assets/icons/ic_bed.svg?react";
 import IconCaretRight from "@assets/icons/ic_caret_right.svg?react";
 import IconUser from "@assets/icons/ic_users.svg?react";
-import Box from "@components/box/Box";
-import Flex from "@components/flex/Flex";
-import Stack from "@components/stack/Stack";
-import Text from "@components/text/Text";
 
 import RoomThemeOption from "@pages/roomDetailPage/components/roomThemeOption/RoomThemeOption";
+import * as S from "@pages/roomDetailPage/RoomDetail.style";
 import type { RoomData } from "@type/room";
 import { calculateDiscount } from "@utils/calculator";
 import { formatDate } from "@utils/dateFormater";
-import * as S from "./RoomInfo.style";
 
 interface RoomInfoProps {
   room: RoomData;
@@ -24,86 +20,85 @@ const RoomInfo = ({ room }: RoomInfoProps) => {
   return (
     <>
       <S.DetailSection>
-        <Stack spacing={8}>
-          <Box>
-            <Text variant="title2">{room.hotelName}</Text>
-            <Text variant="body3">{room.roomName}</Text>
-          </Box>
-          <Flex direction="column" gap="0.5rem">
+        <S.HStack5>
+          <S.HStack1>
+            <S.Text variant="title2">{room.hotelName}</S.Text>
+            <S.Text variant="body3">{room.roomName}</S.Text>
+          </S.HStack1>
+          <S.Col>
             <S.ItemWrapper>
-              <Text>정가</Text>
-              <Text color="greyScale3">
+              <S.Text>정가</S.Text>
+              <S.Text color="greyScale3">
                 <s>{room.originalPrice.toLocaleString()}원</s>
-              </Text>
+              </S.Text>
             </S.ItemWrapper>
             <S.ItemWrapper>
-              <Text>판매가</Text>
-              <Flex gap="0.5rem">
-                <Text variant="title2" color="percentBlue">
+              <S.Text>판매가</S.Text>
+              <S.Row>
+                <S.Text variant="title2" color="percentBlue">
                   {discountRate}%
-                </Text>
-                <Text variant="title2">
+                </S.Text>
+                <S.Text variant="title2">
                   {room.sellingPrice.toLocaleString()}원
-                </Text>
-              </Flex>
+                </S.Text>
+              </S.Row>
             </S.ItemWrapper>
-          </Flex>
-          <Stack spacing={1} direction="row">
+          </S.Col>
+          <S.VStack1>
             <S.LeftBox>
-              <Text variant="body3" color="greyScale1">
+              <S.Text variant="body3" color="greyScale1">
                 체크인
-              </Text>
-              <Text variant="body3">{checkInDate}</Text>
+              </S.Text>
+              <S.Text variant="body3">{checkInDate}</S.Text>
             </S.LeftBox>
             <S.RightBox>
-              <Text variant="body3" color="greyScale1">
+              <S.Text variant="body3" color="greyScale1">
                 체크아웃
-              </Text>
-              <Text variant="body3">{checkOutDate}</Text>
+              </S.Text>
+              <S.Text variant="body3">{checkOutDate}</S.Text>
             </S.RightBox>
-          </Stack>
-        </Stack>
+          </S.VStack1>
+        </S.HStack5>
       </S.DetailSection>
 
       <S.DetailSection>
-        <Stack spacing={8}>
-          <Stack spacing={1}>
-            <Text variant="body3">기본 정보</Text>
-            <Stack spacing={5} direction="row">
-              <Flex gap="0.5rem" align="center">
+        <S.HStack5>
+          <S.HStack1>
+            <S.Text variant="body3">기본 정보</S.Text>
+            <S.VStack5>
+              <S.Row>
                 <IconUser />
-                <Text variant="body3">
+                <S.Text variant="body3">
                   기준 {room.standardPeople}인 / 최대 {room.maxPeople}인
-                </Text>
-              </Flex>
-              <Flex gap="0.5rem" align="center">
+                </S.Text>
+              </S.Row>
+              <S.Row>
                 <IconBed />
-                <Text variant="body3">{room.bedType}</Text>
-              </Flex>
-            </Stack>
-          </Stack>
-          <Stack spacing={1}>
-            <Text variant="body3">부가 정보</Text>
+                <S.Text variant="body3">{room.bedType}</S.Text>
+              </S.Row>
+            </S.VStack5>
+          </S.HStack1>
+          <S.HStack1>
+            <S.Text variant="body3">부가 정보</S.Text>
             <RoomThemeOption option={room.roomTheme} />
-          </Stack>
-          <Stack spacing={1}>
-            <Text variant="body3">위치 정보</Text>
-            <Text variant="body3">{room.hotelAddress}</Text>
-          </Stack>
-          <Box
-            as="a"
+          </S.HStack1>
+          <S.HStack1>
+            <S.Text variant="body3">위치 정보</S.Text>
+            <S.Text variant="body3">{room.hotelAddress}</S.Text>
+          </S.HStack1>
+          <a
             href={room.hotelInfoUrl}
             target="_blank"
             aria-label="상세 정보 보기"
           >
-            <Flex justify="flex-end" align="center" gap="0.3rem">
-              <Text variant="button2" color="greyScale1">
+            <S.MoreInfoWrapper>
+              <S.Text variant="button2" color="greyScale1">
                 상세 정보 보기
-              </Text>
+              </S.Text>
               <IconCaretRight />
-            </Flex>
-          </Box>
-        </Stack>
+            </S.MoreInfoWrapper>
+          </a>
+        </S.HStack5>
       </S.DetailSection>
     </>
   );
