@@ -12,6 +12,7 @@ import Detail from "../pages/detailPage";
 import TransferPurchase from "../pages/transferPurchasePage";
 import { PATH } from "../constants/path";
 import App from "../App";
+import TransferWritingPrice from "@/pages/transerWritingPricePage/TransferWritingPrice";
 
 export const router = createBrowserRouter([
   {
@@ -43,6 +44,10 @@ export const router = createBrowserRouter([
       {
         path: PATH.WRITE_TRANSFER,
         element: <TransferWriting />,
+      },
+      {
+        path: PATH.WRITE_TRANSFER_PRICE + ":id",
+        element: <TransferWritingPrice />,
       },
       {
         path: PATH.SALE_LIST,

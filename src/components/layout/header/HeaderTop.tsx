@@ -1,5 +1,4 @@
 import { useLocation, useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
 import * as S from "./HeaderTop.style";
 import { PATH } from "@/constants/path";
 
@@ -7,44 +6,42 @@ const Header = () => {
   const { pathname } = useLocation();
   const navigate = useNavigate();
 
-  const [alarmIC, setAlarmIC] = useState(false);
-  const [settingIC, setSettingIC] = useState(false);
-  const [title, setTitle] = useState("");
-  const [undo, setUndo] = useState(true);
+  let alarmIC = false;
+  let settingIC = false;
+  let title = "";
+  let undo = true;
 
-  useEffect(() => {
-    switch (pathname) {
-      case PATH.ROOT:
-        setAlarmIC(false);
-        setSettingIC(false);
-        setTitle("홈");
-        setUndo(false);
-        break;
-      case PATH.SEARCHLIST:
-        setAlarmIC(false);
-        setSettingIC(false);
-        setTitle("검색");
-        setUndo(true);
-        break;
-      case PATH.WRITE_TRANSFER:
-        setAlarmIC(false);
-        setSettingIC(false);
-        setTitle("양도글");
-        setUndo(true);
-        break;
-      case PATH.MY_PAGE:
-        setAlarmIC(true);
-        setSettingIC(true);
-        setTitle("양도글");
-        setUndo(true);
-        break;
-      default: // 없음
-        setAlarmIC(false);
-        setSettingIC(false);
-        setTitle("");
-        setUndo(true);
-    }
-  }, [pathname]);
+  switch (pathname) {
+    case PATH.ROOT:
+      alarmIC = false;
+      settingIC = false;
+      title = "홈";
+      undo = false;
+      break;
+    case PATH.SEARCHLIST:
+      alarmIC = false;
+      settingIC = false;
+      title = "검색";
+      undo = true;
+      break;
+    case PATH.WRITE_TRANSFER:
+      alarmIC = false;
+      settingIC = false;
+      title = "판매할 내역 선택";
+      undo = false;
+      break;
+    case PATH.MY_PAGE:
+      alarmIC = true;
+      settingIC = true;
+      title = "마이페이지";
+      undo = true;
+      break;
+    default: // 없음
+      alarmIC = false;
+      settingIC = false;
+      title = "";
+      undo = true;
+  }
 
   const undoHandler = () => {
     navigate(-1);

@@ -1,3 +1,4 @@
+import React from "react";
 import * as S from "./Layout.style";
 import Header from "./header/HeaderTop";
 import BottomNav from "./navBottom/NavBottom";
