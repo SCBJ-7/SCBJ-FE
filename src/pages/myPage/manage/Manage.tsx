@@ -15,7 +15,7 @@ const Manage = () => {
           <S.ManageListElement key={item.name}>
             <a href={item.path}>
               <span>{item.name}</span>
-              <img src={rightArrow} alt="이동하기" />
+              <img src={rightArrow} alt={`${item.name}으로 이동하기`} />
             </a>
           </S.ManageListElement>
         );
