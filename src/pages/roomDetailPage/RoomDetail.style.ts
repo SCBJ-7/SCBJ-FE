@@ -2,6 +2,7 @@ import { theme } from "@styles/theme.ts";
 import styled from "styled-components";
 
 export const Container = styled.main`
+  background-color: ${({ theme }) => theme.color.greyScale7};
   padding-bottom: 80px;
 `;
 
@@ -82,20 +83,20 @@ export const Text = styled.p.withConfig({
 `;
 
 export const VStack1 = styled(Flex)`
-  gap: 0.25rem;
+  gap: 0.375rem;
 `;
 
 export const HStack1 = styled(Flex)`
   flex-direction: column;
-  gap: 0.25rem;
+  gap: 0.375rem;
 `;
 
 export const HStack5 = styled(HStack1)`
-  gap: 1.25rem;
+  gap: 2rem;
 `;
 
 export const VStack5 = styled(Flex)`
-  gap: 1.25rem;
+  gap: 2rem;
 `;
 
 export const MoreInfoWrapper = styled(Flex)`

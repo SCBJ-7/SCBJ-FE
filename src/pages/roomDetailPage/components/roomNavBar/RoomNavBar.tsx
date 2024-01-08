@@ -12,24 +12,22 @@ const RoomNavBar = ({ room }: RoomNavBarProps) => {
 
   return (
     <S.Wrapper>
-      <S.Col>
+      <S.ColWrapper>
         <S.Text variant="body3" color="greyScale3">
           <s>{room.originalPrice.toLocaleString()}원</s>
         </S.Text>
-        <S.ItemWrapper>
-          <S.Row1>
-            <S.Text variant="title2" color="percentBlue">
-              {discountRate}%
-            </S.Text>
-            <S.Text variant="title2">
-              {room.sellingPrice.toLocaleString()}원
-            </S.Text>
-          </S.Row1>
-          <S.Button $status={room.saleStatus} aria-label="구매하기">
-            구매하기
-          </S.Button>
-        </S.ItemWrapper>
-      </S.Col>
+        <S.Row2>
+          <S.Text variant="title2" color="percentBlue">
+            {discountRate}%
+          </S.Text>
+          <S.Text variant="title2">
+            {room.sellingPrice.toLocaleString()}원
+          </S.Text>
+        </S.Row2>
+      </S.ColWrapper>
+      <S.Button $status={room.saleStatus} aria-label="구매하기">
+        구매하기
+      </S.Button>
     </S.Wrapper>
   );
 };
