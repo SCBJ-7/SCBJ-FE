@@ -23,7 +23,7 @@ export default defineConfig({
       "@styles": path.resolve(__dirname, "./src/styles"),
       "@constants": path.resolve(__dirname, "./src/constants"),
       "@assets": path.resolve(__dirname, "./src/assets"),
-      "@api": path.resolve(__dirname, "./src/api"),
+      "@apis": path.resolve(__dirname, "./src/apis"),
       "@mocks": path.resolve(__dirname, "./src/mocks"),
       "@routes": path.resolve(__dirname, "./src/routes"),
       "@utils": path.resolve(__dirname, "./src/utils"),
