@@ -1,7 +1,6 @@
 import IconCheck from "@assets/icons/ic_check.svg?react";
-import Flex from "@components/flex/Flex";
-import Stack from "@components/stack/Stack";
-import Text from "@components/text/Text";
+
+import * as S from "@pages/roomDetailPage/RoomDetail.style";
 import { theme } from "@styles/theme";
 
 interface RoomThemeOptionProps {
@@ -26,16 +25,16 @@ const RoomThemeOption = ({ option }: RoomThemeOptionProps) => {
   );
 
   return (
-    <Stack spacing={5} direction="row">
+    <S.VStack5>
       {filteredOptions.map((key) => (
-        <Flex gap="0.3rem" key={key}>
+        <S.OptionWrapper key={key}>
           <IconCheck fill={theme.color.percentOrange} />
-          <Text variant="body2" color="percentOrange">
+          <S.Text variant="body3" color="percentOrange">
             {optionNames[key]}
-          </Text>
-        </Flex>
+          </S.Text>
+        </S.OptionWrapper>
       ))}
-    </Stack>
+    </S.VStack5>
   );
 };
 

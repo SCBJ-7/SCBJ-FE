@@ -1,5 +1,3 @@
-import Flex from "@components/flex/Flex";
-import Text from "@components/text/Text.tsx";
 import { RoomNavBarData } from "@type/room";
 import { calculateDiscount } from "@utils/calculator";
 import * as S from "./RoomNavBar.style";
@@ -14,22 +12,24 @@ const RoomNavBar = ({ room }: RoomNavBarProps) => {
 
   return (
     <S.Wrapper>
-      <Flex direction="column">
-        <Text variant="body3" color="greyScale3">
+      <S.Col>
+        <S.Text variant="body3" color="greyScale3">
           <s>{room.originalPrice.toLocaleString()}원</s>
-        </Text>
-        <Flex justify="space-between" align="center">
-          <Flex gap="0.5rem">
-            <Text variant="title2" color="percentBlue">
+        </S.Text>
+        <S.ItemWrapper>
+          <S.Row1>
+            <S.Text variant="title2" color="percentBlue">
               {discountRate}%
-            </Text>
-            <Text variant="title2">{room.sellingPrice.toLocaleString()}원</Text>
-          </Flex>
+            </S.Text>
+            <S.Text variant="title2">
+              {room.sellingPrice.toLocaleString()}원
+            </S.Text>
+          </S.Row1>
           <S.Button $status={room.saleStatus} aria-label="구매하기">
             구매하기
           </S.Button>
-        </Flex>
-      </Flex>
+        </S.ItemWrapper>
+      </S.Col>
     </S.Wrapper>
   );
 };
