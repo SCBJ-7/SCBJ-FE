@@ -1,5 +1,4 @@
 import styled from "styled-components";
-
 export { Text } from "@pages/roomDetailPage/RoomDetail.style";
 
 export const Wrapper = styled.section`
