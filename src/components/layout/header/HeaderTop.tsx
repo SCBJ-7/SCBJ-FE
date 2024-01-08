@@ -18,6 +18,7 @@ const Header = () => {
       settingIC = false;
       title = "홈";
       undo = false;
+      visible = false;
       break;
     case PATH.SEARCHLIST:
       alarmIC = false;
