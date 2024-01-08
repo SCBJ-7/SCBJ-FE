@@ -18,14 +18,7 @@ export const Wrapper = styled.div`
   width: 100%;
   height: 100%;
 
+  padding: 56px 0 80px;
+
   background-color: white;
 `;
-
-/* 
-SHeader에 들어갈 컴포넌트 예시입니다.
-export const SHeader = styled.div`
-  width: 100%;
-  height: 56px;
-  background-color: ${({theme}) => theme.color.greyScale2};
-`;
-*/

@@ -6,7 +6,7 @@ import Search from "../pages/searchPage";
 import SignUp from "../pages/signUpPage";
 import SignIn from "../pages/signInPage";
 import My from "../pages/myPage";
-import TransferWriting from "../pages/transferWritingPage";
+import TransferWriting from "../pages/transferWritingPage/TransferWriting";
 import TransferSale from "../pages/transferSalePage";
 import RoomDetail from "@pages/roomDetailPage/RoomDetail";
 import TransferPurchase from "../pages/transferPurchasePage";
