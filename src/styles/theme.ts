@@ -51,4 +51,9 @@ export const theme = {
     caption2: typoCreator("0.625rem", 700),
     caption3: typoCreator("0.625rem", 500),
   },
+  border: {
+    strokeThin: "1px solid #E9E9E9",
+    strokeWide: "1px solid #F6F6F6",
+    strokeDash: "1px solid #CDCDCD",
+  },
 };
