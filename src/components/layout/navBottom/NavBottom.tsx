@@ -27,6 +27,18 @@ const BottomNav = () => {
     { id: 4, name: "마이", path: PATH.MY_PAGE, icon: <S.NavIconMy /> },
   ];
 
+  let visible = true;
+
+  switch (pathname) {
+    case PATH.LOGIN:
+      visible = false;
+      break;
+  }
+
+  if (!visible) {
+    return;
+  }
+
   return (
     <S.BottomNavContainer>
       <S.BottomNavWrapper>
