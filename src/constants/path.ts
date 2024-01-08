@@ -4,7 +4,7 @@ export const PATH = {
   CREATE_TRIP: "/trip-new",
   SALE_LIST: "/sale-list",
   PURCHASE_LIST: "/purchase-list",
-  DETIAIL_ROOMS: "/rooms",
+  DETIAIL_ROOMS: "/rooms/:roomId",
   WRITE_TRANSFER: "/hotels/new",
   SIGNUP: "/signup",
   LOGIN: "/signin",
