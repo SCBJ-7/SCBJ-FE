@@ -1,5 +1,6 @@
-import * as S from "./Layout.style";
+import React from "react";
 import Header from "./header/HeaderTop";
+import * as S from "./Layout.style";
 import BottomNav from "./navBottom/NavBottom";
 
 interface ChildrenProps {

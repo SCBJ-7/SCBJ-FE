@@ -1,3 +1,4 @@
+import TransferWritingPrice from "@/pages/transerWritingPricePage/TransferWritingPrice";
 import RoomDetail from "@pages/roomDetailPage/RoomDetail";
 import { Suspense } from "react";
 import { createBrowserRouter } from "react-router-dom";
@@ -9,7 +10,7 @@ import My from "../pages/myPage";
 import NotFound from "../pages/notFoundPage";
 import Search from "../pages/searchPage";
 import SignIn from "../pages/signInPage";
-import SignUp from "../pages/signUpPage";
+import SignUp from "../pages/signUpPage/SignUp";
 import TransferPurchase from "../pages/transferPurchasePage";
 import TransferSale from "../pages/transferSalePage";
 import TransferWriting from "../pages/transferWritingPage/TransferWriting";
@@ -44,6 +45,10 @@ export const router = createBrowserRouter([
       {
         path: PATH.WRITE_TRANSFER,
         element: <TransferWriting />,
+      },
+      {
+        path: PATH.WRITE_TRANSFER_PRICE + ":id",
+        element: <TransferWritingPrice />,
       },
       {
         path: PATH.SALE_LIST,
