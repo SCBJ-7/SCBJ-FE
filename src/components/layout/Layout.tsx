@@ -1,5 +1,7 @@
-import * as S from "./index";
-import BottomNav from "./navBottom/index";
+import React from "react";
+import * as S from "./Layout.style";
+import Header from "./header/HeaderTop";
+import BottomNav from "./navBottom/NavBottom";
 
 interface ChildrenProps {
   children: React.ReactNode;
@@ -8,6 +10,7 @@ interface ChildrenProps {
 const Layout = ({ children }: ChildrenProps) => {
   return (
     <S.Container>
+      <Header />
       <S.Wrapper>{children}</S.Wrapper>
       <BottomNav />
     </S.Container>

@@ -5,7 +5,7 @@ import styled from "styled-components";
 import { PiNewspaperClippingFill } from "react-icons/pi";
 import { PiListMagnifyingGlassFill } from "react-icons/pi";
 import { PiUserFill } from "react-icons/pi";
-import NavIconHome from "@/assets/icons/NavHome";
+import NavIconHome from "../../../assets/icons/NavHome";
 
 export const BottomNavContainer = styled.section`
   width: 100%;
@@ -13,6 +13,9 @@ export const BottomNavContainer = styled.section`
 
   display: flex;
   justify-content: center;
+
+  position: fixed;
+  bottom: 0;
 
   background-color: ${({ theme }) => theme.color.black};
 `;
@@ -35,11 +38,11 @@ export const BottomNavCell = styled(NavLink)`
   align-items: center;
   gap: 2px;
 
-  ${({theme}) => theme.typo.caption3}
+  ${({ theme }) => theme.typo.caption3}
 
   color: white;
   &.active {
-    color: ${({ theme }) => theme.color.primary};
+    color: ${({ theme }) => theme.color.percentOrange};
   }
 `;
 

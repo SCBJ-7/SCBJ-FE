@@ -3,10 +3,10 @@ import { createBrowserRouter } from "react-router-dom";
 import Home from "../pages/homePage";
 import NotFound from "../pages/notFoundPage";
 import Search from "../pages/searchPage";
-import SignUp from "../pages/signUpPage";
+import SignUp from "../pages/signUpPage/SignUp";
 import SignIn from "../pages/signInPage";
 import MyPage from "../pages/myPage/MyPage";
-import TransferWriting from "../pages/transferWritingPage";
+import TransferWriting from "../pages/transferWritingPage/TransferWriting";
 import TransferSale from "../pages/transferSalePage";
 import Detail from "../pages/detailPage";
 import TransferPurchase from "../pages/transferPurchasePage";
@@ -15,6 +15,7 @@ import App from "../App";
 import Setting from "@/pages/myPage/setting/Setting";
 import ManageProfile from "@/pages/myPage/manage/manageProfile/ManageProfile";
 import ManageAccount from "@/pages/myPage/manage/manageAccount/ManageAccount";
+import TransferWritingPrice from "@/pages/transerWritingPricePage/TransferWritingPrice";
 
 export const router = createBrowserRouter([
   {
@@ -58,6 +59,10 @@ export const router = createBrowserRouter([
       {
         path: PATH.WRITE_TRANSFER,
         element: <TransferWriting />,
+      },
+      {
+        path: PATH.WRITE_TRANSFER_PRICE + ":id",
+        element: <TransferWritingPrice />,
       },
       {
         path: PATH.SALE_LIST,

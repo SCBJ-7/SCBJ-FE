@@ -8,8 +8,6 @@ export const Container = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
-  background-color: ${({ theme }) => theme.color.greyScale6};
 `;
 
 export const Wrapper = styled.div`
@@ -17,6 +15,9 @@ export const Wrapper = styled.div`
   min-width: 360px;
   width: 100%;
   height: 100%;
+
+  padding: 56px 0 80px;
+  position: relative;
 
   background-color: white;
 `;
