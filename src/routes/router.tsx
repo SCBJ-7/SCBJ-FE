@@ -13,6 +13,8 @@ import TransferPurchase from "../pages/transferPurchasePage";
 import { PATH } from "../constants/path";
 import App from "../App";
 import Setting from "@/pages/myPage/setting/Setting";
+import ManageProfile from "@/pages/myPage/manage/manageProfile/ManageProfile";
+import ManageAccount from "@/pages/myPage/manage/manageAccount/ManageAccount";
 
 export const router = createBrowserRouter([
   {
@@ -44,6 +46,14 @@ export const router = createBrowserRouter([
       {
         path: PATH.SETTING,
         element: <Setting />,
+      },
+      {
+        path: PATH.MANAGE_PROFILE,
+        element: <ManageProfile />,
+      },
+      {
+        path: PATH.MANAGE_ACCOUNT,
+        element: <ManageAccount />,
       },
       {
         path: PATH.WRITE_TRANSFER,
