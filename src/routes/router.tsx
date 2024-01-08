@@ -8,7 +8,7 @@ import SignIn from "../pages/signInPage/SignIn";
 import My from "../pages/myPage";
 import TransferWriting from "../pages/transferWritingPage/TransferWriting";
 import TransferSale from "../pages/transferSalePage";
-import Detail from "../pages/detailPage";
+import RoomDetail from "@pages/roomDetailPage/RoomDetail";
 import TransferPurchase from "../pages/transferPurchasePage";
 import { PATH } from "../constants/path";
 import App from "../App";
@@ -59,7 +59,7 @@ export const router = createBrowserRouter([
       },
       {
         path: PATH.DETIAIL_ROOMS,
-        element: <Detail />,
+        element: <RoomDetail />,
       },
     ],
   },
