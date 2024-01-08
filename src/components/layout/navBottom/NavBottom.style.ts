@@ -5,7 +5,7 @@ import styled from "styled-components";
 import { PiNewspaperClippingFill } from "react-icons/pi";
 import { PiListMagnifyingGlassFill } from "react-icons/pi";
 import { PiUserFill } from "react-icons/pi";
-import NavIconHome from "@/assets/icons/NavHome";
+import NavIconHome from "../../../assets/icons/NavHome";
 
 export const BottomNavContainer = styled.section`
   width: 100%;
@@ -42,7 +42,7 @@ export const BottomNavCell = styled(NavLink)`
 
   color: white;
   &.active {
-    color: ${({ theme }) => theme.color.primary};
+    color: ${({ theme }) => theme.color.percentOrange};
   }
 `;
 

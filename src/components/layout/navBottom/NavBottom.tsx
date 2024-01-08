@@ -14,7 +14,7 @@ const BottomNav = () => {
     },
     {
       id: 2,
-      name: "양도하기",
+      name: "판매하기",
       path: PATH.WRITE_TRANSFER,
       icon: <S.NavIconTransfer />,
     },
