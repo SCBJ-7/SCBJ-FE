@@ -4,7 +4,7 @@ import styled from "styled-components";
 export interface FlexStyleProps {
   direction?: "row" | "column";
   wrap?: "nowrap" | "wrap" | "wrap-reverse";
-  basis?: "auto" | "0" | "200px";
+  basis?: "auto" | "0";
   grow?: string;
   shrink?: string;
   align?:
