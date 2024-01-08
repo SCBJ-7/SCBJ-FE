@@ -1,12 +1,11 @@
-import IconBed from "@assets/icons/ic_bed.svg?react";
-import IconCaretRight from "@assets/icons/ic_caret_right.svg?react";
-import IconUser from "@assets/icons/ic_users.svg?react";
-
 import RoomThemeOption from "@pages/roomDetailPage/components/roomThemeOption/RoomThemeOption";
 import * as S from "@pages/roomDetailPage/RoomDetail.style";
 import type { RoomData } from "@type/room";
 import { calculateDiscount } from "@utils/calculator";
 import { formatDate } from "@utils/dateFormater";
+import IconBed from "@assets/icons/ic_bed.svg?react";
+import IconCaretRight from "@assets/icons/ic_caret_right.svg?react";
+import IconUser from "@assets/icons/ic_users.svg?react";
 
 interface RoomInfoProps {
   room: RoomData;
