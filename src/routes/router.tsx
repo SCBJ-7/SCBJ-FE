@@ -4,7 +4,7 @@ import App from "../App";
 import { PATH } from "../constants/path";
 
 import Home from "../pages/homePage";
-import My from "../pages/myPage";
+import MyPage from "../pages/myPage/MyPage";
 import NotFound from "../pages/notFoundPage";
 import Search from "../pages/searchPage";
 import SignUp from "../pages/signUpPage/SignUp";
@@ -15,6 +15,9 @@ import RoomDetail from "@pages/roomDetailPage/RoomDetail";
 import TransferPurchase from "../pages/transferPurchasePage";
 import TransferWritingPrice from "@/pages/transerWritingPricePage/TransferWritingPrice";
 import PasswordReset from "@/pages/passwordResetPage/PasswordReset";
+import Setting from "@/pages/myPage/setting/Setting";
+import ManageProfile from "@/pages/myPage/manage/manageProfile/ManageProfile";
+import ManageAccount from "@/pages/myPage/manage/manageAccount/ManageAccount";
 
 export const router = createBrowserRouter([
   {
@@ -41,7 +44,19 @@ export const router = createBrowserRouter([
       },
       {
         path: PATH.MY_PAGE,
-        element: <My />,
+        element: <MyPage />,
+      },
+      {
+        path: PATH.SETTING,
+        element: <Setting />,
+      },
+      {
+        path: PATH.MANAGE_PROFILE,
+        element: <ManageProfile />,
+      },
+      {
+        path: PATH.MANAGE_ACCOUNT,
+        element: <ManageAccount />,
       },
       {
         path: PATH.WRITE_TRANSFER,
