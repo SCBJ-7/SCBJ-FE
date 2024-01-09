@@ -52,8 +52,6 @@ const Box = styled.div`
 export const LeftBox = styled(Box)`
   -webkit-border-top-left-radius: 8px;
   -webkit-border-bottom-left-radius: 8px;
-  -moz-border-radius-topleft: 8px;
-  -moz-border-radius-bottomleft: 8px;
   border-top-left-radius: 8px;
   border-bottom-left-radius: 8px;
 `;
@@ -61,8 +59,6 @@ export const LeftBox = styled(Box)`
 export const RightBox = styled(Box)`
   -webkit-border-top-right-radius: 8px;
   -webkit-border-bottom-right-radius: 8px;
-  -moz-border-radius-topright: 8px;
-  -moz-border-radius-bottomright: 8px;
   border-top-right-radius: 8px;
   border-bottom-right-radius: 8px;
 `;
