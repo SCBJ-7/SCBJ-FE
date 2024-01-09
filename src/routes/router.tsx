@@ -1,19 +1,19 @@
-import TransferWritingPrice from "@/pages/transerWritingPricePage/TransferWritingPrice";
+import App from "@/App";
+import { PATH } from "@constants/path";
+
+import Home from "@pages/homePage";
+import My from "@pages/myPage";
+import NotFound from "@pages/notFoundPage";
 import RoomDetail from "@pages/roomDetailPage/RoomDetail";
+import Search from "@pages/searchPage";
+import SignIn from "@pages/signInPage";
+import SignUp from "@pages/signUpPage/SignUp";
+import TransferWritingPrice from "@pages/transerWritingPricePage/TransferWritingPrice";
+import TransferPurchase from "@pages/transferPurchasePage";
+import TransferSale from "@pages/transferSalePage";
+import TransferWriting from "@pages/transferWritingPage/TransferWriting";
 import { Suspense } from "react";
 import { createBrowserRouter } from "react-router-dom";
-import App from "../App";
-import { PATH } from "../constants/path";
-
-import Home from "../pages/homePage";
-import My from "../pages/myPage";
-import NotFound from "../pages/notFoundPage";
-import Search from "../pages/searchPage";
-import SignIn from "../pages/signInPage";
-import SignUp from "../pages/signUpPage/SignUp";
-import TransferPurchase from "../pages/transferPurchasePage";
-import TransferSale from "../pages/transferSalePage";
-import TransferWriting from "../pages/transferWritingPage/TransferWriting";
 
 export const router = createBrowserRouter([
   {
@@ -59,7 +59,7 @@ export const router = createBrowserRouter([
         element: <TransferPurchase />,
       },
       {
-        path: PATH.DETIAIL_ROOMS,
+        path: PATH.DETIAIL_ROOM,
         element: (
           <Suspense fallback={<div>LOADING</div>}>
             <RoomDetail />
