@@ -5,7 +5,11 @@ export const SignUpContainer = styled.form`
   flex-direction: column;
   align-items: center;
 
-  margin: 40px 20px 0 20px;
+  background-color: white;
+
+  margin: 40px 0 0 0;
+
+  padding-bottom: 100px;
 `;
 
 export const SignUpTitle = styled.p`
@@ -22,7 +26,7 @@ export const SignUpInputContainer = styled.div`
 
   margin: 0 0 40px 0;
 
-  width: 100%;
+  width: calc(100% - 40px);
 `;
 
 export const SignUpInputWrapper = styled.div`
@@ -33,6 +37,10 @@ export const SignUpInputWrapper = styled.div`
   gap: 8px;
 `;
 
+export const SignUpInputRelativeWrapper = styled.div`
+  position: relative;
+`;
+
 export const SignUpInputTitle = styled.p`
   ${({ theme }) => theme.typo.caption1}
   color: ${({ theme }) => theme.color.greyScale1};
@@ -40,8 +48,6 @@ export const SignUpInputTitle = styled.p`
 `;
 
 export const SignUpInput = styled.input`
-  position: relative;
-
   width: 100%;
   height: 48px;
 
@@ -64,10 +70,10 @@ export const SignUpInputBtn = styled.button`
   width: 72px;
   height: 28px;
 
-  border: 1px solid #f27c18;
+  border: 1px solid ${({ theme }) => theme.color.percentOrange};
   border-radius: 8px;
 
-  color: #f27c18;
+  color: ${({ theme }) => theme.color.percentOrange};
 
   top: 10px;
   right: 10px;
@@ -83,7 +89,7 @@ export const SignUpCheckBoxContainer = styled.div`
   flex-direction: column;
   gap: 10px;
 
-  width: 100%;
+  width: calc(100% - 40px);
 
   margin: 0 0 64px 0;
 `;
@@ -107,7 +113,7 @@ export const SignUpCheckBoxLink = styled.a`
 `;
 
 export const SignUpSubmitBtn = styled.button`
-  width: 100%;
+  width: calc(100% - 40px);
   height: 48px;
   border-radius: 8px;
 

@@ -42,10 +42,13 @@ export const theme = {
     body4: typoCreator("0.875rem", 500),
     body5: typoCreator("0.75rem", 500),
 
-    button1: typoCreator("0.875rem", 500),
-    button2: typoCreator("0.875rem", 700),
-    button3: typoCreator("0.875rem", 600),
-    button4: typoCreator("0.75rem", 500),
+    button1: typoCreator("1.125rem", 500),
+    button2: typoCreator("1rem", 700),
+    button3: typoCreator("1rem", 500),
+    button4: typoCreator("0.875rem", 700),
+    button5: typoCreator("0.875rem", 600),
+    button6: typoCreator("0.75rem", 600),
+    button7: typoCreator("0.75rem", 500),
 
     caption1: typoCreator("0.875rem", 400),
     caption2: typoCreator("0.625rem", 700),
@@ -56,4 +59,14 @@ export const theme = {
     strokeWide: "1px solid #F6F6F6",
     strokeDash: "1px solid #CDCDCD",
   },
+  scroll: css`
+    overflow-y: scroll;
+
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+
+    &::-webkit-scrollbar {
+      display: none; /* Chrome, Safari, Opera*/
+    }
+  `,
 };
