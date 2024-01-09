@@ -1,7 +1,13 @@
 import { useRef, useState } from "react";
-import { ManageInfoElement } from "../manageProfile/ManageProfile.style";
+import * as S from "./ManageName.style";
 
-const ManageName = ({ prevName }: { prevName: string }) => {
+const ManageName = ({
+  prevName,
+  linkedToYanolja,
+}: {
+  prevName: string;
+  linkedToYanolja: boolean;
+}) => {
   const [name, setName] = useState<string>(prevName);
   const [isChanging, setIsChanging] = useState<boolean>(false);
 
@@ -21,10 +27,52 @@ const ManageName = ({ prevName }: { prevName: string }) => {
     }
   };
 
+  const koreanRegex = /^[ㄱ-ㅎ가-힣ㅏ-ㅣ]+$/;
+
+  const getMessageAndState = () => {
+    if (linkedToYanolja) {
+      return {
+        helpMessage: "야놀자 계정 연동 후에는 이름을 변경할 수 없습니다.",
+        state: "linkedToYanolja",
+      };
+    }
+
+    if (!koreanRegex.test(name)) {
+      return {
+        helpMessage: "이름은 한글로만 입력해 주세요",
+        state: "onError",
+      };
+    }
+
+    if (name.length < 2) {
+      return {
+        helpMessage: "이름은 2자 이상이어야 합니다",
+        state: "onError",
+      };
+    }
+
+    if (name.length > 20) {
+      return {
+        helpMessage: "이름은 20자 미만이어야 합니다",
+        state: "onError",
+      };
+    }
+
+    return {
+      helpMessage: "본명을 등록해 주세요. 체크인 시 본인확인용으로 사용됩니다.",
+      state: "default",
+    };
+  };
+
+  const { helpMessage, state } = getMessageAndState();
   const buttonText = isChanging ? "확인" : "변경";
 
   return (
-    <ManageInfoElement>
+    <S.ManageNameSection
+      $linkedToYanolja={linkedToYanolja}
+      $state={state}
+      $isChanging={isChanging}
+    >
       <label htmlFor="name">이름</label>
       <div>
         <input
@@ -37,7 +85,8 @@ const ManageName = ({ prevName }: { prevName: string }) => {
         />
         <button onClick={onClickHandler}>{buttonText}</button>
       </div>
-    </ManageInfoElement>
+      <S.HelpMessage $state={state}>{helpMessage}</S.HelpMessage>
+    </S.ManageNameSection>
   );
 };
 

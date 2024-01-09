@@ -11,7 +11,10 @@ const ManageProfile = () => {
       <h1>나의 계정</h1>
       <S.ManageInfoWrapper>
         <ManageEmail prevEmail={data.email} />
-        <ManageName prevName={data.name} />
+        <ManageName
+          prevName={data.name}
+          linkedToYanolja={data.linkedToYanolja}
+        />
         <ManagePhoneNumber prevPhoneNumber={data.phone} />
       </S.ManageInfoWrapper>
     </S.ManageContainer>
@@ -26,7 +29,7 @@ const dummy = {
   data: {
     id: 1,
     email: "test@mail.com",
-    name: "test",
+    name: "윤석민",
     phone: "10-1234-5678",
     accountNumber: "123-456-7810",
     bank: "농협",
