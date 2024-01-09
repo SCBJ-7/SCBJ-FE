@@ -10,22 +10,27 @@ interface ChildrenProps {
 }
 
 const Layout = ({ children }: ChildrenProps) => {
-  let isHeaderOn = true;
   const { pathname } = useLocation();
 
-  switch (pathname) {
-    case PATH.LOGIN:
-      isHeaderOn = false;
-      break;
-    default:
-      isHeaderOn = true;
-  }
+  const isHeaderOn = ![
+    PATH.LOGIN as string,
+    PATH.DETAIL_ROOMS as string,
+  ].includes(pathname);
+  const isBottomNavOn = ![
+    PATH.LOGIN as string,
+    PATH.DETAIL_ROOMS as string,
+  ].includes(pathname);
 
   return (
     <S.Container>
-      <Header />
-      <S.Wrapper $isHeaderOn={isHeaderOn}>{children}</S.Wrapper>
-      <BottomNav />
+      {isHeaderOn && <Header />}
+      <S.Wrapper
+        $isHeaderOn={isHeaderOn} //
+        $isBottomNavOn={isBottomNavOn}
+      >
+        {children}
+      </S.Wrapper>
+      {isBottomNavOn && <BottomNav />}
     </S.Container>
   );
 };

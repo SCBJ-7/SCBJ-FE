@@ -54,4 +54,14 @@ export const theme = {
     caption2: typoCreator("0.625rem", 700),
     caption3: typoCreator("0.625rem", 500),
   },
+  scroll: css`
+    overflow-y: scroll;
+
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+
+    &::-webkit-scrollbar {
+      display: none; /* Chrome, Safari, Opera*/
+    }
+  `,
 };
