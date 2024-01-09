@@ -1,11 +1,11 @@
-import { Suspense } from "react";
 import * as S from "./TransferWriting.style";
 import TransferItem from "./transferItem/TransferItem";
-
-import { fetchTransferItems } from "@/apis/fetchTransferItems";
-import { AnimatePresence } from "framer-motion";
 import Toast from "@/components/toast/Toast";
+
+import { Suspense } from "react";
+import { fetchTransferItems } from "@/apis/fetchTransferItems";
 import { useSuspenseQuery } from "@tanstack/react-query";
+import { AnimatePresence } from "framer-motion";
 
 const TransferWriting = () => {
   const UID = "DUMMY_UID";
@@ -24,9 +24,8 @@ const TransferWriting = () => {
         <S.TransferItemList>
           {data?.map((item, idx) => {
             return (
-              <AnimatePresence>
+              <AnimatePresence key={idx}>
                 <TransferItem
-                  key={idx}
                   hotelName={item.hotelName}
                   roomName={item.roomName}
                   startDate={item.startDate}
