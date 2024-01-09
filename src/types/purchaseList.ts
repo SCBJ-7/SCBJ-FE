@@ -1,4 +1,4 @@
-interface IPurchaseList {
+export interface IPurchaseList {
   ImageUrl: string;
   checkInDate: string;
   checkOutDate: string;

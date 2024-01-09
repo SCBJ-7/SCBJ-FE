@@ -5,12 +5,14 @@ export const PATH = {
   SALE_LIST: "/sale-list",
   PURCHASE_LIST: "/purchase-list",
   DETIAIL_ROOMS: "/rooms",
-  WRITE_TRANSFER: "/hotels/new",
+  WRITE_TRANSFER: "/transfer/new",
+  WRITE_TRANSFER_PRICE: "/transfer/new/price/",
   SIGNUP: "/signup",
   LOGIN: "/signin",
   MY_PAGE: "/my-page",
   REDIRECT: "/auth/:provider",
   RELOAD: 0,
+  PURCAHSE_DEATAIL: "/my-page/purchase-detail",
 } as const;
 // 참고
 

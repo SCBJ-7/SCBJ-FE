@@ -1,4 +1,3 @@
-import React, { useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 import * as S from "./PurchaseNav.style";
 
@@ -11,12 +10,9 @@ const navList = [
 const PurchaseNav = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const status = searchParams.get("status");
-
-  useEffect(() => {
-    if (!status) {
-      setSearchParams({ status: "all" });
-    }
-  }, [searchParams]);
+  if (!status) {
+    setSearchParams({ status: "all" });
+  }
 
   return (
     <S.PurchaseNavContainer>

@@ -1,18 +1,7 @@
 import styled from "styled-components";
 import { PiCaretRightBold } from "react-icons/pi";
-export const PurchaseList = styled.div`
-  width: 100%;
-  height: 100%;
-  overflow-y: scroll;
-  -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: none; /* Firefox */
-  &::-webkit-scrollbar {
-    display: none; /* Chrome, Safari, Opera*/
-  }
-`;
 
 export const PurchaseItemContainer = styled.div`
-  width: 100%;
   border-bottom: 1px solid ${({ theme }) => theme.color.greyScale6};
   height: 160px;
   cursor: pointer;
@@ -31,7 +20,8 @@ export const PurchaseItemTitle = styled.div`
   font-size: 0.75rem;
   font-weight: 600;
   width: 100%;
-  color: ${({ theme }) => theme.color.primary};
+  color: ${({ theme, $isComplete }) =>
+    $isComplete ? theme.color.black : theme.color.percentOrange};
 `;
 export const ArrowRightBtnIcon = styled(PiCaretRightBold)`
   font-size: 0.75rem;
@@ -58,7 +48,7 @@ export const PurchaseItemImage = styled.img`
 `;
 
 export const PuchaseItemInfo = styled.div`
-  width: 198px;
+  width: 220px;
   height: 83px;
   display: flex;
   flex-direction: column;
@@ -81,5 +71,5 @@ export const PuChaseItemDate = styled.div`
 export const PurchaseItemPrice = styled.div`
   font-size: 0.75rem;
   font-weight: 600;
-  color: ${({ theme }) => theme.color.primary};
+  color: ${({ theme }) => theme.color.percentOrange};
 `;

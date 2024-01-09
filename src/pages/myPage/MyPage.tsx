@@ -3,10 +3,10 @@ import MyPageNav from "./components/myPageNav/MyPageNav";
 
 const My = () => {
   return (
-    <div>
+    <>
       <MyPageNav />
       <Outlet />
-    </div>
+    </>
   );
 };
 

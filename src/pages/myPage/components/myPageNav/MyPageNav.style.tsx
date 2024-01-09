@@ -6,6 +6,9 @@ export const MyPageNavContainer = styled.section`
   height: 49px;
   display: flex;
   justify-content: center;
+  position: sticky;
+  top: 56px;
+  background-color: white;
 `;
 
 export const MyPageNavCell = styled(NavLink)`

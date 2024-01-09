@@ -3,7 +3,7 @@ import { createBrowserRouter } from "react-router-dom";
 import Home from "../pages/homePage";
 import NotFound from "../pages/notFoundPage";
 import Search from "../pages/searchPage";
-import SignUp from "../pages/signUpPage";
+import SignUp from "../pages/signUpPage/SignUp";
 import SignIn from "../pages/signInPage";
 import My from "../pages/myPage/MyPage";
 import TransferWriting from "../pages/transferWritingPage/TransferWriting";
@@ -12,6 +12,8 @@ import Detail from "../pages/detailPage";
 import TransferPurchase from "../pages/transferPurchasePage/TransferPurchase";
 import { PATH } from "../constants/path";
 import App from "../App";
+import TransferWritingPrice from "@/pages/transerWritingPricePage/TransferWritingPrice";
+import PurchaseDetail from "@/pages/purchaseDetailPage/PurchaseDetail";
 
 export const router = createBrowserRouter([
   {
@@ -57,8 +59,17 @@ export const router = createBrowserRouter([
       },
 
       {
+        path: PATH.WRITE_TRANSFER_PRICE + ":id",
+        element: <TransferWritingPrice />,
+      },
+
+      {
         path: PATH.DETIAIL_ROOMS,
         element: <Detail />,
+      },
+      {
+        path: PATH.PURCAHSE_DEATAIL,
+        element: <PurchaseDetail />,
       },
     ],
   },

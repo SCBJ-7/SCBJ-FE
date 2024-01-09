@@ -23,6 +23,6 @@ export const PurchaseNavCell = styled(Link)`
   &.active {
     color: white;
     border: none;
-    background-color: ${({ theme }) => theme.color.primary};
+    background-color: ${({ theme }) => theme.color.percentOrange};
   }
 `;
