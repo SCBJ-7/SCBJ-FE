@@ -9,7 +9,6 @@ import NotFound from "../pages/notFoundPage";
 import Search from "../pages/searchPage";
 import SignUp from "../pages/signUpPage/SignUp";
 import SignIn from "../pages/signInPage/SignIn";
-import My from "../pages/myPage";
 import TransferWriting from "../pages/transferWritingPage/TransferWriting";
 import TransferSale from "../pages/transferSalePage";
 import RoomDetail from "@pages/roomDetailPage/RoomDetail";

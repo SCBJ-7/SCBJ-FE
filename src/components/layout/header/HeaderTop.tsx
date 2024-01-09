@@ -1,6 +1,6 @@
+import { PATH } from "@/constants/path";
 import { useLocation, useNavigate } from "react-router-dom";
 import * as S from "./HeaderTop.style";
-import { PATH } from "@/constants/path";
 
 const Header = () => {
   const { pathname } = useLocation();
