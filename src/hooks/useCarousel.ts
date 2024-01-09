@@ -4,9 +4,14 @@ import { useRef, useState } from "react";
 interface CarouselProps {
   slideLength: number;
   slideWidth: number;
+  infinite?: boolean;
 }
 
-export const useCarousel = ({ slideLength, slideWidth }: CarouselProps) => {
+export const useCarousel = ({
+  slideLength,
+  infinite,
+  slideWidth,
+}: CarouselProps) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [transX, setTransX] = useState(0);
   const [animate, setAnimate] = useState(false);
@@ -42,14 +47,14 @@ export const useCarousel = ({ slideLength, slideWidth }: CarouselProps) => {
   const handleSliderTouchStart = (
     touchEvent: React.TouchEvent<HTMLDivElement>,
   ) => {
-    const handleTouchMove = (moveEvent: TouchEvent) => {
+    const handleTouchMove = (moveEvent: globalThis.TouchEvent) => {
       if (moveEvent.cancelable) moveEvent.preventDefault();
 
       const delta = moveEvent.touches[0].pageX - touchEvent.touches[0].pageX;
       handleDragChange(delta);
     };
 
-    const handleTouchEnd = (moveEvent: TouchEvent) => {
+    const handleTouchEnd = (moveEvent: globalThis.TouchEvent) => {
       if (moveEvent.cancelable) moveEvent.preventDefault();
       const delta =
         moveEvent.changedTouches[0].pageX - touchEvent.changedTouches[0].pageX;
@@ -98,6 +103,13 @@ export const useCarousel = ({ slideLength, slideWidth }: CarouselProps) => {
 
   const handleSliderTransitionEnd = () => {
     setAnimate(false);
+
+    if (!infinite) return;
+    if (currentIndex === 0) {
+      setCurrentIndex(slideLength - 2);
+    } else if (currentIndex === slideLength - 1) {
+      setCurrentIndex(1);
+    }
   };
 
   return {
