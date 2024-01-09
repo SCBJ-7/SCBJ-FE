@@ -9,7 +9,7 @@ export const SignUpContainer = styled.form`
 `;
 
 export const SignUpTitle = styled.p`
-  ${({ theme }) => theme.typo.title3}
+  ${({ theme }) => theme.typo.title4}
   color: #3A3A3A;
 
   margin: 0 0 64px 0;
@@ -56,7 +56,7 @@ export const SignUpInput = styled.input`
 `;
 
 export const SignUpInputBtn = styled.button`
-  ${({ theme }) => theme.typo.caption2}
+  ${({ theme }) => theme.typo.caption4}
   position: absolute;
 
   width: 72px;
@@ -72,7 +72,7 @@ export const SignUpInputBtn = styled.button`
 `;
 
 export const SignUpInputCaption = styled.span<{ $color: string }>`
-  ${({ theme }) => theme.typo.caption3}
+  ${({ theme }) => theme.typo.caption5}
   color: ${({ $color }) => $color};
 `;
 

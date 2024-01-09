@@ -15,16 +15,19 @@ const TransferWriting = () => {
     staleTime: 500000,
   });
 
+  console.log("data: ", data);
+
   return (
     <>
       <Toast strings={[<>야놀자</>, "에서 예약하신 상품만 판매가 가능해요"]} />
       <S.Subtitle>판매할 내역을 선택해주세요.</S.Subtitle>
 
       <S.TransferItemList>
-        {data?.map((item, idx) => {
+        {data?.map((item) => {
           return (
-            <AnimatePresence key={idx}>
+            <AnimatePresence key={item.reservationId}>
               <TransferItem
+                reservationId={item.reservationId}
                 hotelName={item.hotelName}
                 roomName={item.roomName}
                 startDate={item.startDate}
@@ -33,7 +36,7 @@ const TransferWriting = () => {
                 purchasePrice={item.purchasePrice}
                 remainingDays={item.remainingDays}
                 remainingTimes={item.remainingTimes}
-                hotelImage={item.hotelImage}
+                imageUrl={item.imageUrl}
               />
             </AnimatePresence>
           );

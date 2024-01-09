@@ -51,7 +51,7 @@ export const router = createBrowserRouter([
         ),
       },
       {
-        path: PATH.WRITE_TRANSFER_PRICE + ":id",
+        path: PATH.WRITE_TRANSFER_PRICE + `/:id`,
         element: <TransferWritingPrice />,
       },
       {
