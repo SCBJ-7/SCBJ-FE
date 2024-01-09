@@ -14,11 +14,11 @@ const Layout = ({ children }: ChildrenProps) => {
 
   const isHeaderOn = ![
     PATH.LOGIN as string,
-    PATH.DETAIL_ROOMS as string,
+    PATH.DETAIL_ROOM as string,
   ].includes(pathname);
   const isBottomNavOn = ![
     PATH.LOGIN as string,
-    PATH.DETAIL_ROOMS as string,
+    PATH.DETAIL_ROOM as string,
   ].includes(pathname);
 
   return (
