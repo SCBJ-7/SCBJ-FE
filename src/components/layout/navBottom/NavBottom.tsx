@@ -1,6 +1,6 @@
-import * as S from "./NavBottom.style";
 import { PATH } from "@/constants/path";
 import { useLocation } from "react-router-dom";
+import * as S from "./NavBottom.style";
 
 const BottomNav = () => {
   const { pathname } = useLocation();
@@ -26,18 +26,6 @@ const BottomNav = () => {
     },
     { id: 4, name: "마이", path: PATH.MY_PAGE, icon: <S.NavIconMy /> },
   ];
-
-  let visible = true;
-
-  switch (pathname) {
-    case PATH.LOGIN:
-      visible = false;
-      break;
-  }
-
-  if (!visible) {
-    return;
-  }
 
   return (
     <S.BottomNavContainer>

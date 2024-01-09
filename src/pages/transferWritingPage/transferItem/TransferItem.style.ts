@@ -1,7 +1,7 @@
-import styled from "styled-components";
+import { motion } from "framer-motion";
 
 import { PiCaretRightBold } from "react-icons/pi";
-import { motion } from "framer-motion";
+import styled from "styled-components";
 
 export const ItemContainer = styled(motion.div)`
   height: 214px;

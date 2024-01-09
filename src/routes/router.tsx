@@ -1,14 +1,17 @@
+import { Suspense } from "react";
 import { createBrowserRouter } from "react-router-dom";
+import App from "../App";
+import { PATH } from "../constants/path";
 
 import Home from "../pages/homePage";
+import My from "../pages/myPage";
 import NotFound from "../pages/notFoundPage";
 import Search from "../pages/searchPage";
 import SignUp from "../pages/signUpPage/SignUp";
 import SignIn from "../pages/signInPage/SignIn";
-import My from "../pages/myPage";
 import TransferWriting from "../pages/transferWritingPage/TransferWriting";
 import TransferSale from "../pages/transferSalePage";
-import Detail from "../pages/detailPage";
+import RoomDetail from "@pages/roomDetailPage/RoomDetail";
 import TransferPurchase from "../pages/transferPurchasePage";
 import { PATH } from "../constants/path";
 import App from "../App";
@@ -63,8 +66,12 @@ export const router = createBrowserRouter([
         element: <TransferPurchase />,
       },
       {
-        path: PATH.DETIAIL_ROOMS,
-        element: <Detail />,
+        path: PATH.DETAIL_ROOM,
+        element: (
+          <Suspense fallback={<div>LOADING</div>}>
+            <RoomDetail />
+          </Suspense>
+        ),
       },
     ],
   },

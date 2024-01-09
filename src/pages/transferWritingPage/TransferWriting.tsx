@@ -5,6 +5,7 @@ import Toast from "@/components/toast/Toast";
 import { fetchTransferItems } from "@/apis/fetchTransferItems";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { AnimatePresence } from "framer-motion";
+import Toast from "@/components/toast/Toast";
 
 const TransferWriting = () => {
   const UID = "DUMMY_UID";

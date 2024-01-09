@@ -1,12 +1,14 @@
 import React, { Suspense } from "react";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import React from "react";
 import ReactDOM from "react-dom/client";
 import { RouterProvider } from "react-router-dom";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { theme } from "./styles/theme";
-import { GlobalStyle } from "./styles/globalStyle";
-import { router } from "./routes/router";
 import { ThemeProvider } from "styled-components";
 import { worker } from "./mocks/broswer.ts";
+import { router } from "./routes/router";
+import { GlobalStyle } from "./styles/globalStyle";
+import { theme } from "./styles/theme";
 
 const queryClient = new QueryClient();
 if (process.env.NODE_ENV === "development") {
@@ -22,6 +24,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
           <RouterProvider router={router} />
         </Suspense>
       </ThemeProvider>
+      <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
   </React.StrictMode>,
 );
