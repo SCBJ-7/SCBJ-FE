@@ -2,7 +2,6 @@ import * as S from "./TransferWriting.style";
 import TransferItem from "./transferItem/TransferItem";
 import Toast from "@/components/toast/Toast";
 
-import { Suspense } from "react";
 import { fetchTransferItems } from "@/apis/fetchTransferItems";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { AnimatePresence } from "framer-motion";
@@ -20,27 +19,26 @@ const TransferWriting = () => {
     <>
       <Toast strings={[<>야놀자</>, "에서 예약하신 상품만 판매가 가능해요"]} />
       <S.Subtitle>판매할 내역을 선택해주세요.</S.Subtitle>
-      <Suspense fallback={<div>Loading...</div>}>
-        <S.TransferItemList>
-          {data?.map((item, idx) => {
-            return (
-              <AnimatePresence key={idx}>
-                <TransferItem
-                  hotelName={item.hotelName}
-                  roomName={item.roomName}
-                  startDate={item.startDate}
-                  endDate={item.endDate}
-                  refundPrice={item.refundPrice}
-                  purchasePrice={item.purchasePrice}
-                  remainingDays={item.remainingDays}
-                  remainingTimes={item.remainingTimes}
-                  hotelImage={item.hotelImage}
-                />
-              </AnimatePresence>
-            );
-          })}
-        </S.TransferItemList>
-      </Suspense>
+
+      <S.TransferItemList>
+        {data?.map((item, idx) => {
+          return (
+            <AnimatePresence key={idx}>
+              <TransferItem
+                hotelName={item.hotelName}
+                roomName={item.roomName}
+                startDate={item.startDate}
+                endDate={item.endDate}
+                refundPrice={item.refundPrice}
+                purchasePrice={item.purchasePrice}
+                remainingDays={item.remainingDays}
+                remainingTimes={item.remainingTimes}
+                hotelImage={item.hotelImage}
+              />
+            </AnimatePresence>
+          );
+        })}
+      </S.TransferItemList>
     </>
   );
 };

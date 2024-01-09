@@ -13,6 +13,7 @@ import TransferPurchase from "../pages/transferPurchasePage";
 import { PATH } from "../constants/path";
 import App from "../App";
 import TransferWritingPrice from "@/pages/transferWritingPricePage/TransferWritingPrice";
+import { Suspense } from "react";
 
 export const router = createBrowserRouter([
   {
@@ -43,7 +44,11 @@ export const router = createBrowserRouter([
       },
       {
         path: PATH.WRITE_TRANSFER,
-        element: <TransferWriting />,
+        element: (
+          <Suspense fallback={<div>Loading...</div>}>
+            <TransferWriting />
+          </Suspense>
+        ),
       },
       {
         path: PATH.WRITE_TRANSFER_PRICE + ":id",
