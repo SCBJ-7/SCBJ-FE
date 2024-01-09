@@ -1,5 +1,5 @@
-import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
-import styled from "styled-components";
+import { PiCaretLeftBold, PiCaretRightBold } from "react-icons/pi";
+import styled, { css } from "styled-components";
 
 export const CarouselContainer = styled.div<{
   $height: number;
@@ -11,6 +11,7 @@ export const CarouselContainer = styled.div<{
   height: ${(props) => `${props.$height}px`};
 
   overflow: hidden;
+  cursor: grab;
 
   touch-action: pan-y;
 `;
@@ -64,24 +65,25 @@ export const Button = styled.button<{ $visible: boolean }>`
   height: 28px;
 
   border-radius: 50%;
-  background-color: rgba(255, 255, 255, 0.5);
+  background-color: white;
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
 
-  opacity: ${(props) => (props.$visible ? 1 : 0)};
-  transform: translateY(-50%) scale(${(props) => (props.$visible ? 1 : 0.7)});
+  opacity: ${(props) => (props.$visible ? 0.7 : 0)};
+
+  transform: translateY(-50%) scale(${(props) => (props.$visible ? 1 : 0)});
   transition:
     opacity 0.5s cubic-bezier(0.5, -0.75, 0.7, 2),
-    transform 0.6s cubic-bezier(0.5, -0.75, 0.7, 2),
-    background-color 0.5s ease;
+    transform 0.6s cubic-bezier(0.5, -0.75, 0.7, 2);
 
   pointer-events: ${(props) => (props.$visible ? "all" : "none")};
+  cursor: pointer;
 
   &:hover {
-    cursor: pointer;
-    background-color: rgba(255, 255, 255, 0.7);
-    svg {
-      fill: rgba(0, 0, 0, 0.4);
-    }
+    opacity: 1;
+  }
+
+  @media (max-width: 375px) {
+    opacity: ${(props) => (props.$visible ? 1 : 0)};
   }
 `;
 
@@ -93,18 +95,18 @@ export const RightButton = styled(Button)`
   right: 16px;
 `;
 
-export const LeftIcon = styled(FaChevronLeft)`
+export const IconStyle = css`
   width: 100%;
-  font-size: 1rem;
-  fill: rgba(0, 0, 0, 0.3);
+  font-size: 1.1rem;
+  fill: rgba(0, 0, 0, 0.9);
 
   transition: fill 0.5s ease;
 `;
 
-export const RightIcon = styled(FaChevronRight)`
-  width: 100%;
-  font-size: 1rem;
-  fill: rgba(0, 0, 0, 0.3);
+export const LeftIcon = styled(PiCaretLeftBold)`
+  ${IconStyle}
+`;
 
-  transition: fill 0.5s ease;
+export const RightIcon = styled(PiCaretRightBold)`
+  ${IconStyle}
 `;
