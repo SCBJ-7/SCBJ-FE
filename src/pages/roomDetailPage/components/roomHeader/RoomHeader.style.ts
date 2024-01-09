@@ -17,7 +17,7 @@ export const HeaderContainer = styled.header<{ $visible: boolean }>`
   height: 56px;
   z-index: 2;
   background-color: ${({ $visible, theme }) =>
-    $visible ? "none" : theme.color.white};
+    $visible ? "unset" : theme.color.white};
   border-bottom: ${({ $visible, theme }) =>
     $visible ? "none" : `1px solid ${theme.color.greyScale7}`};
 
@@ -55,7 +55,7 @@ export const BackIcon = styled(PiCaretLeftBold)<{ $visible: boolean }>`
 `;
 
 export const Title = styled.p<{ $visible: boolean }>`
-  font-size: ${({ theme }) => theme.typo.title2};
+  ${({ theme }) => theme.typo.title3};
   color: ${({ theme }) => theme.color.black};
   opacity: ${({ $visible }) => ($visible ? 0 : 1)};
 `;
