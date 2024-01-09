@@ -1,6 +1,6 @@
-import * as S from "./NavBottom.style";
 import { PATH } from "@/constants/path";
 import { useLocation } from "react-router-dom";
+import * as S from "./NavBottom.style";
 
 const BottomNav = () => {
   const { pathname } = useLocation();

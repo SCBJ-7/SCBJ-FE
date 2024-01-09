@@ -40,8 +40,6 @@ export const SignUpInputTitle = styled.p`
 `;
 
 export const SignUpInput = styled.input`
-  position: relative;
-
   width: 100%;
   height: 48px;
 

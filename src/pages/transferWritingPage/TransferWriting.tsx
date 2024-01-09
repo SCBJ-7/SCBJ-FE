@@ -1,11 +1,10 @@
-import { useEffect, useState } from "react";
-import * as S from "./TransferWriting.style";
-import TransferItem from "./transferItem/TransferItem";
-
 import { fetchTransferItems } from "@/apis/fetchTransferItems";
-import { IReservation } from "../../types/reservationList";
 import { AnimatePresence } from "framer-motion";
 import Toast from "@/components/toast/Toast";
+import { useEffect, useState } from "react";
+import { IReservation } from "../../types/reservationList";
+import TransferItem from "./transferItem/TransferItem";
+import * as S from "./TransferWriting.style";
 
 const TransferWriting = () => {
   const [reservations, setReservations] = useState<IReservation[]>([]);
