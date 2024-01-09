@@ -27,8 +27,6 @@ export const ManageInfoElement = styled.div`
   flex-direction: column;
   gap: 8px;
 
-  border-bottom: ${({ theme }) => theme.border.strokeThin};
-
   input {
     border: none;
     outline: none;
@@ -41,10 +39,17 @@ export const ManageInfoElement = styled.div`
     align-items: center;
 
     height: 32px;
+
+    border-bottom: ${({ theme }) => theme.border.strokeThin};
   }
 
   button {
     position: absolute;
     right: 0px;
+
+    padding: 3px 10px;
+
+    border: 1px solid ${({ theme }) => theme.color.black};
+    border-radius: 8px;
   }
 `;
