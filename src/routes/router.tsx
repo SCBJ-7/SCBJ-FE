@@ -60,7 +60,7 @@ export const router = createBrowserRouter([
         element: <TransferPurchase />,
       },
       {
-        path: PATH.DETIAIL_ROOMS,
+        path: PATH.DETIAIL_ROOM,
         element: (
           <Suspense fallback={<div>LOADING</div>}>
             <RoomDetail />
