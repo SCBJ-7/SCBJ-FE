@@ -1,9 +1,9 @@
 import { useCarousel } from "@hooks/useCarousel";
+import { useCarouselSize } from "@hooks/useCarouselSize";
 import * as S from "./Carousel.style.ts";
 
 interface CarouselProps {
   images: string[];
-  width?: number;
   height?: number;
   arrows?: boolean;
   infinite?: boolean;
@@ -11,7 +11,6 @@ interface CarouselProps {
 }
 
 const Carousel = ({
-  width = 100,
   height = 300,
   images,
   arrows = true,
@@ -22,8 +21,11 @@ const Carousel = ({
     ? [images.at(-1), ...images, images.at(0)]
     : images;
 
+  const { slideWidth, sliderRef } = useCarouselSize();
+
+  console.log(slideWidth);
+
   const {
-    sliderRef,
     currentIndex,
     getSliderStyle,
     handleSliderNavigationClick,
@@ -33,11 +35,11 @@ const Carousel = ({
   } = useCarousel({
     slideLength: slideList.length,
     infinite,
-    slideWidth: width,
+    slideWidth,
   });
 
   return (
-    <S.CarouselContainer $width={width} $height={height}>
+    <S.CarouselContainer $height={height}>
       <S.SliderWrapper>
         <S.SliderContainer
           ref={sliderRef}
@@ -48,7 +50,7 @@ const Carousel = ({
           onTransitionEnd={draggable ? handleSliderTransitionEnd : undefined}
         >
           {slideList.map((imageUrl, index) => (
-            <S.ImageWrapper key={index} $width={width} $height={height}>
+            <S.ImageWrapper key={index} $height={height}>
               <img src={imageUrl} alt={`Slide ${index}`} draggable={false} />
             </S.ImageWrapper>
           ))}

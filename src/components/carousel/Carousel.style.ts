@@ -2,13 +2,11 @@ import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import styled from "styled-components";
 
 export const CarouselContainer = styled.div<{
-  $width: number | string;
   $height: number;
 }>`
   position: relative;
 
-  width: ${(props) =>
-    typeof props.$width === "number" ? `${props.$width}px` : "100%"};
+  width: 100%;
   min-height: ${(props) => `${props.$height}px`};
   height: ${(props) => `${props.$height}px`};
 
@@ -31,11 +29,9 @@ export const SliderContainer = styled.div`
 `;
 
 export const ImageWrapper = styled.div<{
-  $width: number | string;
   $height: number;
 }>`
-  width: ${(props) =>
-    typeof props.$width === "number" ? `${props.$width}px` : props.$width};
+  width: 100%;
   min-height: ${(props) => `${props.$height}px`};
   height: ${(props) => `${props.$height}px`};
 
@@ -43,7 +39,7 @@ export const ImageWrapper = styled.div<{
 
   img {
     width: 100%;
-    height: 100%;
+    height: ${(props) => `${props.$height}px`};
     object-fit: cover;
   }
 `;

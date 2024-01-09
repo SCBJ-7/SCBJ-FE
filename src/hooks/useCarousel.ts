@@ -1,5 +1,5 @@
 import { inrange } from "@utils/inRange";
-import { useRef, useState } from "react";
+import { useState } from "react";
 
 interface CarouselProps {
   slideLength: number;
@@ -15,8 +15,6 @@ export const useCarousel = ({
   const [currentIndex, setCurrentIndex] = useState(0);
   const [transX, setTransX] = useState(0);
   const [animate, setAnimate] = useState(false);
-
-  const sliderRef = useRef<HTMLDivElement>(null);
 
   const handleDragChange = (deltaX: number) => {
     setTransX(inrange(deltaX, -slideWidth, slideWidth));
@@ -113,7 +111,6 @@ export const useCarousel = ({
   };
 
   return {
-    sliderRef,
     currentIndex,
     handleSliderNavigationClick,
     handleSliderTouchStart,
