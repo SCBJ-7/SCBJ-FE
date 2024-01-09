@@ -1,10 +1,10 @@
-import { useEffect, useState } from "react";
-import * as S from "./TransferWriting.style";
-import TransferItem from "./transferItem/TransferItem";
-
 import { fetchTransferItems } from "@/apis/fetchTransferItems";
-import { IReservation } from "../../types/reservationList";
 import { AnimatePresence } from "framer-motion";
+import Toast from "@/components/toast/Toast";
+import { useEffect, useState } from "react";
+import { IReservation } from "../../types/reservationList";
+import TransferItem from "./transferItem/TransferItem";
+import * as S from "./TransferWriting.style";
 
 const TransferWriting = () => {
   const [reservations, setReservations] = useState<IReservation[]>([]);
@@ -21,6 +21,7 @@ const TransferWriting = () => {
 
   return (
     <>
+      <Toast strings={[<>야놀자</>, "에서 예약하신 상품만 판매가 가능해요"]} />
       <S.Subtitle>판매할 내역을 선택해주세요.</S.Subtitle>
       <S.TransferItemList>
         {reservations.map((item, idx) => {

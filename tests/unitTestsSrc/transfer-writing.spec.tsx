@@ -1,3 +1,4 @@
+import { theme } from "@/styles/theme";
 import {
   fireEvent,
   render,
@@ -7,9 +8,8 @@ import {
 } from "@testing-library/react";
 
 import { MemoryRouter } from "react-router-dom";
-import App from "../../src/App";
 import { ThemeProvider } from "styled-components";
-import { theme } from "@/styles/theme";
+import App from "../../src/App";
 
 describe("Transfer Component", () => {
   beforeEach(() => {
