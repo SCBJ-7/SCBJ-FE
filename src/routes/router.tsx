@@ -13,10 +13,7 @@ import TransferWriting from "../pages/transferWritingPage/TransferWriting";
 import TransferSale from "../pages/transferSalePage";
 import RoomDetail from "@pages/roomDetailPage/RoomDetail";
 import TransferPurchase from "../pages/transferPurchasePage";
-import { PATH } from "../constants/path";
-import App from "../App";
 import TransferWritingPrice from "@/pages/transferWritingPricePage/TransferWritingPrice";
-import { Suspense } from "react";
 
 export const router = createBrowserRouter([
   {
