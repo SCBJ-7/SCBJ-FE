@@ -20,12 +20,24 @@ const BottomNav = () => {
     },
     {
       id: 3,
-      name: "호텔검색",
+      name: "상품조회",
       path: PATH.SEARCHLIST,
       icon: <S.NavIconSearch />,
     },
     { id: 4, name: "마이", path: PATH.MY_PAGE, icon: <S.NavIconMy /> },
   ];
+
+  let visible = true;
+
+  switch (pathname) {
+    case PATH.LOGIN:
+      visible = false;
+      break;
+  }
+
+  if (!visible) {
+    return;
+  }
 
   return (
     <S.BottomNavContainer>

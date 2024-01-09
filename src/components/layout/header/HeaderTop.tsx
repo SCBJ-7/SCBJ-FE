@@ -6,6 +6,7 @@ const Header = () => {
   const { pathname } = useLocation();
   const navigate = useNavigate();
 
+  let visible = true;
   let alarmIC = false;
   let settingIC = false;
   let title = "";
@@ -36,6 +37,9 @@ const Header = () => {
       title = "마이페이지";
       undo = true;
       break;
+    case PATH.LOGIN:
+      visible = false;
+      break;
     default: // 없음
       alarmIC = false;
       settingIC = false;
@@ -54,6 +58,10 @@ const Header = () => {
   const settingHandler = () => {
     // navigate("/...")
   };
+
+  if (!visible) {
+    return;
+  }
 
   return (
     <S.HeaderContainer>
