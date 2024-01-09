@@ -37,6 +37,10 @@ export const SignUpInputWrapper = styled.div`
   gap: 8px;
 `;
 
+export const SignUpInputRelativeWrapper = styled.div`
+  position: relative;
+`;
+
 export const SignUpInputTitle = styled.p`
   ${({ theme }) => theme.typo.caption1}
   color: ${({ theme }) => theme.color.greyScale1};

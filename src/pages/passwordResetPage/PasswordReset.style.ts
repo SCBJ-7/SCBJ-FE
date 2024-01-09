@@ -41,6 +41,10 @@ export const PasswordResetInputWrapper = styled.div`
   gap: 8px;
 `;
 
+export const PasswordResetRelativeWrapper = styled.div`
+  position: relative;
+`;
+
 export const PasswordResetInputTitle = styled.p`
   ${({ theme }) => theme.typo.caption1}
   color: ${({ theme }) => theme.color.greyScale1};

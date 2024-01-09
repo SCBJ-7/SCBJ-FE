@@ -10,24 +10,24 @@ const PasswordReset = () => {
       <S.PasswordResetInputContainer>
         <S.PasswordResetInputWrapper>
           <S.PasswordResetInputTitle>이메일</S.PasswordResetInputTitle>
-          <div style={{ position: "relative" }}>
+          <S.PasswordResetRelativeWrapper>
             <S.PasswordResetInput placeholder="이메일을 입력해주세요" />
             <S.PasswordResetInputBtn type="button">
               인증 요청
             </S.PasswordResetInputBtn>
-          </div>
+          </S.PasswordResetRelativeWrapper>
           <S.PasswordResetInputCaption $color="#FF4949">
             이미 사용중인 이메일 입니다
           </S.PasswordResetInputCaption>
         </S.PasswordResetInputWrapper>
         <S.PasswordResetInputWrapper>
           <S.PasswordResetInputTitle>인증번호 입력</S.PasswordResetInputTitle>
-          <div style={{ position: "relative" }}>
+          <S.PasswordResetRelativeWrapper>
             <S.PasswordResetInput placeholder="코드 6자리를 입력해주세요" />
             <S.PasswordResetInputBtn type="button">
               확인
             </S.PasswordResetInputBtn>
-          </div>
+          </S.PasswordResetRelativeWrapper>
           <S.PasswordResetInputCaption $color="#FF4949">
             잘못된 인증번호 입니다
           </S.PasswordResetInputCaption>
