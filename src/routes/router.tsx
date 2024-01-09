@@ -14,6 +14,7 @@ import TransferSale from "../pages/transferSalePage";
 import RoomDetail from "@pages/roomDetailPage/RoomDetail";
 import TransferPurchase from "../pages/transferPurchasePage";
 import TransferWritingPrice from "@/pages/transerWritingPricePage/TransferWritingPrice";
+import PasswordReset from "@/pages/passwordResetPage/PasswordReset";
 
 export const router = createBrowserRouter([
   {
@@ -65,6 +66,10 @@ export const router = createBrowserRouter([
             <RoomDetail />
           </Suspense>
         ),
+      },
+      {
+        path: PATH.PASSWORD_RESET,
+        element: <PasswordReset />,
       },
     ],
   },

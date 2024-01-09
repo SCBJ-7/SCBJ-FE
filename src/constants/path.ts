@@ -11,6 +11,7 @@ export const PATH = {
   LOGIN: "/signin",
   MY_PAGE: "/my-page",
   REDIRECT: "/auth/:provider",
+  PASSWORD_RESET: "/password-reset",
   RELOAD: 0,
 } as const;
 // 참고

@@ -19,8 +19,8 @@ const SignIn = () => {
       <S.SignInSubmitBtn type="button">로그인</S.SignInSubmitBtn>
 
       <S.SignInLinkWrapper>
-        <S.SignInLink to="https://naver.com">비밀번호 찾기</S.SignInLink>
-        <S.SignInLink to="https://naver.com">회원가입 하기</S.SignInLink>
+        <S.SignInLink to="/password-reset">비밀번호 찾기</S.SignInLink>
+        <S.SignInLink to="/signup">회원가입 하기</S.SignInLink>
       </S.SignInLinkWrapper>
     </S.SignInContainer>
   );
