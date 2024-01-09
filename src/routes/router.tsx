@@ -12,7 +12,7 @@ import Detail from "../pages/detailPage";
 import TransferPurchase from "../pages/transferPurchasePage";
 import { PATH } from "../constants/path";
 import App from "../App";
-import TransferWritingPrice from "@/pages/transerWritingPricePage/TransferWritingPrice";
+import TransferWritingPrice from "@/pages/transferWritingPricePage/TransferWritingPrice";
 
 export const router = createBrowserRouter([
   {
