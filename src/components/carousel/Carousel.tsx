@@ -3,21 +3,32 @@ import * as S from "./Carousel.style.ts";
 
 interface CarouselProps {
   images: string[];
-  width?: number | string;
+  width?: number;
   height?: number;
   arrows?: boolean;
   infinite?: boolean;
+  draggable?: boolean;
 }
 
 const Carousel = ({
-  width = "100%",
+  width = 100,
   height = 300,
   images,
   arrows = true,
-  infinite = false,
+  draggable = false,
 }: CarouselProps) => {
-  const { sliderRef, currentIndex, handleNext, handlePrev, getSliderStyle } =
-    useCarousel(images.length, infinite);
+  const {
+    sliderRef,
+    currentIndex,
+    getSliderStyle,
+    handleSliderNavigationClick,
+    handleSliderTransitionEnd,
+    handlerSliderMoueDown,
+    handleSliderTouchStart,
+  } = useCarousel({
+    slideLength: images.length,
+    slideWidth: width,
+  });
 
   return (
     <S.CarouselContainer $width={width} $height={height}>
@@ -26,10 +37,13 @@ const Carousel = ({
           ref={sliderRef}
           style={getSliderStyle()}
           data-testid={`slide-${currentIndex}`}
+          onMouseDown={draggable ? handlerSliderMoueDown : undefined}
+          onTouchStart={draggable ? handleSliderTouchStart : undefined}
+          onTransitionEnd={draggable ? handleSliderTransitionEnd : undefined}
         >
           {images.map((imageUrl, index) => (
             <S.ImageWrapper key={index} $width={width} $height={height}>
-              <img src={imageUrl} alt={`Slide ${index}`} />
+              <img src={imageUrl} alt={`Slide ${index}`} draggable={false} />
             </S.ImageWrapper>
           ))}
         </S.SliderContainer>
@@ -38,15 +52,15 @@ const Carousel = ({
         <S.ButtonContainer>
           <S.LeftButton
             aria-label="뒤로가기"
-            onClick={handlePrev}
-            $visible={infinite || currentIndex > 0}
+            onClick={handleSliderNavigationClick(currentIndex - 1)}
+            $visible={currentIndex > 0}
           >
             <S.LeftIcon />
           </S.LeftButton>
           <S.RightButton
             aria-label="앞으로가기"
-            onClick={handleNext}
-            $visible={infinite || currentIndex < images.length - 1}
+            onClick={handleSliderNavigationClick(currentIndex + 1)}
+            $visible={currentIndex < images.length - 1}
           >
             <S.RightIcon />
           </S.RightButton>
