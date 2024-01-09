@@ -26,6 +26,7 @@ const Toast = ({ strings, duration = 5000 }: ToastProps) => {
         duration: 0.3,
         type: "spring",
         stiffness: 60,
+        delay: 0.6,
       },
     },
     hidden: {

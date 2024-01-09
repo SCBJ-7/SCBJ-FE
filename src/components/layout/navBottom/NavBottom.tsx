@@ -20,7 +20,7 @@ const BottomNav = () => {
     },
     {
       id: 3,
-      name: "호텔검색",
+      name: "상품조회",
       path: PATH.SEARCHLIST,
       icon: <S.NavIconSearch />,
     },
