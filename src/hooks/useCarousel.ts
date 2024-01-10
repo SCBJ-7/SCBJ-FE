@@ -1,4 +1,3 @@
-import { inrange } from "@utils/inRange";
 import { useState } from "react";
 
 interface CarouselProps {
@@ -6,6 +5,12 @@ interface CarouselProps {
   slideWidth: number;
   infinite?: boolean;
 }
+
+const inrange = (v: number, min: number, max: number) => {
+  if (v < min) return min;
+  if (v > max) return max;
+  return v;
+};
 
 export const useCarousel = ({
   slideLength,
