@@ -4,7 +4,7 @@ import { FaChevronRight } from "react-icons/fa6";
 export const Container = styled.div`
   padding: 16px 20px 24px;
   background-color: white;
-  margin-bottom: 16px;
+  margin-bottom: 1px;
 `;
 
 export const Contents = styled.div`

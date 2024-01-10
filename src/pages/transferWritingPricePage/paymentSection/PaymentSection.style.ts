@@ -1,9 +1,9 @@
 import styled from "styled-components";
 
-export const Container = styled.div`
-  padding: 32px 20px;
+export const Container = styled.div<{ $is2ndChecked: boolean }>`
+  padding: 16px 20px;
   background-color: white;
-  margin-bottom: 1px;
+  margin-bottom: ${({ $is2ndChecked }) => ($is2ndChecked ? "8px" : "1px")};
 `;
 
 export const Contents = styled.div`

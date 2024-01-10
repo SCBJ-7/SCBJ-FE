@@ -1,13 +1,13 @@
+import { motion } from "framer-motion";
 import styled from "styled-components";
 
-export const Container = styled.section`
+export const Container = styled(motion.section)`
   padding: 40px 20px;
 
   display: flex;
   flex-direction: column;
   gap: 16px;
   background-color: white;
-  margin-bottom: 16px;
 `;
 
 export const Contents = styled.div`
@@ -22,4 +22,13 @@ export const Contents = styled.div`
   span {
     color: ${({ theme }) => theme.color.percentBlue};
   }
+`;
+
+export const Hr = styled.hr`
+  border: none;
+  border-top: 1px dashed ${({ theme }) => theme.color.greyScale5};
+  color: #fff;
+  background-color: #fff;
+  height: 1px;
+  width: 100%;
 `;
