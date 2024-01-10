@@ -5,7 +5,6 @@ import * as S from "./HeaderTop.style";
 const Header = () => {
   const { pathname } = useLocation();
   const navigate = useNavigate();
-  console.log(pathname);
   let alarmIC = false;
   let settingIC = false;
   let title = "";
