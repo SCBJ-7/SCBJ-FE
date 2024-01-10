@@ -75,7 +75,7 @@ const PurchaseDetail = () => {
           <S.StandardTitle>이용자 정보</S.StandardTitle>
           <S.StandardFlex>
             <S.StandardSubTitle>이름</S.StandardSubTitle>
-            <S.StandardInfo>{data.reservationName}</S.StandardInfo>
+            <S.StandardInfo>{data.customerName}</S.StandardInfo>
           </S.StandardFlex>
           <S.StandardFlex>
             <S.StandardSubTitle>휴대폰 번호</S.StandardSubTitle>
