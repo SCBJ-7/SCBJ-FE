@@ -1,16 +1,23 @@
-import styled from "styled-components";
+import styled, { DefaultTheme } from "styled-components";
 import { ManageInfoElement } from "../manageProfile/ManageProfile.style";
-import { theme } from "@/styles/theme";
 
-const helpMessageColor = (state: string) => {
+const helpMessageColor = ({
+  theme,
+  state,
+}: {
+  theme: DefaultTheme;
+  state: string;
+}) => {
   if (state === "onError") return theme.color.cautionRed;
   else return theme.color.percentBlue;
 };
 
 const buttonColor = ({
+  theme,
   state,
   isChanging,
 }: {
+  theme: DefaultTheme;
   state: string;
   isChanging: boolean;
 }) => {
@@ -28,14 +35,14 @@ export const ManageNumberSection = styled(ManageInfoElement)<{
   $isChanging: boolean;
 }>`
   button {
-    color: ${({ $state, $isChanging }) =>
-      buttonColor({ state: $state, isChanging: $isChanging })};
+    color: ${({ theme, $state, $isChanging }) =>
+      buttonColor({ theme, state: $state, isChanging: $isChanging })};
 
-    border-color: ${({ $state, $isChanging }) =>
-      buttonColor({ state: $state, isChanging: $isChanging })};
+    border-color: ${({ theme, $state, $isChanging }) =>
+      buttonColor({ theme: theme, state: $state, isChanging: $isChanging })};
   }
 `;
 
 export const HelpMessage = styled.span<{ $state: string }>`
-  color: ${({ $state }) => helpMessageColor($state)};
+  color: ${({ theme, $state }) => helpMessageColor({ theme, state: $state })};
 `;
