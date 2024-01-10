@@ -7,6 +7,7 @@ interface CarouselProps {
   height?: number;
   arrows?: boolean;
   infinite?: boolean;
+  innerShadow?: boolean;
 }
 
 const Carousel = ({
@@ -15,6 +16,7 @@ const Carousel = ({
   images,
   arrows = true,
   infinite = false,
+  innerShadow = false,
 }: CarouselProps) => {
   const { sliderRef, currentIndex, handleNext, handlePrev, getSliderStyle } =
     useCarousel(images.length, infinite);
@@ -27,6 +29,7 @@ const Carousel = ({
           style={getSliderStyle()}
           data-testid={`slide-${currentIndex}`}
         >
+          {innerShadow && <S.ImageShadowWrapper />}
           {images.map((imageUrl, index) => (
             <S.ImageWrapper key={index} $width={width} $height={height}>
               <img src={imageUrl} alt={`Slide ${index}`} />

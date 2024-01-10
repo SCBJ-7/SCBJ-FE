@@ -1,22 +1,20 @@
 {
-  "data": [
-    {
-      "purchaseDate": "2023-12-24",
-      "reservationNumber": 13124124324234324,
-      "hotelImage": "path/to/hotel-image.jpg",
-      "hotelName": "호텔 인 나인 강남",
-      "hotelType": "디럭스 킹 시티뷰",
-      "checkInDate": "2023-12-24T15:12:30",
-      "checkOutDate": "2023-12-26T12:15:00",
-      "standardNumber": 2,
-      "maxNumber": 4,
-      "remainDate": 5,
-      "originalPrice": 94900,
-      "purchasePrice": 65900,
-      "fee": 5000,
-      "reservationName": "김양수",
-      "userPhoneNumber": "01020082978",
-      "payment": "토스페이"
-    }
-  ]
+  "data": {
+    "purchaseDate": "2023-12-24",
+    "reservationNumber": 13124124324234324,
+    "hotelImage": "https://yaimg.yanolja.com/v5/2022/06/23/12/1280/62b46269e5eca1.34391138.jpg",
+    "hotelName": "호텔 인 나인 강남",
+    "hotelType": "디럭스 킹 시티뷰",
+    "checkInDate": "2023-12-24T15:12:30",
+    "checkOutDate": "2023-12-26T12:15:00",
+    "standardNumber": 2,
+    "maxNumber": 4,
+    "remainDate": -5,
+    "originalPrice": 94900,
+    "purchasePrice": 65900,
+    "fee": 5000,
+    "reservationName": "김양수",
+    "userPhoneNumber": "01020082978",
+    "payment": "토스페이"
+  }
 }

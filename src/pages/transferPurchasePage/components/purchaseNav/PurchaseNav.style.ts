@@ -8,21 +8,21 @@ export const PurchaseNavContainer = styled.section`
   align-items: center;
 `;
 export const PurchaseNavCell = styled(Link)`
-  width: 56px;
-  height: 30px;
+  padding: 8px 10px;
   display: flex;
   justify-content: center;
   align-items: center;
-  ${({ theme }) => theme.typo.button2}
+  ${({ theme }) => theme.typo.button6}
   background-color: white;
   color: ${({ theme }) => theme.color.greyScale2};
 
   border: 1px solid ${({ theme }) => theme.color.greyScale5};
-  margin-left: 1rem;
+  margin-left: 10px;
   border-radius: 1rem;
   &.active {
     color: white;
     border: none;
+    ${({ theme }) => theme.typo.button7}
     background-color: ${({ theme }) => theme.color.percentOrange};
   }
 `;

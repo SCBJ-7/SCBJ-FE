@@ -5,13 +5,7 @@ export const PurchaseList = styled.div`
   height: 100%;
   padding-bottom: 160px;
   background-color: white;
-  overflow-y: scroll;
-  -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: none; /* Firefox */
+  color: ${({ theme }) => theme.color.black};
 
-  &::-webkit-scrollbar {
-    display: none; /* Chrome, Safari, Opera*/
-  }
+  ${({ theme }) => theme.scroll}
 `;

@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { fetchPurchaseList } from "@/apis/fetchPurchaseList";
 import PurchaseItem from "./components/puchaseItem/PuchaseItem";
+import { IPurchaseList } from "@/types/purchaseList";
 export interface IPurchaseItemWithRemainDate extends IPurchaseList {
   remainDate: number;
 }

@@ -21,6 +21,7 @@ const PurchaseNav = () => {
           key={itemStatus}
           className={status === itemStatus ? "active" : ""}
           to={`?status=${itemStatus}`}
+          style={{ padding: label === "전체" ? "8px 20px" : "" }}
         >
           {label}
         </S.PurchaseNavCell>

@@ -1,6 +1,7 @@
 import Carousel from "@components/carousel/Carousel";
 import { useEffect, useState } from "react";
 import axios from "axios";
+
 const Home = () => {
   const dummyImg = [
     "https://media.discordapp.net/attachments/1175967240030531667/1179675296547483659/155.png?ex=65a8c9bc&is=659654bc&hm=f42a4bf0acda4e8d7ec8bdce51088862090d8aaf8d73e80204280988af24b4a9&=&format=webp&quality=lossless&width=855&height=534",
