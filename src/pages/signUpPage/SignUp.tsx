@@ -46,7 +46,6 @@ const SignUp = () => {
   const [isEmailValidated, setIsEmailValidated] = useState(false);
   const [codeState, setCodeState] = useState("######");
 
-   
   const handleOnSubmit = async (data: FormValues) => {
     const { email, password, name, phone, privacyPolicy, termOfUse } = data;
     await axios
