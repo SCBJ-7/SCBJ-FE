@@ -83,7 +83,7 @@ const SignUp = () => {
       });
   };
 
-  const handleValidationCodeClick = async () => {
+  const handleValidationCodeClick = () => {
     const code = getValues("code");
     if (code === codeState) {
       setValue("isCodeCorrect", true);
