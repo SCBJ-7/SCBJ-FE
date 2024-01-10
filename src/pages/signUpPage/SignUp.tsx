@@ -4,23 +4,24 @@ const SignUp = () => {
   return (
     <S.SignUpContainer>
       <S.SignUpTitle>회원가입</S.SignUpTitle>
+
       <S.SignUpInputContainer>
         <S.SignUpInputWrapper>
           <S.SignUpInputTitle>이메일</S.SignUpInputTitle>
-          <div style={{ position: "relative" }}>
+          <S.SignUpInputRelativeWrapper>
             <S.SignUpInput placeholder="이메일을 입력해주세요" />
             <S.SignUpInputBtn type="button">인증 요청</S.SignUpInputBtn>
-          </div>
+          </S.SignUpInputRelativeWrapper>
           <S.SignUpInputCaption $color="#FF4949">
             이미 사용중인 이메일 입니다
           </S.SignUpInputCaption>
         </S.SignUpInputWrapper>
         <S.SignUpInputWrapper>
           <S.SignUpInputTitle>인증번호 입력</S.SignUpInputTitle>
-          <div style={{ position: "relative" }}>
+          <S.SignUpInputRelativeWrapper>
             <S.SignUpInput placeholder="코드 6자리를 입력해주세요" />
             <S.SignUpInputBtn type="button">확인</S.SignUpInputBtn>
-          </div>
+          </S.SignUpInputRelativeWrapper>
           <S.SignUpInputCaption $color="#FF4949">
             잘못된 인증번호 입니다
           </S.SignUpInputCaption>

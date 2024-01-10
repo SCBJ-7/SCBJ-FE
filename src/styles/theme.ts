@@ -58,6 +58,11 @@ export const theme = {
     caption4: typoCreator("0.625rem", 700),
     caption5: typoCreator("0.625rem", 500),
   },
+  border: {
+    strokeThin: "1px solid #E9E9E9",
+    strokeWide: "1px solid #F6F6F6",
+    strokeDash: "1px solid #CDCDCD",
+  },
   scroll: css`
     overflow-y: scroll;
 

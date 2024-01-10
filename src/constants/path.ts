@@ -10,7 +10,11 @@ export const PATH = {
   SIGNUP: "/signup",
   LOGIN: "/signin",
   MY_PAGE: "/my-page",
+  SETTING: "/setting",
+  MANAGE_PROFILE: "/manage-profile",
+  MANAGE_ACCOUNT: "/manage-account",
   REDIRECT: "/auth/:provider",
+  PASSWORD_RESET: "/password-reset",
   RELOAD: 0,
 } as const;
 // 참고
