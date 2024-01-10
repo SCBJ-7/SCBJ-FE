@@ -18,12 +18,5 @@ export const TransferItemList = styled.div`
   height: 100%;
   padding-top: 4px;
   padding-bottom: 160px;
-  overflow-y: scroll;
-
-  -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: none; /* Firefox */
-
-  &::-webkit-scrollbar {
-    display: none; /* Chrome, Safari, Opera*/
-  }
+  ${({ theme }) => theme.scroll}
 `;

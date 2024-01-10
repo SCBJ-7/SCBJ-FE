@@ -1,6 +1,6 @@
-import * as S from "./NavBottom.style";
 import { PATH } from "@/constants/path";
 import { useLocation } from "react-router-dom";
+import * as S from "./NavBottom.style";
 
 const BottomNav = () => {
   const { pathname } = useLocation();
@@ -20,7 +20,7 @@ const BottomNav = () => {
     },
     {
       id: 3,
-      name: "호텔검색",
+      name: "상품조회",
       path: PATH.SEARCHLIST,
       icon: <S.NavIconSearch />,
     },
