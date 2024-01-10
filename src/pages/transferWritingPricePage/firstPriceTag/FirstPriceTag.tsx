@@ -42,6 +42,8 @@ const FirstPriceTag = ({
         text="2차 판매 가격 설정으로 자동 가격 내리기"
         isChecked={isChecked}
         onChecked={onChecked}
+        fontSize="body4"
+        color="greyScale1"
       />
     </S.FirstContainer>
   );
