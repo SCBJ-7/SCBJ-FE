@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const DetailContainer = styled.div`
   width: 100%;
   background-color: ${({ theme }) => theme.color.greyScale7};
-  padding-bottom: 160px;
+  padding-bottom: 100px;
   color: ${({ theme }) => theme.color.black};
   color: ${({ theme }) => theme.scroll};
 `;
@@ -34,6 +34,7 @@ export const ItemInfo = styled.div`
   width: 100%;
   background-color: white;
   border-bottom: 1px solid ${({ theme }) => theme.color.greyScale6};
+  margin-bottom: 0.5rem;
 `;
 
 export const ItemInfoContent = styled.div`
@@ -49,9 +50,9 @@ export const ItemInfoContent = styled.div`
     color: ${({ theme }) => theme.color.percentOrange};
   }
   > div:nth-child(3) {
-    padding-top: 0.5rem;
+    margin-top: 0.5rem;
     color: ${({ theme }) => theme.color.percentOrange};
-    ${({ theme }) => theme.typo.body5}
+    ${({ theme }) => theme.typo.body2}
   }
 `;
 
@@ -60,7 +61,7 @@ export const ImageContainer = styled.div`
   height: 80px;
   display: flex;
   color: ${({ theme }) => theme.color.black};
-  margin-bottom: 1.2rem;
+  margin: 1rem 0;
 `;
 
 export const Image = styled.img`
@@ -79,9 +80,7 @@ export const ImageContent = styled.div`
   flex-direction: column;
   justify-content: center;
   margin: auto 0;
-  padding: 5.5px 0;
   color: ${({ theme }) => theme.color.black};
-
   > div:first-child {
     ${({ theme }) => theme.typo.body2}
     margin-bottom: 0.5rem;
@@ -106,7 +105,7 @@ export const CheckInDate = styled.div`
   width: calc(50% - 2px);
   background-color: ${({ theme }) => theme.color.greyScale7};
   height: 100%;
-  border-radius: 12px 0 0 12px;
+  border-radius: 0.5rem 0 0 0.5rem;
   padding: 1rem;
   > div:first-child {
     color: #404040;
@@ -122,7 +121,7 @@ export const CheckOutDate = styled.div`
   width: calc(50% - 2px);
   background-color: ${({ theme }) => theme.color.greyScale7};
   height: 100%;
-  border-radius: 0 12px 12px 0;
+  border-radius: 0 0.5rem 0.5rem 0;
   padding: 1rem;
 
   > div:first-child {
@@ -184,39 +183,49 @@ export const ReservationInfoContainer = styled.div`
   }
 `;
 
-export const Hr = styled.div`
-  border-top: 1px dashed #cdcdcd;
-  height: 1px;
-`;
 export const PayContainer = styled.div`
   width: 100%;
   background-color: white;
-  height: 228px;
-  padding: 1.5rem 1rem 1.75rem 1rem;
-  box-shadow: 0 10px 4px -4px #e4e4e4;
+  height: 249px;
+  padding: 1.5rem 1rem 3rem 1rem;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.1);
   position: relative;
   z-index: 1;
 `;
 
 export const PayInfo = styled.div`
   width: 100%;
-  height: 118px;
-  margin-bottom: 1.5rem;
-  > div {
-    margin-bottom: 1rem;
-    margin-top: 1rem;
+  > div:nth-child(1) {
+    padding-bottom: 1rem;
   }
+
+  > div:nth-child(2) {
+    padding-bottom: 1rem;
+  }
+
+  > div:nth-child(3) {
+    padding-bottom: 1rem;
+  }
+
+  > div:nth-child(4) {
+    padding-bottom: 1rem;
+  }
+`;
+
+export const Hr = styled.div`
+  border-top: 1px dashed #cdcdcd;
+  height: 1px;
 `;
 
 export const TotalPrice = styled.div`
   ${({ theme }) => theme.typo.body2}
-  margin-top: 1rem;
+  margin-top: 1.5rem;
 `;
 
 export const TotalPriceInfo = styled.div`
   color: ${({ theme }) => theme.color.percentOrange};
   ${({ theme }) => theme.typo.body2};
-  margin-top: 1rem;
+  margin-top: 1.5rem;
 `;
 
 export const HomeButton = styled.div`

@@ -26,7 +26,7 @@ export const handlers = [
   http.get("/v1/members/purchased-history", () => {
     return HttpResponse.json(dummyPurchaseList);
   }),
-  http.get("/v1/purchase-detail", () => {
+  http.get("/v1/purchase-detail/102", () => {
     return HttpResponse.json(dummyPurchaseDetail);
   }),
 ];

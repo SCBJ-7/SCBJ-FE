@@ -1,8 +1,8 @@
 import axios from "axios";
 
-export const fetchPurchaseDetail = async () => {
+export const fetchPurchaseDetail = async (id: string) => {
   try {
-    const response = await axios("/v1/purchase-detail");
+    const response = await axios(`/v1/purchase-detail/${id}`);
     console.log("res", response);
     return response.data.data;
   } catch (error) {

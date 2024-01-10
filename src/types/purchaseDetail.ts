@@ -1,18 +1,17 @@
 export interface IPurchaseData {
-  purchaseDate: string;
-  reservationNumber: number;
+  paymentHistoryDate: string;
+  paymentHistoryId: string;
   hotelImage: string;
   hotelName: string;
-  hotelType: string;
-  checkInDate: string;
-  checkOutDate: string;
-  standardNumber: number;
-  maxNumber: number;
-  remainDate: number;
+  roomName: string;
+  checkIn: string;
+  checkOut: string;
+  standardPeople: number;
+  maxPeople: number;
+  remainingDays: number;
   originalPrice: number;
-  purchasePrice: number;
-  fee: number;
-  reservationName: string;
-  userPhoneNumber: string;
-  payment: string;
+  price: number;
+  customerName: string;
+  customerPhoneNumber: string;
+  paymentType: string;
 }

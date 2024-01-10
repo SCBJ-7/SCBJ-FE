@@ -3,19 +3,19 @@ import { createBrowserRouter } from "react-router-dom";
 import App from "../App";
 import { PATH } from "../constants/path";
 
-import Home from "../pages/homePage";
 import My from "@/pages/myPage/MyPage";
-import NotFound from "../pages/notFoundPage";
-import Search from "../pages/searchPage";
-import SignUp from "../pages/signUpPage/SignUp";
-import SignIn from "../pages/signInPage/SignIn";
-import TransferWriting from "../pages/transferWritingPage/TransferWriting";
-import TransferSale from "../pages/transferSalePage";
-import RoomDetail from "@pages/roomDetailPage/RoomDetail";
-import TransferPurchase from "@/pages/transferPurchasePage/TransferPurchase";
-import TransferWritingPrice from "@/pages/transerWritingPricePage/TransferWritingPrice";
 import PasswordReset from "@/pages/passwordResetPage/PasswordReset";
 import PurchaseDetail from "@/pages/purchaseDetailPage/PurchaseDetail";
+import TransferWritingPrice from "@/pages/transerWritingPricePage/TransferWritingPrice";
+import TransferPurchase from "@/pages/transferPurchasePage/TransferPurchase";
+import RoomDetail from "@pages/roomDetailPage/RoomDetail";
+import Home from "../pages/homePage";
+import NotFound from "../pages/notFoundPage";
+import Search from "../pages/searchPage";
+import SignIn from "../pages/signInPage/SignIn";
+import SignUp from "../pages/signUpPage/SignUp";
+import TransferSale from "../pages/transferSalePage";
+import TransferWriting from "../pages/transferWritingPage/TransferWriting";
 
 export const router = createBrowserRouter([
   {
