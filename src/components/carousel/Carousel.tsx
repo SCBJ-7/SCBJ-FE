@@ -8,6 +8,7 @@ interface CarouselProps {
   arrows?: boolean;
   infinite?: boolean;
   draggable?: boolean;
+  innerShadow?: boolean;
 }
 
 const Carousel = ({
@@ -16,14 +17,14 @@ const Carousel = ({
   arrows = true,
   infinite = false,
   draggable = false,
+  innerShadow = false,
 }: CarouselProps) => {
+  
   const slideList = infinite
     ? [images.at(-1), ...images, images.at(0)]
     : images;
 
   const { slideWidth, sliderRef } = useCarouselSize();
-
-  console.log(slideWidth);
 
   const {
     currentIndex,
@@ -49,6 +50,7 @@ const Carousel = ({
           onTouchStart={draggable ? handleSliderTouchStart : undefined}
           onTransitionEnd={draggable ? handleSliderTransitionEnd : undefined}
         >
+          {innerShadow && <S.ImageShadowWrapper />}
           {slideList.map((imageUrl, index) => (
             <S.ImageWrapper key={index} $height={height}>
               <img src={imageUrl} alt={`Slide ${index}`} draggable={false} />

@@ -1,10 +1,11 @@
+// icons
+import {
+  PiListMagnifyingGlassFill,
+  PiNewspaperClippingFill,
+  PiUserFill,
+} from "react-icons/pi";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
-
-// icons
-import { PiNewspaperClippingFill } from "react-icons/pi";
-import { PiListMagnifyingGlassFill } from "react-icons/pi";
-import { PiUserFill } from "react-icons/pi";
 import NavIconHome from "../../../assets/icons/NavHome";
 
 export const BottomNavContainer = styled.section`

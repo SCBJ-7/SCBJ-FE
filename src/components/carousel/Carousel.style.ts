@@ -29,6 +29,15 @@ export const SliderContainer = styled.div`
   height: 100%;
 `;
 
+export const ImageShadowWrapper = styled.div`
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 90px;
+  z-index: 2;
+  background-image: linear-gradient(rgba(39, 50, 60, 0.5), rgba(39, 50, 60, 0));
+`;
+
 export const ImageWrapper = styled.div<{
   $height: number;
 }>`
