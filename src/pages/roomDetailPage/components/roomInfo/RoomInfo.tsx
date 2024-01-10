@@ -88,6 +88,7 @@ const RoomInfo = ({ room }: RoomInfoProps) => {
           <a
             href={room.hotelInfoUrl}
             target="_blank"
+            rel="noopener"
             aria-label="상세 정보 보기"
           >
             <S.MoreInfoWrapper>
