@@ -41,7 +41,8 @@ export const theme = {
     body2: typoCreator("1rem", 600),
     body3: typoCreator("0.875rem", 600),
     body4: typoCreator("0.875rem", 500),
-    body5: typoCreator("0.75rem", 500),
+    body5: typoCreator("0.75rem", 600),
+    body6: typoCreator("0.75rem", 500),
 
     button1: typoCreator("1.125rem", 500),
     button2: typoCreator("1rem", 700),
@@ -74,3 +75,6 @@ export const theme = {
     user-select: none;
   `,
 };
+
+export type TypoKeys = keyof typeof theme.typo;
+export type ColorKeys = keyof typeof theme.color;

@@ -1,4 +1,4 @@
-import { theme } from "@/styles/theme";
+import { theme, TypoKeys, ColorKeys } from "@/styles/theme";
 import styled from "styled-components";
 
 export const CheckContainer = styled.section`
@@ -7,22 +7,30 @@ export const CheckContainer = styled.section`
   padding: 8px 0;
   align-items: center;
   width: fit-content;
+  transition: 0.2s;
+  border-radius: 4px;
+
+  &:hover {
+    background-color: ${({ theme }) => theme.color.greyScale7};
+  }
 `;
 
 export const CheckBox = styled.input.attrs({ type: "checkbox" })`
   width: 14px;
   height: 14px;
   border-radius: 1px;
+  accent-color: ${({ theme }) => theme.color.greyScale1};
 `;
 
-export const Label = styled.label<{ $isChecked: boolean }>`
-  ${theme.typo.body4};
+export const Label = styled.label<{
+  $isChecked: boolean;
+  $color: ColorKeys;
+  $fontSize: TypoKeys;
+}>`
   cursor: pointer;
-  color: ${({ $isChecked }) =>
-    $isChecked ? theme.color.percentBlue : theme.color.greyScale1};
-  ${theme.unableToDrag}
+  ${({ theme, $fontSize }) => theme.typo[$fontSize]};
+  color: ${({ $isChecked, $color }) =>
+    $isChecked ? theme.color.percentBlue : theme.color[$color]};
 
-  &:hover {
-    color: black;
-  }
+  ${theme.unableToDrag}
 `;

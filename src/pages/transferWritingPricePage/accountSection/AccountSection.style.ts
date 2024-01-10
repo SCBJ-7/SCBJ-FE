@@ -20,7 +20,7 @@ export const Contents = styled.div`
     justify-content: space-between;
 
     h2 {
-      color: ${({ theme }) => theme.color.percentOrange};
+      color: ${({ theme }) => theme.color.cautionRed};
     }
   }
 `;

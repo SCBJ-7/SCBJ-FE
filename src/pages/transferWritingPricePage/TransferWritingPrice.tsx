@@ -5,6 +5,7 @@ import SecondPriceTag from "./secondPriceTag/SecondPriceTag";
 import { useLocation } from "react-router-dom";
 import PaymentSection from "./paymentSection/PaymentSection";
 import AccountSection from "./accountSection/AccountSection";
+import AgreementSection from "./agreementSection/AgreementSection";
 
 const TransferWritingPrice = () => {
   // queryString to get Datas from previous page
@@ -18,6 +19,15 @@ const TransferWritingPrice = () => {
   const [isChecked, setIsChecked] = useState(false);
 
   // second price values
+  const [opt1, setOpt1] = useState(false);
+  const [opt2, setOpt2] = useState(false);
+  const [opt3, setOpt3] = useState(false);
+  const [opt4, setOpt4] = useState(false);
+
+  opt1;
+  opt2;
+  opt3;
+  opt4;
 
   return (
     <S.Container>
@@ -35,6 +45,12 @@ const TransferWritingPrice = () => {
       />
       <PaymentSection />
       <AccountSection />
+      <AgreementSection
+        setOpt1={setOpt1}
+        setOpt2={setOpt2}
+        setOpt3={setOpt3}
+        setOpt4={setOpt4}
+      />
     </S.Container>
   );
 };
