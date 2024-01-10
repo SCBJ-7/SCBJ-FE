@@ -1,5 +1,6 @@
 import { useRef, useState } from "react";
 import * as S from "./ManageName.style";
+import Toast from "@/components/toast/Toast";
 
 const ManageName = ({
   prevName,
@@ -10,17 +11,27 @@ const ManageName = ({
 }) => {
   const [name, setName] = useState<string>(prevName);
   const [isChanging, setIsChanging] = useState<boolean>(false);
+  const [showToast, setShowToast] = useState<boolean>(false);
 
   const inputRef = useRef<HTMLInputElement>(null);
 
-  const onChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
+  // api 통신 에러 토스트 핸들러
+  const handleShowToast = () => {
+    setShowToast(true);
+    setTimeout(() => {
+      setShowToast(false);
+    }, 5000);
+  };
+
+  const nameChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
     setName(event.target.value);
   };
 
-  const onClickHandler = () => {
+  const changeButtonClickHandler = () => {
     if (isChanging) {
       setIsChanging(false);
       // API CALL();
+      handleShowToast();
     } else {
       setIsChanging(true);
       inputRef.current?.focus();
@@ -66,27 +77,33 @@ const ManageName = ({
 
   const { helpMessage, state } = getMessageAndState();
   const buttonText = isChanging ? "확인" : "변경";
+  const btnIsDisabled = state === "onError" || state === "linkedToYanolja";
 
   return (
-    <S.ManageNameSection
-      $linkedToYanolja={linkedToYanolja}
-      $state={state}
-      $isChanging={isChanging}
-    >
-      <label htmlFor="name">이름</label>
-      <div>
-        <input
-          type="text"
-          id="name"
-          value={name}
-          onChange={onChangeHandler}
-          ref={inputRef}
-          readOnly={!isChanging}
-        />
-        <button onClick={onClickHandler}>{buttonText}</button>
-      </div>
-      <S.HelpMessage $state={state}>{helpMessage}</S.HelpMessage>
-    </S.ManageNameSection>
+    <>
+      {showToast && <Toast strings={[<>이름 변경 성공</>, "ㅊㅋ"]} />}
+      <S.ManageNameSection
+        $linkedToYanolja={linkedToYanolja}
+        $state={state}
+        $isChanging={isChanging}
+      >
+        <label htmlFor="name">이름</label>
+        <div>
+          <input
+            type="text"
+            id="name"
+            value={name}
+            onChange={nameChangeHandler}
+            ref={inputRef}
+            readOnly={!isChanging}
+          />
+          <button onClick={changeButtonClickHandler} disabled={btnIsDisabled}>
+            {buttonText}
+          </button>
+        </div>
+        <S.HelpMessage $state={state}>{helpMessage}</S.HelpMessage>
+      </S.ManageNameSection>
+    </>
   );
 };
 
