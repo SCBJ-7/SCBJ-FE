@@ -5,20 +5,22 @@ export const PurchaseNavContainer = styled.section`
   width: 100%;
   height: 62px;
   display: flex;
-  align-items: center;
+
+  padding: 1rem 20px;
 `;
 export const PurchaseNavCell = styled(Link)`
-  padding: 8px 10px;
+  width: 56px;
+  height: 30px;
   display: flex;
   justify-content: center;
   align-items: center;
-  ${({ theme }) => theme.typo.button6}
+  box-sizing: padding-box;
   background-color: white;
   color: ${({ theme }) => theme.color.greyScale2};
-
   border: 1px solid ${({ theme }) => theme.color.greyScale5};
-  margin-left: 10px;
-  border-radius: 1rem;
+  margin-right: 10px;
+  border-radius: 100px;
+  ${({ theme }) => theme.typo.button6}
   &.active {
     color: white;
     border: none;

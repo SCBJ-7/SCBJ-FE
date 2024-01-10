@@ -6,7 +6,7 @@ export const PurchaseItemContainer = styled.div`
   height: 160px;
   cursor: pointer;
   padding: 16px 20px;
-
+  color: ${({ theme }) => theme.color.black};
   &:hover {
     border-bottom: 1px solid ${({ theme }) => theme.color.greyScale3};
   }
@@ -20,8 +20,6 @@ export const PurchaseItemTitle = styled.div`
   font-size: 0.75rem;
   font-weight: 600;
   width: 100%;
-  color: ${({ theme, $isComplete }) =>
-    $isComplete ? theme.color.black : theme.color.percentOrange};
 `;
 export const ArrowRightBtnIcon = styled(PiCaretRightBold)`
   font-size: 0.75rem;
@@ -48,7 +46,6 @@ export const PurchaseItemImage = styled.img`
 `;
 
 export const PuchaseItemInfo = styled.div`
-  width: 220px;
   height: 83px;
   display: flex;
   flex-direction: column;
@@ -57,12 +54,12 @@ export const PuchaseItemInfo = styled.div`
 
 export const PurchaseItemName = styled.div`
   font-size: 0.875rem;
-  font-weight: bold;
+  font-weight: 700;
 `;
 
 export const PuChaseItemType = styled.div`
   font-size: 0.75rem;
-  font-weight: bold;
+  font-weight: 700;
 `;
 export const PuChaseItemDate = styled.div`
   font-size: 0.75rem;

@@ -13,7 +13,7 @@ import * as S from "./RoomDetail.style";
 
 const RoomDetail = () => {
   const { roomId } = useParams();
-
+  console.log(roomId);
   if (!roomId) throw new Error("존재하지 않는 roomId 입니다.");
 
   const { data } = useSuspenseQuery<RoomData, AxiosError>({

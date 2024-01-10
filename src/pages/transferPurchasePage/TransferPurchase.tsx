@@ -66,10 +66,10 @@ const TransferPurchase = () => {
     <>
       <PurchaseNav />
       <S.PurchaseList>
-        {purchaseItems.map((item, idx) => {
+        {purchaseItems.map((item) => {
           return (
             <PurchaseItem
-              key={idx}
+              key={item.id}
               ImageUrl={item.ImageUrl}
               checkInDate={item.checkInDate}
               checkOutDate={item.checkOutDate}

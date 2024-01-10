@@ -10,11 +10,13 @@ const PuchaseItem = (props: IPurchaseItemWithRemainDate) => {
   };
   return (
     <S.PurchaseItemContainer onClick={handleClick}>
-      <S.PurchaseItemTitle $isComplete={props.remainDate < 0}>
+      <S.PurchaseItemTitle
+        style={{ color: props.remainDate < 0 ? "" : "#FF7C17" }}
+      >
         {props.remainDate > 0
           ? `체크인까지 ${props.remainDate}일 남았어요!`
           : props.remainDate === 0
-            ? "오늘이 체크인이에요 !"
+            ? "오늘이 체크인이에요!"
             : "이용완료"}
         <S.ArrowRightBtnIcon></S.ArrowRightBtnIcon>
       </S.PurchaseItemTitle>

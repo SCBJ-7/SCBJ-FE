@@ -49,6 +49,18 @@ const Header = () => {
       undo = true;
       break;
 
+    case PATH.SETTING:
+      alarmIC = false;
+      settingIC = false;
+      title = "설정";
+      undo = true;
+      break;
+    case PATH.MANAGE_PROFILE:
+      alarmIC = false;
+      settingIC = false;
+      title = "프로필 변경";
+      undo = true;
+      break;
     default: // 없음
       alarmIC = false;
       settingIC = false;
@@ -64,7 +76,7 @@ const Header = () => {
   };
 
   const settingHandler = () => {
-    // navigate("/...")
+    navigate("/setting");
   };
 
   return (
