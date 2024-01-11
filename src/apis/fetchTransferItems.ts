@@ -1,7 +1,10 @@
 import { IReservation } from "@/types/reservationList";
 import axios from "axios";
 
-export const fetchTransferItems = async () => {
+// 예약목록을 불러오는 api입니다.
+export const fetchTransferItems = async (): Promise<
+  IReservation[] | undefined
+> => {
   try {
     const response = await axios.get("/v1/reservations");
     return response.data.data.reservationList as IReservation[];

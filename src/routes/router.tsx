@@ -73,14 +73,18 @@ export const router = createBrowserRouter([
       {
         path: PATH.WRITE_TRANSFER,
         element: (
-          <Suspense fallback={<div>Loading...</div>}>
+          <Suspense fallback={<div>{/* loading */}</div>}>
             <TransferWriting />
           </Suspense>
         ),
       },
       {
         path: PATH.WRITE_TRANSFER_PRICE + `/:id`,
-        element: <TransferWritingPrice />,
+        element: (
+          <Suspense fallback={<div>{/* loading */}</div>}>
+            <TransferWritingPrice />
+          </Suspense>
+        ),
       },
 
       {
