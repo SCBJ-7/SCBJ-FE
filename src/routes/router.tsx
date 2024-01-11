@@ -12,12 +12,13 @@ import SignIn from "../pages/signInPage/SignIn";
 import TransferWriting from "../pages/transferWritingPage/TransferWriting";
 import TransferSale from "../pages/transferSalePage";
 import RoomDetail from "@pages/roomDetailPage/RoomDetail";
-import TransferPurchase from "../pages/transferPurchasePage";
+import TransferPurchase from "../pages/transferPurchasePage/TransferPurchase";
 import TransferWritingPrice from "@/pages/transferWritingPricePage/TransferWritingPrice";
 import PasswordReset from "@/pages/passwordResetPage/PasswordReset";
 import Setting from "@/pages/myPage/setting/Setting";
 import ManageProfile from "@/pages/myPage/manage/manageProfile/ManageProfile";
 import ManageAccount from "@/pages/myPage/manage/manageAccount/ManageAccount";
+import PurchaseDetail from "@/pages/purchaseDetailPage/PurchaseDetail";
 
 export const router = createBrowserRouter([
   {
@@ -45,6 +46,17 @@ export const router = createBrowserRouter([
       {
         path: PATH.MY_PAGE,
         element: <MyPage />,
+        children: [
+          {
+            path: PATH.PURCHASE_LIST,
+            element: <TransferPurchase />,
+          },
+
+          {
+            path: PATH.SALE_LIST,
+            element: <TransferSale />,
+          },
+        ],
       },
       {
         path: PATH.SETTING,
@@ -70,14 +82,7 @@ export const router = createBrowserRouter([
         path: PATH.WRITE_TRANSFER_PRICE + `/:id`,
         element: <TransferWritingPrice />,
       },
-      {
-        path: PATH.SALE_LIST,
-        element: <TransferSale />,
-      },
-      {
-        path: PATH.PURCHASE_LIST,
-        element: <TransferPurchase />,
-      },
+
       {
         path: PATH.DETAIL_ROOM,
         element: (
@@ -89,6 +94,10 @@ export const router = createBrowserRouter([
       {
         path: PATH.PASSWORD_RESET,
         element: <PasswordReset />,
+      },
+      {
+        path: PATH.PURCAHSE_DEATAIL,
+        element: <PurchaseDetail />,
       },
     ],
   },
