@@ -26,8 +26,8 @@ const SecondPriceTag = ({
   startDate,
   endDate,
 }: PriceTagProps) => {
-  const STD = format(startDate, "mm. dd (ccc)", { locale: ko });
-  const ETD = format(endDate, "mm. dd (ccc)", { locale: ko });
+  const STD = format(startDate, "MM. dd (ccc) HH:mm", { locale: ko });
+  const ETD = format(endDate, "MM. dd (ccc) HH:mm", { locale: ko });
 
   useEffect(() => {
     if (secondPriceData >= firstPrice) {

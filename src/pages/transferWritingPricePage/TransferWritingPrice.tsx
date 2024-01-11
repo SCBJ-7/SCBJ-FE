@@ -7,6 +7,7 @@ import PaymentSection from "./paymentSection/PaymentSection";
 import AccountSection from "./accountSection/AccountSection";
 import AgreementSection from "./agreementSection/AgreementSection";
 import useSelectedItemStore from "@/store/store";
+import { formatDate } from "@/utils/dateFormater";
 
 const TransferWritingPrice = () => {
   const selectedItem = useSelectedItemStore((state) => state.selectedItem);
@@ -48,6 +49,8 @@ const TransferWritingPrice = () => {
     if (!readyToSubmit) return;
     console.log("제출 수행");
   };
+
+  console.log(formatDate(new Date().toString()));
 
   return (
     <S.Container layout>
