@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import FilterIcon from "@assets/icons/ic_arrows-down-up.svg?react";
+import CloseButton from "@assets/icons/ic_close-button.svg?react";
 export const StandardFlex = styled.div`
   display: flex;
   justify-content: space-between;
@@ -54,4 +55,40 @@ export const SearchFilterText = styled.div`
 export const SearchFilterImg = styled(FilterIcon)`
   width: 10px;
   height: 10px;
+`;
+export const ModalOverlay = styled.div`
+  display: flex;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 101;
+`;
+
+export const ModalContent = styled.div`
+  transition: 2s;
+  max-width: 768px;
+  min-width: 360px;
+  width: 100%;
+  height: 309px;
+  position: fixed;
+  bottom: 0;
+  background-color: white;
+  padding: 32px 20px;
+  border-radius: 28px 28px 0 0;
+`;
+export const ModalTop = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+export const ModalTitle = styled.div`
+  ${({ theme }) => theme.typo.button2}
+`;
+export const ModalCloseButton = styled(CloseButton)`
+  margin-right: auto;
+  cursor: pointer;
 `;

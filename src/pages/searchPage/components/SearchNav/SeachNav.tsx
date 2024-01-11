@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import * as S from "./SearchNav.style";
 type ActiveState = Record<string, boolean>;
 const navList = [
@@ -14,6 +14,9 @@ const SeachNav = () => {
     view: false,
   });
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const modalContentRef = useRef<HTMLDivElement>(null);
+  const closeButtonRef = useRef<HTMLDivElement>(null);
+
   useEffect(() => {
     const labelsInStorage = navList.filter(({ label }) =>
       sessionStorage.getItem(label),
@@ -39,12 +42,21 @@ const SeachNav = () => {
 
     setIsActive(newActiveState);
   };
+
   const handleFilterClick = () => {
     setIsModalOpen(true);
   };
 
-  const handleCloseModal = () => {
-    // 모달 닫기 로직
+  const handleCloseModal = (event: React.MouseEvent) => {
+    // 클릭된 요소가 ModalContent 또는 ModalCloseButton인 경우에는 모달을 닫지 않음
+    if (
+      modalContentRef.current?.contains(event.target as Node) ||
+      closeButtonRef.current?.contains(event.target as Node)
+    ) {
+      return;
+    }
+
+    // 클릭된 요소가 ModalContent나 ModalCloseButton이 아닌 경우에만 모달을 닫음
     setIsModalOpen(false);
   };
 
@@ -69,6 +81,19 @@ const SeachNav = () => {
           </S.SearchFilterCover>
         </S.StandardFlex>
       </S.SearchNavContainer>
+      {isModalOpen && (
+        <S.ModalOverlay onClick={handleCloseModal}>
+          <S.ModalContent ref={modalContentRef}>
+            <S.ModalTop>
+              <div></div>
+              <S.ModalTitle>정렬</S.ModalTitle>
+              <div ref={closeButtonRef}>
+                <S.ModalCloseButton onClick={handleCloseModal} />
+              </div>
+            </S.ModalTop>
+          </S.ModalContent>
+        </S.ModalOverlay>
+      )}
     </>
   );
 };
