@@ -21,6 +21,7 @@ const PurchaseDetail = () => {
   if (!data) {
     return <p>데이터를 찾을 수 없습니다.</p>;
   }
+  console.log("a", data.remainingDays);
   return (
     <S.DetailContainer>
       <S.TopSection>
@@ -37,9 +38,9 @@ const PurchaseDetail = () => {
         <S.ItemInfo>
           <S.ItemInfoContent>
             <div>상품 및 이용정보</div>
-            <div style={{ color: data.remainingDays >= 0 ? "" : "#151515" }}>
+            <S.ItemInfoStatus remainingDays={data.remainingDays}>
               {data.remainingDays >= 0 ? "이용예정" : "이용완료"}
-            </div>
+            </S.ItemInfoStatus>
             {data.remainingDays >= 0 && (
               <div>
                 {data.remainingDays > 0

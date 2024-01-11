@@ -9,9 +9,7 @@ const PuchaseItem = (props: IPurchaseItemWithRemainDate) => {
   };
   return (
     <S.PurchaseItemContainer onClick={handleClick}>
-      <S.PurchaseItemTitle
-        style={{ color: props.remainDate < 0 ? "" : "#FF7C17" }}
-      >
+      <S.PurchaseItemTitle remainingDays={props.remainDate}>
         {props.remainDate > 0
           ? `체크인까지 ${props.remainDate}일 남았어요!`
           : props.remainDate === 0

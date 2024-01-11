@@ -12,7 +12,7 @@ export const PurchaseItemContainer = styled.div`
   }
 `;
 
-export const PurchaseItemTitle = styled.div`
+export const PurchaseItemTitle = styled.div<{ remainingDays: number }>`
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -20,7 +20,10 @@ export const PurchaseItemTitle = styled.div`
   font-size: 0.75rem;
   font-weight: 600;
   width: 100%;
+  color: ${({ remainingDays, theme }) =>
+    remainingDays < 0 ? "" : theme.color.percentOrange};
 `;
+
 export const ArrowRightBtnIcon = styled(PiCaretRightBold)`
   font-size: 0.75rem;
   color: black;
