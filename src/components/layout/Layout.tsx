@@ -16,10 +16,14 @@ const Layout = ({ children }: ChildrenProps) => {
     PATH.LOGIN as string,
     PATH.DETAIL_ROOM as string,
   ].includes(pathname);
-  const isBottomNavOn = ![
+  let isBottomNavOn = ![
     PATH.LOGIN as string,
     PATH.DETAIL_ROOM as string,
   ].includes(pathname);
+
+  if (pathname.includes(PATH.WRITE_TRANSFER_PRICE as string)) {
+    isBottomNavOn = false;
+  }
 
   return (
     <S.Container>

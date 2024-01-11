@@ -11,16 +11,15 @@ function App() {
     queryFn: fetchUserInfo,
     staleTime: 500000,
   });
+  // userInfo set함수 소환
   const setUserInfo = useUserInfoStore((state) => state.setUserInfo);
 
   if (data) {
+    // userInfo를 전역에 저장합니다.
     setUserInfo({
       ...data,
     });
-    console.log(data, "Data Set in UserInfoStore");
   }
-
-  console.log("userInfo: ", data);
 
   return (
     <Layout>

@@ -32,7 +32,12 @@ const SecondPriceTag = ({
   useEffect(() => {
     if (secondPriceData >= firstPrice) {
       // 만약 1차 가격을 내려서 2차 가격보다 낮아진다면 2차 가격은 최대 1차 가격 - 1000원으로 변경
-      onSecondPriceChange((Number(firstPrice) - 1000).toString());
+      let temp = Number(firstPrice) - 1000;
+      if (temp < 0) {
+        temp = 0;
+      }
+
+      onSecondPriceChange(temp.toString());
     }
   }, [firstPrice, secondPriceData, onSecondPriceChange]);
 

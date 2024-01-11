@@ -1,6 +1,8 @@
 import { IReservation } from "@/types/reservationList";
 import { IUserInfo } from "@/types/userInfo";
+
 import { create } from "zustand"; // create로 zustand를 불러옵니다.
+import { persist } from "zustand/middleware";
 
 /* 
   zustand 사용법:
@@ -27,29 +29,36 @@ interface ReservationState {
 }
 
 // 예약내역 선택 아이템 전역상태 store
-export const useSelectedItemStore = create<ReservationState>((set) => ({
-  // 데이터 기본값
-  selectedItem: {
-    reservationId: 0,
-    hotelName: "",
-    roomName: "",
-    startDate: new Date(),
-    endDate: new Date(),
-    refundPrice: 0,
-    purchasePrice: 0,
-    remainingDays: 0,
-    remainingTimes: 0,
-    imageUrl: "",
-  },
-  // 데이터 조작 set 함수
-  setSelectedItem: (updatedItem) =>
-    set((state) => ({
+export const useSelectedItemStore = create(
+  persist<ReservationState>(
+    (set) => ({
+      // 데이터 기본값
       selectedItem: {
-        ...state.selectedItem,
-        ...updatedItem,
+        reservationId: 0,
+        hotelName: "",
+        roomName: "",
+        startDate: new Date(),
+        endDate: new Date(),
+        refundPrice: 0,
+        purchasePrice: 0,
+        remainingDays: 0,
+        remainingTimes: 0,
+        imageUrl: "",
       },
-    })),
-}));
+      // 데이터 조작 set 함수
+      setSelectedItem: (updatedItem) =>
+        set((state) => ({
+          selectedItem: {
+            ...state.selectedItem,
+            ...updatedItem,
+          },
+        })),
+    }),
+    {
+      name: "reservationStorage",
+    },
+  ),
+);
 
 // 유저정보 전역상태
 interface UserState {
