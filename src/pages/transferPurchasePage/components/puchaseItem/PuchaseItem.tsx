@@ -3,10 +3,12 @@ import { format } from "date-fns";
 import { ko } from "date-fns/locale";
 import { IPurchaseItemWithRemainDate } from "../../TransferPurchase";
 import { PATH } from "@/constants/path";
+import { useNavigate } from "react-router-dom";
 
 const PuchaseItem = (props: IPurchaseItemWithRemainDate) => {
+  const navigate = useNavigate();
   const handleClick = () => {
-    window.location.href = `${PATH.PURCAHSE_DEATAIL}?id=${props.id}`;
+    navigate(`${PATH.PURCAHSE_DEATAIL}?id=${props.id}`);
   };
   return (
     <S.PurchaseItemContainer onClick={handleClick}>

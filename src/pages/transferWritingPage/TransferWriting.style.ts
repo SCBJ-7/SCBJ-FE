@@ -7,7 +7,7 @@ export const Subtitle = styled.p`
 
   padding: 32px 16px 0;
 
-  ${({ theme }) => theme.typo.title2}
+  ${({ theme }) => theme.typo.title4}
 
   position: sticky;
   top: 56px;

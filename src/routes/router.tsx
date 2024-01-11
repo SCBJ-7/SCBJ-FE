@@ -2,7 +2,9 @@ import { Suspense } from "react";
 import { createBrowserRouter } from "react-router-dom";
 import App from "../App";
 import { PATH } from "../constants/path";
+
 import Home from "../pages/homePage";
+import MyPage from "../pages/myPage/MyPage";
 import NotFound from "../pages/notFoundPage";
 import Search from "../pages/searchPage";
 import SignUp from "../pages/signUpPage/SignUp";
@@ -10,13 +12,12 @@ import SignIn from "../pages/signInPage/SignIn";
 import TransferWriting from "../pages/transferWritingPage/TransferWriting";
 import TransferSale from "../pages/transferSalePage";
 import RoomDetail from "@pages/roomDetailPage/RoomDetail";
-import TransferPurchase from "@pages/transferPurchasePage/TransferPurchase";
-import TransferWritingPrice from "@/pages/transerWritingPricePage/TransferWritingPrice";
+import TransferPurchase from "../pages/transferPurchasePage/TransferPurchase";
+import TransferWritingPrice from "@/pages/transferWritingPricePage/TransferWritingPrice";
 import PasswordReset from "@/pages/passwordResetPage/PasswordReset";
 import Setting from "@/pages/myPage/setting/Setting";
 import ManageProfile from "@/pages/myPage/manage/manageProfile/ManageProfile";
 import ManageAccount from "@/pages/myPage/manage/manageAccount/ManageAccount";
-import MyPage from "@/pages/myPage/MyPage";
 import PurchaseDetail from "@/pages/purchaseDetailPage/PurchaseDetail";
 
 export const router = createBrowserRouter([
@@ -71,12 +72,17 @@ export const router = createBrowserRouter([
       },
       {
         path: PATH.WRITE_TRANSFER,
-        element: <TransferWriting />,
+        element: (
+          <Suspense fallback={<div>Loading...</div>}>
+            <TransferWriting />
+          </Suspense>
+        ),
       },
       {
-        path: PATH.WRITE_TRANSFER_PRICE + ":id",
+        path: PATH.WRITE_TRANSFER_PRICE + `/:id`,
         element: <TransferWritingPrice />,
       },
+
       {
         path: PATH.DETAIL_ROOM,
         element: (

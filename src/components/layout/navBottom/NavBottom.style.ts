@@ -40,7 +40,8 @@ export const BottomNavCell = styled(NavLink)`
   margin-top: 10px;
   align-items: center;
   gap: 2px;
-  ${({ theme }) => theme.typo.caption3}
+
+  ${({ theme }) => theme.typo.caption5}
 
   color: white;
   &.active {

@@ -34,7 +34,15 @@ const TransferItem = (props: IReservation) => {
       }, 500);
     });
 
-    navigate(PATH.WRITE_TRANSFER_PRICE + Math.random());
+    navigate(
+      PATH.WRITE_TRANSFER_PRICE +
+        "/" +
+        props.reservationId +
+        "?hotelName=" +
+        props.hotelName +
+        "&purchasePrice=" +
+        props.purchasePrice,
+    );
   };
 
   return (
@@ -56,7 +64,7 @@ const TransferItem = (props: IReservation) => {
         </S.ItemTitleBtn>
       </S.ItemTitle>
       <S.ItemInfo>
-        <S.itemInfoImg src={props.hotelImage} />
+        <S.itemInfoImg src={props.imageUrl} />
         <S.itemInfoDesc>
           <S.DescHotelName>{props.hotelName}</S.DescHotelName>
           <S.DescRoomName>{props.roomName}</S.DescRoomName>
