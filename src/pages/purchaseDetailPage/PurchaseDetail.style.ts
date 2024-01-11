@@ -2,10 +2,11 @@ import styled from "styled-components";
 
 export const DetailContainer = styled.div`
   width: 100%;
+  height: 100%;
   background-color: ${({ theme }) => theme.color.greyScale7};
   padding-bottom: 100px;
   color: ${({ theme }) => theme.color.black};
-  color: ${({ theme }) => theme.scroll};
+  ${({ theme }) => theme.scroll};
 `;
 
 export const TopSection = styled.section`
@@ -155,6 +156,7 @@ export const StandardTitle = styled.div`
 export const StandardFlex = styled.div`
   display: flex;
   justify-content: space-between;
+  align-items: center;
 `;
 
 export const StandardSubTitle = styled.div`

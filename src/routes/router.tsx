@@ -4,7 +4,7 @@ import App from "../App";
 import { PATH } from "../constants/path";
 import Home from "../pages/homePage";
 import NotFound from "../pages/notFoundPage";
-import Search from "../pages/searchPage";
+import Search from "../pages/searchPage/Search";
 import SignUp from "../pages/signUpPage/SignUp";
 import SignIn from "../pages/signInPage/SignIn";
 import TransferWriting from "../pages/transferWritingPage/TransferWriting";

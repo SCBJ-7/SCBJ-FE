@@ -20,8 +20,7 @@ const Header = () => {
     case PATH.SEARCHLIST:
       alarmIC = false;
       settingIC = false;
-      title = "검색";
-      undo = true;
+      undo = false;
       break;
     case PATH.WRITE_TRANSFER:
       alarmIC = false;
