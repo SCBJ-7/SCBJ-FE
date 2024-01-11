@@ -1,34 +1,33 @@
-import { fetchTransferItems } from "@/apis/fetchTransferItems";
-import { AnimatePresence } from "framer-motion";
-import Toast from "@/components/toast/Toast";
-import { useEffect, useState } from "react";
-import { IReservation } from "../../types/reservationList";
-import TransferItem from "./transferItem/TransferItem";
 import * as S from "./TransferWriting.style";
+import TransferItem from "./transferItem/TransferItem";
+import Toast from "@/components/toast/Toast";
+
+import { fetchTransferItems } from "@/apis/fetchTransferItems";
+import { useSuspenseQuery } from "@tanstack/react-query";
+import { AnimatePresence } from "framer-motion";
 
 const TransferWriting = () => {
-  const [reservations, setReservations] = useState<IReservation[]>([]);
+  const UID = "DUMMY_UID";
 
-  useEffect(() => {
-    try {
-      fetchTransferItems().then((res) => {
-        setReservations(res.data.reservationList);
-      });
-    } catch (err) {
-      console.log(err);
-    }
-  }, []);
+  const { data } = useSuspenseQuery({
+    queryKey: ["TransferItemList", UID],
+    queryFn: fetchTransferItems,
+    staleTime: 500000,
+  });
+
+  console.log("data: ", data);
 
   return (
     <>
       <Toast strings={[<>야놀자</>, "에서 예약하신 상품만 판매가 가능해요"]} />
       <S.Subtitle>판매할 내역을 선택해주세요.</S.Subtitle>
+
       <S.TransferItemList>
-        {reservations.map((item, idx) => {
+        {data?.map((item) => {
           return (
-            <AnimatePresence>
+            <AnimatePresence key={item.reservationId}>
               <TransferItem
-                key={idx}
+                reservationId={item.reservationId}
                 hotelName={item.hotelName}
                 roomName={item.roomName}
                 startDate={item.startDate}
@@ -37,7 +36,7 @@ const TransferWriting = () => {
                 purchasePrice={item.purchasePrice}
                 remainingDays={item.remainingDays}
                 remainingTimes={item.remainingTimes}
-                hotelImage={item.hotelImage}
+                imageUrl={item.imageUrl}
               />
             </AnimatePresence>
           );

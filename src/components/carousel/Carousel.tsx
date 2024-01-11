@@ -19,7 +19,6 @@ const Carousel = ({
   draggable = false,
   innerShadow = false,
 }: CarouselProps) => {
-  
   const slideList = infinite
     ? [images.at(-1), ...images, images.at(0)]
     : images;

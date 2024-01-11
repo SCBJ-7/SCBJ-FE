@@ -32,15 +32,17 @@ export const theme = {
   },
   typo: {
     title1: typoCreator("1.625rem", 700),
-    title2: typoCreator("1.125rem", 600),
-    title3: typoCreator("1rem", 500),
-    title4: typoCreator("0.875rem", 500),
+    title2: typoCreator("1.25rem", 700),
+    title3: typoCreator("1.125rem", 700),
+    title4: typoCreator("1.125rem", 600),
+    title5: typoCreator("1rem", 500),
 
     body1: typoCreator("1rem", 700),
     body2: typoCreator("1rem", 600),
     body3: typoCreator("0.875rem", 600),
     body4: typoCreator("0.875rem", 500),
-    body5: typoCreator("0.75rem", 500),
+    body5: typoCreator("0.75rem", 600),
+    body6: typoCreator("0.75rem", 500),
 
     button1: typoCreator("1.125rem", 500),
     button2: typoCreator("1rem", 700),
@@ -51,8 +53,10 @@ export const theme = {
     button7: typoCreator("0.75rem", 500),
 
     caption1: typoCreator("0.875rem", 400),
-    caption2: typoCreator("0.625rem", 700),
-    caption3: typoCreator("0.625rem", 500),
+    caption2: typoCreator("0.75rem", 700),
+    caption3: typoCreator("0.75rem", 500),
+    caption4: typoCreator("0.625rem", 700),
+    caption5: typoCreator("0.625rem", 500),
   },
   border: {
     strokeThin: "1px solid #E9E9E9",
@@ -69,4 +73,13 @@ export const theme = {
       display: none; /* Chrome, Safari, Opera*/
     }
   `,
+  unableToDrag: css`
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  `,
 };
+
+export type TypoKeys = keyof typeof theme.typo;
+export type ColorKeys = keyof typeof theme.color;

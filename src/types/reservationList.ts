@@ -1,4 +1,5 @@
 export interface IReservation {
+  reservationId: number;
   hotelName: string;
   roomName: string;
   startDate: Date;
@@ -7,5 +8,5 @@ export interface IReservation {
   purchasePrice: number;
   remainingDays: number;
   remainingTimes: number;
-  hotelImage: string;
+  imageUrl: string;
 }

@@ -13,7 +13,7 @@ export const SignUpContainer = styled.form`
 `;
 
 export const SignUpTitle = styled.p`
-  ${({ theme }) => theme.typo.title3}
+  ${({ theme }) => theme.typo.title4}
   color: #3A3A3A;
 
   margin: 0 0 64px 0;
