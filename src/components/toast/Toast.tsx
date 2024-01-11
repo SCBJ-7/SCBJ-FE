@@ -7,9 +7,10 @@ import { AnimatePresence } from "framer-motion";
 interface ToastProps {
   strings: (string | ReactNode)[];
   duration?: number;
+  isError?: boolean;
 }
 
-const Toast = ({ strings, duration = 5000 }: ToastProps) => {
+const Toast = ({ strings, duration = 5000, isError = false }: ToastProps) => {
   const [visible, setVisible] = useState(true);
 
   useEffect(() => {
@@ -48,6 +49,7 @@ const Toast = ({ strings, duration = 5000 }: ToastProps) => {
               initial="hidden"
               animate="visible"
               exit="hidden"
+              $isError={isError}
             >
               {strings.map((str, idx) => {
                 return typeof str === "string" ? (

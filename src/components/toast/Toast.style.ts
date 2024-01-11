@@ -1,13 +1,14 @@
 import { motion } from "framer-motion";
 import styled from "styled-components";
 
-export const ToastContainer = styled(motion.div)`
+export const ToastContainer = styled(motion.div)<{ $isError: boolean }>`
   width: 360px;
   height: 40px;
   border-radius: 28px;
 
   ${({ theme }) => theme.typo.button7};
-  background-color: ${({ theme }) => theme.color.black};
+  background-color: ${({ $isError, theme }) =>
+    $isError ? "white" : theme.color.black};
   color: white;
   box-shadow: 2px 2px 8px 0 rgba(0, 0, 0, 0.2);
 
@@ -24,6 +25,6 @@ export const ToastContainer = styled(motion.div)`
   z-index: 100;
 
   & strong {
-    color: #ff3478;
+    color: ${({ $isError }) => ($isError ? "#FF4949" : "#ff3478")};
   }
 `;
