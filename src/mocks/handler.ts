@@ -1,7 +1,9 @@
 import { http, HttpResponse } from "msw";
-import dummyRoom from "./data/dummyRoom.json";
+import dummyRoom from "./data/dummyRoomDetail.json";
 import dummyRoomDetail from "./data/dummyRoomDetail.json";
 import reservationList from "./data/reservationList.json";
+import dummyPurchaseList from "./data/dummyPuchaseList.json";
+import dummyPurchaseDetail from "./data/dummyPurchaseDetail.json";
 import userInfo from "./data/userInfo.json";
 
 export const handlers = [
@@ -16,6 +18,12 @@ export const handlers = [
   }),
   http.get("/v1/members", () => {
     return HttpResponse.json(userInfo);
+  }),
+  http.get("/v1/members/purchased-history", () => {
+    return HttpResponse.json(dummyPurchaseList);
+  }),
+  http.get("/v1/purchase-detail/102", () => {
+    return HttpResponse.json(dummyPurchaseDetail);
   }),
 
   /*

@@ -19,6 +19,8 @@ export const BottomNavContainer = styled.section`
   bottom: 0;
 
   background-color: ${({ theme }) => theme.color.black};
+
+  z-index: 100;
 `;
 
 export const BottomNavWrapper = styled.div`

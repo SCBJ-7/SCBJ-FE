@@ -38,17 +38,25 @@ const Header = () => {
       title = "판매할 내역 선택";
       undo = false;
       break;
-    case PATH.WRITE_TRANSFER_PRICE:
-      alarmIC = false;
-      settingIC = false;
-      undo = false;
-      break;
-    case PATH.MY_PAGE:
+    case PATH.PURCHASE_LIST:
       alarmIC = true;
       settingIC = true;
-      title = "마이페이지";
+      title = "구매내역";
       undo = true;
       break;
+    case PATH.SALE_LIST:
+      alarmIC = true;
+      settingIC = true;
+      title = "판매내역";
+      undo = true;
+      break;
+    case PATH.PURCAHSE_DEATAIL:
+      alarmIC = false;
+      settingIC = false;
+      title = "구매내역상세";
+      undo = true;
+      break;
+
     case PATH.SETTING:
       alarmIC = false;
       settingIC = false;
@@ -63,7 +71,6 @@ const Header = () => {
       break;
     default: // 없음
   }
-
   const undoHandler = () => {
     navigate(-1);
   };

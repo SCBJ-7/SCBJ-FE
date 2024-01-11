@@ -4,7 +4,6 @@ import * as S from "./NavBottom.style";
 
 const BottomNav = () => {
   const { pathname } = useLocation();
-
   const navList = [
     {
       id: 1,
@@ -24,7 +23,12 @@ const BottomNav = () => {
       path: PATH.SEARCHLIST,
       icon: <S.NavIconSearch />,
     },
-    { id: 4, name: "마이", path: PATH.MY_PAGE, icon: <S.NavIconMy /> },
+    {
+      id: 4,
+      name: "마이",
+      path: PATH.MY_PAGE,
+      icon: <S.NavIconMy />,
+    },
   ];
 
   return (
@@ -32,7 +36,7 @@ const BottomNav = () => {
       <S.BottomNavWrapper>
         {navList.map((item) => {
           return (
-            <S.BottomNavCell //
+            <S.BottomNavCell
               key={item.id}
               to={item.path}
               className={(isActive) => (isActive ? "active" : "")}
