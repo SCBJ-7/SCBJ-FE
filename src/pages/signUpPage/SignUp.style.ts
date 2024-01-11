@@ -63,8 +63,8 @@ export const SignUpInput = styled.input`
   }
 `;
 
-export const SignUpInputBtn = styled.button`
-  ${({ theme }) => theme.typo.caption4}
+export const SignUpInputBtn = styled.button<{ $isCodeCorrect?: boolean }>`
+  ${({ theme }) => theme.typo.caption2}
   position: absolute;
 
   width: 72px;
@@ -72,16 +72,21 @@ export const SignUpInputBtn = styled.button`
 
   border: 1px solid ${({ theme }) => theme.color.percentOrange};
   border-radius: 8px;
+  background-color: ${({ $isCodeCorrect, theme }) =>
+    $isCodeCorrect ? theme.color.percentOrange : "white"};
 
-  color: ${({ theme }) => theme.color.percentOrange};
+  color: ${({ $isCodeCorrect, theme }) =>
+    $isCodeCorrect ? "white" : theme.color.percentOrange};
 
   top: 10px;
   right: 10px;
 `;
 
-export const SignUpInputCaption = styled.span<{ $color: string }>`
-  ${({ theme }) => theme.typo.caption5}
-  color: ${({ $color }) => $color};
+export const SignUpInputCaption = styled.span<{
+  $isCodeCorrect?: boolean;
+}>`
+  ${({ theme }) => theme.typo.caption3}
+  color: ${({ $isCodeCorrect }) => ($isCodeCorrect ? "#0072B1" : "#FF4949")};
 `;
 
 export const SignUpCheckBoxContainer = styled.div`
@@ -112,14 +117,14 @@ export const SignUpCheckBoxLink = styled.a`
   text-underline-offset: 2px;
 `;
 
-export const SignUpSubmitBtn = styled.button`
+export const SignUpSubmitBtn = styled.button<{ $isValid: boolean }>`
   width: calc(100% - 40px);
   height: 48px;
   border-radius: 8px;
 
   color: white;
 
-  background-color: ${({ theme }) => theme.color.greyScale5};
-
+  background-color: ${({ $isValid, theme }) =>
+    $isValid ? theme.color.percentOrange : theme.color.greyScale5};
   margin: 0 0 64px 0;
 `;

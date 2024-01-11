@@ -38,10 +38,10 @@ const Home = () => {
   return (
     <Carousel
       images={dummyImg}
-      width="100%"
       height={300}
       arrows={true}
-      infinite={false}
+      infinite={true}
+      draggable={true}
     />
   );
 };
