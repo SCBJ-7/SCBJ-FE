@@ -1,8 +1,7 @@
 import * as S from "./PuchaseItem.style";
-import { format } from "date-fns";
-import { ko } from "date-fns/locale";
 import { IPurchaseItemWithRemainDate } from "../../TransferPurchase";
 import { PATH } from "@/constants/path";
+import { formatDate } from "@/utils/dateFormater";
 
 const PuchaseItem = (props: IPurchaseItemWithRemainDate) => {
   const handleClick = () => {
@@ -26,12 +25,8 @@ const PuchaseItem = (props: IPurchaseItemWithRemainDate) => {
           <S.PurchaseItemName>{props.name}</S.PurchaseItemName>
           <S.PuChaseItemType>{props.roomType}</S.PuChaseItemType>
           <S.PuChaseItemDate>
-            {`${format(props.checkInDate, "yyyy. MM. dd (ccc)", {
-              locale: ko,
-            })} ~ `}
-            {`${format(props.checkOutDate, "yyyy. MM. dd (ccc)", {
-              locale: ko,
-            })}`}
+            {`${formatDate(props.checkInDate)} ~ `}
+            {formatDate(props.checkOutDate)}
           </S.PuChaseItemDate>
           <S.PurchaseItemPrice>{`${props.price.toLocaleString()}원`}</S.PurchaseItemPrice>
         </S.PuchaseItemInfo>
