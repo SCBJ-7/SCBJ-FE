@@ -32,6 +32,8 @@ const ManagePhoneNumber = ({
     if (isChanging) {
       setIsChanging(false);
       // API CALL();
+      if (prevPhoneNumber === phoneNumber) return;
+
       changeNumber("/v1/members/phone", phoneNumber);
     } else {
       setIsChanging(true);

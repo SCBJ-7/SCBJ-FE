@@ -32,6 +32,7 @@ const ManageName = ({
   const changeButtonClickHandler = () => {
     if (isChanging) {
       setIsChanging(false);
+      if (prevName === name) return;
       changeName("/v1/members/name", name);
       handleShowToast();
     } else {
