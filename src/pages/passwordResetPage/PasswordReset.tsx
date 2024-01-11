@@ -37,9 +37,10 @@ const PasswordReset = () => {
   const [codeState, setCodeState] = useState("######");
 
   const handleOnSubmit = async (data: FormValues) => {
-    const { password } = data;
+    const { password, email } = data;
     await axios
       .post("https://3.34.147.187.nip.io/v1/members/password", {
+        email,
         password,
       })
       .then(() => {
