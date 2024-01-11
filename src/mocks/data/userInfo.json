@@ -1,0 +1,13 @@
+{
+  "status": 200,
+  "message": "성공적으로 회원 정보를 조회했습니다.",
+  "data": {
+    "id": "1L",
+    "email": "test@mail.com",
+    "name": "test",
+    "phone": "10-1234-5678",
+    "accountNumber": "123-456-7810",
+    "bank": "농협",
+    "linkedToYanolja": false
+  }
+}

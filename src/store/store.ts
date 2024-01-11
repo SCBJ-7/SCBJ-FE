@@ -1,23 +1,13 @@
 import { IReservation } from "@/types/reservationList";
+import { IUserInfo } from "@/types/userInfo";
 import { create } from "zustand"; // create로 zustand를 불러옵니다.
 
 interface storeState {
   selectedItem: IReservation;
-  setSelectedItem: (selectedItem: {
-    reservationId: number;
-    hotelName: string;
-    roomName: string;
-    startDate: Date;
-    endDate: Date;
-    refundPrice: number;
-    purchasePrice: number;
-    remainingDays: number;
-    remainingTimes: number;
-    imageUrl: string;
-  }) => void;
+  setSelectedItem: (selectedItem: IReservation) => void;
 }
 
-const useSelectedItemStore = create<storeState>((set) => ({
+export const useSelectedItemStore = create<storeState>((set) => ({
   selectedItem: {
     reservationId: 0,
     hotelName: "",
@@ -39,4 +29,26 @@ const useSelectedItemStore = create<storeState>((set) => ({
     })),
 }));
 
-export default useSelectedItemStore;
+interface UserState {
+  userInfo: IUserInfo;
+  setUserInfo: (userInfo: IUserInfo) => void;
+}
+
+export const useUserInfoStore = create<UserState>((set) => ({
+  userInfo: {
+    id: "",
+    email: "",
+    name: "",
+    phone: "",
+    accountNumber: null,
+    bank: null,
+    linkToYanolja: false,
+  },
+  setUserInfo: (userInfo) =>
+    set((state) => ({
+      userInfo: {
+        ...state.userInfo,
+        ...userInfo,
+      },
+    })),
+}));

@@ -2,6 +2,7 @@ import { http, HttpResponse } from "msw";
 import dummyRoom from "./data/dummyRoom.json";
 import dummyRoomDetail from "./data/dummyRoomDetail.json";
 import reservationList from "./data/reservationList.json";
+import userInfo from "./data/userInfo.json";
 
 export const handlers = [
   http.get("/api/roomId", () => {
@@ -10,6 +11,12 @@ export const handlers = [
   http.get("/v1/reservations", () => {
     return HttpResponse.json(reservationList);
   }),
+  http.get("/v1/products/1", () => {
+    return HttpResponse.json(dummyRoomDetail);
+  }),
+  http.get("/v1/members", () => {
+    return HttpResponse.json(userInfo);
+  }),
 
   /*
     warning 없애기용.
@@ -17,8 +24,5 @@ export const handlers = [
   */
   http.get("*", (req) => {
     console.log(req);
-  }),
-  http.get("/v1/products/1", () => {
-    return HttpResponse.json(dummyRoomDetail);
   }),
 ];

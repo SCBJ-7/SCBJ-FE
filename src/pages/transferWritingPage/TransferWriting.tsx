@@ -15,8 +15,6 @@ const TransferWriting = () => {
     staleTime: 500000,
   });
 
-  console.log("data: ", data);
-
   return (
     <>
       <Toast strings={[<>야놀자</>, "에서 예약하신 상품만 판매가 가능해요"]} />

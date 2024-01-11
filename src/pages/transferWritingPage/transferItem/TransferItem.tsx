@@ -7,7 +7,7 @@ import { ko } from "date-fns/locale";
 import { motion, useAnimate } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import * as S from "./TransferItem.style";
-import useSelectedItemStore from "@/store/store";
+import { useSelectedItemStore } from "@/store/store";
 
 const TransferItem = ({
   reservationId,

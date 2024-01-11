@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import * as S from "./TransferWritingPrice.style";
 
 import FirstPriceTag from "./firstPriceTag/FirstPriceTag";
@@ -6,7 +6,7 @@ import SecondPriceTag from "./secondPriceTag/SecondPriceTag";
 import PaymentSection from "./paymentSection/PaymentSection";
 import AccountSection from "./accountSection/AccountSection";
 import AgreementSection from "./agreementSection/AgreementSection";
-import useSelectedItemStore from "@/store/store";
+import { useSelectedItemStore } from "@/store/store";
 import { formatDate } from "@/utils/dateFormater";
 
 const TransferWritingPrice = () => {
@@ -30,20 +30,33 @@ const TransferWritingPrice = () => {
   const [optFinal, setOptFinal] = useState(false);
 
   // finally able to submit
-  const [readyToSubmit] = useState(() => {
-    if (firstPrice && opt1 && opt2 && opt3 && optFinal) {
-      // accountNumber 추가
-      if (!is2ndChecked) return true; // 2차 가격 설정하기 체크 안 한 경우
+  const [readyToSubmit, setReadyToSubmit] = useState(false);
 
-      if (is2ndChecked && secondPrice && downTimeAfter) {
-        return true; // 2차 가격 설정한 경우
-      } else {
-        return false; // 2차 가격 체크했지만 아무것도 쓰지 않은 경우
+  useEffect(() => {
+    setReadyToSubmit(() => {
+      if (firstPrice && opt1 && opt2 && opt3 && optFinal) {
+        // accountNumber 추가
+        if (!is2ndChecked) return true; // 2차 가격 설정하기 체크 안 한 경우
+
+        if (is2ndChecked && secondPrice && downTimeAfter) {
+          return true; // 2차 가격 설정한 경우
+        } else {
+          return false; // 2차 가격 체크했지만 아무것도 쓰지 않은 경우
+        }
       }
-    }
 
-    return false; // 1차가격 설정과 약관 동의 안한 경우
-  });
+      return false; // 1차가격 설정과 약관 동의 안한 경우
+    });
+  }, [
+    firstPrice,
+    opt1,
+    opt2,
+    opt3,
+    optFinal,
+    is2ndChecked,
+    secondPrice,
+    downTimeAfter,
+  ]);
 
   const submitHandler = () => {
     if (!readyToSubmit) return;
