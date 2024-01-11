@@ -1,6 +1,7 @@
 import { useRef, useState } from "react";
 import * as S from "./ManageName.style";
 import Toast from "@/components/toast/Toast";
+import useProfileApi from "@/apis/useProfileApi";
 
 const ManageName = ({
   prevName,
@@ -12,15 +13,16 @@ const ManageName = ({
   const [name, setName] = useState<string>(prevName);
   const [isChanging, setIsChanging] = useState<boolean>(false);
   const [showToast, setShowToast] = useState<boolean>(false);
-
   const inputRef = useRef<HTMLInputElement>(null);
+  const koreanRegex = /^[ㄱ-ㅎ가-힣ㅏ-ㅣ]+$/;
+  const { changeName } = useProfileApi();
 
   // api 통신 에러 토스트 핸들러
   const handleShowToast = () => {
     setShowToast(true);
     setTimeout(() => {
       setShowToast(false);
-    }, 5000);
+    }, 3000);
   };
 
   const nameChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -30,15 +32,13 @@ const ManageName = ({
   const changeButtonClickHandler = () => {
     if (isChanging) {
       setIsChanging(false);
-      // API CALL();
+      changeName("/v1/members/name", name);
       handleShowToast();
     } else {
       setIsChanging(true);
       inputRef.current?.focus();
     }
   };
-
-  const koreanRegex = /^[ㄱ-ㅎ가-힣ㅏ-ㅣ]+$/;
 
   const getMessageAndState = () => {
     if (linkedToYanolja) {

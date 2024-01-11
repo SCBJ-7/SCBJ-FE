@@ -1,6 +1,7 @@
 import { useRef, useState } from "react";
 import * as S from "./ManagePhoneNumber.style";
-import Toast from "@/components/toast/Toast";
+// import Toast from "@/components/toast/Toast";
+import useProfileApi from "@/apis/useProfileApi";
 
 const ManagePhoneNumber = ({
   prevPhoneNumber,
@@ -9,17 +10,17 @@ const ManagePhoneNumber = ({
 }) => {
   const [phoneNumber, setPhoneNumber] = useState<string>(prevPhoneNumber);
   const [isChanging, setIsChanging] = useState<boolean>(false);
-  const [showToast, setShowToast] = useState<boolean>(false);
-
+  // const [showToast, setShowToast] = useState<boolean>(false);
   const inputRef = useRef<HTMLInputElement>(null);
+  const { changeNumber } = useProfileApi();
 
   // api 통신 에러 토스트 핸들러
-  const handleShowToast = () => {
-    setShowToast(true);
-    setTimeout(() => {
-      setShowToast(false);
-    }, 5000);
-  };
+  // const handleShowToast = () => {
+  //   setShowToast(true);
+  //   setTimeout(() => {
+  //     setShowToast(false);
+  //   }, 5000);
+  // };
 
   const phoneNumberChangeHandler = (
     event: React.ChangeEvent<HTMLInputElement>,
@@ -31,7 +32,7 @@ const ManagePhoneNumber = ({
     if (isChanging) {
       setIsChanging(false);
       // API CALL();
-      handleShowToast();
+      changeNumber("/v1/members/phone", phoneNumber);
     } else {
       setIsChanging(true);
       inputRef.current?.focus();
@@ -71,7 +72,7 @@ const ManagePhoneNumber = ({
 
   return (
     <>
-      {showToast && <Toast strings={[<>전화번호 변경 성공</>, "ㅊㅋ"]} />}
+      {/* {showToast && <Toast strings={[<>전화번호 변경 성공</>, "ㅊㅋ"]} />} */}
       <S.ManageNumberSection $state={state} $isChanging={isChanging}>
         <label htmlFor="phone-number">전화번호</label>
         <div>
