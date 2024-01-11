@@ -13,10 +13,10 @@ const Manage = () => {
       {manageList.map((item) => {
         return (
           <S.ManageListElement key={item.name}>
-            <a href={item.path}>
+            <S.ManageLink to={item.path}>
               <span>{item.name}</span>
               <img src={rightArrow} alt={`${item.name}으로 이동하기`} />
-            </a>
+            </S.ManageLink>
           </S.ManageListElement>
         );
       })}

@@ -53,7 +53,7 @@ export const SignInInput = styled.input`
 `;
 
 export const SignInInputCaption = styled.span<{ $color: string }>`
-  ${({ theme }) => theme.typo.caption3}
+  ${({ theme }) => theme.typo.caption5}
   color: ${({ $color }) => $color};
 `;
 

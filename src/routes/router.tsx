@@ -13,7 +13,7 @@ import TransferWriting from "../pages/transferWritingPage/TransferWriting";
 import TransferSale from "../pages/transferSalePage";
 import RoomDetail from "@pages/roomDetailPage/RoomDetail";
 import TransferPurchase from "../pages/transferPurchasePage";
-import TransferWritingPrice from "@/pages/transerWritingPricePage/TransferWritingPrice";
+import TransferWritingPrice from "@/pages/transferWritingPricePage/TransferWritingPrice";
 import PasswordReset from "@/pages/passwordResetPage/PasswordReset";
 import Setting from "@/pages/myPage/setting/Setting";
 import ManageProfile from "@/pages/myPage/manage/manageProfile/ManageProfile";
@@ -60,10 +60,14 @@ export const router = createBrowserRouter([
       },
       {
         path: PATH.WRITE_TRANSFER,
-        element: <TransferWriting />,
+        element: (
+          <Suspense fallback={<div>Loading...</div>}>
+            <TransferWriting />
+          </Suspense>
+        ),
       },
       {
-        path: PATH.WRITE_TRANSFER_PRICE + ":id",
+        path: PATH.WRITE_TRANSFER_PRICE + `/:id`,
         element: <TransferWritingPrice />,
       },
       {

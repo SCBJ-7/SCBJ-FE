@@ -26,11 +26,11 @@ const RoomDetail = () => {
       <RoomHeader title={data.hotelName} />
       <Carousel
         images={data.hotelImageUrl}
-        width="100%"
         height={300}
         arrows={true}
         infinite={false}
         innerShadow={true}
+        draggable={true}
       />
       <RoomInfo room={data} />
       <RoomNavBar room={data} />
