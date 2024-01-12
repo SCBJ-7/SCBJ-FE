@@ -61,6 +61,7 @@ export const TitleWrapper = styled.div`
   overflow: hidden;
   text-overflow: ellipsis;
   text-align: center;
+  width: 100%;
 `;
 
 export const Title = styled.p<{ $visible: boolean }>`
