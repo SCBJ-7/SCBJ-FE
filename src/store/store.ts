@@ -91,6 +91,7 @@ export const useUserInfoStore = create<UserState>((set) => ({
 
 type configType = {
   isShow: boolean;
+  isError: boolean;
   strings: (string | ReactNode)[];
 };
 
@@ -102,6 +103,7 @@ interface ToastStates {
 export const useToastStore = create<ToastStates>((set) => ({
   config: {
     isShow: false,
+    isError: false,
     strings: [],
   },
   setToastConfig: (updated) =>

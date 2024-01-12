@@ -26,29 +26,21 @@ const Toast = () => {
   };
 
   return (
-    <>
-      {createPortal(
-        <AnimatePresence>
-          {visible && (
-            <S.ToastContainer
-              variants={variants}
-              initial="hidden"
-              animate="visible"
-              exit="hidden"
-            >
-              {strings.map((str, idx) => {
-                return typeof str === "string" ? (
-                  <span key={idx}>{str}</span>
-                ) : (
-                  <strong key={idx}>{str}</strong>
-                );
-              })}
-            </S.ToastContainer>
-          )}
-        </AnimatePresence>,
-        document.getElementById("overlay-root") as HTMLElement,
-      )}
-    </>
+    <S.ToastContainer
+      variants={variants}
+      initial="hidden"
+      animate="visible"
+      exit="hidden"
+      $isError={ToastConfig.isError}
+    >
+      {strings.map((str, idx) => {
+        return typeof str === "string" ? (
+          <span key={idx}>{str}</span>
+        ) : (
+          <strong key={idx}>{str}</strong>
+        );
+      })}
+    </S.ToastContainer>
   );
 };
 

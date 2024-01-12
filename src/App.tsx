@@ -31,6 +31,7 @@ function App() {
   useEffect(() => {
     setToastConfig({
       isShow: false,
+      isError: false,
       strings: toastConfig.strings,
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
