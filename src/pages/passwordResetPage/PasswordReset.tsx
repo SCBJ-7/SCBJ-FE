@@ -39,7 +39,7 @@ const PasswordReset = () => {
   const handleOnSubmit = async (data: FormValues) => {
     const { password, email } = data;
     await axios
-      .post("https://3.34.147.187.nip.io/v1/members/password", {
+      .patch("https://3.34.147.187.nip.io/v1/members/password", {
         email,
         password,
       })
