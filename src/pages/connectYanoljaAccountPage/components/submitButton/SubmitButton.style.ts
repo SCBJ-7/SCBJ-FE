@@ -1,5 +1,6 @@
-import { hexToRgba } from "@/utils/hexTorgba";
 import styled from "styled-components";
+
+import { hexToRgba } from "@/utils/hexTorgba";
 
 export const BottomWrapper = styled.div`
   margin-top: 3.5em;

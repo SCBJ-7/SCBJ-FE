@@ -1,11 +1,10 @@
+import YanoljaLogo from "@assets/logos/Yanolja_CI.png";
 import AccountVerificationForm from "@pages/connectYanoljaAccountPage/components/accountVerificationForm/AccountVerificationForm";
 import SubmitButton from "@pages/connectYanoljaAccountPage/components/submitButton/SubmitButton";
 import TermsAgreementForm from "@pages/connectYanoljaAccountPage/components/termsAgreementForm/TermsAgreementForm";
-
 import { useForm, FormProvider } from "react-hook-form";
 
 import * as S from "./ConnectYanoljaAccount.style";
-import YanoljaLogo from "@assets/logos/Yanolja_CI.png";
 
 const ConnectYanoljaAccount = () => {
   const methods = useForm({

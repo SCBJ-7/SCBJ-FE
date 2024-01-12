@@ -1,9 +1,10 @@
-import * as S from "./ConnectYanoljaSuccess.style";
-import PercentHotelLogo from "@assets/logos/Percent-hotel_logo_b.png";
 import PercentHotelIcon from "@assets/icons/ic_percent_hotel.png";
+import PercentHotelLogo from "@assets/logos/Percent-hotel_logo_b.png";
 import { PATH } from "@constants/path";
 import { useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
+
+import * as S from "./ConnectYanoljaSuccess.style";
 
 const ConnectYanoljaSuccess = () => {
   const navigate = useNavigate();
