@@ -3,11 +3,11 @@ import axios from "axios";
 import { useState } from "react";
 import { useFormContext } from "react-hook-form";
 
-import * as S from "./AccountVerificationForm.style";
+import * as S from "./AccountVerificationSection.style";
 
 import { useValidateEmailMutation } from "@/hooks/api/useValidateEmailMutation";
 
-const AccountVerificationForm = () => {
+const AccountVerificationSection = () => {
   const { control, getValues, setError, clearErrors } = useFormContext();
   const [isEmailValidated, setIsEmailValidated] = useState(false);
   const [isCodeValidated, setIsCodeValidated] = useState(false);
@@ -89,4 +89,4 @@ const AccountVerificationForm = () => {
   );
 };
 
-export default AccountVerificationForm;
+export default AccountVerificationSection;
