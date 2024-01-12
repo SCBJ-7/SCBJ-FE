@@ -16,6 +16,8 @@ interface PriceTagProps {
   remainingTimes: number;
   startDate: Date;
   endDate: Date;
+  secondPriceInputRef: React.MutableRefObject<null>;
+  secondTimeInputRef: React.MutableRefObject<null>;
 }
 
 const SecondPriceTag = ({
@@ -28,6 +30,8 @@ const SecondPriceTag = ({
   remainingTimes,
   startDate,
   endDate,
+  secondPriceInputRef,
+  secondTimeInputRef,
 }: PriceTagProps) => {
   const STD = format(startDate, "MM. dd (ccc) HH:mm", { locale: ko });
   const ETD = format(endDate, "MM. dd (ccc) HH:mm", { locale: ko });
@@ -74,6 +78,7 @@ const SecondPriceTag = ({
           </section>
         </S.Contents>
         <InputSection
+          inputRef={secondTimeInputRef}
           placeHolder="지정 시간"
           inputPosition="center"
           text={["체크인", "시간전에"]}
@@ -83,6 +88,7 @@ const SecondPriceTag = ({
           type="time"
         />
         <InputSection
+          inputRef={secondPriceInputRef}
           placeHolder="지정 가격"
           inputPosition="left"
           text={["원으로 가격을 내릴게요"]}

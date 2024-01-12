@@ -2,9 +2,11 @@ import priceFormat from "@/utils/priceFormat";
 import CheckBoxSection from "../checkBox/CheckBoxSection";
 import InputSection from "../inputSection/InputSection";
 import * as S from "./FirstPriceTag.style";
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
 
 interface PriceTagProps {
+  checkRef: React.MutableRefObject<null>;
+  inputRef: React.MutableRefObject<null>;
   purchasePrice: number;
   inputData: string;
   onFirstPriceChange: React.Dispatch<React.SetStateAction<string>>;
@@ -13,15 +15,14 @@ interface PriceTagProps {
 }
 
 const FirstPriceTag = ({
+  checkRef,
+  inputRef,
   onFirstPriceChange,
   purchasePrice,
   inputData,
   is2ndChecked,
   on2ndChecked,
 }: PriceTagProps) => {
-  const checkRef = useRef(null);
-  const inputRef = useRef(null);
-
   useEffect(() => {
     // 1차 가격의 길이가 0이 되면 2차 가격 설정 체크 해제
     if (inputData.length === 0) {
@@ -31,7 +32,7 @@ const FirstPriceTag = ({
         inputEl.checked = false;
       }
     }
-  }, [inputData, on2ndChecked]);
+  }, [inputData, on2ndChecked, checkRef, inputRef]);
 
   return (
     <>

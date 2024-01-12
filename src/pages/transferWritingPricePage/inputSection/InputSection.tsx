@@ -39,9 +39,15 @@ const InputSection = ({
       return;
     }
 
-    // 남은 시간 데이터가 있다면 남은 시간보다 이전 시간을 설정 못하게 설정
+    // 남은 시간보다 더 전의 시간을 설정 못하게 설정
     if (remainingTimes && Number(temp) > remainingTimes) {
       onDataChange((remainingTimes - 1).toString());
+      return;
+    }
+
+    // 남은 시간을 3시간 미만으로 설정 불가
+    if (remainingTimes && Number(temp) < 3) {
+      onDataChange("3");
       return;
     }
 
