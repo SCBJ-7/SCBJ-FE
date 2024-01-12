@@ -7,10 +7,11 @@ import PaymentSection from "./paymentSection/PaymentSection";
 import AccountSection from "./accountSection/AccountSection";
 import AgreementSection from "./agreementSection/AgreementSection";
 import { useSelectedItemStore } from "@/store/store";
-import { formatDate } from "@/utils/dateFormater";
+import usePreventLeave from "@/hooks/usePreventLeave";
 
 const TransferWritingPrice = () => {
   const selectedItem = useSelectedItemStore((state) => state.selectedItem);
+  usePreventLeave(true);
 
   // first price value
   const [firstPrice, setFirstPrice] = useState("");
@@ -19,9 +20,6 @@ const TransferWritingPrice = () => {
   // second price value
   const [secondPrice, setSecondPrice] = useState("");
   const [downTimeAfter, setDownTimeAfter] = useState("");
-
-  // accountNumber (전역으로 바꾸자)
-  // const [accountNumber, setAccountNumber] = useState("");
 
   // Terms in second price Values
   const [opt1, setOpt1] = useState(false);
@@ -63,8 +61,6 @@ const TransferWritingPrice = () => {
     console.log("제출 수행");
   };
 
-  console.log(formatDate(new Date().toString()));
-
   return (
     <S.Container layout>
       <FirstPriceTag
@@ -87,6 +83,7 @@ const TransferWritingPrice = () => {
             onSecondPriceChange={setSecondPrice}
             downTimeAfter={downTimeAfter}
             onDownTimeAfterChange={setDownTimeAfter}
+            remainingDays={selectedItem.remainingDays}
             remainingTimes={selectedItem.remainingTimes}
             startDate={selectedItem.startDate}
             endDate={selectedItem.endDate}

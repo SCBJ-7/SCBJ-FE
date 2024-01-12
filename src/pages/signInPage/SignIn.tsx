@@ -2,9 +2,7 @@ import * as S from "./SignIn.style";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
-
-import Toast from "@/components/toast/Toast";
+import { useToastStore } from "@/store/store";
 
 type FormValues = {
   email: string;
@@ -13,7 +11,7 @@ type FormValues = {
 
 const SignIn = () => {
   const navigate = useNavigate();
-  const [isToastShow, setIsToastShow] = useState(false);
+  const setToastConfig = useToastStore((state) => state.setToastConfig);
 
   const {
     register,
@@ -52,18 +50,23 @@ const SignIn = () => {
       )
       .catch(({ response }) => {
         console.log(response);
-        setIsToastShow(true);
+        setToastConfig({
+          isShow: true,
+          isError: false,
+          strings: [[<>아이디 혹은 비밀번호를 확인해주세요</>]],
+        });
         setTimeout(() => {
-          setIsToastShow(false);
+          setToastConfig({
+            isShow: false,
+            isError: false,
+            strings: [[<>아이디 혹은 비밀번호를 확인해주세요</>]],
+          });
         }, 6000);
       });
   };
 
   return (
     <S.SignInContainer onSubmit={handleSubmit(handleOnSubmit)}>
-      {isToastShow ? (
-        <Toast isError strings={[<>아이디 혹은 비밀번호를 확인해주세요</>]} />
-      ) : null}
       <S.SignInLogo />
 
       <S.SignInInputContainer>

@@ -4,6 +4,7 @@ import * as S from "./SecondPriceTag.style";
 
 import { format } from "date-fns";
 import { ko } from "date-fns/locale";
+import priceFormat from "@/utils/priceFormat";
 
 interface PriceTagProps {
   firstPrice: string;
@@ -11,6 +12,7 @@ interface PriceTagProps {
   onSecondPriceChange: React.Dispatch<React.SetStateAction<string>>;
   downTimeAfter: string;
   onDownTimeAfterChange: React.Dispatch<React.SetStateAction<string>>;
+  remainingDays: number;
   remainingTimes: number;
   startDate: Date;
   endDate: Date;
@@ -22,6 +24,7 @@ const SecondPriceTag = ({
   onSecondPriceChange,
   downTimeAfter,
   onDownTimeAfterChange,
+  remainingDays,
   remainingTimes,
   startDate,
   endDate,
@@ -29,15 +32,23 @@ const SecondPriceTag = ({
   const STD = format(startDate, "MM. dd (ccc) HH:mm", { locale: ko });
   const ETD = format(endDate, "MM. dd (ccc) HH:mm", { locale: ko });
 
+  const LEFTTIME = remainingDays * 24 + remainingTimes;
+  let processedTime: number | string = LEFTTIME;
+  if (LEFTTIME > 72) {
+    processedTime = `${remainingDays} 일  ${remainingTimes}`;
+  }
+
   useEffect(() => {
-    if (secondPriceData >= firstPrice) {
+    const processedfirstPrice = Number(firstPrice.split(",").join(""));
+    const processedSecondPrice = Number(secondPriceData.split(",").join(""));
+    if (processedSecondPrice >= processedfirstPrice) {
       // 만약 1차 가격을 내려서 2차 가격보다 낮아진다면 2차 가격은 최대 1차 가격 - 1000원으로 변경
-      let temp = Number(firstPrice) - 1000;
-      if (temp < 0) {
-        temp = 0;
+      let updated = processedfirstPrice - 1000;
+      if (updated < 0) {
+        updated = 0;
       }
 
-      onSecondPriceChange(temp.toString());
+      onSecondPriceChange(priceFormat(updated));
     }
   }, [firstPrice, secondPriceData, onSecondPriceChange]);
 
@@ -48,7 +59,11 @@ const SecondPriceTag = ({
         <S.Contents>
           <section>
             <h3>체크인</h3>
-            <span>{remainingTimes} 시간 남았어요</span>
+            <span>
+              {LEFTTIME > 72
+                ? `${processedTime} 시간 남았어요`
+                : `${processedTime} 시간 남았어요`}
+            </span>
           </section>
           <section>
             <h3>숙박일</h3>
@@ -64,7 +79,8 @@ const SecondPriceTag = ({
           text={["체크인", "시간전에"]}
           inputData={downTimeAfter}
           onDataChange={onDownTimeAfterChange}
-          remainingTimes={remainingTimes}
+          remainingTimes={LEFTTIME}
+          type="time"
         />
         <InputSection
           placeHolder="지정 가격"
@@ -72,7 +88,7 @@ const SecondPriceTag = ({
           text={["원으로 가격을 내릴게요"]}
           inputData={secondPriceData}
           onDataChange={onSecondPriceChange}
-          maxPrice={Number(firstPrice)}
+          maxPrice={Number(firstPrice.split(",").join(""))}
         />
       </S.Container>
       <S.Hr />

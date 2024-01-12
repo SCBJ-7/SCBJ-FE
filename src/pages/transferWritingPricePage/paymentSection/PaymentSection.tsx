@@ -9,7 +9,7 @@ interface PaymentProps {
 }
 
 const PaymentSection = ({ price, is2ndChecked, title }: PaymentProps) => {
-  const FP = Number(price);
+  const FP = Number(price.split(",").join(""));
   let charge = 0;
   if (1000 < FP && FP <= 150000) {
     charge = Math.floor(FP * (2 / 100));
@@ -18,10 +18,6 @@ const PaymentSection = ({ price, is2ndChecked, title }: PaymentProps) => {
   } else if (300000 < FP) {
     charge = Math.floor(FP * (5 / 100));
   }
-
-  // const animate = {
-  //   opacity: [0, 1],
-  // };
 
   return (
     <S.Container $is2ndChecked={is2ndChecked}>

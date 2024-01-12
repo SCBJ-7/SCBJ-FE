@@ -1,10 +1,11 @@
 import * as S from "./TransferWriting.style";
 import TransferItem from "./transferItem/TransferItem";
-import Toast from "@/components/toast/Toast";
 
 import { fetchTransferItems } from "@/apis/fetchTransferItems";
+import { useToastStore } from "@/store/store";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { AnimatePresence } from "framer-motion";
+import { useEffect } from "react";
 
 const TransferWriting = () => {
   const UID = "DUMMY_UID";
@@ -15,9 +16,25 @@ const TransferWriting = () => {
     staleTime: 500000,
   });
 
+  const setToastConfig = useToastStore((state) => state.setToastConfig);
+
+  useEffect(() => {
+    setToastConfig({
+      isShow: true,
+      isError: false,
+      strings: [<>야놀자</>, "에서 예약하신 상품만 판매 가능해요."],
+    });
+    setTimeout(() => {
+      setToastConfig({
+        isShow: false,
+        isError: false,
+        strings: [<>야놀자</>, "에서 예약하신 상품만 판매 가능해요."],
+      });
+    }, 3000);
+  }, [setToastConfig]);
+
   return (
     <>
-      <Toast strings={[<>야놀자</>, "에서 예약하신 상품만 판매가 가능해요"]} />
       <S.Subtitle>판매할 내역을 선택해주세요.</S.Subtitle>
 
       <S.TransferItemList>

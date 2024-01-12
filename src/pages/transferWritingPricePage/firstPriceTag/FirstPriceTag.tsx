@@ -20,6 +20,7 @@ const FirstPriceTag = ({
   on2ndChecked,
 }: PriceTagProps) => {
   const checkRef = useRef(null);
+  const inputRef = useRef(null);
 
   useEffect(() => {
     // 1차 가격의 길이가 0이 되면 2차 가격 설정 체크 해제
@@ -47,6 +48,7 @@ const FirstPriceTag = ({
               maxPrice={purchasePrice}
               placeHolder="지정 가격"
               inputPosition="left"
+              inputRef={inputRef}
               inputData={inputData}
               text={["원"]}
               onDataChange={onFirstPriceChange}
@@ -54,6 +56,7 @@ const FirstPriceTag = ({
           </section>
         </S.Contents>
         <CheckBoxSection
+          checkToFocus={inputRef}
           checkRef={checkRef}
           firstPrice={inputData}
           id="first"
