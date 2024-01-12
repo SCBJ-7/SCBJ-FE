@@ -1,9 +1,10 @@
-import * as S from "./ConnectYanolja.style";
+import XIcon from "@assets/icons/ic_x.png";
 import PercentHotelLogo from "@assets/logos/Percent-hotel_logo.png";
 import YanoljaLogo from "@assets/logos/Yanolja_CI.png";
-import XIcon from "@assets/icons/ic_x.png";
-import { useNavigate } from "react-router-dom";
 import { PATH } from "@constants/path";
+import { useNavigate } from "react-router-dom";
+
+import * as S from "./ConnectYanolja.style";
 
 const ConnectYanolja = () => {
   const navigate = useNavigate();

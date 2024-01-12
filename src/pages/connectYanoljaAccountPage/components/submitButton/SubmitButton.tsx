@@ -1,9 +1,10 @@
-import { useFormContext } from "react-hook-form";
+import { PATH } from "@constants/path";
 import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
-import * as S from "./SubmitButton.style";
-import { PATH } from "@constants/path";
+import { useFormContext } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
+
+import * as S from "./SubmitButton.style";
 
 const SubmitButton = () => {
   const {
@@ -41,6 +42,7 @@ const SubmitButton = () => {
         type="submit"
         onClick={handleSubmit(onSubmit)}
         data-disabled={isValid ? null : ""}
+        aria-label="야놀자 계정 연동하기"
       >
         계정 연동하기
       </S.Button>

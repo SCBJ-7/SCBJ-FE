@@ -1,7 +1,8 @@
-import { useFormContext, Controller } from "react-hook-form";
 import Checkbox from "@components/checkbox/Checkbox";
-import * as S from "./TermsAgreementForm.style";
 import { useEffect } from "react";
+import { useFormContext, Controller } from "react-hook-form";
+
+import * as S from "./TermsAgreementForm.style";
 
 const TermsAgreementForm = () => {
   const { control, watch, setValue } = useFormContext();

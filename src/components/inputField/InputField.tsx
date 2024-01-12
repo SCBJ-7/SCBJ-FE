@@ -1,10 +1,12 @@
 import React from "react";
-import * as S from "./InputField.style";
 import {
   FieldValues,
   useController,
   UseControllerProps,
 } from "react-hook-form";
+
+import * as S from "./InputField.style";
+
 import type { ColorKeys } from "@/styles/theme";
 
 interface InputFieldProps<TFieldValues extends FieldValues>

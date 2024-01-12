@@ -1,5 +1,5 @@
-import styled, { DefaultTheme } from "styled-components";
 import { hexToRgba } from "@utils/hexTorgba";
+import styled, { DefaultTheme } from "styled-components";
 
 export const PageContainer = styled.div`
   width: 100%;

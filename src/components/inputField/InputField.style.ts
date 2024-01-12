@@ -1,6 +1,7 @@
-import { ColorKeys } from "@/styles/theme";
 import { hexToRgba } from "@utils/hexTorgba.ts";
 import styled, { DefaultTheme } from "styled-components";
+
+import { ColorKeys } from "@/styles/theme";
 
 export const InputWrapper = styled.div`
   width: 100%;
