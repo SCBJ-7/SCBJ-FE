@@ -2,9 +2,9 @@ import Checkbox from "@components/checkbox/Checkbox";
 import { useEffect } from "react";
 import { useFormContext, Controller } from "react-hook-form";
 
-import * as S from "./TermsAgreementForm.style";
+import * as S from "./TermsAgreementSection.style";
 
-const TermsAgreementForm = () => {
+const TermsAgreementSection = () => {
   const { control, watch, setValue } = useFormContext();
   const watchTerms = watch(["term1", "term2"]);
 
@@ -95,4 +95,4 @@ const TermsAgreementForm = () => {
   );
 };
 
-export default TermsAgreementForm;
+export default TermsAgreementSection;

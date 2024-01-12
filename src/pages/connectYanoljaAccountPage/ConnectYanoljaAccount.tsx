@@ -1,10 +1,11 @@
 import YanoljaLogo from "@assets/logos/Yanolja_CI.png";
-import AccountVerificationForm from "@pages/connectYanoljaAccountPage/components/accountVerificationForm/AccountVerificationForm";
 import SubmitButton from "@pages/connectYanoljaAccountPage/components/submitButton/SubmitButton";
-import TermsAgreementForm from "@pages/connectYanoljaAccountPage/components/termsAgreementForm/TermsAgreementForm";
 import { useForm, FormProvider } from "react-hook-form";
 
 import * as S from "./ConnectYanoljaAccount.style";
+
+import AccountVerificationSection from "@/pages/connectYanoljaAccountPage/components/accountVerificationSection/AccountVerificationSection";
+import TermsAgreementSection from "@/pages/connectYanoljaAccountPage/components/termsAgreementSection/TermsAgreementSection";
 
 const ConnectYanoljaAccount = () => {
   const methods = useForm({
@@ -20,8 +21,8 @@ const ConnectYanoljaAccount = () => {
         </S.LogoWrapper>
       </S.YanoljaHeader>
       <FormProvider {...methods}>
-        <AccountVerificationForm />
-        <TermsAgreementForm />
+        <AccountVerificationSection />
+        <TermsAgreementSection />
         <SubmitButton />
       </FormProvider>
     </S.PageContainer>
