@@ -65,9 +65,17 @@ export const PasswordResetInput = styled.input`
     color: ${({ theme }) => theme.color.greyScale5};
     font-weight: 300;
   }
+
+  &::-webkit-inner-spin-button,
+  &::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
 `;
 
-export const PasswordResetInputBtn = styled.button`
+export const PasswordResetInputBtn = styled.button<{
+  $isCodeCorrect?: boolean;
+}>`
   ${({ theme }) => theme.typo.caption2}
   position: absolute;
 
@@ -76,24 +84,30 @@ export const PasswordResetInputBtn = styled.button`
 
   border: 1px solid ${({ theme }) => theme.color.percentOrange};
   border-radius: 8px;
+  background-color: ${({ $isCodeCorrect, theme }) =>
+    $isCodeCorrect ? theme.color.percentOrange : "white"};
 
-  color: ${({ theme }) => theme.color.percentOrange};
+  color: ${({ $isCodeCorrect, theme }) =>
+    $isCodeCorrect ? "white" : theme.color.percentOrange};
 
   top: 10px;
   right: 10px;
 `;
 
-export const PasswordResetInputCaption = styled.span<{ $color: string }>`
+export const PasswordResetInputCaption = styled.span<{
+  $isCodeCorrect?: boolean;
+}>`
   ${({ theme }) => theme.typo.caption3}
-  color: ${({ $color }) => $color};
+  color: ${({ $isCodeCorrect }) => ($isCodeCorrect ? "#0072B1" : "#FF4949")};
 `;
 
-export const PasswordResetSubmitBtn = styled.button`
+export const PasswordResetSubmitBtn = styled.button<{ $isValid: boolean }>`
   width: calc(100% - 40px);
   height: 48px;
   border-radius: 8px;
 
   color: white;
 
-  background-color: ${({ theme }) => theme.color.percentOrange};
+  background-color: ${({ $isValid, theme }) =>
+    $isValid ? theme.color.percentOrange : theme.color.greyScale5};
 `;

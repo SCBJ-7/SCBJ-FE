@@ -61,6 +61,12 @@ export const SignUpInput = styled.input`
     color: ${({ theme }) => theme.color.greyScale5};
     font-weight: 300;
   }
+
+  &::-webkit-inner-spin-button,
+  &::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
 `;
 
 export const SignUpInputBtn = styled.button<{ $isCodeCorrect?: boolean }>`
