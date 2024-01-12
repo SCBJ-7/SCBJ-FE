@@ -21,11 +21,13 @@ const TransferWriting = () => {
   useEffect(() => {
     setToastConfig({
       isShow: true,
+      isError: false,
       strings: [<>야놀자</>, "에서 예약하신 상품만 판매 가능해요."],
     });
     setTimeout(() => {
       setToastConfig({
         isShow: false,
+        isError: false,
         strings: [<>야놀자</>, "에서 예약하신 상품만 판매 가능해요."],
       });
     }, 3000);
