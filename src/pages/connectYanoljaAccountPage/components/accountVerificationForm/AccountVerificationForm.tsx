@@ -1,9 +1,11 @@
-import axios from "axios";
-import { useFormContext } from "react-hook-form";
-import { useState } from "react";
 import InputField from "@components/inputField/InputField";
+import axios from "axios";
+import { useState } from "react";
+import { useFormContext } from "react-hook-form";
+
 import * as S from "./AccountVerificationForm.style";
-import { useMutation } from "@tanstack/react-query";
+
+import { useValidateEmailMutation } from "@/hooks/api/useValidateEmailMutation";
 
 const AccountVerificationForm = () => {
   const { control, getValues, setError, clearErrors } = useFormContext();
@@ -11,25 +13,23 @@ const AccountVerificationForm = () => {
   const [isCodeValidated, setIsCodeValidated] = useState(false);
   const [codeState, setCodeState] = useState("######");
 
-  const { mutate } = useMutation({
-    mutationFn: (email) =>
-      axios.post("https://3.34.147.187.nip.io/v1/members/email", { email }),
-    onSuccess: (response) => {
-      clearErrors("email");
-      setCodeState(response.data.data);
-      setIsEmailValidated(true);
-    },
-    onError: (error) => {
-      if (axios.isAxiosError(error) && error.response) {
-        setError("email", { message: error.response.data.message });
-        setIsEmailValidated(false);
-      }
-    },
-  });
+  const validateEmailMutation = useValidateEmailMutation();
 
   const handleEmailValidateClick = async () => {
     const email = getValues("email");
-    await mutate(email);
+    await validateEmailMutation.mutate(email, {
+      onSuccess: (response) => {
+        clearErrors("email");
+        setCodeState(response.data.data);
+        setIsEmailValidated(true);
+      },
+      onError: (error) => {
+        if (axios.isAxiosError(error) && error.response) {
+          setError("email", { message: error.response.data.message });
+          setIsEmailValidated(false);
+        }
+      },
+    });
   };
 
   const handleValidationCodeClick = () => {
