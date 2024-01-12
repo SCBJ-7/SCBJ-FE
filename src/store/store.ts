@@ -1,3 +1,4 @@
+import { ReactNode } from "react";
 import { IReservation } from "@/types/reservationList";
 import { IUserInfo } from "@/types/userInfo";
 
@@ -84,6 +85,30 @@ export const useUserInfoStore = create<UserState>((set) => ({
       userInfo: {
         ...state.userInfo,
         ...updatedInfo,
+      },
+    })),
+}));
+
+type configType = {
+  isShow: boolean;
+  strings: (string | ReactNode)[];
+};
+
+interface ToastStates {
+  config: configType;
+  setToastConfig: (updatedConfig: configType) => void;
+}
+
+export const useToastStore = create<ToastStates>((set) => ({
+  config: {
+    isShow: false,
+    strings: [],
+  },
+  setToastConfig: (updated) =>
+    set((state) => ({
+      config: {
+        ...state.config,
+        ...updated,
       },
     })),
 }));

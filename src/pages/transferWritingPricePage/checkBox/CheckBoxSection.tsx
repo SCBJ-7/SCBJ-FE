@@ -8,6 +8,7 @@ interface CheckProps {
   firstPrice?: string;
   isChecked: boolean;
   onChecked: React.Dispatch<React.SetStateAction<boolean>>;
+  checkToFocus?: React.MutableRefObject<null>;
   onAllChecked?: [
     React.Dispatch<React.SetStateAction<boolean>>,
     React.Dispatch<React.SetStateAction<boolean>>,
@@ -30,6 +31,7 @@ const CheckBoxSection = ({
   firstPrice,
   isChecked,
   onChecked,
+  checkToFocus,
   onAllChecked,
   onAllRef,
   fontSize,
@@ -46,6 +48,11 @@ const CheckBoxSection = ({
     if (type === "trigger" && !firstPrice) {
       // 첫 가격이 입력 안 되어있으면 2차 가격 설정 체크 불가
       e.target.checked = false;
+      // 1차 가격 인풋에 포커스
+      if (checkToFocus?.current) {
+        console.log("here?");
+        (checkToFocus.current as HTMLInputElement).focus();
+      }
       return;
     }
 
@@ -102,7 +109,7 @@ const CheckBoxSection = ({
 
   return (
     <S.CheckContainer>
-      <S.CheckBox id={id} onChange={checkHandler} ref={checkRef} />
+      <S.CheckBox id={id} onChange={checkHandler} ref={checkRef} $type={type} />
       <S.Label
         htmlFor={id}
         $isChecked={isChecked}

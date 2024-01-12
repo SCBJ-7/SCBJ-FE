@@ -19,7 +19,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
     <QueryClientProvider client={queryClient}>
       <ThemeProvider theme={theme}>
         <GlobalStyle />
-        <Suspense fallback={<div>Global Loading...</div>}>
+        <Suspense fallback={<div>{/* Global Loading... */}</div>}>
           <RouterProvider router={router} />
         </Suspense>
       </ThemeProvider>

@@ -1,22 +1,9 @@
-import { ReactNode, useEffect, useState } from "react";
-import { createPortal } from "react-dom";
 import * as S from "./Toast.style";
+import { useToastStore } from "@/store/store";
 
-import { AnimatePresence } from "framer-motion";
-
-interface ToastProps {
-  strings: (string | ReactNode)[];
-  duration?: number;
-}
-
-const Toast = ({ strings, duration = 5000 }: ToastProps) => {
-  const [visible, setVisible] = useState(true);
-
-  useEffect(() => {
-    setTimeout(() => {
-      setVisible(false);
-    }, duration);
-  }, [duration]);
+const Toast = () => {
+  const ToastConfig = useToastStore((state) => state.config);
+  const { strings } = ToastConfig;
 
   const variants = {
     visible: {
@@ -26,7 +13,7 @@ const Toast = ({ strings, duration = 5000 }: ToastProps) => {
         duration: 0.3,
         type: "spring",
         stiffness: 60,
-        delay: 0.6,
+        delay: 0.5,
       },
     },
     hidden: {
@@ -39,29 +26,20 @@ const Toast = ({ strings, duration = 5000 }: ToastProps) => {
   };
 
   return (
-    <>
-      {createPortal(
-        <AnimatePresence>
-          {visible && (
-            <S.ToastContainer
-              variants={variants}
-              initial="hidden"
-              animate="visible"
-              exit="hidden"
-            >
-              {strings.map((str, idx) => {
-                return typeof str === "string" ? (
-                  <span key={idx}>{str}</span>
-                ) : (
-                  <strong key={idx}>{str}</strong>
-                );
-              })}
-            </S.ToastContainer>
-          )}
-        </AnimatePresence>,
-        document.getElementById("overlay-root") as HTMLElement,
-      )}
-    </>
+    <S.ToastContainer
+      variants={variants}
+      initial="hidden"
+      animate="visible"
+      exit="hidden"
+    >
+      {strings.map((str, idx) => {
+        return typeof str === "string" ? (
+          <span key={idx}>{str}</span>
+        ) : (
+          <strong key={idx}>{str}</strong>
+        );
+      })}
+    </S.ToastContainer>
   );
 };
 

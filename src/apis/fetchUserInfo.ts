@@ -7,6 +7,6 @@ export const fetchUserInfo = async (): Promise<IUserInfo | undefined> => {
     const response = await axios.get("/v1/members");
     return response.data.data as IUserInfo;
   } catch (err) {
-    alert("⚠️예기치 못한 에러가 발생하였습니다.");
+    alert(`⚠️예기치 못한 에러가 발생하였습니다.: ${err}`);
   }
 };
