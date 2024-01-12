@@ -1,5 +1,4 @@
 import styled, { DefaultTheme } from "styled-components";
-import { theme } from "@styles/theme";
 import { hexToRgba } from "@utils/hexTorgba";
 
 export const PageContainer = styled.div`
@@ -73,14 +72,6 @@ export const XIcon = styled.div`
     width: 12px;
   }
 `;
-
-type Variant = keyof typeof theme.typo;
-type ColorSchemeProps = keyof typeof theme.color;
-
-export type TextVariantProps = {
-  variant?: Variant;
-  color?: ColorSchemeProps;
-};
 
 export const Title = styled.p`
   ${({ theme }) => theme.typo.title4};
