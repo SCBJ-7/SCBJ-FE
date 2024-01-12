@@ -41,9 +41,9 @@ function InputField<TFieldValues extends FieldValues>({
 
   return (
     <S.InputWrapper>
-      <S.Label>{label}</S.Label>
+      <S.Label htmlFor={label}>{label}</S.Label>
       <div className="input_wrapper">
-        <S.Input type={type} placeholder={placeholder} {...field} />
+        <S.Input type={type} placeholder={placeholder} {...field} id={label} />
         {buttonText && (
           <S.ConFirmButton
             type="button"
