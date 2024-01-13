@@ -51,7 +51,7 @@ const TransferWritingPrice = () => {
         if (is2ndChecked && secondPrice && downTimeAfter) {
           return true; // 2차 가격 설정한 경우
         } else if (is2ndChecked && !secondPrice && !downTimeAfter) {
-          return true; // 2차 가격 체크했지만 아무것도 쓰지 않은 경우는 일단 가능
+          return false; // 2차 가격 체크했지만 아무것도 쓰지 않은 경우는 일단 가능
         } else if (is2ndChecked && !secondPrice && downTimeAfter) {
           return false; // 2차 가격 체크하고 2차 가격 입력 안 하고 시간만 입력한 경우
         } else if (is2ndChecked && secondPrice && !downTimeAfter) {
@@ -148,6 +148,18 @@ const TransferWritingPrice = () => {
         });
         if (secondPriceInputRef.current) {
           (secondPriceInputRef.current as HTMLInputElement).focus();
+          // + 스크롤 상단으로 올리기
+        }
+        // 2차 가격 설정을 체크해놓고 2차 가격과 시간 모두 입력 안 했을 때
+      } else if (is2ndChecked && !secondPrice && !downTimeAfter) {
+        message = [<>2차 가격을 입력해주세요</>];
+        setToastConfig({
+          isShow: true,
+          isError: true,
+          strings: message,
+        });
+        if (secondTimeInputRef.current) {
+          (secondTimeInputRef.current as HTMLInputElement).focus();
           // + 스크롤 상단으로 올리기
         }
       }

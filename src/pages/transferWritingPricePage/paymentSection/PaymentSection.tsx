@@ -58,12 +58,11 @@ const PaymentSection = ({ price, is2ndChecked, title, type }: PaymentProps) => {
             <S.downIcon $isOpen={isOpen} />
           </S.IconWrapper>
         </S.Label>
-        {isOpen && (
-          <AnimatePresence>
+        <AnimatePresence>
+          {isOpen && (
             <motion.div
               initial={{ y: -10, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
-              exit={{ y: -10, opacity: 0 }}
             >
               <section>
                 <h3>상품 판매가</h3>
@@ -75,15 +74,14 @@ const PaymentSection = ({ price, is2ndChecked, title, type }: PaymentProps) => {
               </section>
               <S.Hr />
             </motion.div>
-          </AnimatePresence>
-        )}
+          )}
+        </AnimatePresence>
       </S.Contents>
-      {isOpen && (
-        <AnimatePresence>
+      <AnimatePresence>
+        {isOpen && (
           <S.Result
             initial={{ y: -10, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
-            exit={{ y: -10, opacity: 0 }}
           >
             <section>
               <h2>정산 총액</h2>
@@ -91,8 +89,8 @@ const PaymentSection = ({ price, is2ndChecked, title, type }: PaymentProps) => {
             </section>
             <h6>정산 총액은 양도 판매가에 중개 수수료를 제외한 값입니다.</h6>
           </S.Result>
-        </AnimatePresence>
-      )}
+        )}
+      </AnimatePresence>
     </S.Container>
   );
 };
