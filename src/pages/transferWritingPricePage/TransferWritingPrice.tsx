@@ -198,6 +198,7 @@ const TransferWritingPrice = () => {
         on2ndChecked={setIs2ndChecked}
       />
       <PaymentSection
+        type="first"
         price={firstPrice}
         is2ndChecked={is2ndChecked}
         title="1차 판매 체결 시 예상 정산금액"
@@ -218,6 +219,7 @@ const TransferWritingPrice = () => {
             endDate={selectedItem.endDate}
           />
           <PaymentSection
+            type="second"
             price={secondPrice}
             is2ndChecked
             title="2차 판매 체결 시 예상 정산금액"

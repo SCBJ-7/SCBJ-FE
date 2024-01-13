@@ -78,7 +78,7 @@ const InputSection = ({
   };
 
   return (
-    <S.InputDiv>
+    <S.InputDiv className="children">
       {inputPosition === "right" && <p>{text[0]}</p>}
       {inputPosition === "center" && <p>{text[0]}</p>}
       <S.Input

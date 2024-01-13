@@ -35,42 +35,39 @@ const FirstPriceTag = ({
   }, [inputData, on2ndChecked, checkRef, inputRef]);
 
   return (
-    <>
-      <S.FirstContainer $is2ndChecked={is2ndChecked}>
-        <S.Headline>판매할 금액을 입력해주세요</S.Headline>
-        <S.Contents>
-          <section>
-            <h3>야놀자 구매가</h3>
-            <span>{priceFormat(purchasePrice)}원</span>
-          </section>
-          <section>
-            <h3>판매 희망가</h3>
-            <InputSection
-              maxPrice={purchasePrice}
-              placeHolder="지정 가격"
-              inputPosition="left"
-              inputRef={inputRef}
-              inputData={inputData}
-              text={["원"]}
-              onDataChange={onFirstPriceChange}
-            />
-          </section>
-        </S.Contents>
-        <CheckBoxSection
-          checkToFocus={inputRef}
-          checkRef={checkRef}
-          firstPrice={inputData}
-          id="first"
-          text="2차 판매 가격 설정으로 자동 가격 내리기"
-          isChecked={is2ndChecked}
-          onChecked={on2ndChecked}
-          fontSize="body4"
-          color="greyScale1"
-          type="trigger"
-        />
-      </S.FirstContainer>
-      {is2ndChecked && <S.Hr />}
-    </>
+    <S.FirstContainer $is2ndChecked={is2ndChecked}>
+      <S.Headline>판매할 금액을 입력해주세요</S.Headline>
+      <S.Contents>
+        <section>
+          <h3>야놀자 구매가</h3>
+          <span>{priceFormat(purchasePrice)}원</span>
+        </section>
+        <section>
+          <h3>판매 희망가</h3>
+          <InputSection
+            maxPrice={purchasePrice}
+            placeHolder="지정 가격"
+            inputPosition="left"
+            inputRef={inputRef}
+            inputData={inputData}
+            text={["원"]}
+            onDataChange={onFirstPriceChange}
+          />
+        </section>
+      </S.Contents>
+      <CheckBoxSection
+        checkToFocus={inputRef}
+        checkRef={checkRef}
+        firstPrice={inputData}
+        id="first"
+        text="2차 판매 가격 설정으로 자동 가격 내리기"
+        isChecked={is2ndChecked}
+        onChecked={on2ndChecked}
+        fontSize="body4"
+        color="greyScale1"
+        type="trigger"
+      />
+    </S.FirstContainer>
   );
 };
 
