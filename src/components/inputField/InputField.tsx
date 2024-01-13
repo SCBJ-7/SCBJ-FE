@@ -55,9 +55,13 @@ const InputField = <TFieldValues extends FieldValues>({
           </S.ConFirmButton>
         )}
       </div>
-      {error && <S.InputCaption error>{error.message}</S.InputCaption>}
+      {error && (
+        <S.InputCaption role="alert" aria-live="polite" error>
+          {error.message}
+        </S.InputCaption>
+      )}
       {!error && isSuccess && successMessage && (
-        <S.InputCaption>{successMessage}</S.InputCaption>
+        <S.InputCaption aria-live="polite">{successMessage}</S.InputCaption>
       )}
     </S.InputWrapper>
   );
