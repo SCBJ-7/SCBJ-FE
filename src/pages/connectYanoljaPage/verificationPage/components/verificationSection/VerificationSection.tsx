@@ -1,13 +1,12 @@
 import InputField from "@components/inputField/InputField";
+import { useValidateEmailMutation } from "@hooks/api/mutation/useValidateEmailMutation";
 import axios from "axios";
 import { useState } from "react";
 import { useFormContext } from "react-hook-form";
 
-import * as S from "./AccountVerificationSection.style";
+import * as S from "./VerificationSection.style.ts";
 
-import { useValidateEmailMutation } from "@/hooks/api/useValidateEmailMutation";
-
-const AccountVerificationSection = () => {
+const VerificationSection = () => {
   const { control, getValues, setError, clearErrors } = useFormContext();
   const [isEmailValidated, setIsEmailValidated] = useState(false);
   const [isCodeValidated, setIsCodeValidated] = useState(false);
@@ -17,7 +16,7 @@ const AccountVerificationSection = () => {
 
   const handleEmailValidateClick = async () => {
     const email = getValues("email");
-    await validateEmailMutation.mutate(email, {
+    validateEmailMutation.mutate(email, {
       onSuccess: (response) => {
         clearErrors("email");
         setCodeState(response.data.data);
@@ -82,11 +81,11 @@ const AccountVerificationSection = () => {
         buttonText={isCodeValidated ? "인증 완료" : "인증 확인"}
         buttonVariant={isCodeValidated ? "solid" : "outline"}
         buttonColor="yanoljaPink"
-        isSuccess={!!isCodeValidated}
+        isSuccess={isCodeValidated}
         successMessage="인증이 완료되었습니다"
       />
     </S.MainWrapper>
   );
 };
 
-export default AccountVerificationSection;
+export default VerificationSection;

@@ -2,11 +2,11 @@ import PercentHotelIcon from "@assets/icons/ic_percent_hotel.png";
 import PercentHotelLogo from "@assets/logos/Percent-hotel_logo_b.png";
 import { PATH } from "@constants/path";
 import { useEffect } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
-import * as S from "./ConnectYanoljaSuccess.style";
+import * as S from "./SuccessPage.style.ts";
 
-const ConnectYanoljaSuccess = () => {
+const SuccessPage = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -44,4 +44,4 @@ const ConnectYanoljaSuccess = () => {
   );
 };
 
-export default ConnectYanoljaSuccess;
+export default SuccessPage;

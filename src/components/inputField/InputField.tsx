@@ -22,7 +22,7 @@ interface InputFieldProps<TFieldValues extends FieldValues>
   isSuccess?: boolean;
 }
 
-function InputField<TFieldValues extends FieldValues>({
+const InputField = <TFieldValues extends FieldValues>({
   label,
   type = "text",
   placeholder,
@@ -33,7 +33,7 @@ function InputField<TFieldValues extends FieldValues>({
   successMessage,
   isSuccess = false,
   ...useControllerProps
-}: InputFieldProps<TFieldValues>) {
+}: InputFieldProps<TFieldValues>) => {
   const {
     field,
     fieldState: { error },
@@ -61,6 +61,6 @@ function InputField<TFieldValues extends FieldValues>({
       )}
     </S.InputWrapper>
   );
-}
+};
 
 export default InputField;

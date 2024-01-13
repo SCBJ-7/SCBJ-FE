@@ -1,4 +1,4 @@
-import { useConnectAccountMutation } from "@hooks/api/useConnectAccountMutation";
+import { useConnectAccountMutation } from "@hooks/api/mutation/useConnectAccountMutation";
 import { useFormContext } from "react-hook-form";
 
 import * as S from "./SubmitButton.style";
