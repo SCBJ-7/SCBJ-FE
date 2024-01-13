@@ -15,7 +15,7 @@ const AccountSection = () => {
         <section>
           <h2>
             {userInfo.accountNumber
-              ? userInfo.accountNumber
+              ? `${userInfo.bank} ${userInfo.accountNumber}`
               : "계좌를 등록해주세요"}
           </h2>
           <S.rightBtn></S.rightBtn>

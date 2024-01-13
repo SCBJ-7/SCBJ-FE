@@ -43,7 +43,6 @@ const TransferWriting = () => {
   return (
     <>
       <S.Subtitle>판매할 내역을 선택해주세요.</S.Subtitle>
-
       <S.TransferItemList>
         {data?.map((item) => {
           return (
