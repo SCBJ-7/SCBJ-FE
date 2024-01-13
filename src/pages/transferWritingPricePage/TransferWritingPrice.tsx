@@ -12,10 +12,12 @@ import {
   useUserInfoStore,
 } from "@/store/store";
 import usePreventLeave from "@/hooks/usePreventLeave";
-// import { useNavigate } from "react-router-dom";
+import { postTransferItems } from "@/apis/postTransferItems";
+import { useMutation } from "@tanstack/react-query";
+import { useNavigate } from "react-router-dom";
 
 const TransferWritingPrice = () => {
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
   const selectedItem = useSelectedItemStore((state) => state.selectedItem);
   usePreventLeave(true);
   const userInfo = useUserInfoStore((state) => state.userInfo);
@@ -71,6 +73,22 @@ const TransferWritingPrice = () => {
     secondPrice,
     downTimeAfter,
   ]);
+
+  const { mutate } = useMutation({
+    mutationFn: () =>
+      postTransferItems({
+        pathVariable: `${selectedItem.reservationId}`,
+        firstPrice: Number(firstPrice),
+        secondPrice: Number(secondPrice),
+        bank: userInfo.bank as string,
+        accountNumber: userInfo.accountNumber as string,
+        secondGrantedPeriod: Number(downTimeAfter),
+      }),
+    onSuccess: () => {
+      alert("판매 게시물이 성공적으로 등록되었습니다!");
+      navigate("/");
+    },
+  });
 
   const submitHandler = () => {
     if (!readyToSubmit) {
@@ -194,7 +212,7 @@ const TransferWritingPrice = () => {
 
     const confirmToProceed = confirm("판매 게시물을 등록하시겠어요?");
     if (confirmToProceed) {
-      // navigate()
+      mutate();
     }
   };
 

@@ -9,7 +9,11 @@ const AccountSection = () => {
   };
 
   return (
-    <S.Container onClick={AccountPageOpenHandler}>
+    <S.Container
+      onClick={AccountPageOpenHandler}
+      initial={{ y: -5, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+    >
       <S.Contents $accountNumber={userInfo.accountNumber}>
         <h1>입금 계좌</h1>
         <section>

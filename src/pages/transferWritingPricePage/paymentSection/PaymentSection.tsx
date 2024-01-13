@@ -1,6 +1,6 @@
 import priceFormat from "@/utils/priceFormat";
 import * as S from "./PaymentSection.style";
-import { AnimatePresence, motion } from "framer-motion";
+import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 
 interface PaymentProps {
@@ -58,39 +58,35 @@ const PaymentSection = ({ price, is2ndChecked, title, type }: PaymentProps) => {
             <S.downIcon $isOpen={isOpen} />
           </S.IconWrapper>
         </S.Label>
-        <AnimatePresence>
-          {isOpen && (
-            <motion.div
-              initial={{ y: -10, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-            >
-              <section>
-                <h3>상품 판매가</h3>
-                <span>{price ? priceFormat(FP) : 0} 원</span>
-              </section>
-              <section>
-                <h3>중개 수수료</h3>
-                <motion.span>{priceFormat(charge)} 원</motion.span>
-              </section>
-              <S.Hr />
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </S.Contents>
-      <AnimatePresence>
         {isOpen && (
-          <S.Result
-            initial={{ y: -10, opacity: 0 }}
+          <motion.div
+            initial={{ y: -5, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
           >
             <section>
-              <h2>정산 총액</h2>
-              <motion.span>{priceFormat(FP - charge)} 원</motion.span>
+              <h3>상품 판매가</h3>
+              <span>{price ? priceFormat(FP) : 0} 원</span>
             </section>
-            <h6>정산 총액은 양도 판매가에 중개 수수료를 제외한 값입니다.</h6>
-          </S.Result>
+            <section>
+              <h3>중개 수수료</h3>
+              <motion.span>{priceFormat(charge)} 원</motion.span>
+            </section>
+            <S.Hr />
+          </motion.div>
         )}
-      </AnimatePresence>
+      </S.Contents>
+      {isOpen && (
+        <S.Result
+          initial={{ y: -5, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+        >
+          <section>
+            <h2>정산 총액</h2>
+            <motion.span>{priceFormat(FP - charge)} 원</motion.span>
+          </section>
+          <h6>정산 총액은 양도 판매가에 중개 수수료를 제외한 값입니다.</h6>
+        </S.Result>
+      )}
     </S.Container>
   );
 };

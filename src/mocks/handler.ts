@@ -25,6 +25,9 @@ export const handlers = [
   http.get("/v1/purchase-detail/102", () => {
     return HttpResponse.json(dummyPurchaseDetail);
   }),
+  http.get("/v1/products/10", () => {
+    return HttpResponse.json(dummyPurchaseDetail);
+  }),
 
   /*
     warning 없애기용.

@@ -35,7 +35,11 @@ const FirstPriceTag = ({
   }, [inputData, on2ndChecked, checkRef, inputRef]);
 
   return (
-    <S.FirstContainer $is2ndChecked={is2ndChecked}>
+    <S.FirstContainer
+      $is2ndChecked={is2ndChecked}
+      initial={{ y: -5, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+    >
       <S.Headline>판매할 금액을 입력해주세요</S.Headline>
       <S.Contents>
         <section>
