@@ -5,12 +5,12 @@ import dummyPurchaseDetail from "./data/dummyPurchaseDetail.json";
 import dummyRoom from "./data/dummyRoomDetail.json";
 import reservationList from "./data/reservationList.json";
 import userInfo from "./data/userInfo.json";
-import { emailHandlers } from "./handler/email";
-import { roomHandlers } from "./handler/room";
+import emailHandlers from "./handlers/email";
+import { roomHandlers } from "./handlers/room";
 
 export const handlers = [
   ...roomHandlers,
-  ...emailHandlers,
+  ...Object.values(emailHandlers),
   http.get("/api/roomId", () => {
     return HttpResponse.json(dummyRoom);
   }),

@@ -1,6 +1,6 @@
 import IntroPage from "@pages/connectYanoljaPage/IntroPage/IntroPage.tsx";
 import SuccessPage from "@pages/connectYanoljaPage/successPage/SuccessPage.tsx";
-import ConnectYanoljaAccount from "@pages/connectYanoljaPage/verificationPage/VerificationPage.tsx";
+import VerificationPage from "@pages/connectYanoljaPage/verificationPage/VerificationPage";
 import RoomDetail from "@pages/roomDetailPage/RoomDetail";
 import { Suspense } from "react";
 import { createBrowserRouter } from "react-router-dom";
@@ -110,16 +110,14 @@ export const router = createBrowserRouter([
       {
         path: PATH.YANOLJA_ACCOUNT,
         element: <IntroPage />,
-        children: [
-          {
-            path: PATH.YANOLJA_ACCOUNT_VERIFY,
-            element: <ConnectYanoljaAccount />,
-          },
-          {
-            path: PATH.YANOLJA_ACCOUNT_VERIFY + "/success",
-            element: <SuccessPage />,
-          },
-        ],
+      },
+      {
+        path: PATH.YANOLJA_ACCOUNT_VERIFY,
+        element: <VerificationPage />,
+      },
+      {
+        path: PATH.YANOLJA_ACCOUNT_VERIFY + "/success",
+        element: <SuccessPage />,
       },
     ],
   },
