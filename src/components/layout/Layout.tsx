@@ -12,14 +12,12 @@ interface ChildrenProps {
 const Layout = ({ children }: ChildrenProps) => {
   const { pathname } = useLocation();
 
-  const isHeaderOn = ![
-    PATH.LOGIN as string,
-    PATH.DETAIL_ROOM as string,
-  ].includes(pathname);
-  let isBottomNavOn = ![
-    PATH.LOGIN as string,
-    PATH.DETAIL_ROOM as string,
-  ].includes(pathname);
+  // FIXME: 헤더, 네비바 특정 페이지에서만 보이지 않도록 수정 필요
+  // 이럼 account/yanolja/verify 이런 하위 페이지도 같이 include 됨
+
+  const pathsToExclude = [PATH.LOGIN, PATH.DETAIL_ROOM, PATH.YANOLJA_ACCOUNT];
+  const isHeaderOn = !pathsToExclude.some((path) => pathname.includes(path));
+  let isBottomNavOn = !pathsToExclude.some((path) => pathname.includes(path));
 
   if (pathname.includes(PATH.WRITE_TRANSFER_PRICE as string)) {
     isBottomNavOn = false;

@@ -15,6 +15,9 @@ import RoomDetail from "@pages/roomDetailPage/RoomDetail";
 import TransferPurchase from "../pages/transferPurchasePage/TransferPurchase";
 import TransferWritingPrice from "@/pages/transferWritingPricePage/TransferWritingPrice";
 import PasswordReset from "@/pages/passwordResetPage/PasswordReset";
+import ConnectYanolja from "@pages/connectYanoljaPage/ConnectYanolja";
+import ConnectYanoljaAccount from "@pages/connectYanoljaAccountPage/ConnectYanoljaAccount";
+import ConnectYanoljaSuccess from "@pages/connectYanoljaSuccessPage/ConnectYanoljaSuccess";
 import Setting from "@/pages/myPage/setting/Setting";
 import ManageProfile from "@/pages/myPage/manage/manageProfile/ManageProfile";
 import ManageAccount from "@/pages/myPage/manage/manageAccount/ManageAccount";
@@ -88,7 +91,7 @@ export const router = createBrowserRouter([
       },
 
       {
-        path: PATH.DETAIL_ROOM,
+        path: PATH.DETAIL_ROOM + "/:roomId",
         element: (
           <Suspense fallback={<div>LOADING</div>}>
             <RoomDetail />
@@ -102,6 +105,18 @@ export const router = createBrowserRouter([
       {
         path: PATH.PURCAHSE_DEATAIL,
         element: <PurchaseDetail />,
+      },
+      {
+        path: PATH.YANOLJA_ACCOUNT,
+        element: <ConnectYanolja />,
+      },
+      {
+        path: PATH.YANOLJA_ACCOUNT_VERIFY,
+        element: <ConnectYanoljaAccount />,
+      },
+      {
+        path: PATH.YANOLJA_ACCOUNT_VERIFY + "/success",
+        element: <ConnectYanoljaSuccess />,
       },
     ],
   },

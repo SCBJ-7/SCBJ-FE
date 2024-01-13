@@ -29,6 +29,8 @@ export const theme = {
     greyScale5: "#CDCDCD",
     greyScale6: "#E9E9E9",
     greyScale7: "#F6F6F6",
+
+    yanoljaPink: "#FF3478",
   },
   typo: {
     title1: typoCreator("1.625rem", 700),

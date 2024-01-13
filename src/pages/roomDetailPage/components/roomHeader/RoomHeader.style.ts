@@ -54,8 +54,23 @@ export const BackIcon = styled(PiCaretLeftBold)<{ $visible: boolean }>`
     $visible ? theme.color.white : theme.color.black};
 `;
 
+export const TitleWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: center;
+`;
+
 export const Title = styled.p<{ $visible: boolean }>`
-  ${({ theme }) => theme.typo.title3};
+  ${({ theme }) => theme.typo.body2};
   color: ${({ theme }) => theme.color.black};
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: calc(100% - 180px);
+
   opacity: ${({ $visible }) => ($visible ? 0 : 1)};
 `;
