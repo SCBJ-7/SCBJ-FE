@@ -1,20 +1,21 @@
 import { http, HttpResponse } from "msw";
-import dummyRoom from "./data/dummyRoomDetail.json";
-import dummyRoomDetail from "./data/dummyRoomDetail.json";
-import reservationList from "./data/reservationList.json";
+
 import dummyPurchaseList from "./data/dummyPuchaseList.json";
 import dummyPurchaseDetail from "./data/dummyPurchaseDetail.json";
+import dummyRoom from "./data/dummyRoomDetail.json";
+import reservationList from "./data/reservationList.json";
 import userInfo from "./data/userInfo.json";
+import { emailHandlers } from "./handler/email";
+import { roomHandlers } from "./handler/room";
 
 export const handlers = [
+  ...roomHandlers,
+  ...emailHandlers,
   http.get("/api/roomId", () => {
     return HttpResponse.json(dummyRoom);
   }),
   http.get("/v1/reservations", () => {
     return HttpResponse.json(reservationList);
-  }),
-  http.get("/v1/products/1", () => {
-    return HttpResponse.json(dummyRoomDetail);
   }),
   http.get("/v1/members", () => {
     return HttpResponse.json(userInfo);
