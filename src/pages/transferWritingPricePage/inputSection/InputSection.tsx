@@ -30,6 +30,11 @@ const InputSection = ({
     const temp = target.value.split(",").join("");
     console.log(temp, "temp");
 
+    if (temp === "") {
+      onDataChange("");
+      return;
+    }
+
     // 입력값이 숫자가 아니면 입력 불가
     if (isNaN(Number(temp))) return;
 

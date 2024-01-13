@@ -18,6 +18,7 @@ const PaymentSection = ({ price, is2ndChecked, title }: PaymentProps) => {
   } else if (300000 < FP) {
     charge = Math.floor(FP * (5 / 100));
   }
+  console.log(is2ndChecked, "is2ndChcked");
 
   return (
     <S.Container $is2ndChecked={is2ndChecked}>

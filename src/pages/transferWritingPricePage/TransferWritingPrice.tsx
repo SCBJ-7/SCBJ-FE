@@ -199,7 +199,7 @@ const TransferWritingPrice = () => {
       />
       <PaymentSection
         price={firstPrice}
-        is2ndChecked
+        is2ndChecked={is2ndChecked}
         title="1차 판매 체결 시 예상 정산금액"
       />
       {is2ndChecked && (
