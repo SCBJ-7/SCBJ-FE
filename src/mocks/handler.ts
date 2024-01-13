@@ -4,7 +4,7 @@ import dummyRoomDetail from "./data/dummyRoomDetail.json";
 import reservationList from "./data/reservationList.json";
 import dummyPurchaseList from "./data/dummyPuchaseList.json";
 import dummyPurchaseDetail from "./data/dummyPurchaseDetail.json";
-
+import dummySearchList from "./data/dummySearchList.json";
 export const handlers = [
   http.get("/api/roomId", () => {
     return HttpResponse.json(dummyRoom);
@@ -28,5 +28,8 @@ export const handlers = [
   }),
   http.get("/v1/purchase-detail/102", () => {
     return HttpResponse.json(dummyPurchaseDetail);
+  }),
+  http.get("/v1/products", () => {
+    return HttpResponse.json(dummySearchList);
   }),
 ];

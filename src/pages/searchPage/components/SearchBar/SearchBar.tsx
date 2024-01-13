@@ -1,4 +1,4 @@
-import * as S from "./SearchBar.style.ts";
+import * as S from "./SearchBar.style";
 
 const SearchBar = () => {
   return (
