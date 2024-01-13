@@ -1,6 +1,6 @@
 import Checkbox from "@components/checkbox/Checkbox";
 import { useEffect } from "react";
-import { useFormContext, Controller } from "react-hook-form";
+import { Controller, useFormContext } from "react-hook-form";
 
 import * as S from "./TermsAgreementSection.style";
 

@@ -91,6 +91,19 @@ const buttonStyles = {
   `,
 };
 
+interface InputCaptionProps {
+  error?: boolean;
+}
+
+export const InputCaption = styled.p.withConfig({
+  shouldForwardProp: (prop) => !["error", "success"].includes(prop),
+})<InputCaptionProps>`
+  color: ${({ error, theme }) =>
+    error ? theme.color.cautionRed : theme.color.percentBlue};
+
+  ${({ theme }) => theme.typo.caption3};
+`;
+
 export const ConFirmButton = styled.button.withConfig({
   shouldForwardProp: (prop) => !["variant", "color"].includes(prop),
 })<ButtonVariantProps>`
@@ -109,17 +122,4 @@ export const ConFirmButton = styled.button.withConfig({
 
   cursor: pointer;
   transition: background-color 0.2s ease-in-out;
-`;
-
-interface InputCaptionProps {
-  error?: boolean;
-}
-
-export const InputCaption = styled.p.withConfig({
-  shouldForwardProp: (prop) => !["error", "success"].includes(prop),
-})<InputCaptionProps>`
-  color: ${({ error, theme }) =>
-    error ? theme.color.cautionRed : theme.color.percentBlue};
-
-  ${({ theme }) => theme.typo.caption3}
 `;

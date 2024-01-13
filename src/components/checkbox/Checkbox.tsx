@@ -1,6 +1,9 @@
-import { HiCheck } from "react-icons/hi";
 import type { ChangeEvent } from "react";
+
+import { HiCheck } from "react-icons/hi";
+
 import * as S from "./Checkbox.style";
+
 import type { CheckboxStyleProps } from "./Checkbox.style";
 
 interface CheckboxProps extends CheckboxStyleProps {
@@ -16,7 +19,7 @@ interface CheckboxProps extends CheckboxStyleProps {
   children?: React.ReactNode;
 }
 
-export const Checkbox = ({
+const Checkbox = ({
   ariaLabel,
   ariaLabelledby,
   ariaDescribedby,

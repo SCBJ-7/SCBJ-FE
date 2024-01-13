@@ -4,9 +4,9 @@ import YanoljaLogo from "@assets/logos/Yanolja_CI.png";
 import { PATH } from "@constants/path";
 import { useNavigate } from "react-router-dom";
 
-import * as S from "./ConnectYanolja.style";
+import * as S from "./IntroPage.style.ts";
 
-const ConnectYanolja = () => {
+const IntroPage = () => {
   const navigate = useNavigate();
 
   return (
@@ -44,4 +44,4 @@ const ConnectYanolja = () => {
   );
 };
 
-export default ConnectYanolja;
+export default IntroPage;
