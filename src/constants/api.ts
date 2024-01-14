@@ -1,4 +1,4 @@
-export const END_PONTS = {
+export const END_POINTS = {
   ROOM: (roomId: string) => `/v1/products/${roomId}`,
   RESERVATION: "/v1/reservations",
   USER_INFO: "/v1/members",

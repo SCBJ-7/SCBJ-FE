@@ -1,4 +1,4 @@
-import { END_PONTS } from "@constants/api";
+import { END_POINTS } from "@constants/api";
 import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
@@ -10,7 +10,7 @@ export const useConnectAccountMutation = () => {
 
   const connectAccountMutation = useMutation({
     mutationFn: (email) =>
-      axios.post(`https://3.34.147.187.nip.io${END_PONTS.YANOLJA}`, { email }),
+      axios.post(`https://3.34.147.187.nip.io${END_POINTS.YANOLJA}`, { email }),
     onSuccess: () => {
       navigate(PATH.YANOLJA_ACCOUNT_VERIFY + "/success", {
         state: { success: true },

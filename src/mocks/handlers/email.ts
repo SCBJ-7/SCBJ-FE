@@ -1,12 +1,11 @@
-import { END_PONTS } from "@constants/api";
+import { END_POINTS } from "@constants/api";
 import { http, HttpResponse } from "msw";
 
 export const getEmailVerification = (scenarioProps?: string) => {
-  return http.post(`https://3.34.147.187.nip.io${END_PONTS.EMAIL}`, () => {
+  return http.post(`https://3.34.147.187.nip.io${END_POINTS.EMAIL}`, () => {
     const pageParams = new URLSearchParams(window.location.search);
     const scenario = pageParams.get("scenario");
 
-    // FIXME: 에러 상황 테스트 컨벤션 정해봐욥~!
     if (scenario || scenarioProps === "error1") {
       return HttpResponse.json(
         { message: "공백이 없어야 합니다." },
