@@ -34,6 +34,25 @@ afterEach(() => {
 });
 afterAll(() => server.close());
 
+describe("리액트 쿼리 훅 테스트", () => {
+  it("useValidateEmailMutation 훅 테스트", async () => {
+    const { result } = renderHook(() => useValidateEmailMutation(), {
+      wrapper,
+    });
+    server.use(getEmailVerification());
+
+    act(() => {
+      return result.current.mutate({ email: "test@example.com" });
+    });
+
+    await waitFor(() => expect(result.current.isSuccess).toBe(true));
+    expect(result.current.data?.data).toEqual({
+      message: "이메일 인증번호 발급에 성공했습니다.",
+      data: "1039475",
+    });
+  });
+});
+
 describe("입력 필드 유효성 검사 테스트", () => {
   beforeEach(async () => {
     const queryClient = new QueryClient();
@@ -84,23 +103,6 @@ describe("입력 필드 유효성 검사 테스트", () => {
 
     // then
     await waitFor(() => expect(validateButton).toHaveTextContent("재요청"));
-  });
-
-  it("이메일 검증 요청이 성공적으로 처리된다", async () => {
-    const { result } = renderHook(() => useValidateEmailMutation(), {
-      wrapper,
-    });
-    server.use(getEmailVerification());
-
-    act(() => {
-      return result.current.mutate({ email: "test@example.com" });
-    });
-
-    await waitFor(() => expect(result.current.isSuccess).toBe(true));
-    expect(result.current.data?.data).toEqual({
-      message: "이메일 인증번호 발급에 성공했습니다.",
-      data: "1039475",
-    });
   });
 
   it("유효하지 않은 이메일을 입력하고 '인증 요청' 버튼을 누르면 '유효하지 않은 이메일 입니다.' 에러 메시지가 나타난다.", async () => {
