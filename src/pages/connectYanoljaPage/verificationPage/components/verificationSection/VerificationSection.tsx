@@ -62,6 +62,7 @@ const VerificationSection = () => {
         buttonText={isEmailValidated ? "재요청" : "인증 요청"}
         buttonVariant={isEmailValidated ? "solid" : "outline"}
         buttonColor="yanoljaPink"
+        color="yanoljaPink"
       />
       <InputField
         type="number"
@@ -83,6 +84,7 @@ const VerificationSection = () => {
         buttonColor="yanoljaPink"
         isSuccess={isCodeValidated}
         successMessage="인증이 완료되었습니다"
+        color="yanoljaPink"
       />
     </S.MainWrapper>
   );

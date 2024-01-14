@@ -21,7 +21,13 @@ export const Label = styled.label`
   font-weight: 400;
 `;
 
-export const Input = styled.input`
+interface InputProps {
+  textColor: ColorKeys;
+}
+
+export const Input = styled.input.withConfig({
+  shouldForwardProp: (prop) => !["textColor"].includes(prop),
+})<InputProps>`
   width: 100%;
   height: 48px;
 
@@ -30,7 +36,7 @@ export const Input = styled.input`
 
   padding-left: 0.5rem;
 
-  color: ${({ theme }) => theme.color.yanoljaPink};
+  color: ${({ textColor, theme }) => theme.color[textColor]};
 
   &::placeholder {
     ${({ theme }) => theme.typo.caption1}

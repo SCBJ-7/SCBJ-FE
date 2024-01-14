@@ -20,6 +20,7 @@ interface InputFieldProps<TFieldValues extends FieldValues>
   buttonColor?: ColorKeys;
   successMessage?: string;
   isSuccess?: boolean;
+  color?: ColorKeys;
 }
 
 const InputField = <TFieldValues extends FieldValues>({
@@ -27,6 +28,7 @@ const InputField = <TFieldValues extends FieldValues>({
   type = "text",
   placeholder,
   onButtonClick,
+  color = "black",
   buttonText,
   buttonVariant = "outline",
   buttonColor = "percentOrange",
@@ -43,7 +45,13 @@ const InputField = <TFieldValues extends FieldValues>({
     <S.InputWrapper>
       <S.Label htmlFor={label}>{label}</S.Label>
       <div className="input_wrapper">
-        <S.Input type={type} placeholder={placeholder} {...field} id={label} />
+        <S.Input
+          type={type}
+          placeholder={placeholder}
+          {...field}
+          id={label}
+          textColor={color}
+        />
         {buttonText && (
           <S.ConFirmButton
             type="button"
