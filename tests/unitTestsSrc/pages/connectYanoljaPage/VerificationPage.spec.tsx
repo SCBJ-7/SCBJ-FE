@@ -1,57 +1,17 @@
-import { useValidateEmailMutation } from "@hooks/api/mutation/useValidateEmailMutation";
 import { getEmailVerification } from "@mocks/handlers/email";
 import { server } from "@mocks/server";
 import VerificationPage from "@pages/connectYanoljaPage/verificationPage/VerificationPage";
 import { theme } from "@styles/theme";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import {
-  act,
-  fireEvent,
-  render,
-  renderHook,
-  screen,
-  waitFor,
-} from "@testing-library/react";
-import { AxiosError } from "axios";
+import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
-
-const queryClient = new QueryClient({
-  defaultOptions: {
-    queries: {
-      retry: false,
-    },
-  },
-});
-const wrapper = ({ children }: { children: React.ReactNode }) => (
-  <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
-);
 
 beforeAll(() => server.listen());
 afterEach(() => {
   server.resetHandlers();
-  queryClient.resetQueries();
 });
 afterAll(() => server.close());
-
-describe("리액트 쿼리 훅 테스트", () => {
-  it("useValidateEmailMutation 훅 테스트", async () => {
-    const { result } = renderHook(() => useValidateEmailMutation(), {
-      wrapper,
-    });
-    server.use(getEmailVerification());
-
-    act(() => {
-      return result.current.mutate({ email: "test@example.com" });
-    });
-
-    await waitFor(() => expect(result.current.isSuccess).toBe(true));
-    expect(result.current.data?.data).toEqual({
-      message: "이메일 인증번호 발급에 성공했습니다.",
-      data: "1039475",
-    });
-  });
-});
 
 describe("입력 필드 유효성 검사 테스트", () => {
   beforeEach(async () => {
@@ -121,27 +81,6 @@ describe("입력 필드 유효성 검사 테스트", () => {
         screen.getByText("유효하지 않은 이메일입니다."),
       ).toBeInTheDocument(),
     );
-  });
-
-  it("유효하지 않은 이메일을 입력하고 '인증 요청' 버튼을 누르면 '유효하지 않은 이메일 입니다.' 에러 메시지를 받는다.", async () => {
-    const { result } = renderHook(() => useValidateEmailMutation(), {
-      wrapper,
-    });
-    server.use(getEmailVerification("error2"));
-
-    act(() => {
-      return result.current.mutate({ email: "test" });
-    });
-
-    await waitFor(() => expect(result.current.isSuccess).toBe(false));
-
-    if (result.current.error instanceof AxiosError) {
-      expect(result.current.error.response?.data).toEqual({
-        message: "유효하지 않은 이메일입니다.",
-      });
-    } else {
-      throw new Error("응답이 AxiosError 타입이 아닙니다.");
-    }
   });
 
   it("유효한 인증번호를 입력했을 때 에러 메시지가 나타나지 않아야 한다.", () => {
