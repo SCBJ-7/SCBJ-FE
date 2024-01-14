@@ -7,11 +7,12 @@ import PaymentSection from "./paymentSection/PaymentSection";
 import AccountSection from "./accountSection/AccountSection";
 import AgreementSection from "./agreementSection/AgreementSection";
 import { useSelectedItemStore, useToastStore } from "@/store/store";
-import usePreventLeave from "@/hooks/usePreventLeave";
 import { postTransferItems } from "@/apis/postTransferItems";
 import { useMutation, useSuspenseQuery } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
 import { fetchUserInfo } from "@/apis/fetchUserInfo";
+import { useSelectedItemStore } from "@/store/store";
+import usePreventLeave from "@hooks/common/usePreventLeave";
 
 const TransferWritingPrice = () => {
   usePreventLeave(true);

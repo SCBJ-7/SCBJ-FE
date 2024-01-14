@@ -1,4 +1,4 @@
-import useIsVisible from "@hooks/useIsVisible";
+import useIsVisible from "@hooks/common/useIsVisible";
 import * as S from "./RoomHeader.style";
 
 interface RoomHeaderProps {
