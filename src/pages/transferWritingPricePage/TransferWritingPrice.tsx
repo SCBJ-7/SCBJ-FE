@@ -7,7 +7,7 @@ import PaymentSection from "./paymentSection/PaymentSection";
 import AccountSection from "./accountSection/AccountSection";
 import AgreementSection from "./agreementSection/AgreementSection";
 import { useSelectedItemStore } from "@/store/store";
-import usePreventLeave from "@/hooks/usePreventLeave";
+import usePreventLeave from "@hooks/common/usePreventLeave";
 
 const TransferWritingPrice = () => {
   const selectedItem = useSelectedItemStore((state) => state.selectedItem);
