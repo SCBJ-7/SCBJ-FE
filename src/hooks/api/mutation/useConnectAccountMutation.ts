@@ -4,9 +4,11 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 import { PATH } from "@/constants/path";
+import { useToastStore } from "@store/store";
 
 export const useConnectAccountMutation = () => {
   const navigate = useNavigate();
+  const setToastConfig = useToastStore((state) => state.setToastConfig);
 
   const connectAccountMutation = useMutation({
     mutationFn: (email) =>
@@ -18,7 +20,20 @@ export const useConnectAccountMutation = () => {
       });
     },
     onError: () => {
-      // 여기서 에러 핸들링 필요
+      // FIXME: jsx 반환이 안돼서 문자열로 처리, but 수정이 필요함
+      const message = "입력한 정보를 다시 확인해주세요";
+      setToastConfig({
+        isShow: true,
+        isError: false,
+        strings: [message],
+      });
+      setTimeout(() => {
+        setToastConfig({
+          isShow: false,
+          isError: false,
+          strings: [message],
+        });
+      }, 6000);
     },
   });
 
