@@ -15,7 +15,6 @@ const SubmitButton = () => {
   const onSubmit = () => {
     const email = getValues("email");
     if (!email) return;
-
     connectAccountMutation.mutate(email);
   };
 
