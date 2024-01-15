@@ -11,7 +11,6 @@ import { postTransferItems } from "@/apis/postTransferItems";
 import { useMutation, useSuspenseQuery } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
 import { fetchUserInfo } from "@/apis/fetchUserInfo";
-import { useSelectedItemStore } from "@/store/store";
 import usePreventLeave from "@hooks/common/usePreventLeave";
 
 const TransferWritingPrice = () => {
