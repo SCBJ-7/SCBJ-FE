@@ -1,5 +1,6 @@
 import priceFormat from "@/utils/priceFormat";
 import * as S from "./InputSection.style";
+import { useToastStore } from "@/store/store";
 
 interface InputProps {
   inputPosition: "left" | "center" | "right";
@@ -24,6 +25,7 @@ const InputSection = ({
   remainingTimes,
   type = "price",
 }: InputProps) => {
+  const setToastConfig = useToastStore((state) => state.setToastConfig);
   const inputDataHandler = (e: React.ChangeEvent) => {
     const target = e.target as HTMLInputElement;
     // 쉼표 제거
@@ -38,9 +40,23 @@ const InputSection = ({
     // 입력값이 숫자가 아니면 입력 불가
     if (isNaN(Number(temp))) return;
 
-    // 구매가 데이터가 있다면 구매가 이상으로 못 올리게 설정
+    // 구매가 이상으로 못 올리게 설정
     if (maxPrice && Number(temp) > maxPrice) {
+      const message = [<>가격을 이전 단계의 가격보다 낮게 설정해주세요</>];
       onDataChange(priceFormat(maxPrice));
+      setToastConfig({
+        isShow: true,
+        isError: true,
+        strings: message,
+      });
+      setTimeout(() => {
+        setToastConfig({
+          isShow: false,
+          isError: true,
+          strings: message,
+        });
+      }, 5000);
+
       return;
     }
 

@@ -56,6 +56,7 @@ const FirstPriceTag = ({
             inputData={inputData}
             text={["원"]}
             onDataChange={onFirstPriceChange}
+            type="price"
           />
         </section>
       </S.Contents>

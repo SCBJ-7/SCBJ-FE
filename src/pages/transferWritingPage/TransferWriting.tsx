@@ -16,13 +16,6 @@ const TransferWriting = () => {
     staleTime: 500000,
   });
 
-  if (data) {
-    console.log("??");
-    console.log(data, "data");
-  } else {
-    console.log("!!");
-  }
-
   const setToastConfig = useToastStore((state) => state.setToastConfig);
 
   useEffect(() => {

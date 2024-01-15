@@ -6,22 +6,23 @@ import SecondPriceTag from "./secondPriceTag/SecondPriceTag";
 import PaymentSection from "./paymentSection/PaymentSection";
 import AccountSection from "./accountSection/AccountSection";
 import AgreementSection from "./agreementSection/AgreementSection";
-import {
-  useSelectedItemStore,
-  useToastStore,
-  useUserInfoStore,
-} from "@/store/store";
+import { useSelectedItemStore, useToastStore } from "@/store/store";
 import usePreventLeave from "@/hooks/usePreventLeave";
 import { postTransferItems } from "@/apis/postTransferItems";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useSuspenseQuery } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
+import { fetchUserInfo } from "@/apis/fetchUserInfo";
 
 const TransferWritingPrice = () => {
+  usePreventLeave(true);
   const navigate = useNavigate();
   const selectedItem = useSelectedItemStore((state) => state.selectedItem);
-  usePreventLeave(true);
-  const userInfo = useUserInfoStore((state) => state.userInfo);
   const setToastConfig = useToastStore((state) => state.setToastConfig);
+
+  const { data } = useSuspenseQuery({
+    queryKey: ["UserInfo"],
+    queryFn: fetchUserInfo,
+  });
 
   // first price value
   const [firstPrice, setFirstPrice] = useState("");
@@ -80,8 +81,8 @@ const TransferWritingPrice = () => {
         pathVariable: `${selectedItem.reservationId}`,
         firstPrice: Number(firstPrice),
         secondPrice: Number(secondPrice),
-        bank: userInfo.bank as string,
-        accountNumber: userInfo.accountNumber as string,
+        bank: data!.bank as string,
+        accountNumber: data!.accountNumber as string,
         secondGrantedPeriod: Number(downTimeAfter),
       }),
     onSuccess: () => {
@@ -191,7 +192,7 @@ const TransferWritingPrice = () => {
         });
 
         // 계좌를 입력 안 한 경우
-      } else if (!userInfo.accountNumber) {
+      } else if (!data?.accountNumber) {
         message = [<>계좌를 입력해주세요</>];
         setToastConfig({
           isShow: true,
@@ -256,7 +257,7 @@ const TransferWritingPrice = () => {
           />
         </>
       )}
-      <AccountSection />
+      <AccountSection userInfo={data} />
       <AgreementSection
         setOpt1={setOpt1}
         setOpt2={setOpt2}
