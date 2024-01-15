@@ -4,10 +4,10 @@ import App from "../App";
 import { PATH } from "../constants/path";
 
 import Home from "../pages/homePage";
-import MyPage from "../pages/myPage/MyPage";
 import NotFound from "../pages/notFoundPage";
 import Search from "../pages/searchPage";
 import SignUp from "../pages/signUpPage/SignUp";
+import MyPage from "../pages/myPage/MyPage";
 import SignIn from "../pages/signInPage/SignIn";
 import TransferWriting from "../pages/transferWritingPage/TransferWriting";
 import TransferSale from "../pages/transferSalePage";
