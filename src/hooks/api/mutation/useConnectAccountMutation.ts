@@ -21,7 +21,6 @@ export const useConnectAccountMutation = () => {
     onError: (error) => {
       if (!isAxiosError(error)) throw error;
       if (error.response && error.response.status === 404) {
-        // FIXME: jsx 반환이 안돼서 문자열로 처리, but 수정이 필요함
         const message = "입력한 정보를 다시 확인해주세요";
         setToastConfig({
           isShow: true,
