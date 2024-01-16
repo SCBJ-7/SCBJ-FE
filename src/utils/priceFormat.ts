@@ -1,4 +1,8 @@
-export default function priceFormat(n: number): string {
+export default function priceFormat(n: number | string): string {
+  if (typeof n === "string") {
+    n = Number(n);
+  }
+
   const reversedNumberArr: string[] = String(n).split("").reverse();
 
   //3자리씩 끊어서 쉼표 추가

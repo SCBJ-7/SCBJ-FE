@@ -1,5 +1,6 @@
 import { ISearchList } from "@/types/searchList";
 import * as S from "./SearchItem.style";
+import { format, parseISO } from "date-fns";
 
 const SearchItem = ({ item }: { item: ISearchList }) => {
   const calculatePercentage = (
@@ -11,12 +12,14 @@ const SearchItem = ({ item }: { item: ISearchList }) => {
 
     return `${percentage}%`;
   };
+  const formatDateString = (dateString) => {
+    // 문자열을 Date 객체로 파싱
+    const dateObject = parseISO(dateString);
 
-  const formatDate = (dateString: string): string => {
-    const date = new Date(dateString);
-    const month = (date.getMonth() + 1).toString().padStart(2, "0");
-    const day = date.getDate().toString().padStart(2, "0");
-    return `${month}.${day}`;
+    // format 함수를 사용하여 원하는 형태로 포맷
+    const formattedDate = format(dateObject, "MM.dd");
+
+    return formattedDate;
   };
 
   return (
@@ -31,13 +34,15 @@ const SearchItem = ({ item }: { item: ISearchList }) => {
           </S.ItemOriginalPrice>
           <S.ItemBottom>
             <div>
-              <S.ItemPrice>{item.salePrice.toLocaleString()}</S.ItemPrice>
+              <S.ItemPrice>
+                {item.salePrice.toLocaleString() + "원"}
+              </S.ItemPrice>
               <S.ItemSalePercent>
                 {calculatePercentage(item.originalPrice, item.salePrice)}
               </S.ItemSalePercent>
             </div>
             <S.ItemDate>
-              {`${formatDate(item.checkInDate)} ~ ${formatDate(
+              {`${formatDateString(item.checkInDate)} ~ ${formatDateString(
                 item.checkOutDate,
               )}`}
             </S.ItemDate>

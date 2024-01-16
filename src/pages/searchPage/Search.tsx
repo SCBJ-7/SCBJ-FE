@@ -2,11 +2,43 @@ import axios from "axios";
 import SearchBar from "./components/searchBar/SearchBar";
 import SearchNav from "./components/searchNav/SeachNav";
 import * as S from "./Search.style";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ISearchList } from "@/types/searchList";
 import SearchItem from "./components/searchItem/SearchItem";
 const Search = () => {
   const [searchItems, setSearchItems] = useState<ISearchList[]>([]);
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const [scrollPosition, setScrollPosition] = useState(0);
+
+  const MoveToTop = () => {
+    if (scrollContainerRef.current) {
+      scrollContainerRef.current.scrollTo({
+        top: 0,
+        behavior: "smooth", // 애니메이션 부드럽게 설정
+      });
+    }
+  };
+  console.log(scrollPosition);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (scrollContainerRef.current) {
+        const currentPosition = scrollContainerRef.current.scrollTop;
+        setScrollPosition(currentPosition);
+      }
+    };
+
+    const container = scrollContainerRef.current;
+
+    if (container) {
+      container.addEventListener("scroll", handleScroll);
+
+      return () => {
+        container.removeEventListener("scroll", handleScroll);
+      };
+    }
+  }, [scrollContainerRef]);
+
   useEffect(() => {
     const fetchPurchaseList = async () => {
       try {
@@ -21,19 +53,19 @@ const Search = () => {
 
     fetchPurchaseList();
   }, []);
+
   return (
     <>
       <SearchBar />
-      <S.SearchContainer>
+      <S.SearchContainer ref={scrollContainerRef}>
         <SearchNav />
         <S.SearchItemFlex>
           {searchItems.map((item) => (
             <SearchItem key={item.id} item={item} />
           ))}
         </S.SearchItemFlex>
-
-        <div style={{ width: "100%", height: "1000px" }}>s</div>
       </S.SearchContainer>
+      <S.TopButton $visible={scrollPosition > 500} onClick={MoveToTop} />
     </>
   );
 };

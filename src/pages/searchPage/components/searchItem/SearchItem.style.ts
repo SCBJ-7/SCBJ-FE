@@ -23,7 +23,7 @@ export const ItemImage = styled.img`
   width: 100%;
   height: 192px;
   object-fit: cover;
-  border-radius: 12px;
+  border-radius: 12px 12px 0 0;
 `;
 
 export const ItemName = styled.div`
@@ -81,4 +81,5 @@ export const SecondSaleText = styled.div`
   border-radius: 0 12px 0 8px;
   color: ${({ theme }) => theme.color.percentOrange};
   background-color: ${({ theme }) => theme.color.black};
+  ${({ theme }) => theme.typo.caption2}
 `;

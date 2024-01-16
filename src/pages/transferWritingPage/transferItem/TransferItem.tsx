@@ -7,15 +7,30 @@ import { ko } from "date-fns/locale";
 import { motion, useAnimate } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import * as S from "./TransferItem.style";
+import { useSelectedItemStore } from "@/store/store";
 
-const TransferItem = (props: IReservation) => {
+const TransferItem = ({
+  reservationId,
+  hotelName,
+  roomName,
+  startDate,
+  endDate,
+  refundPrice,
+  purchasePrice,
+  remainingDays,
+  remainingTimes,
+  imageUrl,
+}: IReservation) => {
   const navigate = useNavigate();
   const [scope, animate] = useAnimate();
+  const setSelectedItem = useSelectedItemStore(
+    (state) => state.setSelectedItem,
+  );
 
-  const startDate = format(props.startDate, "yyyy. mm. dd (ccc)", {
+  const SDT = format(startDate, "yyyy. mm. dd (ccc)", {
     locale: ko,
   });
-  const endDate = format(props.endDate, "yyyy. mm. dd (ccc)", {
+  const EDT = format(endDate, "yyyy. mm. dd (ccc)", {
     locale: ko,
   });
 
@@ -34,7 +49,26 @@ const TransferItem = (props: IReservation) => {
       }, 500);
     });
 
-    navigate(PATH.WRITE_TRANSFER_PRICE + Math.random());
+    setSelectedItem({
+      reservationId,
+      hotelName,
+      roomName,
+      startDate,
+      endDate,
+      refundPrice,
+      purchasePrice,
+      remainingDays,
+      remainingTimes,
+      imageUrl,
+    });
+
+    navigate(
+      PATH.WRITE_TRANSFER_PRICE +
+        "/" +
+        reservationId +
+        "?hotelName=" +
+        hotelName,
+    );
   };
 
   return (
@@ -49,30 +83,30 @@ const TransferItem = (props: IReservation) => {
       ref={scope}
     >
       <S.ItemTitle>
-        체크인까지 {props.remainingDays}일 남았어요!
+        체크인까지 {remainingDays}일 남았어요!
         <S.ItemTitleBtn>
           판매하기
           <S.ItemTitleBtnIcon />
         </S.ItemTitleBtn>
       </S.ItemTitle>
       <S.ItemInfo>
-        <S.itemInfoImg src={props.hotelImage} />
+        <S.itemInfoImg src={imageUrl} />
         <S.itemInfoDesc>
-          <S.DescHotelName>{props.hotelName}</S.DescHotelName>
-          <S.DescRoomName>{props.roomName}</S.DescRoomName>
+          <S.DescHotelName>{hotelName}</S.DescHotelName>
+          <S.DescRoomName>{roomName}</S.DescRoomName>
           <S.DescDates>
-            {startDate} ~ {endDate}
+            {SDT} ~ {EDT}
           </S.DescDates>
         </S.itemInfoDesc>
       </S.ItemInfo>
       <S.ItemPrice>
         <S.PriceTag>
           <h4>구매가</h4>
-          <span>{priceFormat(props.purchasePrice)} 원</span>
+          <span>{priceFormat(purchasePrice)} 원</span>
         </S.PriceTag>
         <S.PriceTag>
           <h4>예약 취소 시 환불금액</h4>
-          <span>{props.refundPrice} 원</span>
+          <span>{refundPrice} 원</span>
         </S.PriceTag>
       </S.ItemPrice>
     </S.ItemContainer>

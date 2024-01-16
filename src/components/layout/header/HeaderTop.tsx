@@ -3,12 +3,21 @@ import { useLocation, useNavigate } from "react-router-dom";
 import * as S from "./HeaderTop.style";
 
 const Header = () => {
-  const { pathname } = useLocation();
   const navigate = useNavigate();
+  const { pathname, search } = useLocation();
+  const params = new URLSearchParams(search); // 쿼리스트링 분리
+
   let alarmIC = false;
   let settingIC = false;
   let title = "";
   let undo = true;
+
+  if (pathname.includes(PATH.WRITE_TRANSFER_PRICE)) {
+    const hotelName = params.get("hotelName");
+    if (hotelName) {
+      title = hotelName;
+    }
+  }
 
   switch (pathname) {
     case PATH.ROOT:
@@ -59,11 +68,13 @@ const Header = () => {
       title = "프로필 변경";
       undo = true;
       break;
-    default: // 없음
+    case PATH.SEARCH_FILTER:
       alarmIC = false;
       settingIC = false;
-      title = "";
+      title = "검색";
       undo = true;
+      break;
+    default: // 없음
   }
   const undoHandler = () => {
     navigate(-1);

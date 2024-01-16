@@ -1,11 +1,15 @@
 import * as S from "./MyPageNav.style";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { PATH } from "../../../../constants/path";
+import { useEffect } from "react";
 const MyPageNav = () => {
   const { pathname } = useLocation();
-  if (pathname === PATH.MY_PAGE || pathname === "/my-page") {
-    window.location.href = PATH.PURCHASE_LIST;
-  }
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (pathname === PATH.MY_PAGE || pathname === "/my-page") {
+      navigate(PATH.PURCHASE_LIST);
+    }
+  }, [pathname, navigate]);
   const navList = [
     {
       id: 1,
