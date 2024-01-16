@@ -1,18 +1,17 @@
-import { END_POINTS } from "@constants/api";
 import { useMutation } from "@tanstack/react-query";
-import axios, { isAxiosError } from "axios";
+import { isAxiosError } from "axios";
 import { useNavigate } from "react-router-dom";
 
-import { PATH } from "@/constants/path";
 import { useToastStore } from "@store/store";
+import { postYanoljaAccount } from "@apis/postYanoljaAccount";
+import { PATH } from "@constants/path";
 
 export const useConnectAccountMutation = () => {
   const navigate = useNavigate();
   const setToastConfig = useToastStore((state) => state.setToastConfig);
 
   const connectAccountMutation = useMutation({
-    mutationFn: (email) =>
-      axios.post(`https://3.34.147.187.nip.io${END_POINTS.YANOLJA}`, { email }),
+    mutationFn: (email: string) => postYanoljaAccount(email),
     onSuccess: () => {
       navigate(PATH.YANOLJA_ACCOUNT_VERIFY + "/success", {
         state: { success: true },
