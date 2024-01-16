@@ -2,8 +2,8 @@ import { useRef, useState } from "react";
 import * as S from "./TermsAgreement.style";
 import { ColorKeys, TypoKeys } from "@styles/theme";
 import { PRIVACY_POLICY } from "./PrivacyPolicy";
-import usePreventLeave from "@/hooks/usePreventLeave";
-import useToastConfig from "@/hooks/useToastConfig";
+import usePreventLeave from "@/hooks/common/usePreventLeave";
+import useToastConfig from "@hooks/common/useToastConfig";
 
 interface Term {
   id: string;

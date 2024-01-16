@@ -5,8 +5,8 @@ import { AnimatePresence, useAnimation } from "framer-motion";
 import type { AccountInfo } from "@/types/account";
 import { useLocation, useNavigate } from "react-router-dom";
 import { PATH } from "@/constants/path";
-import useToastConfig from "@/hooks/useToastConfig";
-import usePreventLeave from "@/hooks/usePreventLeave";
+import useToastConfig from "@hooks/common/useToastConfig";
+import usePreventLeave from "@hooks/common/usePreventLeave";
 
 const EnterAccountInfo = ({
   accountInfo,
