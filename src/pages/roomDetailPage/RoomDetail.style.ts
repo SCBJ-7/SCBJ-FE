@@ -1,5 +1,5 @@
-import { theme } from "@styles/theme.ts";
 import styled from "styled-components";
+import { theme } from "@styles/theme";
 
 export const Container = styled.main`
   background-color: ${({ theme }) => theme.color.greyScale7};
@@ -64,7 +64,7 @@ export const RightBox = styled(Box)`
 `;
 
 type Variant = keyof typeof theme.typo;
-export type ColorVariant = keyof typeof theme.color;
+type ColorVariant = keyof typeof theme.color;
 
 export type VariantProps = {
   variant?: Variant;

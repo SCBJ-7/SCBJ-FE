@@ -1,4 +1,4 @@
-import useIsVisible from "@hooks/useIsVisible";
+import useIsVisible from "@hooks/common/useIsVisible";
 import * as S from "./RoomHeader.style";
 
 interface RoomHeaderProps {
@@ -23,7 +23,9 @@ const RoomHeader = ({ title }: RoomHeaderProps) => {
               <S.BackIcon $visible={isVisible} />
             </button>
           </div>
-          <S.Title $visible={isVisible}>{title}</S.Title>
+          <S.TitleWrapper>
+            <S.Title $visible={isVisible}>{title}</S.Title>
+          </S.TitleWrapper>
         </S.Wrapper>
       </S.HeaderContainer>
       <S.ScrollObserver ref={setRef} />

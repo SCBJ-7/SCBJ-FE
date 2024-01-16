@@ -4,7 +4,7 @@ export const PATH = {
   CREATE_TRIP: "/trip-new",
   SALE_LIST: "/my-page/sale-list",
   PURCHASE_LIST: "/my-page/purchase-list",
-  DETAIL_ROOM: "/room/:roomId",
+  DETAIL_ROOM: "/room",
   WRITE_TRANSFER: "/transfer/new",
   WRITE_TRANSFER_PRICE: "/transfer/new/price/",
   SIGNUP: "/signup",
@@ -16,7 +16,8 @@ export const PATH = {
   REDIRECT: "/auth/:provider",
   PASSWORD_RESET: "/password-reset",
   PURCAHSE_DEATAIL: "/my-page/purchase-detail",
-
+  YANOLJA_ACCOUNT: "/account/yanolja",
+  YANOLJA_ACCOUNT_VERIFY: "/account/yanolja/verify",
   RELOAD: 0,
 } as const;
 // 참고

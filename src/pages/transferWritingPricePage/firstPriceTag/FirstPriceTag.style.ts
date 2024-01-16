@@ -1,6 +1,7 @@
+import { motion } from "framer-motion";
 import styled from "styled-components";
 
-export const FirstContainer = styled.div<{ $is2ndChecked: boolean }>`
+export const FirstContainer = styled(motion.div)<{ $is2ndChecked: boolean }>`
   height: 269px;
   width: 100%;
   padding: 40px 20px 32px;

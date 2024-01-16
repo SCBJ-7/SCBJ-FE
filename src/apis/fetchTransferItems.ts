@@ -6,9 +6,15 @@ export const fetchTransferItems = async (): Promise<
   IReservation[] | undefined
 > => {
   try {
-    const response = await axios.get("/v1/reservations");
+    const response = await axios.get("/v1/reservations", {
+      headers: {
+        Authorization: `${localStorage.getItem("accessToken")}`,
+        "Content-Type": "application/json",
+      },
+    });
     return response.data.data.reservationList as IReservation[];
   } catch (err) {
-    alert("⚠️예기치 못한 에러가 발생하였습니다.");
+    alert(`⚠️예기치 못한 에러가 발생하였습니다. ${err}`);
+    console.log(err, "err");
   }
 };

@@ -1,4 +1,4 @@
-import { useEffect, useState, RefCallback } from "react";
+import { RefCallback, useEffect, useState } from "react";
 
 type UseIsVisibleReturnType = [RefCallback<HTMLDivElement>, boolean];
 
