@@ -1,13 +1,13 @@
 import InputField from "@components/inputField/InputField";
 import { useValidateEmailMutation } from "@hooks/api/mutation/useValidateEmailMutation";
 import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useFormContext } from "react-hook-form";
 
 import * as S from "./VerificationSection.style.ts";
 
 const VerificationSection = () => {
-  const { control, getValues, setError, clearErrors } = useFormContext();
+  const { control, getValues, setError, clearErrors, watch } = useFormContext();
   const [isEmailValidated, setIsEmailValidated] = useState(false);
   const [isCodeValidated, setIsCodeValidated] = useState(false);
   const [codeState, setCodeState] = useState("######");
@@ -31,17 +31,22 @@ const VerificationSection = () => {
     });
   };
 
-  const handleValidationCodeClick = () => {
-    const code = getValues("code");
+  const code = watch("code");
 
-    if (code === codeState) {
-      setIsCodeValidated(true);
-      clearErrors("code");
-    } else {
-      setIsCodeValidated(false);
-      setError("code", { message: "잘못된 인증번호입니다" });
-    }
+  useEffect(() => {
+    setIsCodeValidated(false);
+  }, [code]);
+
+  const handleValidationCodeClick = () => {
+    const isValid = code === codeState;
+
+    setIsCodeValidated(isValid);
+
+    isValid
+      ? clearErrors("code")
+      : setError("code", { message: "인증번호를 다시 입력해주세요" });
   };
+
   return (
     <S.MainWrapper>
       <InputField
