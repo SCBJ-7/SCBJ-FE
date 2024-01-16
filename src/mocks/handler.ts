@@ -3,23 +3,17 @@ import { http, HttpResponse } from "msw";
 import dummyPurchaseList from "./data/dummyPuchaseList.json";
 import dummyPurchaseDetail from "./data/dummyPurchaseDetail.json";
 import dummyRoom from "./data/dummyRoomDetail.json";
-import reservationList from "./data/reservationList.json";
-import userInfo from "./data/userInfo.json";
-import emailHandlers from "./handlers/email";
+// import userInfo from "./data/userInfo.json";
 import { roomHandlers } from "./handlers/room";
 
 export const handlers = [
   ...roomHandlers,
-  ...Object.values(emailHandlers),
   http.get("/api/roomId", () => {
     return HttpResponse.json(dummyRoom);
   }),
-  http.get("/v1/reservations", () => {
-    return HttpResponse.json(reservationList);
-  }),
-  http.get("/v1/members", () => {
-    return HttpResponse.json(userInfo);
-  }),
+  // http.get("/v1/members", () => {
+  //   return HttpResponse.json(userInfo);
+  // }),
   http.get("/v1/members/purchased-history", () => {
     return HttpResponse.json(dummyPurchaseList);
   }),

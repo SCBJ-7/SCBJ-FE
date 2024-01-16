@@ -91,7 +91,14 @@ export const router = createBrowserRouter([
           </Suspense>
         ),
       },
-
+      {
+        path: PATH.WRITE_TRANSFER_SUCCESS,
+        element: (
+          <Suspense fallback={<div>{/* loading */}</div>}>
+            <TransferWritingPrice />
+          </Suspense>
+        ),
+      },
       {
         path: PATH.DETAIL_ROOM + "/:roomId",
         element: (
