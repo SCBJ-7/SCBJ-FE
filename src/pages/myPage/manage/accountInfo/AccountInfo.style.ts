@@ -19,3 +19,19 @@ export const AccountInfoWrapper = styled.div`
     border-bottom: ${({ theme }) => theme.border.strokeThin};
   }
 `;
+
+export const AccountEditButton = styled.button`
+  position: absolute;
+  bottom: 112px;
+
+  width: calc(100% - 40px);
+  height: 48px;
+
+  border-radius: 8px;
+
+  ${({ theme }) => theme.typo.button2}
+  color: ${({ theme }) => theme.color.white};
+  line-height: 48px;
+
+  background-color: ${({ theme }) => theme.color.percentOrange};
+`;
