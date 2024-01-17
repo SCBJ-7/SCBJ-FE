@@ -24,7 +24,7 @@ import Setting from "@/pages/myPage/setting/Setting";
 import PasswordReset from "@/pages/passwordResetPage/PasswordReset";
 import PurchaseDetail from "@/pages/purchaseDetailPage/PurchaseDetail";
 import TransferWritingPrice from "@/pages/transferWritingPricePage/TransferWritingPrice";
-import TransferWritingSuccess from "@pages/transferWritingDonePage/TransferWritingSuccess";
+import TransferWritingSuccess from "@pages/transferWritingSuccessPage/TransferWritingSuccess";
 
 export const router = createBrowserRouter([
   {

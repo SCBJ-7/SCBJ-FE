@@ -6,21 +6,27 @@ import SecondPriceTag from "./secondPriceTag/SecondPriceTag";
 import PaymentSection from "./paymentSection/PaymentSection";
 import AccountSection from "./accountSection/AccountSection";
 import AgreementSection from "./agreementSection/AgreementSection";
-import { useSelectedItemStore, useToastStore } from "@/store/store";
+import {
+  useSelectedItemStore,
+  useToastStore,
+  useStateHeaderStore,
+} from "@/store/store";
 import { postTransferItems } from "@/apis/postTransferItems";
 import { useMutation, useSuspenseQuery } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
 import { fetchUserInfo } from "@/apis/fetchUserInfo";
 import usePreventLeave from "@hooks/common/usePreventLeave";
 import { PATH } from "@constants/path";
+import EnterAccountInfo from "./enterAccountInfo/EnterAccountInfo";
 
 const TransferWritingPrice = () => {
   usePreventLeave(true);
   const navigate = useNavigate();
   const selectedItem = useSelectedItemStore((state) => state.selectedItem);
   const setToastConfig = useToastStore((state) => state.setToastConfig);
+  const setHeaderConfig = useStateHeaderStore((state) => state.setHeaderConfig);
 
-  const { data } = useSuspenseQuery({
+  const { data: userData } = useSuspenseQuery({
     queryKey: ["UserInfo"],
     queryFn: fetchUserInfo,
   });
@@ -36,6 +42,15 @@ const TransferWritingPrice = () => {
   const [downTimeAfter, setDownTimeAfter] = useState("");
   const secondPriceInputRef = useRef(null);
   const secondTimeInputRef = useRef(null);
+
+  // Account setting Mode
+  const [accountSetting, setAccountSetting] = useState<"none" | "enter">(
+    "none",
+  );
+  const [bank, setBank] = useState(userData?.bank ?? null);
+  const [accountNumber, setAccountNumber] = useState(
+    userData?.accountNumber ?? null,
+  );
 
   // Terms in second price Values
   const [opt1, setOpt1] = useState(false);
@@ -60,6 +75,8 @@ const TransferWritingPrice = () => {
           return false; // 2차 가격 체크하고 2차 가격 입력 안 하고 시간만 입력한 경우
         } else if (is2ndChecked && secondPrice && !downTimeAfter) {
           return false; // 2차 가격 체크하고 2차 시간 입력 안 하고 가격만 입력한 경우
+        } else if (!userData?.bank || !userData?.accountNumber) {
+          return false;
         }
       }
 
@@ -74,7 +91,28 @@ const TransferWritingPrice = () => {
     is2ndChecked,
     secondPrice,
     downTimeAfter,
+    userData,
   ]);
+
+  useEffect(() => {
+    if (accountSetting === "none") {
+      setHeaderConfig({
+        title: selectedItem.hotelName,
+        undo: () => {
+          navigate(PATH.WRITE_TRANSFER);
+        },
+      });
+    }
+
+    if (accountSetting === "enter") {
+      setHeaderConfig({
+        title: "계좌 연동하기",
+        undo: () => {
+          setAccountSetting("none");
+        },
+      });
+    }
+  }, [accountSetting, navigate, selectedItem.hotelName, setHeaderConfig]);
 
   const { mutate } = useMutation({
     mutationFn: () =>
@@ -82,8 +120,8 @@ const TransferWritingPrice = () => {
         pathVariable: `${selectedItem.reservationId}`,
         firstPrice: Number(firstPrice),
         secondPrice: Number(secondPrice),
-        bank: data!.bank as string,
-        accountNumber: data!.accountNumber as string,
+        bank: bank as string,
+        accountNumber: accountNumber as string,
         secondGrantedPeriod: Number(downTimeAfter),
       }),
     onSuccess: () => {
@@ -193,7 +231,7 @@ const TransferWritingPrice = () => {
         });
 
         // 계좌를 입력 안 한 경우
-      } else if (!data?.accountNumber) {
+      } else if (!userData?.accountNumber) {
         message = [<>계좌를 입력해주세요</>];
         setToastConfig({
           isShow: true,
@@ -221,55 +259,73 @@ const TransferWritingPrice = () => {
 
   return (
     <S.Container layout>
-      <FirstPriceTag
-        checkRef={firstCheckRef}
-        inputRef={firstInputRef}
-        purchasePrice={selectedItem.purchasePrice}
-        inputData={firstPrice}
-        onFirstPriceChange={setFirstPrice}
-        is2ndChecked={is2ndChecked}
-        on2ndChecked={setIs2ndChecked}
-      />
-      <PaymentSection
-        type="first"
-        price={firstPrice}
-        is2ndChecked={is2ndChecked}
-        title="1차 판매 체결 시 예상 정산금액"
-      />
-      {is2ndChecked && (
+      {accountSetting === "none" && (
         <>
-          <SecondPriceTag
-            secondPriceInputRef={secondPriceInputRef}
-            secondTimeInputRef={secondTimeInputRef}
-            firstPrice={firstPrice}
-            secondPriceData={secondPrice}
-            onSecondPriceChange={setSecondPrice}
-            downTimeAfter={downTimeAfter}
-            onDownTimeAfterChange={setDownTimeAfter}
-            remainingDays={selectedItem.remainingDays}
-            remainingTimes={selectedItem.remainingTimes}
-            startDate={selectedItem.startDate}
-            endDate={selectedItem.endDate}
+          <FirstPriceTag
+            checkRef={firstCheckRef}
+            inputRef={firstInputRef}
+            purchasePrice={selectedItem.purchasePrice}
+            inputData={firstPrice}
+            onFirstPriceChange={setFirstPrice}
+            is2ndChecked={is2ndChecked}
+            on2ndChecked={setIs2ndChecked}
           />
           <PaymentSection
-            type="second"
-            price={secondPrice}
-            is2ndChecked
-            title="2차 판매 체결 시 예상 정산금액"
+            type="first"
+            price={firstPrice}
+            is2ndChecked={is2ndChecked}
+            title="1차 판매 체결 시 예상 정산금액"
           />
+          {is2ndChecked && (
+            <>
+              <SecondPriceTag
+                secondPriceInputRef={secondPriceInputRef}
+                secondTimeInputRef={secondTimeInputRef}
+                firstPrice={firstPrice}
+                secondPriceData={secondPrice}
+                onSecondPriceChange={setSecondPrice}
+                downTimeAfter={downTimeAfter}
+                onDownTimeAfterChange={setDownTimeAfter}
+                remainingDays={selectedItem.remainingDays}
+                remainingTimes={selectedItem.remainingTimes}
+                startDate={selectedItem.startDate}
+                endDate={selectedItem.endDate}
+              />
+              <PaymentSection
+                type="second"
+                price={secondPrice}
+                is2ndChecked
+                title="2차 판매 체결 시 예상 정산금액"
+              />
+            </>
+          )}
+          <AccountSection
+            bank={bank}
+            accountNumber={accountNumber}
+            userInfo={userData}
+            onSetAccount={setAccountSetting}
+          />
+          <AgreementSection
+            setOpt1={setOpt1}
+            setOpt2={setOpt2}
+            setOpt3={setOpt3}
+            setOptFinal={setOptFinal}
+            optFinal={optFinal}
+          />
+          <S.ButtonSection $readyToSubmit={readyToSubmit}>
+            <button onClick={submitHandler}>판매 게시물 올리기</button>
+          </S.ButtonSection>
         </>
       )}
-      <AccountSection userInfo={data} />
-      <AgreementSection
-        setOpt1={setOpt1}
-        setOpt2={setOpt2}
-        setOpt3={setOpt3}
-        setOptFinal={setOptFinal}
-        optFinal={optFinal}
-      />
-      <S.ButtonSection $readyToSubmit={readyToSubmit}>
-        <button onClick={submitHandler}>판매 게시물 올리기</button>
-      </S.ButtonSection>
+      {accountSetting === "enter" && (
+        <EnterAccountInfo
+          accountNumber={accountNumber}
+          bank={bank}
+          onSetAccountNumber={setAccountNumber}
+          onSetBank={setBank}
+          onSubmitAccount={setAccountSetting}
+        ></EnterAccountInfo>
+      )}
     </S.Container>
   );
 };

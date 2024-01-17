@@ -114,3 +114,27 @@ export const useToastStore = create<ToastStates>((set) => ({
       },
     })),
 }));
+
+type Iheader = {
+  title: string;
+  undo: () => void;
+};
+
+interface HeaderStates {
+  headerConfig: Iheader;
+  setHeaderConfig: (updated: Iheader) => void;
+}
+
+export const useStateHeaderStore = create<HeaderStates>((set) => ({
+  headerConfig: {
+    title: "",
+    undo: () => {},
+  },
+  setHeaderConfig: (updated) =>
+    set((state) => ({
+      headerConfig: {
+        ...state.headerConfig,
+        ...updated,
+      },
+    })),
+}));
