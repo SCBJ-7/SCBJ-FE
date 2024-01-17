@@ -1,13 +1,7 @@
-import axios from "axios";
-
-interface PostProps {
-  pathVariable: string;
-  firstPrice: number;
-  secondPrice: number;
-  bank: string;
-  accountNumber: string;
-  secondGrantedPeriod: number;
-}
+import { PostTransferProps } from "./../types/postTransferItem";
+// import axios from "axios";
+import { axiosInstance } from "@apis/axiosInstance";
+import { END_POINTS } from "@/constants/api";
 
 export const postTransferItems = async ({
   pathVariable,
@@ -16,16 +10,28 @@ export const postTransferItems = async ({
   bank,
   accountNumber,
   secondGrantedPeriod,
-}: PostProps) => {
+  isRegistered,
+}: PostTransferProps) => {
   try {
-    const response = await axios.post(
-      `https://3.34.147.187.nip.io/v1/products/${pathVariable}`,
+    console.log(
+      pathVariable,
+      firstPrice,
+      secondPrice,
+      bank,
+      accountNumber,
+      secondGrantedPeriod,
+      isRegistered,
+      "!!!!!!!!",
+    );
+    const response = await axiosInstance.post(
+      END_POINTS.ROOM(pathVariable),
       {
         firstPrice,
         secondPrice,
         bank,
         accountNumber,
         secondGrantedPeriod,
+        isRegistered,
       },
       {
         headers: {

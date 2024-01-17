@@ -118,15 +118,16 @@ const TransferWritingPrice = () => {
     mutationFn: () =>
       postTransferItems({
         pathVariable: `${selectedItem.reservationId}`,
-        firstPrice: Number(firstPrice),
-        secondPrice: Number(secondPrice),
+        firstPrice: Number(firstPrice.split(",").join("")),
+        secondPrice: Number(secondPrice.split(",").join("")),
         bank: bank as string,
         accountNumber: accountNumber as string,
         secondGrantedPeriod: Number(downTimeAfter),
+        isRegistered: is2ndChecked,
       }),
     onSuccess: () => {
       alert("판매 게시물이 성공적으로 등록되었습니다!");
-      navigate("/");
+      navigate(PATH.WRITE_TRANSFER_SUCCESS);
     },
   });
 

@@ -1,10 +1,11 @@
 import { IUserInfo } from "./../types/userInfo";
-import axios from "axios";
+import { axiosInstance } from "@apis/axiosInstance";
+import { END_POINTS } from "@/constants/api";
 
 // 유저 정보를 불러오는 api입니다.
 export const fetchUserInfo = async (): Promise<IUserInfo | undefined> => {
   try {
-    const response = await axios.get("https://3.34.147.187.nip.io/v1/members", {
+    const response = await axiosInstance.get(END_POINTS.USER_INFO, {
       headers: {
         Authorization: `${localStorage.getItem("accessToken")}`,
         "Content-Type": "application/json",

@@ -23,7 +23,7 @@ const AccountSection = ({
       animate={{ y: 0, opacity: 1 }}
       onClick={setAccountHandler}
     >
-      <S.Contents $accountNumber={userInfo!.accountNumber}>
+      <S.Contents $accountNumber={accountNumber}>
         <h1>입금 계좌</h1>
         <section>
           <h2>
