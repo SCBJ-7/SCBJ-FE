@@ -12,6 +12,7 @@ import { useMutation, useSuspenseQuery } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
 import { fetchUserInfo } from "@/apis/fetchUserInfo";
 import usePreventLeave from "@hooks/common/usePreventLeave";
+import { PATH } from "@constants/path";
 
 const TransferWritingPrice = () => {
   usePreventLeave(true);
@@ -214,6 +215,7 @@ const TransferWritingPrice = () => {
     const confirmToProceed = confirm("판매 게시물을 등록하시겠어요?");
     if (confirmToProceed) {
       mutate();
+      navigate(PATH.WRITE_TRANSFER_SUCCESS);
     }
   };
 

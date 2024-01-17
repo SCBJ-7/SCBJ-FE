@@ -66,12 +66,6 @@ const InputSection = ({
       return;
     }
 
-    // 남은 시간을 3시간 미만으로 설정 불가
-    if (remainingTimes && Number(temp) < 3) {
-      onDataChange("3");
-      return;
-    }
-
     onDataChange(priceFormat(temp));
   };
 
@@ -83,7 +77,7 @@ const InputSection = ({
     const lastTwoDigits = temp.slice(-2);
 
     if (Number(temp) < 100) {
-      onDataChange("");
+      onDataChange("0");
       return;
     }
 

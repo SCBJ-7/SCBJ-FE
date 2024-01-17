@@ -2,8 +2,8 @@ import axios from "axios";
 
 const useProfileApi = () => {
   const getAuth = () => {
-    if (localStorage.getItem("token")) {
-      const token = localStorage.getItem("token");
+    if (localStorage.getItem("AccessToken")) {
+      const token = localStorage.getItem("AccessToken");
       return token;
     }
   };

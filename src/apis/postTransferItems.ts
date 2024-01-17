@@ -19,7 +19,7 @@ export const postTransferItems = async ({
 }: PostProps) => {
   try {
     const response = await axios.post(
-      `/v1/products/${pathVariable}`,
+      `https://3.34.147.187.nip.io/v1/products/${pathVariable}`,
       {
         firstPrice,
         secondPrice,

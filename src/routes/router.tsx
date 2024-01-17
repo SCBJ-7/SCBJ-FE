@@ -24,6 +24,7 @@ import Setting from "@/pages/myPage/setting/Setting";
 import PasswordReset from "@/pages/passwordResetPage/PasswordReset";
 import PurchaseDetail from "@/pages/purchaseDetailPage/PurchaseDetail";
 import TransferWritingPrice from "@/pages/transferWritingPricePage/TransferWritingPrice";
+import TransferWritingSuccess from "@pages/transferWritingDonePage/TransferWritingSuccess";
 
 export const router = createBrowserRouter([
   {
@@ -91,7 +92,14 @@ export const router = createBrowserRouter([
           </Suspense>
         ),
       },
-
+      {
+        path: PATH.WRITE_TRANSFER_SUCCESS,
+        element: (
+          <Suspense fallback={<div>{/* loading */}</div>}>
+            <TransferWritingSuccess />
+          </Suspense>
+        ),
+      },
       {
         path: PATH.DETAIL_ROOM + "/:roomId",
         element: (
