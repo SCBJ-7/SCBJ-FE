@@ -20,7 +20,7 @@ const ManageProfile = () => {
         <S.ManageContainer>
           <h1>나의 계정</h1>
           <S.ManageInfoWrapper>
-            <ManageEmail prevEmail={data.email} />
+            <ManageEmail email={data.email} />
             <ManageName
               prevName={data.name}
               linkedToYanolja={data.linkedToYanolja}
