@@ -1,12 +1,15 @@
 import { useNavigate } from "react-router-dom";
 import * as S from "./SearchBar.style";
 import { PATH } from "@/constants/path";
+import { useSearchFilterInfoStore } from "@store/store";
 
 const SearchBar = () => {
   const navigate = useNavigate();
+  const searchInfo = useSearchFilterInfoStore((state) => state.searchInfo);
   const handleSearchBar = () => {
     navigate(PATH.SEARCH_FILTER);
   };
+
   return (
     <>
       <S.SearchBarFixContainer onClick={handleSearchBar}>

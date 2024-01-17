@@ -66,12 +66,15 @@ const SeachNav = () => {
   const handleCloseModal = () => {
     setIsModalOpen(false);
   };
+
   const handleCloseModalTwo = () => {
     setIsModalTwoOpen(false);
   };
+
   const handleOpenModalTwo = () => {
     setIsModalTwoOpen(true);
   };
+
   const registerFilter = (e: React.MouseEvent<HTMLDivElement>) => {
     const modalTwoButtonClick =
       e.target instanceof Element && e.target.closest(".modal-two-button");

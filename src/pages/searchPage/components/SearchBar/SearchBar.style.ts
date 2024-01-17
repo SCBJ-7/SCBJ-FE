@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const SearchBarFixContainer = styled.div`
   position: fixed;
-  height: 91px;
+  height: 72px;
   max-width: 768px;
   min-width: 360px;
   z-index: 100;
@@ -14,18 +14,21 @@ export const SearchBarFixContainer = styled.div`
 
 export const SearchBarContainer = styled.div`
   width: 100%;
-
-  height: 91px;
-  padding: 16px 20px;
+  height: 72px;
+  padding: 8px 20px;
 `;
 
 export const SearchBarInput = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   width: 100%;
   height: 100%;
-  border: 1px solid ${({ theme }) => theme.color.greyScale4};
+  border: 1px solid ${({ theme }) => theme.color.greyScale6};
   border-radius: 12px;
-  padding: 9px 20px;
+  padding: 12px 16px;
+  box-shadow: 4px 4px 10px 0px rgba(0, 0, 0, 0.1);
 `;
 export const SearchRegion = styled.div`
-  ${({ theme }) => theme.typo.body3}
+  ${({ theme }) => theme.typo.button4}
 `;

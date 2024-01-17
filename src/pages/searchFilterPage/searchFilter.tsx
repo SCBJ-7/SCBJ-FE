@@ -5,36 +5,56 @@ import PeopleCounter from "./components/peopleCounter/PeopleCounter";
 import CalendarModal from "./components/calendarModal/CalendarModal";
 import { format } from "date-fns";
 import { ko } from "date-fns/locale";
+import { useSearchFilterInfoStore } from "@store/store";
+import { useNavigate } from "react-router-dom";
+import { PATH } from "@constants/path";
 const SearchFilter = () => {
+  const searchInfo = useSearchFilterInfoStore((state) => state.searchInfo);
+  const setSearchInfo = useSearchFilterInfoStore(
+    (state) => state.setSearchInfo,
+  );
   const [regionIsModalOpen, setRegionIsModalOpen] = useState(false);
   const [dateIsModalOpen, setDateIsModalOpen] = useState(false);
-  const [location, setLocation] = useState<string | null>(null);
-  const [maximumPeople, setMaximumPeople] = useState<number>(0);
-  const [checkIn, setCheckIn] = useState<string | null>(null);
-  const [checkOut, setCheckOut] = useState<string | null>(null);
+  const [location, setLocation] = useState<string | null>(searchInfo.location);
+  const [maximumPeople, setMaximumPeople] = useState<number>(
+    searchInfo.maximumPeople ? searchInfo.maximumPeople : 0,
+  );
+  const [checkIn, setCheckIn] = useState<string | null>(searchInfo.checkIn);
+  const [checkOut, setCheckOut] = useState<string | null>(searchInfo.checkOut);
   const isDisabled =
     checkIn === null &&
     checkOut === null &&
     maximumPeople === 0 &&
     location === null;
+  const navigate = useNavigate();
+
   const handleRegionModal = () => {
     setRegionIsModalOpen(true);
   };
+
   const handleDateModal = () => {
     setDateIsModalOpen(true);
   };
+
   const handleReset = () => {
     setLocation(null);
     setCheckOut(null);
     setCheckIn(null);
     setMaximumPeople(0);
   };
+
+  const handleSearch = () => {
+    setSearchInfo({ location, maximumPeople, checkIn, checkOut });
+    navigate(PATH.SEARCHLIST);
+  };
+
   const formatDate = (day: string) => {
     //"2024-02-01"=>"02. 01"
     return format(day, "MM.dd", {
       locale: ko,
     });
   };
+
   return (
     <>
       <S.FilterContainer>
@@ -90,7 +110,7 @@ const SearchFilter = () => {
             <S.ResetButton className={isDisabled ? "disable" : ""} />
           </div>
         </S.ResetButtonContent>
-        <S.SearchButton>검색하기</S.SearchButton>
+        <S.SearchButton onClick={handleSearch}>검색하기</S.SearchButton>
       </S.FilterBottom>
     </>
   );

@@ -57,8 +57,9 @@ const Search = () => {
   return (
     <>
       <SearchBar />
+      <SearchNav />
+
       <S.SearchContainer ref={scrollContainerRef}>
-        <SearchNav />
         <S.SearchItemFlex>
           {searchItems.map((item) => (
             <SearchItem key={item.id} item={item} />

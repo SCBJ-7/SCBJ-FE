@@ -135,8 +135,8 @@ export const useSearchFilterInfoStore = create(
         brunch: null,
         pool: null,
         oceanView: null,
-        page: null,
-        pageSize: null,
+        page: 1,
+        pageSize: 10,
       },
       // 데이터 조작 set 함수
       setSearchInfo: (updatedInfo) =>
