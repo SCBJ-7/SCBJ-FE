@@ -44,6 +44,7 @@ const handleExpiredToken = async (error: AxiosError) => {
 
   if (status === ERROR_CODE.EXPIRED_TOKEN && !originalRequest._retry) {
     try {
+      originalRequest._retry = true; // 무한루프 되지 않도록
       const { accessToken, refreshToken } = await fetchNewToken();
       originalRequest.headers.Authorization = `Bearer ${accessToken}`;
       localStorage.setItem(ACCESS_TOKEN, accessToken);
