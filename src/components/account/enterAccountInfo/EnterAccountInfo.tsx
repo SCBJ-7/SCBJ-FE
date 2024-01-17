@@ -2,18 +2,21 @@ import { useEffect, useRef, useState } from "react";
 import * as S from "./EnterAccountInfo.style";
 import { BANK_LIST } from "@/constants/bank";
 import { AnimatePresence, useAnimation } from "framer-motion";
-import type { AccountInfo } from "@/types/account";
+import type { AccountProps } from "@type/account";
 import { useLocation, useNavigate } from "react-router-dom";
 import { PATH } from "@/constants/path";
 import useToastConfig from "@hooks/common/useToastConfig";
 import usePreventLeave from "@hooks/common/usePreventLeave";
+import { patchAccount } from "@apis/patchAccount";
 
 const EnterAccountInfo = ({
   accountInfo,
   setAccountInfo,
+  setIsEditing,
 }: {
-  accountInfo: AccountInfo;
-  setAccountInfo: React.Dispatch<React.SetStateAction<AccountInfo>>;
+  accountInfo: AccountProps;
+  setAccountInfo: React.Dispatch<React.SetStateAction<AccountProps>>;
+  setIsEditing?: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
   usePreventLeave(true);
   const { pathname } = useLocation();
@@ -31,8 +34,8 @@ const EnterAccountInfo = ({
     newBank &&
     newAccountNumber &&
     checkIsNumber.test(newAccountNumber) &&
-    newAccountNumber.length > 10 &&
-    newAccountNumber.length < 25;
+    newAccountNumber.length >= 10 &&
+    newAccountNumber.length <= 25;
 
   const buttonText =
     pathname === PATH.MANAGE_ACCOUNT ? "계좌 등록하기" : "계좌 입력하기";
@@ -80,21 +83,28 @@ const EnterAccountInfo = ({
     return true;
   };
 
-  const onSubmit = () => {
+  const onSubmit = async () => {
     if (!handleErrorToast()) {
       return;
     }
-
-    setAccountInfo({
+    const updatedInfo: AccountProps = {
       accountNumber: newAccountNumber,
       bank: newBank,
-    });
+    };
 
+    // 마이페이지 내에서 등록 혹은 수정일 때
     if (pathname === PATH.MANAGE_ACCOUNT) {
-      // FIXME: api call
-      handleToast(false, ["계좌 등록이 완료되었습니다!"]);
-      navigate(PATH.MANAGE_ACCOUNT);
-      return;
+      try {
+        await patchAccount(updatedInfo).then(() => {
+          setAccountInfo(updatedInfo);
+          handleToast(false, [<>계좌 등록이 완료되었습니다!</>]);
+
+          if (setIsEditing) setIsEditing(false);
+          else navigate(PATH.MANAGE_ACCOUNT);
+        });
+      } catch (err) {
+        handleToast(true, [<>계좌 등록 실패. 다시 시도해 주세요</>]);
+      }
     }
 
     /** 양도글 작성 일 때,

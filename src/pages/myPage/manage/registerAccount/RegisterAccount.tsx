@@ -3,13 +3,13 @@ import * as S from "./RegisterAccount.style";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import TermsAgreement from "@/components/account/termsAgreement/TermsAgreement";
 import EnterAccountInfo from "@/components/account/enterAccountInfo/EnterAccountInfo";
-import type { AccountInfo } from "@/types/account";
+import type { AccountProps } from "@/types/account";
 
 const RegisterAccount = () => {
   const navigate = useNavigate();
   const [step, setStep] = useState<string>("first");
   const [path, setPath] = useSearchParams();
-  const [accountInfo, setAccountInfo] = useState<AccountInfo>({
+  const [accountInfo, setAccountInfo] = useState<AccountProps>({
     accountNumber: undefined,
     bank: undefined,
   });
