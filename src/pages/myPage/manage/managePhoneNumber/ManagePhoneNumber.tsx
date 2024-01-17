@@ -1,7 +1,7 @@
 import { useRef, useState } from "react";
 import * as S from "./ManagePhoneNumber.style";
-// import Toast from "@/components/toast/Toast";
 import useProfileApi from "@/apis/useProfileApi";
+import useToastConfig from "@hooks/common/useToastConfig";
 
 const ManagePhoneNumber = ({
   prevPhoneNumber,
@@ -10,17 +10,9 @@ const ManagePhoneNumber = ({
 }) => {
   const [phoneNumber, setPhoneNumber] = useState<string>(prevPhoneNumber);
   const [isChanging, setIsChanging] = useState<boolean>(false);
-  // const [showToast, setShowToast] = useState<boolean>(false);
   const inputRef = useRef<HTMLInputElement>(null);
   const { changeNumber } = useProfileApi();
-
-  // api 통신 에러 토스트 핸들러
-  // const handleShowToast = () => {
-  //   setShowToast(true);
-  //   setTimeout(() => {
-  //     setShowToast(false);
-  //   }, 5000);
-  // };
+  const { handleToast } = useToastConfig();
 
   const phoneNumberChangeHandler = (
     event: React.ChangeEvent<HTMLInputElement>,
@@ -28,16 +20,23 @@ const ManagePhoneNumber = ({
     setPhoneNumber(event.target.value);
   };
 
-  const changeButtonClickHandler = () => {
-    if (isChanging) {
-      setIsChanging(false);
-      // API CALL();
-      if (prevPhoneNumber === phoneNumber) return;
-
-      changeNumber("/v1/members/phone", phoneNumber);
-    } else {
+  const changeButtonClickHandler = async () => {
+    if (!isChanging) {
       setIsChanging(true);
       inputRef.current?.focus();
+      return;
+    }
+
+    setIsChanging(false);
+    if (prevPhoneNumber === phoneNumber) return;
+    try {
+      await changeNumber("/v1/members/phone", phoneNumber).then(() => {
+        handleToast(true, [<>전화번호가 성공적으로 변경되었습니다!</>]);
+      });
+    } catch (err) {
+      handleToast(true, [<>전화번호 변경 실패. 다시 시도해 주세요</>]);
+      setPhoneNumber(prevPhoneNumber);
+      setIsChanging(true);
     }
   };
 
@@ -74,7 +73,6 @@ const ManagePhoneNumber = ({
 
   return (
     <>
-      {/* {showToast && <Toast strings={[<>전화번호 변경 성공</>, "ㅊㅋ"]} />} */}
       <S.ManageNumberSection $state={state} $isChanging={isChanging}>
         <label htmlFor="phone-number">전화번호</label>
         <div>

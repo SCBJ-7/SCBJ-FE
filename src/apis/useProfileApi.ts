@@ -38,24 +38,14 @@ const useProfileApi = () => {
 
   const changeName = async (endPoint: string, name: string) => {
     const apiURL = `${endPoint}`;
-    try {
-      const res = await instance.patch(apiURL, { name: name });
-      console.log(res.status);
-      return res;
-    } catch (err) {
-      console.log(err);
-    }
+    const res = await instance.patch(apiURL, { name });
+    return res;
   };
 
   const changeNumber = async (endPoint: string, number: string) => {
     const apiURL = `${endPoint}`;
-    try {
-      const res = await instance.patch(apiURL, { phone: number });
-      console.log(res.status);
-      return res;
-    } catch (err) {
-      console.log(err);
-    }
+    const res = await instance.patch(apiURL, { phone: number });
+    return res;
   };
 
   return { getProfileData, changeName, changeNumber };

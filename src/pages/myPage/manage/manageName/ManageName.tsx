@@ -2,6 +2,7 @@ import { useRef, useState } from "react";
 import * as S from "./ManageName.style";
 // import Toast from "@/components/toast/Toast";
 import useProfileApi from "@/apis/useProfileApi";
+import useToastConfig from "@hooks/common/useToastConfig";
 
 const ManageName = ({
   prevName,
@@ -12,32 +13,32 @@ const ManageName = ({
 }) => {
   const [name, setName] = useState<string>(prevName);
   const [isChanging, setIsChanging] = useState<boolean>(false);
-  // const [showToast, setShowToast] = useState<boolean>(false);
   const inputRef = useRef<HTMLInputElement>(null);
   const koreanRegex = /^[ㄱ-ㅎ가-힣ㅏ-ㅣ]+$/;
   const { changeName } = useProfileApi();
-
-  // api 통신 에러 토스트 핸들러
-  // const handleShowToast = () => {
-  //   setShowToast(true);
-  //   setTimeout(() => {
-  //     setShowToast(false);
-  //   }, 3000);
-  // };
+  const { handleToast } = useToastConfig();
 
   const nameChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
     setName(event.target.value);
   };
 
-  const changeButtonClickHandler = () => {
-    if (isChanging) {
-      setIsChanging(false);
-      if (prevName === name) return;
-      changeName("/v1/members/name", name);
-      // handleShowToast();
-    } else {
+  const changeButtonClickHandler = async () => {
+    if (!isChanging) {
       setIsChanging(true);
       inputRef.current?.focus();
+      return;
+    }
+
+    setIsChanging(false);
+    if (prevName === name) return;
+    try {
+      await changeName("/v1/members/name", name).then(() => {
+        handleToast(true, [<>이름이 성공적으로 변경되었습니다!</>]);
+      });
+    } catch (err) {
+      handleToast(true, [<>이름 변경 실패. 다시 시도해 주세요</>]);
+      setName(prevName);
+      setIsChanging(true);
     }
   };
 
@@ -82,7 +83,6 @@ const ManageName = ({
 
   return (
     <>
-      {/* {showToast && <Toast strings={[<>이름 변경 성공</>, "ㅊㅋ"]} />} */}
       <S.ManageNameSection
         $linkedToYanolja={linkedToYanolja}
         $state={state}

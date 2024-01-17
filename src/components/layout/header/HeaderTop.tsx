@@ -69,6 +69,12 @@ const Header = () => {
       title = "프로필 변경";
       undo = true;
       break;
+    case PATH.MANAGE_ACCOUNT:
+      alarmIC = false;
+      settingIC = false;
+      title = "정산계좌 관리";
+      undo = true;
+      break;
     default: // 없음
   }
   const undoHandler = () => {
