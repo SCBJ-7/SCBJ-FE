@@ -54,7 +54,11 @@ export const ModalCloseButton = styled(CloseButton)`
 
 export const CalendarContainer = styled.div`
   box-sizing: border-box;
-
+  .custom-end-date {
+    border-radius: 50% !important;
+    color: red !important;
+    background-color: ${({ theme }) => theme.color.percentOrange} !important;
+  }
   width: 360px;
   .react-datepicker {
     padding: 0 20px;
@@ -136,8 +140,8 @@ export const CalendarContainer = styled.div`
   }
   .react-datepicker__day--keyboard-selected {
     border-radius: 50% !important;
-    color: white;
-    background-color: ${({ theme }) => theme.color.percentOrange};
+    color: white !important;
+    background-color: ${({ theme }) => theme.color.percentOrange}!important;
   }
   .react-datepicker__day--in-selecting-range {
     background-color: white;
@@ -171,12 +175,17 @@ export const ResetButtonContent = styled.div`
   align-items: center;
   width: 70px;
   height: 24px;
-  color: ${({ theme }) => theme.color.greyScale3};
   cursor: pointer;
-  > div:first-child {
+  ${({ theme }) => theme.typo.button3}
+  &.disable {
+    color: ${({ theme }) => theme.color.greyScale3};
   }
 `;
-export const ResetButton = styled(ResetIcon)``;
+export const ResetButton = styled(ResetIcon)`
+  &.disable {
+    fill: ${({ theme }) => theme.color.greyScale3} !important;
+  }
+`;
 export const SearchButton = styled.div`
   display: flex;
   justify-content: center;

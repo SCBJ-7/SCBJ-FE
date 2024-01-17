@@ -21,7 +21,7 @@ const TermsSection = ({
   const check4Ref = useRef(null);
 
   return (
-    <S.Container>
+    <S.Container initial={{ y: -5, opacity: 0 }} animate={{ y: 0, opacity: 1 }}>
       <CheckBoxSection
         checkRef={check1Ref}
         text="체크인 시간까지 상품이 판매되지 않으면 상품 판매가 자동 만료되며, 만료된 상품은 숙박종료일까지 야놀자에서 이용 가능합니다."

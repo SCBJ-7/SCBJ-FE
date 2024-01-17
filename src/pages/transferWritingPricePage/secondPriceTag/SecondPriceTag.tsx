@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import InputSection from "../inputSection/InputSection";
 import * as S from "./SecondPriceTag.style";
+import { useAnimate, stagger } from "framer-motion";
 
 import { format } from "date-fns";
 import { ko } from "date-fns/locale";
@@ -16,6 +17,8 @@ interface PriceTagProps {
   remainingTimes: number;
   startDate: Date;
   endDate: Date;
+  secondPriceInputRef: React.MutableRefObject<null>;
+  secondTimeInputRef: React.MutableRefObject<null>;
 }
 
 const SecondPriceTag = ({
@@ -28,6 +31,8 @@ const SecondPriceTag = ({
   remainingTimes,
   startDate,
   endDate,
+  secondPriceInputRef,
+  secondTimeInputRef,
 }: PriceTagProps) => {
   const STD = format(startDate, "MM. dd (ccc) HH:mm", { locale: ko });
   const ETD = format(endDate, "MM. dd (ccc) HH:mm", { locale: ko });
@@ -52,47 +57,55 @@ const SecondPriceTag = ({
     }
   }, [firstPrice, secondPriceData, onSecondPriceChange]);
 
+  const [scope, animate] = useAnimate();
+
+  useEffect(() => {
+    animate(
+      ".children",
+      { opacity: [0, 1], x: [-10, 0] },
+      { delay: stagger(0.2) },
+    );
+  }, [animate]);
+
   return (
-    // staggered children 적용 예정
-    <>
-      <S.Container>
-        <S.Contents>
-          <section>
-            <h3>체크인</h3>
-            <span>
-              {LEFTTIME > 72
-                ? `${processedTime} 시간 남았어요`
-                : `${processedTime} 시간 남았어요`}
-            </span>
-          </section>
-          <section>
-            <h3>숙박일</h3>
-            <span>
-              {STD} - {ETD}
-            </span>
-            {/* 23.20 (수) 17:00 ~ 23.21 (목) 10:00 */}
-          </section>
-        </S.Contents>
-        <InputSection
-          placeHolder="지정 시간"
-          inputPosition="center"
-          text={["체크인", "시간전에"]}
-          inputData={downTimeAfter}
-          onDataChange={onDownTimeAfterChange}
-          remainingTimes={LEFTTIME}
-          type="time"
-        />
-        <InputSection
-          placeHolder="지정 가격"
-          inputPosition="left"
-          text={["원으로 가격을 내릴게요"]}
-          inputData={secondPriceData}
-          onDataChange={onSecondPriceChange}
-          maxPrice={Number(firstPrice.split(",").join(""))}
-        />
-      </S.Container>
-      <S.Hr />
-    </>
+    <S.Container ref={scope} initial={{ y: 20 }} animate={{ y: 0 }}>
+      <S.Contents className="children">
+        <section>
+          <h3>체크인</h3>
+          <span>
+            {LEFTTIME > 72
+              ? `${processedTime} 시간 남았어요`
+              : `${processedTime} 시간 남았어요`}
+          </span>
+        </section>
+        <section>
+          <h3>숙박일</h3>
+          <span>
+            {STD} - {ETD}
+          </span>
+          {/* 23.20 (수) 17:00 ~ 23.21 (목) 10:00 */}
+        </section>
+      </S.Contents>
+      <InputSection
+        inputRef={secondTimeInputRef}
+        placeHolder="지정 시간"
+        inputPosition="center"
+        text={["체크인", "시간전에"]}
+        inputData={downTimeAfter}
+        onDataChange={onDownTimeAfterChange}
+        remainingTimes={LEFTTIME}
+        type="time"
+      />
+      <InputSection
+        inputRef={secondPriceInputRef}
+        placeHolder="지정 가격"
+        inputPosition="left"
+        text={["원으로 가격을 내릴게요"]}
+        inputData={secondPriceData}
+        onDataChange={onSecondPriceChange}
+        maxPrice={Number(firstPrice.split(",").join(""))}
+      />
+    </S.Container>
   );
 };
 

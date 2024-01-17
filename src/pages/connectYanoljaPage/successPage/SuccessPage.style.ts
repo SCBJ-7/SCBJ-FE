@@ -1,11 +1,11 @@
-import styled, { DefaultTheme } from "styled-components";
 import { hexToRgba } from "@utils/hexTorgba";
+import styled, { DefaultTheme } from "styled-components";
 
 export const PageContainer = styled.div`
   width: 100%;
   height: 100%;
 
-  background-color: ${({ theme }) => theme.color.black};
+  background-color: ${({ theme }) => theme.color.white};
 `;
 
 const breakpoints = {
@@ -20,16 +20,12 @@ export const MainWrapper = styled.div`
   justify-content: flex-start;
 
   height: 80%;
-  gap: 1rem;
+  gap: 2rem;
 
   padding-top: 20%;
 
-  @media (max-width: ${breakpoints.tablet}) {
-    padding-top: 30%;
-  }
-
   @media (max-width: ${breakpoints.mobile}) {
-    padding-top: 50%;
+    padding-top: 30%;
   }
 `;
 
@@ -49,19 +45,19 @@ export const PercentHotelLogo = styled.div`
   }
 `;
 
-export const YanoljaLogo = styled.div`
-  width: 158px;
+export const PercentHotelIcon = styled.div`
+  width: 90px;
 
   & > img {
     width: 100%;
   }
 
   @media (max-width: ${breakpoints.tablet}) {
-    width: 138px;
+    width: 75px;
   }
 
   @media (max-width: ${breakpoints.mobile}) {
-    width: 118px;
+    width: 60px;
   }
 `;
 
@@ -79,8 +75,14 @@ export const XIcon = styled.div`
 
 export const Title = styled.p`
   ${({ theme }) => theme.typo.title4};
-  color: ${({ theme }) => theme.color.percentOrange};
-  line-height: 1.8;
+  color: ${({ theme }) => theme.color.black};
+`;
+
+export const SubTitle = styled.p`
+  ${({ theme }) => theme.typo.body4};
+  color: ${({ theme }) => theme.color.black};
+  line-height: 1.5;
+  text-align: center;
 `;
 
 export const BottomWrapper = styled.div`

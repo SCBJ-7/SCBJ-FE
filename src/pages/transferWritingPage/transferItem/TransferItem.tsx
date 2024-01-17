@@ -106,7 +106,7 @@ const TransferItem = ({
         </S.PriceTag>
         <S.PriceTag>
           <h4>예약 취소 시 환불금액</h4>
-          <span>{refundPrice} 원</span>
+          <span>{priceFormat(refundPrice)} 원</span>
         </S.PriceTag>
       </S.ItemPrice>
     </S.ItemContainer>

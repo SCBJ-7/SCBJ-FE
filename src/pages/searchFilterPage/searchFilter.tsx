@@ -3,6 +3,8 @@ import * as S from "./SearchFilter.style";
 import RegionModal from "./components/regionModal/RegionModal";
 import PeopleCounter from "./components/peopleCounter/PeopleCounter";
 import CalendarModal from "./components/calendarModal/CalendarModal";
+import { format } from "date-fns";
+import { ko } from "date-fns/locale";
 const SearchFilter = () => {
   const [regionIsModalOpen, setRegionIsModalOpen] = useState(false);
   const [dateIsModalOpen, setDateIsModalOpen] = useState(false);
@@ -10,15 +12,29 @@ const SearchFilter = () => {
   const [maximumPeople, setMaximumPeople] = useState<number>(0);
   const [checkIn, setCheckIn] = useState<string | null>(null);
   const [checkOut, setCheckOut] = useState<string | null>(null);
-
+  const isDisabled =
+    checkIn === null &&
+    checkOut === null &&
+    maximumPeople === 0 &&
+    location === null;
   const handleRegionModal = () => {
     setRegionIsModalOpen(true);
   };
   const handleDateModal = () => {
     setDateIsModalOpen(true);
   };
-
-  console.log("rendering");
+  const handleReset = () => {
+    setLocation(null);
+    setCheckOut(null);
+    setCheckIn(null);
+    setMaximumPeople(0);
+  };
+  const formatDate = (day: string) => {
+    //"2024-02-01"=>"02. 01"
+    return format(day, "MM.dd", {
+      locale: ko,
+    });
+  };
   return (
     <>
       <S.FilterContainer>
@@ -32,7 +48,11 @@ const SearchFilter = () => {
           </S.FilterBlock>
           <S.FilterBlock onClick={handleDateModal}>
             <S.FilterSubTitle>일정</S.FilterSubTitle>
-            <S.FilterModalButton>언제든지</S.FilterModalButton>
+            <S.FilterModalButton>
+              {checkIn && checkOut
+                ? `${formatDate(checkIn)} ~ ${formatDate(checkOut)}`
+                : "언제든지"}
+            </S.FilterModalButton>
           </S.FilterBlock>
 
           <S.FilterBlock>
@@ -61,10 +81,13 @@ const SearchFilter = () => {
         )}
       </S.FilterContainer>
       <S.FilterBottom>
-        <S.ResetButtonContent>
+        <S.ResetButtonContent
+          className={isDisabled ? "disable" : ""}
+          onClick={handleReset}
+        >
           <div>초기화</div>
           <div>
-            <S.ResetButton />
+            <S.ResetButton className={isDisabled ? "disable" : ""} />
           </div>
         </S.ResetButtonContent>
         <S.SearchButton>검색하기</S.SearchButton>

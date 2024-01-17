@@ -1,28 +1,30 @@
+import IntroPage from "@pages/connectYanoljaPage/IntroPage/IntroPage.tsx";
+import SuccessPage from "@pages/connectYanoljaPage/successPage/SuccessPage.tsx";
+import VerificationPage from "@pages/connectYanoljaPage/verificationPage/VerificationPage";
 import { Suspense } from "react";
 import { createBrowserRouter } from "react-router-dom";
+import App from "../App";
 import { PATH } from "../constants/path";
-import App from "@/App";
 
 import Home from "../pages/homePage";
-import MyPage from "../pages/myPage/MyPage";
 import NotFound from "../pages/notFoundPage";
 import Search from "../pages/searchPage/Search";
 import SignUp from "../pages/signUpPage/SignUp";
+import MyPage from "../pages/myPage/MyPage";
 import SignIn from "../pages/signInPage/SignIn";
-import TransferWriting from "../pages/transferWritingPage/TransferWriting";
-import TransferSale from "../pages/transferSalePage";
 import RoomDetail from "@pages/roomDetailPage/RoomDetail";
 import TransferPurchase from "../pages/transferPurchasePage/TransferPurchase";
-import TransferWritingPrice from "@/pages/transferWritingPricePage/TransferWritingPrice";
-import PasswordReset from "@/pages/passwordResetPage/PasswordReset";
-import ConnectYanolja from "@pages/connectYanoljaPage/ConnectYanolja";
-import ConnectYanoljaAccount from "@pages/connectYanoljaAccountPage/ConnectYanoljaAccount";
-import ConnectYanoljaSuccess from "@pages/connectYanoljaSuccessPage/ConnectYanoljaSuccess";
-import Setting from "@/pages/myPage/setting/Setting";
-import ManageProfile from "@/pages/myPage/manage/manageProfile/ManageProfile";
+import TransferSale from "../pages/transferSalePage";
+import TransferWriting from "../pages/transferWritingPage/TransferWriting";
+
 import ManageAccount from "@/pages/myPage/manage/manageAccount/ManageAccount";
+import ManageProfile from "@/pages/myPage/manage/manageProfile/ManageProfile";
+import Setting from "@/pages/myPage/setting/Setting";
+import PasswordReset from "@/pages/passwordResetPage/PasswordReset";
 import PurchaseDetail from "@/pages/purchaseDetailPage/PurchaseDetail";
 import SearchFilter from "@/pages/searchFilterPage/SearchFilter";
+import TransferWritingPrice from "@/pages/transferWritingPricePage/TransferWritingPrice";
+import TransferWritingSuccess from "@pages/transferWritingDonePage/TransferWritingSuccess";
 
 export const router = createBrowserRouter([
   {
@@ -90,7 +92,14 @@ export const router = createBrowserRouter([
           </Suspense>
         ),
       },
-
+      {
+        path: PATH.WRITE_TRANSFER_SUCCESS,
+        element: (
+          <Suspense fallback={<div>{/* loading */}</div>}>
+            <TransferWritingSuccess />
+          </Suspense>
+        ),
+      },
       {
         path: PATH.DETAIL_ROOM + "/:roomId",
         element: (
@@ -109,15 +118,15 @@ export const router = createBrowserRouter([
       },
       {
         path: PATH.YANOLJA_ACCOUNT,
-        element: <ConnectYanolja />,
+        element: <IntroPage />,
       },
       {
         path: PATH.YANOLJA_ACCOUNT_VERIFY,
-        element: <ConnectYanoljaAccount />,
+        element: <VerificationPage />,
       },
       {
         path: PATH.YANOLJA_ACCOUNT_VERIFY + "/success",
-        element: <ConnectYanoljaSuccess />,
+        element: <SuccessPage />,
       },
       {
         path: PATH.SEARCH_FILTER,

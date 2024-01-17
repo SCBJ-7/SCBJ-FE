@@ -50,7 +50,6 @@ const CheckBoxSection = ({
       e.target.checked = false;
       // 1차 가격 인풋에 포커스
       if (checkToFocus?.current) {
-        console.log("here?");
         (checkToFocus.current as HTMLInputElement).focus();
       }
       return;

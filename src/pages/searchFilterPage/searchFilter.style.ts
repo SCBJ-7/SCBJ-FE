@@ -62,12 +62,17 @@ export const ResetButtonContent = styled.div`
   align-items: center;
   width: 70px;
   height: 24px;
-  color: ${({ theme }) => theme.color.greyScale3};
   cursor: pointer;
-  > div:first-child {
+  ${({ theme }) => theme.typo.button3}
+  &.disable {
+    color: ${({ theme }) => theme.color.greyScale3};
   }
 `;
-export const ResetButton = styled(ResetIcon)``;
+export const ResetButton = styled(ResetIcon)`
+  &.disable {
+    fill: ${({ theme }) => theme.color.greyScale3} !important;
+  }
+`;
 export const SearchButton = styled.div`
   display: flex;
   justify-content: center;
