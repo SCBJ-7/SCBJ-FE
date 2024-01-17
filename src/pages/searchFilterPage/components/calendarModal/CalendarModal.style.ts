@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import CloseButton from "@assets/icons/ic_close-button.svg?react";
-
 export const ModalContainer = styled.div`
   display: flex;
   justify-content: center;
@@ -41,7 +40,6 @@ export const ModalTop = styled.div`
 
   z-index: 50;
 `;
-
 export const ModalTitle = styled.div`
   font-size: 17px;
   font-weight: 600;
@@ -49,48 +47,4 @@ export const ModalTitle = styled.div`
 
 export const ModalCloseButton = styled(CloseButton)`
   cursor: pointer;
-`;
-
-export const ModalRegionItems = styled.div`
-  max-width: 500px;
-  width: 100%;
-  margin-top: 2rem;
-`;
-
-export const RegionItemsLine = styled.div`
-  width: 100%;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
-  padding-bottom: 2rem;
-`;
-
-export const RegionItem = styled.div`
-  width: 100%;
-  border-radius: 12px;
-  border: 1px solid ${({ theme }) => theme.color.greyScale5};
-  box-shadow: 4px 4px 10px 0px rgba(0, 0, 0, 0.2);
-  transition: 0.1s;
-  ${({ theme }) => theme.typo.body3}
-  &:hover {
-    border: 1px solid ${({ theme }) => theme.color.greyScale3};
-  }
-  &.active {
-    border: 2px solid ${({ theme }) => theme.color.percentOrange};
-    color: ${({ theme }) => theme.color.percentOrange};
-    font-size: 800 !important;
-  }
-`;
-
-export const RegionImage = styled.img`
-  width: 100%;
-  border-radius: 12px 12px 0 0;
-`;
-
-export const RegionName = styled.div`
-  width: 100%;
-  height: 23px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 `;

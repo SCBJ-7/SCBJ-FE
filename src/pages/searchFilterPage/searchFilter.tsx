@@ -1,18 +1,23 @@
 import { useState } from "react";
 import * as S from "./SearchFilter.style";
 import RegionModal from "./components/regionModal/RegionModal";
-import PeopleCounter from "./components/regionModal/peopleCounter/PeopleCounter";
+import PeopleCounter from "./components/peopleCounter/PeopleCounter";
+import CalendarModal from "./components/calendarModal/CalendarModal";
 const SearchFilter = () => {
   const [regionIsModalOpen, setRegionIsModalOpen] = useState(false);
-  const [dateIsModalOpen, setdDateIsModalOpen] = useState(false);
+  const [dateIsModalOpen, setDateIsModalOpen] = useState(false);
   const [location, setLocation] = useState<string | null>(null);
   const [maximumPeople, setMaximumPeople] = useState<number>(0);
+  const [checkIn, setCheckIn] = useState<string | null>(null);
+  const [checkOut, setCheckOut] = useState<string | null>(null);
+
   const handleRegionModal = () => {
     setRegionIsModalOpen(true);
   };
   const handleDateModal = () => {
-    setdDateIsModalOpen(true);
+    setDateIsModalOpen(true);
   };
+
   console.log("rendering");
   return (
     <>
@@ -43,6 +48,15 @@ const SearchFilter = () => {
             setRegionIsModalOpen={setRegionIsModalOpen}
             location={location}
             setLocation={setLocation}
+          />
+        )}
+        {dateIsModalOpen && (
+          <CalendarModal
+            setDateIsModalOpen={setDateIsModalOpen}
+            checkIn={checkIn}
+            checkOut={checkOut}
+            setCheckIn={setCheckIn}
+            setCheckOut={setCheckOut}
           />
         )}
       </S.FilterContainer>

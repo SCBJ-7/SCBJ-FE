@@ -33,8 +33,6 @@ export const UpButton = styled.div`
 export const DownButton = styled.div`
   display: flex;
   justify-content: center;
-  align-items: center;
-  font-size: 20px;
   font-weight: 500;
   width: 25px;
   height: 25px;

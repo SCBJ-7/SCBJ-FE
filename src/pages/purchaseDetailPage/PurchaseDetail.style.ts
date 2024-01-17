@@ -210,10 +210,6 @@ export const PayInfo = styled.div`
   > div:nth-child(3) {
     padding-bottom: 1rem;
   }
-
-  > div:nth-child(4) {
-    padding-bottom: 1rem;
-  }
 `;
 
 export const Hr = styled.div`

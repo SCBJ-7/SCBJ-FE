@@ -102,7 +102,7 @@ const PurchaseDetail = () => {
           <S.PayInfo>
             <S.StandardTitle>결제 금액</S.StandardTitle>
             <S.StandardFlex>
-              <S.StandardSubTitle>정가</S.StandardSubTitle>
+              <S.StandardSubTitle>야놀자 정가</S.StandardSubTitle>
               <S.StandardInfo>
                 {data.originalPrice.toLocaleString()}원
               </S.StandardInfo>
@@ -111,10 +111,7 @@ const PurchaseDetail = () => {
               <S.StandardSubTitle>구매가</S.StandardSubTitle>
               <S.StandardInfo>{data.price.toLocaleString()}원</S.StandardInfo>
             </S.StandardFlex>
-            <S.StandardFlex>
-              <S.StandardSubTitle>중개 수수료</S.StandardSubTitle>
-              <S.StandardInfo>{indexFee.toLocaleString()}원</S.StandardInfo>
-            </S.StandardFlex>
+
             <S.Hr />
           </S.PayInfo>
           <S.StandardFlex>
