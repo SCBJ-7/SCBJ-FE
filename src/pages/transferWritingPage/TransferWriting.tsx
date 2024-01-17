@@ -53,7 +53,6 @@ const TransferWriting = () => {
   }
 
   if (userData?.linkToYanolja === false) {
-    console.log(userData.linkToYanolja);
     return (
       <NoResult
         title="야놀자 예약내역 확인이 필요합니다."
