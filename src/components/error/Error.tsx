@@ -1,13 +1,22 @@
 export class AxiosResponseError extends Error {
-  statusCode: number;
-  errorMessage: string;
+  response: {
+    status: number;
+    data: {
+      message: string;
+    };
+  };
 
-  constructor(message: string, statusCode: number, errorMessage: string) {
+  constructor(status: number, message: string) {
     super(message);
-    this.statusCode = statusCode;
-    this.errorMessage = errorMessage;
+    this.name = "AxiosError";
 
-    // Error를 확장할 때 필요한 코드
+    this.response = {
+      status: status,
+      data: {
+        message: message,
+      },
+    };
+
     Object.setPrototypeOf(this, AxiosResponseError.prototype);
   }
 }

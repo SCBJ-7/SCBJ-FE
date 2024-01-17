@@ -1,10 +1,12 @@
+import { AxiosResponseError } from "@components/error/Error";
 import { useQueryErrorResetBoundary } from "@tanstack/react-query";
 import { isAxiosError } from "axios";
 import { PropsWithChildren } from "react";
 import { ErrorBoundary, FallbackProps } from "react-error-boundary";
 
 const ErrorFallback = ({ error, resetErrorBoundary }: FallbackProps) => {
-  if (isAxiosError(error)) {
+  console.log(error);
+  if (isAxiosError(error) || error instanceof AxiosResponseError) {
     const status = error.response?.status;
     const message = error.response?.data?.message || error.message;
     return (

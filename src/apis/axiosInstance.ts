@@ -25,16 +25,20 @@ const addToken = (config: InternalAxiosRequestConfig) => {
     window.location.href = PATH.ROOT;
   }
 
-  config.headers.Authorization = `Bearer ${accessToken}`;
+  config.headers.Authorization = `${accessToken}`;
 
   return config;
 };
 
+interface ResponseDataType {
+  statusCode: number;
+  message: string;
+}
 interface AxiosRequestConfigWithRetry extends AxiosRequestConfig {
   _retry?: boolean;
 }
 
-const handleExpiredToken = async (error: AxiosError) => {
+const handleExpiredToken = async (error: AxiosError<ResponseDataType>) => {
   const originalRequest = error.config as AxiosRequestConfigWithRetry;
 
   if (!error.response || !originalRequest.headers)
@@ -61,11 +65,7 @@ const handleExpiredToken = async (error: AxiosError) => {
     localStorage.removeItem(ACCESS_TOKEN);
     localStorage.removeItem(REFRESH_TOKEN);
 
-    throw new AxiosResponseError(
-      error.response.statusText,
-      status,
-      data.message, // FIXME: 타입 가드 필요
-    );
+    throw new AxiosResponseError(status, data.message);
   }
 
   return Promise.reject(error);
