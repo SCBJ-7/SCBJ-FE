@@ -36,6 +36,7 @@ export const useConnectAccountMutation = () => {
         }, 6000);
       }
     },
+    throwOnError: true,
   });
 
   return connectAccountMutation;

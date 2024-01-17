@@ -7,4 +7,13 @@ export const END_POINTS = {
   EMAIL: "/v1/members/email",
   YANOLJA: "/v1/members/yanolja",
   ACCOUNT: "/v1/members/account",
+  NEW_TOKEN: "/v1/token/refresh",
 } as const;
+
+export const ERROR_CODE = {
+  INVALID_TOKEN: 400,
+  EXPIRED_TOKEN: 401,
+} as const;
+
+export const ACCESS_TOKEN = "accessToken";
+export const REFRESH_TOKEN = "refreshToken";
