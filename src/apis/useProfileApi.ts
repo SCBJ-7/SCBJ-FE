@@ -1,34 +1,34 @@
 import axios from "axios";
 
-const useProfileApi = () => {
-  const getAuth = () => {
-    if (localStorage.getItem("AccessToken")) {
-      const token = localStorage.getItem("AccessToken");
-      return token;
+const getAuth = () => {
+  if (localStorage.getItem("AccessToken")) {
+    const token = localStorage.getItem("AccessToken");
+    return token;
+  }
+};
+
+const baseUrl = import.meta.env.VITE_SERVER_URL;
+
+export const instance = axios.create({
+  baseURL: baseUrl,
+  headers: { Authorization: `Bearer  + ${getAuth()}` },
+});
+
+instance.interceptors.request.use(
+  (config) => {
+    const token = getAuth();
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
     }
-  };
+    return config;
+  },
+  (error) => {
+    console.log("interceptor request error: ", error);
+    Promise.reject(error);
+  },
+);
 
-  const baseUrl = import.meta.env.VITE_SERVER_URL;
-
-  const instance = axios.create({
-    baseURL: baseUrl,
-    headers: { Authorization: `Bearer  + ${getAuth()}` },
-  });
-
-  instance.interceptors.request.use(
-    (config) => {
-      const token = getAuth();
-      if (token) {
-        config.headers.Authorization = `Bearer ${token}`;
-      }
-      return config;
-    },
-    (error) => {
-      console.log("interceptor request error: ", error);
-      Promise.reject(error);
-    },
-  );
-
+const useProfileApi = () => {
   const getProfileData = async (endPoint: string) => {
     const apiURL = `${endPoint}`;
     const { data } = await instance.get(apiURL);
