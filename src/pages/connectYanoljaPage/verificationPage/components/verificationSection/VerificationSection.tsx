@@ -16,19 +16,23 @@ const VerificationSection = () => {
 
   const handleEmailValidateClick = async () => {
     const email = getValues("email");
-    validateEmailMutation.mutate(email, {
-      onSuccess: (response) => {
-        clearErrors("email");
-        setCodeState(response.data.data);
-        setIsEmailValidated(true);
+    validateEmailMutation.mutate(
+      { email },
+      {
+        onSuccess: (response) => {
+          clearErrors("email");
+          setCodeState(response);
+          setIsEmailValidated(true);
+          console.log(response);
+        },
+        onError: (error) => {
+          if (axios.isAxiosError(error) && error.response) {
+            setError("email", { message: error.response.data.message });
+            setIsEmailValidated(false);
+          }
+        },
       },
-      onError: (error) => {
-        if (axios.isAxiosError(error) && error.response) {
-          setError("email", { message: error.response.data.message });
-          setIsEmailValidated(false);
-        }
-      },
-    });
+    );
   };
 
   const code = watch("code");

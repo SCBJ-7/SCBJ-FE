@@ -8,12 +8,9 @@ import { AnimatePresence } from "framer-motion";
 import { useEffect } from "react";
 
 const TransferWriting = () => {
-  const UID = "DUMMY_UID";
-
   const { data } = useSuspenseQuery({
-    queryKey: ["TransferItemList", UID],
+    queryKey: ["TransferItemList"],
     queryFn: fetchTransferItems,
-    staleTime: 500000,
   });
 
   const setToastConfig = useToastStore((state) => state.setToastConfig);
