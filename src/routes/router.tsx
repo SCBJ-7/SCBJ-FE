@@ -24,12 +24,17 @@ import Setting from "@/pages/myPage/setting/Setting";
 import PasswordReset from "@/pages/passwordResetPage/PasswordReset";
 import PurchaseDetail from "@/pages/purchaseDetailPage/PurchaseDetail";
 import TransferWritingPrice from "@/pages/transferWritingPricePage/TransferWritingPrice";
+import LocalErrorBoundary from "@components/errorBoundary/LocalErrorBoundary";
 import TransferWritingSuccess from "@pages/transferWritingDonePage/TransferWritingSuccess";
 
 export const router = createBrowserRouter([
   {
     path: PATH.ROOT,
-    element: <App />,
+    element: (
+      <LocalErrorBoundary>
+        <App />
+      </LocalErrorBoundary>
+    ),
     errorElement: <NotFound />,
     children: [
       {
