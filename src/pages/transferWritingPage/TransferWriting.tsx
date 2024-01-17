@@ -2,22 +2,23 @@ import * as S from "./TransferWriting.style";
 import TransferItem from "./transferItem/TransferItem";
 
 import { fetchTransferItems } from "@/apis/fetchTransferItems";
-import { useToastStore, useUserInfoStore } from "@/store/store";
-import { useSuspenseQuery } from "@tanstack/react-query";
+import { useToastStore } from "@/store/store";
+import { useQuery } from "@tanstack/react-query";
 import { AnimatePresence } from "framer-motion";
 import { useEffect } from "react";
 import { fetchUserInfo } from "@apis/fetchUserInfo.ts";
+import NoResult from "@components/noResult/NoResult";
+import { PATH } from "@constants/path";
 
 const TransferWriting = () => {
   const setToastConfig = useToastStore((state) => state.setToastConfig);
-  const userInfo = useUserInfoStore((state) => state.userInfo);
 
-  const { data: userData } = useSuspenseQuery({
+  const { data: userData } = useQuery({
     queryKey: ["UserInfo"],
     queryFn: fetchUserInfo,
   });
 
-  const { data: transferData } = useSuspenseQuery({
+  const { data: transferData } = useQuery({
     queryKey: ["TransferItemList", userData?.id],
     queryFn: fetchTransferItems,
   });
@@ -41,11 +42,26 @@ const TransferWriting = () => {
   }, [setToastConfig, token, userData?.linkToYanolja]);
 
   if (!token) {
-    return <div>로그인이 필요합니다.</div>;
+    return (
+      <NoResult
+        title="로그인이 필요한 서비스입니다"
+        desc="로그인 후 숙박권을 판매해보세요!"
+        buttonDesc="로그인 하기"
+        navigateTo={PATH.LOGIN}
+      />
+    );
   }
 
-  if (!userInfo.linkToYanolja) {
-    return <div>야놀자 연동이 필요합니다.</div>;
+  if (userData?.linkToYanolja === false) {
+    console.log(userData.linkToYanolja);
+    return (
+      <NoResult
+        title="야놀자 예약내역 확인이 필요합니다."
+        desc="야놀자 계정 연동으로 예약내역을 불러올 수 있어요"
+        buttonDesc="계정 연동하기"
+        navigateTo={PATH.YANOLJA_ACCOUNT}
+      />
+    );
   }
 
   return (
