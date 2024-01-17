@@ -24,6 +24,7 @@ import Setting from "@/pages/myPage/setting/Setting";
 import PasswordReset from "@/pages/passwordResetPage/PasswordReset";
 import PurchaseDetail from "@/pages/purchaseDetailPage/PurchaseDetail";
 import TransferWritingPrice from "@/pages/transferWritingPricePage/TransferWritingPrice";
+import LocalErrorBoundary from "@components/errorBoundary/LocalErrorBoundary";
 import TransferWritingSuccess from "@pages/transferWritingSuccessPage/TransferWritingSuccess";
 
 export const router = createBrowserRouter([
@@ -103,9 +104,11 @@ export const router = createBrowserRouter([
       {
         path: PATH.DETAIL_ROOM + "/:roomId",
         element: (
-          <Suspense fallback={<div>LOADING</div>}>
-            <RoomDetail />
-          </Suspense>
+          <LocalErrorBoundary>
+            <Suspense fallback={<div>LOADING</div>}>
+              <RoomDetail />
+            </Suspense>
+          </LocalErrorBoundary>
         ),
       },
       {
@@ -118,15 +121,27 @@ export const router = createBrowserRouter([
       },
       {
         path: PATH.YANOLJA_ACCOUNT,
-        element: <IntroPage />,
+        element: (
+          <LocalErrorBoundary>
+            <IntroPage />
+          </LocalErrorBoundary>
+        ),
       },
       {
         path: PATH.YANOLJA_ACCOUNT_VERIFY,
-        element: <VerificationPage />,
+        element: (
+          <LocalErrorBoundary>
+            <VerificationPage />
+          </LocalErrorBoundary>
+        ),
       },
       {
         path: PATH.YANOLJA_ACCOUNT_VERIFY + "/success",
-        element: <SuccessPage />,
+        element: (
+          <LocalErrorBoundary>
+            <SuccessPage />
+          </LocalErrorBoundary>
+        ),
       },
     ],
   },

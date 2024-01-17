@@ -5,9 +5,11 @@ import dummyPurchaseDetail from "./data/dummyPurchaseDetail.json";
 import dummyRoom from "./data/dummyRoomDetail.json";
 // import userInfo from "./data/userInfo.json";
 import { roomHandlers } from "./handlers/room";
+// import emailHandlers from "./handlers/email";
 
 export const handlers = [
   ...roomHandlers,
+  // ...Object.values(emailHandlers),
   http.get("/api/roomId", () => {
     return HttpResponse.json(dummyRoom);
   }),
