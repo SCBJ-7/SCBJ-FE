@@ -1,10 +1,10 @@
 import { AxiosResponseError } from "@components/error/Error";
 import { useQueryErrorResetBoundary } from "@tanstack/react-query";
 import { isAxiosError } from "axios";
-import { PropsWithChildren } from "react";
+import { ComponentType, ReactNode } from "react";
 import { ErrorBoundary, FallbackProps } from "react-error-boundary";
 
-const ErrorFallback = ({ error, resetErrorBoundary }: FallbackProps) => {
+const DefaultFallback = ({ error, resetErrorBoundary }: FallbackProps) => {
   console.log(error);
   if (isAxiosError(error) || error instanceof AxiosResponseError) {
     const status = error.response?.status;
@@ -22,11 +22,22 @@ const ErrorFallback = ({ error, resetErrorBoundary }: FallbackProps) => {
   }
 };
 
-const LocalErrorBoundary: React.FC<PropsWithChildren> = ({ children }) => {
+export interface LocalErrorBoundaryProps {
+  children: ReactNode;
+  fallback?: ComponentType<FallbackProps>;
+}
+
+const LocalErrorBoundary = ({
+  children,
+  fallback,
+}: LocalErrorBoundaryProps) => {
   const { reset } = useQueryErrorResetBoundary();
 
   return (
-    <ErrorBoundary FallbackComponent={ErrorFallback} onReset={reset}>
+    <ErrorBoundary
+      FallbackComponent={fallback ? fallback : DefaultFallback}
+      onReset={reset}
+    >
       {children}
     </ErrorBoundary>
   );
