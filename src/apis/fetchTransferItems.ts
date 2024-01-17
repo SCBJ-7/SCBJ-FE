@@ -19,7 +19,6 @@ export const fetchTransferItems = async (): Promise<
     });
     return response.data.data as IReservation[];
   } catch (err) {
-    alert(`⚠️예기치 못한 에러가 발생하였습니다. ${err}`);
     console.log(err, "err");
   }
 };

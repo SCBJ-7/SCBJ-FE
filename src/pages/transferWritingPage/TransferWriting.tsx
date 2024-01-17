@@ -2,16 +2,16 @@ import * as S from "./TransferWriting.style";
 import TransferItem from "./transferItem/TransferItem";
 
 import { fetchTransferItems } from "@/apis/fetchTransferItems";
-import { useToastStore } from "@/store/store";
 import { useQuery } from "@tanstack/react-query";
 import { AnimatePresence } from "framer-motion";
 import { useEffect } from "react";
 import { fetchUserInfo } from "@apis/fetchUserInfo.ts";
 import NoResult from "@components/noResult/NoResult";
 import { PATH } from "@constants/path";
+import useToastConfig from "@hooks/common/useToastConfig";
 
 const TransferWriting = () => {
-  const setToastConfig = useToastStore((state) => state.setToastConfig);
+  const { handleToast } = useToastConfig();
 
   const { data: userData } = useQuery({
     queryKey: ["UserInfo"],
@@ -24,22 +24,12 @@ const TransferWriting = () => {
   });
 
   const token = localStorage.getItem("accessToken");
+  console.log(userData, "userData");
 
   useEffect(() => {
-    if (!userData?.linkToYanolja || !token) return;
-    setToastConfig({
-      isShow: true,
-      isError: false,
-      strings: [<>야놀자</>, "에서 예약하신 상품만 판매 가능해요."],
-    });
-    setTimeout(() => {
-      setToastConfig({
-        isShow: false,
-        isError: false,
-        strings: [<>야놀자</>, "에서 예약하신 상품만 판매 가능해요."],
-      });
-    }, 3000);
-  }, [setToastConfig, token, userData?.linkToYanolja]);
+    if (!userData?.linkedToYanolja || !token) return;
+    handleToast(false, [<>야놀자</>, "에서 예약하신 상품만 판매 가능해요."]);
+  }, [handleToast, token, userData?.linkedToYanolja]);
 
   if (!token) {
     return (
@@ -52,7 +42,8 @@ const TransferWriting = () => {
     );
   }
 
-  if (userData?.linkToYanolja === false) {
+  if (!userData || userData?.linkedToYanolja === false) {
+    console.log(userData, "userData");
     return (
       <NoResult
         title="야놀자 예약내역 확인이 필요합니다."

@@ -13,6 +13,6 @@ export const fetchUserInfo = async (): Promise<IUserInfo | undefined> => {
     });
     return response.data.data as IUserInfo;
   } catch (err) {
-    alert(`⚠️예기치 못한 에러가 발생하였습니다.: ${err}`);
+    console.log(`⚠️예기치 못한 에러가 발생하였습니다.: ${err}`);
   }
 };

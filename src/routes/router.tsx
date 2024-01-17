@@ -80,9 +80,11 @@ export const router = createBrowserRouter([
       {
         path: PATH.WRITE_TRANSFER,
         element: (
-          <Suspense fallback={<div>{/* loading */}</div>}>
-            <TransferWriting />
-          </Suspense>
+          <LocalErrorBoundary>
+            <Suspense fallback={<div>{/* loading */}</div>}>
+              <TransferWriting />
+            </Suspense>
+          </LocalErrorBoundary>
         ),
       },
       {
