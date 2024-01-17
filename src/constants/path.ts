@@ -6,7 +6,7 @@ export const PATH = {
   PURCHASE_LIST: "/my-page/purchase-list",
   DETAIL_ROOM: "/room",
   WRITE_TRANSFER: "/transfer/new",
-  WRITE_TRANSFER_PRICE: "/transfer/new/price/",
+  WRITE_TRANSFER_PRICE: "/transfer/new/price",
   WRITE_TRANSFER_SUCCESS: "/transfer/new/success",
   SIGNUP: "/signup",
   LOGIN: "/signin",
