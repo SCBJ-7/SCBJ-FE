@@ -30,11 +30,7 @@ import TransferWritingSuccess from "@pages/transferWritingDonePage/TransferWriti
 export const router = createBrowserRouter([
   {
     path: PATH.ROOT,
-    element: (
-      <LocalErrorBoundary>
-        <App />
-      </LocalErrorBoundary>
-    ),
+    element: <App />,
     errorElement: <NotFound />,
     children: [
       {
@@ -108,9 +104,11 @@ export const router = createBrowserRouter([
       {
         path: PATH.DETAIL_ROOM + "/:roomId",
         element: (
-          <Suspense fallback={<div>LOADING</div>}>
-            <RoomDetail />
-          </Suspense>
+          <LocalErrorBoundary>
+            <Suspense fallback={<div>LOADING</div>}>
+              <RoomDetail />
+            </Suspense>
+          </LocalErrorBoundary>
         ),
       },
       {
@@ -123,15 +121,27 @@ export const router = createBrowserRouter([
       },
       {
         path: PATH.YANOLJA_ACCOUNT,
-        element: <IntroPage />,
+        element: (
+          <LocalErrorBoundary>
+            <IntroPage />
+          </LocalErrorBoundary>
+        ),
       },
       {
         path: PATH.YANOLJA_ACCOUNT_VERIFY,
-        element: <VerificationPage />,
+        element: (
+          <LocalErrorBoundary>
+            <VerificationPage />
+          </LocalErrorBoundary>
+        ),
       },
       {
         path: PATH.YANOLJA_ACCOUNT_VERIFY + "/success",
-        element: <SuccessPage />,
+        element: (
+          <LocalErrorBoundary>
+            <SuccessPage />
+          </LocalErrorBoundary>
+        ),
       },
     ],
   },
