@@ -27,10 +27,10 @@ export const getEmailVerification = (scenarioProps?: string) => {
       );
     }
 
-    return HttpResponse.json({
-      message: "이메일 인증번호 발급에 성공했습니다.",
-      data: "1039475",
-    });
+    // return HttpResponse.json({
+    //   message: "이메일 인증번호 발급에 성공했습니다.",
+    //   data: "1039475",
+    // });
   });
 };
 
