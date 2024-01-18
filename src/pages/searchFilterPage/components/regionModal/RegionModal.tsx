@@ -7,7 +7,7 @@ import Gyeonggi from "@assets/regionImages/gyeonggi.jpg";
 import Gangwon from "@assets/regionImages/gangwon.jpg";
 import Jeolla from "@assets/regionImages/jeolla.jpg";
 import Chungcheong from "@assets/regionImages/chungcheong.jpg";
-import Gyeongsang from "@assets/regionImages/Gyeongsang.jpg";
+import Gyeongsang from "@assets/regionImages/gyeongsang.jpg";
 
 interface RegionModalProps {
   setRegionIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
