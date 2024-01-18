@@ -83,4 +83,7 @@ export const SearchButton = styled.div`
   background-color: ${({ theme }) => theme.color.percentOrange};
   border-radius: 12px;
   cursor: pointer;
+  &:hover {
+    opacity: 0.8;
+  }
 `;

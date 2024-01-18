@@ -18,7 +18,7 @@ export const SearchItemFlex = styled.div`
 `;
 
 interface TopButtonProps {
-  visible: boolean;
+  $visible: boolean;
 }
 
 export const TopButton = styled(TopButtonIcon)<TopButtonProps>`
@@ -28,8 +28,8 @@ export const TopButton = styled(TopButtonIcon)<TopButtonProps>`
   right: 23px;
   color: black;
   cursor: pointer;
-  visibility: ${({ visible }) => (visible ? "visible" : "hidden")};
-  opacity: ${({ visible }) => (visible ? "1" : "0")};
+  visibility: ${({ $visible }) => ($visible ? "visible" : "hidden").toString()};
+  opacity: ${({ $visible }) => ($visible ? 1 : 0)};
   transition:
     visibility 0.2s,
     opacity 0.2s;

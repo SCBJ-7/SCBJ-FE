@@ -1,5 +1,5 @@
 import styled from "styled-components";
-
+import SearchIcon from "@assets/icons/ic_search.svg?react";
 export const SearchBarFixContainer = styled.div`
   position: fixed;
   height: 72px;
@@ -28,7 +28,15 @@ export const SearchBarInput = styled.div`
   border-radius: 12px;
   padding: 12px 16px;
   box-shadow: 4px 4px 10px 0px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
 `;
 export const SearchRegion = styled.div`
+  width: 100%;
+  display: flex;
+
+  justify-content: space-between;
+  align-items: center;
   ${({ theme }) => theme.typo.button4}
 `;
+
+export const SearchBarIcon = styled(SearchIcon)``;

@@ -139,6 +139,9 @@ export const CalendarContainer = styled.div`
     font-weight: bold;
   }
   .react-datepicker__day--keyboard-selected {
+    background-color: white;
+  }
+  .react-datepicker__day--in-range.react-datepicker__day--keyboard-selected {
     border-radius: 50% !important;
     color: white !important;
     background-color: ${({ theme }) => theme.color.percentOrange}!important;
@@ -196,4 +199,7 @@ export const SearchButton = styled.div`
   background-color: ${({ theme }) => theme.color.percentOrange};
   border-radius: 12px;
   cursor: pointer;
+  &:hover {
+    opacity: 0.8;
+  }
 `;
