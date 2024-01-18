@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { useFormContext } from "react-hook-form";
 
 import * as S from "./VerificationSection.style.ts";
+import { EMAIL_REGEX } from "@constants/regex";
 
 const VerificationSection = () => {
   const { control, getValues, setError, clearErrors, watch } = useFormContext();
@@ -61,8 +62,7 @@ const VerificationSection = () => {
         rules={{
           required: "이메일을 입력해주세요",
           pattern: {
-            value:
-              /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+            value: EMAIL_REGEX,
             message: "이메일 양식이 올바르지 않습니다",
           },
         }}
