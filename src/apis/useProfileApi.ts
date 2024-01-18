@@ -1,50 +1,22 @@
-import axios from "axios";
-
-const getAuth = () => {
-  if (localStorage.getItem("AccessToken")) {
-    const token = localStorage.getItem("AccessToken");
-    return token;
-  }
-};
-
-const baseUrl = import.meta.env.VITE_SERVER_URL;
-
-export const instance = axios.create({
-  baseURL: baseUrl,
-  headers: { Authorization: `Bearer  + ${getAuth()}` },
-});
-
-instance.interceptors.request.use(
-  (config) => {
-    const token = getAuth();
-    if (token) {
-      config.headers.Authorization = `Bearer ${token}`;
-    }
-    return config;
-  },
-  (error) => {
-    console.log("interceptor request error: ", error);
-    Promise.reject(error);
-  },
-);
+import { axiosInstance } from "./axiosInstance";
 
 const useProfileApi = () => {
   const getProfileData = async (endPoint: string) => {
     const apiURL = `${endPoint}`;
-    const { data } = await instance.get(apiURL);
+    const { data } = await axiosInstance.get(apiURL);
 
     return data.data;
   };
 
   const changeName = async (endPoint: string, name: string) => {
     const apiURL = `${endPoint}`;
-    const res = await instance.patch(apiURL, { name });
+    const res = await axiosInstance.patch(apiURL, { name });
     return res;
   };
 
   const changeNumber = async (endPoint: string, number: string) => {
     const apiURL = `${endPoint}`;
-    const res = await instance.patch(apiURL, { phone: number });
+    const res = await axiosInstance.patch(apiURL, { phone: number });
     return res;
   };
 
