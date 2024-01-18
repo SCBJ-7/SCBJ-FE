@@ -7,7 +7,7 @@ import { createBrowserRouter } from "react-router-dom";
 import App from "../App";
 import { PATH } from "../constants/path";
 
-import Home from "../pages/homePage";
+import Home from "../pages/homePage/Home";
 import NotFound from "../pages/notFoundPage";
 import Search from "../pages/searchPage";
 import SignUp from "../pages/signUpPage/SignUp";

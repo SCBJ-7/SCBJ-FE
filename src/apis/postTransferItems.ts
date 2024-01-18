@@ -12,36 +12,13 @@ export const postTransferItems = async ({
   secondGrantedPeriod,
   isRegistered,
 }: PostTransferProps) => {
-  try {
-    console.log(
-      pathVariable,
-      firstPrice,
-      secondPrice,
-      bank,
-      accountNumber,
-      secondGrantedPeriod,
-      isRegistered,
-      "!!!!!!!!",
-    );
-    const response = await axiosInstance.post(
-      END_POINTS.ROOM(pathVariable),
-      {
-        firstPrice,
-        secondPrice,
-        bank,
-        accountNumber,
-        secondGrantedPeriod,
-        isRegistered,
-      },
-      {
-        headers: {
-          Authorization: `${localStorage.getItem("accessToken")}`,
-          "Content-Type": "application/json",
-        },
-      },
-    );
-    return response.data;
-  } catch (err) {
-    console.log(err, "err");
-  }
+  const { data } = await axiosInstance.post(END_POINTS.ROOM(pathVariable), {
+    firstPrice,
+    secondPrice,
+    bank,
+    accountNumber,
+    secondGrantedPeriod,
+    isRegistered,
+  });
+  return data;
 };

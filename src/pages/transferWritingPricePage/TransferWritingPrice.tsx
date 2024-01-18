@@ -29,6 +29,7 @@ const TransferWritingPrice = () => {
   const { data: userData } = useSuspenseQuery({
     queryKey: ["UserInfo"],
     queryFn: fetchUserInfo,
+    staleTime: 5000000,
   });
 
   // first price value

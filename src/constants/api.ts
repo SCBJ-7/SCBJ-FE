@@ -11,7 +11,7 @@ export const END_POINTS = {
 } as const;
 
 export const ERROR_CODE = {
-  INVALID_TOKEN: 400,
+  INVALID_TOKEN: 402,
   EXPIRED_TOKEN: 401,
 } as const;
 

@@ -6,6 +6,14 @@ import { useLocation } from "react-router-dom";
 import { PATH } from "@/constants/path";
 import useToastConfig from "@hooks/common/useToastConfig";
 import usePreventLeave from "@hooks/common/usePreventLeave";
+import { Nullable } from "@type/nullable";
+
+//   bank: string | null;
+//   accountNumber: string | null;
+//   onSubmitAccount: React.Dispatch<React.SetStateAction<"none" | "enter">>;
+//   onSetAccountNumber: React.Dispatch<React.SetStateAction<string | null>>;
+//   onSetBank: React.Dispatch<React.SetStateAction<string | null>>;
+// }) => {
 
 const EnterAccountInfo = ({
   bank,
@@ -14,11 +22,11 @@ const EnterAccountInfo = ({
   onSetAccountNumber,
   onSetBank,
 }: {
-  bank: string | null;
-  accountNumber: string | null;
+  bank: Nullable<string>;
+  accountNumber: Nullable<string>;
   onSubmitAccount: React.Dispatch<React.SetStateAction<"none" | "enter">>;
-  onSetAccountNumber: React.Dispatch<React.SetStateAction<string | null>>;
-  onSetBank: React.Dispatch<React.SetStateAction<string | null>>;
+  onSetAccountNumber: React.Dispatch<React.SetStateAction<Nullable<string>>>;
+  onSetBank: React.Dispatch<React.SetStateAction<Nullable<string>>>;
 }) => {
   usePreventLeave(true);
   const { pathname } = useLocation();
