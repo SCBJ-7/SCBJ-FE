@@ -33,8 +33,8 @@ const TransferWritingPrice = () => {
 
   // first price value
   const [firstPrice, setFirstPrice] = useState("");
-  const [is2ndChecked, setIs2ndChecked] = useState(false); // activating 2nd price value
-  const firstCheckRef = useRef(null);
+  const [is2ndChecked, setIs2ndChecked] = useState(false); // activating 2nd price value state
+  const firstCheckRef = useRef(null); // 2차 가격 체크박스 ref
   const firstInputRef = useRef(null);
 
   // second price value
@@ -94,6 +94,7 @@ const TransferWritingPrice = () => {
     userData,
   ]);
 
+  // 페이지 전환 시 적용할 효과
   useEffect(() => {
     if (accountSetting === "none") {
       setHeaderConfig({
@@ -102,6 +103,10 @@ const TransferWritingPrice = () => {
           navigate(PATH.WRITE_TRANSFER);
         },
       });
+
+      if (is2ndChecked && firstCheckRef.current) {
+        (firstCheckRef.current as HTMLInputElement).checked = true;
+      }
     }
 
     if (accountSetting === "enter") {
@@ -111,8 +116,13 @@ const TransferWritingPrice = () => {
           setAccountSetting("none");
         },
       });
+
+      if (is2ndChecked && firstCheckRef.current) {
+        (firstCheckRef.current as HTMLInputElement).checked = false;
+      }
     }
-  }, [accountSetting, navigate, selectedItem.hotelName, setHeaderConfig]);
+    // eslint-disable-next-line
+  }, [accountSetting]);
 
   const { mutate } = useMutation({
     mutationFn: () =>
