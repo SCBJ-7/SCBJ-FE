@@ -18,7 +18,6 @@ const Search = () => {
       });
     }
   };
-  console.log(scrollPosition);
 
   useEffect(() => {
     const handleScroll = () => {

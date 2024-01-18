@@ -23,7 +23,6 @@ const SearchBar = () => {
   }${
     searchInfo.maximumPeople > 0 ? `${searchInfo.maximumPeople}인` : ""
   }`.trim();
-  console.log("abc", typeof searchInfo.maximumPeople);
   const handleSearchBar = () => {
     navigate(PATH.SEARCH_FILTER);
   };

@@ -72,9 +72,13 @@ export const RegionItem = styled.div`
   box-shadow: 4px 4px 10px 0px rgba(0, 0, 0, 0.2);
   transition: 0.1s;
   ${({ theme }) => theme.typo.body3}
+  position: relative;
+  overflow: hidden; /* overflow 설정 추가 */
+
   &:hover {
     border: 1px solid ${({ theme }) => theme.color.greyScale3};
   }
+
   &.active {
     border: 2px solid ${({ theme }) => theme.color.percentOrange};
     color: ${({ theme }) => theme.color.percentOrange};
@@ -84,13 +88,17 @@ export const RegionItem = styled.div`
 
 export const RegionImage = styled.img`
   width: 100%;
+  aspect-ratio: 1/1; /* width와 height를 1:1로 설정 */
+  object-fit: cover;
   border-radius: 12px 12px 0 0;
+  position: relative;
 `;
-
 export const RegionName = styled.div`
   width: 100%;
   height: 23px;
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: white;
+  border-radius: 0 0 12px 12px;
 `;

@@ -1,6 +1,13 @@
 import React from "react";
 import * as S from "./RegionModal.style";
-import Seoul from "@assets/images/Seoul.jpg";
+import Seoul from "@assets/regionImages/seoul.jpg";
+import Busan from "@assets/regionImages/busan.jpg";
+import Jeju from "@assets/regionImages/jeju.jpg";
+import Gyeonggi from "@assets/regionImages/gyeonggi.jpg";
+import Gangwon from "@assets/regionImages/gangwon.jpg";
+import Jeolla from "@assets/regionImages/jeolla.jpg";
+import Chungcheong from "@assets/regionImages/chungcheong.jpg";
+import Gyeongsang from "@assets/regionImages/Gyeongsang.jpg";
 
 interface RegionModalProps {
   setRegionIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
@@ -16,6 +23,7 @@ const RegionModal = ({
   const handleItemClick = (region: string) => {
     if (location !== region) {
       setLocation(region);
+      setRegionIsModalOpen(false);
     } else {
       setLocation(null);
     }
@@ -24,8 +32,6 @@ const RegionModal = ({
   const handleModalClose = () => {
     setRegionIsModalOpen(false);
   };
-
-  console.log("a", location);
 
   return (
     <S.ModalContainer>
@@ -50,14 +56,14 @@ const RegionModal = ({
               onClick={() => handleItemClick("부산")}
               className={location === "부산" ? "active" : ""}
             >
-              <S.RegionImage src={Seoul} />
+              <S.RegionImage src={Busan} />
               <S.RegionName>부산</S.RegionName>
             </S.RegionItem>
             <S.RegionItem
               onClick={() => handleItemClick("제주")}
               className={location === "제주" ? "active" : ""}
             >
-              <S.RegionImage src={Seoul} />
+              <S.RegionImage src={Jeju} />
               <S.RegionName>제주</S.RegionName>
             </S.RegionItem>
           </S.RegionItemsLine>
@@ -66,21 +72,21 @@ const RegionModal = ({
               onClick={() => handleItemClick("경기")}
               className={location === "경기" ? "active" : ""}
             >
-              <S.RegionImage src={Seoul} />
+              <S.RegionImage src={Gyeonggi} />
               <S.RegionName>경기</S.RegionName>
             </S.RegionItem>
             <S.RegionItem
               onClick={() => handleItemClick("강원")}
               className={location === "강원" ? "active" : ""}
             >
-              <S.RegionImage src={Seoul} />
+              <S.RegionImage src={Gangwon} />
               <S.RegionName>강원</S.RegionName>
             </S.RegionItem>
             <S.RegionItem
               onClick={() => handleItemClick("경상")}
               className={location === "경상" ? "active" : ""}
             >
-              <S.RegionImage src={Seoul} />
+              <S.RegionImage src={Gyeongsang} />
               <S.RegionName>경상</S.RegionName>
             </S.RegionItem>
           </S.RegionItemsLine>
@@ -89,14 +95,14 @@ const RegionModal = ({
               onClick={() => handleItemClick("전라")}
               className={location === "전라" ? "active" : ""}
             >
-              <S.RegionImage src={Seoul} />
+              <S.RegionImage src={Jeolla} />
               <S.RegionName>전라</S.RegionName>
             </S.RegionItem>
             <S.RegionItem
               onClick={() => handleItemClick("충청")}
               className={location === "충청" ? "active" : ""}
             >
-              <S.RegionImage src={Seoul} />
+              <S.RegionImage src={Chungcheong} />
               <S.RegionName>충청</S.RegionName>
             </S.RegionItem>
           </S.RegionItemsLine>

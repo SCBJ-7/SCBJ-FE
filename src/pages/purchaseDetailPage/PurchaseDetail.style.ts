@@ -55,9 +55,9 @@ export const ItemInfoContent = styled.div`
     ${({ theme }) => theme.typo.body2}
   }
 `;
-export const ItemInfoStatus = styled.div<{ remainingDays: number }>`
-  color: ${({ theme, remainingDays }) =>
-    remainingDays >= 0 ? theme.color.percentOrange : theme.color.black};
+export const ItemInfoStatus = styled.div<{ $remainingDays: number }>`
+  color: ${({ theme, $remainingDays }) =>
+    $remainingDays >= 0 ? theme.color.percentOrange : theme.color.black};
 `;
 export const ImageContainer = styled.div`
   width: 100%;
