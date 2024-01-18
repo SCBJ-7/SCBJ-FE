@@ -1,14 +1,18 @@
+import { useNavigate } from "react-router-dom";
 import { ProfileData } from "../manageProfile/ManageProfile.type";
 import * as S from "./AccountInfo.style";
+import { PATH } from "@constants/path";
+import type { AccountProps } from "@type/account";
 
 const AccountInfo = ({
   data,
-  onClick,
+  accountInfo,
 }: {
   data: ProfileData;
-  onClick: () => void;
+  accountInfo: AccountProps;
 }) => {
   const { bank, accountNumber, name } = data;
+  const navigate = useNavigate();
 
   return (
     <S.AccountInfoContainer>
@@ -26,7 +30,14 @@ const AccountInfo = ({
         <h2>예금주</h2>
         <div>{name}</div>
       </S.AccountInfoWrapper>
-      <S.AccountEditButton type="button" onClick={onClick}>
+      <S.AccountEditButton
+        type="button"
+        onClick={() =>
+          navigate(PATH.ACCOUNT_EDIT, {
+            state: accountInfo,
+          })
+        }
+      >
         계좌 변경하기
       </S.AccountEditButton>
     </S.AccountInfoContainer>

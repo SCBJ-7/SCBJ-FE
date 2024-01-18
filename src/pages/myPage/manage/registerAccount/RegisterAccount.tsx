@@ -4,6 +4,7 @@ import { useNavigate, useSearchParams } from "react-router-dom";
 import TermsAgreement from "@/components/account/termsAgreement/TermsAgreement";
 import EnterAccountInfo from "@/components/account/enterAccountInfo/EnterAccountInfo";
 import type { AccountProps } from "@/types/account";
+import { PATH } from "@constants/path";
 
 const RegisterAccount = () => {
   const navigate = useNavigate();
@@ -20,13 +21,12 @@ const RegisterAccount = () => {
   };
 
   useEffect(() => {
-    if (path.size === 0 || path.get("step") === "first") {
-      handleStep("first");
-      return;
-    }
-
+    /** state로 관리하는 step을 url 변경으로 조작하지 못하도록
+     *  url 상의 step이 step state와 일치하는 지 검사 후
+     *  일치하지 않을 경우 정산계좌 관리 페이지로 보냄
+     *  */
     if (path.get("step") !== step) {
-      navigate("/manage-account");
+      navigate(PATH.MANAGE_ACCOUNT, { replace: true });
     }
     // eslint-disable-next-line
   }, [path]);
@@ -39,15 +39,15 @@ const RegisterAccount = () => {
           <p>
             계좌를 등록하고 못가게 된<br /> 숙박권을 판매해보세요!
           </p>
-          <S.RegisterAccountButton onClick={() => handleStep("약관 동의")}>
+          <S.RegisterAccountButton onClick={() => handleStep("termsAgreement")}>
             1분만에 계좌 등록하기
           </S.RegisterAccountButton>
         </S.RegisterAccountContainer>
       )}
-      {step === "약관 동의" && (
-        <TermsAgreement onClickHandler={() => handleStep("계좌 입력")} />
+      {step === "termsAgreement" && (
+        <TermsAgreement onClickHandler={() => handleStep("enterAccount")} />
       )}
-      {step === "계좌 입력" && (
+      {step === "enterAccount" && (
         <EnterAccountInfo
           accountInfo={accountInfo}
           setAccountInfo={setAccountInfo}
