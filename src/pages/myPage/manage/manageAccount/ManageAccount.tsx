@@ -5,21 +5,19 @@ import { useEffect, useState } from "react";
 import EnterAccountInfo from "@components/account/enterAccountInfo/EnterAccountInfo";
 import type { AccountProps } from "@type/account";
 import AccountInfo from "../accountInfo/AccountInfo";
-import useToastConfig from "@hooks/common/useToastConfig";
 import { END_POINTS } from "@constants/api";
 import { useLocation } from "react-router-dom";
 
 const ManageAccount = () => {
   const { search: step } = useLocation();
   const { getProfileData } = useProfileApi();
-  const { handleToast } = useToastConfig();
   const [data, setData] = useState<ProfileData>();
   const noPrevAccount = !data?.accountNumber && !data?.bank;
   const [accountInfo, setAccountInfo] = useState<AccountProps>({
     accountNumber: data?.accountNumber,
     bank: data?.bank,
   });
-  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
   const [isEditing, setIsEditing] = useState<boolean>(false);
 
   const fetchData = async () => {
@@ -28,8 +26,8 @@ const ManageAccount = () => {
       const res = await getProfileData(END_POINTS.USER_INFO);
       setData(res);
       setAccountInfo({ accountNumber: res.accountNumber, bank: res.bank });
-    } catch {
-      handleToast(true, [<>fetching err</>]);
+    } catch (error) {
+      console.log(error);
     } finally {
       setIsLoading(false);
     }
@@ -46,23 +44,22 @@ const ManageAccount = () => {
     setIsEditing(state);
   };
 
-  return (
-    <>
-      {isLoading ? (
-        <div>Loading</div>
-      ) : noPrevAccount ? (
-        <RegisterAccount />
-      ) : isEditing ? (
-        <EnterAccountInfo
-          accountInfo={accountInfo}
-          setAccountInfo={setAccountInfo}
-          setIsEditing={setIsEditing}
-        />
-      ) : (
-        <AccountInfo data={data} onClick={() => setEditState(true)} />
-      )}
-    </>
-  );
+  if (isLoading) return <div>Loading...</div>;
+
+  if (!data) return <div>Data fetching Error</div>;
+
+  if (noPrevAccount) return <RegisterAccount />;
+
+  if (isEditing)
+    return (
+      <EnterAccountInfo
+        accountInfo={accountInfo}
+        setAccountInfo={setAccountInfo}
+        setIsEditing={setIsEditing}
+      />
+    );
+
+  return <AccountInfo data={data} onClick={() => setEditState(true)} />;
 };
 
 export default ManageAccount;
