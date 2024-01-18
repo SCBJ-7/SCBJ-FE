@@ -6,11 +6,12 @@ export const END_POINTS = {
   PURCHASE_DETAIL: (purchaseId: string) => `/v1/purchase-detail/${purchaseId}`,
   EMAIL: "/v1/members/email",
   YANOLJA: "/v1/members/yanolja",
+  ACCOUNT: "/v1/members/account",
   NEW_TOKEN: "/v1/token/refresh",
 } as const;
 
 export const ERROR_CODE = {
-  INVALID_TOKEN: 400,
+  INVALID_TOKEN: 402,
   EXPIRED_TOKEN: 401,
 } as const;
 
