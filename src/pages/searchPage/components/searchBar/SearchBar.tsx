@@ -13,7 +13,7 @@ const SearchBar = () => {
     searchInfo.location === null;
 
   const searchBarContent = `${
-    searchInfo.location ? `${searchInfo.location} ` : ""
+    searchInfo.location ? `${searchInfo.location} / ` : ""
   }${searchInfo.checkIn || ""}${
     searchInfo.checkOut && searchInfo.checkIn ? " ~ " : ""
   }${searchInfo.checkOut || ""}${
@@ -21,8 +21,11 @@ const SearchBar = () => {
       ? " / "
       : ""
   }${
-    searchInfo.maximumPeople > 0 ? `${searchInfo.maximumPeople}인` : ""
+    searchInfo.maximumPeople !== null && searchInfo.maximumPeople > 0
+      ? `${searchInfo.maximumPeople}인`
+      : ""
   }`.trim();
+
   const handleSearchBar = () => {
     navigate(PATH.SEARCH_FILTER);
   };
@@ -33,7 +36,6 @@ const SearchBar = () => {
           <S.SearchBarInput>
             <S.SearchRegion>
               <div>
-                {" "}
                 {isDisabled ? "어떤 호텔을 찾으세요?" : searchBarContent}
               </div>
               <div>
