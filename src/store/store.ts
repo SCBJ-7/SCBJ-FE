@@ -77,7 +77,7 @@ export const useUserInfoStore = create<UserState>((set) => ({
     phone: "",
     accountNumber: null,
     bank: null,
-    linkToYanolja: false,
+    linkedToYanolja: false,
   },
   // 데이터 조작 set 함수
   setUserInfo: (updatedInfo) =>
