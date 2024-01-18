@@ -78,7 +78,7 @@ export const useUserInfoStore = create<UserState>((set) => ({
     phone: "",
     accountNumber: null,
     bank: null,
-    linkToYanolja: false,
+    linkedToYanolja: false,
   },
   // 데이터 조작 set 함수
   setUserInfo: (updatedInfo) =>
@@ -150,3 +150,26 @@ export const useSearchFilterInfoStore = create(
     { name: "searchFilterStorage" },
   ),
 );
+type Iheader = {
+  title: string;
+  undo: () => void;
+};
+
+interface HeaderStates {
+  headerConfig: Iheader;
+  setHeaderConfig: (updated: Iheader) => void;
+}
+
+export const useStateHeaderStore = create<HeaderStates>((set) => ({
+  headerConfig: {
+    title: "",
+    undo: () => {},
+  },
+  setHeaderConfig: (updated) =>
+    set((state) => ({
+      headerConfig: {
+        ...state.headerConfig,
+        ...updated,
+      },
+    })),
+}));

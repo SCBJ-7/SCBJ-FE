@@ -5,5 +5,5 @@ export interface IUserInfo {
   phone: string;
   accountNumber: string | null;
   bank: string | null;
-  linkToYanolja: boolean;
+  linkedToYanolja: boolean;
 }

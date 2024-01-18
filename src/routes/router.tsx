@@ -6,7 +6,7 @@ import { createBrowserRouter } from "react-router-dom";
 import App from "../App";
 import { PATH } from "../constants/path";
 
-import Home from "../pages/homePage";
+import Home from "../pages/homePage/Home";
 import NotFound from "../pages/notFoundPage";
 import Search from "../pages/searchPage/Search";
 import SignUp from "../pages/signUpPage/SignUp";
@@ -25,7 +25,7 @@ import PurchaseDetail from "@/pages/purchaseDetailPage/PurchaseDetail";
 import SearchFilter from "@/pages/searchFilterPage/SearchFilter";
 import TransferWritingPrice from "@/pages/transferWritingPricePage/TransferWritingPrice";
 import LocalErrorBoundary from "@components/errorBoundary/LocalErrorBoundary";
-import TransferWritingSuccess from "@pages/transferWritingDonePage/TransferWritingSuccess";
+import TransferWritingSuccess from "@pages/transferWritingSuccessPage/TransferWritingSuccess";
 
 export const router = createBrowserRouter([
   {
@@ -80,9 +80,11 @@ export const router = createBrowserRouter([
       {
         path: PATH.WRITE_TRANSFER,
         element: (
-          <Suspense fallback={<div>{/* loading */}</div>}>
-            <TransferWriting />
-          </Suspense>
+          <LocalErrorBoundary>
+            <Suspense fallback={<div>{/* loading */}</div>}>
+              <TransferWriting />
+            </Suspense>
+          </LocalErrorBoundary>
         ),
       },
       {

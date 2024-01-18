@@ -10,13 +10,9 @@ import { roomHandlers } from "./handlers/room";
 
 export const handlers = [
   ...roomHandlers,
-  // ...Object.values(emailHandlers),
   http.get("/api/roomId", () => {
     return HttpResponse.json(dummyRoom);
   }),
-  // http.get("/v1/members", () => {
-  //   return HttpResponse.json(userInfo);
-  // }),
   http.get("/v1/members/purchased-history", () => {
     return HttpResponse.json(dummyPurchaseList);
   }),

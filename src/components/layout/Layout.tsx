@@ -4,6 +4,7 @@ import * as S from "./Layout.style";
 import BottomNav from "./navBottom/NavBottom";
 import { useLocation } from "react-router-dom";
 import { PATH } from "@/constants/path";
+import TransferPricingHeader from "./transferWritingPriceHeader/TransferPricingHeaderTop";
 
 interface ChildrenProps {
   children: React.ReactNode;
@@ -18,6 +19,7 @@ const Layout = ({ children }: ChildrenProps) => {
     PATH.LOGIN,
     PATH.DETAIL_ROOM,
     PATH.YANOLJA_ACCOUNT,
+    PATH.WRITE_TRANSFER_PRICE,
   ];
 
   const pathsToExcludeBottom = [
@@ -26,22 +28,24 @@ const Layout = ({ children }: ChildrenProps) => {
     PATH.YANOLJA_ACCOUNT,
     PATH.SEARCH_FILTER,
     PATH.PURCAHSE_DEATAIL,
+    PATH.WRITE_TRANSFER_PRICE,
   ];
 
   const isHeaderOn = !pathsToExcludeHeader.some((path) =>
     pathname.includes(path),
   );
-  let isBottomNavOn = !pathsToExcludeBottom.some((path) =>
+  const isBottomNavOn = !pathsToExcludeBottom.some((path) =>
     pathname.includes(path),
   );
 
-  if (pathname.includes(PATH.WRITE_TRANSFER_PRICE as string)) {
-    isBottomNavOn = false;
-  }
+  const isTransferPricingHeaderOn = pathname.includes(
+    PATH.WRITE_TRANSFER_PRICE,
+  );
 
   return (
     <S.Container>
       {isHeaderOn && <Header />}
+      {isTransferPricingHeaderOn && <TransferPricingHeader />}
       <S.Wrapper
         $isHeaderOn={isHeaderOn} //
         $isBottomNavOn={isBottomNavOn}
