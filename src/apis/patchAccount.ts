@@ -1,9 +1,9 @@
-import { instance } from "@apis/useProfileApi";
 import { END_POINTS } from "@constants/api";
-import { AccountProps } from "@type/account";
+import type { AccountProps } from "@type/account";
+import { axiosInstance } from "./axiosInstance";
 
 export const patchAccount = async (accountData: AccountProps) => {
-  const { data } = await instance.patch(END_POINTS.ACCOUNT, accountData);
+  const { data } = await axiosInstance.patch(END_POINTS.ACCOUNT, accountData);
 
   return data.data;
 };
