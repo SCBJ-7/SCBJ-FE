@@ -6,11 +6,15 @@ export const fetchTransferItems = async (): Promise<
   IReservation[] | undefined
 > => {
   try {
+    const token = localStorage.getItem("accessToken");
+    if (!token) {
+      throw new Error("No Token");
+    }
     const response = await axios.get(
       "https://3.34.147.187.nip.io/v1/reservations",
       {
         headers: {
-          Authorization: `${localStorage.getItem("accessToken")}`,
+          Authorization: `${token}`,
           "Content-Type": "application/json",
         },
       },
