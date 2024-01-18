@@ -1,4 +1,5 @@
-import Carousel from "@components/carousel/Carousel";
+import ItemCarousel from "@components/itemCarousel/ItemCarousel";
+import * as S from "./Home.style";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
@@ -8,7 +9,8 @@ const Home = () => {
     "https://media.discordapp.net/attachments/1175967240030531667/1179675297034014812/256.jpeg?ex=65a8c9bc&is=659654bc&hm=a03d4fe9dc349cc8cad08c60b5890c723d94d4c598fa553693d631174bcea879&=&format=webp",
     "https://media.discordapp.net/attachments/1175967240030531667/1179675297352790026/2154.png?ex=65a8c9bc&is=659654bc&hm=c92f12e2aed013a9501cd4e0417f12fd99217fe8bcd260e844219dc1f363318b&=&format=webp&quality=lossless&width=712&height=535",
   ];
-  //객실 정보
+
+  // 객실 정보
   interface Room {
     id: number;
     name: string;
@@ -19,30 +21,27 @@ const Home = () => {
     roomPicture: string;
   }
 
-  const [rooms, setRooms] = useState<Room[]>([]);
-  // const { id } = useParams<Params>();
+  const [, setRooms] = useState<Room[]>([]);
 
   useEffect(() => {
     const fetchData = async () => {
-      try {
-        const res = await axios.get("/api/roomId");
-        setRooms(res.data);
-      } catch (error) {
-        console.error(error);
-      }
+      const res = await axios.get("/api/roomId");
+      setRooms(res.data);
     };
 
     fetchData();
   }, []);
-  console.log("rooms", rooms);
+
   return (
-    <Carousel
-      images={dummyImg}
-      height={150}
-      arrows={true}
-      infinite={true}
-      draggable={true}
-    />
+    <S.Container>
+      <ItemCarousel
+        images={dummyImg}
+        height={150}
+        arrows={true}
+        infinite={true}
+        draggable={true}
+      />
+    </S.Container>
   );
 };
 

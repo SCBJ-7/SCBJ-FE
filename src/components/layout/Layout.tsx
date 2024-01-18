@@ -5,6 +5,7 @@ import BottomNav from "./navBottom/NavBottom";
 import { useLocation } from "react-router-dom";
 import { PATH } from "@/constants/path";
 import TransferPricingHeader from "./transferWritingPriceHeader/TransferPricingHeaderTop";
+import MainHeader from "@pages/homePage/mainHeader/MainHeader";
 
 interface ChildrenProps {
   children: React.ReactNode;
@@ -23,16 +24,23 @@ const Layout = ({ children }: ChildrenProps) => {
     PATH.WRITE_TRANSFER_PRICE,
   ];
 
-  const isHeaderOn = !pathsToExclude.some((path) => pathname.includes(path));
+  let isHeaderOn = !pathsToExclude.some((path) => pathname.includes(path));
   const isBottomNavOn = !pathsToExclude.some((path) => pathname.includes(path));
 
+  if (pathname === PATH.ROOT) {
+    isHeaderOn = false;
+  }
+
+  // 특수한 헤더
   const isTransferPricingHeaderOn = pathname.includes(
     PATH.WRITE_TRANSFER_PRICE,
   );
+  const isMainHeaderOn = pathname.includes(PATH.ROOT);
 
   return (
     <S.Container>
       {isHeaderOn && <Header />}
+      {isMainHeaderOn && <MainHeader />}
       {isTransferPricingHeaderOn && <TransferPricingHeader />}
       <S.Wrapper
         $isHeaderOn={isHeaderOn} //
