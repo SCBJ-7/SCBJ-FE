@@ -1,6 +1,6 @@
 import axios from "axios";
 import SearchBar from "./components/searchBar/SearchBar";
-import SearchNav from "./components/earchNav/SearchNav";
+import SearchNav from "./components/searchNav/SearchNav";
 import * as S from "./Search.style";
 import { useEffect, useRef, useState } from "react";
 import { ISearchList } from "@/types/searchList";
