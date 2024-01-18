@@ -4,6 +4,7 @@ import { ColorKeys, TypoKeys } from "@styles/theme";
 import { PRIVACY_POLICY } from "./PrivacyPolicy";
 import usePreventLeave from "@/hooks/common/usePreventLeave";
 import useToastConfig from "@hooks/common/useToastConfig";
+import { useNavigate } from "react-router-dom";
 
 interface Term {
   id: string;
@@ -15,6 +16,7 @@ interface Term {
 const TermsAgreement = ({ onClickHandler }: { onClickHandler: () => void }) => {
   const { handleToast } = useToastConfig();
   const scrollRef = useRef<HTMLDivElement>(null);
+  const navigate = useNavigate();
   usePreventLeave(true);
 
   const termsList: Term[] = [
@@ -101,30 +103,37 @@ const TermsAgreement = ({ onClickHandler }: { onClickHandler: () => void }) => {
   };
 
   return (
-    <S.TermsAgreementContainer ref={scrollRef}>
-      <h1>계좌등록을 위한 필수 약관입니다</h1>
-      {termsList.map((term) => (
-        <S.CheckContainer key={term.id}>
-          <S.CheckBox
-            id={term.id}
-            onChange={checkHandler}
-            checked={checkedTerms[term.id]}
-          />
-          <S.Label
-            htmlFor={term.id}
-            $isChecked={checkedTerms[term.id]}
-            $typo={term.typo}
-            $color={term.color}
-          >
-            {term.content}
-          </S.Label>
-        </S.CheckContainer>
-      ))}
-      <PRIVACY_POLICY />
-      <S.Button $disabled={!checkedTerms["agree-all"]} onClick={btnOnClick}>
-        모든 약관에 동의합니다
-      </S.Button>
-    </S.TermsAgreementContainer>
+    <>
+      <S.Header>
+        <a>
+          <S.XIcon onClick={() => navigate(-1)} />
+        </a>
+      </S.Header>
+      <S.TermsAgreementContainer ref={scrollRef}>
+        <h1>계좌등록을 위한 필수 약관입니다</h1>
+        {termsList.map((term) => (
+          <S.CheckContainer key={term.id}>
+            <S.CheckBox
+              id={term.id}
+              onChange={checkHandler}
+              checked={checkedTerms[term.id]}
+            />
+            <S.Label
+              htmlFor={term.id}
+              $isChecked={checkedTerms[term.id]}
+              $typo={term.typo}
+              $color={term.color}
+            >
+              {term.content}
+            </S.Label>
+          </S.CheckContainer>
+        ))}
+        <PRIVACY_POLICY />
+        <S.Button $disabled={!checkedTerms["agree-all"]} onClick={btnOnClick}>
+          모든 약관에 동의합니다
+        </S.Button>
+      </S.TermsAgreementContainer>
+    </>
   );
 };
 
