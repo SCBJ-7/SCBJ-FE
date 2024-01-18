@@ -25,9 +25,13 @@ const PuchaseItem = (props: IPurchaseItemWithRemainDate) => {
           <S.PurchaseItemName>{props.name}</S.PurchaseItemName>
           <S.PuChaseItemType>{props.roomType}</S.PuChaseItemType>
           <S.PuChaseItemDate>
-            {`${formatDate(props.checkInDate)} ~ `}
-            {formatDate(props.checkOutDate)}
+            <S.PuChaseItemDate>
+              {`${formatDate(props.checkInDate)} ~ ${formatDate(
+                props.checkOutDate,
+              )}`}
+            </S.PuChaseItemDate>
           </S.PuChaseItemDate>
+
           <S.PurchaseItemPrice>{`${props.price.toLocaleString()}원`}</S.PurchaseItemPrice>
         </S.PuchaseItemInfo>
       </S.PurchaseItemContent>
