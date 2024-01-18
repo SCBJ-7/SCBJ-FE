@@ -3,7 +3,6 @@ import { http, HttpResponse } from "msw";
 import dummyPurchaseList from "./data/dummyPuchaseList.json";
 import dummyPurchaseDetail from "./data/dummyPurchaseDetail.json";
 import dummySearchList from "./data/dummySearchList.json";
-import userInfo from "./data/userInfo.json";
 import dummyRoom from "./data/dummyRoomDetail.json";
 // import userInfo from "./data/userInfo.json";
 import { roomHandlers } from "./handlers/room";

@@ -48,9 +48,9 @@ const SearchFilter = () => {
     navigate(PATH.SEARCHLIST);
   };
 
-  const formatDate = (day: string) => {
-    //"2024-02-01"=>"02. 01"
-    return format(day, "MM.dd", {
+  const formatDate = (day: string): string => {
+    // "2024-02-01" => "02. 01"
+    return format(new Date(day), "MM.dd", {
       locale: ko,
     });
   };

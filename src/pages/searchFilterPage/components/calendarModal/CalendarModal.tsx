@@ -52,7 +52,7 @@ const CalendarModal = ({
       return "saturday";
     }
 
-    return undefined;
+    return null; // Return null for other days
   };
 
   const adjustEndDate = (start: Date, end: Date) => {
