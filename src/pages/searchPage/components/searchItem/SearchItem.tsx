@@ -12,7 +12,7 @@ const SearchItem = ({ item }: { item: ISearchList }) => {
 
     return `${percentage}%`;
   };
-  const formatDateString = (dateString) => {
+  const formatDateString = (dateString: string) => {
     // 문자열을 Date 객체로 파싱
     const dateObject = parseISO(dateString);
 
