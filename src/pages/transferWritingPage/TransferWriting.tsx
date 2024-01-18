@@ -21,6 +21,7 @@ const TransferWriting = () => {
   const { data: transferData } = useQuery({
     queryKey: ["TransferItemList", userData?.id],
     queryFn: fetchTransferItems,
+    enabled: !!userData?.id,
   });
 
   const token = localStorage.getItem("accessToken");
