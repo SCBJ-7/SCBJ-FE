@@ -35,6 +35,23 @@ export const EnterAccountInfoContainer = styled.div`
   }
 `;
 
+export const Header = styled.header`
+  display: flex;
+  align-items: center;
+
+  padding: 0 20px;
+
+  height: 48px;
+
+  ${({ theme }) => theme.typo.body1}
+  color: ${({ theme }) => theme.color.black};
+
+  h1 {
+    width: calc(100% - 48px);
+    text-align: center;
+  }
+`;
+
 export const AccountNumberInput = styled.input.attrs({
   type: "number",
   placeholder: "계좌번호",
