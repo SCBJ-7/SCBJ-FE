@@ -12,7 +12,7 @@ export const HeaderContainer = styled.section`
   top: 0;
   z-index: 10;
 
-  background-color: white;
+  background-color: ${({ theme }) => theme.color.greyScale6};
 `;
 
 export const HeaderWrapper = styled.div`
@@ -25,8 +25,33 @@ export const HeaderWrapper = styled.div`
   align-items: center;
 
   color: ${({ theme }) => theme.color.black};
+  padding: 0 20px;
+
+  section {
+    position: relative;
+    border-radius: 50%;
+    transition: 0.2s;
+  }
+
+  & section:hover {
+    background-color: ${({ theme }) => theme.color.greyScale5};
+  }
 `;
 
 export const bellIcon = styled(LuBell)`
   font-size: 24px;
+  color: ${({ theme }) => theme.color.black};
+  cursor: pointer;
+`;
+
+export const bellAlertOn = styled.div`
+  width: 10px;
+  height: 10px;
+  background-color: ${({ theme }) => theme.color.cautionRed};
+  border-radius: 50%;
+
+  position: absolute;
+  top: 0px;
+  left: 13px;
+  border: 1px solid ${({ theme }) => theme.color.greyScale6};
 `;

@@ -3,13 +3,16 @@ import styled, { css } from "styled-components";
 
 export const CarouselContainer = styled.div<{
   $height: number;
-  $width: number;
 }>`
   position: relative;
 
-  width: ${(props) => `${props.$width}px`};
+  width: 100%;
   min-height: ${(props) => `${props.$height}px`};
   height: ${(props) => `${props.$height}px`};
+  background-color: white;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 
   overflow: hidden;
   cursor: grab;
@@ -19,7 +22,6 @@ export const CarouselContainer = styled.div<{
 
 export const SliderWrapper = styled.div`
   width: 100%;
-
   overflow: hidden;
 `;
 
@@ -37,22 +39,6 @@ export const ImageShadowWrapper = styled.div`
   height: 90px;
   z-index: 2;
   background-image: linear-gradient(rgba(39, 50, 60, 0.5), rgba(39, 50, 60, 0));
-`;
-
-export const ImageWrapper = styled.div<{
-  $height: number;
-}>`
-  width: 100%;
-  min-height: ${(props) => `${props.$height}px`};
-  height: ${(props) => `${props.$height}px`};
-
-  flex: 0 0 auto;
-
-  img {
-    width: 100%;
-    height: ${(props) => `${props.$height}px`};
-    object-fit: cover;
-  }
 `;
 
 export const ButtonContainer = styled.div`

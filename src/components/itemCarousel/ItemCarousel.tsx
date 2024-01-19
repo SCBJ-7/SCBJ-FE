@@ -1,10 +1,15 @@
 import { useCarousel } from "@hooks/common/useCarousel";
 import { useCarouselSize } from "@hooks/common/useCarouselSize";
 import * as S from "./ItemCarousel.style.ts";
+import { LocaleItem } from "@type/saleSection.ts";
+import ItemCarouselUnit from "./itemCarouselUnit/ItemCarouselUnit.tsx";
+import { useEffect } from "react";
 
 interface CarouselProps {
-  images: string[];
-  width?: number;
+  localeAndHotel: [number, string, LocaleItem[]][];
+  onChangeLocale: React.Dispatch<
+    React.SetStateAction<[number, string, LocaleItem[]]>
+  >;
   height?: number;
   arrows?: boolean;
   infinite?: boolean;
@@ -13,18 +18,14 @@ interface CarouselProps {
 }
 
 const ItemCarousel = ({
+  localeAndHotel,
+  onChangeLocale,
   height = 300,
-  width = 300,
-  images,
   arrows = true,
   infinite = false,
   draggable = false,
   innerShadow = false,
 }: CarouselProps) => {
-  const slideList = infinite
-    ? [images.at(-1), ...images, images.at(0)]
-    : images;
-
   const { slideWidth, sliderRef } = useCarouselSize();
 
   const {
@@ -35,13 +36,23 @@ const ItemCarousel = ({
     handlerSliderMoueDown,
     handleSliderTouchStart,
   } = useCarousel({
-    slideLength: slideList.length,
+    slideLength: localeAndHotel.length,
     infinite,
     slideWidth,
   });
 
+  // localeAndHotel과 currentIndex의 연동
+  useEffect(() => {
+    onChangeLocale([
+      currentIndex,
+      localeAndHotel[currentIndex][1],
+      localeAndHotel[currentIndex][2],
+    ]);
+    // eslint-disable-next-line
+  }, [currentIndex]);
+
   return (
-    <S.CarouselContainer $height={height} $width={width}>
+    <S.CarouselContainer $height={height}>
       <S.SliderWrapper>
         <S.SliderContainer
           ref={sliderRef}
@@ -52,10 +63,8 @@ const ItemCarousel = ({
           onTransitionEnd={draggable ? handleSliderTransitionEnd : undefined}
         >
           {innerShadow && <S.ImageShadowWrapper />}
-          {slideList.map((imageUrl, index) => (
-            <S.ImageWrapper key={index} $height={height}>
-              <img src={imageUrl} alt={`Slide ${index}`} draggable={false} />
-            </S.ImageWrapper>
+          {localeAndHotel.map((item, index) => (
+            <ItemCarouselUnit key={index} item={item} />
           ))}
         </S.SliderContainer>
       </S.SliderWrapper>
@@ -71,7 +80,7 @@ const ItemCarousel = ({
           <S.RightButton
             aria-label="앞으로가기"
             onClick={handleSliderNavigationClick(currentIndex + 1)}
-            $visible={infinite || currentIndex < images.length - 1}
+            $visible={infinite || currentIndex < localeAndHotel.length - 1}
           >
             <S.RightIcon />
           </S.RightButton>
