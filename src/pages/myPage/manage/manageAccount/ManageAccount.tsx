@@ -2,14 +2,15 @@ import RegisterAccount from "../registerAccount/RegisterAccount";
 import useProfileApi from "@apis/useProfileApi";
 import type { ProfileData } from "../manageProfile/ManageProfile.type";
 import { useEffect, useState } from "react";
-import EnterAccountInfo from "@components/account/enterAccountInfo/EnterAccountInfo";
 import type { AccountProps } from "@type/account";
 import AccountInfo from "../accountInfo/AccountInfo";
 import { END_POINTS } from "@constants/api";
-import { useLocation } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
+import { PATH } from "@constants/path";
 
 const ManageAccount = () => {
-  const { search: step } = useLocation();
+  const navigate = useNavigate();
+  const [search] = useSearchParams();
   const { getProfileData } = useProfileApi();
   const [data, setData] = useState<ProfileData>();
   const noPrevAccount = !data?.accountNumber && !data?.bank;
@@ -18,7 +19,6 @@ const ManageAccount = () => {
     bank: data?.bank,
   });
   const [isLoading, setIsLoading] = useState<boolean>(true);
-  const [isEditing, setIsEditing] = useState<boolean>(false);
 
   const fetchData = async () => {
     setIsLoading(true);
@@ -34,15 +34,19 @@ const ManageAccount = () => {
   };
 
   useEffect(() => {
-    if (step === "?step=first" || !step) {
-      fetchData();
-    }
-    // eslint-disable-next-line
-  }, [isEditing, step]);
+    if (
+      search.get("step") === "termsAgreement" ||
+      search.get("step") === "enterAccount"
+    )
+      return;
 
-  const setEditState = (state: boolean) => {
-    setIsEditing(state);
-  };
+    if (search.get("step") !== "first") {
+      navigate(PATH.MANAGE_ACCOUNT, { replace: true });
+    }
+
+    fetchData();
+    // eslint-disable-next-line
+  }, [search]);
 
   if (isLoading) return <div>Loading...</div>;
 
@@ -50,16 +54,7 @@ const ManageAccount = () => {
 
   if (noPrevAccount) return <RegisterAccount />;
 
-  if (isEditing)
-    return (
-      <EnterAccountInfo
-        accountInfo={accountInfo}
-        setAccountInfo={setAccountInfo}
-        setIsEditing={setIsEditing}
-      />
-    );
-
-  return <AccountInfo data={data} onClick={() => setEditState(true)} />;
+  return <AccountInfo data={data} accountInfo={accountInfo} />;
 };
 
 export default ManageAccount;

@@ -86,7 +86,7 @@ const Header = () => {
   };
 
   const settingHandler = () => {
-    navigate("/setting");
+    navigate(PATH.SETTING);
   };
 
   return (
