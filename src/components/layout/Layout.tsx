@@ -35,7 +35,7 @@ const Layout = ({ children }: ChildrenProps) => {
   const isTransferPricingHeaderOn = pathname.includes(
     PATH.WRITE_TRANSFER_PRICE,
   );
-  const isMainHeaderOn = pathname.includes(PATH.ROOT);
+  const isMainHeaderOn = pathname === PATH.ROOT;
 
   return (
     <S.Container>

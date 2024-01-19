@@ -4,6 +4,6 @@ export interface PostTransferProps {
   secondPrice: number;
   bank: string;
   accountNumber: string;
-  secondGrantedPeriod: number;
+  secondGrantPeriod: number;
   isRegistered: boolean;
 }

@@ -9,7 +9,7 @@ export const postTransferItems = async ({
   secondPrice,
   bank,
   accountNumber,
-  secondGrantedPeriod,
+  secondGrantPeriod,
   isRegistered,
 }: PostTransferProps) => {
   const { data } = await axiosInstance.post(END_POINTS.ROOM(pathVariable), {
@@ -17,7 +17,7 @@ export const postTransferItems = async ({
     secondPrice,
     bank,
     accountNumber,
-    secondGrantedPeriod,
+    secondGrantPeriod,
     isRegistered,
   });
   return data;
