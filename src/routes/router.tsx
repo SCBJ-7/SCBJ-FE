@@ -4,19 +4,19 @@ import VerificationPage from "@pages/connectYanoljaPage/verificationPage/Verific
 import { Suspense } from "react";
 import { createBrowserRouter } from "react-router-dom";
 
-import App from "../App";
-import { PATH } from "../constants/path";
+import App from "@/App";
+import { PATH } from "@/constants/path";
 
-import Home from "../pages/homePage/Home";
-import NotFound from "../pages/notFoundPage";
-import Search from "../pages/searchPage";
-import SignUp from "../pages/signUpPage/SignUp";
-import MyPage from "../pages/myPage/MyPage";
-import SignIn from "../pages/signInPage/SignIn";
+import Home from "@/pages/homePage/Home";
+import NotFound from "@/pages/notFoundPage";
+import Search from "@/pages/searchPage";
+import SignUp from "@/pages/signUpPage/SignUp";
+import MyPage from "@/pages/myPage/MyPage";
+import SignIn from "@/pages/signInPage/SignIn";
 import RoomDetail from "@pages/roomDetailPage/RoomDetail";
-import TransferPurchase from "../pages/transferPurchasePage/TransferPurchase";
-import TransferSale from "../pages/transferSalePage";
-import TransferWriting from "../pages/transferWritingPage/TransferWriting";
+import TransferPurchase from "@/pages/transferPurchasePage/TransferPurchase";
+import TransferSale from "@/pages/transferSalePage";
+import TransferWriting from "@/pages/transferWritingPage/TransferWriting";
 
 import ManageAccount from "@/pages/myPage/manage/manageAccount/ManageAccount";
 import ManageProfile from "@/pages/myPage/manage/manageProfile/ManageProfile";
@@ -25,6 +25,7 @@ import PasswordReset from "@/pages/passwordResetPage/PasswordReset";
 import PurchaseDetail from "@/pages/purchaseDetailPage/PurchaseDetail";
 import TransferWritingPrice from "@/pages/transferWritingPricePage/TransferWritingPrice";
 import LocalErrorBoundary from "@components/errorBoundary/LocalErrorBoundary";
+import Payment from "@pages/paymentPage/Payment";
 import TransferWritingSuccess from "@pages/transferWritingSuccessPage/TransferWritingSuccess";
 
 export const router = createBrowserRouter([
@@ -144,6 +145,10 @@ export const router = createBrowserRouter([
             <SuccessPage />
           </LocalErrorBoundary>
         ),
+      },
+      {
+        path: PATH.PAYMENT,
+        element: <Payment />,
       },
     ],
   },

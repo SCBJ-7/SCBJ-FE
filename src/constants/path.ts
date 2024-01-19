@@ -20,6 +20,7 @@ export const PATH = {
   YANOLJA_ACCOUNT: "/account/yanolja",
   YANOLJA_ACCOUNT_VERIFY: "/account/yanolja/verify",
   RELOAD: 0,
+  PAYMENT: "/payment",
 } as const;
 // 참고
 
