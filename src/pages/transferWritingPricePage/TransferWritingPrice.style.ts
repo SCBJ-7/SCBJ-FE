@@ -4,6 +4,7 @@ import styled from "styled-components";
 export const Container = styled(motion.section)`
   width: 100%;
   height: 100%;
+  padding-top: 56px;
 
   background-color: ${({ theme }) => theme.color.greyScale7};
 

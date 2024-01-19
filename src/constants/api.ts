@@ -9,6 +9,7 @@ export const END_POINTS = {
   EMAIL: "/v1/members/email",
   YANOLJA: "/v1/members/yanolja",
   PAYMENT: (productId: string) => `/v1/products/${productId}/payments`,
+  ACCOUNT: "/v1/members/account",
   NEW_TOKEN: "/v1/token/refresh",
 } as const;
 
