@@ -16,15 +16,15 @@ const SearchFilter = () => {
   const [regionIsModalOpen, setRegionIsModalOpen] = useState(false);
   const [dateIsModalOpen, setDateIsModalOpen] = useState(false);
   const [location, setLocation] = useState<string | null>(searchInfo.location);
-  const [maximumPeople, setMaximumPeople] = useState<number>(
-    searchInfo.maximumPeople ? searchInfo.maximumPeople : 0,
+  const [quantityPeople, setQuantityPeople] = useState<number>(
+    searchInfo.quantityPeople ? searchInfo.quantityPeople : 0,
   );
   const [checkIn, setCheckIn] = useState<string | null>(searchInfo.checkIn);
   const [checkOut, setCheckOut] = useState<string | null>(searchInfo.checkOut);
   const isDisabled =
     checkIn === null &&
     checkOut === null &&
-    maximumPeople === 0 &&
+    quantityPeople === 0 &&
     location === null;
   const navigate = useNavigate();
 
@@ -40,11 +40,11 @@ const SearchFilter = () => {
     setLocation(null);
     setCheckOut(null);
     setCheckIn(null);
-    setMaximumPeople(0);
+    setQuantityPeople(0);
   };
 
   const handleSearch = () => {
-    setSearchInfo({ location, maximumPeople, checkIn, checkOut });
+    setSearchInfo({ location, quantityPeople, checkIn, checkOut });
     navigate(PATH.SEARCHLIST);
   };
 
@@ -78,8 +78,8 @@ const SearchFilter = () => {
           <S.FilterBlock>
             <S.FilterSubTitle>인원</S.FilterSubTitle>
             <PeopleCounter
-              maximumPeople={maximumPeople}
-              setMaximumPeople={setMaximumPeople}
+              quantityPeople={quantityPeople}
+              setQuantityPeople={setQuantityPeople}
             />
           </S.FilterBlock>
         </S.FilterContent>

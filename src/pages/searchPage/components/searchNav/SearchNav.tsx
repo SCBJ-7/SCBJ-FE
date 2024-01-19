@@ -2,11 +2,6 @@ import { useEffect, useRef, useState } from "react";
 import * as S from "./SearchNav.style";
 import useOnClickOutside from "@/hooks/useOnClickOutside";
 type ActiveState = Record<string, boolean>;
-const navList = [
-  { id: 1, label: "food", name: "조식제공" },
-  { id: 2, label: "pool", name: "수영장" },
-  { id: 3, label: "view", name: "오션뷰" },
-];
 
 const SeachNav = () => {
   const [isActive, setIsActive] = useState<ActiveState>({
@@ -22,6 +17,12 @@ const SeachNav = () => {
 
   const ref = useRef<HTMLDivElement>(null);
   const refTwo = useRef<HTMLDivElement>(null);
+
+  const navList = [
+    { id: 1, label: "food", name: "조식제공" },
+    { id: 2, label: "pool", name: "수영장" },
+    { id: 3, label: "view", name: "오션뷰" },
+  ];
 
   //이중모달 관리 훅
   useOnClickOutside({

@@ -9,7 +9,7 @@ const SearchBar = () => {
   const isDisabled =
     searchInfo.checkIn === null &&
     searchInfo.checkOut === null &&
-    searchInfo.maximumPeople === 0 &&
+    searchInfo.quantityPeople === 0 &&
     searchInfo.location === null;
 
   const searchBarContent = `${
@@ -17,12 +17,12 @@ const SearchBar = () => {
   }${searchInfo.checkIn || ""}${
     searchInfo.checkOut && searchInfo.checkIn ? " ~ " : ""
   }${searchInfo.checkOut || ""}${
-    (searchInfo.location || searchInfo.checkOut) && searchInfo.maximumPeople
+    (searchInfo.location || searchInfo.checkOut) && searchInfo.quantityPeople
       ? " / "
       : ""
   }${
-    searchInfo.maximumPeople !== null && searchInfo.maximumPeople > 0
-      ? `${searchInfo.maximumPeople}인`
+    searchInfo.quantityPeople !== null && searchInfo.quantityPeople > 0
+      ? `${searchInfo.quantityPeople}인`
       : ""
   }`.trim();
 
