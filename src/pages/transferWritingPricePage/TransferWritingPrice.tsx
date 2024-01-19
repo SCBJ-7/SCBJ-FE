@@ -133,7 +133,7 @@ const TransferWritingPrice = () => {
         secondPrice: Number(secondPrice.split(",").join("")),
         bank: bank as string,
         accountNumber: accountNumber as string,
-        secondGrantedPeriod: Number(downTimeAfter),
+        secondGrantPeriod: Number(downTimeAfter),
         isRegistered: is2ndChecked,
       }),
     onSuccess: () => {

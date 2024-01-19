@@ -1,27 +1,32 @@
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import * as S from "./SearchNav.style";
 import useOnClickOutside from "@/hooks/useOnClickOutside";
+import { useSearchFilterInfoStore } from "@store/store";
+import { ISearchFilterInfo } from "@type/searchFilterInfo";
 type ActiveState = Record<string, boolean>;
 
 const SeachNav = () => {
   const [isActive, setIsActive] = useState<ActiveState>({
-    food: false,
+    brunch: false,
     pool: false,
-    view: false,
+    oceanView: false,
   });
   const [filterName, setFilterName] = useState<string | null>(() => {
     return sessionStorage.getItem("sorted");
   });
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isModalTwoOpen, setIsModalTwoOpen] = useState(false);
-
+  const searchInfo = useSearchFilterInfoStore((state) => state.searchInfo);
+  const setSearchInfo = useSearchFilterInfoStore(
+    (state) => state.setSearchInfo,
+  );
   const ref = useRef<HTMLDivElement>(null);
   const refTwo = useRef<HTMLDivElement>(null);
 
   const navList = [
-    { id: 1, label: "food", name: "조식제공" },
+    { id: 1, label: "brunch", name: "조식제공" },
     { id: 2, label: "pool", name: "수영장" },
-    { id: 3, label: "view", name: "오션뷰" },
+    { id: 3, label: "oceanView", name: "오션뷰" },
   ];
 
   //이중모달 관리 훅
@@ -33,31 +38,14 @@ const SeachNav = () => {
     handlerTwo: () => setIsModalTwoOpen(false),
   });
 
-  useEffect(() => {
-    const storedFilterName = sessionStorage.getItem("sorted");
-    setFilterName(storedFilterName);
-    const labelsInStorage = navList.filter(({ label }) =>
-      sessionStorage.getItem(label),
-    );
-    const active = labelsInStorage.map(({ label }) => label);
-
-    setIsActive((prev) => ({
-      ...prev,
-      ...Object.fromEntries(active.map((label) => [label, true])),
-    }));
-  }, []);
   const handleCellClick = (key: string) => {
-    const newActiveState: ActiveState = { ...isActive };
+    const searchKey = key as keyof ISearchFilterInfo;
+    const isKeyActive = searchInfo?.[searchKey];
 
-    if (!sessionStorage.getItem(key)) {
-      sessionStorage.setItem(key, "true");
-      newActiveState[key] = true;
-    } else {
-      sessionStorage.removeItem(key);
-      newActiveState[key] = false;
-    }
-
-    setIsActive(newActiveState);
+    console.log("ssss", isKeyActive);
+    setSearchInfo({
+      [searchKey]: !isKeyActive,
+    });
   };
 
   const handleFilterClick = () => {
@@ -169,7 +157,6 @@ const SeachNav = () => {
           </S.ModalContent>
         </S.ModalContainer>
       )}
-      {/**모달2**/}
       {isModalTwoOpen && (
         <S.ModalTwoContainer>
           <S.ModalTwoContent ref={refTwo}>
