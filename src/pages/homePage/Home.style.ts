@@ -1,13 +1,14 @@
 import styled from "styled-components";
 
 export const Container = styled.section`
-  width: 100%;
   background-color: ${({ theme }) => theme.color.greyScale6};
 
-  padding: 56px 20px 0 20px;
+  padding-top: 80px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
+  overflow: hidden;
 
   ${({ theme }) => theme.scroll}
 
@@ -19,7 +20,9 @@ export const Container = styled.section`
 `;
 
 export const SaleCarouselContainer = styled.div`
+  width: calc(100% - 40px);
   height: 434px;
+
   background-color: white;
   margin-bottom: 32px;
 
@@ -50,6 +53,7 @@ export const TextSlider = styled.div`
 
 export const SequneceSection = styled.div`
   height: 50px;
+  width: 100%;
 
   display: flex;
   justify-content: center;
@@ -82,8 +86,9 @@ export const SequneceIndicator = styled.div`
 `;
 
 export const WeekendCarouselContainer = styled.div`
-  height: 467px;
   width: 100%;
+  height: 467px;
+  margin: 0 20px;
   background-color: white;
   margin-bottom: 80px;
 `;

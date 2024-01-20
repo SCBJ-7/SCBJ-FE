@@ -1,12 +1,16 @@
 import { useNavigate } from "react-router-dom";
 import * as S from "./MainHeader.style";
 import MainLogo from "@assets/logos/main_logo.svg?react";
+import { useState } from "react";
+import { PATH } from "@constants/path";
 
 const MainHeader = () => {
-  const naivgate = useNavigate();
+  const [isAlarmOn, setIsAlarmOn] = useState(false);
+  const navigate = useNavigate();
 
   const alertHandler = () => {
-    naivgate("/alert");
+    setIsAlarmOn(false);
+    navigate(PATH.NOTICE);
   };
 
   return (
@@ -15,7 +19,7 @@ const MainHeader = () => {
         <MainLogo />
         <section>
           <S.bellIcon onClick={alertHandler} />
-          <S.bellAlertOn />
+          <S.bellAlertOn $isAlarmOn={isAlarmOn} />
         </section>
       </S.HeaderWrapper>
     </S.HeaderContainer>

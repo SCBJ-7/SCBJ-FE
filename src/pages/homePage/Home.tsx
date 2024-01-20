@@ -230,7 +230,6 @@ const Home = () => {
   const [currentLocale, setCurrentLocale] = useState<
     [number, string, LocaleItem[]]
   >(localeAndHotel[0]);
-
   const indicatorRange = new Array(localeAndHotel.length)
     .fill("")
     .map((_, i) => i);

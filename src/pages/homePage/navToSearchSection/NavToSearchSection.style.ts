@@ -2,7 +2,7 @@ import { PiMagnifyingGlassBold } from "react-icons/pi";
 import styled from "styled-components";
 
 export const Container = styled.section`
-  width: 100%;
+  width: calc(100% - 40px);
   height: 56px;
   border-radius: 12px;
 

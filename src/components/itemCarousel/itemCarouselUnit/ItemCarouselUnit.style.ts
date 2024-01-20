@@ -9,6 +9,7 @@ export const LocaleWrapper = styled.div<{ $display: "block" | "none" }>`
 
   display: flex;
   flex-direction: column;
+  cursor: pointer;
 `;
 
 export const ItemUnit = styled.div`
@@ -21,10 +22,11 @@ export const ItemUnit = styled.div`
   cursor: pointer;
 
   & img {
-    width: 128px;
+    width: 180px;
     height: 128px;
     object-fit: cover;
     flex-shrink: 0;
+    border-radius: 12px;
   }
 
   & .item-info {
@@ -56,9 +58,9 @@ export const ItemUnit = styled.div`
     color: ${({ theme }) => theme.color.percentBlue};
   }
 
-  @media screen and (min-width: 500px) {
+  @media screen and (min-width: 580px) {
     & img {
-      width: 250px;
+      width: 320px;
       object-fit: cover;
     }
   }

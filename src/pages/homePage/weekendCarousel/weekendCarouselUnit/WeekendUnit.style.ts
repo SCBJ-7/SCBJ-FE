@@ -9,6 +9,7 @@ export const LocaleWrapper = styled.div`
 
   overflow: hidden;
   flex-shrink: 0;
+  cursor: pointer;
 
   & img {
     width: 100%;

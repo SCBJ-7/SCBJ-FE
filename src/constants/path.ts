@@ -1,5 +1,6 @@
 export const PATH = {
   ROOT: "/",
+  NOTICE: "/notice",
   SEARCHLIST: "/search",
   CREATE_TRIP: "/trip-new",
   SALE_LIST: "/my-page/sale-list",

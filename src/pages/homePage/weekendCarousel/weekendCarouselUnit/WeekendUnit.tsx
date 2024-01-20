@@ -2,16 +2,24 @@ import priceFormat from "@utils/priceFormat";
 import * as S from "./WeekendUnit.style";
 import { WeekendItem } from "@type/saleSection";
 import { format } from "date-fns";
+import { useNavigate } from "react-router-dom";
+import { PATH } from "@constants/path";
 
 interface UnitProps {
   item: [number, WeekendItem];
 }
 
 const WeekendlUnit = ({ item }: UnitProps) => {
+  const navigate = useNavigate();
   const CHKIN = format(item[1].checkInDate, "MM.dd");
   const CHKOUT = format(item[1].checkOutDate, "MM.dd");
+
+  const onClickHandler = () => {
+    navigate(PATH.DETAIL_ROOM + "/" + item[1].id);
+  };
+
   return (
-    <S.LocaleWrapper>
+    <S.LocaleWrapper onClick={onClickHandler}>
       <img src={item[1].imageUrl} alt="" />
       <S.Stickers>
         <section>{item[1].brunch && "조식제공"}</section>

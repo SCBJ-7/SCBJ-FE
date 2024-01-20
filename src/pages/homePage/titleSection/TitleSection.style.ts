@@ -1,7 +1,7 @@
 import { styled } from "styled-components";
 
 export const Container = styled.section`
-  width: 100%;
+  width: calc(100% - 40px);
   height: 66px;
   ${({ theme }) => theme.typo.title2}
   margin-bottom: 24px;
