@@ -1,4 +1,4 @@
-import { useQuery } from "@tanstack/react-query";
+import { useSuspenseQuery } from "@tanstack/react-query";
 import { fetchPurchaseDetail } from "../../apis/fetchPurchaseDetail";
 import { IPurchaseData } from "@/types/purchaseDetail";
 import { useNavigate, useSearchParams } from "react-router-dom";
@@ -10,17 +10,11 @@ const PurchaseDetail = () => {
   const id = searchParams.get("id");
   const navigate = useNavigate();
   const indexFee = 5000;
-  const { data, isLoading } = useQuery<IPurchaseData>({
+  const { data, isLoading } = useSuspenseQuery<IPurchaseData>({
     queryKey: ["roomDetail", id],
-    queryFn: () => fetchPurchaseDetail("102"),
+    queryFn: () => fetchPurchaseDetail("1"),
   });
 
-  if (isLoading) {
-    return <p>로딩 중...</p>;
-  }
-  if (!data) {
-    return <p>데이터를 찾을 수 없습니다.</p>;
-  }
   return (
     <S.DetailContainer>
       <S.TopSection>
