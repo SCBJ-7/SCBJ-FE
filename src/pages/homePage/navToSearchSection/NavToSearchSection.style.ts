@@ -16,6 +16,7 @@ export const Container = styled.section`
   margin-bottom: 24px;
   transition: 0.2s;
   box-shadow: 4px 4px 10px 0 rgba(0, 0, 0, 0.1);
+  cursor: pointer;
 
   & h4 {
     ${({ theme }) => theme.typo.button4}

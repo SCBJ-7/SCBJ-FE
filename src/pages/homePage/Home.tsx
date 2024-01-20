@@ -3,23 +3,63 @@ import { useState } from "react";
 import * as S from "./Home.style";
 import TitleSection from "./titleSection/TitleSection";
 import NavToSearchSection from "./navToSearchSection/NavToSearchSection";
-import { LocaleItemsType, LocaleItem } from "@type/saleSection";
+import {
+  LocaleItemsType,
+  LocaleItem,
+  WeekendItemsType,
+  WeekendItem,
+} from "@type/saleSection";
 
-import percentImg from "@assets/bankImages/hana.png";
 import { locale } from "@constants/locale";
+import WeekendCarousel from "./weekendCarousel/WeekendCarousel";
 
 const Home = () => {
-  const localeItems: LocaleItemsType = {
+  const weekendProds: WeekendItemsType = {
+    weekend: [
+      {
+        id: 103,
+        name: "시그니엘 레지던스",
+        roomType: "스탠다드 더블",
+        imageUrl:
+          "https://yaimg.yanolja.com/v5/2022/06/23/12/1280/62b46269e5eca1.34391138.jpg",
+        originalPrice: 2400000,
+        salePrice: 1200000,
+        salePercentage: 0.5,
+        checkInDate: "2023-11-12",
+        checkOutDate: "2023-11-14",
+        brunch: true,
+        pool: true,
+        oceanView: true,
+      },
+      {
+        id: 104,
+        name: "시그니엘 레지던스 강릉",
+        roomType: "스탠다드 더블",
+        imageUrl:
+          "https://yaimg.yanolja.com/v5/2022/06/23/12/1280/62b46269e5eca1.34391138.jpg",
+        originalPrice: 2400000,
+        salePrice: 1200000,
+        salePercentage: 0.5,
+        checkInDate: "2023-11-12",
+        checkOutDate: "2023-11-14",
+        brunch: true,
+        pool: true,
+        oceanView: true,
+      },
+    ],
+  };
+  const localeProds: LocaleItemsType = {
     seoul: [
       {
         id: 101,
         city: "부산",
         name: "시그니엘 레지던스",
         roomType: "스탠다드 더블",
-        imageUrl: percentImg,
+        imageUrl:
+          "https://yaimg.yanolja.com/v5/2022/06/23/12/1280/62b46269e5eca1.34391138.jpg",
         originalPrice: 2400000,
         salePrice: 1200000,
-        salePercentage: 0.2,
+        salePercentage: 0.3,
         checkInDate: "2023-11-12",
         checkOutDate: "2023-11-14",
       },
@@ -28,7 +68,8 @@ const Home = () => {
         city: "부산",
         name: "시그니엘 레지던스",
         roomType: "스탠다드 더블",
-        imageUrl: percentImg,
+        imageUrl:
+          "https://yaimg.yanolja.com/v5/2022/06/23/12/1280/62b46269e5eca1.34391138.jpg",
         originalPrice: 2400000,
         salePrice: 1200000,
         salePercentage: 0.2,
@@ -42,7 +83,8 @@ const Home = () => {
         city: "부산",
         name: "시그니엘 레지던스",
         roomType: "스탠다드 더블",
-        imageUrl: percentImg,
+        imageUrl:
+          "https://yaimg.yanolja.com/v5/2022/06/23/12/1280/62b46269e5eca1.34391138.jpg",
         originalPrice: 2400000,
         salePrice: 1200000,
         salePercentage: 0.2,
@@ -54,10 +96,11 @@ const Home = () => {
         city: "부산",
         name: "시그니엘 레지던스",
         roomType: "스탠다드 더블",
-        imageUrl: percentImg,
+        imageUrl:
+          "https://yaimg.yanolja.com/v5/2022/06/23/12/1280/62b46269e5eca1.34391138.jpg",
         originalPrice: 2400000,
         salePrice: 1200000,
-        salePercentage: 0.2,
+        salePercentage: 0.1,
         checkInDate: "2023-11-12",
         checkOutDate: "2023-11-14",
       },
@@ -68,10 +111,11 @@ const Home = () => {
         city: "부산",
         name: "시그니엘 레지던스",
         roomType: "스탠다드 더블",
-        imageUrl: percentImg,
+        imageUrl:
+          "https://yaimg.yanolja.com/v5/2022/06/23/12/1280/62b46269e5eca1.34391138.jpg",
         originalPrice: 2400000,
         salePrice: 1200000,
-        salePercentage: 0.2,
+        salePercentage: 0.53,
         checkInDate: "2023-11-12",
         checkOutDate: "2023-11-14",
       },
@@ -80,10 +124,11 @@ const Home = () => {
         city: "부산",
         name: "시그니엘 레지던스",
         roomType: "스탠다드 더블",
-        imageUrl: percentImg,
+        imageUrl:
+          "https://yaimg.yanolja.com/v5/2022/06/23/12/1280/62b46269e5eca1.34391138.jpg",
         originalPrice: 2400000,
         salePrice: 1200000,
-        salePercentage: 0.2,
+        salePercentage: 0.45,
         checkInDate: "2023-11-12",
         checkOutDate: "2023-11-14",
       },
@@ -94,10 +139,11 @@ const Home = () => {
         city: "부산",
         name: "시그니엘 레지던스",
         roomType: "스탠다드 더블",
-        imageUrl: percentImg,
+        imageUrl:
+          "https://yaimg.yanolja.com/v5/2022/06/23/12/1280/62b46269e5eca1.34391138.jpg",
         originalPrice: 2400000,
         salePrice: 1200000,
-        salePercentage: 0.2,
+        salePercentage: 0.45,
         checkInDate: "2023-11-12",
         checkOutDate: "2023-11-14",
       },
@@ -106,10 +152,11 @@ const Home = () => {
         city: "부산",
         name: "시그니엘 레지던스",
         roomType: "스탠다드 더블",
-        imageUrl: percentImg,
+        imageUrl:
+          "https://yaimg.yanolja.com/v5/2022/06/23/12/1280/62b46269e5eca1.34391138.jpg",
         originalPrice: 2400000,
         salePrice: 1200000,
-        salePercentage: 0.2,
+        salePercentage: 0.4,
         checkInDate: "2023-11-12",
         checkOutDate: "2023-11-14",
       },
@@ -120,10 +167,11 @@ const Home = () => {
         city: "부산",
         name: "시그니엘 레지던스",
         roomType: "스탠다드 더블",
-        imageUrl: percentImg,
+        imageUrl:
+          "https://yaimg.yanolja.com/v5/2022/06/23/12/1280/62b46269e5eca1.34391138.jpg",
         originalPrice: 2400000,
         salePrice: 1200000,
-        salePercentage: 0.2,
+        salePercentage: 0.5,
         checkInDate: "2023-11-12",
         checkOutDate: "2023-11-14",
       },
@@ -132,10 +180,11 @@ const Home = () => {
         city: "부산",
         name: "시그니엘 레지던스",
         roomType: "스탠다드 더블",
-        imageUrl: percentImg,
+        imageUrl:
+          "https://yaimg.yanolja.com/v5/2022/06/23/12/1280/62b46269e5eca1.34391138.jpg",
         originalPrice: 2400000,
         salePrice: 1200000,
-        salePercentage: 0.2,
+        salePercentage: 0.1,
         checkInDate: "2023-11-12",
         checkOutDate: "2023-11-14",
       },
@@ -146,10 +195,11 @@ const Home = () => {
         city: "부산",
         name: "시그니엘 레지던스",
         roomType: "스탠다드 더블",
-        imageUrl: percentImg,
+        imageUrl:
+          "https://yaimg.yanolja.com/v5/2022/06/23/12/1280/62b46269e5eca1.34391138.jpg",
         originalPrice: 2400000,
         salePrice: 1200000,
-        salePercentage: 0.2,
+        salePercentage: 0.34,
         checkInDate: "2023-11-12",
         checkOutDate: "2023-11-14",
       },
@@ -158,7 +208,8 @@ const Home = () => {
         city: "부산",
         name: "시그니엘 레지던스",
         roomType: "스탠다드 더블",
-        imageUrl: percentImg,
+        imageUrl:
+          "https://yaimg.yanolja.com/v5/2022/06/23/12/1280/62b46269e5eca1.34391138.jpg",
         originalPrice: 2400000,
         salePrice: 1200000,
         salePercentage: 0.2,
@@ -168,8 +219,9 @@ const Home = () => {
     ],
   };
 
+  // 지역 별 할인 관련 데이터
   const localeEntries: [number, string, LocaleItem[]][] = Object.entries(
-    localeItems,
+    localeProds,
   )
     .filter((v) => v[1] !== null)
     .map((v, i) => [i, v[0], v[1]]);
@@ -179,8 +231,15 @@ const Home = () => {
     [number, string, LocaleItem[]]
   >(localeAndHotel[0]);
 
-  // const leftBtnRef = useRef(null);
-  // const RightBtnRef = useRef(null);
+  const indicatorRange = new Array(localeAndHotel.length)
+    .fill("")
+    .map((_, i) => i);
+
+  // 주말 특가 관련 데이터
+  const WeekendMapped: [number, WeekendItem][] = weekendProds["weekend"].map(
+    (v, i) => [i, v],
+  );
+  const [weekendHotels] = useState(WeekendMapped);
 
   return (
     <S.Container>
@@ -209,12 +268,34 @@ const Home = () => {
           draggable={true}
         />
         <div className="divider"></div>
-        <S.SequneceIndicator>
-          {/* FIXME: layout애니메이션 적용한 인디케이터 */}
-        </S.SequneceIndicator>
+        <S.SequneceSection>
+          <S.SequneceIndicator>
+            {indicatorRange.map((sequence) =>
+              sequence === currentLocale[0] ? (
+                <section key={sequence}>
+                  <span className="current"></span>
+                </section>
+              ) : (
+                <section key={sequence}>
+                  <span></span>
+                </section>
+              ),
+            )}
+          </S.SequneceIndicator>
+        </S.SequneceSection>
       </S.SaleCarouselContainer>
 
-      <S.WeekendCarouselContainer />
+      <S.WeekendCarouselContainer className="week-container">
+        <S.TitleSection>주말 호캉스 추천</S.TitleSection>
+        <WeekendCarousel
+          weekendHotels={weekendHotels}
+          onChangeLocale={setCurrentLocale}
+          height={343}
+          arrows={true}
+          infinite={false}
+          draggable={true}
+        />
+      </S.WeekendCarouselContainer>
     </S.Container>
   );
 };

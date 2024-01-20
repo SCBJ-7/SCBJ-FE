@@ -56,12 +56,12 @@ export const ItemUnit = styled.div`
     color: ${({ theme }) => theme.color.percentBlue};
   }
 
-  /* @media screen and (min-width: 500px) {
+  @media screen and (min-width: 500px) {
     & img {
       width: 250px;
       object-fit: cover;
     }
-  } */
+  }
 `;
 
 export const Sticker = styled.div`

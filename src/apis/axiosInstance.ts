@@ -10,7 +10,7 @@ import { PATH } from "@constants/path";
 import { AxiosResponseError } from "@components/error/Error";
 
 export const axiosInstance = axios.create({
-  baseURL: import.meta.env.BASE_URL,
+  baseURL: "https://3.34.147.187.nip.io",
   timeout: 5000,
   withCredentials: true,
 });

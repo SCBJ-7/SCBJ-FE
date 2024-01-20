@@ -21,10 +21,14 @@ export interface LocaleItemsType {
   jeolla: Nullable<LocaleItem[]>;
 }
 
-export interface WeekendItems extends LocaleItem {
+export type WeekendItem = Omit<LocaleItem, "city"> & {
   brunch: boolean;
   pool: boolean;
   oceanView: boolean;
+};
+
+export interface WeekendItemsType {
+  [weekend: string]: WeekendItem[];
 }
 
-export type MainApiType = LocaleItemsType & WeekendItems;
+export type MainApiType = LocaleItemsType & WeekendItemsType;

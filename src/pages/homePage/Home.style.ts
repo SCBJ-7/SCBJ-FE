@@ -48,12 +48,49 @@ export const TextSlider = styled.div`
   }
 `;
 
-export const SequneceIndicator = styled.div`
+export const SequneceSection = styled.div`
   height: 50px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const SequneceIndicator = styled.div`
+  display: flex;
+
+  section {
+    width: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  section span {
+    width: 6px;
+    height: 6px;
+    border-radius: 3px;
+    background-color: ${({ theme }) => theme.color.greyScale5};
+  }
+
+  section span.current {
+    width: 8px;
+    height: 8px;
+    border-radius: 4px;
+    background-color: ${({ theme }) => theme.color.black};
+  }
 `;
 
 export const WeekendCarouselContainer = styled.div`
-  height: 750px;
+  height: 467px;
   width: 100%;
   background-color: white;
+  margin-bottom: 80px;
+`;
+
+export const TitleSection = styled.div`
+  margin: 40px 20px 0;
+  height: 46px;
+  font-size: 18px;
+  font-weight: 800;
 `;
