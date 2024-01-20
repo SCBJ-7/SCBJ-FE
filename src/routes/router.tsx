@@ -25,7 +25,7 @@ import PasswordReset from "@/pages/passwordResetPage/PasswordReset";
 import PurchaseDetail from "@/pages/purchaseDetailPage/PurchaseDetail";
 import TransferWritingPrice from "@/pages/transferWritingPricePage/TransferWritingPrice";
 import LocalErrorBoundary from "@components/errorBoundary/LocalErrorBoundary";
-import TransferWritingSuccess from "@pages/transferWritingDonePage/TransferWritingSuccess";
+import TransferWritingSuccess from "@/pages/transferWritingSuccessPage/TransferWritingSuccess";
 import EditAccount from "@pages/myPage/manage/editAccount/EditAccount";
 
 export const router = createBrowserRouter([

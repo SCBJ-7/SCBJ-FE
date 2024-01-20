@@ -39,16 +39,6 @@ const inputStyle = css`
   box-shadow: 4px 4px 10px 0px rgba(0, 0, 0, 0.04);
 `;
 
-export const EnterAccountInfoContainer = styled.div`
-  h1 {
-    padding: 24px 20px 0;
-    ${({ theme }) => theme.typo.title4}
-    color: ${({ theme }) => theme.color.black};
-
-    margin-bottom: 32px;
-  }
-`;
-
 export const Header = styled.header`
   display: flex;
   align-items: center;
