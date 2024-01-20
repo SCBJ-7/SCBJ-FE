@@ -26,7 +26,6 @@ const SeachNav = () => {
     { id: 2, label: "pool", name: "수영장" },
     { id: 3, label: "oceanView", name: "오션뷰" },
   ];
-  console.log(searchInfo);
   //이중모달 관리 훅
   useOnClickOutside({
     ref,

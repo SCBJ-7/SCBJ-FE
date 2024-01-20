@@ -41,13 +41,25 @@ const Search = () => {
   useEffect(() => {
     const fetchPurchaseList = async () => {
       try {
-        const response = await axios.get("/v1/products");
+        const response = await axios.get("v1/products/", {
+          headers: {
+            "Content-Type": "application/json",
+          },
+          params: {
+            location: null,
+            checkIn: null,
+            checkOut: null,
+            quantityPeople: null,
+            sorted: null,
+            brunch: null,
+            pool: null,
+            oceanView: null,
+          },
+        });
 
         setSearchItems(response.data.data.products);
         return response;
-      } catch (err) {
-        alert("⚠️예기치 못한 에러가 발생하였습니다.");
-      }
+      } catch (err) {}
     };
 
     fetchPurchaseList();
