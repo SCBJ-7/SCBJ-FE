@@ -2,18 +2,20 @@ import { useEffect, useRef, useState } from "react";
 import * as S from "./EnterAccountInfo.style";
 import { BANK_LIST } from "@/constants/bank";
 import { AnimatePresence, useAnimation } from "framer-motion";
-import type { AccountInfo } from "@/types/account";
+import type { AccountProps } from "@type/account";
 import { useLocation, useNavigate } from "react-router-dom";
 import { PATH } from "@/constants/path";
 import useToastConfig from "@hooks/common/useToastConfig";
 import usePreventLeave from "@hooks/common/usePreventLeave";
+import { patchAccount } from "@apis/patchAccount";
+import { UndoIcon } from "@components/layout/header/HeaderTop.style";
 
 const EnterAccountInfo = ({
   accountInfo,
   setAccountInfo,
 }: {
-  accountInfo: AccountInfo;
-  setAccountInfo: React.Dispatch<React.SetStateAction<AccountInfo>>;
+  accountInfo: AccountProps;
+  setAccountInfo?: React.Dispatch<React.SetStateAction<AccountProps>>;
 }) => {
   usePreventLeave(true);
   const { pathname } = useLocation();
@@ -31,11 +33,13 @@ const EnterAccountInfo = ({
     newBank &&
     newAccountNumber &&
     checkIsNumber.test(newAccountNumber) &&
-    newAccountNumber.length > 10 &&
-    newAccountNumber.length < 25;
+    newAccountNumber.length >= 10 &&
+    newAccountNumber.length <= 25;
 
   const buttonText =
-    pathname === PATH.MANAGE_ACCOUNT ? "계좌 등록하기" : "계좌 입력하기";
+    pathname === PATH.MANAGE_ACCOUNT || pathname === PATH.ACCOUNT_EDIT
+      ? "계좌 등록하기"
+      : "계좌 입력하기";
 
   const bankOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setShowBankList(false);
@@ -80,25 +84,46 @@ const EnterAccountInfo = ({
     return true;
   };
 
-  const onSubmit = () => {
+  const onSubmit = async () => {
     if (!handleErrorToast()) {
       return;
     }
-
-    setAccountInfo({
+    const updatedInfo: AccountProps = {
       accountNumber: newAccountNumber,
       bank: newBank,
-    });
+    };
 
-    if (pathname === PATH.MANAGE_ACCOUNT) {
-      // FIXME: api call
-      handleToast(false, ["계좌 등록이 완료되었습니다!"]);
-      navigate(PATH.MANAGE_ACCOUNT);
-      return;
+    // 마이페이지 내에서 등록 혹은 수정일 때
+    if (pathname === PATH.MANAGE_ACCOUNT && setAccountInfo) {
+      try {
+        await patchAccount(updatedInfo).then(() => {
+          setAccountInfo(updatedInfo);
+          handleToast(false, ["계좌 등록이 완료되었습니다!"]);
+
+          navigate(PATH.MANAGE_ACCOUNT, { replace: true });
+        });
+      } catch (err) {
+        handleToast(true, [<>계좌 등록 실패. 다시 시도해 주세요</>]);
+      }
+    }
+
+    if (pathname === PATH.ACCOUNT_EDIT) {
+      if (accountInfo === updatedInfo)
+        navigate(PATH.MANAGE_ACCOUNT, { replace: true });
+
+      try {
+        await patchAccount(updatedInfo).then(() => {
+          handleToast(false, ["계좌 변경이 완료되었습니다"]);
+
+          navigate(PATH.MANAGE_ACCOUNT, { replace: true });
+        });
+      } catch (err) {
+        handleToast(true, [<>계좌 변경 실패. 다시 시도해 주세요</>]);
+      }
     }
 
     /** 양도글 작성 일 때,
-     if (pathname === PATH.양도글작성) {
+     if (pathname === PATH.양도글작성 && setAccountInfo) {
        로직 작성...
        return;
      }
@@ -108,56 +133,62 @@ const EnterAccountInfo = ({
   };
 
   return (
-    <S.EnterAccountInfoContainer>
-      <h1>입금받을 계좌를 등록해주세요</h1>
-      <S.AccountNumberInput
-        ref={accountNumberRef}
-        value={newAccountNumber}
-        onChange={(e) => accountOnChange(e)}
-      />
-      <S.BankInput
-        $bank={newBank}
-        $showBankList={showBankList}
-        onClick={() => setShowBankList(true)}
-      >
-        {newBank ? newBank : "은행"}
-      </S.BankInput>
+    <>
+      <S.Header>
+        <UndoIcon onClick={() => navigate(-1)} />
+        <h1>계좌 등록</h1>
+      </S.Header>
+      <S.EnterAccountInfoContainer>
+        <h1>입금받을 계좌를 등록해주세요</h1>
+        <S.AccountNumberInput
+          ref={accountNumberRef}
+          value={newAccountNumber}
+          onChange={(e) => accountOnChange(e)}
+        />
+        <S.BankInput
+          $bank={newBank}
+          $showBankList={showBankList}
+          onClick={() => setShowBankList(true)}
+        >
+          {newBank ? newBank : "은행"}
+        </S.BankInput>
 
-      <S.BackgroundBlur
-        $isVisible={showBankList}
-        onClick={() => setShowBankList(false)}
-      />
-      <AnimatePresence>
-        <S.BankListBottomSheet controls={controls}>
-          <h2>은행</h2>
-          <S.BankListContainer>
-            {BANK_LIST.map((item) => {
-              return (
-                <S.BankListWrapper htmlFor={item.name} key={item.name}>
-                  <input
-                    type="radio"
-                    name="bank"
-                    value={item.name}
-                    id={item.name}
-                    onChange={(e) => bankOnChange(e)}
-                    checked={item.name === accountInfo?.bank}
-                  />
-                  <img src={item.img} />
-                  {item.name}
-                </S.BankListWrapper>
-              );
-            })}
-          </S.BankListContainer>
-        </S.BankListBottomSheet>
-      </AnimatePresence>
-      <S.SubmitButton
-        onClick={onSubmit}
-        $disabled={!accountValidation}
-        $showBankList={showBankList}
-      >
-        {buttonText}
-      </S.SubmitButton>
-    </S.EnterAccountInfoContainer>
+        <S.BackgroundBlur
+          $isVisible={showBankList}
+          onClick={() => setShowBankList(false)}
+        />
+        <AnimatePresence>
+          <S.BankListBottomSheet controls={controls}>
+            <h2>은행</h2>
+            <S.BankListContainer>
+              {BANK_LIST.map((item) => {
+                return (
+                  <S.BankListWrapper htmlFor={item.name} key={item.name}>
+                    <input
+                      type="radio"
+                      name="bank"
+                      value={item.name}
+                      id={item.name}
+                      onChange={(e) => bankOnChange(e)}
+                      checked={item.name === accountInfo?.bank}
+                    />
+                    <img src={item.img} />
+                    {item.name}
+                  </S.BankListWrapper>
+                );
+              })}
+            </S.BankListContainer>
+          </S.BankListBottomSheet>
+        </AnimatePresence>
+        <S.SubmitButton
+          onClick={onSubmit}
+          $disabled={!accountValidation}
+          $showBankList={showBankList}
+        >
+          {buttonText}
+        </S.SubmitButton>
+      </S.EnterAccountInfoContainer>
+    </>
   );
 };
 

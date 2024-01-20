@@ -1,4 +1,4 @@
-export interface AccountInfo {
-  accountNumber: string | undefined | null;
-  bank: string | undefined | null;
+export interface AccountProps {
+  accountNumber: string | undefined;
+  bank: string | undefined;
 }
