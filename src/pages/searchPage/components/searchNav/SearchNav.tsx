@@ -6,20 +6,18 @@ import { ISearchFilterInfo } from "@type/searchFilterInfo";
 type ActiveState = Record<string, boolean>;
 
 const SeachNav = () => {
-  const [isActive, setIsActive] = useState<ActiveState>({
-    brunch: false,
-    pool: false,
-    oceanView: false,
-  });
-  const [filterName, setFilterName] = useState<string | null>(() => {
-    return sessionStorage.getItem("sorted");
-  });
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isModalTwoOpen, setIsModalTwoOpen] = useState(false);
   const searchInfo = useSearchFilterInfoStore((state) => state.searchInfo);
   const setSearchInfo = useSearchFilterInfoStore(
     (state) => state.setSearchInfo,
   );
+  const [isActive, setIsActive] = useState<ActiveState>({
+    brunch: searchInfo.brunch ?? false,
+    pool: searchInfo.pool ?? false,
+    oceanView: searchInfo.oceanView ?? false,
+  });
+  const [sorted, setSorted] = useState<string | null>(searchInfo.sorted);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isModalTwoOpen, setIsModalTwoOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
   const refTwo = useRef<HTMLDivElement>(null);
 
@@ -28,7 +26,7 @@ const SeachNav = () => {
     { id: 2, label: "pool", name: "수영장" },
     { id: 3, label: "oceanView", name: "오션뷰" },
   ];
-
+  console.log(searchInfo);
   //이중모달 관리 훅
   useOnClickOutside({
     ref,
@@ -37,15 +35,17 @@ const SeachNav = () => {
     refTwo,
     handlerTwo: () => setIsModalTwoOpen(false),
   });
-
   const handleCellClick = (key: string) => {
     const searchKey = key as keyof ISearchFilterInfo;
     const isKeyActive = searchInfo?.[searchKey];
 
-    console.log("ssss", isKeyActive);
     setSearchInfo({
       [searchKey]: !isKeyActive,
     });
+
+    const newActiveState: ActiveState = { ...isActive };
+    newActiveState[key] = !isKeyActive;
+    setIsActive(newActiveState);
   };
 
   const handleFilterClick = () => {
@@ -74,24 +74,21 @@ const SeachNav = () => {
       return;
     }
     if (innerText === "최신 등록 순") {
-      sessionStorage.setItem("sorted", "최신 등록 순");
+      setSearchInfo({ sorted: "최신 등록 순" });
       setIsModalOpen(false);
-      setFilterName("최신 등록 순");
+      setSorted("최신 등록 순");
     } else if (innerText === "낮은 가격 순") {
-      sessionStorage.setItem("sorted", "낮은 가격 순");
-      setFilterName("낮은 가격 순");
-
+      setSearchInfo({ sorted: "낮은 가격 순" });
       setIsModalOpen(false);
+      setSorted("낮은 가격 순");
     } else if (innerText === "높은 할인 순") {
-      sessionStorage.setItem("sorted", "높은 할인 순");
-      setFilterName("높은 할인 순");
-
+      setSearchInfo({ sorted: "높은 할인 순" });
       setIsModalOpen(false);
+      setSorted("높은 할인 순");
     } else {
-      sessionStorage.removeItem("sorted");
-      setFilterName(null);
-
+      setSearchInfo({ sorted: null });
       setIsModalOpen(false);
+      setSorted(null);
     }
   };
   return (
@@ -110,7 +107,7 @@ const SeachNav = () => {
             ))}
           </S.SearchCellCover>
           <S.SearchFilterCover onClick={handleFilterClick}>
-            <S.SearchFilterText>{filterName ?? "추천 순"}</S.SearchFilterText>
+            <S.SearchFilterText>{sorted ?? "추천 순"}</S.SearchFilterText>
             <S.SearchFilterImg />
           </S.SearchFilterCover>
         </S.StandardFlex>
@@ -128,7 +125,7 @@ const SeachNav = () => {
             </S.ModalTop>
             <S.ModalFitlerName
               onClick={registerFilter}
-              className={filterName === null ? "active" : ""}
+              className={searchInfo.sorted === null ? "active" : ""}
             >
               <span>추천 순</span>{" "}
               <S.WarningButton
@@ -138,19 +135,19 @@ const SeachNav = () => {
             </S.ModalFitlerName>
             <S.ModalFitlerName
               onClick={registerFilter}
-              className={filterName === "최신 등록 순" ? "active" : ""}
+              className={searchInfo.sorted === "최신 등록 순" ? "active" : ""}
             >
               최신 등록 순
             </S.ModalFitlerName>
             <S.ModalFitlerName
               onClick={registerFilter}
-              className={filterName === "낮은 가격 순" ? "active" : ""}
+              className={searchInfo.sorted === "낮은 가격 순" ? "active" : ""}
             >
               낮은 가격 순
             </S.ModalFitlerName>
             <S.ModalFitlerName
               onClick={registerFilter}
-              className={filterName === "높은 할인 순" ? "active" : ""}
+              className={searchInfo.sorted === "높은 할인 순" ? "active" : ""}
             >
               높은 할인 순
             </S.ModalFitlerName>
