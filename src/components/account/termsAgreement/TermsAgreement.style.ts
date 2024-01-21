@@ -1,5 +1,6 @@
 import { theme, TypoKeys, ColorKeys } from "@/styles/theme";
 import styled from "styled-components";
+import { PiXBold } from "react-icons/pi";
 
 export const TermsAgreementContainer = styled.div`
   padding: 10px 20px 32px;
@@ -33,6 +34,22 @@ export const TermsAgreementContainer = styled.div`
       left: -6px;
     }
   }
+`;
+
+export const Header = styled.header`
+  display: flex;
+  justify-content: right;
+  align-items: center;
+
+  padding: 0 20px;
+
+  height: 48px;
+`;
+
+export const XIcon = styled(PiXBold)`
+  cursor: pointer;
+
+  color: ${({ theme }) => theme.color.greyScale2};
 `;
 
 export const CheckContainer = styled.section`

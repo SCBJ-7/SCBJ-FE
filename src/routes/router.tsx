@@ -25,7 +25,8 @@ import PurchaseDetail from "@/pages/purchaseDetailPage/PurchaseDetail";
 import SearchFilter from "@/pages/searchFilterPage/SearchFilter";
 import TransferWritingPrice from "@/pages/transferWritingPricePage/TransferWritingPrice";
 import LocalErrorBoundary from "@components/errorBoundary/LocalErrorBoundary";
-import TransferWritingSuccess from "@pages/transferWritingSuccessPage/TransferWritingSuccess";
+import TransferWritingSuccess from "@/pages/transferWritingSuccessPage/TransferWritingSuccess";
+import EditAccount from "@pages/myPage/manage/editAccount/EditAccount";
 
 export const router = createBrowserRouter([
   {
@@ -76,6 +77,10 @@ export const router = createBrowserRouter([
       {
         path: PATH.MANAGE_ACCOUNT,
         element: <ManageAccount />,
+      },
+      {
+        path: PATH.ACCOUNT_EDIT,
+        element: <EditAccount />,
       },
       {
         path: PATH.WRITE_TRANSFER,

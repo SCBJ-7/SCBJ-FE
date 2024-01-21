@@ -1,12 +1,20 @@
-import { axiosInstance } from "@apis/axiosInstance";
-import { END_POINTS, ACCESS_TOKEN, REFRESH_TOKEN } from "@constants/api";
-import { TokenData } from "@type/newToken";
+import {
+  END_POINTS,
+  ACCESS_TOKEN,
+  REFRESH_TOKEN,
+  BASE_URL,
+} from "@constants/api";
+import type { TokenData } from "@type/newToken";
+import type { ResponseData } from "@type/responseType";
+import axios from "axios";
 
-export const fetchNewToken = async () => {
-  const { data } = await axiosInstance.post<TokenData>(END_POINTS.NEW_TOKEN, {
-    accessToken: localStorage.getItem(ACCESS_TOKEN),
-    refreshToken: localStorage.getItem(REFRESH_TOKEN),
-  });
-  console.log(data);
-  return data;
+export const fetchNewToken = async (): Promise<TokenData> => {
+  const { data } = await axios.post<ResponseData<TokenData>>(
+    BASE_URL + END_POINTS.NEW_TOKEN,
+    {
+      accessToken: localStorage.getItem(ACCESS_TOKEN),
+      refreshToken: localStorage.getItem(REFRESH_TOKEN),
+    },
+  );
+  return data.data;
 };

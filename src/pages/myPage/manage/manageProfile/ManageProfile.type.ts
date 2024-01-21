@@ -1,6 +1,6 @@
 export interface ProfileData {
-  accountNumber: string | null;
-  bank: string | null;
+  accountNumber: string | undefined;
+  bank: string | undefined;
   email: string;
   id: number;
   linkedToYanolja: boolean;
