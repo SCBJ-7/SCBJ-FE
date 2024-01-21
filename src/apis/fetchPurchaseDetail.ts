@@ -1,11 +1,13 @@
-import axios from "axios";
+import { END_POINTS } from "@constants/api";
+import { axiosInstance } from "./axiosInstance";
+import type { IPurchaseData } from "@type/purchaseDetail";
+import type { ResponseData } from "@type/responseType";
 
-export const fetchPurchaseDetail = async (id: string) => {
-  try {
-    const response = await axios(`/v1/purchase-detail/${id}`);
-    return response.data.data;
-  } catch (error) {
-    console.error("방 상세 정보 가져오기 실패", error);
-    throw new Error("방 상세 정보를 가져오는 데 실패했습니다");
-  }
+export const fetchPurchaseDetail = async (
+  id: string,
+): Promise<IPurchaseData> => {
+  const { data } = await axiosInstance.get<ResponseData<IPurchaseData>>(
+    END_POINTS.PURCHASE_DETAIL(id),
+  );
+  return data.data;
 };
