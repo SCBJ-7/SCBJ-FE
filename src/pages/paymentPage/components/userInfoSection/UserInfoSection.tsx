@@ -38,7 +38,6 @@ const UserInfoSection = () => {
       <Controller
         name="isDiffUser"
         control={control}
-        rules={{ required: true }}
         render={({ field }) => (
           <Checkbox
             id="isDiffUser"

@@ -18,13 +18,17 @@ export interface PaymentRequestProps {
   customerPhoneNumber: string;
 }
 
-export const postPayment = async ({
-  productId,
-  paymentType,
-  customerName,
-  customerEmail,
-  customerPhoneNumber,
-}: PaymentRequestProps): Promise<PaymentRequestData> => {
+export const postPayment = async (
+  paymentRequest: PaymentRequestProps,
+): Promise<PaymentRequestData> => {
+  const {
+    productId,
+    paymentType,
+    customerName,
+    customerEmail,
+    customerPhoneNumber,
+  } = paymentRequest;
+
   const { data } = await axiosInstance.post<ResponseData<PaymentRequestData>>(
     END_POINTS.PAYMENT_REQUEST(productId, paymentType),
     {
