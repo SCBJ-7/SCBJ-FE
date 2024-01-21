@@ -2,7 +2,7 @@ import IntroPage from "@pages/connectYanoljaPage/IntroPage/IntroPage.tsx";
 import SuccessPage from "@pages/connectYanoljaPage/successPage/SuccessPage.tsx";
 import VerificationPage from "@pages/connectYanoljaPage/verificationPage/VerificationPage";
 import { Suspense } from "react";
-import { createBrowserRouter } from "react-router-dom";
+import { Outlet, createBrowserRouter } from "react-router-dom";
 
 import App from "@/App";
 import { PATH } from "@/constants/path";
@@ -158,7 +158,13 @@ export const router = createBrowserRouter([
       },
       {
         path: PATH.PAYMENT,
-        element: <Payment />,
+        element: <Outlet />,
+        children: [
+          {
+            index: true,
+            element: <Payment />,
+          },
+        ],
       },
     ],
   },
