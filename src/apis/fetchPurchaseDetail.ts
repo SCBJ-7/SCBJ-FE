@@ -4,7 +4,7 @@ import { END_POINTS } from "@/constants/api";
 
 export const fetchPurchaseDetail = async (id: string) => {
   try {
-    const response = await axios.get(`/v1/purchase-detail/${id}`, {
+    const response = await axiosInstance.get(END_POINTS.PURCHASE_DETAIL(id), {
       // 닫는 괄호 위치 수정
       headers: {
         Authorization: `${localStorage.getItem("accessToken")}`,

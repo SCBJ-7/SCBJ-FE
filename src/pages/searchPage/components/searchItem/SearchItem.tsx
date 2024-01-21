@@ -21,6 +21,7 @@ const SearchItem = ({ item }: { item: ISearchList }) => {
 
     return formattedDate;
   };
+  console.log("item", item);
 
   return (
     <>
@@ -37,17 +38,17 @@ const SearchItem = ({ item }: { item: ISearchList }) => {
               <S.ItemPrice>
                 {item.salePrice.toLocaleString() + "원"}
               </S.ItemPrice>
-              <S.ItemSalePercent>
-                {calculatePercentage(item.originalPrice, item.salePrice)}
-              </S.ItemSalePercent>
+              <S.ItemSalePercent>{item.salePercentage}</S.ItemSalePercent>
             </div>
             <S.ItemDate>
-              {`${formatDateString(item.checkInDate)} ~ ${formatDateString(
-                item.checkOutDate,
+              {`${formatDateString(item.checkIn)} ~ ${formatDateString(
+                item.checkOut,
               )}`}
             </S.ItemDate>
           </S.ItemBottom>
-          {item.isFirst || <S.SecondSaleText>마감 특가</S.SecondSaleText>}
+          {item.isFirst === false && (
+            <S.SecondSaleText>마감 특가</S.SecondSaleText>
+          )}
         </S.ItemContent>
       </S.ItemContainer>
     </>

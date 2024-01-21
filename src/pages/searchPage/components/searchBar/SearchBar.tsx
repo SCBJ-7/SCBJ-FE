@@ -2,29 +2,40 @@ import { useNavigate } from "react-router-dom";
 import * as S from "./SearchBar.style";
 import { PATH } from "@/constants/path";
 import { useSearchFilterInfoStore } from "@store/store";
+import { formatDateMonthAndDay } from "@utils/dateFomaterMonthDay";
 
 const SearchBar = () => {
   const navigate = useNavigate();
   const searchInfo = useSearchFilterInfoStore((state) => state.searchInfo);
-  const isDisabled =
-    searchInfo.checkIn === null &&
-    searchInfo.checkOut === null &&
-    searchInfo.quantityPeople === 0 &&
-    searchInfo.location === null;
 
-  const searchBarContent = `${
-    searchInfo.location ? `${searchInfo.location} / ` : ""
-  }${searchInfo.checkIn || ""}${
-    searchInfo.checkOut && searchInfo.checkIn ? " ~ " : ""
-  }${searchInfo.checkOut || ""}${
-    (searchInfo.location || searchInfo.checkOut) && searchInfo.quantityPeople
-      ? " / "
-      : ""
-  }${
-    searchInfo.quantityPeople !== null && searchInfo.quantityPeople > 0
-      ? `${searchInfo.quantityPeople}인`
-      : ""
-  }`.trim();
+  let searchBarContent = "어떤 호텔을 찾으세요?";
+  if (searchInfo.location && searchInfo.checkOut && searchInfo.quantityPeople) {
+    searchBarContent = `${searchInfo.location} / ${formatDateMonthAndDay(
+      searchInfo.checkIn,
+    )} ~ ${formatDateMonthAndDay(searchInfo.checkOut)} / ${
+      searchInfo.quantityPeople
+    }명`;
+  } else if (searchInfo.location && searchInfo.checkOut) {
+    searchBarContent = `${searchInfo.location} / ${formatDateMonthAndDay(
+      searchInfo.checkIn,
+    )} ~ ${formatDateMonthAndDay(searchInfo.checkOut)}`;
+  } else if (searchInfo.location && searchInfo.quantityPeople) {
+    searchBarContent = `${searchInfo.location} / ${searchInfo.quantityPeople}명`;
+  } else if (searchInfo.location) {
+    searchBarContent = `${searchInfo.location}`;
+  } else if (searchInfo.checkOut && searchInfo.quantityPeople) {
+    searchBarContent = `${formatDateMonthAndDay(
+      searchInfo.checkIn,
+    )} ~ ${formatDateMonthAndDay(searchInfo.checkOut)} / ${
+      searchInfo.quantityPeople
+    }명`;
+  } else if (searchInfo.checkOut) {
+    searchBarContent = `${formatDateMonthAndDay(
+      searchInfo.checkIn,
+    )} ~ ${formatDateMonthAndDay(searchInfo.checkOut)}`;
+  } else if (searchInfo.quantityPeople) {
+    searchBarContent = `${searchInfo.quantityPeople}명`;
+  }
 
   const handleSearchBar = () => {
     navigate(PATH.SEARCH_FILTER);
@@ -35,9 +46,7 @@ const SearchBar = () => {
         <S.SearchBarContainer>
           <S.SearchBarInput>
             <S.SearchRegion>
-              <div>
-                {isDisabled ? "어떤 호텔을 찾으세요?" : searchBarContent}
-              </div>
+              <div>{searchBarContent}</div>
               <div>
                 <S.SearchBarIcon />
               </div>

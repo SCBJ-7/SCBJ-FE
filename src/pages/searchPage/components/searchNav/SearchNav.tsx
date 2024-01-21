@@ -39,7 +39,7 @@ const SeachNav = () => {
     const isKeyActive = searchInfo?.[searchKey];
 
     setSearchInfo({
-      [searchKey]: !isKeyActive,
+      [searchKey]: isKeyActive ? null : true,
     });
 
     const newActiveState: ActiveState = { ...isActive };

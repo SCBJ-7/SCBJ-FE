@@ -7,6 +7,6 @@ export interface ISearchList {
   salePrice: number;
   salePercentage: number;
   isFirst: boolean;
-  checkInDate: string;
-  checkOutDate: string;
+  checkIn: string;
+  checkOut: string;
 }

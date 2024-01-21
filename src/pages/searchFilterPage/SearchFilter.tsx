@@ -3,11 +3,10 @@ import * as S from "./SearchFilter.style";
 import RegionModal from "./components/regionModal/RegionModal";
 import PeopleCounter from "./components/peopleCounter/PeopleCounter";
 import CalendarModal from "./components/calendarModal/CalendarModal";
-import { format } from "date-fns";
-import { ko } from "date-fns/locale";
 import { useSearchFilterInfoStore } from "@store/store";
 import { useNavigate } from "react-router-dom";
 import { PATH } from "@constants/path";
+import { formatDateMonthAndDay } from "@utils/dateFomaterMonthDay";
 const SearchFilter = () => {
   const searchInfo = useSearchFilterInfoStore((state) => state.searchInfo);
   const setSearchInfo = useSearchFilterInfoStore(
@@ -48,13 +47,6 @@ const SearchFilter = () => {
     navigate(PATH.SEARCHLIST);
   };
 
-  const formatDate = (day: string): string => {
-    // "2024-02-01" => "02. 01"
-    return format(new Date(day), "MM.dd", {
-      locale: ko,
-    });
-  };
-
   return (
     <>
       <S.FilterContainer>
@@ -70,7 +62,9 @@ const SearchFilter = () => {
             <S.FilterSubTitle>일정</S.FilterSubTitle>
             <S.FilterModalButton>
               {checkIn && checkOut
-                ? `${formatDate(checkIn)} ~ ${formatDate(checkOut)}`
+                ? `${formatDateMonthAndDay(checkIn)} ~ ${formatDateMonthAndDay(
+                    checkOut,
+                  )}`
                 : "언제든지"}
             </S.FilterModalButton>
           </S.FilterBlock>
