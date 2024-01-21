@@ -12,6 +12,10 @@ export const HStack = styled.div`
 `;
 
 export const Label = styled.label`
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+
   &:focus > .radio-box {
     box-shadow: 0 0 0 3px ${({ theme }) => theme.color.lightBlue};
   }
@@ -72,4 +76,17 @@ export const BenefitWrapper = styled.div`
 
 export const TextWrapper = styled.div`
   line-height: 1.8;
+`;
+
+interface InputCaptionProps {
+  error?: boolean;
+}
+
+export const InputCaption = styled.p.withConfig({
+  shouldForwardProp: (prop) => !["error", "success"].includes(prop),
+})<InputCaptionProps>`
+  color: ${({ error, theme }) =>
+    error ? theme.color.cautionRed : theme.color.percentBlue};
+
+  ${({ theme }) => theme.typo.caption3};
 `;

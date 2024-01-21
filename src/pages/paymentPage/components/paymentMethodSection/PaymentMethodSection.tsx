@@ -4,7 +4,11 @@ import * as S from "./PaymentMethodSection.style";
 import kakaopaySrc from "@assets/icons/ic_kakao_pay.png";
 
 const PaymentMethodSection = () => {
-  const { register, watch } = useFormContext();
+  const {
+    register,
+    watch,
+    formState: { errors },
+  } = useFormContext();
 
   const selectedMethod = watch("paymentMethod");
 
@@ -14,7 +18,9 @@ const PaymentMethodSection = () => {
       <S.Label htmlFor="kakaopay">
         <S.HiddenRadioBox
           id="kakaopay"
-          {...register("paymentMethod", { required: true })}
+          {...register("paymentMethod", {
+            required: "결제 수단을 선택해주세요.",
+          })}
           value="kakaoPaymentService"
         />
         <S.RadioBox
@@ -24,6 +30,11 @@ const PaymentMethodSection = () => {
         >
           <img src={kakaopaySrc} alt="카카오페이" />
         </S.RadioBox>
+        {errors.paymentMethod && (
+          <S.InputCaption role="alert" aria-live="polite" error>
+            {errors.paymentMethod.message?.toString()}
+          </S.InputCaption>
+        )}
       </S.Label>
       <S.BenefitWrapper>
         <img src={kakaopaySrc} alt="카카오페이" />
