@@ -21,9 +21,9 @@ const UserInfoSection = () => {
 
   useEffect(() => {
     if (isDiffUser && userInfo) {
-      setValue("name", userInfo.name);
-      setValue("email", userInfo.email);
-      setValue("phone", userInfo.phone);
+      setValue("name", userInfo.name, { shouldValidate: true });
+      setValue("email", userInfo.email, { shouldValidate: true });
+      setValue("phone", userInfo.phone, { shouldValidate: true });
     } else if (!isDiffUser) {
       resetField("name");
       resetField("email");
