@@ -28,6 +28,7 @@ import TransferWritingPrice from "@/pages/transferWritingPricePage/TransferWriti
 import LocalErrorBoundary from "@components/errorBoundary/LocalErrorBoundary";
 import Payment from "@pages/paymentPage/Payment";
 import TransferWritingSuccess from "@/pages/transferWritingSuccessPage/TransferWritingSuccess";
+import PaymentSuccess from "@pages/paymentSuccessPage/PaymentSuccess";
 import EditAccount from "@pages/myPage/manage/editAccount/EditAccount";
 import PaymentSuccess from "@pages/paymentSuccessPage/PaymentSuccess";
 
