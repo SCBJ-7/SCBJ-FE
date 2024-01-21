@@ -2,7 +2,7 @@ import IntroPage from "@pages/connectYanoljaPage/IntroPage/IntroPage.tsx";
 import SuccessPage from "@pages/connectYanoljaPage/successPage/SuccessPage.tsx";
 import VerificationPage from "@pages/connectYanoljaPage/verificationPage/VerificationPage";
 import { Suspense } from "react";
-import { createBrowserRouter } from "react-router-dom";
+import { Outlet, createBrowserRouter } from "react-router-dom";
 
 import App from "@/App";
 import { PATH } from "@/constants/path";
@@ -26,7 +26,8 @@ import PurchaseDetail from "@/pages/purchaseDetailPage/PurchaseDetail";
 import TransferWritingPrice from "@/pages/transferWritingPricePage/TransferWritingPrice";
 import LocalErrorBoundary from "@components/errorBoundary/LocalErrorBoundary";
 import Payment from "@pages/paymentPage/Payment";
-import TransferWritingSuccess from "@pages/transferWritingSuccessPage/TransferWritingSuccess";
+import TransferWritingSuccess from "@/pages/transferWritingSuccessPage/TransferWritingSuccess";
+import PaymentSuccess from "@pages/paymentSuccessPage/PaymentSuccess";
 
 export const router = createBrowserRouter([
   {
@@ -148,7 +149,17 @@ export const router = createBrowserRouter([
       },
       {
         path: PATH.PAYMENT,
-        element: <Payment />,
+        element: <Outlet />,
+        children: [
+          {
+            index: true,
+            element: <Payment />,
+          },
+          {
+            path: "success",
+            element: <PaymentSuccess />,
+          },
+        ],
       },
     ],
   },
