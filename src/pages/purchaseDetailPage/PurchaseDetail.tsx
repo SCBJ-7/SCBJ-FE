@@ -4,17 +4,18 @@ import { IPurchaseData } from "@/types/purchaseDetail";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import * as S from "./PurchaseDetail.style";
 import { PATH } from "@/constants/path";
+import { AxiosError } from "axios";
 
 const PurchaseDetail = () => {
   const [searchParams] = useSearchParams();
   const id = searchParams.get("id");
+  if (!id) throw new Error("존재하지 않는 roomId 입니다.");
   const navigate = useNavigate();
   const indexFee = 5000;
-  const { data, isLoading } = useSuspenseQuery<IPurchaseData>({
-    queryKey: ["roomDetail", id],
-    queryFn: () => fetchPurchaseDetail("1"),
+  const { data } = useSuspenseQuery<IPurchaseData, AxiosError>({
+    queryKey: ["roomDetail"],
+    queryFn: () => fetchPurchaseDetail("102"),
   });
-
   return (
     <S.DetailContainer>
       <S.TopSection>

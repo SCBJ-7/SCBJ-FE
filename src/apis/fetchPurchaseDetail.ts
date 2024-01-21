@@ -1,9 +1,11 @@
+import axios from "axios";
 import { axiosInstance } from "./axiosInstance";
 import { END_POINTS } from "@/constants/api";
 
 export const fetchPurchaseDetail = async (id: string) => {
   try {
-    const response = await axiosInstance(END_POINTS.PURCHASE_DETAIL(id), {
+    const response = await axios.get(`/v1/purchase-detail/${id}`, {
+      // 닫는 괄호 위치 수정
       headers: {
         Authorization: `${localStorage.getItem("accessToken")}`,
         "Content-Type": "application/json",
