@@ -1,4 +1,4 @@
-import { getRoom } from "@apis/getRoom";
+import { getRoom } from "@apis/fetchRoom";
 
 import Carousel from "@components/carousel/Carousel";
 import RoomHeader from "@pages/roomDetailPage/components/roomHeader/RoomHeader";
