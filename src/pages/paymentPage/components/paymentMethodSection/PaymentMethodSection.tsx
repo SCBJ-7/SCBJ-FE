@@ -1,13 +1,12 @@
-import { useState } from "react";
+import { useFormContext } from "react-hook-form";
+
 import * as S from "./PaymentMethodSection.style";
 import kakaopaySrc from "@assets/icons/ic_kakao_pay.png";
 
 const PaymentMethodSection = () => {
-  const [isChecked, setIsChecked] = useState(false);
+  const { register, watch } = useFormContext();
 
-  const handleRadioBoxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setIsChecked(event.currentTarget.checked);
-  };
+  const selectedMethod = watch("paymentMethod");
 
   return (
     <S.HStack>
@@ -15,14 +14,13 @@ const PaymentMethodSection = () => {
       <S.Label htmlFor="kakaopay">
         <S.HiddenRadioBox
           id="kakaopay"
-          name="paymentMethod"
-          checked={isChecked}
-          onChange={handleRadioBoxChange}
+          {...register("paymentMethod", { required: true })}
+          value="kakaoPaymentService"
         />
         <S.RadioBox
           className="radio-box"
           aria-hidden={true}
-          data-checked={isChecked ? "" : null}
+          data-checked={selectedMethod === "kakaoPaymentService" ? "" : null}
         >
           <img src={kakaopaySrc} alt="카카오페이" />
         </S.RadioBox>
