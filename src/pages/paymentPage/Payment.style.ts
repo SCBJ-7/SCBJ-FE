@@ -29,6 +29,10 @@ export const Text = styled.p.withConfig({
   color: ${({ color, theme }) => color && theme.color[color]}
 `;
 
+export const CaptionWrapper = styled.div`
+  padding: 1.5rem 1.25rem;
+`;
+
 export const BottomWrapper = styled.div`
   padding: 2rem 1.25rem;
 `;
