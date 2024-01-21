@@ -75,6 +75,12 @@ const Header = () => {
       title = "정산계좌 관리";
       undo = true;
       break;
+    case PATH.NOTICE:
+      alarmIC = false;
+      settingIC = false;
+      title = "알림";
+      undo = true;
+      break;
     default: // 없음
   }
   const undoHandler = () => {

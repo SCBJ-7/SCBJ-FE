@@ -9,11 +9,20 @@ import {
   WeekendItemsType,
   WeekendItem,
 } from "@type/saleSection";
+// import { fetchMainItem } from "@apis/fetchMainItems";
 
 import { locale } from "@constants/locale";
 import WeekendCarousel from "./weekendCarousel/WeekendCarousel";
+// import { useSuspenseQuery } from "@tanstack/react-query";
 
 const Home = () => {
+  // const { data: MainData } = useSuspenseQuery({
+  //   queryKey: ["main"],
+  //   queryFn: fetchMainItem,
+  // });
+
+  // console.log(MainData);
+
   const weekendProds: WeekendItemsType = {
     weekend: [
       {

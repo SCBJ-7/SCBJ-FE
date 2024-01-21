@@ -26,6 +26,7 @@ import PurchaseDetail from "@/pages/purchaseDetailPage/PurchaseDetail";
 import TransferWritingPrice from "@/pages/transferWritingPricePage/TransferWritingPrice";
 import LocalErrorBoundary from "@components/errorBoundary/LocalErrorBoundary";
 import TransferWritingSuccess from "@pages/transferWritingSuccessPage/TransferWritingSuccess";
+import Notice from "@pages/noticePage/NoticePage";
 
 export const router = createBrowserRouter([
   {
@@ -109,6 +110,16 @@ export const router = createBrowserRouter([
           <LocalErrorBoundary>
             <Suspense fallback={<div>LOADING</div>}>
               <RoomDetail />
+            </Suspense>
+          </LocalErrorBoundary>
+        ),
+      },
+      {
+        path: PATH.NOTICE,
+        element: (
+          <LocalErrorBoundary>
+            <Suspense>
+              <Notice />
             </Suspense>
           </LocalErrorBoundary>
         ),
