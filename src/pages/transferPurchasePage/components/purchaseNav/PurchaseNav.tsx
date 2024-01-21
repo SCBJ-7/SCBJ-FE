@@ -1,5 +1,6 @@
 import { useSearchParams } from "react-router-dom";
 import * as S from "./PurchaseNav.style";
+import { useEffect } from "react";
 
 const navList = [
   { status: "all", label: "전체" },
@@ -10,9 +11,11 @@ const navList = [
 const PurchaseNav = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const status = searchParams.get("status");
-  if (!status) {
-    setSearchParams({ status: "all" });
-  }
+  useEffect(() => {
+    if (!status) {
+      setSearchParams({ status: "all" });
+    }
+  }, [status, setSearchParams]);
 
   return (
     <S.PurchaseNavContainer>

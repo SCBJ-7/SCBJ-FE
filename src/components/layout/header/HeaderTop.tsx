@@ -29,8 +29,7 @@ const Header = () => {
     case PATH.SEARCHLIST:
       alarmIC = false;
       settingIC = false;
-      title = "검색";
-      undo = true;
+      undo = false;
       break;
     case PATH.WRITE_TRANSFER:
       alarmIC = false;
@@ -67,6 +66,12 @@ const Header = () => {
       alarmIC = false;
       settingIC = false;
       title = "프로필 변경";
+      undo = true;
+      break;
+    case PATH.SEARCH_FILTER:
+      alarmIC = false;
+      settingIC = false;
+      title = "검색";
       undo = true;
       break;
     case PATH.MANAGE_ACCOUNT:

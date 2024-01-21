@@ -4,6 +4,7 @@ import { IUserInfo } from "@/types/userInfo";
 
 import { create } from "zustand"; // create로 zustand를 불러옵니다.
 import { persist } from "zustand/middleware";
+import { ISearchFilterInfo } from "@/types/searchFilterInfo";
 
 /* 
   zustand 사용법:
@@ -115,6 +116,40 @@ export const useToastStore = create<ToastStates>((set) => ({
     })),
 }));
 
+interface SearchState {
+  searchInfo: ISearchFilterInfo;
+  setSearchInfo: (updatedInfo: Partial<ISearchFilterInfo>) => void;
+}
+
+// 유저정보 전역상태 store
+export const useSearchFilterInfoStore = create(
+  persist<SearchState>(
+    (set) => ({
+      // 데이터 기본값
+      searchInfo: {
+        location: null,
+        checkIn: null,
+        checkOut: null,
+        maximumPeople: null,
+        sorted: null,
+        brunch: null,
+        pool: null,
+        oceanView: null,
+        page: 1,
+        pageSize: 10,
+      },
+      // 데이터 조작 set 함수
+      setSearchInfo: (updatedInfo) =>
+        set((state) => ({
+          searchInfo: {
+            ...state.searchInfo,
+            ...updatedInfo,
+          },
+        })),
+    }),
+    { name: "searchFilterStorage" },
+  ),
+);
 type Iheader = {
   title: string;
   undo: () => void;

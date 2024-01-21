@@ -2,10 +2,11 @@ import styled from "styled-components";
 
 export const DetailContainer = styled.div`
   width: 100%;
+  height: 100%;
   background-color: ${({ theme }) => theme.color.greyScale7};
   padding-bottom: 100px;
   color: ${({ theme }) => theme.color.black};
-  color: ${({ theme }) => theme.scroll};
+  ${({ theme }) => theme.scroll};
 `;
 
 export const TopSection = styled.section`
@@ -47,7 +48,6 @@ export const ItemInfoContent = styled.div`
   > div:nth-child(2) {
     font-size: 1.375rem;
     font-weight: 700;
-    color: ${({ theme }) => theme.color.percentOrange};
   }
   > div:nth-child(3) {
     margin-top: 0.5rem;
@@ -55,7 +55,10 @@ export const ItemInfoContent = styled.div`
     ${({ theme }) => theme.typo.body2}
   }
 `;
-
+export const ItemInfoStatus = styled.div<{ $remainingDays: number }>`
+  color: ${({ theme, $remainingDays }) =>
+    $remainingDays >= 0 ? theme.color.percentOrange : theme.color.black};
+`;
 export const ImageContainer = styled.div`
   width: 100%;
   height: 80px;
@@ -155,6 +158,7 @@ export const StandardTitle = styled.div`
 export const StandardFlex = styled.div`
   display: flex;
   justify-content: space-between;
+  align-items: center;
 `;
 
 export const StandardSubTitle = styled.div`
@@ -204,10 +208,6 @@ export const PayInfo = styled.div`
   }
 
   > div:nth-child(3) {
-    padding-bottom: 1rem;
-  }
-
-  > div:nth-child(4) {
     padding-bottom: 1rem;
   }
 `;

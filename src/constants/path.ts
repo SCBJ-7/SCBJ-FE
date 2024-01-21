@@ -1,6 +1,7 @@
 export const PATH = {
   ROOT: "/",
   SEARCHLIST: "/search",
+  SEARCH_FILTER: "/search/filter",
   CREATE_TRIP: "/trip-new",
   SALE_LIST: "/my-page/sale-list",
   PURCHASE_LIST: "/my-page/purchase-list",
