@@ -9,3 +9,7 @@ export interface PaymentData {
   originalPrice: number;
   salePrice: number;
 }
+
+export interface PaymentRequestData {
+  url: string;
+}
