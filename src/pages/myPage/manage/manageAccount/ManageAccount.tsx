@@ -1,23 +1,60 @@
 import RegisterAccount from "../registerAccount/RegisterAccount";
-import EditAccount from "../editAccount/EditAccount";
+import useProfileApi from "@apis/useProfileApi";
+import type { ProfileData } from "../manageProfile/ManageProfile.type";
+import { useEffect, useState } from "react";
+import type { AccountProps } from "@type/account";
 import AccountInfo from "../accountInfo/AccountInfo";
+import { END_POINTS } from "@constants/api";
+import { useNavigate, useSearchParams } from "react-router-dom";
+import { PATH } from "@constants/path";
 
 const ManageAccount = () => {
-  // FIXME: api 호출을 통해서 등록된 계좌가 있는지 확인해야함
-  const noPrevAccount = true;
-  const isEditing = false;
+  const navigate = useNavigate();
+  const [search] = useSearchParams();
+  const { getProfileData } = useProfileApi();
+  const [data, setData] = useState<ProfileData>();
+  const noPrevAccount = !data?.accountNumber && !data?.bank;
+  const [accountInfo, setAccountInfo] = useState<AccountProps>({
+    accountNumber: data?.accountNumber,
+    bank: data?.bank,
+  });
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
-  return (
-    <>
-      {noPrevAccount ? (
-        <RegisterAccount />
-      ) : isEditing ? (
-        <EditAccount />
-      ) : (
-        <AccountInfo />
-      )}
-    </>
-  );
+  const fetchData = async () => {
+    setIsLoading(true);
+    try {
+      const res = await getProfileData(END_POINTS.USER_INFO);
+      setData(res);
+      setAccountInfo({ accountNumber: res.accountNumber, bank: res.bank });
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    if (
+      search.get("step") === "termsAgreement" ||
+      search.get("step") === "enterAccount"
+    )
+      return;
+
+    if (search.get("step") !== "first") {
+      navigate(PATH.MANAGE_ACCOUNT, { replace: true });
+    }
+
+    fetchData();
+    // eslint-disable-next-line
+  }, [search]);
+
+  if (isLoading) return <div>Loading...</div>;
+
+  if (!data) return <div>Data fetching Error</div>;
+
+  if (noPrevAccount) return <RegisterAccount />;
+
+  return <AccountInfo data={data} accountInfo={accountInfo} />;
 };
 
 export default ManageAccount;
