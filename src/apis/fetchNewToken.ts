@@ -4,7 +4,7 @@ import {
   REFRESH_TOKEN,
   BASE_URL,
 } from "@constants/api";
-import type { TokenData } from "@type/newToken";
+import type { TokenData } from "@type/login";
 import type { ResponseData } from "@type/responseType";
 import axios from "axios";
 

@@ -15,3 +15,10 @@ export interface LoginData {
     refreshToken: string;
   };
 }
+
+export interface TokenData {
+  accessToken: string;
+  refreshToken: string;
+}
+
+export type EmailValidateData = string;
