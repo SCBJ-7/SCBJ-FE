@@ -15,6 +15,11 @@ export const usePaymentRequestMutation = () => {
       customerName,
       customerEmail,
       customerPhoneNumber,
+      isAgeOver14,
+      useAgree,
+      cancelAndRefund,
+      collectPersonalInfo,
+      thirdPartySharing,
     }: PaymentRequestProps) =>
       postPayment({
         productId,
@@ -22,6 +27,11 @@ export const usePaymentRequestMutation = () => {
         customerName,
         customerEmail,
         customerPhoneNumber,
+        isAgeOver14,
+        useAgree,
+        cancelAndRefund,
+        collectPersonalInfo,
+        thirdPartySharing,
       }),
     throwOnError: true,
   });
