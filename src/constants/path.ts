@@ -1,5 +1,6 @@
 export const PATH = {
   ROOT: "/",
+  NOTICE: "/notice",
   SEARCHLIST: "/search",
   SEARCH_FILTER: "/search/filter",
   CREATE_TRIP: "/trip-new",

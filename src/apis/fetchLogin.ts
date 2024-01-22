@@ -7,17 +7,20 @@ import { axiosInstance } from "./axiosInstance";
 interface LoginProps {
   email: string;
   password: string;
+  fcmToken: string;
 }
 
 export const postLogin = async ({
   email,
   password,
+  fcmToken,
 }: LoginProps): Promise<LoginData> => {
   const { data } = await axios.post<ResponseData<LoginData>>(
     BASE_URL + END_POINTS.LOGIN,
     {
       email,
       password,
+      fcmToken,
     },
   );
   return data.data;

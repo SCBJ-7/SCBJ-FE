@@ -22,7 +22,7 @@ const addToken = (config: InternalAxiosRequestConfig) => {
 
   if (!accessToken) {
     alert("다시 로그인 해 주세요."); // or 로그인
-    window.location.href = PATH.ROOT;
+    window.location.href = PATH.LOGIN;
   }
 
   config.headers.Authorization = `${accessToken}`;

@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { useToastStore, useUserInfoStore } from "@/store/store";
 import { postLogin } from "@apis/fetchLogin";
+import { getMessaging, getToken } from "firebase/messaging";
 
 type FormValues = {
   email: string;
@@ -26,7 +27,25 @@ const SignIn = () => {
 
   const handleOnSubmit = async (data: FormValues) => {
     const { email, password } = data;
-    await postLogin({ email, password })
+    let fcmToken = "";
+    const messaging = getMessaging();
+    getToken(messaging)
+      .then((currentToken) => {
+        if (currentToken) {
+          fcmToken = currentToken;
+        } else {
+          console.log(
+            "No registration token available. Request permission to generate one.",
+          );
+          // ...
+        }
+      })
+      .catch((err) => {
+        console.log("An error occurred while retrieving token. ", err);
+        // ...
+      });
+
+    await postLogin({ email, password, fcmToken })
       .then((loginData) => {
         const { memberResponse, tokenResponse } = loginData;
         useUserInfoStore.getState().setUserInfo(memberResponse);

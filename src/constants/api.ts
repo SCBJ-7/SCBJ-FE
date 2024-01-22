@@ -6,6 +6,7 @@ export const END_POINTS = {
   SIGNUP: "/v1/members/signup",
   ROOM: (roomId: string) => `/v1/products/${roomId}`,
   RESERVATION: "/v1/reservations",
+  MAIN: "/v1/products/main",
   USER_INFO: "/v1/members",
   PURCHASE_HISTORY: "/v1/members/purchased-history",
   PURCHASE_DETAIL: (purchaseId: string) => `/v1/purchase-detail/${purchaseId}`,
