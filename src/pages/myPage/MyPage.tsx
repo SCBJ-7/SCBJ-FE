@@ -33,6 +33,8 @@ const MyPage = () => {
     navigate(PATH.YANOLJA_ACCOUNT);
   };
 
+  console.log(isConnected);
+
   return (
     <>
       <S.ProfileSection>
