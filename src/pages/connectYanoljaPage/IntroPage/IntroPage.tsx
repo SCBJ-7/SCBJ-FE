@@ -31,7 +31,7 @@ const IntroPage = () => {
         <S.Button
           type="button"
           variant="solid"
-          onClick={() => navigate(PATH.YANOLJA_ACCOUNT_VERIFY)}
+          onClick={() => navigate(PATH.YANOLJA_ACCOUNT + "/verify")}
         >
           계정 연동하기
         </S.Button>

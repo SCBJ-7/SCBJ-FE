@@ -144,25 +144,23 @@ export const router = createBrowserRouter([
         path: PATH.YANOLJA_ACCOUNT,
         element: (
           <LocalErrorBoundary>
-            <IntroPage />
+            <Outlet />
           </LocalErrorBoundary>
         ),
-      },
-      {
-        path: PATH.YANOLJA_ACCOUNT_VERIFY,
-        element: (
-          <LocalErrorBoundary>
-            <VerificationPage />
-          </LocalErrorBoundary>
-        ),
-      },
-      {
-        path: PATH.YANOLJA_ACCOUNT_VERIFY + "/success",
-        element: (
-          <LocalErrorBoundary>
-            <SuccessPage />
-          </LocalErrorBoundary>
-        ),
+        children: [
+          {
+            index: true,
+            element: <IntroPage />,
+          },
+          {
+            path: "verify",
+            element: <VerificationPage />,
+          },
+          {
+            path: "verify/success",
+            element: <SuccessPage />,
+          },
+        ],
       },
       {
         path: PATH.SEARCH_FILTER,

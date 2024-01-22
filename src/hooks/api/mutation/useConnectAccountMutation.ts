@@ -13,7 +13,7 @@ export const useConnectAccountMutation = () => {
   const connectAccountMutation = useMutation({
     mutationFn: (email: string) => postYanoljaAccount(email),
     onSuccess: () => {
-      navigate(PATH.YANOLJA_ACCOUNT_VERIFY + "/success", {
+      navigate(PATH.YANOLJA_ACCOUNT + "/verify/success", {
         state: { success: true },
         replace: true,
       });
