@@ -1,25 +1,45 @@
+import { useNavigate } from "react-router-dom";
+import { ProfileData } from "../manageProfile/ManageProfile.type";
 import * as S from "./AccountInfo.style";
-import { useUserInfoStore } from "@/store/store";
+import { PATH } from "@constants/path";
+import type { AccountProps } from "@type/account";
 
-const AccountInfo = () => {
-  const { userInfo } = useUserInfoStore();
+const AccountInfo = ({
+  data,
+  accountInfo,
+}: {
+  data: ProfileData;
+  accountInfo: AccountProps;
+}) => {
+  const { bank, accountNumber, name } = data;
+  const navigate = useNavigate();
 
   return (
     <S.AccountInfoContainer>
       <S.AccountInfoWrapper>
         <h2>은행명</h2>
-        <div>{userInfo.bank}</div>
+        <div>{bank}</div>
       </S.AccountInfoWrapper>
 
       <S.AccountInfoWrapper>
         <h2>계좌번호</h2>
-        <div>{userInfo.accountNumber}</div>
+        <div>{accountNumber}</div>
       </S.AccountInfoWrapper>
 
       <S.AccountInfoWrapper>
         <h2>예금주</h2>
-        <div>{userInfo.name}</div>
+        <div>{name}</div>
       </S.AccountInfoWrapper>
+      <S.AccountEditButton
+        type="button"
+        onClick={() =>
+          navigate(PATH.ACCOUNT_EDIT, {
+            state: accountInfo,
+          })
+        }
+      >
+        계좌 변경하기
+      </S.AccountEditButton>
     </S.AccountInfoContainer>
   );
 };

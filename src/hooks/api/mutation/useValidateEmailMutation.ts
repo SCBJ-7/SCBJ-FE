@@ -1,4 +1,4 @@
-import { postValidateEmail } from "@apis/postValidateEmail";
+import { postValidateEmail } from "@apis/fetchLogin";
 import { useMutation } from "@tanstack/react-query";
 
 export const useValidateEmailMutation = () => {

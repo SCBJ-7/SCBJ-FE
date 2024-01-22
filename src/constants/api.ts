@@ -1,4 +1,9 @@
+export const BASE_URL = "https://3.34.147.187.nip.io";
+
 export const END_POINTS = {
+  LOGIN: "/v1/members/signin",
+  LOGOUT: "/v1/members/logout",
+  SIGNUP: "/v1/members/signup",
   ROOM: (roomId: string) => `/v1/products/${roomId}`,
   RESERVATION: "/v1/reservations",
   MAIN: "/v1/products/main",
@@ -8,6 +13,9 @@ export const END_POINTS = {
   EMAIL: "/v1/members/email",
   YANOLJA: "/v1/members/yanolja",
   ACCOUNT: "/v1/members/account",
+  PAYMENT: (productId: string) => `/v1/products/${productId}/payments`,
+  PAYMENT_REQUEST: (productId: string, paymentType: string) =>
+    `/v1/products/${productId}/payments?paymentType=${paymentType}`,
   NEW_TOKEN: "/v1/token/refresh",
 } as const;
 

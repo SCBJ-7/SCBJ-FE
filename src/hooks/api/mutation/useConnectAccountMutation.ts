@@ -3,7 +3,7 @@ import { isAxiosError } from "axios";
 import { useNavigate } from "react-router-dom";
 
 import { useToastStore } from "@store/store";
-import { postYanoljaAccount } from "@apis/postYanoljaAccount";
+import { postYanoljaAccount } from "@apis/fetchYanoljaAccount";
 import { PATH } from "@constants/path";
 
 export const useConnectAccountMutation = () => {

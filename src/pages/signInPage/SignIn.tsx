@@ -1,8 +1,8 @@
 import * as S from "./SignIn.style";
 import { useForm } from "react-hook-form";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { useToastStore } from "@/store/store";
+import { useToastStore, useUserInfoStore } from "@/store/store";
+import { postLogin } from "@apis/fetchLogin";
 import { getMessaging, getToken } from "firebase/messaging";
 
 type FormValues = {
@@ -45,29 +45,16 @@ const SignIn = () => {
         // ...
       });
 
-    await axios
-      .post("https://3.34.147.187.nip.io/v1/members/signin", {
-        email,
-        password,
-        fcmToken,
-      })
-      .then(
-        ({
-          data: {
-            data: {
-              memberResponse,
-              tokenResponse: { accessToken, refreshToken },
-            },
-          },
-        }) => {
-          // Todo : 임시로 localStorage에 사용자 정보, 토큰 둘 다 저장히지만 더 좋은 방법 찾기
-          localStorage.setItem("memberResponse", memberResponse);
-          localStorage.setItem("accessToken", accessToken);
-          localStorage.setItem("refreshToken", refreshToken);
+    await postLogin({ email, password, fcmToken })
+      .then((loginData) => {
+        const { memberResponse, tokenResponse } = loginData;
+        useUserInfoStore.getState().setUserInfo(memberResponse);
 
-          navigate("/");
-        },
-      )
+        // TODO: 임시로 localStorage에서 토큰 저장히지만 더 좋은 방법 찾기~!! 토스~!!
+        localStorage.setItem("accessToken", tokenResponse.accessToken);
+        localStorage.setItem("refreshToken", tokenResponse.refreshToken);
+        navigate("/");
+      })
       .catch(({ response }) => {
         console.log(response);
         setToastConfig({

@@ -1,8 +1,7 @@
 import * as S from "./PuchaseItem.style";
-import { format } from "date-fns";
-import { ko } from "date-fns/locale";
 import { IPurchaseItemWithRemainDate } from "../../TransferPurchase";
 import { PATH } from "@/constants/path";
+import { formatDate } from "@/utils/dateFormatter";
 import { useNavigate } from "react-router-dom";
 
 const PuchaseItem = (props: IPurchaseItemWithRemainDate) => {
@@ -12,9 +11,7 @@ const PuchaseItem = (props: IPurchaseItemWithRemainDate) => {
   };
   return (
     <S.PurchaseItemContainer onClick={handleClick}>
-      <S.PurchaseItemTitle
-        style={{ color: props.remainDate < 0 ? "" : "#FF7C17" }}
-      >
+      <S.PurchaseItemTitle $remainingDays={props.remainDate}>
         {props.remainDate > 0
           ? `체크인까지 ${props.remainDate}일 남았어요!`
           : props.remainDate === 0
@@ -28,13 +25,13 @@ const PuchaseItem = (props: IPurchaseItemWithRemainDate) => {
           <S.PurchaseItemName>{props.name}</S.PurchaseItemName>
           <S.PuChaseItemType>{props.roomType}</S.PuChaseItemType>
           <S.PuChaseItemDate>
-            {`${format(props.checkInDate, "yyyy. MM. dd (ccc)", {
-              locale: ko,
-            })} ~ `}
-            {`${format(props.checkOutDate, "yyyy. MM. dd (ccc)", {
-              locale: ko,
-            })}`}
+            <S.PuChaseItemDate>
+              {`${formatDate(props.checkInDate)} ~ ${formatDate(
+                props.checkOutDate,
+              )}`}
+            </S.PuChaseItemDate>
           </S.PuChaseItemDate>
+
           <S.PurchaseItemPrice>{`${props.price.toLocaleString()}원`}</S.PurchaseItemPrice>
         </S.PuchaseItemInfo>
       </S.PurchaseItemContent>

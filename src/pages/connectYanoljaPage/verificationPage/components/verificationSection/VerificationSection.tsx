@@ -24,7 +24,6 @@ const VerificationSection = () => {
           clearErrors("email");
           setCodeState(response);
           setIsEmailValidated(true);
-          console.log(response);
         },
         onError: (error) => {
           if (axios.isAxiosError(error) && error.response) {

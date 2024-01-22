@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { theme } from "@styles/theme";
+import type { ColorKeys, TypoKeys } from "@styles/theme";
 
 export const Container = styled.main`
   background-color: ${({ theme }) => theme.color.greyScale7};
@@ -63,14 +63,10 @@ export const RightBox = styled(Box)`
   border-bottom-right-radius: 8px;
 `;
 
-type Variant = keyof typeof theme.typo;
-type ColorVariant = keyof typeof theme.color;
-
 export type VariantProps = {
-  variant?: Variant;
-  color?: ColorVariant;
+  variant?: TypoKeys;
+  color?: ColorKeys;
 };
-
 export const Text = styled.p.withConfig({
   shouldForwardProp: (prop) => !["variant", "color"].includes(prop),
 })<VariantProps>`
