@@ -19,7 +19,6 @@ const addToken = (config: InternalAxiosRequestConfig) => {
   if (!config.headers || config.headers.Authorization) return config;
 
   const accessToken = localStorage.getItem(ACCESS_TOKEN);
-  console.log(accessToken);
 
   if (!accessToken) {
     alert("다시 로그인 해 주세요."); // or 로그인
@@ -51,7 +50,7 @@ const handleExpiredToken = async (error: AxiosError<ResponseDataType>) => {
     try {
       originalRequest._retry = true; // 무한루프 되지 않도록
       const { accessToken, refreshToken } = await fetchNewToken();
-      originalRequest.headers.Authorization = `Bearer ${accessToken}`;
+      originalRequest.headers.Authorization = `${accessToken}`;
       localStorage.setItem(ACCESS_TOKEN, accessToken);
       localStorage.setItem(REFRESH_TOKEN, refreshToken);
 

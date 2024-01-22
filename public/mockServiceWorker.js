@@ -1,14 +1,13 @@
 /* eslint-disable */
-/* tslint:disable */
 
 /**
- * Mock Service Worker (2.0.11).
+ * Mock Service Worker (2.1.2).
  * @see https://github.com/mswjs/msw
  * - Please do NOT modify this file.
  * - Please do NOT serve this file on production.
  */
 
-const INTEGRITY_CHECKSUM = "c5f7f8e188b673ea4e677df7ea3c5a39";
+const INTEGRITY_CHECKSUM = "223d191a56023cd36aa88c802961b911";
 const IS_MOCKED_RESPONSE = Symbol("isMockedResponse");
 const activeClientIds = new Set();
 
@@ -136,7 +135,7 @@ async function handleRequest(event, requestId) {
             headers: Object.fromEntries(responseClone.headers.entries()),
           },
         },
-        [responseClone.body]
+        [responseClone.body],
       );
     })();
   }
@@ -232,7 +231,7 @@ async function getResponse(event, client, requestId) {
         keepalive: request.keepalive,
       },
     },
-    [requestBuffer]
+    [requestBuffer],
   );
 
   switch (clientMessage.type) {
@@ -262,7 +261,7 @@ function sendToClient(client, message, transferrables = []) {
 
     client.postMessage(
       message,
-      [channel.port2].concat(transferrables.filter(Boolean))
+      [channel.port2].concat(transferrables.filter(Boolean)),
     );
   });
 }
