@@ -11,11 +11,9 @@ const Manage = () => {
     { path: PATH.MANAGE_PROFILE, name: "프로필 변경" },
     { path: PATH.MANAGE_ACCOUNT, name: "정산 계좌 관리" },
   ];
-
   // FIXME: 전역 상태로 야놀자 연동여부를 체크하도록 변경
   const { getProfileData } = useProfileApi();
   const [userProfile, setUserProfile] = useState<ProfileData>();
-  const [isLoading, setIsLoading] = useState<boolean>(true);
 
   const fetchUserProfile = async () => {
     try {
@@ -23,8 +21,6 @@ const Manage = () => {
       setUserProfile(res);
     } catch (err) {
       console.log(err);
-    } finally {
-      setIsLoading(false);
     }
   };
 
@@ -33,16 +29,12 @@ const Manage = () => {
     // eslint-disable-next-line
   }, []);
 
-  if (isLoading) return <div>Loading...</div>;
-
-  if (!userProfile) return <div>Data Fetching Error</div>;
-
   return (
     <S.ManageListWrapper>
       <h1>관리</h1>
       {manageList.map((item, index) => {
         const hideAccountManage =
-          index === 1 && userProfile.linkedToYanolja === false;
+          index === 1 && userProfile?.linkedToYanolja === false;
         return (
           <S.ManageListElement key={item.name} $visible={!hideAccountManage}>
             <S.ManageLink to={item.path}>
