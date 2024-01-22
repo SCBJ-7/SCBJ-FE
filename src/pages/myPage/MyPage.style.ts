@@ -17,6 +17,9 @@ export const ProfileSection = styled.section`
   span {
     ${({ theme }) => theme.typo.body4}
     color: ${({ theme }) => theme.color.percentOrange};
+
+    display: block;
+    height: 32px;
   }
 
   button {
@@ -33,4 +36,8 @@ export const ProfileSection = styled.section`
 
     background-color: ${({ theme }) => theme.color.percentOrange};
   }
+`;
+
+export const EmptyDiv = styled.div`
+  height: 32px;
 `;

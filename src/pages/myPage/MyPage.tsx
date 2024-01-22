@@ -33,13 +33,13 @@ const MyPage = () => {
     navigate(PATH.YANOLJA_ACCOUNT);
   };
 
-  console.log(isConnected);
-
   return (
     <>
       <S.ProfileSection>
         <h3>{userProfile?.email} 님</h3>
-        {isConnected === true ? (
+        {!userProfile ? (
+          <S.EmptyDiv />
+        ) : isConnected ? (
           <span>야놀자와 연동된 계정입니다</span>
         ) : (
           <button onClick={connectToYanolja}>야놀자 계정 연동하기</button>
