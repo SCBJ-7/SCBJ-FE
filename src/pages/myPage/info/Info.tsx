@@ -4,7 +4,6 @@ const Info = () => {
   const infoList = [
     { name: "문의하기", handler: () => alert("문의하기") },
     { name: "로그아웃", handler: () => alert("로그아웃") },
-    { name: "탈퇴하기", handler: () => alert("탈퇴하기") },
   ];
 
   return (
