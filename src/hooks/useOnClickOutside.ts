@@ -42,6 +42,7 @@ const useOnClickOutside = ({
       document.removeEventListener("mousedown", listenerTwo);
       document.removeEventListener("touchstart", listenerTwo);
     };
+    // eslint-disable-next-line
   }, [ref, handler, refTwo, handlerTwo]);
 };
 
