@@ -36,7 +36,7 @@ const MyPage = () => {
     <>
       <S.ProfileSection>
         <h3>{userProfile?.email} 님</h3>
-        {userProfile?.linkedToYanolja ? (
+        {userProfile?.linkedToYanolja === true ? (
           <span>야놀자와 연동된 계정입니다</span>
         ) : (
           <button onClick={connectToYanolja}>야놀자 계정 연동하기</button>
