@@ -9,11 +9,14 @@ export const ProfileSection = styled.section`
 
   border-bottom: 10px solid ${({ theme }) => theme.color.greyScale7};
 
-  span {
+  h3 {
     ${({ theme }) => theme.typo.body1}
     color: ${({ theme }) => theme.color.black};
+  }
 
-    margin-bottom: 16px;
+  span {
+    ${({ theme }) => theme.typo.body4}
+    color: ${({ theme }) => theme.color.percentOrange};
   }
 
   button {
