@@ -10,7 +10,7 @@ export const usePaymentQuery = (productId: string) => {
     PaymentData
   >({
     queryKey: ["payment", productId],
-    queryFn: async () => await fetchPayment(productId),
+    queryFn: () => fetchPayment(productId),
     select: (response) => response.data,
   });
 
