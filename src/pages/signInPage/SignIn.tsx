@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useToastStore } from "@/store/store";
+import { getMessaging, getToken } from "firebase/messaging";
 
 type FormValues = {
   email: string;
@@ -26,10 +27,29 @@ const SignIn = () => {
 
   const handleOnSubmit = async (data: FormValues) => {
     const { email, password } = data;
+    let fcmToken = "";
+    const messaging = getMessaging();
+    getToken(messaging)
+      .then((currentToken) => {
+        if (currentToken) {
+          fcmToken = currentToken;
+        } else {
+          console.log(
+            "No registration token available. Request permission to generate one.",
+          );
+          // ...
+        }
+      })
+      .catch((err) => {
+        console.log("An error occurred while retrieving token. ", err);
+        // ...
+      });
+
     await axios
       .post("https://3.34.147.187.nip.io/v1/members/signin", {
         email,
         password,
+        fcmToken,
       })
       .then(
         ({
