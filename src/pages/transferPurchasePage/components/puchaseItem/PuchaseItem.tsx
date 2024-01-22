@@ -1,7 +1,7 @@
 import * as S from "./PuchaseItem.style";
 import { IPurchaseItemWithRemainDate } from "../../TransferPurchase";
 import { PATH } from "@/constants/path";
-import { formatDate } from "@/utils/dateFormater";
+import { formatDate } from "@/utils/dateFormatter";
 import { useNavigate } from "react-router-dom";
 
 const PuchaseItem = (props: IPurchaseItemWithRemainDate) => {

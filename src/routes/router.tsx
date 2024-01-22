@@ -9,7 +9,7 @@ import { PATH } from "@/constants/path";
 
 import Home from "@/pages/homePage/Home";
 import NotFound from "@/pages/notFoundPage";
-import Search from "@/pages/searchPage";
+import Search from "@/pages/searchPage/Search";
 import SignUp from "@/pages/signUpPage/SignUp";
 import MyPage from "@/pages/myPage/MyPage";
 import SignIn from "@/pages/signInPage/SignIn";
