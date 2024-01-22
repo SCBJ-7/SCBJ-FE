@@ -25,12 +25,23 @@ const PaymentButton = ({ productId, payment }: PaymentButtonProps) => {
     const customerEmail = getValues("email");
     const customerPhoneNumber = getValues("phone");
 
+    const isAgeOver14 = getValues("term1");
+    const useAgree = getValues("term2");
+    const cancelAndRefund = getValues("term3");
+    const collectPersonalInfo = getValues("term4");
+    const thirdPartySharing = getValues("term5");
+
     const paymentRequest = {
       productId,
       paymentType,
       customerName,
       customerEmail,
       customerPhoneNumber,
+      isAgeOver14,
+      useAgree,
+      cancelAndRefund,
+      collectPersonalInfo,
+      thirdPartySharing,
     };
 
     console.log(paymentRequest);

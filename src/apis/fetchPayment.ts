@@ -16,6 +16,11 @@ export interface PaymentRequestProps {
   customerName: string;
   customerEmail: string;
   customerPhoneNumber: string;
+  isAgeOver14: boolean;
+  useAgree: boolean;
+  cancelAndRefund: boolean;
+  collectPersonalInfo: boolean;
+  thirdPartySharing: boolean;
 }
 
 export const postPayment = async (
@@ -27,6 +32,11 @@ export const postPayment = async (
     customerName,
     customerEmail,
     customerPhoneNumber,
+    isAgeOver14,
+    useAgree,
+    cancelAndRefund,
+    collectPersonalInfo,
+    thirdPartySharing,
   } = paymentRequest;
 
   const { data } = await axiosInstance.post<ResponseData<PaymentRequestData>>(
@@ -35,6 +45,11 @@ export const postPayment = async (
       customerName,
       customerEmail,
       customerPhoneNumber,
+      isAgeOver14,
+      useAgree,
+      cancelAndRefund,
+      collectPersonalInfo,
+      thirdPartySharing,
     },
   );
   return data.data;

@@ -42,6 +42,7 @@ const TermsAgreementSection = () => {
             <Checkbox
               id="all"
               isChecked={field.value}
+              value={field.value}
               onChange={handleParentCheckboxChange}
               variant="title"
               ariaLabel="전체동의"
@@ -59,6 +60,7 @@ const TermsAgreementSection = () => {
             <Checkbox
               id="term1"
               isChecked={field.value}
+              value={field.value}
               onChange={field.onChange}
               variant="caption"
               ariaLabel="만 14세 이상 이용 동의"
@@ -76,6 +78,7 @@ const TermsAgreementSection = () => {
             <Checkbox
               id="term2"
               isChecked={field.value}
+              value={field.value}
               onChange={field.onChange}
               variant="caption"
               ariaLabel="이용규칙 동의"
@@ -93,6 +96,7 @@ const TermsAgreementSection = () => {
             <Checkbox
               id="term3"
               isChecked={field.value}
+              value={field.value}
               onChange={field.onChange}
               variant="caption"
               ariaLabel="취소 및 환불 규칙 동의"
@@ -110,6 +114,7 @@ const TermsAgreementSection = () => {
             <Checkbox
               id="term4"
               isChecked={field.value}
+              value={field.value}
               onChange={field.onChange}
               variant="caption"
               ariaLabel="개인정보 수집 및 이용 동의"
@@ -127,6 +132,7 @@ const TermsAgreementSection = () => {
             <Checkbox
               id="term5"
               isChecked={field.value}
+              value={field.value}
               onChange={field.onChange}
               variant="caption"
               ariaLabel="개인정보 제3자 제공 동의"
