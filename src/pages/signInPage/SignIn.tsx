@@ -49,11 +49,11 @@ const SignIn = () => {
           localStorage.setItem("refreshToken", refreshToken);
 
           if (redirectUrl) {
-            navigate(redirectUrl);
+            navigate(redirectUrl, { replace: true });
             return;
           }
 
-          navigate(PATH.ROOT);
+          navigate(PATH.ROOT, { replace: true });
         },
       )
       .catch(() => {
