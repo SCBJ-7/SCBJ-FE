@@ -10,7 +10,6 @@ export const END_POINTS = {
   YANOLJA: "/v1/members/yanolja",
   PAYMENT: (productId: string) => `/v1/products/${productId}/payments`,
   ACCOUNT: "/v1/members/account",
-  PAYMENT: (productId: string) => `/v1/products/${productId}/payments`,
   NEW_TOKEN: "/v1/token/refresh",
 } as const;
 
