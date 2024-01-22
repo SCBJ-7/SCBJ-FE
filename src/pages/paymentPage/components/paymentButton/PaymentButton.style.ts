@@ -19,15 +19,5 @@ export const Button = styled.button`
     background-color: ${({ theme }) => theme.color.darkOrange};
   }
 
-  &[data-disabled] {
-    color: ${({ theme }) => theme.color.white};
-    background-color: ${({ theme }) => theme.color.greyScale5};
-    cursor: unset;
-  }
-
-  &[data-disabled]:hover {
-    background-color: ${({ theme }) => theme.color.greyScale4};
-  }
-
   transition: background-color 0.2s ease-in-out;
 `;
