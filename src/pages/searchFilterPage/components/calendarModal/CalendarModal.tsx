@@ -22,7 +22,7 @@ const CalendarModal = ({
 }: CalendarModalProps) => {
   const { handleToast } = useToastConfig();
   const [startDate, setStartDate] = useState<Date | null>(
-    checkIn ? new Date(checkIn) : new Date(),
+    checkIn ? new Date(checkIn) : null,
   );
   const [endDate, setEndDate] = useState<Date | null>(
     checkOut ? new Date(checkOut) : null,
@@ -82,7 +82,7 @@ const CalendarModal = ({
       setDateIsModalOpen(false);
     } else if (startDate && !endDate) {
       e.preventDefault();
-      handleToast(true, [<>체크아웃 날짜를 선택해주세요!</>]);
+      handleToast(true, [<>체크아웃 날짜를 선택해주세요</>]);
     } else {
       setCheckIn(null);
       setCheckOut(null);

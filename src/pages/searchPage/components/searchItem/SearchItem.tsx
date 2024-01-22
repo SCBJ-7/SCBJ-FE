@@ -3,14 +3,13 @@ import * as S from "./SearchItem.style";
 import { format, parseISO } from "date-fns";
 
 const SearchItem = ({ item }: { item: ISearchList }) => {
-  const calculatePercentage = (
-    originalPrice: number,
-    salePrice: number,
-  ): string => {
-    const difference = originalPrice - salePrice;
-    const percentage = (difference / originalPrice) * 100;
+  const calculatePercentage = (salePrice: number) => {
+    const percentage = salePrice * 100;
 
-    return `${percentage}%`;
+    // Math.round 함수를 사용하여 소수점 이하 반올림
+    const roundedPercentage = Math.round(percentage);
+
+    return roundedPercentage;
   };
   const formatDateString = (dateString: string) => {
     // 문자열을 Date 객체로 파싱
@@ -21,7 +20,6 @@ const SearchItem = ({ item }: { item: ISearchList }) => {
 
     return formattedDate;
   };
-  console.log("item", item);
 
   return (
     <>
@@ -38,7 +36,9 @@ const SearchItem = ({ item }: { item: ISearchList }) => {
               <S.ItemPrice>
                 {item.salePrice.toLocaleString() + "원"}
               </S.ItemPrice>
-              <S.ItemSalePercent>{item.salePercentage}</S.ItemSalePercent>
+              <S.ItemSalePercent>
+                {`${calculatePercentage(item.salePercentage)}%`}
+              </S.ItemSalePercent>
             </div>
             <S.ItemDate>
               {`${formatDateString(item.checkIn)} ~ ${formatDateString(
