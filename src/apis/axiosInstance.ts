@@ -19,11 +19,11 @@ const addToken = (config: InternalAxiosRequestConfig) => {
   if (!config.headers || config.headers.Authorization) return config;
 
   const accessToken = localStorage.getItem(ACCESS_TOKEN);
-  console.log(accessToken);
 
   if (!accessToken) {
     alert("다시 로그인 해 주세요."); // or 로그인
-    window.location.href = PATH.ROOT;
+    window.location.href = `${PATH.LOGIN}?redirect=${window.location.pathname}`;
+    return;
   }
 
   config.headers.Authorization = `${accessToken}`;
