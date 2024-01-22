@@ -29,6 +29,7 @@ import LocalErrorBoundary from "@components/errorBoundary/LocalErrorBoundary";
 import Payment from "@pages/paymentPage/Payment";
 import TransferWritingSuccess from "@pages/transferWritingSuccessPage/TransferWritingSuccess";
 import EditAccount from "@pages/myPage/manage/editAccount/EditAccount";
+import PaymentSuccess from "@pages/paymentSuccessPage/PaymentSuccess";
 
 export const router = createBrowserRouter([
   {
@@ -163,6 +164,10 @@ export const router = createBrowserRouter([
           {
             index: true,
             element: <Payment />,
+          },
+          {
+            path: "success",
+            element: <PaymentSuccess />,
           },
         ],
       },
