@@ -2,7 +2,7 @@ import IntroPage from "@pages/connectYanoljaPage/IntroPage/IntroPage.tsx";
 import SuccessPage from "@pages/connectYanoljaPage/successPage/SuccessPage.tsx";
 import VerificationPage from "@pages/connectYanoljaPage/verificationPage/VerificationPage";
 import { Suspense } from "react";
-import { createBrowserRouter } from "react-router-dom";
+import { Outlet, createBrowserRouter } from "react-router-dom";
 
 import App from "@/App";
 import { PATH } from "@/constants/path";
@@ -17,7 +17,6 @@ import RoomDetail from "@pages/roomDetailPage/RoomDetail";
 import TransferPurchase from "@/pages/transferPurchasePage/TransferPurchase";
 import TransferSale from "@/pages/transferSalePage";
 import TransferWriting from "@/pages/transferWritingPage/TransferWriting";
-
 import ManageAccount from "@/pages/myPage/manage/manageAccount/ManageAccount";
 import ManageProfile from "@/pages/myPage/manage/manageProfile/ManageProfile";
 import Setting from "@/pages/myPage/setting/Setting";
@@ -27,8 +26,9 @@ import SearchFilter from "@/pages/searchFilterPage/SearchFilter";
 import TransferWritingPrice from "@/pages/transferWritingPricePage/TransferWritingPrice";
 import LocalErrorBoundary from "@components/errorBoundary/LocalErrorBoundary";
 import Payment from "@pages/paymentPage/Payment";
-import TransferWritingSuccess from "@pages/transferWritingSuccessPage/TransferWritingSuccess";
+import TransferWritingSuccess from "@/pages/transferWritingSuccessPage/TransferWritingSuccess";
 import EditAccount from "@pages/myPage/manage/editAccount/EditAccount";
+import PaymentSuccess from "@pages/paymentSuccessPage/PaymentSuccess";
 
 export const router = createBrowserRouter([
   {
@@ -158,7 +158,17 @@ export const router = createBrowserRouter([
       },
       {
         path: PATH.PAYMENT,
-        element: <Payment />,
+        element: <Outlet />,
+        children: [
+          {
+            index: true,
+            element: <Payment />,
+          },
+          {
+            path: "success",
+            element: <PaymentSuccess />,
+          },
+        ],
       },
     ],
   },
