@@ -30,7 +30,6 @@ import Payment from "@pages/paymentPage/Payment";
 import TransferWritingSuccess from "@/pages/transferWritingSuccessPage/TransferWritingSuccess";
 import PaymentSuccess from "@pages/paymentSuccessPage/PaymentSuccess";
 import EditAccount from "@pages/myPage/manage/editAccount/EditAccount";
-import PaymentSuccess from "@pages/paymentSuccessPage/PaymentSuccess";
 
 export const router = createBrowserRouter([
   {
