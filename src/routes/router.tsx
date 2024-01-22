@@ -30,6 +30,7 @@ import Payment from "@pages/paymentPage/Payment";
 import TransferWritingSuccess from "@/pages/transferWritingSuccessPage/TransferWritingSuccess";
 import PaymentSuccess from "@pages/paymentSuccessPage/PaymentSuccess";
 import EditAccount from "@pages/myPage/manage/editAccount/EditAccount";
+import Loading from "@components/loading/Loading";
 
 export const router = createBrowserRouter([
   {
@@ -133,7 +134,9 @@ export const router = createBrowserRouter([
         path: PATH.YANOLJA_ACCOUNT,
         element: (
           <LocalErrorBoundary>
-            <Outlet />
+            <Suspense fallback={<Loading />}>
+              <Outlet />
+            </Suspense>
           </LocalErrorBoundary>
         ),
         children: [
@@ -157,7 +160,13 @@ export const router = createBrowserRouter([
       },
       {
         path: PATH.PAYMENT,
-        element: <Outlet />,
+        element: (
+          <LocalErrorBoundary>
+            <Suspense fallback={<Loading />}>
+              <Outlet />
+            </Suspense>
+          </LocalErrorBoundary>
+        ),
         children: [
           {
             index: true,
