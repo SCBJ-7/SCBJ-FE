@@ -23,7 +23,6 @@ const addToken = (config: InternalAxiosRequestConfig) => {
   if (!accessToken) {
     alert("다시 로그인 해 주세요."); // or 로그인
     window.location.href = `${PATH.LOGIN}?redirect=${window.location.pathname}`;
-    return;
   }
 
   config.headers.Authorization = `${accessToken}`;
