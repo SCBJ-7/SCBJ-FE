@@ -13,6 +13,7 @@ const MyPage = () => {
   // FIXME: 전역상태로 야놀자 연동 여부 확인하도록 수정
   const { getProfileData } = useProfileApi();
   const [userProfile, setUserProfile] = useState<ProfileData>();
+  const isConnected = userProfile?.linkedToYanolja;
 
   const fetchUserProfile = async () => {
     try {
@@ -36,7 +37,7 @@ const MyPage = () => {
     <>
       <S.ProfileSection>
         <h3>{userProfile?.email} 님</h3>
-        {userProfile?.linkedToYanolja === true ? (
+        {isConnected === true ? (
           <span>야놀자와 연동된 계정입니다</span>
         ) : (
           <button onClick={connectToYanolja}>야놀자 계정 연동하기</button>
