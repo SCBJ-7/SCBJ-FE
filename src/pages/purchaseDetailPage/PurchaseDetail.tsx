@@ -13,7 +13,7 @@ const PurchaseDetail = () => {
   const navigate = useNavigate();
   const indexFee = 5000;
   const { data } = useSuspenseQuery<IPurchaseData, AxiosError>({
-    queryKey: ["roomDetail", id],
+    queryKey: ["roomasDetail", id],
     queryFn: () => fetchPurchaseDetail(id),
   });
   return (
