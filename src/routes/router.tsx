@@ -162,11 +162,11 @@ export const router = createBrowserRouter([
         element: <Outlet />,
         children: [
           {
-            index: true,
+            path: ":productId",
             element: <Payment />,
           },
           {
-            path: "success",
+            path: "success/:productId",
             element: <PaymentSuccess />,
           },
         ],
