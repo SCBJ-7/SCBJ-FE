@@ -135,6 +135,10 @@ const TransferWritingPrice = () => {
         accountNumber: accountNumber as string,
         secondGrantPeriod: Number(downTimeAfter),
         isRegistered: is2ndChecked,
+        standardTimeSellingPolicy: opt1,
+        totalAmountPolicy: opt2,
+        sellingModificationPolicy: opt3,
+        productAgreement: optFinal,
       }),
     onSuccess: () => {
       alert("판매 게시물이 성공적으로 등록되었습니다!");
