@@ -1,8 +1,15 @@
 import { axiosInstance } from "@apis/axiosInstance";
 import { END_POINTS } from "@constants/api";
-import type { PaymentData, PaymentRequestData } from "@type/payment";
+import type { StockData, PaymentData, PaymentRequestData } from "@type/payment";
 import type { ResponseData } from "@type/responseType";
 import type { Nullable } from "@type/nullable";
+
+export const getStock = async (productId: string): Promise<StockData> => {
+  const { data } = await axiosInstance.get<ResponseData<StockData>>(
+    END_POINTS.STOCK(productId),
+  );
+  return data.data;
+};
 
 export const getPayment = async (productId: string): Promise<PaymentData> => {
   const { data } = await axiosInstance.get<ResponseData<PaymentData>>(

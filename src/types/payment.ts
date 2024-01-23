@@ -1,3 +1,7 @@
+export interface StockData {
+  hasStock: boolean;
+}
+
 export interface PaymentData {
   hotelImage: string;
   hotelName: string;
