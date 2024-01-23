@@ -2,7 +2,7 @@ import IntroPage from "@pages/connectYanoljaPage/IntroPage/IntroPage.tsx";
 import SuccessPage from "@pages/connectYanoljaPage/successPage/SuccessPage.tsx";
 import VerificationPage from "@pages/connectYanoljaPage/verificationPage/VerificationPage";
 import { Suspense } from "react";
-import { createBrowserRouter } from "react-router-dom";
+import { Outlet, createBrowserRouter } from "react-router-dom";
 
 import App from "@/App";
 import { PATH } from "@/constants/path";
@@ -26,9 +26,12 @@ import PurchaseDetail from "@/pages/purchaseDetailPage/PurchaseDetail";
 import SearchFilter from "@/pages/searchFilterPage/SearchFilter";
 import TransferWritingPrice from "@/pages/transferWritingPricePage/TransferWritingPrice";
 import LocalErrorBoundary from "@components/errorBoundary/LocalErrorBoundary";
+import Notice from "@pages/noticePage/NoticePage";
 import Payment from "@pages/paymentPage/Payment";
-import TransferWritingSuccess from "@pages/transferWritingSuccessPage/TransferWritingSuccess";
+import TransferWritingSuccess from "@/pages/transferWritingSuccessPage/TransferWritingSuccess";
+import PaymentSuccess from "@pages/paymentSuccessPage/PaymentSuccess";
 import EditAccount from "@pages/myPage/manage/editAccount/EditAccount";
+import Loading from "@components/loading/Loading";
 
 export const router = createBrowserRouter([
   {
@@ -121,6 +124,16 @@ export const router = createBrowserRouter([
         ),
       },
       {
+        path: PATH.NOTICE,
+        element: (
+          <LocalErrorBoundary>
+            <Suspense>
+              <Notice />
+            </Suspense>
+          </LocalErrorBoundary>
+        ),
+      },
+      {
         path: PATH.PASSWORD_RESET,
         element: <PasswordReset />,
       },
@@ -132,25 +145,25 @@ export const router = createBrowserRouter([
         path: PATH.YANOLJA_ACCOUNT,
         element: (
           <LocalErrorBoundary>
-            <IntroPage />
+            <Suspense fallback={<Loading />}>
+              <Outlet />
+            </Suspense>
           </LocalErrorBoundary>
         ),
-      },
-      {
-        path: PATH.YANOLJA_ACCOUNT_VERIFY,
-        element: (
-          <LocalErrorBoundary>
-            <VerificationPage />
-          </LocalErrorBoundary>
-        ),
-      },
-      {
-        path: PATH.YANOLJA_ACCOUNT_VERIFY + "/success",
-        element: (
-          <LocalErrorBoundary>
-            <SuccessPage />
-          </LocalErrorBoundary>
-        ),
+        children: [
+          {
+            index: true,
+            element: <IntroPage />,
+          },
+          {
+            path: "verify",
+            element: <VerificationPage />,
+          },
+          {
+            path: "verify/success",
+            element: <SuccessPage />,
+          },
+        ],
       },
       {
         path: PATH.SEARCH_FILTER,
@@ -158,7 +171,23 @@ export const router = createBrowserRouter([
       },
       {
         path: PATH.PAYMENT,
-        element: <Payment />,
+        element: (
+          <LocalErrorBoundary>
+            <Suspense fallback={<Loading />}>
+              <Outlet />
+            </Suspense>
+          </LocalErrorBoundary>
+        ),
+        children: [
+          {
+            index: true,
+            element: <Payment />,
+          },
+          {
+            path: "success",
+            element: <PaymentSuccess />,
+          },
+        ],
       },
     ],
   },

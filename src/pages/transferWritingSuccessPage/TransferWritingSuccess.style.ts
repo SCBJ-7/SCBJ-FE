@@ -14,6 +14,7 @@ export const Container = styled.div`
 
   & button {
     margin-bottom: 32px;
+    flex-shrink: 0;
 
     width: calc(100% - 40px);
     height: 48px;

@@ -1,9 +1,11 @@
 import * as S from "./SignIn.style";
 import { useForm } from "react-hook-form";
-import axios from "axios";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import useToastConfig from "@hooks/common/useToastConfig";
 import { PATH } from "@constants/path";
+import { useUserInfoStore } from "@/store/store";
+import { postLogin } from "@apis/fetchLogin";
+import { getMessaging, getToken } from "firebase/messaging";
 
 type FormValues = {
   email: string;
@@ -29,33 +31,39 @@ const SignIn = () => {
 
   const handleOnSubmit = async (data: FormValues) => {
     const { email, password } = data;
-    await axios
-      .post("https://3.34.147.187.nip.io/v1/members/signin", {
-        email,
-        password,
+    let fcmToken = "";
+    const messaging = getMessaging();
+    getToken(messaging)
+      .then((currentToken) => {
+        if (currentToken) {
+          fcmToken = currentToken;
+        } else {
+          console.log(
+            "No registration token available. Request permission to generate one.",
+          );
+          // ...
+        }
       })
-      .then(
-        ({
-          data: {
-            data: {
-              memberResponse,
-              tokenResponse: { accessToken, refreshToken },
-            },
-          },
-        }) => {
-          // Todo : 임시로 localStorage에 사용자 정보, 토큰 둘 다 저장히지만 더 좋은 방법 찾기
-          localStorage.setItem("memberResponse", memberResponse);
-          localStorage.setItem("accessToken", accessToken);
-          localStorage.setItem("refreshToken", refreshToken);
+      .catch((err) => {
+        console.log("An error occurred while retrieving token. ", err);
+        // ...
+      });
 
-          if (redirectUrl) {
-            navigate(redirectUrl, { replace: true });
-            return;
-          }
+    await postLogin({ email, password, fcmToken })
+      .then((loginData) => {
+        const { memberResponse, tokenResponse } = loginData;
+        useUserInfoStore.getState().setUserInfo(memberResponse);
 
-          navigate(PATH.ROOT, { replace: true });
-        },
-      )
+        // TODO: 임시로 localStorage에서 토큰 저장히지만 더 좋은 방법 찾기~!! 토스~!!
+        localStorage.setItem("accessToken", tokenResponse.accessToken);
+        localStorage.setItem("refreshToken", tokenResponse.refreshToken);
+        if (redirectUrl) {
+          navigate(redirectUrl, { replace: true });
+          return;
+        }
+
+        navigate(PATH.ROOT, { replace: true });
+      })
       .catch(() => {
         handleToast(false, [<>아이디 혹은 비밀번호를 확인해주세요</>]);
       });

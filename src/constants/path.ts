@@ -1,10 +1,12 @@
 export const PATH = {
   ROOT: "/",
+  NOTICE: "/notice",
   SEARCHLIST: "/search",
   SEARCH_FILTER: "/search/filter",
   CREATE_TRIP: "/trip-new",
   SALE_LIST: "/my-page/sale-list",
   PURCHASE_LIST: "/my-page/purchase-list",
+  PURCAHSE_DEATAIL: "/my-page/purchase-detail",
   DETAIL_ROOM: "/room",
   WRITE_TRANSFER: "/transfer/new",
   WRITE_TRANSFER_PRICE: "/transfer/new/price",
@@ -18,9 +20,7 @@ export const PATH = {
   ACCOUNT_EDIT: "/my-page/setting/manage-account/edit",
   REDIRECT: "/auth/:provider",
   PASSWORD_RESET: "/password-reset",
-  PURCAHSE_DEATAIL: "/my-page/purchase-detail",
   YANOLJA_ACCOUNT: "/account/yanolja",
-  YANOLJA_ACCOUNT_VERIFY: "/account/yanolja/verify",
   RELOAD: 0,
   PAYMENT: "/payment",
 } as const;
