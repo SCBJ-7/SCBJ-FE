@@ -1,12 +1,12 @@
 import { useState } from "react";
-import * as S from "./NoticePage.style";
+import * as S from "./AlarmPage.style";
 import { useQuery } from "@tanstack/react-query";
 import { fetchAlarm, AlarmProps } from "@apis/fetchAlarm";
 import { format, parseISO } from "date-fns";
 import { fetchUserInfo } from "@apis/fetchUserInfo";
 fetchUserInfo;
 
-const NoticePage = () => {
+const AlarmPage = () => {
   const { data: userData } = useQuery({
     queryKey: ["UserInfo"],
     queryFn: fetchUserInfo,
@@ -46,4 +46,4 @@ const NoticePage = () => {
   );
 };
 
-export default NoticePage;
+export default AlarmPage;

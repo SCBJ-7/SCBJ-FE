@@ -26,7 +26,7 @@ import PurchaseDetail from "@/pages/purchaseDetailPage/PurchaseDetail";
 import SearchFilter from "@/pages/searchFilterPage/SearchFilter";
 import TransferWritingPrice from "@/pages/transferWritingPricePage/TransferWritingPrice";
 import LocalErrorBoundary from "@components/errorBoundary/LocalErrorBoundary";
-import Notice from "@pages/noticePage/NoticePage";
+import Alarm from "@pages/alarmPage/AlarmPage";
 import Payment from "@pages/paymentPage/Payment";
 import TransferWritingSuccess from "@/pages/transferWritingSuccessPage/TransferWritingSuccess";
 import PaymentSuccess from "@pages/paymentSuccessPage/PaymentSuccess";
@@ -123,11 +123,11 @@ export const router = createBrowserRouter([
         ),
       },
       {
-        path: PATH.NOTICE,
+        path: PATH.ALARM,
         element: (
           <LocalErrorBoundary>
             <Suspense>
-              <Notice />
+              <Alarm />
             </Suspense>
           </LocalErrorBoundary>
         ),

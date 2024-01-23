@@ -14,7 +14,7 @@ const MainHeader = () => {
   const navigate = useNavigate();
 
   const alertHandler = () => {
-    navigate(PATH.NOTICE);
+    navigate(PATH.ALARM);
   };
 
   return (
