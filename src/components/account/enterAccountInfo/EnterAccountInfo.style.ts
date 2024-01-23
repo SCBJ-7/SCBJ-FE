@@ -1,5 +1,6 @@
 import styled, { css } from "styled-components";
 import { AnimationControls, motion } from "framer-motion";
+import { dimmedStyle } from "@pages/myPage/info/Info.style";
 
 interface BankInputProps {
   $bank: string | undefined;
@@ -90,16 +91,9 @@ export const BankInput = styled.div<BankInputProps>`
 `;
 
 export const BackgroundBlur = styled.div<{ $isVisible: boolean }>`
-  position: absolute;
-  top: 0;
-  left: 0;
+  ${dimmedStyle}
 
   display: ${({ $isVisible }) => ($isVisible ? "block" : "none")};
-
-  width: 100%;
-  height: 100%;
-
-  background-color: rgba(0, 0, 0, 0.45);
 `;
 
 export const BankListBottomSheet = styled(motion.div).attrs<{

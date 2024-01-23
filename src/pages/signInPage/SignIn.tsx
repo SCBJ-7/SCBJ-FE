@@ -1,7 +1,9 @@
 import * as S from "./SignIn.style";
 import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
-import { useToastStore, useUserInfoStore } from "@/store/store";
+import { useNavigate, useSearchParams } from "react-router-dom";
+import useToastConfig from "@hooks/common/useToastConfig";
+import { PATH } from "@constants/path";
+import { useUserInfoStore } from "@/store/store";
 import { postLogin } from "@apis/fetchLogin";
 import { getMessaging, getToken } from "firebase/messaging";
 
@@ -12,7 +14,9 @@ type FormValues = {
 
 const SignIn = () => {
   const navigate = useNavigate();
-  const setToastConfig = useToastStore((state) => state.setToastConfig);
+  const [searchParams] = useSearchParams();
+  const redirectUrl = searchParams.get("redirect");
+  const { handleToast } = useToastConfig();
 
   const {
     register,
@@ -53,22 +57,15 @@ const SignIn = () => {
         // TODO: 임시로 localStorage에서 토큰 저장히지만 더 좋은 방법 찾기~!! 토스~!!
         localStorage.setItem("accessToken", tokenResponse.accessToken);
         localStorage.setItem("refreshToken", tokenResponse.refreshToken);
-        navigate("/");
+        if (redirectUrl) {
+          navigate(redirectUrl, { replace: true });
+          return;
+        }
+
+        navigate(PATH.ROOT, { replace: true });
       })
-      .catch(({ response }) => {
-        console.log(response);
-        setToastConfig({
-          isShow: true,
-          isError: false,
-          strings: [[<>아이디 혹은 비밀번호를 확인해주세요</>]],
-        });
-        setTimeout(() => {
-          setToastConfig({
-            isShow: false,
-            isError: false,
-            strings: [[<>아이디 혹은 비밀번호를 확인해주세요</>]],
-          });
-        }, 6000);
+      .catch(() => {
+        handleToast(false, [<>아이디 혹은 비밀번호를 확인해주세요</>]);
       });
   };
 
