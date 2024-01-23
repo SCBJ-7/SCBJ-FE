@@ -1,9 +1,10 @@
 import * as S from "./SignIn.style";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-import { useToastStore, useUserInfoStore } from "@/store/store";
+import { useUserInfoStore } from "@/store/store";
 import { postLogin } from "@apis/fetchLogin";
 import { getMessaging, getToken } from "firebase/messaging";
+import useToastConfig from "@hooks/common/useToastConfig";
 
 type FormValues = {
   email: string;
@@ -12,7 +13,7 @@ type FormValues = {
 
 const SignIn = () => {
   const navigate = useNavigate();
-  const setToastConfig = useToastStore((state) => state.setToastConfig);
+  const { handleToast } = useToastConfig();
 
   const {
     register,
@@ -57,18 +58,8 @@ const SignIn = () => {
       })
       .catch(({ response }) => {
         console.log(response);
-        setToastConfig({
-          isShow: true,
-          isError: false,
-          strings: [[<>아이디 혹은 비밀번호를 확인해주세요</>]],
-        });
-        setTimeout(() => {
-          setToastConfig({
-            isShow: false,
-            isError: false,
-            strings: [[<>아이디 혹은 비밀번호를 확인해주세요</>]],
-          });
-        }, 6000);
+        // FIXME: USETOAST로 변경
+        handleToast(false, [<>아이디 혹은 비밀번호를 확인해주세요</>]);
       });
   };
 

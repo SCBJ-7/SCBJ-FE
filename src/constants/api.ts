@@ -4,6 +4,8 @@ export const END_POINTS = {
   LOGIN: "/v1/members/signin",
   LOGOUT: "/v1/members/logout",
   SIGNUP: "/v1/members/signup",
+  ALARM: "v1/alarms",
+  HASALARM: "v1/alarms/status",
   ROOM: (roomId: string) => `/v1/products/${roomId}`,
   RESERVATION: "/v1/reservations",
   MAIN: "/v1/products/main",
