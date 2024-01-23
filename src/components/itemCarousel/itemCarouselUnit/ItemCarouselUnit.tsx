@@ -11,10 +11,10 @@ interface UnitProps {
 const ItemCarouselUnit = ({ item }: UnitProps) => {
   const navigate = useNavigate();
   const [, , hotel] = item;
-  const CHKIN0 = format(hotel[0].checkInDate, "mm.dd");
-  const CHKOUT0 = format(hotel[0].checkOutDate, "mm.dd");
-  const CHKIN1 = format(hotel[1].checkInDate, "mm.dd");
-  const CHKOUT1 = format(hotel[1].checkOutDate, "mm.dd");
+  const CHKIN0 = format(new Date(hotel[0].checkInDate), "mm.dd");
+  const CHKOUT0 = format(new Date(hotel[0].checkOutDate), "mm.dd");
+  const CHKIN1 = format(new Date(hotel[1].checkInDate), "mm.dd");
+  const CHKOUT1 = format(new Date(hotel[1].checkOutDate), "mm.dd");
 
   const onClickHandler = (num: number) => {
     navigate(PATH.DETAIL_ROOM + "/" + hotel[num].id);
