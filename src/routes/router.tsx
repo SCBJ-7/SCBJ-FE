@@ -180,11 +180,11 @@ export const router = createBrowserRouter([
         ),
         children: [
           {
-            index: true,
+            path: ":productId",
             element: <Payment />,
           },
           {
-            path: "success",
+            path: "success/:productId",
             element: <PaymentSuccess />,
           },
         ],
