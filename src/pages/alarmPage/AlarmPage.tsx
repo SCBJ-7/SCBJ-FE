@@ -1,13 +1,14 @@
 import { useState } from "react";
 import * as S from "./AlarmPage.style";
-import { useQuery } from "@tanstack/react-query";
-import { fetchAlarm, AlarmProps } from "@apis/fetchAlarm";
-import { format, parseISO } from "date-fns";
+import { useQuery, useSuspenseQuery } from "@tanstack/react-query";
+import { fetchAlarm } from "@apis/fetchAlarm";
+import { format } from "date-fns";
 import { fetchUserInfo } from "@apis/fetchUserInfo";
+import { AlarmType } from "@type/alarm";
 fetchUserInfo;
 
 const AlarmPage = () => {
-  const { data: userData } = useQuery({
+  const { data: userData } = useSuspenseQuery({
     queryKey: ["UserInfo"],
     queryFn: fetchUserInfo,
   });
@@ -19,7 +20,7 @@ const AlarmPage = () => {
   });
 
   console.log(alarmData);
-  const [messages] = useState<AlarmProps[] | undefined>(alarmData);
+  const [messages] = useState<AlarmType[] | undefined>(alarmData);
 
   return (
     <S.Container>
@@ -28,7 +29,7 @@ const AlarmPage = () => {
           <S.OldMessage key={item.id}>
             <S.OldMessage>
               <h1>{item.content}</h1>
-              <h3>{format(parseISO(item.date), "yyyy. MM. dd. HH:mm")}</h3>
+              <h3>{format(item.date, "yyyy. MM. dd. HH:mm")}</h3>
             </S.OldMessage>
           </S.OldMessage>
         ) : (
@@ -36,7 +37,7 @@ const AlarmPage = () => {
             <h1>{item.content}</h1>
             <div>
               {!item.isRead && <section />}
-              <h3>{format(parseISO(item.date), "yyyy. MM. dd. HH:mm")}</h3>
+              <h3>{format(item.date, "yyyy. MM. dd. HH:mm")}</h3>
             </div>
           </S.NewMessage>
         ),
