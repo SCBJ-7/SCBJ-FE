@@ -4,6 +4,7 @@ import { WeekendItem } from "@type/saleSection";
 import { format } from "date-fns";
 import { useNavigate } from "react-router-dom";
 import { PATH } from "@constants/path";
+import { parseISO } from "date-fns";
 
 interface UnitProps {
   item: [number, WeekendItem];
@@ -11,8 +12,8 @@ interface UnitProps {
 
 const WeekendlUnit = ({ item }: UnitProps) => {
   const navigate = useNavigate();
-  const CHKIN = format(item[1].checkInDate, "MM.dd");
-  const CHKOUT = format(item[1].checkOutDate, "MM.dd");
+  const CHKIN = format(parseISO(item[1].checkInDate), "MM.dd");
+  const CHKOUT = format(parseISO(item[1].checkOutDate), "MM.dd");
 
   const onClickHandler = () => {
     navigate(PATH.DETAIL_ROOM + "/" + item[1].id);
