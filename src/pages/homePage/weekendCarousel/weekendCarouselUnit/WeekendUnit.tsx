@@ -11,8 +11,10 @@ interface UnitProps {
 
 const WeekendlUnit = ({ item }: UnitProps) => {
   const navigate = useNavigate();
-  const CHKIN = format(item[1].checkInDate, "MM.dd");
-  const CHKOUT = format(item[1].checkOutDate, "MM.dd");
+
+  console.log(item[1].checkInDate);
+  const CHKIN = format(new Date(item[1].checkInDate), "MM.dd");
+  const CHKOUT = format(new Date(item[1].checkOutDate), "MM.dd");
 
   const onClickHandler = () => {
     navigate(PATH.DETAIL_ROOM + "/" + item[1].id);
