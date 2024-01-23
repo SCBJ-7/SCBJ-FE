@@ -16,7 +16,7 @@ export const ToastContainer = styled(motion.div)<{ $isError: boolean }>`
   justify-content: center;
   align-items: center;
 
-  position: absolute;
+  position: fixed;
   left: 0;
   right: 0;
   top: 80px;
