@@ -3,11 +3,9 @@ import styled, { css } from "styled-components";
 
 export const CarouselContainer = styled.div<{
   $height: number;
-  $width: number;
 }>`
   position: relative;
 
-  width: ${(props) => `${props.$width}px`};
   min-height: ${(props) => `${props.$height}px`};
   height: ${(props) => `${props.$height}px`};
 
