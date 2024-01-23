@@ -94,7 +94,7 @@ const Search = () => {
       <SearchNav />
 
       <S.SearchContainer>
-        {isLoading && !data?.pages[0]?.content?.length && (
+        {isLoading && !data?.pages?.[0]?.content?.length && (
           <S.NoResultCover>
             <S.NoResultText>검색 조건에 맞는 호텔이 없어요</S.NoResultText>
             <S.NoResultTextTwo>

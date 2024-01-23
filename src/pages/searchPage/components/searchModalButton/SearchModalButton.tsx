@@ -31,7 +31,8 @@ const SearchModalButton = () => {
     name: string,
   ) => {
     const modalTwoButtonClick =
-      event.target instanceof Element && e.target.closest(".modal-two-button");
+      event.target instanceof Element &&
+      event.target.closest(".modal-two-button");
 
     if (modalTwoButtonClick) {
       event.preventDefault();

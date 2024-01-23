@@ -9,10 +9,8 @@ interface UnitProps {
   item: [number, WeekendItem];
 }
 
-const WeekendlUnit = ({ item }: UnitProps) => {
+const WeekendUnit = ({ item }: UnitProps) => {
   const navigate = useNavigate();
-
-  console.log(item[1].checkInDate);
   const CHKIN = format(new Date(item[1].checkInDate), "MM.dd");
   const CHKOUT = format(new Date(item[1].checkOutDate), "MM.dd");
 
@@ -48,4 +46,4 @@ const WeekendlUnit = ({ item }: UnitProps) => {
   );
 };
 
-export default WeekendlUnit;
+export default WeekendUnit;
