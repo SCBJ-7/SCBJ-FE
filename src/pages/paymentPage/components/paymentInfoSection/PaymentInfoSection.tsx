@@ -1,6 +1,8 @@
 import * as S from "./PaymentInfoSection.style";
 import { formatDate } from "@utils/dateFormatter";
 import type { PaymentData } from "@type/payment";
+import Card from "@components/card/Card";
+import CardItem from "@components/cardItem/CardItem";
 
 interface PaymentInfoSectionProps {
   payment: PaymentData;
@@ -42,33 +44,22 @@ const PaymentInfoSection = ({ payment }: PaymentInfoSectionProps) => {
         </S.RightBox>
       </S.VStack3>
       <S.HStack>
-        <S.Text variant="body2">결제 금액</S.Text>
-        <S.ItemWrapper>
-          <S.Text variant="body4" color="greyScale2">
-            정가
-          </S.Text>
-          <S.Text variant="body4" color="black">
-            {payment.originalPrice.toLocaleString("ko-KR")}원
-          </S.Text>
-        </S.ItemWrapper>
-        <S.ItemWrapper>
-          <S.Text variant="body4" color="greyScale2">
-            판매가
-          </S.Text>
-          <S.Row>
-            <S.Text variant="body4" color="black">
-              {payment.salePrice.toLocaleString("ko-KR")}원
-            </S.Text>
-          </S.Row>
-        </S.ItemWrapper>
-        <S.Hr />
+        <Card title="결제 금액">
+          <CardItem
+            label="정가"
+            content={payment.originalPrice.toLocaleString("ko-KR") + "원"}
+          />
+          <CardItem
+            label="판매가"
+            content={payment.salePrice.toLocaleString("ko-KR") + "원"}
+          />
+          <CardItem
+            type="recipe"
+            label="총 결제 금액"
+            content={payment.salePrice.toLocaleString("ko-KR") + "원"}
+          />
+        </Card>
       </S.HStack>
-      <S.ItemWrapper>
-        <S.Text variant="body2">총 결제 금액</S.Text>
-        <S.Text variant="body2" color="percentOrange">
-          {payment.salePrice.toLocaleString("ko-KR")}원
-        </S.Text>
-      </S.ItemWrapper>
     </S.HStack>
   );
 };
