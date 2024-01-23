@@ -1,8 +1,9 @@
 import * as S from "./SignIn.style";
 import { useForm } from "react-hook-form";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
-import { useToastStore } from "@/store/store";
+import { useNavigate, useSearchParams } from "react-router-dom";
+import useToastConfig from "@hooks/common/useToastConfig";
+import { PATH } from "@constants/path";
 
 type FormValues = {
   email: string;
@@ -11,7 +12,9 @@ type FormValues = {
 
 const SignIn = () => {
   const navigate = useNavigate();
-  const setToastConfig = useToastStore((state) => state.setToastConfig);
+  const [searchParams] = useSearchParams();
+  const redirectUrl = searchParams.get("redirect");
+  const { handleToast } = useToastConfig();
 
   const {
     register,
@@ -45,23 +48,16 @@ const SignIn = () => {
           localStorage.setItem("accessToken", accessToken);
           localStorage.setItem("refreshToken", refreshToken);
 
-          navigate("/");
+          if (redirectUrl) {
+            navigate(redirectUrl, { replace: true });
+            return;
+          }
+
+          navigate(PATH.ROOT, { replace: true });
         },
       )
-      .catch(({ response }) => {
-        console.log(response);
-        setToastConfig({
-          isShow: true,
-          isError: false,
-          strings: [[<>아이디 혹은 비밀번호를 확인해주세요</>]],
-        });
-        setTimeout(() => {
-          setToastConfig({
-            isShow: false,
-            isError: false,
-            strings: [[<>아이디 혹은 비밀번호를 확인해주세요</>]],
-          });
-        }, 6000);
+      .catch(() => {
+        handleToast(false, [<>아이디 혹은 비밀번호를 확인해주세요</>]);
       });
   };
 
