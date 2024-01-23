@@ -130,13 +130,6 @@ const labelStyles = {
 export const LabelText = styled.span.withConfig({
   shouldForwardProp: (prop) => !["variant"].includes(prop),
 })<CheckboxStyleProps>`
-  ${({ theme }) => theme.typo.caption1}
-
-  ${({ variant, theme }) => variant && labelStyles[variant](theme)};
-
-  margin-inline-start: 0.5rem;
-  user-select: none;
-
   &[data-checked] {
     color: ${({ theme }) => theme.color.percentBlue};
   }
@@ -144,6 +137,13 @@ export const LabelText = styled.span.withConfig({
   &[data-disabled] {
     color: ${({ theme }) => theme.color.greyScale5};
   }
+
+  ${({ theme }) => theme.typo.caption1}
+
+  ${({ variant, theme }) => variant && labelStyles[variant](theme)};
+
+  margin-inline-start: 0.5rem;
+  user-select: none;
 
   & a.link {
     text-decoration: underline;

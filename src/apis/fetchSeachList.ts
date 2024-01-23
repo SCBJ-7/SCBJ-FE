@@ -35,7 +35,6 @@ export const fetchSearchList = async (
         },
       },
     );
-    console.log("Server response:", response.data.totalPage);
 
     return response.data.data;
   } catch (error) {

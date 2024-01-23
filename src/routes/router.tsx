@@ -2,20 +2,21 @@ import IntroPage from "@pages/connectYanoljaPage/IntroPage/IntroPage.tsx";
 import SuccessPage from "@pages/connectYanoljaPage/successPage/SuccessPage.tsx";
 import VerificationPage from "@pages/connectYanoljaPage/verificationPage/VerificationPage";
 import { Suspense } from "react";
-import { createBrowserRouter } from "react-router-dom";
-import App from "../App";
-import { PATH } from "../constants/path";
+import { Outlet, createBrowserRouter } from "react-router-dom";
 
-import Home from "../pages/homePage/Home";
-import NotFound from "../pages/notFoundPage";
-import Search from "../pages/searchPage/Search";
-import SignUp from "../pages/signUpPage/SignUp";
-import MyPage from "../pages/myPage/MyPage";
-import SignIn from "../pages/signInPage/SignIn";
+import App from "@/App";
+import { PATH } from "@/constants/path";
+
+import Home from "@/pages/homePage/Home";
+import NotFound from "@/pages/notFoundPage";
+import Search from "@/pages/searchPage/Search";
+import SignUp from "@/pages/signUpPage/SignUp";
+import MyPage from "@/pages/myPage/MyPage";
+import SignIn from "@/pages/signInPage/SignIn";
 import RoomDetail from "@pages/roomDetailPage/RoomDetail";
-import TransferPurchase from "../pages/transferPurchasePage/TransferPurchase";
-import TransferSale from "../pages/transferSalePage";
-import TransferWriting from "../pages/transferWritingPage/TransferWriting";
+import TransferPurchase from "@/pages/transferPurchasePage/TransferPurchase";
+import TransferSale from "@/pages/transferSalePage";
+import TransferWriting from "@/pages/transferWritingPage/TransferWriting";
 
 import ManageAccount from "@/pages/myPage/manage/manageAccount/ManageAccount";
 import ManageProfile from "@/pages/myPage/manage/manageProfile/ManageProfile";
@@ -25,7 +26,11 @@ import PurchaseDetail from "@/pages/purchaseDetailPage/PurchaseDetail";
 import SearchFilter from "@/pages/searchFilterPage/SearchFilter";
 import TransferWritingPrice from "@/pages/transferWritingPricePage/TransferWritingPrice";
 import LocalErrorBoundary from "@components/errorBoundary/LocalErrorBoundary";
-import TransferWritingSuccess from "@pages/transferWritingSuccessPage/TransferWritingSuccess";
+import Notice from "@pages/noticePage/NoticePage";
+import Payment from "@pages/paymentPage/Payment";
+import TransferWritingSuccess from "@/pages/transferWritingSuccessPage/TransferWritingSuccess";
+import PaymentSuccess from "@pages/paymentSuccessPage/PaymentSuccess";
+import EditAccount from "@pages/myPage/manage/editAccount/EditAccount";
 
 export const router = createBrowserRouter([
   {
@@ -78,6 +83,10 @@ export const router = createBrowserRouter([
         element: <ManageAccount />,
       },
       {
+        path: PATH.ACCOUNT_EDIT,
+        element: <EditAccount />,
+      },
+      {
         path: PATH.WRITE_TRANSFER,
         element: (
           <LocalErrorBoundary>
@@ -109,6 +118,16 @@ export const router = createBrowserRouter([
           <LocalErrorBoundary>
             <Suspense fallback={<div>LOADING</div>}>
               <RoomDetail />
+            </Suspense>
+          </LocalErrorBoundary>
+        ),
+      },
+      {
+        path: PATH.NOTICE,
+        element: (
+          <LocalErrorBoundary>
+            <Suspense>
+              <Notice />
             </Suspense>
           </LocalErrorBoundary>
         ),
@@ -154,6 +173,20 @@ export const router = createBrowserRouter([
       {
         path: PATH.SEARCH_FILTER,
         element: <SearchFilter />,
+      },
+      {
+        path: PATH.PAYMENT,
+        element: <Outlet />,
+        children: [
+          {
+            index: true,
+            element: <Payment />,
+          },
+          {
+            path: "success",
+            element: <PaymentSuccess />,
+          },
+        ],
       },
     ],
   },

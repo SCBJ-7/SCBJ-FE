@@ -15,7 +15,6 @@ const Search = () => {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const [scrollPosition, setScrollPosition] = useState(0);
   const searchInfo = useSearchFilterInfoStore((state) => state.searchInfo);
-
   const { data, fetchNextPage, isLoading, hasNextPage, isFetchingNextPage } =
     useInfiniteQuery({
       queryKey: [
@@ -45,7 +44,6 @@ const Search = () => {
       initialPageParam: 0,
       getNextPageParam: (lastPage, pages) => {
         const lastData = lastPage?.content;
-        console.log("last", lastData.length);
         return lastData && lastData.length === pageSize
           ? pages[0]?.number + 1
           : undefined;
@@ -117,7 +115,10 @@ const Search = () => {
           {isFetchingNextPage ? (
             <div>로딩 중...</div>
           ) : (
-            <div ref={(node) => setTarget(node)} />
+            <div
+              ref={(node) => setTarget(node)}
+              style={{ marginBottom: "10px" }}
+            />
           )}
         </S.SearchItemFlex>
 

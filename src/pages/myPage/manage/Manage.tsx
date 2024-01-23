@@ -1,10 +1,11 @@
+import { PATH } from "@constants/path";
 import * as S from "./Manage.style";
 import rightArrow from "@assets/icons/RightArrow.svg";
 
 const Manage = () => {
   const manageList = [
-    { path: "/manage-profile", name: "프로필 변경" },
-    { path: "/manage-account", name: "정산 계좌 관리" },
+    { path: PATH.MANAGE_PROFILE, name: "프로필 변경" },
+    { path: PATH.MANAGE_ACCOUNT, name: "정산 계좌 관리" },
   ];
 
   return (

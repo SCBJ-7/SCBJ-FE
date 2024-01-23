@@ -1,0 +1,14 @@
+{
+  "data": {
+    "hotelImage": "https://media.discordapp.net/attachments/1175967240030531667/1179675297352790026/2154.png?ex=65b2043c&is=659f8f3c&hm=1641c5e6cb15d8cca58c5e97cefc8053a21092c331581cc57ce920df8bd0fb0d&=&format=webp&quality=lossless&width=714&height=536",
+    "hotelName": "호텔 인 나인 강남",
+    "roomName": "디럭스 킹 시티뷰",
+    "standardPeople": 2,
+    "maxPeople": 4,
+    "checkInDateTime": "2023-12-24T15:00:00",
+    "checkOutDateTime": "2023-12-25T13:00:00",
+    "originalPrice": 94900,
+    "salePrice": 65900
+  },
+  "message": "결제 페이지 조회에 성공했습니다."
+}

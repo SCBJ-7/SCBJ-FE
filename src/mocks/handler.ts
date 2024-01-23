@@ -6,10 +6,13 @@ import dummySearchList from "./data/dummySearchList.json";
 import dummyRoom from "./data/dummyRoomDetail.json";
 // import userInfo from "./data/userInfo.json";
 import { roomHandlers } from "./handlers/room";
+import { paymentHandler } from "./handlers/payment";
 // import emailHandlers from "./handlers/email";
 
 export const handlers = [
   ...roomHandlers,
+  ...paymentHandler,
+  // ...Object.values(emailHandlers),
   http.get("/api/roomId", () => {
     return HttpResponse.json(dummyRoom);
   }),

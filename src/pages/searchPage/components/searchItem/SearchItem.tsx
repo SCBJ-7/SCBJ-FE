@@ -1,8 +1,10 @@
 import { ISearchList } from "@/types/searchList";
 import * as S from "./SearchItem.style";
 import { format, parseISO } from "date-fns";
+import { useNavigate } from "react-router-dom";
 
 const SearchItem = ({ item }: { item: ISearchList }) => {
+  const navigate = useNavigate();
   const calculatePercentage = (salePrice: number) => {
     const percentage = salePrice * 100;
 
@@ -20,11 +22,13 @@ const SearchItem = ({ item }: { item: ISearchList }) => {
 
     return formattedDate;
   };
-
+  const handleClickItem = () => {
+    navigate(`/room/${item.id}`);
+  };
   return (
     <>
       <S.ItemContainer>
-        <S.ItemContent>
+        <S.ItemContent onClick={handleClickItem}>
           <S.ItemImage src={item.imageUrl} />
           <S.ItemName>{item.name}</S.ItemName>
           <S.ItemRoomName>{item.roomType}</S.ItemRoomName>

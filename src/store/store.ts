@@ -1,9 +1,9 @@
-import { ReactNode } from "react";
+import type { ReactNode } from "react";
 import { IReservation } from "@/types/reservationList";
-import { IUserInfo } from "@/types/userInfo";
 
 import { create } from "zustand"; // create로 zustand를 불러옵니다.
 import { persist } from "zustand/middleware";
+import type { MemberResponse } from "@type/login";
 import { ISearchFilterInfo } from "@/types/searchFilterInfo";
 
 /* 
@@ -64,23 +64,13 @@ export const useSelectedItemStore = create(
 
 // 유저정보 전역상태
 interface UserState {
-  userInfo: IUserInfo;
-  setUserInfo: (userInfo: IUserInfo) => void;
+  userInfo: MemberResponse | null;
+  setUserInfo: (userInfo: MemberResponse) => void;
 }
 
 // 유저정보 전역상태 store
 export const useUserInfoStore = create<UserState>((set) => ({
-  // 데이터 기본값
-  userInfo: {
-    id: "",
-    email: "",
-    name: "",
-    phone: "",
-    accountNumber: null,
-    bank: null,
-    linkedToYanolja: false,
-  },
-  // 데이터 조작 set 함수
+  userInfo: null,
   setUserInfo: (updatedInfo) =>
     set((state) => ({
       userInfo: {
@@ -89,6 +79,25 @@ export const useUserInfoStore = create<UserState>((set) => ({
       },
     })),
 }));
+
+// export const useUserInfoStore = create<UserState>((set) => ({
+//   userInfo: {
+//     id: 0,
+//     email: "",
+//     name: "",
+//     phone: "",
+//     accountNumber: "",
+//     bank: "",
+//     linkedToYanolja: false,
+//   },
+//   setUserInfo: (updatedInfo) =>
+//     set((state) => ({
+//       userInfo: {
+//         ...state.userInfo,
+//         ...updatedInfo,
+//       },
+//     })),
+// }));
 
 type configType = {
   isShow: boolean;
