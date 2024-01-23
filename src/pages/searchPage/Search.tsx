@@ -28,7 +28,7 @@ const Search = () => {
         searchInfo.pool,
         searchInfo.oceanView,
       ],
-      queryFn: ({ pageParam = 0 }) =>
+      queryFn: ({ pageParam = 1 }) =>
         fetchSearchList(
           searchInfo.location,
           searchInfo.checkIn,
@@ -44,6 +44,7 @@ const Search = () => {
       initialPageParam: 0,
       getNextPageParam: (lastPage, pages) => {
         const lastData = lastPage?.content;
+        console.log("last", lastData.length);
         return lastData && lastData.length === pageSize
           ? pages[0]?.number + 1
           : undefined;
@@ -88,13 +89,16 @@ const Search = () => {
       };
     }
   }, [scrollContainerRef]);
+  console.log("isFetchingNextPage", isFetchingNextPage);
   return (
     <>
       <SearchBar />
       <SearchNav />
 
       <S.SearchContainer>
-        {isLoading && !data?.pages?.[0]?.content?.length && (
+        {isLoading && <div></div>}
+
+        {!isLoading && data && !data?.pages?.[0]?.content?.length && (
           <S.NoResultCover>
             <S.NoResultText>검색 조건에 맞는 호텔이 없어요</S.NoResultText>
             <S.NoResultTextTwo>
@@ -112,18 +116,11 @@ const Search = () => {
                   <SearchItem key={item.id} item={item} />
                 )),
             )}
-          {isFetchingNextPage ? (
-            <div>로딩 중...</div>
-          ) : (
-            <div
-              ref={(node) => setTarget(node)}
-              style={{ marginBottom: "10px" }}
-            />
-          )}
         </S.SearchItemFlex>
-
-        <S.TopButton $visible={scrollPosition > 500} onClick={MoveToTop} />
+        <div ref={(node) => setTarget(node)} />
       </S.SearchContainer>
+
+      <S.TopButton $visible={scrollPosition > 500} onClick={MoveToTop} />
     </>
   );
 };
