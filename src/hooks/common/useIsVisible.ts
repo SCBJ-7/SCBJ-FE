@@ -17,12 +17,13 @@ const useIsVisible = (props: UseIsVisibleProps): UseIsVisibleReturnType => {
 
   useEffect(() => {
     const observer = new IntersectionObserver(([entry]) => {
-      setIsVisible(entry.isIntersecting);
+      if (entry.isIntersecting !== isVisible) {
+        setIsVisible(entry.isIntersecting);
+      }
     }, options);
 
     if (visibleRef) {
       observer.observe(visibleRef);
-      return;
     }
 
     return () => {
@@ -30,7 +31,7 @@ const useIsVisible = (props: UseIsVisibleProps): UseIsVisibleReturnType => {
         observer.unobserve(visibleRef);
       }
     };
-  }, [options, visibleRef]);
+  }, [options, visibleRef, isVisible]);
 
   const setRefCallback: RefCallback<HTMLDivElement> = (node) => {
     setVisibleRef(node);
