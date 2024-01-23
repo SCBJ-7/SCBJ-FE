@@ -33,7 +33,6 @@ export const Row2 = styled(Flex)`
   gap: 0.5rem;
 `;
 
-// FIXME: Button 컴포넌트 만들기
 export const Button = styled.button<{ $status: boolean }>`
   ${({ theme }) => theme.typo.button2}
   padding: 0.7rem 3rem;
@@ -41,7 +40,7 @@ export const Button = styled.button<{ $status: boolean }>`
   border-radius: 8px;
   background-color: ${({ $status, theme }) =>
     $status ? theme.color.percentOrange : theme.color.greyScale5};
-  transition: background-color 0.5s ease-in;
+  transition: background-color 0.2s ease-in;
 
   &:hover {
     background-color: ${({ $status, theme }) =>

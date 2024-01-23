@@ -8,22 +8,25 @@ export const ScrollObserver = styled.div`
 `;
 
 export const HeaderContainer = styled.header<{ $visible: boolean }>`
-  display: flex;
-  align-items: center;
   position: fixed;
   top: 0;
+
+  display: flex;
+  align-items: center;
   width: 100%;
   max-width: 768px;
   height: 56px;
-  z-index: 2;
+
   background-color: ${({ $visible, theme }) =>
-    $visible ? "unset" : theme.color.white};
+    $visible ? "transparent" : theme.color.white};
   border-bottom: ${({ $visible, theme }) =>
-    $visible ? "none" : `1px solid ${theme.color.greyScale7}`};
+    $visible ? "0" : `1px solid ${theme.color.greyScale7}`};
 
   transition:
     border-bottom,
     background-color 0.5s ease-in;
+
+  z-index: 2;
 `;
 
 export const Wrapper = styled.div`
