@@ -153,6 +153,8 @@ const SeachNav = () => {
           </S.ModalContent>
         </S.ModalContainer>
       )}
+      {/**모달*2*/}
+
       {isModalTwoOpen && (
         <S.ModalTwoContainer>
           <S.ModalTwoContent ref={refTwo}>

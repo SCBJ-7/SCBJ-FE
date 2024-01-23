@@ -68,7 +68,6 @@ export const ItemDate = styled.div`
   height: 23px;
   background-color: ${({ theme }) => theme.color.greyScale6};
   ${({ theme }) => theme.typo.body3}
-  font-size: 14px;
   border-radius: 12px;
 `;
 
