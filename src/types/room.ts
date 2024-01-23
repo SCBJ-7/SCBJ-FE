@@ -1,7 +1,7 @@
 export type RoomData = {
   hotelName: string;
   roomName: string;
-  hotelImageUrl: string[];
+  hotelImageUrlList: string[];
   checkIn: string;
   checkOut: string;
   originalPrice: number;
@@ -13,6 +13,7 @@ export type RoomData = {
   hotelAddress: string;
   hotelInfoUrl: string;
   saleStatus: boolean;
+  isSeller: boolean;
 };
 type RoomTheme = {
   parkingZone: boolean;
@@ -23,5 +24,5 @@ type RoomTheme = {
 
 export type RoomNavBarData = Pick<
   RoomData,
-  "originalPrice" | "sellingPrice" | "saleStatus"
+  "originalPrice" | "sellingPrice" | "saleStatus" | "isSeller"
 >;
