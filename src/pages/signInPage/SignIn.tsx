@@ -1,6 +1,6 @@
 import * as S from "./SignIn.style";
 import { useForm } from "react-hook-form";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import useToastConfig from "@hooks/common/useToastConfig";
 import { PATH } from "@constants/path";
 import { useUserInfoStore } from "@/store/store";
@@ -71,7 +71,9 @@ const SignIn = () => {
 
   return (
     <S.SignInContainer onSubmit={handleSubmit(handleOnSubmit)}>
-      <S.SignInLogo />
+      <Link to="/">
+        <S.SignInLogo />
+      </Link>
 
       <S.SignInInputContainer>
         <S.SignInInputWrapper>
