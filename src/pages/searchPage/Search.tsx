@@ -50,7 +50,7 @@ const Search = () => {
           : undefined;
       },
     });
-
+  console.log("searchInfo", searchInfo);
   const handleIntersect: IntersectionObserverCallback = (entries) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting && hasNextPage) {
@@ -110,11 +110,10 @@ const Search = () => {
         <S.SearchItemFlex>
           {data &&
             data.pages?.length > 0 &&
-            data.pages.map(
-              (page) =>
-                page?.content.map((item: ISearchList) => (
-                  <SearchItem key={item.id} item={item} />
-                )),
+            data.pages.map((page) =>
+              page?.content.map((item: ISearchList) => (
+                <SearchItem key={item.id} item={item} />
+              )),
             )}
         </S.SearchItemFlex>
         <div ref={(node) => setTarget(node)} />
