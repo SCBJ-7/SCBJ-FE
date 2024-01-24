@@ -19,6 +19,11 @@ const Header = () => {
     }
   }
 
+  if (pathname.includes(PATH.SALE_DETAIL)) {
+    undo = true;
+    title = "판매내역 상세";
+  }
+
   switch (pathname) {
     case PATH.ROOT:
       alarmIC = false;
@@ -55,7 +60,6 @@ const Header = () => {
       title = "구매내역상세";
       undo = true;
       break;
-
     case PATH.SETTING:
       alarmIC = false;
       settingIC = false;
