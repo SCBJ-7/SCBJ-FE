@@ -1,4 +1,4 @@
-import { useCarousel } from "@hooks/common/useCarousel";
+import { useAnimateCarousel } from "@hooks/common/useAnimateCarousel";
 import { useCarouselSize } from "@hooks/common/useCarouselSize";
 import * as S from "./ItemCarousel.style.ts";
 import { LocaleItem } from "@type/saleSection.ts";
@@ -10,6 +10,7 @@ interface CarouselProps {
   onChangeLocale: React.Dispatch<
     React.SetStateAction<[number, string, LocaleItem[]]>
   >;
+  currentLocale: [number, string, LocaleItem[]];
   height?: number;
   arrows?: boolean;
   infinite?: boolean;
@@ -35,7 +36,8 @@ const ItemCarousel = ({
     handleSliderTransitionEnd,
     handlerSliderMoueDown,
     handleSliderTouchStart,
-  } = useCarousel({
+    setIsPlay,
+  } = useAnimateCarousel({
     slideLength: localeAndHotel.length,
     infinite,
     slideWidth,
@@ -52,7 +54,11 @@ const ItemCarousel = ({
   }, [currentIndex]);
 
   return (
-    <S.CarouselContainer $height={height}>
+    <S.CarouselContainer
+      $height={height}
+      onMouseEnter={() => setIsPlay(false)}
+      onMouseLeave={() => setIsPlay(true)}
+    >
       <S.SliderWrapper>
         <S.SliderContainer
           ref={sliderRef}

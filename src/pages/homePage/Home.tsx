@@ -9,19 +9,21 @@ import {
   WeekendItemsType,
   WeekendItem,
 } from "@type/saleSection";
-// import { fetchMainItem } from "@apis/fetchMainItems";
+import { fetchMainItem } from "@apis/fetchMainItems";
 
 import { locale } from "@constants/locale";
 import WeekendCarousel from "./weekendCarousel/WeekendCarousel";
-// import { useSuspenseQuery } from "@tanstack/react-query";
+import { useSuspenseQuery } from "@tanstack/react-query";
+import TextLocaleAnimator from "./textAnimator/TextAnimator";
+import PercentAnimator from "./percentAnimator/PercentAnimator";
 
 const Home = () => {
-  // const { data: MainData } = useSuspenseQuery({
-  //   queryKey: ["main"],
-  //   queryFn: fetchMainItem,
-  // });
+  const { data: MainData } = useSuspenseQuery({
+    queryKey: ["main"],
+    queryFn: fetchMainItem,
+  });
 
-  // console.log(MainData);
+  console.log(MainData);
 
   const weekendProds: WeekendItemsType = {
     weekend: [
@@ -256,18 +258,17 @@ const Home = () => {
 
       <S.SaleCarouselContainer>
         <S.TextSlider>
-          <span>
-            <strong>{locale[currentLocale[1]]}</strong> 지역
-          </span>
-          <span>
-            <strong className="percentage">
-              최대 {currentLocale[2][0].salePercentage * 100}%
-            </strong>{" "}
-            할인 호텔
-          </span>
+          <TextLocaleAnimator text={locale[currentLocale[1]]} />
+          <span>지역</span>
+          <PercentAnimator
+            percent={currentLocale[2][0].salePercentage}
+            localeAndHotel={localeAndHotel}
+          />
+          <span>할인 호텔</span>
         </S.TextSlider>
         <div className="divider"></div>
         <ItemCarousel
+          currentLocale={currentLocale}
           localeAndHotel={localeAndHotel}
           onChangeLocale={setCurrentLocale}
           height={312}
