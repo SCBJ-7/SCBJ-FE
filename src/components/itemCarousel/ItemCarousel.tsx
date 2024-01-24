@@ -69,9 +69,12 @@ const ItemCarousel = ({
           onTransitionEnd={draggable ? handleSliderTransitionEnd : undefined}
         >
           {innerShadow && <S.ImageShadowWrapper />}
-          {localeAndHotel.map((item) => (
-            <ItemCarouselUnit key={item[2][0].id} item={item} />
-          ))}
+          {localeAndHotel.map(
+            (item) =>
+              item[2].length && (
+                <ItemCarouselUnit key={item[2][0]?.id} item={item} />
+              ),
+          )}
         </S.SliderContainer>
       </S.SliderWrapper>
       {arrows && (

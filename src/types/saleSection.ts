@@ -2,7 +2,7 @@ import { Nullable } from "@type/nullable";
 export interface LocaleItem {
   id: number;
   city: string;
-  name: string;
+  hotelName: string;
   roomType: string;
   imageUrl: string;
   originalPrice: number;
@@ -26,9 +26,3 @@ export type WeekendItem = Omit<LocaleItem, "city"> & {
   pool: boolean;
   oceanView: boolean;
 };
-
-export interface WeekendItemsType {
-  [weekend: string]: WeekendItem[];
-}
-
-export type MainApiType = LocaleItemsType & WeekendItemsType;

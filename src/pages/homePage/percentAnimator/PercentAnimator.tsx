@@ -11,57 +11,18 @@ const PercentAnimator = ({
 }) => {
   return (
     <S.Container>
-      {localeAndHotel.map((item) => (
-        <AnimatePresence>
-          {item[2][0].salePercentage === percent && (
-            <S.PercentDiv animate={{ y: [30, 0] }} exit={{ y: [0, -30] }}>
-              최대 {percent * 100}%
-            </S.PercentDiv>
-          )}
-        </AnimatePresence>
-      ))}
-      {/* <AnimatePresence>
-        {percent === "서울" && (
-          <S.PercentDiv animate={{ y: [30, 0] }} exit={{ y: [0, -30] }}>
-            서울
-          </S.PercentDiv>
-        )}
-      </AnimatePresence>
-      <AnimatePresence>
-        {percent === "부산" && (
-          <S.PercentDiv animate={{ y: [30, 0] }} exit={{ y: [0, -30] }}>
-            부산
-          </S.PercentDiv>
-        )}
-      </AnimatePresence>
-      <AnimatePresence>
-        {percent === "제주" && (
-          <S.PercentDiv animate={{ y: [30, 0] }} exit={{ y: [0, -30] }}>
-            제주
-          </S.PercentDiv>
-        )}
-      </AnimatePresence>
-      <AnimatePresence>
-        {percent === "강원" && (
-          <S.PercentDiv animate={{ y: [30, 0] }} exit={{ y: [0, -30] }}>
-            강원
-          </S.PercentDiv>
-        )}
-      </AnimatePresence>
-      <AnimatePresence>
-        {percent === "전라" && (
-          <S.PercentDiv animate={{ y: [30, 0] }} exit={{ y: [0, -30] }}>
-            전라
-          </S.PercentDiv>
-        )}
-      </AnimatePresence>
-      <AnimatePresence>
-        {percent === "경상" && (
-          <S.PercentDiv animate={{ y: [30, 0] }} exit={{ y: [0, -30] }}>
-            경상
-          </S.PercentDiv>
-        )}
-      </AnimatePresence> */}
+      {localeAndHotel.map(
+        (item) =>
+          item[2].length && (
+            <AnimatePresence key={item[2][0]?.id}>
+              {item[2][0]?.salePercentage === percent && (
+                <S.PercentDiv animate={{ y: [30, 0] }} exit={{ y: [0, -30] }}>
+                  최대 {Math.floor(percent * 100)}%
+                </S.PercentDiv>
+              )}
+            </AnimatePresence>
+          ),
+      )}
     </S.Container>
   );
 };
