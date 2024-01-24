@@ -2,14 +2,13 @@ import { useFormContext } from "react-hook-form";
 import { usePaymentMutation } from "@hooks/api/mutation/usePaymentMutation";
 
 import * as S from "./PaymentButton.style";
-import type { PaymentData } from "@type/payment";
 
 interface PaymentButtonProps {
   productId: string;
-  payment: Pick<PaymentData, "salePrice">;
+  price: number;
 }
 
-const PaymentButton = ({ productId, payment }: PaymentButtonProps) => {
+const PaymentButton = ({ productId, price }: PaymentButtonProps) => {
   const {
     handleSubmit,
     getValues,
@@ -55,7 +54,7 @@ const PaymentButton = ({ productId, payment }: PaymentButtonProps) => {
       data-disabled={isValid ? null : ""}
       aria-label="결제하기"
     >
-      {payment.salePrice.toLocaleString("ko-KR")}원 결제하기
+      {price.toLocaleString("ko-KR")}원 결제하기
     </S.Button>
   );
 };
