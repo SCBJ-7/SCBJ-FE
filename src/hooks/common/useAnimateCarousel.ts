@@ -33,6 +33,7 @@ export const useAnimateCarousel = ({
     }, 3000);
 
     return () => clearInterval(interval);
+    // eslint-disable-next-line
   }, [isPlay]);
 
   const handleDragChange = (deltaX: number) => {
