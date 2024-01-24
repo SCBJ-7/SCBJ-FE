@@ -6,7 +6,6 @@ import { PATH } from "@constants/path";
 import { useUserInfoStore } from "@/store/store";
 import { postLogin } from "@apis/fetchLogin";
 import { getMessaging, getToken } from "firebase/messaging";
-import useToastConfig from "@hooks/common/useToastConfig";
 
 type FormValues = {
   email: string;
