@@ -1,7 +1,7 @@
 import { useAnimateCarousel } from "@hooks/common/useAnimateCarousel";
 import { useCarouselSize } from "@hooks/common/useCarouselSize";
-import * as S from "./ItemCarousel.style.ts";
-import { LocaleItem } from "@type/saleSection.ts";
+import * as S from "./ItemCarousel.style";
+import type { LocaleItem } from "@type/saleSection";
 import ItemCarouselUnit from "./itemCarouselUnit/ItemCarouselUnit.tsx";
 import { useEffect } from "react";
 
@@ -63,7 +63,6 @@ const ItemCarousel = ({
         <S.SliderContainer
           ref={sliderRef}
           style={getSliderStyle()}
-          data-testid={`slide-${currentIndex}`}
           onMouseDown={draggable ? handlerSliderMoueDown : undefined}
           onTouchStart={draggable ? handleSliderTouchStart : undefined}
           onTransitionEnd={draggable ? handleSliderTransitionEnd : undefined}

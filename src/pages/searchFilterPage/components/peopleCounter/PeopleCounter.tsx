@@ -1,29 +1,29 @@
 interface PeopleCounterProps {
-  maximumPeople: number;
-  setMaximumPeople: React.Dispatch<React.SetStateAction<number>>;
+  quantityPeople: number;
+  setQuantityPeople: React.Dispatch<React.SetStateAction<number>>;
 }
 import * as S from "./PeopleCounter.style";
 const PeopleCounter = ({
-  maximumPeople,
-  setMaximumPeople,
+  quantityPeople,
+  setQuantityPeople,
 }: PeopleCounterProps) => {
   const increment = () => {
-    setMaximumPeople((prev) => prev + 1);
+    setQuantityPeople((prev) => prev + 1);
   };
 
   const decrement = () => {
-    setMaximumPeople((prev) => Math.max(prev - 1, 0));
+    setQuantityPeople((prev) => Math.max(prev - 1, 0));
   };
 
   return (
     <S.CountContainer>
       <S.DownButton
-        className={maximumPeople ? "" : "disable"}
+        className={quantityPeople ? "" : "disable"}
         onClick={decrement}
       >
         -
       </S.DownButton>
-      <S.CountNumber>{maximumPeople}</S.CountNumber>
+      <S.CountNumber>{quantityPeople}</S.CountNumber>
       <S.UpButton onClick={increment}>
         <span>+</span>
       </S.UpButton>

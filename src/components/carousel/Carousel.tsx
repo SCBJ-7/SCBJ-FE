@@ -4,7 +4,6 @@ import * as S from "./Carousel.style.ts";
 
 interface CarouselProps {
   images: string[];
-  width?: number;
   height?: number;
   arrows?: boolean;
   infinite?: boolean;
@@ -14,7 +13,6 @@ interface CarouselProps {
 
 const Carousel = ({
   height = 300,
-  width = 300,
   images,
   arrows = true,
   infinite = false,
@@ -41,7 +39,7 @@ const Carousel = ({
   });
 
   return (
-    <S.CarouselContainer $height={height} $width={width}>
+    <S.CarouselContainer $height={height}>
       <S.SliderWrapper>
         <S.SliderContainer
           ref={sliderRef}

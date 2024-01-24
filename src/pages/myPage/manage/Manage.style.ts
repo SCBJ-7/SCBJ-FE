@@ -6,8 +6,10 @@ export const ManageListWrapper = styled.section`
   ${ListWrapper}
 `;
 
-export const ManageListElement = styled.div`
+export const ManageListElement = styled.div<{ $visible: boolean }>`
   ${ListElement}
+
+  display: ${({ $visible }) => ($visible ? "" : "none")};
 `;
 
 export const ManageLink = styled(Link)`

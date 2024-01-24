@@ -1,6 +1,6 @@
 export const PATH = {
   ROOT: "/",
-  NOTICE: "/notice",
+  ALARM: "/alarm",
   SEARCHLIST: "/search",
   SEARCH_FILTER: "/search/filter",
   CREATE_TRIP: "/trip-new",
@@ -21,7 +21,6 @@ export const PATH = {
   REDIRECT: "/auth/:provider",
   PASSWORD_RESET: "/password-reset",
   YANOLJA_ACCOUNT: "/account/yanolja",
-  YANOLJA_ACCOUNT_VERIFY: "/account/yanolja/verify",
   RELOAD: 0,
   PAYMENT: "/payment",
 } as const;

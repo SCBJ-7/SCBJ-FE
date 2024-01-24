@@ -21,7 +21,8 @@
     },
     "hotelAddress": "서울특별시 강남구 테헤란로 99길 9",
     "hotelInfoUrl": "https://place-site.yanolja.com/places/3001615",
-    "saleStatus": false
+    "saleStatus": false,
+    "isSeller": true
   },
   "message": "상품 조회에 성공했습니다."
 }

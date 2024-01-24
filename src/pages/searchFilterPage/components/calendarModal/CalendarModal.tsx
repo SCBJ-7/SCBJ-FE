@@ -4,7 +4,7 @@ import { useState } from "react";
 import DatePicker from "react-datepicker";
 import { subDays, isSaturday, isSunday, format } from "date-fns";
 import "react-datepicker/dist/react-datepicker.css";
-
+import useToastConfig from "@hooks/common/useToastConfig";
 interface CalendarModalProps {
   setDateIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
   checkIn: string | null;
@@ -20,8 +20,9 @@ const CalendarModal = ({
   setCheckIn,
   setCheckOut,
 }: CalendarModalProps) => {
+  const { handleToast } = useToastConfig();
   const [startDate, setStartDate] = useState<Date | null>(
-    checkIn ? new Date(checkIn) : new Date(),
+    checkIn ? new Date(checkIn) : null,
   );
   const [endDate, setEndDate] = useState<Date | null>(
     checkOut ? new Date(checkOut) : null,
@@ -69,13 +70,23 @@ const CalendarModal = ({
           "yy.MM.dd (EEE)",
           { locale: ko },
         )}`
-      : "검색하기";
+      : startDate
+        ? `${format(startDate, "yy.MM.dd (EEE)", { locale: ko })}`
+        : "검색하기";
 
-  const handleSetDate = () => {
+  const handleSetDate = (e: React.MouseEvent<HTMLDivElement>) => {
     if (startDate && endDate) {
       const adjustedEndDate = adjustEndDate(startDate, endDate);
       setCheckIn(format(startDate, "yyyy-MM-dd"));
       setCheckOut(format(adjustedEndDate, "yyyy-MM-dd"));
+      setDateIsModalOpen(false);
+    } else if (startDate && !endDate) {
+      e.preventDefault();
+      handleToast(true, [<>체크아웃 날짜를 선택해주세요</>]);
+    } else {
+      setCheckIn(null);
+      setCheckOut(null);
+
       setDateIsModalOpen(false);
     }
   };
@@ -102,6 +113,8 @@ const CalendarModal = ({
               inline
               shouldCloseOnSelect={false}
               dayClassName={dayClassName}
+              monthsShown={3}
+              showMonthYearPicker={false}
             />
           </S.CalendarContainer>
         </S.ModalContent>
@@ -109,11 +122,11 @@ const CalendarModal = ({
       <S.FilterBottom>
         <S.ResetButtonContent
           onClick={onReset}
-          className={startDate && endDate ? "" : "disable"}
+          className={startDate ? "" : "disable"}
         >
           <div>초기화</div>
           <div>
-            <S.ResetButton className={startDate && endDate ? "" : "disable"} />
+            <S.ResetButton className={startDate ? "" : "disable"} />
           </div>
         </S.ResetButtonContent>
         <S.SearchButton onClick={handleSetDate}>

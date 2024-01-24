@@ -1,5 +1,7 @@
 import useIsVisible from "@hooks/common/useIsVisible";
+
 import * as S from "./RoomHeader.style";
+import { useNavigate } from "react-router-dom";
 
 interface RoomHeaderProps {
   title: string;
@@ -11,15 +13,22 @@ const RoomHeader = ({ title }: RoomHeaderProps) => {
       rootMargin: "0px",
       threshold: 1.0,
     },
-    initialVisible: false,
+    initialVisible: true,
   });
+
+  const navigate = useNavigate();
 
   return (
     <>
       <S.HeaderContainer $visible={isVisible}>
         <S.Wrapper>
           <div className="wrap-left">
-            <button type="button" className="btn-back" aria-label="뒤로가기">
+            <button
+              type="button"
+              className="btn-back"
+              aria-label="뒤로가기"
+              onClick={() => navigate(-1)}
+            >
               <S.BackIcon $visible={isVisible} />
             </button>
           </div>

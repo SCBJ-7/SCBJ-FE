@@ -34,3 +34,16 @@ export const TopButton = styled(TopButtonIcon)<TopButtonProps>`
     visibility 0.2s,
     opacity 0.2s;
 `;
+
+export const NoResultCover = styled.div`
+  width: 100%;
+  text-align: center;
+`;
+export const NoResultText = styled.div`
+  margin-top: 184px;
+  ${({ theme }) => theme.typo.title4}
+`;
+export const NoResultTextTwo = styled.div`
+  ${({ theme }) => theme.typo.body3}
+  margin-top: 1rem;
+`;

@@ -3,11 +3,10 @@ import * as S from "./SearchFilter.style";
 import RegionModal from "./components/regionModal/RegionModal";
 import PeopleCounter from "./components/peopleCounter/PeopleCounter";
 import CalendarModal from "./components/calendarModal/CalendarModal";
-import { format } from "date-fns";
-import { ko } from "date-fns/locale";
 import { useSearchFilterInfoStore } from "@store/store";
 import { useNavigate } from "react-router-dom";
 import { PATH } from "@constants/path";
+import { formatDateMonthAndDay } from "@utils/dateFomaterMonthDay";
 const SearchFilter = () => {
   const searchInfo = useSearchFilterInfoStore((state) => state.searchInfo);
   const setSearchInfo = useSearchFilterInfoStore(
@@ -16,15 +15,15 @@ const SearchFilter = () => {
   const [regionIsModalOpen, setRegionIsModalOpen] = useState(false);
   const [dateIsModalOpen, setDateIsModalOpen] = useState(false);
   const [location, setLocation] = useState<string | null>(searchInfo.location);
-  const [maximumPeople, setMaximumPeople] = useState<number>(
-    searchInfo.maximumPeople ? searchInfo.maximumPeople : 0,
+  const [quantityPeople, setQuantityPeople] = useState<number>(
+    searchInfo.quantityPeople ? searchInfo.quantityPeople : 0,
   );
   const [checkIn, setCheckIn] = useState<string | null>(searchInfo.checkIn);
   const [checkOut, setCheckOut] = useState<string | null>(searchInfo.checkOut);
   const isDisabled =
     checkIn === null &&
     checkOut === null &&
-    maximumPeople === 0 &&
+    quantityPeople === 0 &&
     location === null;
   const navigate = useNavigate();
 
@@ -40,19 +39,12 @@ const SearchFilter = () => {
     setLocation(null);
     setCheckOut(null);
     setCheckIn(null);
-    setMaximumPeople(0);
+    setQuantityPeople(0);
   };
 
   const handleSearch = () => {
-    setSearchInfo({ location, maximumPeople, checkIn, checkOut });
+    setSearchInfo({ location, quantityPeople, checkIn, checkOut });
     navigate(PATH.SEARCHLIST);
-  };
-
-  const formatDate = (day: string): string => {
-    // "2024-02-01" => "02. 01"
-    return format(new Date(day), "MM.dd", {
-      locale: ko,
-    });
   };
 
   return (
@@ -70,7 +62,9 @@ const SearchFilter = () => {
             <S.FilterSubTitle>일정</S.FilterSubTitle>
             <S.FilterModalButton>
               {checkIn && checkOut
-                ? `${formatDate(checkIn)} ~ ${formatDate(checkOut)}`
+                ? `${formatDateMonthAndDay(checkIn)} ~ ${formatDateMonthAndDay(
+                    checkOut,
+                  )}`
                 : "언제든지"}
             </S.FilterModalButton>
           </S.FilterBlock>
@@ -78,8 +72,8 @@ const SearchFilter = () => {
           <S.FilterBlock>
             <S.FilterSubTitle>인원</S.FilterSubTitle>
             <PeopleCounter
-              maximumPeople={maximumPeople}
-              setMaximumPeople={setMaximumPeople}
+              quantityPeople={quantityPeople}
+              setQuantityPeople={setQuantityPeople}
             />
           </S.FilterBlock>
         </S.FilterContent>
