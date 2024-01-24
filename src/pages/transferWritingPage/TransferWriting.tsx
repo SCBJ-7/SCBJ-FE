@@ -44,7 +44,7 @@ const TransferWriting = () => {
   }
 
   if (!userData || userData?.linkedToYanolja === false) {
-    console.log(userData, "userData");
+    console.log(userData, "userData!");
     return (
       <NoResult
         title="야놀자 예약내역 확인이 필요합니다."
