@@ -5,15 +5,16 @@ import dummyPurchaseList from "./data/dummyPuchaseList.json";
 import dummyPurchaseDetail from "./data/dummyPurchaseDetail.json";
 import dummySearchList from "./data/dummySearchList.json";
 import dummyRoom from "./data/dummyRoomDetail.json";
-// import userInfo from "./data/userInfo.json";
-import { roomHandlers } from "./handlers/room";
+import roomHandlers from "./handlers/room";
 import { paymentHandler } from "./handlers/payment";
-// import emailHandlers from "./handlers/email";
+import emailHandlers from "./handlers/email";
+import yanoljaAccountHandlers from "./handlers/yanoljaAccount";
 
 export const handlers = [
   ...roomHandlers,
   ...paymentHandler,
-  // ...Object.values(emailHandlers),
+  ...Object.values(emailHandlers),
+  ...Object.values(yanoljaAccountHandlers),
   http.get("/api/roomId", () => {
     return HttpResponse.json(dummyRoom);
   }),
