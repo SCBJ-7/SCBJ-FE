@@ -15,7 +15,7 @@ import MyPage from "@/pages/myPage/MyPage";
 import SignIn from "@/pages/signInPage/SignIn";
 import RoomDetail from "@pages/roomDetailPage/RoomDetail";
 import TransferPurchase from "@/pages/transferPurchasePage/TransferPurchase";
-import TransferSale from "@/pages/transferSalePage";
+import TransferSale from "@pages/transferSalePage/TransferSale";
 import TransferWriting from "@/pages/transferWritingPage/TransferWriting";
 
 import ManageAccount from "@/pages/myPage/manage/manageAccount/ManageAccount";
@@ -32,6 +32,7 @@ import TransferWritingSuccess from "@/pages/transferWritingSuccessPage/TransferW
 import PaymentSuccess from "@pages/paymentSuccessPage/PaymentSuccess";
 import EditAccount from "@pages/myPage/manage/editAccount/EditAccount";
 import Loading from "@components/loading/Loading";
+import SaleDetail from "@pages/saleDetailPage/SaleDetail";
 
 export const router = createBrowserRouter([
   {
@@ -143,6 +144,16 @@ export const router = createBrowserRouter([
           <LocalErrorBoundary>
             <Suspense fallback={<div>LOADING</div>}>
               <PurchaseDetail />
+            </Suspense>
+          </LocalErrorBoundary>
+        ),
+      },
+      {
+        path: PATH.SALE_DETAIL + "/:saleId",
+        element: (
+          <LocalErrorBoundary>
+            <Suspense fallback={<Loading />}>
+              <SaleDetail />
             </Suspense>
           </LocalErrorBoundary>
         ),

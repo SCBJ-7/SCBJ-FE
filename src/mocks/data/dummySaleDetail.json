@@ -1,0 +1,25 @@
+{
+  "data": {
+    "saleStatus": "판매중",
+    "checkIn": "24.01.15 (월) 15:00",
+    "checkOut": "24.01.16 (화) 15:00",
+    "hotelImage": "https://yaimg.yanolja.com/v5/2022/08/25/13/1280/630774ab229623.33150829.jpg",
+    "standardPeople": "2",
+    "maxPeople": "4",
+    "leftHour": 6,
+    "hotelName": "호텔 인 나인 강남",
+    "roomName": "디럭스 킹 시티뷰",
+    "firstPriceData": {
+      "originalPrice": 212000,
+      "firstSalePrice": 139000
+    },
+    "secondPriceData": {
+      "startDate": "24.01.16 (화) 15:00",
+      "secondGrantPeriod": 6,
+      "secondPrice": 60000
+    },
+    "bank": "신한",
+    "accountNumber": "110472321"
+  },
+  "message": "판매 내역 상세 조회를 성공했습니다."
+}
