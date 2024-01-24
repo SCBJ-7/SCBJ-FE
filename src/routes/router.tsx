@@ -114,10 +114,10 @@ export const router = createBrowserRouter([
         ),
       },
       {
-        path: PATH.DETAIL_ROOM + "/:roomId",
+        path: PATH.DETAIL_ROOM(":productId"),
         element: (
           <LocalErrorBoundary>
-            <Suspense fallback={<div>LOADING</div>}>
+            <Suspense fallback={<Loading />}>
               <RoomDetail />
             </Suspense>
           </LocalErrorBoundary>
@@ -190,7 +190,7 @@ export const router = createBrowserRouter([
         element: (
           <LocalErrorBoundary>
             <Suspense fallback={<Loading />}>
-              <Outlet />
+              <Payment />
             </Suspense>
           </LocalErrorBoundary>
         ),
