@@ -29,36 +29,15 @@ const ItemCarouselUnit = ({ item }: UnitProps) => {
 
   return (
     <S.LocaleWrapper $display={hotel ? "block" : "none"}>
-      {hotel[0] && (
-        <S.ItemUnit onClick={() => onClickHandler(0)}>
-          <img src={hotel[0].imageUrl} />
-          <div className="item-info">
-            <div className="hotel_title">
-              <h1>{hotel[0].hotelName}</h1>
-              <h3>{hotel[0].roomType}</h3>
-              <S.Sticker>
-                {CHKIN0} ~ {CHKOUT0}
-              </S.Sticker>
-            </div>
-            <div className="hotel_price">
-              <h5>{hotel[0].originalPrice}</h5>
-              <h1>
-                {priceFormat(hotel[0].salePrice)} 원
-                <span>{Math.floor(hotel[0].salePercentage * 100)}%</span>
-              </h1>
-            </div>
-          </div>
-        </S.ItemUnit>
-      )}
       {hotel[1] && (
-        <S.ItemUnit onClick={() => onClickHandler(1)}>
+        <S.ItemUnit onClick={() => onClickHandler(0)}>
           <img src={hotel[1].imageUrl} />
           <div className="item-info">
             <div className="hotel_title">
               <h1>{hotel[1].hotelName}</h1>
               <h3>{hotel[1].roomType}</h3>
               <S.Sticker>
-                {CHKIN1} ~ {CHKOUT1}
+                {CHKIN0} [1] {CHKOUT0}
               </S.Sticker>
             </div>
             <div className="hotel_price">
@@ -66,6 +45,27 @@ const ItemCarouselUnit = ({ item }: UnitProps) => {
               <h1>
                 {priceFormat(hotel[1].salePrice)} 원
                 <span>{Math.floor(hotel[1].salePercentage * 100)}%</span>
+              </h1>
+            </div>
+          </div>
+        </S.ItemUnit>
+      )}
+      {hotel[0] && (
+        <S.ItemUnit onClick={() => onClickHandler(1)}>
+          <img src={hotel[0].imageUrl} />
+          <div className="item-info">
+            <div className="hotel_title">
+              <h1>{hotel[0].hotelName}</h1>
+              <h3>{hotel[0].roomType}</h3>
+              <S.Sticker>
+                {CHKIN1} [1] {CHKOUT1}
+              </S.Sticker>
+            </div>
+            <div className="hotel_price">
+              <h5>{hotel[0].originalPrice}</h5>
+              <h1>
+                {priceFormat(hotel[0].salePrice)} 원
+                <span>{Math.floor(hotel[0].salePercentage * 100)}%</span>
               </h1>
             </div>
           </div>

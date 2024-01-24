@@ -23,7 +23,7 @@ const Home = () => {
   const localeEntries: [number, string, LocaleItem[]][] = Object.entries(
     localeProds,
   )
-    .filter((v) => v[1] !== null)
+    .filter((v) => v[1].length !== 0)
     .map((v, i) => [i, v[0], v[1]]);
 
   const [localeAndHotel] = useState(localeEntries);
