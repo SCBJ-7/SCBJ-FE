@@ -6,7 +6,7 @@ export const END_POINTS = {
   SIGNUP: "/v1/members/signup",
   ALARM: "/v1/alarms",
   HASALARM: "/v1/alarms/status",
-  ROOM: (roomId: string) => `/v1/products/${roomId}`,
+  ROOM: (productId: string) => `/v1/products/${productId}`,
   RESERVATION: "/v1/reservations",
   MAIN: "/v1/products/main",
   USER_INFO: "/v1/members",
