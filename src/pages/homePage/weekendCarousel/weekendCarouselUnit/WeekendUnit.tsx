@@ -23,20 +23,28 @@ const WeekendUnit = ({ item }: UnitProps) => {
     <S.LocaleWrapper onClick={onClickHandler}>
       <img src={item[1].imageUrl} alt="" />
       <S.Stickers>
-        <section>{item[1].brunch && "조식제공"}</section>
-        <section>{item[1].pool && "수영장"}</section>
-        <section>{item[1].oceanView && "오션뷰"}</section>
+        {item[1].isBrunchIncluded && (
+          <section>{item[1].isBrunchIncluded && "조식제공"}</section>
+        )}
+        {item[1].isPoolIncluded && (
+          <section>{item[1].isPoolIncluded && "수영장"}</section>
+        )}
+        {item[1].isOceanViewIncluded && (
+          <section>{item[1].isOceanViewIncluded && "오션뷰"}</section>
+        )}
       </S.Stickers>
       <S.Titles>
-        <h1>{item[1].name}</h1>
+        <h1>{item[1].hotelName}</h1>
         <h3>{item[1].roomType}</h3>
       </S.Titles>
       <S.Price>
-        <h4>{priceFormat(item[1].originalPrice)}</h4>
+        <h4>{priceFormat(item[1].originalPrice)}원</h4>
         <section>
           <S.Discounted>
-            <h1>{priceFormat(item[1].salePrice)}원</h1>
-            <h1 className="percentage">{item[1].salePercentage * 100}%</h1>
+            <h1>{priceFormat(item[1].salePrice)} 원</h1>
+            <h1 className="percentage">
+              {Math.floor(item[1].salePercentage * 100)}%
+            </h1>
           </S.Discounted>
           <S.Period>
             {CHKIN} ~ {CHKOUT}
