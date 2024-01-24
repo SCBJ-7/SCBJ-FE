@@ -16,10 +16,20 @@ const Search = () => {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const [scrollPosition, setScrollPosition] = useState(0);
   const searchInfo = useSearchFilterInfoStore((state) => state.searchInfo);
-  const { data, fetchNextPage, isLoading, hasNextPage, isFetchingNextPage } =
-    useInfiniteQuery({
-      queryKey: [
-        "searchItems",
+  const { data, fetchNextPage, isLoading, hasNextPage } = useInfiniteQuery({
+    queryKey: [
+      "searchItems",
+      searchInfo.location,
+      searchInfo.checkIn,
+      searchInfo.checkOut,
+      searchInfo.quantityPeople,
+      searchInfo.sorted,
+      searchInfo.brunch,
+      searchInfo.pool,
+      searchInfo.oceanView,
+    ],
+    queryFn: ({ pageParam = 0 }) =>
+      fetchSearchList(
         searchInfo.location,
         searchInfo.checkIn,
         searchInfo.checkOut,
@@ -28,28 +38,18 @@ const Search = () => {
         searchInfo.brunch,
         searchInfo.pool,
         searchInfo.oceanView,
-      ],
-      queryFn: ({ pageParam = 0 }) =>
-        fetchSearchList(
-          searchInfo.location,
-          searchInfo.checkIn,
-          searchInfo.checkOut,
-          searchInfo.quantityPeople,
-          searchInfo.sorted,
-          searchInfo.brunch,
-          searchInfo.pool,
-          searchInfo.oceanView,
-          pageParam,
-          pageSize,
-        ),
-      initialPageParam: 0,
-      getNextPageParam: (lastPage) => {
-        const lastData = lastPage?.content;
-        return lastData && lastData.length === pageSize
-          ? lastPage?.number + 1
-          : undefined;
-      },
-    });
+        pageParam,
+        pageSize,
+      ),
+    initialPageParam: 0,
+    getNextPageParam: (lastPage) => {
+      const lastData = lastPage?.content;
+      return lastData && lastData.length === pageSize
+        ? lastPage?.number + 1
+        : undefined;
+    },
+  });
+
   const handleIntersect: IntersectionObserverCallback = (entries) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting && hasNextPage) {
@@ -57,10 +57,12 @@ const Search = () => {
       }
     });
   };
+
   const { setTarget } = UseIntersectionObserver({
     onIntersect: handleIntersect,
     threshold: 0.5,
   });
+
   const MoveToTop = () => {
     if (scrollContainerRef.current) {
       scrollContainerRef.current.scrollTo({
@@ -69,10 +71,12 @@ const Search = () => {
       });
     }
   };
+
   useEffect(() => {
     const handleScroll = () => {
       if (scrollContainerRef.current) {
         const currentPosition = scrollContainerRef.current.scrollTop;
+        console.log(currentPosition);
         setScrollPosition(currentPosition);
       }
     };
@@ -87,15 +91,13 @@ const Search = () => {
       };
     }
   }, []);
-  console.log(scrollPosition);
   return (
     <>
       <SearchBar />
       <SearchNav />
 
-      <S.SearchContainer>
+      <S.SearchContainer ref={scrollContainerRef}>
         {isLoading && <Loading />}
-
         {!isLoading && data && !data?.pages?.[0]?.content?.length && (
           <S.NoResultCover>
             <S.NoResultText>검색 조건에 맞는 호텔이 없어요</S.NoResultText>
@@ -104,7 +106,7 @@ const Search = () => {
             </S.NoResultTextTwo>
           </S.NoResultCover>
         )}
-
+        <S.TopButton $visible={scrollPosition > 500} onClick={MoveToTop} />
         <S.SearchItemFlex>
           {data &&
             data.pages?.length > 0 &&
@@ -115,10 +117,10 @@ const Search = () => {
             )}
         </S.SearchItemFlex>
 
-        <div ref={(node) => setTarget(node)} />
-        <S.TopButton $visible={scrollPosition > 500} onClick={MoveToTop} />
+        <div ref={setTarget} />
       </S.SearchContainer>
     </>
   );
 };
+
 export default Search;
