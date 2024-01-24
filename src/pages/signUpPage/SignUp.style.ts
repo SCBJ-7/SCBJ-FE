@@ -103,6 +103,10 @@ export const SignUpCheckBoxContainer = styled.div`
   width: calc(100% - 40px);
 
   margin: 0 0 64px 0;
+
+  & > div {
+    margin-top: 0;
+  }
 `;
 
 export const SignUpCheckBoxWrapper = styled.div`
