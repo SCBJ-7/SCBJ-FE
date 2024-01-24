@@ -67,7 +67,6 @@ const TransferWritingPrice = () => {
         if (!is2ndChecked) return false; // 2차 가격 설정하기 체크 안 한 경우
 
         if (is2ndChecked && secondPrice && downTimeAfter) {
-          console.log(firstPrice, opt1, opt2, opt3, optFinal, "???");
           return true; // 2차 가격 설정한 경우
         } else if (is2ndChecked && !secondPrice && !downTimeAfter) {
           return false; // 2차 가격 체크했지만 아무것도 쓰지 않은 경우는 일단 가능
@@ -76,7 +75,6 @@ const TransferWritingPrice = () => {
         } else if (is2ndChecked && secondPrice && !downTimeAfter) {
           return false; // 2차 가격 체크하고 2차 시간 입력 안 하고 가격만 입력한 경우
         } else if (!userData?.bank || !userData?.accountNumber) {
-          console.log("???");
           return false;
         }
       }
