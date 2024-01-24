@@ -12,11 +12,11 @@ function App() {
   const toastConfig = useToastStore((state) => state.config);
 
   return (
-    <Layout>
+    <>
       <ScrollToTop />
       <AnimatePresence>{toastConfig.isShow && <Toast />}</AnimatePresence>
       <Outlet />
-    </Layout>
+    </>
   );
 }
 

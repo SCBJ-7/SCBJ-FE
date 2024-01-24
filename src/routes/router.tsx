@@ -32,6 +32,7 @@ import PaymentSuccess from "@pages/paymentSuccessPage/PaymentSuccess";
 import EditAccount from "@pages/myPage/manage/editAccount/EditAccount";
 import Loading from "@components/loading/Loading";
 import SaleDetail from "@pages/saleDetailPage/SaleDetail";
+import Layout from "@components/layout/Layout";
 
 export const router = createBrowserRouter([
   {
@@ -47,10 +48,42 @@ export const router = createBrowserRouter([
         path: "",
         element: <Home />,
       },
-
       {
-        path: PATH.SEARCHLIST,
-        element: <Search />,
+        element: (
+          <Layout>
+            <Outlet />
+          </Layout>
+        ),
+        children: [
+          {
+            path: PATH.SEARCHLIST,
+            element: <Search />,
+          },
+          {
+            path: PATH.WRITE_TRANSFER,
+            element: (
+              <LocalErrorBoundary>
+                <Suspense fallback={<div>{/* loading */}</div>}>
+                  <TransferWriting />
+                </Suspense>
+              </LocalErrorBoundary>
+            ),
+          },
+          {
+            path: PATH.PURCAHSE_DEATAIL,
+            element: (
+              <LocalErrorBoundary>
+                <Suspense fallback={<div>LOADING</div>}>
+                  <PurchaseDetail />
+                </Suspense>
+              </LocalErrorBoundary>
+            ),
+          },
+          {
+            path: PATH.SETTING,
+            element: <Setting />,
+          },
+        ],
       },
       {
         path: PATH.SIGNUP,
@@ -75,10 +108,7 @@ export const router = createBrowserRouter([
           },
         ],
       },
-      {
-        path: PATH.SETTING,
-        element: <Setting />,
-      },
+
       {
         path: PATH.MANAGE_PROFILE,
         element: <ManageProfile />,
