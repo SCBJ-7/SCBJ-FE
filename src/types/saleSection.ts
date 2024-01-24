@@ -22,7 +22,7 @@ export interface LocaleItemsType {
 }
 
 export type WeekendItem = Omit<LocaleItem, "city"> & {
-  brunch: boolean;
-  pool: boolean;
-  oceanView: boolean;
+  isBrunchIncluded: boolean;
+  isPoolIncluded: boolean;
+  isOceanViewIncluded: boolean;
 };

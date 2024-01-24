@@ -43,7 +43,7 @@ const ItemCarouselUnit = ({ item }: UnitProps) => {
             <div className="hotel_price">
               <h5>{hotel[0].originalPrice}</h5>
               <h1>
-                {priceFormat(hotel[0].salePrice)}원
+                {priceFormat(hotel[0].salePrice)} 원
                 <span>{Math.floor(hotel[0].salePercentage * 100)}%</span>
               </h1>
             </div>
