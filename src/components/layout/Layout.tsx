@@ -16,21 +16,9 @@ const Layout = ({ children }: ChildrenProps) => {
 
   // FIXME: 헤더, 네비바 특정 페이지에서만 보이지 않도록 수정 필요
   // 이럼 account/yanolja/verify 이런 하위 페이지도 같이 include 됨
-  const pathsToExcludeHeader = [
-    PATH.LOGIN,
-    PATH.DETAIL_ROOM,
-    PATH.YANOLJA_ACCOUNT,
-    PATH.WRITE_TRANSFER_PRICE,
-    PATH.WRITE_TRANSFER_SUCCESS,
-  ];
+  const pathsToExcludeHeader = [PATH.LOGIN, PATH.WRITE_TRANSFER_PRICE];
 
-  const pathsToExcludeBottom = [
-    PATH.LOGIN,
-    PATH.DETAIL_ROOM,
-    PATH.YANOLJA_ACCOUNT,
-    PATH.SEARCH_FILTER,
-    PATH.PURCAHSE_DEATAIL,
-  ];
+  const pathsToExcludeBottom = [PATH.LOGIN, PATH.SEARCH_FILTER];
 
   let isHeaderOn = !pathsToExcludeHeader.some((path) =>
     pathname.includes(path),
