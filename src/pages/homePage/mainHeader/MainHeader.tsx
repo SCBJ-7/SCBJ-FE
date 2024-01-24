@@ -1,16 +1,20 @@
 import { useNavigate } from "react-router-dom";
 import * as S from "./MainHeader.style";
 import MainLogo from "@assets/logos/main_logo.svg?react";
-import { useState } from "react";
 import { PATH } from "@constants/path";
+import { fetchHasAlarm } from "@apis/fetchHasAlarm";
+import { useSuspenseQuery } from "@tanstack/react-query";
 
 const MainHeader = () => {
-  const [isAlarmOn, setIsAlarmOn] = useState(false);
+  const { data: hasAlarmData } = useSuspenseQuery({
+    queryKey: ["hasAlarm"],
+    queryFn: fetchHasAlarm,
+  });
+
   const navigate = useNavigate();
 
   const alertHandler = () => {
-    setIsAlarmOn(false);
-    navigate(PATH.NOTICE);
+    navigate(PATH.ALARM);
   };
 
   return (
@@ -19,7 +23,7 @@ const MainHeader = () => {
         <MainLogo />
         <section>
           <S.bellIcon onClick={alertHandler} />
-          <S.bellAlertOn $isAlarmOn={isAlarmOn} />
+          <S.bellAlertOn $isAlarmOn={hasAlarmData.hasNonReadAlarm} />
         </section>
       </S.HeaderWrapper>
     </S.HeaderContainer>

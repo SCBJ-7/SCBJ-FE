@@ -38,16 +38,14 @@ export const TextSlider = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 16px;
 
   ${({ theme }) => theme.typo.title5}
-
-  & strong {
-    font-size: 18px;
-    font-weight: 800;
+  & span {
+    margin-left: 8px;
+    margin-right: 16px;
   }
-  & strong.percentage {
-    color: ${({ theme }) => theme.color.percentBlue};
+  & span:last-child {
+    margin-right: 0px;
   }
 `;
 

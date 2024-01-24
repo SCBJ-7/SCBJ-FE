@@ -25,15 +25,6 @@ export const handlers = [
   http.get("/v1/products/10", () => {
     return HttpResponse.json(dummyPurchaseDetail);
   }),
-
-  /*
-    warning 없애기용.
-    cdn에 폰트 요청하는걸 가로채지 못했다고 warning 띄우길래 적용했습니다.
-  */
-  http.get("*", (req) => {
-    console.log(req);
-  }),
-
   http.get("/v1/members/purchased-history", () => {
     return HttpResponse.json(dummyPurchaseList);
   }),
@@ -42,5 +33,14 @@ export const handlers = [
   }),
   http.get("/v1/products", () => {
     return HttpResponse.json(dummySearchList);
+  }),
+
+  /*
+    warning 없애기용.
+    cdn에 폰트 요청하는걸 가로채지 못했다고 warning 띄우길래 적용했습니다.
+  */
+  http.get("*", (req) => {
+    console.log(req);
+    return;
   }),
 ];

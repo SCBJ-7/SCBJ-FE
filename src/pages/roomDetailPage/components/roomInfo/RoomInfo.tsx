@@ -1,19 +1,18 @@
 import RoomThemeOption from "@pages/roomDetailPage/components/roomThemeOption/RoomThemeOption";
-import * as S from "@pages/roomDetailPage/RoomDetail.style";
 import type { RoomData } from "@type/room";
-import { calculateDiscount } from "@utils/calculator";
 import { formatDate } from "@utils/dateFormatter";
 import IconBed from "@assets/icons/ic_bed.svg?react";
 import IconCaretRight from "@assets/icons/ic_caret_right.svg?react";
 import IconUser from "@assets/icons/ic_users.svg?react";
 
+import * as S from "@pages/roomDetailPage/RoomDetail.style";
+
 interface RoomInfoProps {
   room: RoomData;
+  discount: string;
 }
 
-const RoomInfo = ({ room }: RoomInfoProps) => {
-  const discountRate = calculateDiscount(room.originalPrice, room.sellingPrice);
-
+const RoomInfo = ({ room, discount }: RoomInfoProps) => {
   const checkInDate = formatDate(room.checkIn);
   const checkOutDate = formatDate(room.checkOut);
   return (
@@ -35,7 +34,7 @@ const RoomInfo = ({ room }: RoomInfoProps) => {
               <S.Text>판매가</S.Text>
               <S.Row>
                 <S.Text variant="title2" color="percentBlue">
-                  {discountRate}%
+                  {discount}%
                 </S.Text>
                 <S.Text variant="title2">
                   {room.sellingPrice.toLocaleString()}원
@@ -88,6 +87,7 @@ const RoomInfo = ({ room }: RoomInfoProps) => {
           <a
             href={room.hotelInfoUrl}
             target="_blank"
+            rel="noopener"
             aria-label="상세 정보 보기"
           >
             <S.MoreInfoWrapper>

@@ -6,7 +6,7 @@ const NavToSearchSection = () => {
   const navigate = useNavigate();
 
   return (
-    <S.Container onClick={() => navigate(PATH.SEARCHLIST)}>
+    <S.Container onClick={() => navigate(PATH.SEARCH_FILTER)}>
       <h4>어떤 호텔을 찾으세요?</h4>
       <S.SearchIcon />
     </S.Container>
