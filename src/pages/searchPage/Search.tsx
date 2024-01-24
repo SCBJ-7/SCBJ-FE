@@ -8,6 +8,7 @@ import { useSearchFilterInfoStore } from "@store/store";
 import { fetchSearchList } from "@apis/fetchSeachList";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import UseIntersectionObserver from "@hooks/useIntersectionObserver";
+import Loading from "@components/loading/Loading";
 
 const Search = () => {
   const pageSize = 10;
@@ -28,7 +29,7 @@ const Search = () => {
         searchInfo.pool,
         searchInfo.oceanView,
       ],
-      queryFn: ({ pageParam = 1 }) =>
+      queryFn: ({ pageParam = 0 }) =>
         fetchSearchList(
           searchInfo.location,
           searchInfo.checkIn,
@@ -42,15 +43,13 @@ const Search = () => {
           pageSize,
         ),
       initialPageParam: 0,
-      getNextPageParam: (lastPage, pages) => {
+      getNextPageParam: (lastPage) => {
         const lastData = lastPage?.content;
-        console.log("last", lastData.length);
         return lastData && lastData.length === pageSize
-          ? pages[0]?.number + 1
+          ? lastPage?.number + 1
           : undefined;
       },
     });
-  console.log("searchInfo", searchInfo);
   const handleIntersect: IntersectionObserverCallback = (entries) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting && hasNextPage) {
@@ -70,7 +69,6 @@ const Search = () => {
       });
     }
   };
-
   useEffect(() => {
     const handleScroll = () => {
       if (scrollContainerRef.current) {
@@ -88,15 +86,15 @@ const Search = () => {
         container.removeEventListener("scroll", handleScroll);
       };
     }
-  }, [scrollContainerRef]);
-  console.log("isFetchingNextPage", isFetchingNextPage);
+  }, []);
+  console.log(scrollPosition);
   return (
     <>
       <SearchBar />
       <SearchNav />
 
       <S.SearchContainer>
-        {isLoading && <div></div>}
+        {isLoading && <Loading />}
 
         {!isLoading && data && !data?.pages?.[0]?.content?.length && (
           <S.NoResultCover>
@@ -116,10 +114,10 @@ const Search = () => {
               )),
             )}
         </S.SearchItemFlex>
-        <div ref={(node) => setTarget(node)} />
-      </S.SearchContainer>
 
-      <S.TopButton $visible={scrollPosition > 500} onClick={MoveToTop} />
+        <div ref={(node) => setTarget(node)} />
+        <S.TopButton $visible={scrollPosition > 500} onClick={MoveToTop} />
+      </S.SearchContainer>
     </>
   );
 };
