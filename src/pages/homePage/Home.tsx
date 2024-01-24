@@ -19,10 +19,6 @@ const Home = () => {
   });
   const [localeProds, weekendProds] = mainData;
 
-  console.log(mainData, "api");
-  // const weekendProds: WeekendItemsType = {
-  //   weekend: [
-  //     {
   //       id: 103,
   //       name: "시그니엘 레지던스",
   //       roomType: "스탠다드 더블",
