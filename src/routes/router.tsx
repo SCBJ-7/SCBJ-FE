@@ -139,7 +139,13 @@ export const router = createBrowserRouter([
       },
       {
         path: PATH.PURCAHSE_DEATAIL,
-        element: <PurchaseDetail />,
+        element: (
+          <LocalErrorBoundary>
+            <Suspense fallback={<div>LOADING</div>}>
+              <PurchaseDetail />
+            </Suspense>
+          </LocalErrorBoundary>
+        ),
       },
       {
         path: PATH.YANOLJA_ACCOUNT,

@@ -1,31 +1,32 @@
 import { ISearchList } from "@/types/searchList";
 import * as S from "./SearchItem.style";
 import { format, parseISO } from "date-fns";
+import { useNavigate } from "react-router-dom";
+import { PATH } from "@constants/path";
 
 const SearchItem = ({ item }: { item: ISearchList }) => {
-  const calculatePercentage = (
-    originalPrice: number,
-    salePrice: number,
-  ): string => {
-    const difference = originalPrice - salePrice;
-    const percentage = (difference / originalPrice) * 100;
+  const navigate = useNavigate();
+  const calculatePercentage = (salePrice: number) => {
+    const percentage = salePrice * 100;
 
-    return `${percentage}%`;
+    const roundedPercentage = Math.round(percentage);
+
+    return roundedPercentage;
   };
   const formatDateString = (dateString: string) => {
-    // 문자열을 Date 객체로 파싱
     const dateObject = parseISO(dateString);
 
-    // format 함수를 사용하여 원하는 형태로 포맷
     const formattedDate = format(dateObject, "MM.dd");
 
     return formattedDate;
   };
-
+  const handleClickItem = () => {
+    navigate(`${PATH.DETAIL_ROOM}/${item.id}`);
+  };
   return (
     <>
       <S.ItemContainer>
-        <S.ItemContent>
+        <S.ItemContent onClick={handleClickItem}>
           <S.ItemImage src={item.imageUrl} />
           <S.ItemName>{item.name}</S.ItemName>
           <S.ItemRoomName>{item.roomType}</S.ItemRoomName>
@@ -38,16 +39,16 @@ const SearchItem = ({ item }: { item: ISearchList }) => {
                 {item.salePrice.toLocaleString() + "원"}
               </S.ItemPrice>
               <S.ItemSalePercent>
-                {calculatePercentage(item.originalPrice, item.salePrice)}
+                {`${calculatePercentage(item.salePercentage)}%`}
               </S.ItemSalePercent>
             </div>
             <S.ItemDate>
-              {`${formatDateString(item.checkInDate)} ~ ${formatDateString(
-                item.checkOutDate,
+              {`${formatDateString(item.checkIn)} ~ ${formatDateString(
+                item.checkOut,
               )}`}
             </S.ItemDate>
           </S.ItemBottom>
-          {item.isFirst || <S.SecondSaleText>마감 특가</S.SecondSaleText>}
+          {!item.isFirstPrice && <S.SecondSaleText>마감 특가</S.SecondSaleText>}
         </S.ItemContent>
       </S.ItemContainer>
     </>

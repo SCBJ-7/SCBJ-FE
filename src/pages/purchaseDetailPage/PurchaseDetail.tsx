@@ -1,26 +1,21 @@
-import { useQuery } from "@tanstack/react-query";
+import { useSuspenseQuery } from "@tanstack/react-query";
 import { fetchPurchaseDetail } from "../../apis/fetchPurchaseDetail";
 import { IPurchaseData } from "@/types/purchaseDetail";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import * as S from "./PurchaseDetail.style";
 import { PATH } from "@/constants/path";
+import { AxiosError } from "axios";
 
 const PurchaseDetail = () => {
   const [searchParams] = useSearchParams();
   const id = searchParams.get("id");
+  if (!id) throw new Error("존재하지 않는 roomId 입니다.");
   const navigate = useNavigate();
   const indexFee = 5000;
-  const { data, isLoading } = useQuery<IPurchaseData>({
-    queryKey: ["roomDetail", id],
-    queryFn: () => fetchPurchaseDetail("102"),
+  const { data } = useSuspenseQuery<IPurchaseData, AxiosError>({
+    queryKey: ["roomasDetail", id],
+    queryFn: () => fetchPurchaseDetail(id),
   });
-
-  if (isLoading) {
-    return <p>로딩 중...</p>;
-  }
-  if (!data) {
-    return <p>데이터를 찾을 수 없습니다.</p>;
-  }
   return (
     <S.DetailContainer>
       <S.TopSection>

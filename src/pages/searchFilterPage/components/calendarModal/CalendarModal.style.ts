@@ -10,7 +10,7 @@ export const ModalContainer = styled.div`
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: 101;
+  z-index: 70;
 
   color: ${({ theme }) => theme.color.black};
 `;
@@ -143,14 +143,17 @@ export const CalendarContainer = styled.div`
   }
   .react-datepicker__day--in-range.react-datepicker__day--keyboard-selected {
     border-radius: 50% !important;
-    color: white !important;
-    background-color: ${({ theme }) => theme.color.percentOrange}!important;
+    color: white;
+    background-color: ${({ theme }) => theme.color.percentOrange};
   }
   .react-datepicker__day--in-selecting-range {
     background-color: white;
     color: ${({ theme }) => theme.color.percentOrange};
     border: 2px solid ${({ theme }) => theme.color.percentOrange};
     font-weight: bold;
+  }
+  .react-datepicker__day--outside-month {
+    opacity: 0;
   }
 `;
 

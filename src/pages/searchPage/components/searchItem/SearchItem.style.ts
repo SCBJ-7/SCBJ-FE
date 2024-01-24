@@ -63,6 +63,8 @@ export const ItemDate = styled.div`
   justify-content: center;
   align-items: center;
   width: 97px;
+  white-space: nowrap;
+  padding: 0 0.5rem;
   height: 23px;
   background-color: ${({ theme }) => theme.color.greyScale6};
   ${({ theme }) => theme.typo.body3}
