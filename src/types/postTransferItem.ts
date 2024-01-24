@@ -6,4 +6,8 @@ export interface PostTransferProps {
   accountNumber: string;
   secondGrantPeriod: number;
   isRegistered: boolean;
+  standardTimeSellingPolicy: boolean;
+  totalAmountPolicy: boolean;
+  sellingModificationPolicy: boolean;
+  productAgreement: boolean;
 }

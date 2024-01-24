@@ -64,6 +64,10 @@ export const ItemUnit = styled.div`
       object-fit: cover;
     }
   }
+
+  & h1 span {
+    margin-left: 8px;
+  }
 `;
 
 export const Sticker = styled.div`

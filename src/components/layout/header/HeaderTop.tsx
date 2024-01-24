@@ -84,7 +84,7 @@ const Header = () => {
       title = "정산계좌 관리";
       undo = true;
       break;
-    case PATH.NOTICE:
+    case PATH.ALARM:
       alarmIC = false;
       settingIC = false;
       title = "알림";
