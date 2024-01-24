@@ -1,4 +1,4 @@
-import { useSearchParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { usePurchaseDetailQuery } from "@hooks/api/query/usePurchaseQuery";
 
 import PaymentSuccessInfo from "@pages/paymentSuccessPage/components/PaymentSuccessInfo/PaymentSuccessInfo";
@@ -9,10 +9,10 @@ import CardItem from "@components/cardItem/CardItem";
 import * as S from "./PaymentSuccess.style";
 
 const PaymentSuccess = () => {
-  const [searchParams] = useSearchParams();
-  const product = searchParams.get("product") ?? "";
+  const { productId } = useParams();
+  if (!productId) throw Error("존재하지 않는 productId 입니다.");
 
-  const { data } = usePurchaseDetailQuery(product);
+  const { data } = usePurchaseDetailQuery(productId);
 
   return (
     <S.PurchasedContainer>
@@ -63,7 +63,7 @@ const PaymentSuccess = () => {
         </S.BottomCardWrapper>
       </S.PurchasedWrapper>
       <S.BottomWrapper>
-        <PaymentSuccessButton productId={product} />
+        <PaymentSuccessButton productId={productId} />
       </S.BottomWrapper>
     </S.PurchasedContainer>
   );

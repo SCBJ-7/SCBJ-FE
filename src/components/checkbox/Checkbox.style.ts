@@ -1,4 +1,4 @@
-import styled, { DefaultTheme } from "styled-components";
+import styled, { DefaultTheme, css } from "styled-components";
 
 export interface CheckboxStyleProps {
   size?: "sm" | "md" | "lg";
@@ -117,11 +117,11 @@ export const StyledCheckbox = styled.span<CheckboxStyleProps>`
 `;
 
 const labelStyles = {
-  title: (theme: DefaultTheme) => `
+  title: (theme: DefaultTheme) => css`
     color: ${theme.color.greyScale1};
     }
   `,
-  caption: (theme: DefaultTheme) => `
+  caption: (theme: DefaultTheme) => css`
     color: ${theme.color.greyScale3};
     }
   `,
@@ -140,8 +140,6 @@ export const LabelText = styled.span.withConfig({
 
   ${({ theme }) => theme.typo.caption1}
 
-  ${({ variant, theme }) => variant && labelStyles[variant](theme)};
-
   margin-inline-start: 0.5rem;
   user-select: none;
 
@@ -150,4 +148,6 @@ export const LabelText = styled.span.withConfig({
     text-underline-offset: 2px;
     color: inherit;
   }
+
+  ${({ variant, theme }) => variant && labelStyles[variant](theme)};
 `;

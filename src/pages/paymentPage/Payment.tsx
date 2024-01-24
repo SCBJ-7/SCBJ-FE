@@ -4,17 +4,17 @@ import PaymentMethodSection from "@/pages/paymentPage/components/paymentMethodSe
 import TermsAgreementSection from "@/pages/paymentPage/components/termsAgreementSection/TermsAgreementSection";
 import UserInfoSection from "@/pages/paymentPage/components/userInfoSection/UserInfoSection";
 import { usePaymentQuery } from "@hooks/api/query/usePaymentQuery";
-import { useSearchParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import PaymentButton from "./components/paymentButton/PaymentButton";
 
 import { FormProvider, useForm } from "react-hook-form";
 import Caption from "@components/caption/Caption";
 
 const Payment = () => {
-  const [searchParams] = useSearchParams();
-  const product = searchParams.get("product") ?? "";
+  const { productId } = useParams();
+  if (!productId) throw Error("존재하지 않는 productId 입니다.");
 
-  const { data } = usePaymentQuery(product);
+  const { data } = usePaymentQuery(productId);
 
   const methods = useForm({
     mode: "onChange",
@@ -47,7 +47,7 @@ const Payment = () => {
           </Caption>
         </S.CaptionWrapper>
         <S.BottomWrapper>
-          <PaymentButton productId={product} payment={data} />
+          <PaymentButton productId={productId} price={data.salePrice} />
         </S.BottomWrapper>
       </FormProvider>
     </S.PaymentContainer>
