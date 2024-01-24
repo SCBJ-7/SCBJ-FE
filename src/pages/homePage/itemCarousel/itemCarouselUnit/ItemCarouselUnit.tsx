@@ -1,4 +1,4 @@
-import { format } from "date-fns";
+import { format, parseISO } from "date-fns";
 import * as S from "./ItemCarouselUnit.style";
 import { LocaleItem } from "@type/saleSection";
 import { useNavigate } from "react-router-dom";
@@ -11,10 +11,10 @@ interface UnitProps {
 const ItemCarouselUnit = ({ item }: UnitProps) => {
   const navigate = useNavigate();
   const [, , hotel] = item;
-  const CHKIN0 = format(new Date(hotel[0].checkInDate), "mm.dd");
-  const CHKOUT0 = format(new Date(hotel[0].checkOutDate), "mm.dd");
-  const CHKIN1 = format(new Date(hotel[1].checkInDate), "mm.dd");
-  const CHKOUT1 = format(new Date(hotel[1].checkOutDate), "mm.dd");
+  const CHKIN0 = format(parseISO(hotel[0].checkInDate), "MM.dd");
+  const CHKOUT0 = format(parseISO(hotel[0].checkOutDate), "MM.dd");
+  const CHKIN1 = format(parseISO(hotel[1].checkInDate), "MM.dd");
+  const CHKOUT1 = format(parseISO(hotel[1].checkOutDate), "MM.dd");
 
   const onClickHandler = (num: number) => {
     navigate(PATH.DETAIL_ROOM + "/" + hotel[num].id);
