@@ -71,7 +71,7 @@ const ItemCarousel = ({
           {localeAndHotel.map(
             (item) =>
               item[2].length && (
-                <ItemCarouselUnit key={item[2][0]?.id} item={item} />
+                <ItemCarouselUnit key={item[2][0].id} item={item} />
               ),
           )}
         </S.SliderContainer>
