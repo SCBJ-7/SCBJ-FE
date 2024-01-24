@@ -230,7 +230,6 @@ const Home = () => {
 
   const [localeAndHotel] = useState(localeEntries);
 
-  console.log(localeAndHotel, "LAH");
   const [currentLocale, setCurrentLocale] = useState<
     [number, string, LocaleItem[]]
   >(localeAndHotel[0]);
