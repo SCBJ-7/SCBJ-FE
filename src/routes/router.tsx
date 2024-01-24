@@ -33,6 +33,7 @@ import EditAccount from "@pages/myPage/manage/editAccount/EditAccount";
 import Loading from "@components/loading/Loading";
 import SaleDetail from "@pages/saleDetailPage/SaleDetail";
 import Layout from "@components/layout/Layout";
+import TestLayout from "@components/layout/TestLayout";
 
 export const router = createBrowserRouter([
   {
@@ -45,8 +46,22 @@ export const router = createBrowserRouter([
     errorElement: <NotFound />,
     children: [
       {
-        path: "",
-        element: <Home />,
+        element: (
+          <TestLayout
+            isHeaderOn={false}
+            isMainHeaderOn={false}
+            isTransferPricingHeaderOn={false}
+            isBottomNavOn={true}
+          >
+            <Outlet />
+          </TestLayout>
+        ),
+        children: [
+          {
+            path: "",
+            element: <Home />,
+          },
+        ],
       },
       {
         element: (
