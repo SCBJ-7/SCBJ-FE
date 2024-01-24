@@ -13,7 +13,7 @@ const PercentAnimator = ({
     <S.Container>
       {localeAndHotel.map(
         (item) =>
-          item[2].length && (
+          item[2].length !== 0 && (
             <AnimatePresence key={item[2][0]?.id}>
               {item[2][0]?.salePercentage === percent && (
                 <S.PercentDiv animate={{ y: [30, 0] }} exit={{ y: [0, -30] }}>
