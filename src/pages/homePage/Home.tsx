@@ -52,7 +52,9 @@ const Home = () => {
           <TextLocaleAnimator text={locale[currentLocale[1]]} />
           <span>지역</span>
           <PercentAnimator
-            percent={currentLocale[2][0]?.salePercentage}
+            percent={
+              currentLocale[2][currentLocale[2].length - 1]?.salePercentage
+            }
             localeAndHotel={localeAndHotel}
           />
           <span>할인 호텔</span>
