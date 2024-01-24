@@ -37,7 +37,7 @@ const ItemCarouselUnit = ({ item }: UnitProps) => {
               <h1>{hotel[1].hotelName}</h1>
               <h3>{hotel[1].roomType}</h3>
               <S.Sticker>
-                {CHKIN0} [1] {CHKOUT0}
+                {CHKIN0} ~ {CHKOUT0}
               </S.Sticker>
             </div>
             <div className="hotel_price">
@@ -58,7 +58,7 @@ const ItemCarouselUnit = ({ item }: UnitProps) => {
               <h1>{hotel[0].hotelName}</h1>
               <h3>{hotel[0].roomType}</h3>
               <S.Sticker>
-                {CHKIN1} [1] {CHKOUT1}
+                {CHKIN1} ~ {CHKOUT1}
               </S.Sticker>
             </div>
             <div className="hotel_price">
