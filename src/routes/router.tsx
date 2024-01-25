@@ -190,14 +190,14 @@ export const router = createBrowserRouter([
         element: (
           <LocalErrorBoundary>
             <Suspense fallback={<Loading />}>
-              <Payment />
+              <Outlet />
             </Suspense>
           </LocalErrorBoundary>
         ),
         children: [
           {
             path: "",
-            element: <Payment />,
+            element: <Payment action="default" />,
           },
           {
             path: "success",
@@ -205,7 +205,11 @@ export const router = createBrowserRouter([
           },
           {
             path: "ready",
-            element: <Payment />,
+            element: <Payment action="ready" />,
+          },
+          {
+            path: "cancel",
+            element: <Payment action="cancel" />,
           },
         ],
       },

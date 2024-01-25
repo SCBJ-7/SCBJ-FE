@@ -4,24 +4,29 @@ import PaymentMethodSection from "@/pages/paymentPage/components/paymentMethodSe
 import TermsAgreementSection from "@/pages/paymentPage/components/termsAgreementSection/TermsAgreementSection";
 import UserInfoSection from "@/pages/paymentPage/components/userInfoSection/UserInfoSection";
 import {
+  usePaymentCancelQuery,
   usePaymentQuery,
   usePaymentSuccessQuery,
 } from "@hooks/api/query/usePaymentQuery";
 import { useNavigate, useParams } from "react-router-dom";
 import PaymentButton from "./components/paymentButton/PaymentButton";
-
+import { useLocation } from "react-router-dom";
 import { FormProvider, useForm } from "react-hook-form";
 import Caption from "@components/caption/Caption";
 import Modal from "@components/modal/Modal";
 import { useEffect, useState } from "react";
 import { isAxiosError } from "axios";
+import { paymentCaptions } from "@constants/caption";
 
-const Payment = () => {
+interface PaymentProps {
+  action: "default" | "cancel" | "ready";
+}
+
+const Payment = ({ action }: PaymentProps) => {
   const navigate = useNavigate();
+  const location = useLocation();
   const { productId } = useParams();
   if (!productId) throw Error("존재하지 않는 productId 입니다.");
-
-  console.log(productId);
 
   const { data } = usePaymentQuery(productId);
 
@@ -31,10 +36,30 @@ const Payment = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
 
-  const { isSuccess, isError, error } = usePaymentSuccessQuery({
+  const {
+    isSuccess,
+    isError,
+    error,
+    refetch: paymentSuccessQuery,
+  } = usePaymentSuccessQuery({
     paymentType,
     pgToken,
   });
+
+  const { refetch: paymentCancelQuery } = usePaymentCancelQuery(paymentType);
+
+  useEffect(() => {
+    if (action === "ready") {
+      paymentSuccessQuery();
+    }
+
+    if (action === "cancel") {
+      paymentCancelQuery();
+      setErrorMessage("결제가 취소되었습니다.");
+      setIsModalOpen(true);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [action]);
 
   useEffect(() => {
     if (isSuccess) {
@@ -42,8 +67,11 @@ const Payment = () => {
     }
 
     if (isError && isAxiosError(error)) {
-      console.error(error);
-      setErrorMessage(error.response?.data.message || "오류가 발생했습니다.");
+      if (error.response?.status === 409) {
+        setErrorMessage("이미 판매완료된 상품입니다.");
+      } else {
+        setErrorMessage(error.response?.data.message || "오류가 발생했습니다.");
+      }
       setIsModalOpen(true);
     }
   }, [isSuccess, isError, error, navigate, productId]);
@@ -77,13 +105,9 @@ const Payment = () => {
           <TermsAgreementSection />
         </S.Section>
         <S.CaptionWrapper>
-          <Caption text="일부 상품의 경우, 결제완료 후 예약 확정까지 최대 1시간이 소요될 수 있습니다.">
-            {
-              "숙소 사정에 의해 예약 확정 불가 시, 자동 취소처리 및 전액환불 처리됩니다. <예약 확정 대기> 상태에서도 취소요청이 가능하나, 상품별 취소 정책에 따라 취소수수료가 부과되거나 환불이 불가할 수 있습니다."
-            }
-            {
-              "(주)야놀자는 통신판매중개업자로서, 통신판매의 당사자가 아니라는 사실을 고지하며 상품의 결제, 이용 및 환불 등과 관련한 의무와 책임은 각 판매자에게 있습니다."
-            }
+          <Caption text={paymentCaptions.text1}>
+            {paymentCaptions.text2}
+            {paymentCaptions.text3}
           </Caption>
         </S.CaptionWrapper>
         <S.BottomWrapper>
