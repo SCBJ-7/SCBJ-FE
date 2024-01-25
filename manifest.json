@@ -1,0 +1,39 @@
+{
+  "name": "퍼센트 호텔",
+  "short_name": "Percent Hotel",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#FF7C17",
+  "lang": "ko",
+  "scope": "/",
+  "theme_color": "#FF7C17",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "any"
+    },
+    {
+      "src": "/icon-192-maskable.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/icon-512-maskable.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "description": "성수기와 주말에도 빠르게 '득텔'하세요!",
+  "id": "ph",
+  "prefer_related_applications": true,
+  "categories": ["entertainment", "shopping", "social", "travel"]
+}
