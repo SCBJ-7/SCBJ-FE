@@ -71,9 +71,9 @@ const AccountBottomSheet = ({ content, onSetContent }: BottomSheetProps) => {
       try {
         localStorage.removeItem("newAccount");
         localStorage.removeItem("newBank");
-        navigate(PATH.PURCHASE_LIST);
+        navigate(PATH.MY_PAGE);
       } catch {
-        navigate(PATH.PURCHASE_LIST);
+        navigate(PATH.MY_PAGE);
       }
     },
   });
@@ -108,7 +108,7 @@ const AccountBottomSheet = ({ content, onSetContent }: BottomSheetProps) => {
                 <button onClick={clickHandler}>기본 계좌로 등록하기</button>
                 <button
                   className="cancel"
-                  onClick={() => navigate(PATH.PURCHASE_LIST)}
+                  onClick={() => navigate(PATH.MY_PAGE)}
                 >
                   변경하지 않기
                 </button>
@@ -155,7 +155,7 @@ const AccountBottomSheet = ({ content, onSetContent }: BottomSheetProps) => {
                 </button>
                 <button
                   className="cancel"
-                  onClick={() => navigate(PATH.PURCHASE_LIST)}
+                  onClick={() => navigate(PATH.MY_PAGE)}
                 >
                   나중에 입력하기
                 </button>

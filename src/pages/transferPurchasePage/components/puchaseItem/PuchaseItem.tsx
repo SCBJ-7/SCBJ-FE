@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 const PuchaseItem = (props: IPurchaseItemWithRemainDate) => {
   const navigate = useNavigate();
   const handleClick = () => {
-    navigate(`${PATH.PURCAHSE_DEATAIL}?id=${props.id}`);
+    navigate(`${PATH.PURCHASE_DEATAIL}?id=${props.id}`);
   };
   return (
     <S.PurchaseItemContainer onClick={handleClick}>

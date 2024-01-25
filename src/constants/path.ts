@@ -6,7 +6,7 @@ export const PATH = {
   CREATE_TRIP: "/trip-new",
   SALE_LIST: "/my-page/sale-list",
   PURCHASE_LIST: "/my-page/purchase-list",
-  PURCAHSE_DEATAIL: "/my-page/purchase-detail",
+  PURCHASE_DEATAIL: "/my-page/purchase-detail",
   SALE_DETAIL: "/my-page/sale-detail",
   DETAIL_ROOM: (productId: string | number) => `/room/${productId}`,
   WRITE_TRANSFER: "/transfer/new",

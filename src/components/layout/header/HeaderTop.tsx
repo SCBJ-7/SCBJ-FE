@@ -54,7 +54,7 @@ const Header = () => {
       title = "마이페이지";
       undo = true;
       break;
-    case PATH.PURCAHSE_DEATAIL:
+    case PATH.PURCHASE_DEATAIL:
       alarmIC = false;
       settingIC = false;
       title = "구매내역상세";

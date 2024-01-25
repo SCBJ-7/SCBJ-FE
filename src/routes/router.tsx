@@ -142,7 +142,7 @@ export const router = createBrowserRouter([
         element: <PasswordReset />,
       },
       {
-        path: PATH.PURCAHSE_DEATAIL,
+        path: PATH.PURCHASE_DEATAIL,
         element: (
           <LocalErrorBoundary>
             <Suspense fallback={<Loading />}>

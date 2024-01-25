@@ -13,7 +13,7 @@ export const END_POINTS = {
   PURCHASE_HISTORY: "/v1/members/purchased-history",
   PURCHASE_DETAIL: (purchaseId: string) =>
     `/v1/members/purchased-history/${purchaseId}`,
-  SALE_DETAIL: (saleId: string) => `/v1/sale-history/${saleId}`,
+  SALE_DETAIL: (saleId: number) => `/v1/members/sale-history/${saleId}`,
   EMAIL: "/v1/members/email",
   YANOLJA: "/v1/members/yanolja",
   ACCOUNT: "/v1/members/account",

@@ -22,7 +22,7 @@ const SaleDetail = () => {
   // 아래 부분 대신 위로 수정
   const [data, setData] = useState<ISaleData>();
   const fetch = async () => {
-    const res = await fetchSaleDetail();
+    const res = await fetchSaleDetail(Number(saleId));
     setData(res);
   };
   useEffect(() => {

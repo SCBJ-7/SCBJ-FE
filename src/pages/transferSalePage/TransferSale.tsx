@@ -53,7 +53,7 @@ const TransferSale = () => {
       console.error(error);
     }
   };
-
+  console.log("a", saleItems);
   const NoItemText = () => {
     if (status === "for-sale") return <h2>판매중인 내역이 없습니다</h2>;
     if (status === "sale-completed") return <h2>판매완료 내역이 없습니다</h2>;
