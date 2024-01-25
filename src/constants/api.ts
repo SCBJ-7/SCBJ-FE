@@ -6,7 +6,7 @@ export const END_POINTS = {
   SIGNUP: "/v1/members/signup",
   ALARM: "/v1/alarms",
   HASALARM: "/v1/alarms/status",
-  ROOM: (roomId: string) => `/v1/products/${roomId}`,
+  ROOM: (productId: string) => `/v1/products/${productId}`,
   RESERVATION: "/v1/reservations",
   MAIN: "/v1/products/main",
   USER_INFO: "/v1/members",
@@ -22,7 +22,7 @@ export const END_POINTS = {
     `/v1/products/${productId}/payments?paymentType=${paymentType}`,
   PAYMENT_SUCCESS: (paymentType: string, pgToken: string) =>
     `/v1/products/pay-success?paymentType=${paymentType}&pg_token=${pgToken}`,
-
+  STOCK: (productId: string) => `/v1/products/${productId}/stock`,
   NEW_TOKEN: "/v1/token/refresh",
 } as const;
 

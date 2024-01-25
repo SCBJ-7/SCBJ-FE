@@ -2,13 +2,13 @@ import { useMutation } from "@tanstack/react-query";
 import { isAxiosError } from "axios";
 import { useNavigate } from "react-router-dom";
 
-import { useToastStore } from "@store/store";
 import { postYanoljaAccount } from "@apis/fetchYanoljaAccount";
 import { PATH } from "@constants/path";
+import useToastConfig from "@hooks/common/useToastConfig";
 
 export const useConnectAccountMutation = () => {
   const navigate = useNavigate();
-  const setToastConfig = useToastStore((state) => state.setToastConfig);
+  const { handleToast } = useToastConfig();
 
   const connectAccountMutation = useMutation({
     mutationFn: (email: string) => postYanoljaAccount(email),
@@ -18,25 +18,24 @@ export const useConnectAccountMutation = () => {
         replace: true,
       });
     },
-    onError: (error) => {
-      if (!isAxiosError(error)) throw error;
-      if (error.response && error.response.status === 404) {
-        const message = "입력한 정보를 다시 확인해주세요";
-        setToastConfig({
-          isShow: true,
-          isError: false,
-          strings: [message],
-        });
-        setTimeout(() => {
-          setToastConfig({
-            isShow: false,
-            isError: false,
-            strings: [message],
-          });
-        }, 6000);
+    onError: (error): void => {
+      if (
+        isAxiosError(error) &&
+        error.response &&
+        error.response.status === 404
+      ) {
+        handleToast(true, [<>입력한 정보를 다시 확인해주세요</>]);
+      } else if (
+        isAxiosError(error) &&
+        error.response &&
+        error.response.status === 500
+      ) {
+        handleToast(true, [<>잠시후 다시 시도하세요</>]);
       }
     },
-    throwOnError: true,
+    throwOnError: (error) => {
+      return !isAxiosError(error);
+    },
   });
 
   return connectAccountMutation;

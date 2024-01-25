@@ -17,7 +17,6 @@ import RoomDetail from "@pages/roomDetailPage/RoomDetail";
 import TransferPurchase from "@/pages/transferPurchasePage/TransferPurchase";
 import TransferSale from "@pages/transferSalePage/TransferSale";
 import TransferWriting from "@/pages/transferWritingPage/TransferWriting";
-
 import ManageAccount from "@/pages/myPage/manage/manageAccount/ManageAccount";
 import ManageProfile from "@/pages/myPage/manage/manageProfile/ManageProfile";
 import Setting from "@/pages/myPage/setting/Setting";
@@ -115,10 +114,10 @@ export const router = createBrowserRouter([
         ),
       },
       {
-        path: PATH.DETAIL_ROOM + "/:roomId",
+        path: PATH.DETAIL_ROOM(":productId"),
         element: (
           <LocalErrorBoundary>
-            <Suspense fallback={<div>LOADING</div>}>
+            <Suspense fallback={<Loading />}>
               <RoomDetail />
             </Suspense>
           </LocalErrorBoundary>
@@ -191,7 +190,7 @@ export const router = createBrowserRouter([
         element: (
           <LocalErrorBoundary>
             <Suspense fallback={<Loading />}>
-              <Outlet />
+              <Payment />
             </Suspense>
           </LocalErrorBoundary>
         ),
