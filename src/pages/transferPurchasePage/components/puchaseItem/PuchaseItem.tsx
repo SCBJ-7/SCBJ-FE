@@ -20,7 +20,7 @@ const PuchaseItem = (props: IPurchaseItemWithRemainDate) => {
         <S.ArrowRightBtnIcon></S.ArrowRightBtnIcon>
       </S.PurchaseItemTitle>
       <S.PurchaseItemContent>
-        <S.PurchaseItemImage src={props.ImageUrl} />
+        <S.PurchaseItemImage src={props.imageUrl} />
         <S.PuchaseItemInfo>
           <S.PurchaseItemName>{props.name}</S.PurchaseItemName>
           <S.PuChaseItemType>{props.roomType}</S.PuChaseItemType>

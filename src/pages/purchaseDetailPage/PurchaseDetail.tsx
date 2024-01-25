@@ -11,7 +11,6 @@ const PurchaseDetail = () => {
   const id = searchParams.get("id");
   if (!id) throw new Error("존재하지 않는 roomId 입니다.");
   const navigate = useNavigate();
-  const indexFee = 5000;
   const { data } = useSuspenseQuery<IPurchaseData, AxiosError>({
     queryKey: ["roomasDetail", id],
     queryFn: () => fetchPurchaseDetail(id),

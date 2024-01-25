@@ -1,5 +1,5 @@
 export interface IPurchaseList {
-  ImageUrl: string;
+  imageUrl: string;
   checkInDate: string;
   checkOutDate: string;
   id: number;

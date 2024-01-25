@@ -19,6 +19,7 @@ export const END_POINTS = {
   PAYMENT_REQUEST: (productId: string, paymentType: string) =>
     `/v1/products/${productId}/payments?paymentType=${paymentType}`,
   NEW_TOKEN: "/v1/token/refresh",
+  SEARCH: "/v1/products/search",
 } as const;
 
 export const ERROR_CODE = {
