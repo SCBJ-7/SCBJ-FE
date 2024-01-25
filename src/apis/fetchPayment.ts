@@ -11,13 +11,6 @@ export const getStock = async (productId: string): Promise<StockData> => {
   return data.data;
 };
 
-export const getStock = async (productId: string): Promise<StockData> => {
-  const { data } = await axiosInstance.get<ResponseData<StockData>>(
-    END_POINTS.STOCK(productId),
-  );
-  return data.data;
-};
-
 export const getPayment = async (productId: string): Promise<PaymentData> => {
   const { data } = await axiosInstance.get<ResponseData<PaymentData>>(
     END_POINTS.PAYMENT(productId),
