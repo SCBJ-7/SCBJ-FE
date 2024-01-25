@@ -8,7 +8,7 @@ import { useEffect, useState } from "react";
 
 const TransferWritingSuccess = () => {
   const [content, setContent] = useState<
-    "default" | "agreememt" | "firstlyNoAccount"
+    "default" | "agreement" | "firstlyNoAccount"
   >("default");
 
   const [searchParams] = useSearchParams();
