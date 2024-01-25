@@ -13,7 +13,7 @@ import useToastConfig from "@hooks/common/useToastConfig";
 const TransferWriting = () => {
   const { handleToast } = useToastConfig();
 
-  const { data: userData } = useQuery({
+  const { data: userData, isLoading } = useQuery({
     queryKey: ["UserInfo"],
     queryFn: fetchUserInfo,
   });
@@ -31,6 +31,10 @@ const TransferWriting = () => {
     if (!userData?.linkedToYanolja || !token) return;
     handleToast(false, [<>야놀자</>, "에서 예약하신 상품만 판매 가능해요."]);
   }, [handleToast, token, userData?.linkedToYanolja]);
+
+  if (isLoading) {
+    return;
+  }
 
   if (!token) {
     return (

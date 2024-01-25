@@ -59,9 +59,8 @@ const TransferWritingPrice = () => {
   // finally able to submit
   const [readyToSubmit, setReadyToSubmit] = useState(false);
 
-  //
-  const [firstlyNoAccount] = useState(!!accountNumber);
-  const [modifyingCount, setModifiyingCount] = useState(0);
+  // false : true여야 정상 작동함.
+  const [firstlyNoAccount] = useState(userData?.accountNumber ? false : true);
 
   useEffect(() => {
     setReadyToSubmit(() => {
@@ -143,13 +142,9 @@ const TransferWritingPrice = () => {
       }),
     onSuccess: () => {
       alert("판매 게시물이 성공적으로 등록되었습니다!");
-      navigate(
-        PATH.WRITE_TRANSFER_SUCCESS +
-          "?FNA=" +
-          `${firstlyNoAccount}` +
-          "&modifed" +
-          `${!!modifyingCount})`,
-      );
+      localStorage.setItem("newAccount", accountNumber as string);
+      localStorage.setItem("newBank", bank as string);
+      navigate(PATH.WRITE_TRANSFER_SUCCESS + "?FNA=" + `${firstlyNoAccount}`);
     },
   });
 
@@ -298,7 +293,6 @@ const TransferWritingPrice = () => {
       )}
       {accountSetting === "enter" && (
         <EnterAccountInfo
-          onModifiyingCount={setModifiyingCount}
           accountNumber={accountNumber}
           bank={bank}
           onSetAccountNumber={setAccountNumber}

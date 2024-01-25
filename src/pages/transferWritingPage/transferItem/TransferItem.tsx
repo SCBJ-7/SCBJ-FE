@@ -27,10 +27,10 @@ const TransferItem = ({
     (state) => state.setSelectedItem,
   );
 
-  const SDT = format(startDate, "yyyy. mm. dd (ccc)", {
+  const SDT = format(startDate, "yyyy. MM. dd (ccc)", {
     locale: ko,
   });
-  const EDT = format(endDate, "yyyy. mm. dd (ccc)", {
+  const EDT = format(endDate, "yyyy. MM. dd (ccc)", {
     locale: ko,
   });
 

@@ -37,10 +37,10 @@ const SecondPriceTag = ({
   const STD = format(startDate, "MM. dd (ccc) HH:mm", { locale: ko });
   const ETD = format(endDate, "MM. dd (ccc) HH:mm", { locale: ko });
 
-  const LEFTTIME = remainingDays * 24 + remainingTimes;
-  let processedTime: number | string = LEFTTIME;
+  const LEFTTIME = remainingTimes;
+  let processedTime = "";
   if (LEFTTIME > 72) {
-    processedTime = `${remainingDays} 일  ${remainingTimes}`;
+    processedTime = `${remainingDays} 일  ${remainingTimes % 24}`;
   }
 
   useEffect(() => {

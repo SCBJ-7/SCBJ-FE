@@ -58,6 +58,21 @@ export const ItemUnit = styled.div`
     color: ${({ theme }) => theme.color.percentBlue};
   }
 
+  @media screen and (max-width: 460px) {
+    & img {
+      width: 128px;
+      object-fit: cover;
+    }
+
+    & .item-info h1 {
+      margin-bottom: 12px;
+      width: 145px;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+  }
+
   @media screen and (min-width: 580px) {
     & img {
       width: 320px;
@@ -77,4 +92,8 @@ export const Sticker = styled.div`
   margin-top: 8px;
   border-radius: 12px;
   background-color: ${({ theme }) => theme.color.greyScale6};
+
+  @media screen and (max-width: 460px) {
+    margin-top: 4px;
+  }
 `;
