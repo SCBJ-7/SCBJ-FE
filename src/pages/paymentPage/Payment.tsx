@@ -37,6 +37,7 @@ const Payment = ({ action }: PaymentProps) => {
   const [errorMessage, setErrorMessage] = useState("");
 
   const {
+    data: successData,
     isSuccess,
     isError,
     error,
@@ -63,7 +64,7 @@ const Payment = ({ action }: PaymentProps) => {
 
   useEffect(() => {
     if (isSuccess) {
-      navigate(`/payment/${productId}/success`);
+      navigate(`/payment/${successData.paymentHistoryId}/success`);
     }
 
     if (isError && isAxiosError(error)) {
