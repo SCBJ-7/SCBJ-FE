@@ -59,6 +59,7 @@ const TransferWritingPrice = () => {
   // finally able to submit
   const [readyToSubmit, setReadyToSubmit] = useState(false);
 
+  // 처음 들어올 때 계좌가 있는지 여부.
   // false : true여야 정상 작동함.
   const [firstlyNoAccount] = useState(userData?.accountNumber ? false : true);
 
