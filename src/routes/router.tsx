@@ -187,7 +187,7 @@ export const router = createBrowserRouter([
         element: <SearchFilter />,
       },
       {
-        path: PATH.PAYMENT,
+        path: PATH.PAYMENT(":productId"),
         element: (
           <LocalErrorBoundary>
             <Suspense fallback={<Loading />}>
@@ -197,12 +197,16 @@ export const router = createBrowserRouter([
         ),
         children: [
           {
-            path: ":productId",
+            path: "",
             element: <Payment />,
           },
           {
-            path: "success/:productId",
+            path: "success",
             element: <PaymentSuccess />,
+          },
+          {
+            path: "ready",
+            element: <Payment />,
           },
         ],
       },
