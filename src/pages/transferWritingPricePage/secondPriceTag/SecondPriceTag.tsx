@@ -83,7 +83,6 @@ const SecondPriceTag = ({
           <span>
             {STD} - {ETD}
           </span>
-          {/* 23.20 (수) 17:00 ~ 23.21 (목) 10:00 */}
         </section>
       </S.Contents>
       <InputSection

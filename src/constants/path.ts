@@ -7,6 +7,7 @@ export const PATH = {
   SALE_LIST: "/my-page/sale-list",
   PURCHASE_LIST: "/my-page/purchase-list",
   PURCAHSE_DEATAIL: "/my-page/purchase-detail",
+  SALE_DETAIL: "/my-page/sale-detail",
   DETAIL_ROOM: "/room",
   WRITE_TRANSFER: "/transfer/new",
   WRITE_TRANSFER_PRICE: "/transfer/new/price",
