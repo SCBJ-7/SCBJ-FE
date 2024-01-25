@@ -15,8 +15,10 @@ const UserInfoSection = () => {
     formState: { errors },
   } = useFormContext();
 
+  const name = watch("name");
+  const email = watch("email");
+  const phone = watch("phone");
   const isDiffUser = watch("isDiffUser");
-
   const userInfo = useLoadUserInfo(isDiffUser);
 
   useEffect(() => {
@@ -31,6 +33,18 @@ const UserInfoSection = () => {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isDiffUser, setValue, userInfo]);
+
+  useEffect(() => {
+    if (
+      isDiffUser &&
+      (name !== userInfo.name ||
+        email !== userInfo.email ||
+        phone !== userInfo.phone)
+    ) {
+      setValue("isDiffUser", false);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [name, email, phone]);
 
   return (
     <S.HStack>
