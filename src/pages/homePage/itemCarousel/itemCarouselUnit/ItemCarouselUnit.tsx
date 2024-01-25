@@ -27,6 +27,7 @@ const ItemCarouselUnit = ({ item }: UnitProps) => {
     navigate(PATH.DETAIL_ROOM + "/" + hotel[num].id);
   };
 
+  //정렬 수정
   return (
     <S.LocaleWrapper $display={hotel ? "block" : "none"}>
       {hotel[0] && (
