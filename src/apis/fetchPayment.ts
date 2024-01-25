@@ -11,6 +11,13 @@ export const getStock = async (productId: string): Promise<StockData> => {
   return data.data;
 };
 
+export const getPayment = async (productId: string): Promise<PaymentData> => {
+  const { data } = await axiosInstance.get<ResponseData<PaymentData>>(
+    END_POINTS.PAYMENT(productId),
+  );
+  return data.data;
+};
+
 export interface PaymentRequestProps {
   productId: string;
   paymentType: string;
@@ -23,18 +30,6 @@ export interface PaymentRequestProps {
   collectPersonalInfo: boolean;
   thirdPartySharing: boolean;
 }
-
-export interface PaymentSuccessProps {
-  paymentType: string;
-  pgToken: Nullable<string>;
-}
-
-export const getPayment = async (productId: string): Promise<PaymentData> => {
-  const { data } = await axiosInstance.get<ResponseData<PaymentData>>(
-    END_POINTS.PAYMENT(productId),
-  );
-  return data.data;
-};
 
 export const postPayment = async (
   paymentRequest: PaymentRequestProps,
@@ -68,22 +63,19 @@ export const postPayment = async (
   return data.data;
 };
 
+export interface PaymentSuccessProps {
+  paymentType: string;
+  pgToken: Nullable<string>;
+}
+
 export const getPaymentSuccess = async ({
   paymentType,
   pgToken,
-}: PaymentSuccessProps) => {
+}: PaymentSuccessProps): Promise<PaymentData | null> => {
   if (!pgToken) return null;
 
-  const { data } = await axiosInstance.get(
+  const { data } = await axiosInstance.get<ResponseData<PaymentData>>(
     END_POINTS.PAYMENT_SUCCESS(paymentType, pgToken),
-  );
-  console.log(data);
-  return data.data;
-};
-
-export const getPaymentCancel = async (paymentType: string) => {
-  const { data } = await axiosInstance.get(
-    END_POINTS.PAYMENT_CANCEL(paymentType),
   );
   console.log(data);
   return data.data;
