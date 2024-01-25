@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import FilterIcon from "@assets/icons/ic_arrows-down-up.svg?react";
-import CloseButton from "@assets/icons/ic_close-button.svg?react";
-import WarningIcon from "@assets/icons/ic_warning.svg?react";
+
 export const SearchFilterCover = styled.div`
   height: 28px;
   display: flex;

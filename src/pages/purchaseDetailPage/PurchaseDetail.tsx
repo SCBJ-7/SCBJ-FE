@@ -109,9 +109,7 @@ const PurchaseDetail = () => {
           </S.PayInfo>
           <S.StandardFlex>
             <S.TotalPrice>총 결제 금액</S.TotalPrice>
-            <S.TotalPriceInfo>
-              {(data.price - indexFee).toLocaleString()}원
-            </S.TotalPriceInfo>
+            <S.TotalPriceInfo>{data.price.toLocaleString()}원</S.TotalPriceInfo>
           </S.StandardFlex>
         </S.PayContainer>
       </S.MainSection>
