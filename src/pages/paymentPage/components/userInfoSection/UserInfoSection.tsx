@@ -12,13 +12,13 @@ const UserInfoSection = () => {
     watch,
     setValue,
     resetField,
-    formState: { errors },
+    formState: { errors, dirtyFields },
   } = useFormContext();
 
-  const name = watch("name");
-  const email = watch("email");
-  const phone = watch("phone");
   const isDiffUser = watch("isDiffUser");
+
+  watch(["name", "email", "phone"]);
+
   const userInfo = useLoadUserInfo(isDiffUser);
 
   useEffect(() => {
@@ -26,25 +26,13 @@ const UserInfoSection = () => {
       setValue("name", userInfo.name, { shouldValidate: true });
       setValue("email", userInfo.email, { shouldValidate: true });
       setValue("phone", userInfo.phone, { shouldValidate: true });
-    } else if (!isDiffUser) {
-      resetField("name");
-      resetField("email");
-      resetField("phone");
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isDiffUser, setValue, userInfo]);
 
-  useEffect(() => {
-    if (
-      isDiffUser &&
-      (name !== userInfo.name ||
-        email !== userInfo.email ||
-        phone !== userInfo.phone)
-    ) {
-      setValue("isDiffUser", false);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [name, email, phone]);
+  const handleFieldChange = () => {
+    setValue("isDiffUser", false);
+  };
 
   return (
     <S.HStack>
@@ -74,6 +62,7 @@ const UserInfoSection = () => {
               type="text"
               id="name"
               placeholder="김양수"
+              onChange={handleFieldChange}
               $isError={!!errors.name}
             />
             {errors.name && (
@@ -97,6 +86,7 @@ const UserInfoSection = () => {
               type="text"
               id="email"
               placeholder="이메일을 입력해주세요"
+              onChange={handleFieldChange}
               $isError={!!errors.email}
             />
             {errors.email && (
@@ -121,6 +111,7 @@ const UserInfoSection = () => {
               type="text"
               id="phone"
               placeholder="전화번호를 입력해주세요"
+              onChange={handleFieldChange}
               $isError={!!errors.phone}
             />
             {errors.phone && (
