@@ -190,7 +190,7 @@ export const router = createBrowserRouter([
         element: (
           <LocalErrorBoundary>
             <Suspense fallback={<Loading />}>
-              <Payment />
+              <Outlet />
             </Suspense>
           </LocalErrorBoundary>
         ),
