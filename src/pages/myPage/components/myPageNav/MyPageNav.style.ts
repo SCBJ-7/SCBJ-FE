@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 export const MyPageNavContainer = styled.section`
   width: 100%;
   height: 49px;
@@ -11,7 +11,7 @@ export const MyPageNavContainer = styled.section`
   color: ${({ theme }) => theme.color.greyScale3};
 `;
 
-export const MyPageNavCell = styled(NavLink)`
+export const MyPageNavCell = styled(Link)`
   width: 50%;
   height: 100%;
   display: flex;

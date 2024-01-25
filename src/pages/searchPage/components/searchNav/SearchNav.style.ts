@@ -13,7 +13,6 @@ export const SearchNavContainer = styled.div`
   padding: 0.5rem 1.5rem;
   z-index: 10;
   top: 72px;
-  z-index: 1000;
 `;
 
 export const SearchCellCover = styled.div`

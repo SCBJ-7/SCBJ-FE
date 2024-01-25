@@ -42,7 +42,7 @@ const TransferSale = () => {
       const sortedSaleItems = sortProductsByCheckInDate(data);
       const filteredSaleItems = sortedSaleItems.filter((item) => {
         const navItem = NAV_LIST.find((nav) => nav.status === status);
-        if (!navItem || navItem.status === "all") {
+        if (!navItem || navItem.status === "") {
           return true;
         }
         return item.saleStatus === navItem.label;
@@ -75,9 +75,7 @@ const TransferSale = () => {
         <SaleNav />
         <S.NoSaleItems>
           <NoItemText />
-          {status === "all" && (
-            <span>계정을 연동하고 판매글을 작성해보세요!</span>
-          )}
+          {!status && <span>계정을 연동하고 판매글을 작성해보세요!</span>}
         </S.NoSaleItems>
       </>
     );

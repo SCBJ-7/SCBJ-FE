@@ -1,29 +1,30 @@
 import { useSearchParams } from "react-router-dom";
 import * as S from "./PurchaseNav.style";
-import { useEffect } from "react";
+import { PATH } from "@constants/path";
 
 const navList = [
-  { status: "all", label: "전체" },
+  { status: "", label: "전체" },
   { status: "yet", label: "이용예정" },
   { status: "done", label: "이용완료" },
 ];
 
 const PurchaseNav = () => {
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
   const status = searchParams.get("status");
-  useEffect(() => {
-    if (!status) {
-      setSearchParams({ status: "all" });
-    }
-  }, [status, setSearchParams]);
 
   return (
     <S.PurchaseNavContainer>
       {navList.map(({ status: itemStatus, label }) => (
         <S.PurchaseNavCell
           key={itemStatus}
-          className={status === itemStatus ? "active" : ""}
-          to={`?status=${itemStatus}`}
+          className={
+            !status && itemStatus === ""
+              ? "active"
+              : status === itemStatus
+                ? "active"
+                : ""
+          }
+          to={itemStatus ? `?status=${itemStatus}` : PATH.MY_PAGE}
         >
           {label}
         </S.PurchaseNavCell>

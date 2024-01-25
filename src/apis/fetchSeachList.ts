@@ -1,3 +1,4 @@
+import { BASE_URL, END_POINTS } from "@constants/api";
 import axios from "axios";
 
 export const fetchSearchList = async (
@@ -14,7 +15,7 @@ export const fetchSearchList = async (
 ) => {
   try {
     const response = await axios.post(
-      "https://3.34.147.187.nip.io/v1/products/search",
+      BASE_URL + END_POINTS.SEARCH,
       {
         location: location,
         checkIn: checkIn,
