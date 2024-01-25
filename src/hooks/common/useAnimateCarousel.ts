@@ -73,7 +73,6 @@ export const useAnimateCarousel = ({
     };
 
     const handleTouchEnd = (moveEvent: globalThis.TouchEvent) => {
-      if (moveEvent.cancelable) moveEvent.preventDefault();
       const delta =
         moveEvent.changedTouches[0].pageX - touchEvent.changedTouches[0].pageX;
       handleDragEnd(delta);
