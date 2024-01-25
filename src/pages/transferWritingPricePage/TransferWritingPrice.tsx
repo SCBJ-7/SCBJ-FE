@@ -61,6 +61,7 @@ const TransferWritingPrice = () => {
 
   //
   const [firstlyNoAccount] = useState(!!accountNumber);
+  const [modifyingCount, setModifiyingCount] = useState(0);
 
   useEffect(() => {
     setReadyToSubmit(() => {
@@ -142,7 +143,13 @@ const TransferWritingPrice = () => {
       }),
     onSuccess: () => {
       alert("판매 게시물이 성공적으로 등록되었습니다!");
-      navigate(PATH.WRITE_TRANSFER_SUCCESS + "?FNA=" + `${firstlyNoAccount}`);
+      navigate(
+        PATH.WRITE_TRANSFER_SUCCESS +
+          "?FNA=" +
+          `${firstlyNoAccount}` +
+          "&modifed" +
+          `${!!modifyingCount})`,
+      );
     },
   });
 
@@ -291,6 +298,7 @@ const TransferWritingPrice = () => {
       )}
       {accountSetting === "enter" && (
         <EnterAccountInfo
+          onModifiyingCount={setModifiyingCount}
           accountNumber={accountNumber}
           bank={bank}
           onSetAccountNumber={setAccountNumber}
