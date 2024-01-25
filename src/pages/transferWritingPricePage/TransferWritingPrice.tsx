@@ -15,7 +15,6 @@ import usePreventLeave from "@hooks/common/usePreventLeave";
 import { PATH } from "@constants/path";
 import EnterAccountInfo from "./enterAccountInfo/EnterAccountInfo";
 import useToastConfig from "@hooks/common/useToastConfig";
-useToastConfig;
 
 const TransferWritingPrice = () => {
   usePreventLeave(true);
@@ -60,11 +59,15 @@ const TransferWritingPrice = () => {
   // finally able to submit
   const [readyToSubmit, setReadyToSubmit] = useState(false);
 
+  //
+  const [firstlyNoAccount] = useState(!!accountNumber);
+  const [modifyingCount, setModifiyingCount] = useState(0);
+
   useEffect(() => {
     setReadyToSubmit(() => {
       if (firstPrice && opt1 && opt2 && opt3 && optFinal) {
         // accountNumber 추가
-        if (!is2ndChecked) return false; // 2차 가격 설정하기 체크 안 한 경우
+        if (!is2ndChecked) return true; // 2차 가격 설정하기 체크 안 한 경우
 
         if (is2ndChecked && secondPrice && downTimeAfter) {
           return true; // 2차 가격 설정한 경우
@@ -140,7 +143,13 @@ const TransferWritingPrice = () => {
       }),
     onSuccess: () => {
       alert("판매 게시물이 성공적으로 등록되었습니다!");
-      navigate(PATH.WRITE_TRANSFER_SUCCESS);
+      navigate(
+        PATH.WRITE_TRANSFER_SUCCESS +
+          "?FNA=" +
+          `${firstlyNoAccount}` +
+          "&modifed" +
+          `${!!modifyingCount})`,
+      );
     },
   });
 
@@ -224,7 +233,6 @@ const TransferWritingPrice = () => {
     const confirmToProceed = confirm("판매 게시물을 등록하시겠어요?");
     if (confirmToProceed) {
       mutate();
-      navigate(PATH.WRITE_TRANSFER_SUCCESS);
     }
   };
 
@@ -290,6 +298,7 @@ const TransferWritingPrice = () => {
       )}
       {accountSetting === "enter" && (
         <EnterAccountInfo
+          onModifiyingCount={setModifiyingCount}
           accountNumber={accountNumber}
           bank={bank}
           onSetAccountNumber={setAccountNumber}

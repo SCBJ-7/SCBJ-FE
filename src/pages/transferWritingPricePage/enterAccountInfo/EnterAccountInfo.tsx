@@ -8,22 +8,17 @@ import useToastConfig from "@hooks/common/useToastConfig";
 import usePreventLeave from "@hooks/common/usePreventLeave";
 import { Nullable } from "@type/nullable";
 
-//   bank: string | null;
-//   accountNumber: string | null;
-//   onSubmitAccount: React.Dispatch<React.SetStateAction<"none" | "enter">>;
-//   onSetAccountNumber: React.Dispatch<React.SetStateAction<string | null>>;
-//   onSetBank: React.Dispatch<React.SetStateAction<string | null>>;
-// }) => {
-
 const EnterAccountInfo = ({
   bank,
   accountNumber,
+  onModifiyingCount,
   onSubmitAccount,
   onSetAccountNumber,
   onSetBank,
 }: {
   bank: Nullable<string>;
   accountNumber: Nullable<string>;
+  onModifiyingCount: React.Dispatch<React.SetStateAction<number>>;
   onSubmitAccount: React.Dispatch<React.SetStateAction<"none" | "enter">>;
   onSetAccountNumber: React.Dispatch<React.SetStateAction<Nullable<string>>>;
   onSetBank: React.Dispatch<React.SetStateAction<Nullable<string>>>;
@@ -103,6 +98,7 @@ const EnterAccountInfo = ({
     onSetAccountNumber(newAccountNumber);
     onSetBank(newBank);
     onSubmitAccount("none");
+    onModifiyingCount((prev) => prev + 1);
 
     return;
   };
