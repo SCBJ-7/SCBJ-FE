@@ -26,7 +26,6 @@ const AccountBottomSheet = ({ content, onSetContent }: BottomSheetProps) => {
   const accountNumber = localStorage.getItem("newAccount");
   const bank = localStorage.getItem("newBank");
   if (!accountNumber || !bank) {
-    alert("알수없는 이유로 계좌를 등록할 수 없습니다.");
     onSetContent("default");
   }
 
@@ -69,9 +68,13 @@ const AccountBottomSheet = ({ content, onSetContent }: BottomSheetProps) => {
         accountNumber: accountNumber as string,
       }),
     onSuccess: () => {
-      localStorage.removeItem("newAccount");
-      localStorage.removeItem("newBank");
-      navigate(PATH.PURCHASE_LIST);
+      try {
+        localStorage.removeItem("newAccount");
+        localStorage.removeItem("newBank");
+        navigate(PATH.PURCHASE_LIST);
+      } catch {
+        navigate(PATH.PURCHASE_LIST);
+      }
     },
   });
 
