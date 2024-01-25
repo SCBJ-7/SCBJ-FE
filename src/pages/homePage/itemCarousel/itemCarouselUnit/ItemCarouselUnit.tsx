@@ -44,7 +44,7 @@ const ItemCarouselUnit = ({ item }: UnitProps) => {
               <h5>{hotel[1].originalPrice}</h5>
               <h1>
                 {priceFormat(hotel[1].salePrice)} 원
-                <span>{Math.floor(hotel[1].salePercentage * 100)}%</span>
+                <span>{Math.round(hotel[1].salePercentage * 100)}%</span>
               </h1>
             </div>
           </div>
@@ -65,7 +65,7 @@ const ItemCarouselUnit = ({ item }: UnitProps) => {
               <h5>{hotel[0].originalPrice}</h5>
               <h1>
                 {priceFormat(hotel[0].salePrice)} 원
-                <span>{Math.floor(hotel[0].salePercentage * 100)}%</span>
+                <span>{Math.round(hotel[0].salePercentage * 100)}%</span>
               </h1>
             </div>
           </div>

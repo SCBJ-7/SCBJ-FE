@@ -43,7 +43,7 @@ const WeekendUnit = ({ item }: UnitProps) => {
           <S.Discounted>
             <h1>{priceFormat(item[1].salePrice)} 원</h1>
             <h1 className="percentage">
-              {Math.floor(item[1].salePercentage * 100)}%
+              {Math.round(item[1].salePercentage * 100)}%
             </h1>
           </S.Discounted>
           <S.Period>

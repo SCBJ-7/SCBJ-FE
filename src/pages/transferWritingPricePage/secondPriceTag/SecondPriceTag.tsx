@@ -38,7 +38,7 @@ const SecondPriceTag = ({
   const ETD = format(endDate, "MM. dd (ccc) HH:mm", { locale: ko });
 
   const LEFTTIME = remainingTimes;
-  let processedTime: string;
+  let processedTime = "";
   if (LEFTTIME > 72) {
     processedTime = `${remainingDays} 일  ${remainingTimes % 24}`;
   }
