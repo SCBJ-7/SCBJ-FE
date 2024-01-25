@@ -44,7 +44,7 @@ const ItemCarousel = ({
     slideWidth,
   });
 
-  // localeAndHotel과 currentIndex의 연동
+  // localeAndHotel과 currentIndex의 연동!
   useEffect(() => {
     onChangeLocale([
       currentIndex,
