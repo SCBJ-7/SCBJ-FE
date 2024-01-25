@@ -16,3 +16,12 @@ export const NoResult = styled.div`
   align-items: center;
   ${({ theme }) => theme.typo.title4}
 `;
+
+export const NoResultAll = styled.div`
+  display: flex;
+  margin-top: 1rem;
+  justify-content: center;
+  align-items: center;
+  ${({ theme }) => theme.typo.body4}
+  color: ${({ theme }) => theme.color.greyScale2};
+`;

@@ -76,7 +76,6 @@ const Search = () => {
     const handleScroll = () => {
       if (scrollContainerRef.current) {
         const currentPosition = scrollContainerRef.current.scrollTop;
-        console.log(currentPosition);
         setScrollPosition(currentPosition);
       }
     };

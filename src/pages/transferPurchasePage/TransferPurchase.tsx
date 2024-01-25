@@ -52,7 +52,7 @@ const TransferPurchase = () => {
       return true;
     }
   });
-  console.log(filteredPurchaseItems);
+  console.log(sortedPurchaseItems);
   if (isLoading) {
     return <Loading />;
   }
@@ -77,11 +77,32 @@ const TransferPurchase = () => {
             />
           ))
         ) : status === "done" ? (
-          <S.NoResult>구매 내역이 없습니다</S.NoResult>
+          <>
+            <S.NoResult>구매내역이 없습니다</S.NoResult>
+            {!sortedPurchaseItems.length && (
+              <S.NoResultAll>
+                지금 상품을 구매하고 호캉스 떠나보세요!
+              </S.NoResultAll>
+            )}
+          </>
         ) : status === "yet" ? (
-          <S.NoResult>이용예정 내역이 없습니다</S.NoResult>
+          <>
+            <S.NoResult>이용예정 내역이 없습니다</S.NoResult>
+            {!sortedPurchaseItems.length && (
+              <S.NoResultAll>
+                지금 상품을 구매하고 호캉스 떠나보세요!
+              </S.NoResultAll>
+            )}
+          </>
         ) : (
-          <S.NoResult>이용완료 내역이 없습니다</S.NoResult>
+          <>
+            <S.NoResult>이용완료 내역이 없습니다</S.NoResult>
+            {!sortedPurchaseItems.length && (
+              <S.NoResultAll>
+                지금 상품을 구매하고 호캉스 떠나보세요!
+              </S.NoResultAll>
+            )}
+          </>
         )}
       </S.PurchaseList>
     </>

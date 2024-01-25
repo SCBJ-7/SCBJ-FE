@@ -35,7 +35,7 @@ const TransferSale = () => {
   const [saleItems, setSaleItems] = useState<ISaleItemWithRemainDate[]>([]);
   const [searchParams] = useSearchParams();
   const status = searchParams.get("status");
-
+  const isConnected = localStorage.getItem("isConnected");
   const fetchData = async () => {
     try {
       const { data } = await fetchSaleList();
@@ -53,7 +53,6 @@ const TransferSale = () => {
       console.error(error);
     }
   };
-  console.log("a", saleItems);
   const NoItemText = () => {
     if (status === "for-sale") return <h2>판매중인 내역이 없습니다</h2>;
     if (status === "sale-completed") return <h2>판매완료 내역이 없습니다</h2>;
@@ -68,14 +67,17 @@ const TransferSale = () => {
     fetchData();
     // eslint-disable-next-line
   }, [status]);
-
   if (saleItems.length === 0)
     return (
       <>
         <SaleNav />
         <S.NoSaleItems>
           <NoItemText />
-          {!status && <span>계정을 연동하고 판매글을 작성해보세요!</span>}
+          {isConnected === "true" ? (
+            ""
+          ) : (
+            <span>계정을 연동하고 판매글을 작성해보세요!</span>
+          )}
         </S.NoSaleItems>
       </>
     );

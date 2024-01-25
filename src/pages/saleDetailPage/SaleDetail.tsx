@@ -19,7 +19,7 @@ const SaleDetail = () => {
   // FIXME as below (백엔드 수정 후)
   // const { data } = useSaleDetailQuery(saleId);
 
-  // 아래 부분 대신 위로 수정
+  // 아래 부분 대신 위로 수정\
   const [data, setData] = useState<ISaleData>();
   const fetch = async () => {
     const res = await fetchSaleDetail(Number(saleId));

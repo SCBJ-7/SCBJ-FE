@@ -14,7 +14,7 @@ const MyPage = () => {
   const { getProfileData } = useProfileApi();
   const [userProfile, setUserProfile] = useState<ProfileData>();
   const isConnected = userProfile?.linkedToYanolja;
-
+  localStorage.setItem("isConnected", JSON.stringify(isConnected));
   const fetchUserProfile = async () => {
     try {
       const res = await getProfileData(END_POINTS.USER_INFO);
