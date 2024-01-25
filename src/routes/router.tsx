@@ -36,7 +36,11 @@ import SaleDetail from "@pages/saleDetailPage/SaleDetail";
 export const router = createBrowserRouter([
   {
     path: PATH.ROOT,
-    element: <App />,
+    element: (
+      <Suspense fallback={<Loading />}>
+        <App />
+      </Suspense>
+    ),
     errorElement: <NotFound />,
     children: [
       {
@@ -91,7 +95,7 @@ export const router = createBrowserRouter([
         path: PATH.WRITE_TRANSFER,
         element: (
           <LocalErrorBoundary>
-            <Suspense fallback={<div>{/* loading */}</div>}>
+            <Suspense fallback={<Loading />}>
               <TransferWriting />
             </Suspense>
           </LocalErrorBoundary>
@@ -100,7 +104,7 @@ export const router = createBrowserRouter([
       {
         path: PATH.WRITE_TRANSFER_PRICE + `/:id`,
         element: (
-          <Suspense fallback={<div>{/* loading */}</div>}>
+          <Suspense fallback={<Loading />}>
             <TransferWritingPrice />
           </Suspense>
         ),
@@ -108,7 +112,7 @@ export const router = createBrowserRouter([
       {
         path: PATH.WRITE_TRANSFER_SUCCESS,
         element: (
-          <Suspense fallback={<div>{/* loading */}</div>}>
+          <Suspense fallback={<Loading />}>
             <TransferWritingSuccess />
           </Suspense>
         ),
@@ -141,7 +145,7 @@ export const router = createBrowserRouter([
         path: PATH.PURCAHSE_DEATAIL,
         element: (
           <LocalErrorBoundary>
-            <Suspense fallback={<div>LOADING</div>}>
+            <Suspense fallback={<Loading />}>
               <PurchaseDetail />
             </Suspense>
           </LocalErrorBoundary>
