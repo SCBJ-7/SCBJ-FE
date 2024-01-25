@@ -43,15 +43,11 @@ export const ImageShadowWrapper = styled.div`
 
 export const ButtonContainer = styled.div`
   position: absolute;
-  top: 50%;
-  width: 100%;
 
   display: flex;
   justify-content: space-between;
 
   transform: translateY(-50%);
-
-  pointer-events: none;
 `;
 
 export const Button = styled.button<{ $visible: boolean }>`
