@@ -18,6 +18,7 @@ const TransferWritingSuccess = () => {
     if (firstlyNoAccount === "true") {
       setContent("firstlyNoAccount");
     }
+    // eslint-disable-next-line
   }, []);
 
   const navigate = useNavigate();
