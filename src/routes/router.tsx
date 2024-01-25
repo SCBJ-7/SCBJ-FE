@@ -62,7 +62,7 @@ export const router = createBrowserRouter([
         element: <MyPage />,
         children: [
           {
-            path: PATH.PURCHASE_LIST,
+            index: true,
             element: <TransferPurchase />,
           },
 

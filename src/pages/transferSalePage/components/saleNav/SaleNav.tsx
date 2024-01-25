@@ -1,24 +1,25 @@
 import { useSearchParams } from "react-router-dom";
 import * as S from "./SaleNav.style";
-import { useEffect } from "react";
 import { NAV_LIST } from "@constants/sale";
+import { PATH } from "@constants/path";
 
 const SaleNav = () => {
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
   const status = searchParams.get("status");
-  useEffect(() => {
-    if (!status) {
-      setSearchParams({ status: "all" });
-    }
-  }, [status, setSearchParams]);
 
   return (
     <S.SaleNavContainer>
       {NAV_LIST.map(({ status: itemStatus, label }) => (
         <S.SaleNavCell
           key={itemStatus}
-          className={status === itemStatus ? "active" : ""}
-          to={`?status=${itemStatus}`}
+          className={
+            !status && itemStatus === ""
+              ? "active"
+              : status === itemStatus
+                ? "active"
+                : ""
+          }
+          to={itemStatus ? `?status=${itemStatus}` : PATH.SALE_LIST}
         >
           {label}
         </S.SaleNavCell>

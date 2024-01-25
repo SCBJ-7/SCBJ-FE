@@ -35,11 +35,10 @@ const TransferPurchase = () => {
   const [searchParams] = useSearchParams();
   const status = searchParams.get("status");
 
-  const {
-    data: purchaseData,
-    isLoading,
-    isError,
-  } = useQuery({ queryKey: ["purchaseList"], queryFn: fetchPurchaseList });
+  const { data: purchaseData, isLoading } = useQuery({
+    queryKey: ["purchaseList"],
+    queryFn: fetchPurchaseList,
+  });
 
   const sortedPurchaseItems = sortProductsByCheckInDate(purchaseData?.products);
 
@@ -56,10 +55,6 @@ const TransferPurchase = () => {
   console.log(filteredPurchaseItems);
   if (isLoading) {
     return <Loading />;
-  }
-
-  if (isError) {
-    return <div>Error loading data</div>;
   }
 
   return (
@@ -81,8 +76,12 @@ const TransferPurchase = () => {
               remainDate={item.remainDate}
             />
           ))
+        ) : status === "done" ? (
+          <S.NoResult>구매 내역이 없습니다</S.NoResult>
+        ) : status === "yet" ? (
+          <S.NoResult>이용예정 내역이 없습니다</S.NoResult>
         ) : (
-          <div>아이템이 없습니다.</div>
+          <S.NoResult>이용완료 내역이 없습니다</S.NoResult>
         )}
       </S.PurchaseList>
     </>

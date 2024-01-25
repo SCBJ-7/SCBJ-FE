@@ -42,16 +42,16 @@ const Header = () => {
       title = "판매할 내역 선택";
       undo = false;
       break;
-    case PATH.PURCHASE_LIST:
+    case PATH.MY_PAGE:
       alarmIC = true;
       settingIC = true;
-      title = "구매내역";
-      undo = true;
+      title = "마이페이지";
+      undo = false;
       break;
     case PATH.SALE_LIST:
       alarmIC = true;
       settingIC = true;
-      title = "판매내역";
+      title = "마이페이지";
       undo = true;
       break;
     case PATH.PURCAHSE_DEATAIL:
