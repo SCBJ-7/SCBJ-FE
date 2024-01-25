@@ -41,7 +41,6 @@ export const OptionWrapper = styled(Flex)`
 const Box = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;
   gap: 0.5rem;
 
   background-color: ${({ theme }) => theme.color.greyScale7};
