@@ -11,7 +11,8 @@ export const END_POINTS = {
   MAIN: "/v1/products/main",
   USER_INFO: "/v1/members",
   PURCHASE_HISTORY: "/v1/members/purchased-history",
-  PURCHASE_DETAIL: (purchaseId: string) => `/v1/purchase-detail/${purchaseId}`,
+  PURCHASE_DETAIL: (purchaseId: string) =>
+    `/v1/members/purchased-history/${purchaseId}`,
   SALE_DETAIL: (saleId: string) => `/v1/sale-history/${saleId}`,
   EMAIL: "/v1/members/email",
   YANOLJA: "/v1/members/yanolja",
