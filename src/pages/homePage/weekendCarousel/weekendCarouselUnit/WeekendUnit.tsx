@@ -16,7 +16,7 @@ const WeekendUnit = ({ item }: UnitProps) => {
   const CHKOUT = format(parseISO(item[1].checkOutDate), "MM.dd");
 
   const onClickHandler = () => {
-    navigate(PATH.DETAIL_ROOM + "/" + item[1].id);
+    navigate(PATH.DETAIL_ROOM(item[1].id));
   };
 
   return (

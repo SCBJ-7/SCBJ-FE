@@ -24,7 +24,7 @@ const ItemCarouselUnit = ({ item }: UnitProps) => {
     : "";
 
   const onClickHandler = (num: number) => {
-    navigate(PATH.DETAIL_ROOM + "/" + hotel[num].id);
+    navigate(PATH.DETAIL_ROOM(hotel[num].id));
   };
 
   return (
