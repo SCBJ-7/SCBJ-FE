@@ -17,6 +17,8 @@ export default defineConfig({
         enabled: true,
       },
       manifest: {
+        short_name: "PMR",
+        name: "Pill My Rhythm",
         icons: [
           {
             src: "/icon-192.png",
@@ -41,6 +43,11 @@ export default defineConfig({
             purpose: "maskable",
           },
         ],
+        start_url: "/",
+        display: "standalone",
+        orientation: "portrait",
+        theme_color: "#7fdcdc",
+        background_color: "#92e0df",
       },
     }),
   ],
