@@ -23,7 +23,7 @@ const TransferWritingSuccess = () => {
 
   const navigate = useNavigate();
   const doneHandler = () => {
-    navigate(PATH.PURCHASE_LIST);
+    navigate(PATH.MY_PAGE);
   };
 
   return (

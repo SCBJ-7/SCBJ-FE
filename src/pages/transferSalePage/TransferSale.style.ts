@@ -26,5 +26,6 @@ export const NoSaleItems = styled.div`
   }
   span {
     ${({ theme }) => theme.typo.body4}
+    color: ${({ theme }) => theme.color.greyScale2};
   }
 `;
