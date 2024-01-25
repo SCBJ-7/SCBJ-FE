@@ -17,7 +17,7 @@ export const CarouselContainer = styled.div<{
   overflow: hidden;
   cursor: grab;
 
-  touch-action: pan-y;
+  /* touch-action: pan-y; */
 `;
 
 export const SliderWrapper = styled.div`
