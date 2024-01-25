@@ -11,14 +11,12 @@ import { Nullable } from "@type/nullable";
 const EnterAccountInfo = ({
   bank,
   accountNumber,
-  onModifiyingCount,
   onSubmitAccount,
   onSetAccountNumber,
   onSetBank,
 }: {
   bank: Nullable<string>;
   accountNumber: Nullable<string>;
-  onModifiyingCount: React.Dispatch<React.SetStateAction<number>>;
   onSubmitAccount: React.Dispatch<React.SetStateAction<"none" | "enter">>;
   onSetAccountNumber: React.Dispatch<React.SetStateAction<Nullable<string>>>;
   onSetBank: React.Dispatch<React.SetStateAction<Nullable<string>>>;
@@ -98,7 +96,6 @@ const EnterAccountInfo = ({
     onSetAccountNumber(newAccountNumber);
     onSetBank(newBank);
     onSubmitAccount("none");
-    onModifiyingCount((prev) => prev + 1);
 
     return;
   };
