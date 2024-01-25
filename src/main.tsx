@@ -8,7 +8,13 @@ import { router } from "./routes/router";
 import { GlobalStyle } from "./styles/globalStyle";
 import { theme } from "./styles/theme";
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      retry: 0,
+    },
+  },
+});
 // if (process.env.NODE_ENV === "development") {
 //   worker.start();
 // }

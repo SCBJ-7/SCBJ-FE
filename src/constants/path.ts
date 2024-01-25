@@ -23,7 +23,9 @@ export const PATH = {
   PASSWORD_RESET: "/password-reset",
   YANOLJA_ACCOUNT: "/account/yanolja",
   RELOAD: 0,
-  PAYMENT: "/payment",
+  PAYMENT: (productId: string) => `/payment/${productId}`,
+  PAYMENT_READY: (productId: string) => `/payment/${productId}/ready`,
+  PAYMENT_SUCCESS: (productId: string) => `/payment/${productId}/success`,
 } as const;
 // 참고
 

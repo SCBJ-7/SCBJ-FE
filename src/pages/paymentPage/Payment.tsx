@@ -3,18 +3,54 @@ import PaymentInfoSection from "@/pages/paymentPage/components/paymentInfoSectio
 import PaymentMethodSection from "@/pages/paymentPage/components/paymentMethodSection/PaymentMethodSection";
 import TermsAgreementSection from "@/pages/paymentPage/components/termsAgreementSection/TermsAgreementSection";
 import UserInfoSection from "@/pages/paymentPage/components/userInfoSection/UserInfoSection";
-import { usePaymentQuery } from "@hooks/api/query/usePaymentQuery";
-import { useParams } from "react-router-dom";
+import {
+  usePaymentQuery,
+  usePaymentSuccessQuery,
+} from "@hooks/api/query/usePaymentQuery";
+import { useNavigate, useParams } from "react-router-dom";
 import PaymentButton from "./components/paymentButton/PaymentButton";
 
 import { FormProvider, useForm } from "react-hook-form";
 import Caption from "@components/caption/Caption";
+import Modal from "@components/modal/Modal";
+import { useEffect, useState } from "react";
+import { isAxiosError } from "axios";
 
 const Payment = () => {
+  const navigate = useNavigate();
   const { productId } = useParams();
   if (!productId) throw Error("존재하지 않는 productId 입니다.");
 
+  console.log(productId);
+
   const { data } = usePaymentQuery(productId);
+
+  const searchParams = new URLSearchParams(location.search);
+  const pgToken = searchParams.get("pg_token");
+  const paymentType = "kakaoPaymentService";
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
+
+  const { isSuccess, isError, error } = usePaymentSuccessQuery({
+    paymentType,
+    pgToken,
+  });
+
+  useEffect(() => {
+    if (isSuccess) {
+      navigate(`/payment/${productId}/success`);
+    }
+
+    if (isError && isAxiosError(error)) {
+      console.error(error);
+      setErrorMessage(error.response?.data.message || "오류가 발생했습니다.");
+      setIsModalOpen(true);
+    }
+  }, [isSuccess, isError, error, navigate, productId]);
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
 
   const methods = useForm({
     mode: "onChange",
@@ -23,6 +59,10 @@ const Payment = () => {
 
   return (
     <S.PaymentContainer>
+      <Modal isOpen={isModalOpen} onClose={closeModal}>
+        <p>{errorMessage}</p>
+        <button onClick={closeModal}>확인</button>
+      </Modal>
       <S.Section>
         <PaymentInfoSection payment={data} />
       </S.Section>

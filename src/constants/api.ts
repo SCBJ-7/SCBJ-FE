@@ -11,7 +11,8 @@ export const END_POINTS = {
   MAIN: "/v1/products/main",
   USER_INFO: "/v1/members",
   PURCHASE_HISTORY: "/v1/members/purchased-history",
-  PURCHASE_DETAIL: (purchaseId: string) => `/v1/purchase-detail/${purchaseId}`,
+  PURCHASE_DETAIL: (purchaseId: string) =>
+    `/v1/members/purchased-history/${purchaseId}`,
   SALE_DETAIL: (saleId: string) => `/v1/sale-history/${saleId}`,
   EMAIL: "/v1/members/email",
   YANOLJA: "/v1/members/yanolja",
@@ -19,6 +20,9 @@ export const END_POINTS = {
   PAYMENT: (productId: string) => `/v1/products/${productId}/payments`,
   PAYMENT_REQUEST: (productId: string, paymentType: string) =>
     `/v1/products/${productId}/payments?paymentType=${paymentType}`,
+  PAYMENT_SUCCESS: (paymentType: string, pgToken: string) =>
+    `/v1/products/pay-success?paymentType=${paymentType}&pg_token=${pgToken}`,
+
   NEW_TOKEN: "/v1/token/refresh",
 } as const;
 

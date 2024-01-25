@@ -23,7 +23,7 @@ const RoomNavBar = ({ room, roomId, discount }: RoomNavBarProps) => {
       return;
     }
 
-    navigate(`${PATH.PAYMENT}/${roomId}`);
+    navigate(PATH.PAYMENT(roomId));
   };
 
   return (
