@@ -1,6 +1,6 @@
 import priceFormat from "@/utils/priceFormat";
 import * as S from "./InputSection.style";
-import { useToastStore } from "@/store/store";
+import useToastConfig from "@hooks/common/useToastConfig";
 
 interface InputProps {
   inputPosition: "left" | "center" | "right";
@@ -25,12 +25,11 @@ const InputSection = ({
   remainingTimes,
   type = "price",
 }: InputProps) => {
-  const setToastConfig = useToastStore((state) => state.setToastConfig);
+  const { handleToast } = useToastConfig();
   const inputDataHandler = (e: React.ChangeEvent) => {
     const target = e.target as HTMLInputElement;
     // 쉼표 제거
     const temp = target.value.split(",").join("");
-    console.log(temp, "temp");
 
     if (temp === "") {
       onDataChange("");
@@ -42,20 +41,8 @@ const InputSection = ({
 
     // 구매가 이상으로 못 올리게 설정
     if (maxPrice && Number(temp) > maxPrice) {
-      const message = [<>가격을 이전 단계의 가격보다 낮게 설정해주세요</>];
       onDataChange(priceFormat(maxPrice));
-      setToastConfig({
-        isShow: true,
-        isError: true,
-        strings: message,
-      });
-      setTimeout(() => {
-        setToastConfig({
-          isShow: false,
-          isError: true,
-          strings: message,
-        });
-      }, 5000);
+      handleToast(true, [<>가격을 이전 단계의 가격보다 낮게 설정해주세요</>]);
 
       return;
     }
@@ -70,20 +57,36 @@ const InputSection = ({
   };
 
   const inputBlurHandler = (e: React.FocusEvent) => {
-    if (type === "time") return;
     const inputEl = e.target as HTMLInputElement;
-    const temp = inputEl.value.split(",").join("");
-    const beforeTwoDigits = temp.slice(0, temp.length - 2);
-    const lastTwoDigits = temp.slice(-2);
-
-    if (Number(temp) < 100) {
-      onDataChange("0");
+    if (type === "time") {
+      const temp = inputEl.value;
+      if (Number(temp) <= 3) {
+        onDataChange("4");
+        handleToast(true, [
+          <>체크인 3시간 전까지만 2차 가격 설정이 가능해요</>,
+        ]);
+        return;
+      }
       return;
     }
 
-    if (lastTwoDigits !== "00") {
-      onDataChange(priceFormat(beforeTwoDigits + "00"));
-      return;
+    if (type === "price") {
+      const temp = inputEl.value.split(",").join("");
+      const beforeTwoDigits = temp.slice(0, temp.length - 2);
+      const lastTwoDigits = temp.slice(-2);
+
+      if (Number(temp) < 100) {
+        handleToast(true, [<>가격은 백원 단위로 입력가능합니다</>]);
+        onDataChange("");
+        return;
+      }
+
+      // 백원 이하 단위로
+      if (lastTwoDigits !== "00") {
+        onDataChange(priceFormat(beforeTwoDigits + "00"));
+        handleToast(true, [<>가격은 백원 단위로 입력가능합니다</>]);
+        return;
+      }
     }
   };
 

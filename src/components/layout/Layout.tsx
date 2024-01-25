@@ -21,6 +21,7 @@ const Layout = ({ children }: ChildrenProps) => {
     PATH.DETAIL_ROOM,
     PATH.YANOLJA_ACCOUNT,
     PATH.WRITE_TRANSFER_PRICE,
+    PATH.WRITE_TRANSFER_SUCCESS,
   ];
 
   const pathsToExcludeBottom = [
