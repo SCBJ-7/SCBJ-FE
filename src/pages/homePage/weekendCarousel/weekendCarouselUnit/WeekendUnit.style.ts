@@ -17,6 +17,12 @@ export const LocaleWrapper = styled.div`
     margin-bottom: 16px;
     object-fit: cover;
   }
+
+  @media screen and (max-width: 500px) {
+    img {
+      margin-bottom: 8px;
+    }
+  }
 `;
 
 export const Stickers = styled.div`
@@ -32,6 +38,10 @@ export const Stickers = styled.div`
     border: 1px solid ${({ theme }) => theme.color.percentOrange};
     border-radius: 4px;
     color: ${({ theme }) => theme.color.percentOrange};
+  }
+
+  @media screen and (max-width: 500px) {
+    margin-bottom: 8px;
   }
 `;
 
@@ -68,6 +78,14 @@ export const Price = styled.div`
 
   section h1.percentage {
     color: ${({ theme }) => theme.color.percentBlue};
+  }
+
+  @media screen and (max-width: 500px) {
+    section {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 4px;
+    }
   }
 `;
 
