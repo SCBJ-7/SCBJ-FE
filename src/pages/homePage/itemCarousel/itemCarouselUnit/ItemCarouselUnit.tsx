@@ -27,11 +27,14 @@ const ItemCarouselUnit = ({ item }: UnitProps) => {
     navigate(PATH.DETAIL_ROOM(hotel[num].id));
   };
 
-  //정렬 수정
+  // 터치 이벤트 제한
   return (
     <S.LocaleWrapper $display={hotel ? "block" : "none"}>
       {hotel[0] && (
-        <S.ItemUnit onClick={() => onClickHandler(0)}>
+        <S.ItemUnit
+          onClick={() => onClickHandler(0)}
+          onTouchStart={(e) => e.preventDefault()}
+        >
           <img src={hotel[0].imageUrl} onClick={() => onClickHandler(0)} />
           <div className="item-info">
             <div className="hotel_title">
@@ -52,7 +55,10 @@ const ItemCarouselUnit = ({ item }: UnitProps) => {
         </S.ItemUnit>
       )}
       {hotel[1] && (
-        <S.ItemUnit onClick={() => onClickHandler(1)}>
+        <S.ItemUnit
+          onClick={() => onClickHandler(1)}
+          onTouchStart={(e) => e.preventDefault()}
+        >
           <img src={hotel[1].imageUrl} onClick={() => onClickHandler(0)} />
           <div className="item-info">
             <div className="hotel_title">
