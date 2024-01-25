@@ -11,8 +11,7 @@ const UserInfoSection = () => {
     register,
     watch,
     setValue,
-    resetField,
-    formState: { errors, dirtyFields },
+    formState: { errors },
   } = useFormContext();
 
   const isDiffUser = watch("isDiffUser");
