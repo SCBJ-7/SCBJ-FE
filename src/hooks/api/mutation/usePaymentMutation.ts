@@ -8,7 +8,8 @@ export const usePaymentMutation = () => {
     mutationFn: (paymentRequest: PaymentRequestProps) =>
       postPayment(paymentRequest),
     onSuccess: (data) => {
-      const payUrl = data.toString();
+      console.log(data);
+      const payUrl = data.url.toString();
       window.location.href = payUrl;
     },
   });
