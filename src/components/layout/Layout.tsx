@@ -2,7 +2,7 @@ import React from "react";
 import Header from "./header/HeaderTop";
 import * as S from "./Layout.style";
 import BottomNav from "./navBottom/NavBottom";
-import { useLocation } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import { PATH } from "@/constants/path";
 import TransferPricingHeader from "./transferWritingPriceHeader/TransferPricingHeaderTop";
 import MainHeader from "@pages/homePage/mainHeader/MainHeader";
@@ -15,7 +15,6 @@ const Layout = ({ children }: ChildrenProps) => {
   const { pathname, search } = useLocation();
 
   // FIXME: 헤더, 네비바 특정 페이지에서만 보이지 않도록 수정 필요
-  // 이럼 account/yanolja/verify 이런 하위 페이지도 같이 include 됨
   const pathsToExcludeHeader = [PATH.LOGIN, PATH.WRITE_TRANSFER_PRICE];
 
   const pathsToExcludeBottom = [PATH.LOGIN, PATH.SEARCH_FILTER];
@@ -31,6 +30,12 @@ const Layout = ({ children }: ChildrenProps) => {
     isHeaderOn = false;
   }
 
+  const { productId } = useParams();
+
+  if (pathname === PATH.DETAIL_ROOM(productId!)) {
+    isHeaderOn = false;
+    isBottomNavOn = false;
+  }
   // 특수한 헤더
   const isTransferPricingHeaderOn = pathname.includes(
     PATH.WRITE_TRANSFER_PRICE,
