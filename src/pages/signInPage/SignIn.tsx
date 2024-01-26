@@ -6,6 +6,7 @@ import { PATH } from "@constants/path";
 import { useUserInfoStore } from "@/store/store";
 import { postLogin } from "@apis/fetchLogin";
 import { getMessaging, getToken } from "firebase/messaging";
+import { app } from "@/firebase";
 
 type FormValues = {
   email: string;
@@ -29,25 +30,16 @@ const SignIn = () => {
     },
   });
 
+  let fcmToken = "";
+
   const handleOnSubmit = async (data: FormValues) => {
     const { email, password } = data;
-    let fcmToken = "";
-    const messaging = getMessaging();
-    getToken(messaging)
-      .then((currentToken) => {
-        if (currentToken) {
-          fcmToken = currentToken;
-        } else {
-          console.log(
-            "No registration token available. Request permission to generate one.",
-          );
-          // ...
-        }
-      })
-      .catch((err) => {
-        console.log("An error occurred while retrieving token. ", err);
-        // ...
-      });
+
+    const messaging = getMessaging(app);
+
+    fcmToken = await getToken(messaging, {
+      vapidKey: import.meta.env.VITE_FIREBASE_VAPID,
+    });
 
     await postLogin({ email, password, fcmToken })
       .then((loginData) => {
@@ -74,7 +66,7 @@ const SignIn = () => {
       <Link to="/">
         <S.SignInLogo />
       </Link>
-
+      <p>{fcmToken}</p>
       <S.SignInInputContainer>
         <S.SignInInputWrapper>
           <S.SignInInputTitle>이메일</S.SignInInputTitle>
