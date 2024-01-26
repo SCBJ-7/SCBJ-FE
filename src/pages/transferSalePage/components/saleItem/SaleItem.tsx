@@ -7,7 +7,8 @@ import { formatDateWithoutTime } from "@/utils/dateFormatter";
 
 const SaleItem = (props: ISaleItemWithRemainDate) => {
   const navigate = useNavigate();
-  console.log(props.productId);
+  // console.log("productId", props.productId);
+  // console.log("id", props.id);
   const urlId = props.id || props.productId;
   const isPaymentId = props.id ? true : false;
   const handleClick = () => {

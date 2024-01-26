@@ -11,6 +11,7 @@ export const fetchSaleDetail = async (
   const response = await axiosInstance.get<ResponseData<ISaleData>>(
     END_POINTS.SALE_DETAIL(id, isPaymentId),
   );
+  console.log("res", response.data.data);
   return response.data.data;
 };
 
