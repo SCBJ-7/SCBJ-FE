@@ -1,5 +1,6 @@
 export interface ISaleList {
-  id: number;
+  id: number | null;
+  productId: number | null;
   imageUrl: string;
   name: string;
   roomType: string;

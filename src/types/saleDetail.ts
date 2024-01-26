@@ -3,20 +3,20 @@ export interface ISaleData {
   checkIn: string;
   checkOut: string;
   hotelImage: string;
-  standardPeople: string;
-  maxPeople: string;
+  standardPeople: number;
+  maxPeople: number;
   leftHour: number;
   hotelName: string;
   roomName: string;
-  firstPriceData: {
+  firstPrice: {
     originalPrice: number;
     firstSalePrice: number;
   };
-  secondPriceData?: {
-    startDate: string;
-    secondGrantPeriod: number;
+  secondPrice?: {
+    secondPriceStartDate: string;
     secondPrice: number;
   };
   bank: string;
   accountNumber: string;
+  createdAt: string | null;
 }

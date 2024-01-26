@@ -44,7 +44,7 @@ export const bellIcon = styled(LuBell)`
   cursor: pointer;
 `;
 
-export const bellAlertOn = styled.div<{ $isAlarmOn: boolean }>`
+export const bellAlertOn = styled.div<{ $isAlarmOn: boolean | [] }>`
   display: ${({ $isAlarmOn }) => !$isAlarmOn && "none"};
   width: 10px;
   height: 10px;

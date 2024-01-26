@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useParams, useSearchParams } from "react-router-dom";
 import * as S from "./SaleDetail.style";
 // import { useSaleDetailQuery } from "@hooks/api/query/useSaleDetailQuery";
 import Card from "@components/card/Card";
@@ -14,6 +14,8 @@ import Caption from "@components/caption/Caption";
 
 const SaleDetail = () => {
   const { saleId } = useParams();
+  const [searchParams] = useSearchParams();
+  const isPaymentId: string | null = searchParams.get("isPaymentId");
   if (!saleId) throw new Error("존재하지 않는 saleId 입니다.");
 
   // FIXME as below (백엔드 수정 후)
@@ -22,8 +24,13 @@ const SaleDetail = () => {
   // 아래 부분 대신 위로 수정\
   const [data, setData] = useState<ISaleData>();
   const fetch = async () => {
-    const res = await fetchSaleDetail(Number(saleId));
-    setData(res);
+    if (isPaymentId) {
+      const res = await fetchSaleDetail(
+        Number(saleId),
+        JSON.parse(isPaymentId),
+      );
+      setData(res);
+    }
   };
   useEffect(() => {
     fetch();
@@ -47,24 +54,24 @@ const SaleDetail = () => {
     if (!data) return;
 
     const firstFee =
-      calculateFee(data.firstPriceData.firstSalePrice).toLocaleString("ko-KR") +
+      calculateFee(data.firstPrice.firstSalePrice).toLocaleString("ko-KR") +
       "원";
     const firstExpectedPrice =
       (
-        data.firstPriceData.firstSalePrice -
-        calculateFee(data.firstPriceData.firstSalePrice)
+        data.firstPrice.firstSalePrice -
+        calculateFee(data.firstPrice.firstSalePrice)
       ).toLocaleString("ko-KR") + "원";
 
     let secondFee, secondExpectedPrice;
 
-    if (data.secondPriceData) {
+    if (data.secondPrice) {
       secondFee =
-        calculateFee(data.secondPriceData.secondPrice).toLocaleString("ko-KR") +
+        calculateFee(data.secondPrice.secondPrice).toLocaleString("ko-KR") +
         "원";
       secondExpectedPrice =
         (
-          data.secondPriceData.secondPrice -
-          calculateFee(data.secondPriceData.secondPrice)
+          data.secondPrice.secondPrice -
+          calculateFee(data.secondPrice.secondPrice)
         ).toLocaleString("ko-KR") + "원";
     }
 
@@ -77,14 +84,13 @@ const SaleDetail = () => {
                 <CardItem
                   label="야놀자 구매가"
                   content={
-                    data.firstPriceData.originalPrice.toLocaleString("ko-KR") +
-                    "원"
+                    data.firstPrice.originalPrice.toLocaleString("ko-KR") + "원"
                   }
                 />
                 <CardItem
                   label="1차 판매가"
                   content={
-                    data.firstPriceData.firstSalePrice.toLocaleString("ko-KR") +
+                    data.firstPrice.firstSalePrice.toLocaleString("ko-KR") +
                     "원"
                   }
                 />
@@ -97,17 +103,17 @@ const SaleDetail = () => {
               </Card>
             </S.CardWrapper>
           </S.PurchasedWrapper>
-          {data.secondPriceData && (
+          {data.secondPrice && (
             <S.PurchasedWrapper>
               <S.CardWrapper>
                 <S.SecondStartDate>
-                  {data.secondPriceData.startDate + "부터 2차 판매 시작"}
+                  {data.secondPrice.secondPriceStartDate + "부터 2차 판매 시작"}
                 </S.SecondStartDate>
                 <Card title="2차 판매 정산 정보">
                   <CardItem
                     label="2차 판매가"
                     content={
-                      data.secondPriceData.secondPrice.toLocaleString("ko-KR") +
+                      data.secondPrice.secondPrice.toLocaleString("ko-KR") +
                       "원"
                     }
                   />
@@ -140,33 +146,28 @@ const SaleDetail = () => {
                 <CardItem
                   label="야놀자 구매가"
                   content={
-                    data.firstPriceData.originalPrice.toLocaleString("ko-KR") +
-                    "원"
+                    data.firstPrice.originalPrice.toLocaleString("ko-KR") + "원"
                   }
                 />
                 <CardItem
                   label="판매가"
                   content={
-                    data.secondPriceData
-                      ? data.secondPriceData.secondPrice.toLocaleString(
-                          "ko-KR",
-                        ) + "원"
-                      : data.firstPriceData.firstSalePrice.toLocaleString(
-                          "ko-KR",
-                        ) + "원"
+                    data.secondPrice
+                      ? data.secondPrice.secondPrice.toLocaleString("ko-KR") +
+                        "원"
+                      : data.firstPrice.firstSalePrice.toLocaleString("ko-KR") +
+                        "원"
                   }
                 />
                 <CardItem
                   label="중개 수수료"
-                  content={data.secondPriceData ? secondFee : firstFee}
+                  content={data.secondPrice ? secondFee : firstFee}
                 />
                 <CardItem
                   type="recipe"
                   label="정산 금액"
                   content={
-                    data.secondPriceData
-                      ? secondExpectedPrice
-                      : firstExpectedPrice
+                    data.secondPrice ? secondExpectedPrice : firstExpectedPrice
                   }
                 />
               </Card>
@@ -190,19 +191,17 @@ const SaleDetail = () => {
               <CardItem
                 label="야놀자 구매가"
                 content={
-                  data.firstPriceData.originalPrice.toLocaleString("ko-KR") +
-                  "원"
+                  data.firstPrice.originalPrice.toLocaleString("ko-KR") + "원"
                 }
               />
               <CardItem
                 label="판매가"
                 content={
-                  data.secondPriceData
-                    ? data.secondPriceData.secondPrice.toLocaleString("ko-KR") +
+                  data.secondPrice
+                    ? data.secondPrice.secondPrice.toLocaleString("ko-KR") +
                       "원"
-                    : data.firstPriceData.firstSalePrice.toLocaleString(
-                        "ko-KR",
-                      ) + "원"
+                    : data.firstPrice.firstSalePrice.toLocaleString("ko-KR") +
+                      "원"
                 }
               />
             </Card>

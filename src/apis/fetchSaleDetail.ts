@@ -4,10 +4,14 @@ import type { ResponseData } from "@type/responseType";
 import type { ISaleData } from "@type/saleDetail";
 
 // FIXME as below (백엔드 수정 후)
-export const fetchSaleDetail = async (id: number): Promise<ISaleData> => {
+export const fetchSaleDetail = async (
+  id: number,
+  isPaymentId: boolean,
+): Promise<ISaleData> => {
   const response = await axiosInstance.get<ResponseData<ISaleData>>(
-    END_POINTS.SALE_DETAIL(id),
+    END_POINTS.SALE_DETAIL(id, isPaymentId),
   );
+  console.log("res", response.data.data);
   return response.data.data;
 };
 

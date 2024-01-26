@@ -86,10 +86,10 @@ const TransferSale = () => {
     <>
       <SaleNav />
       <S.SaleList>
-        {saleItems.map((item) => {
+        {saleItems.map((item, index) => {
           return (
             <SaleItem
-              key={item.id}
+              key={index}
               id={item.id}
               imageUrl={item.imageUrl}
               name={item.name}
@@ -100,6 +100,7 @@ const TransferSale = () => {
               secondPrice={item.secondPrice}
               remainDate={item.remainDate}
               saleStatus={item.saleStatus}
+              productId={item.productId}
             />
           );
         })}
