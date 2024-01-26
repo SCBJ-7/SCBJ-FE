@@ -85,3 +85,8 @@ export const theme = {
 
 export type TypoKeys = keyof typeof theme.typo;
 export type ColorKeys = keyof typeof theme.color;
+
+export const breakpoints = {
+  tablet: "576px",
+  mobile: "390px",
+};
