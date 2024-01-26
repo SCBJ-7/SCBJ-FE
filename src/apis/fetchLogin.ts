@@ -7,7 +7,7 @@ import { axiosInstance } from "./axiosInstance";
 interface LoginProps {
   email: string;
   password: string;
-  fcmToken: string;
+  fcmToken?: string;
 }
 
 export const postLogin = async ({
