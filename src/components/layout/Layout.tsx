@@ -4,7 +4,7 @@ import * as S from "./Layout.style";
 import BottomNav from "./navBottom/NavBottom";
 import { useLocation, useParams } from "react-router-dom";
 import { PATH } from "@/constants/path";
-import TransferPricingHeader from "./transferWritingPriceHeader/TransferPricingHeaderTop";
+import TransferPricingHeader from "../../pages/transferWritingPricePage/transferWritingPriceHeader/TransferPricingHeaderTop";
 import MainHeader from "@pages/homePage/mainHeader/MainHeader";
 
 interface ChildrenProps {

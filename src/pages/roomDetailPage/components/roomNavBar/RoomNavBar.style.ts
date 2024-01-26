@@ -5,7 +5,7 @@ export { Text } from "@pages/roomDetailPage/RoomDetail.style";
 export const Wrapper = styled.section`
   width: 100%;
   max-width: 768px;
-  height: 68px;
+  height: 60px;
   padding: 1.2rem 1.25rem;
   position: fixed;
   bottom: 0;

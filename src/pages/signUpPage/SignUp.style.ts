@@ -7,16 +7,21 @@ export const SignUpContainer = styled.form`
 
   background-color: white;
 
-  margin: 40px 0 0 0;
+  margin-top: 32px;
 
-  padding-bottom: 100px;
+  padding-top: 56px;
+  padding-bottom: 80px;
 `;
 
-export const SignUpTitle = styled.p`
-  ${({ theme }) => theme.typo.title4}
-  color: #3A3A3A;
+export const TitleWrapper = styled.div`
+  display: flex;
 
-  margin: 0 0 64px 0;
+  width: calc(100% - 40px);
+`;
+
+export const SignUpTitle = styled.h1`
+  ${({ theme }) => theme.typo.title2}
+  color: ${({ theme }) => theme.color.greyScale1};
 `;
 
 export const SignUpInputContainer = styled.div`
@@ -24,7 +29,7 @@ export const SignUpInputContainer = styled.div`
   flex-direction: column;
   gap: 24px;
 
-  margin: 0 0 40px 0;
+  margin: 60px 0;
 
   width: calc(100% - 40px);
 `;

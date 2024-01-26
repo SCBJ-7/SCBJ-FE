@@ -60,7 +60,7 @@ const TransferWriting = () => {
   }
 
   return (
-    <>
+    <S.Container>
       <S.Subtitle>판매할 내역을 선택해주세요.</S.Subtitle>
       <S.TransferItemList>
         {transferData &&
@@ -92,7 +92,7 @@ const TransferWriting = () => {
           />
         )}
       </S.TransferItemList>
-    </>
+    </S.Container>
   );
 };
 

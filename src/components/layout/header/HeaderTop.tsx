@@ -106,16 +106,14 @@ const Header = () => {
 
   return (
     <S.HeaderContainer>
-      <S.HeaderWrapper>
-        <S.HeaderCell>
-          {undo && <S.UndoIcon onClick={undoHandler} />}
-        </S.HeaderCell>
-        <S.HeaderCell>{title}</S.HeaderCell>
-        <S.HeaderCell>
-          {settingIC && <S.AlarmIcon onClick={alarmHandler} />}
-          {alarmIC && <S.SettingIcon onClick={settingHandler} />}
-        </S.HeaderCell>
-      </S.HeaderWrapper>
+      <S.HeaderCell>
+        {undo && <S.UndoIcon onClick={undoHandler} />}
+      </S.HeaderCell>
+      <S.HeaderCell>{title}</S.HeaderCell>
+      <S.HeaderCell>
+        {settingIC && <S.AlarmIcon onClick={alarmHandler} />}
+        {alarmIC && <S.SettingIcon onClick={settingHandler} />}
+      </S.HeaderCell>
     </S.HeaderContainer>
   );
 };

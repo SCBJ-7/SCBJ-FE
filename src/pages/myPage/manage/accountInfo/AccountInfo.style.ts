@@ -5,7 +5,7 @@ export const AccountInfoContainer = styled.div`
   flex-direction: column;
   gap: 32px;
 
-  padding: 32px 20px;
+  padding: 56px 1.25rem 80px;
 `;
 
 export const AccountInfoWrapper = styled.div`

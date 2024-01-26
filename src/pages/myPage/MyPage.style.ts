@@ -1,5 +1,12 @@
 import styled from "styled-components";
 
+export const Container = styled.main`
+  padding-top: 56px;
+  padding-bottom: 62px;
+
+  background-color: ${({ theme }) => theme.color.white};
+`;
+
 export const ProfileSection = styled.section`
   padding: 25px 20px 24px;
 

@@ -10,7 +10,8 @@ export const HeaderContainer = styled.section`
 
   position: fixed;
   top: 0;
-  z-index: 10;
+  left: 0;
+  z-index: 1;
 
   background-color: white;
 `;

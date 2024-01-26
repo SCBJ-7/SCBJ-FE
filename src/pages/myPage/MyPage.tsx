@@ -34,7 +34,7 @@ const MyPage = () => {
   };
 
   return (
-    <>
+    <S.Container>
       <S.ProfileSection>
         <h3>{userProfile?.email} 님</h3>
         {!userProfile ? (
@@ -47,7 +47,7 @@ const MyPage = () => {
       </S.ProfileSection>
       <MyPageNav />
       <Outlet />
-    </>
+    </S.Container>
   );
 };
 

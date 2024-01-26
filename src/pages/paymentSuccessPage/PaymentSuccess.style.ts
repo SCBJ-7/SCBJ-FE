@@ -11,7 +11,8 @@ export { LeftBox, RightBox } from "@pages/roomDetailPage/RoomDetail.style";
 import borderImgSrc from "@assets/icons/border.svg";
 
 export const PurchasedContainer = styled.main`
-  padding-bottom: 80px;
+  padding-top: 56px;
+  padding-bottom: 62px;
 
   background-color: ${({ theme }) => theme.color.greyScale7};
 `;
