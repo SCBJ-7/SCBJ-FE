@@ -24,9 +24,7 @@ const MainHeader = () => {
         <MainLogo />
         <section>
           <S.bellIcon onClick={alertHandler} />
-          <S.bellAlertOn
-            $isAlarmOn={typeof hasAlarmData === "object" ? true : false}
-          />
+          <S.bellAlertOn $isAlarmOn={hasAlarmData.hasNonReadAlarm} />
         </section>
       </S.HeaderWrapper>
     </S.HeaderContainer>

@@ -3,15 +3,19 @@ import { ReadType } from "@type/alarm";
 import { isAccessTokenExpired } from "@utils/checkToken";
 import axios from "axios";
 
-export const fetchHasAlarm = async (): Promise<ReadType | []> => {
+export const fetchHasAlarm = async (): Promise<ReadType> => {
   const accessToken = localStorage.getItem("accessToken");
   if (!accessToken) {
-    return [];
+    return {
+      hasNonReadAlarm: false,
+    };
   }
 
   if (isAccessTokenExpired(accessToken)) {
     console.log("expired Token");
-    return [];
+    return {
+      hasNonReadAlarm: false,
+    };
   }
 
   const { data } = await axios.get(BASE_URL + END_POINTS.HASALARM, {

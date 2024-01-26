@@ -20,18 +20,18 @@ const AlarmPage = () => {
   });
 
   if (isLoading) {
-    return <Loading></Loading>;
+    return <Loading />;
   }
+
+  console.log(alarmData, "alarmData");
 
   return (
     <S.Container>
       {alarmData?.map((item) =>
         item.isRead ? (
           <S.OldMessage key={item.id}>
-            <S.OldMessage>
-              <h1>{item.content}</h1>
-              <h3>{format(parseISO(item.date), "yyyy. MM. dd. HH:mm")}</h3>
-            </S.OldMessage>
+            <h1>{item.content}</h1>
+            <h3>{format(parseISO(item.date), "yyyy. MM. dd. HH:mm")}</h3>
           </S.OldMessage>
         ) : (
           <S.NewMessage key={item.id}>

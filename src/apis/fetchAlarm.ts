@@ -1,8 +1,8 @@
 import { END_POINTS } from "@constants/api";
-import axios from "axios";
 import { AlarmType } from "@type/alarm";
+import { axiosInstance } from "./axiosInstance";
 
 export const fetchAlarm = async (): Promise<AlarmType[]> => {
-  const { data } = await axios.get(END_POINTS.ALARM);
+  const { data } = await axiosInstance.get(END_POINTS.ALARM);
   return data.data;
 };
