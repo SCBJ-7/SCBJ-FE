@@ -202,7 +202,7 @@ export const router = createBrowserRouter([
         ),
       },
       {
-        path: PATH.PURCAHSE_DEATAIL,
+        path: PATH.PURCAHSE_DETAIL,
         element: (
           <Layout isHeaderOn={true} isBottomNavOn={true}>
             <Suspense fallback={<Loading />}>
