@@ -39,9 +39,7 @@ export const router = createBrowserRouter([
     path: PATH.ROOT,
     element: (
       <LocalErrorBoundary>
-        <Suspense fallback={<Loading />}>
-          <App />
-        </Suspense>
+        <App />
       </LocalErrorBoundary>
     ),
     errorElement: <NotFound />,
