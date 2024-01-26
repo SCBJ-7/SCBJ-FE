@@ -27,14 +27,10 @@ const ItemCarouselUnit = ({ item }: UnitProps) => {
     navigate(PATH.DETAIL_ROOM(hotel[num].id));
   };
 
-  // 터치 이벤트 제한
   return (
     <S.LocaleWrapper $display={hotel ? "block" : "none"}>
       {hotel[0] && (
-        <S.ItemUnit
-          onClick={() => onClickHandler(0)}
-          onTouchStart={(e) => e.preventDefault()}
-        >
+        <S.ItemUnit onClick={() => onClickHandler(0)}>
           <img src={hotel[0].imageUrl} onClick={() => onClickHandler(0)} />
           <div className="item-info">
             <div className="hotel_title">
@@ -45,7 +41,7 @@ const ItemCarouselUnit = ({ item }: UnitProps) => {
               </S.Sticker>
             </div>
             <div className="hotel_price" onClick={() => onClickHandler(0)}>
-              <h5>{hotel[0].originalPrice}</h5>
+              <h5>{hotel[0].originalPrice} 원</h5>
               <h1>
                 {priceFormat(hotel[0].salePrice)} 원
                 <span>{Math.round(hotel[0].salePercentage * 100)}%</span>
@@ -55,10 +51,7 @@ const ItemCarouselUnit = ({ item }: UnitProps) => {
         </S.ItemUnit>
       )}
       {hotel[1] && (
-        <S.ItemUnit
-          onClick={() => onClickHandler(1)}
-          onTouchStart={(e) => e.preventDefault()}
-        >
+        <S.ItemUnit onClick={() => onClickHandler(1)}>
           <img src={hotel[1].imageUrl} onClick={() => onClickHandler(0)} />
           <div className="item-info">
             <div className="hotel_title">
@@ -69,7 +62,7 @@ const ItemCarouselUnit = ({ item }: UnitProps) => {
               </S.Sticker>
             </div>
             <div className="hotel_price" onClick={() => onClickHandler(0)}>
-              <h5>{hotel[1].originalPrice}</h5>
+              <h5>{hotel[1].originalPrice} 원</h5>
               <h1>
                 {priceFormat(hotel[1].salePrice)} 원
                 <span>{Math.round(hotel[1].salePercentage * 100)}%</span>

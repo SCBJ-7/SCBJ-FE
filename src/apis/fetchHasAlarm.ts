@@ -1,8 +1,23 @@
-import { END_POINTS } from "@constants/api";
-import { axiosInstance } from "./axiosInstance";
+import { BASE_URL, END_POINTS } from "@constants/api";
 import { ReadType } from "@type/alarm";
+import { isAccessTokenExpired } from "@utils/checkToken";
+import axios from "axios";
 
-export const fetchHasAlarm = async (): Promise<ReadType> => {
-  const { data } = await axiosInstance.get(END_POINTS.HASALARM);
+export const fetchHasAlarm = async (): Promise<ReadType | []> => {
+  const accessToken = localStorage.getItem("accessToken");
+  if (!accessToken) {
+    return [];
+  }
+
+  if (isAccessTokenExpired(accessToken)) {
+    console.log("expired Token");
+    return [];
+  }
+
+  const { data } = await axios.get(BASE_URL + END_POINTS.HASALARM, {
+    headers: {
+      Authorization: `${localStorage.getItem("accessToken")}`,
+    },
+  });
   return data.data;
 };
