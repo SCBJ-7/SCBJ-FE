@@ -23,8 +23,6 @@ const AlarmPage = () => {
     return <Loading />;
   }
 
-  console.log(alarmData, "alarmData");
-
   return (
     <S.Container>
       {alarmData?.map((item) =>
@@ -43,7 +41,7 @@ const AlarmPage = () => {
           </S.NewMessage>
         ),
       )}
-      {!alarmData && (
+      {alarmData && alarmData.length === 0 && (
         <NoResult
           title="알림 내역이 없습니다."
           desc="판매가 이루어지면 알림을 확인하실수 있어요."
