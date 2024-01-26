@@ -164,10 +164,9 @@ export const FilterBottom = styled.div`
   max-width: 768px;
   min-width: 360px;
   width: 100%;
-  position: absolute;
+  position: fixed;
   height: 80px;
   bottom: 0;
-  left: 0;
   width: 100%;
   border-top: 1px solid ${({ theme }) => theme.color.greyScale6};
   padding: 20px;

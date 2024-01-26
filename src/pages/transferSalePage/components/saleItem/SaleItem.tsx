@@ -7,8 +7,11 @@ import { formatDateWithoutTime } from "@/utils/dateFormatter";
 
 const SaleItem = (props: ISaleItemWithRemainDate) => {
   const navigate = useNavigate();
+  console.log(props.productId);
+  const urlId = props.id || props.productId;
+  const isPaymentId = props.id ? true : false;
   const handleClick = () => {
-    navigate(`${PATH.SALE_DETAIL}/${props.id}`);
+    navigate(`${PATH.SALE_DETAIL}/${urlId}?isPaymentId=${isPaymentId}`);
   };
 
   const Title = () => {

@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useParams, useSearchParams } from "react-router-dom";
 import * as S from "./SaleDetail.style";
 // import { useSaleDetailQuery } from "@hooks/api/query/useSaleDetailQuery";
 import Card from "@components/card/Card";
@@ -14,15 +14,17 @@ import Caption from "@components/caption/Caption";
 
 const SaleDetail = () => {
   const { saleId } = useParams();
+  const [searchParams] = useSearchParams();
+  const isPaymentId: string = searchParams.get("isPaymentId");
   if (!saleId) throw new Error("존재하지 않는 saleId 입니다.");
-
+  console.log(isPaymentId);
   // FIXME as below (백엔드 수정 후)
   // const { data } = useSaleDetailQuery(saleId);
 
   // 아래 부분 대신 위로 수정\
   const [data, setData] = useState<ISaleData>();
   const fetch = async () => {
-    const res = await fetchSaleDetail(Number(saleId));
+    const res = await fetchSaleDetail(Number(saleId), JSON.parse(isPaymentId));
     setData(res);
   };
   useEffect(() => {

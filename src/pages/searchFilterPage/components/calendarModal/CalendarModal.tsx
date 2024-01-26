@@ -118,21 +118,21 @@ const CalendarModal = ({
             />
           </S.CalendarContainer>
         </S.ModalContent>
+        <S.FilterBottom>
+          <S.ResetButtonContent
+            onClick={onReset}
+            className={startDate ? "" : "disable"}
+          >
+            <div>초기화</div>
+            <div>
+              <S.ResetButton className={startDate ? "" : "disable"} />
+            </div>
+          </S.ResetButtonContent>
+          <S.SearchButton onClick={handleSetDate}>
+            {selectedDatesText}
+          </S.SearchButton>
+        </S.FilterBottom>
       </S.ModalContainer>
-      <S.FilterBottom>
-        <S.ResetButtonContent
-          onClick={onReset}
-          className={startDate ? "" : "disable"}
-        >
-          <div>초기화</div>
-          <div>
-            <S.ResetButton className={startDate ? "" : "disable"} />
-          </div>
-        </S.ResetButtonContent>
-        <S.SearchButton onClick={handleSetDate}>
-          {selectedDatesText}
-        </S.SearchButton>
-      </S.FilterBottom>
     </>
   );
 };
