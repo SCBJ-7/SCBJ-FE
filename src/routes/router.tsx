@@ -32,7 +32,7 @@ import PaymentSuccess from "@pages/paymentSuccessPage/PaymentSuccess";
 import EditAccount from "@pages/myPage/manage/editAccount/EditAccount";
 import Loading from "@components/loading/Loading";
 import SaleDetail from "@pages/saleDetailPage/SaleDetail";
-import TestLayout from "@components/layout/TestLayout";
+import Layout from "@components/layout/Layout";
 
 export const router = createBrowserRouter([
   {
@@ -49,93 +49,93 @@ export const router = createBrowserRouter([
       {
         path: "",
         element: (
-          <TestLayout isHeaderOn={false} isBottomNavOn={true}>
+          <Layout isHeaderOn={false} isBottomNavOn={true}>
             <Suspense fallback={<Loading />}>
               <Home />
             </Suspense>
-          </TestLayout>
+          </Layout>
         ),
       },
       {
         path: PATH.LOGIN,
         element: (
-          <TestLayout isHeaderOn={false} isBottomNavOn={false}>
+          <Layout isHeaderOn={false} isBottomNavOn={false}>
             <SignIn />
-          </TestLayout>
+          </Layout>
         ),
       },
       {
         path: PATH.SIGNUP,
         element: (
-          <TestLayout isHeaderOn={true} isBottomNavOn={false}>
+          <Layout isHeaderOn={true} isBottomNavOn={false}>
             <SignUp />
-          </TestLayout>
+          </Layout>
         ),
       },
       {
         path: PATH.PASSWORD_RESET,
         element: (
-          <TestLayout isHeaderOn={true} isBottomNavOn={false}>
+          <Layout isHeaderOn={true} isBottomNavOn={false}>
             <PasswordReset />
-          </TestLayout>
+          </Layout>
         ),
       },
       {
         path: PATH.SEARCHLIST,
         element: (
-          <TestLayout isHeaderOn={false} isBottomNavOn={true}>
+          <Layout isHeaderOn={false} isBottomNavOn={true}>
             <Suspense fallback={<Loading />}>
               <Search />
             </Suspense>
-          </TestLayout>
+          </Layout>
         ),
       },
       {
         path: PATH.WRITE_TRANSFER,
         element: (
-          <TestLayout isHeaderOn={true} isBottomNavOn={true}>
+          <Layout isHeaderOn={true} isBottomNavOn={true}>
             <Suspense fallback={<Loading />}>
               <TransferWriting />
             </Suspense>
-          </TestLayout>
+          </Layout>
         ),
       },
       {
         path: PATH.WRITE_TRANSFER,
         element: (
-          <TestLayout isHeaderOn={true} isBottomNavOn={true}>
+          <Layout isHeaderOn={true} isBottomNavOn={true}>
             <Suspense fallback={<Loading />}>
               <TransferWriting />
             </Suspense>
-          </TestLayout>
+          </Layout>
         ),
       },
       {
         path: PATH.WRITE_TRANSFER_PRICE + `/:id`,
         element: (
-          <TestLayout isHeaderOn={false} isBottomNavOn={true}>
+          <Layout isHeaderOn={false} isBottomNavOn={true}>
             <Suspense fallback={<Loading />}>
               <TransferWritingPrice />
             </Suspense>
-          </TestLayout>
+          </Layout>
         ),
       },
       {
         path: PATH.WRITE_TRANSFER_SUCCESS,
         element: (
-          <TestLayout isHeaderOn={true} isBottomNavOn={true}>
+          <Layout isHeaderOn={true} isBottomNavOn={true}>
             <Suspense fallback={<Loading />}>
               <TransferWritingSuccess />
             </Suspense>
-          </TestLayout>
+          </Layout>
         ),
       },
       {
         path: PATH.MY_PAGE,
         element: (
-          <TestLayout isHeaderOn={true} isBottomNavOn={true}>
+          <Layout isHeaderOn={true} isBottomNavOn={true}>
             <MyPage />
-          </TestLayout>
+          </Layout>
         ),
         children: [
           {
@@ -152,83 +152,83 @@ export const router = createBrowserRouter([
       {
         path: PATH.SETTING,
         element: (
-          <TestLayout isHeaderOn={true} isBottomNavOn={true}>
+          <Layout isHeaderOn={true} isBottomNavOn={true}>
             <Setting />
-          </TestLayout>
+          </Layout>
         ),
       },
       {
         path: PATH.MANAGE_PROFILE,
         element: (
-          <TestLayout isHeaderOn={true} isBottomNavOn={true}>
+          <Layout isHeaderOn={true} isBottomNavOn={true}>
             <ManageProfile />
-          </TestLayout>
+          </Layout>
         ),
       },
       {
         path: PATH.MANAGE_ACCOUNT,
         element: (
-          <TestLayout isHeaderOn={true} isBottomNavOn={true}>
+          <Layout isHeaderOn={true} isBottomNavOn={true}>
             <ManageAccount />
-          </TestLayout>
+          </Layout>
         ),
       },
       {
         path: PATH.ACCOUNT_EDIT,
         element: (
-          <TestLayout isHeaderOn={true} isBottomNavOn={true}>
+          <Layout isHeaderOn={true} isBottomNavOn={true}>
             <EditAccount />
-          </TestLayout>
+          </Layout>
         ),
       },
       {
         path: PATH.DETAIL_ROOM(":productId"),
         element: (
-          <TestLayout isHeaderOn={false} isBottomNavOn={false}>
+          <Layout isHeaderOn={false} isBottomNavOn={false}>
             <Suspense fallback={<Loading />}>
               <RoomDetail />
             </Suspense>
-          </TestLayout>
+          </Layout>
         ),
       },
       {
         path: PATH.ALARM,
         element: (
-          <TestLayout isHeaderOn={true} isBottomNavOn={true}>
+          <Layout isHeaderOn={true} isBottomNavOn={true}>
             <Suspense fallback={<Loading />}>
               <Alarm />
             </Suspense>
-          </TestLayout>
+          </Layout>
         ),
       },
       {
         path: PATH.PURCAHSE_DEATAIL,
         element: (
-          <TestLayout isHeaderOn={true} isBottomNavOn={true}>
+          <Layout isHeaderOn={true} isBottomNavOn={true}>
             <Suspense fallback={<Loading />}>
               <PurchaseDetail />
             </Suspense>
-          </TestLayout>
+          </Layout>
         ),
       },
       {
         path: PATH.SALE_DETAIL + "/:saleId",
         element: (
-          <TestLayout isHeaderOn={true} isBottomNavOn={true}>
+          <Layout isHeaderOn={true} isBottomNavOn={true}>
             <Suspense fallback={<Loading />}>
               <SaleDetail />
             </Suspense>
-          </TestLayout>
+          </Layout>
         ),
       },
       {
         path: PATH.YANOLJA_ACCOUNT,
         element: (
-          <TestLayout isHeaderOn={false} isBottomNavOn={false}>
+          <Layout isHeaderOn={false} isBottomNavOn={false}>
             <Suspense fallback={<Loading />}>
               <Outlet />
             </Suspense>
-          </TestLayout>
+          </Layout>
         ),
         children: [
           {
@@ -244,27 +244,27 @@ export const router = createBrowserRouter([
       {
         path: PATH.YANOLJA_ACCOUNT_VERIFICATION,
         element: (
-          <TestLayout isHeaderOn={true} isBottomNavOn={false}>
+          <Layout isHeaderOn={true} isBottomNavOn={false}>
             <VerificationPage />
-          </TestLayout>
+          </Layout>
         ),
       },
       {
         path: PATH.SEARCH_FILTER,
         element: (
-          <TestLayout isHeaderOn={true} isBottomNavOn={false}>
+          <Layout isHeaderOn={true} isBottomNavOn={false}>
             <SearchFilter />
-          </TestLayout>
+          </Layout>
         ),
       },
       {
         path: PATH.PAYMENT(":productId"),
         element: (
-          <TestLayout isHeaderOn={true} isBottomNavOn={false}>
+          <Layout isHeaderOn={true} isBottomNavOn={false}>
             <Suspense fallback={<Loading />}>
               <Outlet />
             </Suspense>
-          </TestLayout>
+          </Layout>
         ),
         children: [
           {
