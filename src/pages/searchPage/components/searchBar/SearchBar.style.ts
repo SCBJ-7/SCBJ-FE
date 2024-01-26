@@ -28,6 +28,10 @@ export const SearchBarInput = styled.div`
   border-radius: 12px;
   padding: 12px 16px;
   box-shadow: 4px 4px 10px 0px rgba(0, 0, 0, 0.1);
+  transition: 0.2s;
+  &:hover {
+    scale: 1.01;
+  }
   cursor: pointer;
 `;
 export const SearchRegion = styled.div`

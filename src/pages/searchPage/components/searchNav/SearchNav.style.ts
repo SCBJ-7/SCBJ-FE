@@ -8,9 +8,12 @@ export const StandardFlex = styled.div`
 export const SearchNavContainer = styled.div`
   position: absolute;
   background-color: white;
+  max-width: 768px;
+  min-width: 360px;
   width: 100%;
   height: 44px;
   padding: 0.5rem 1.5rem;
+  position: fixed;
   z-index: 10;
   top: 72px;
 `;

@@ -97,7 +97,7 @@ const Header = () => {
   };
 
   const alarmHandler = () => {
-    // navigate("/...")
+    navigate(PATH.ALARM);
   };
 
   const settingHandler = () => {

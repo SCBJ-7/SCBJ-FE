@@ -137,6 +137,7 @@ export const CalendarContainer = styled.div`
     color: ${({ theme }) => theme.color.percentOrange};
     border: 2px solid ${({ theme }) => theme.color.percentOrange};
     font-weight: bold;
+    border-radius: 50% !important;
   }
   .react-datepicker__day--keyboard-selected {
     background-color: white;
@@ -151,6 +152,7 @@ export const CalendarContainer = styled.div`
     color: ${({ theme }) => theme.color.percentOrange};
     border: 2px solid ${({ theme }) => theme.color.percentOrange};
     font-weight: bold;
+    border-radius: 50% !important;
   }
   .react-datepicker__day--outside-month {
     opacity: 0;
