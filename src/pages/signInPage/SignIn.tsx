@@ -7,6 +7,7 @@ import { useUserInfoStore } from "@/store/store";
 import { postLogin } from "@apis/fetchLogin";
 import { getMessaging, getToken } from "firebase/messaging";
 import { app } from "@/firebase";
+import { useState } from "react";
 
 type FormValues = {
   email: string;
@@ -14,6 +15,7 @@ type FormValues = {
 };
 
 const SignIn = () => {
+  const [token, SetToken] = useState("");
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const redirectUrl = searchParams.get("redirect");
@@ -30,16 +32,16 @@ const SignIn = () => {
     },
   });
 
-  let fcmToken = "";
-
   const handleOnSubmit = async (data: FormValues) => {
     const { email, password } = data;
 
     const messaging = getMessaging(app);
 
-    fcmToken = await getToken(messaging, {
+    const fcmToken = await getToken(messaging, {
       vapidKey: import.meta.env.VITE_FIREBASE_VAPID,
     });
+
+    SetToken(fcmToken);
 
     await postLogin({ email, password, fcmToken })
       .then((loginData) => {
@@ -49,12 +51,12 @@ const SignIn = () => {
         // TODO: 임시로 localStorage에서 토큰 저장히지만 더 좋은 방법 찾기~!! 토스~!!
         localStorage.setItem("accessToken", tokenResponse.accessToken);
         localStorage.setItem("refreshToken", tokenResponse.refreshToken);
-        if (redirectUrl) {
-          navigate(redirectUrl, { replace: true });
-          return;
-        }
+        // if (redirectUrl) {
+        //   navigate(redirectUrl, { replace: true });
+        //   return;
+        // }
 
-        navigate(PATH.ROOT, { replace: true });
+        // navigate(PATH.ROOT, { replace: true });
       })
       .catch(() => {
         handleToast(false, [<>아이디 혹은 비밀번호를 확인해주세요</>]);
@@ -66,7 +68,7 @@ const SignIn = () => {
       <Link to="/">
         <S.SignInLogo />
       </Link>
-      <p>{fcmToken}</p>
+      <p>{token}</p>
       <S.SignInInputContainer>
         <S.SignInInputWrapper>
           <S.SignInInputTitle>이메일</S.SignInInputTitle>
