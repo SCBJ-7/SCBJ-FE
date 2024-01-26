@@ -1,5 +1,4 @@
 import { Outlet } from "react-router-dom";
-import Layout from "./components/layout/Layout";
 import ScrollToTop from "@components/scrollToTop/ScrollToTop";
 import Toast from "./components/toast/Toast";
 import "./firebase.ts";
@@ -12,11 +11,11 @@ function App() {
   const toastConfig = useToastStore((state) => state.config);
 
   return (
-    <Layout>
+    <>
       <ScrollToTop />
       <AnimatePresence>{toastConfig.isShow && <Toast />}</AnimatePresence>
       <Outlet />
-    </Layout>
+    </>
   );
 }
 

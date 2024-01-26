@@ -26,10 +26,13 @@ export const TopSectionReserveNumber = styled.div`
   ${({ theme }) => theme.typo.body2}
 `;
 
-export const PurchasedContainer = styled.main`
+export const Container = styled.main`
+  padding-bottom: 62px;
+`;
+
+export const PurchasedContainer = styled.div`
   width: 100%;
   height: 100%;
-  padding-bottom: 80px;
 
   color: ${({ theme }) => theme.color.black};
   ${({ theme }) => theme.scroll};

@@ -12,7 +12,7 @@ const PasswordReset = () => {
   return (
     <S.PasswordResetContainer>
       <S.PasswordResetTitleContainer>
-        <S.PasswordResetTitle>비밀번호 변경</S.PasswordResetTitle>
+        <S.PasswordResetTitle>비밀번호 재설정</S.PasswordResetTitle>
       </S.PasswordResetTitleContainer>
 
       <FormProvider {...method}>

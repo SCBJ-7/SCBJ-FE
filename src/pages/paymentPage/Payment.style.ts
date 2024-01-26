@@ -3,7 +3,8 @@ import styled from "styled-components";
 
 export const PaymentContainer = styled.div`
   background-color: ${({ theme }) => theme.color.greyScale7};
-  padding-bottom: 80px;
+  padding-top: 56px;
+  padding-bottom: 62px;
 `;
 
 export const Section = styled.section`

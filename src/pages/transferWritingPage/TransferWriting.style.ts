@@ -17,6 +17,11 @@ export const TransferItemList = styled.div`
   width: 100%;
   height: 100%;
   padding-top: 4px;
-  padding-bottom: 160px;
   ${({ theme }) => theme.scroll}
+`;
+
+export const Container = styled.main`
+  padding-top: 56px;
+  padding-bottom: 62px;
+  background-color: ${({ theme }) => theme.color.white};
 `;

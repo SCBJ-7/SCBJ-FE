@@ -54,7 +54,7 @@ const Header = () => {
       title = "마이페이지";
       undo = true;
       break;
-    case PATH.PURCHASE_DEATAIL:
+    case PATH.PURCAHSE_DETAIL:
       alarmIC = false;
       settingIC = false;
       title = "구매내역상세";
@@ -106,16 +106,14 @@ const Header = () => {
 
   return (
     <S.HeaderContainer>
-      <S.HeaderWrapper>
-        <S.HeaderCell>
-          {undo && <S.UndoIcon onClick={undoHandler} />}
-        </S.HeaderCell>
-        <S.HeaderCell>{title}</S.HeaderCell>
-        <S.HeaderCell>
-          {settingIC && <S.AlarmIcon onClick={alarmHandler} />}
-          {alarmIC && <S.SettingIcon onClick={settingHandler} />}
-        </S.HeaderCell>
-      </S.HeaderWrapper>
+      <S.HeaderCell>
+        {undo && <S.UndoIcon onClick={undoHandler} />}
+      </S.HeaderCell>
+      <S.HeaderCell>{title}</S.HeaderCell>
+      <S.HeaderCell>
+        {settingIC && <S.AlarmIcon onClick={alarmHandler} />}
+        {alarmIC && <S.SettingIcon onClick={settingHandler} />}
+      </S.HeaderCell>
     </S.HeaderContainer>
   );
 };

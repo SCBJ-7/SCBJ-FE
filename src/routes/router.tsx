@@ -32,37 +32,111 @@ import PaymentSuccess from "@pages/paymentSuccessPage/PaymentSuccess";
 import EditAccount from "@pages/myPage/manage/editAccount/EditAccount";
 import Loading from "@components/loading/Loading";
 import SaleDetail from "@pages/saleDetailPage/SaleDetail";
+import Layout from "@components/layout/Layout";
 
 export const router = createBrowserRouter([
   {
     path: PATH.ROOT,
     element: (
-      <Suspense fallback={<Loading />}>
-        <App />
-      </Suspense>
+      <LocalErrorBoundary>
+        <Suspense fallback={<Loading />}>
+          <App />
+        </Suspense>
+      </LocalErrorBoundary>
     ),
     errorElement: <NotFound />,
     children: [
       {
         path: "",
-        element: <Home />,
-      },
-
-      {
-        path: PATH.SEARCHLIST,
-        element: <Search />,
-      },
-      {
-        path: PATH.SIGNUP,
-        element: <SignUp />,
+        element: (
+          <Layout isHeaderOn={false} isBottomNavOn={true}>
+            <Suspense fallback={<Loading />}>
+              <Home />
+            </Suspense>
+          </Layout>
+        ),
       },
       {
         path: PATH.LOGIN,
-        element: <SignIn />,
+        element: (
+          <Layout isHeaderOn={false} isBottomNavOn={false}>
+            <SignIn />
+          </Layout>
+        ),
+      },
+      {
+        path: PATH.SIGNUP,
+        element: (
+          <Layout isHeaderOn={true} isBottomNavOn={false}>
+            <SignUp />
+          </Layout>
+        ),
+      },
+      {
+        path: PATH.PASSWORD_RESET,
+        element: (
+          <Layout isHeaderOn={true} isBottomNavOn={false}>
+            <PasswordReset />
+          </Layout>
+        ),
+      },
+      {
+        path: PATH.SEARCHLIST,
+        element: (
+          <Layout isHeaderOn={false} isBottomNavOn={true}>
+            <Suspense fallback={<Loading />}>
+              <Search />
+            </Suspense>
+          </Layout>
+        ),
+      },
+      {
+        path: PATH.WRITE_TRANSFER,
+        element: (
+          <Layout isHeaderOn={true} isBottomNavOn={true}>
+            <Suspense fallback={<Loading />}>
+              <TransferWriting />
+            </Suspense>
+          </Layout>
+        ),
+      },
+      {
+        path: PATH.WRITE_TRANSFER,
+        element: (
+          <Layout isHeaderOn={true} isBottomNavOn={true}>
+            <Suspense fallback={<Loading />}>
+              <TransferWriting />
+            </Suspense>
+          </Layout>
+        ),
+      },
+      {
+        path: PATH.WRITE_TRANSFER_PRICE + `/:id`,
+        element: (
+          <Layout isHeaderOn={false} isBottomNavOn={true}>
+            <Suspense fallback={<Loading />}>
+              <TransferWritingPrice />
+            </Suspense>
+          </Layout>
+        ),
+      },
+      {
+        path: PATH.WRITE_TRANSFER_SUCCESS,
+        element: (
+          <Layout isHeaderOn={true} isBottomNavOn={true}>
+            <Suspense fallback={<Loading />}>
+              <TransferWritingSuccess />
+            </Suspense>
+          </Layout>
+        ),
       },
       {
         path: PATH.MY_PAGE,
-        element: <MyPage />,
+        element: (
+          <Layout isHeaderOn={true} isBottomNavOn={true}>
+            <MyPage />
+          </Layout>
+        ),
         children: [
           {
             index: true,
@@ -77,107 +151,89 @@ export const router = createBrowserRouter([
       },
       {
         path: PATH.SETTING,
-        element: <Setting />,
+        element: (
+          <Layout isHeaderOn={true} isBottomNavOn={true}>
+            <Setting />
+          </Layout>
+        ),
       },
       {
         path: PATH.MANAGE_PROFILE,
-        element: <ManageProfile />,
+        element: (
+          <Layout isHeaderOn={true} isBottomNavOn={true}>
+            <ManageProfile />
+          </Layout>
+        ),
       },
       {
         path: PATH.MANAGE_ACCOUNT,
-        element: <ManageAccount />,
+        element: (
+          <Layout isHeaderOn={true} isBottomNavOn={true}>
+            <ManageAccount />
+          </Layout>
+        ),
       },
       {
         path: PATH.ACCOUNT_EDIT,
-        element: <EditAccount />,
-      },
-      {
-        path: PATH.WRITE_TRANSFER,
         element: (
-          <LocalErrorBoundary>
-            <Suspense fallback={<Loading />}>
-              <TransferWriting />
-            </Suspense>
-          </LocalErrorBoundary>
-        ),
-      },
-      {
-        path: PATH.WRITE_TRANSFER_PRICE + `/:id`,
-        element: (
-          <Suspense fallback={<Loading />}>
-            <TransferWritingPrice />
-          </Suspense>
-        ),
-      },
-      {
-        path: PATH.WRITE_TRANSFER_SUCCESS,
-        element: (
-          <Suspense fallback={<Loading />}>
-            <TransferWritingSuccess />
-          </Suspense>
+          <Layout isHeaderOn={true} isBottomNavOn={true}>
+            <EditAccount />
+          </Layout>
         ),
       },
       {
         path: PATH.DETAIL_ROOM(":productId"),
         element: (
-          <LocalErrorBoundary>
+          <Layout isHeaderOn={false} isBottomNavOn={false}>
             <Suspense fallback={<Loading />}>
               <RoomDetail />
             </Suspense>
-          </LocalErrorBoundary>
+          </Layout>
         ),
       },
       {
         path: PATH.ALARM,
         element: (
-          <LocalErrorBoundary>
-            <Suspense>
+          <Layout isHeaderOn={true} isBottomNavOn={true}>
+            <Suspense fallback={<Loading />}>
               <Alarm />
             </Suspense>
-          </LocalErrorBoundary>
+          </Layout>
         ),
       },
       {
-        path: PATH.PASSWORD_RESET,
-        element: <PasswordReset />,
-      },
-      {
-        path: PATH.PURCHASE_DEATAIL,
+        path: PATH.PURCAHSE_DETAIL,
         element: (
-          <LocalErrorBoundary>
+          <Layout isHeaderOn={true} isBottomNavOn={true}>
             <Suspense fallback={<Loading />}>
               <PurchaseDetail />
             </Suspense>
-          </LocalErrorBoundary>
+          </Layout>
         ),
       },
       {
         path: PATH.SALE_DETAIL + "/:saleId",
         element: (
-          <LocalErrorBoundary>
+          <Layout isHeaderOn={true} isBottomNavOn={true}>
             <Suspense fallback={<Loading />}>
               <SaleDetail />
             </Suspense>
-          </LocalErrorBoundary>
+          </Layout>
         ),
       },
       {
         path: PATH.YANOLJA_ACCOUNT,
         element: (
-          <LocalErrorBoundary>
+          <Layout isHeaderOn={false} isBottomNavOn={false}>
             <Suspense fallback={<Loading />}>
               <Outlet />
             </Suspense>
-          </LocalErrorBoundary>
+          </Layout>
         ),
         children: [
           {
             index: true,
             element: <IntroPage />,
-          },
-          {
-            path: "verify",
-            element: <VerificationPage />,
           },
           {
             path: "verify/success",
@@ -186,17 +242,29 @@ export const router = createBrowserRouter([
         ],
       },
       {
+        path: PATH.YANOLJA_ACCOUNT_VERIFICATION,
+        element: (
+          <Layout isHeaderOn={true} isBottomNavOn={false}>
+            <VerificationPage />
+          </Layout>
+        ),
+      },
+      {
         path: PATH.SEARCH_FILTER,
-        element: <SearchFilter />,
+        element: (
+          <Layout isHeaderOn={true} isBottomNavOn={false}>
+            <SearchFilter />
+          </Layout>
+        ),
       },
       {
         path: PATH.PAYMENT(":productId"),
         element: (
-          <LocalErrorBoundary>
+          <Layout isHeaderOn={true} isBottomNavOn={false}>
             <Suspense fallback={<Loading />}>
               <Outlet />
             </Suspense>
-          </LocalErrorBoundary>
+          </Layout>
         ),
         children: [
           {

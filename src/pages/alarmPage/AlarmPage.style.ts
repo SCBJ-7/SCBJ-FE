@@ -3,6 +3,8 @@ import styled from "styled-components";
 export const Container = styled.section`
   width: 100%;
   height: 100%;
+
+  padding: 56px 1.25rem 80px;
   background-color: white;
 `;
 

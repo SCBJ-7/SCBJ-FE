@@ -3,7 +3,7 @@ import type { ColorKeys, TypoKeys } from "@styles/theme";
 
 export const Container = styled.main`
   background-color: ${({ theme }) => theme.color.greyScale7};
-  padding-bottom: 80px;
+  padding-bottom: 62px;
 `;
 
 export const DetailSection = styled.section`

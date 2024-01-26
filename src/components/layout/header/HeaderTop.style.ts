@@ -1,8 +1,9 @@
 import { styled } from "styled-components";
 import { PiCaretLeftBold, PiBellBold, PiGearBold } from "react-icons/pi";
 
-export const HeaderContainer = styled.section`
+export const HeaderContainer = styled.header`
   width: 100%;
+  max-width: 768px;
   height: 56px;
 
   display: flex;
@@ -10,17 +11,9 @@ export const HeaderContainer = styled.section`
 
   position: fixed;
   top: 0;
-  z-index: 10;
+  z-index: 1;
 
   background-color: white;
-`;
-
-export const HeaderWrapper = styled.div`
-  max-width: 768px;
-  width: 100%;
-  height: 100%;
-
-  display: flex;
 `;
 
 export const HeaderCell = styled.div`

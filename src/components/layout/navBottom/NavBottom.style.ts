@@ -1,4 +1,3 @@
-// icons
 import {
   PiListMagnifyingGlassFill,
   PiNewspaperClippingFill,
@@ -6,28 +5,28 @@ import {
 } from "react-icons/pi";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
-import NavIconHome from "../../../assets/icons/NavHome";
+import NavIconHome from "@/assets/icons/NavHome";
 
 export const BottomNavContainer = styled.section`
-  width: 100%;
-  height: 80px;
-
   display: flex;
-  justify-content: center;
-
   position: fixed;
   bottom: 0;
+  width: 100%;
+  max-width: 768px;
+  z-index: 1;
+  height: 60px;
+  justify-content: center;
+  align-items: center;
 
   background-color: ${({ theme }) => theme.color.black};
-
-  z-index: 100;
+  box-shadow: 0 0 10px 0 rgba(5, 44, 82, 0.1);
 `;
 
 export const BottomNavWrapper = styled.div`
   max-width: 768px;
   width: 100%;
-  height: 100%;
 
+  align-items: center;
   display: flex;
 `;
 
@@ -37,7 +36,6 @@ export const BottomNavCell = styled(NavLink)`
 
   display: flex;
   flex-direction: column;
-  margin-top: 10px;
   align-items: center;
   gap: 2px;
 
@@ -52,14 +50,14 @@ export const BottomNavCell = styled(NavLink)`
 export const NavIconHomes = styled(NavIconHome)``;
 
 export const NavIconTransfer = styled(PiNewspaperClippingFill)`
-  font-size: 32px;
+  font-size: 2rem;
 `;
 
 export const NavIconSearch = styled(PiListMagnifyingGlassFill)`
-  font-size: 32px;
+  font-size: 2rem;
   transform: translateY(-1px);
 `;
 
 export const NavIconMy = styled(PiUserFill)`
-  font-size: 32px;
+  font-size: 2rem;
 `;
