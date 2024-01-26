@@ -17,13 +17,16 @@ const MainHeader = () => {
     navigate(PATH.ALARM);
   };
 
+  // isAlarmOn: 빈 배열일 시 true, boolean값일 시 false
   return (
     <S.HeaderContainer>
       <S.HeaderWrapper>
         <MainLogo />
         <section>
           <S.bellIcon onClick={alertHandler} />
-          <S.bellAlertOn $isAlarmOn={hasAlarmData.hasNonReadAlarm} />
+          <S.bellAlertOn
+            $isAlarmOn={typeof hasAlarmData === "object" ? true : false}
+          />
         </section>
       </S.HeaderWrapper>
     </S.HeaderContainer>
