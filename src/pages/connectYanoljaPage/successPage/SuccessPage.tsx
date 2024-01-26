@@ -10,11 +10,11 @@ const SuccessPage = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  // useEffect(() => {
-  //   if (!location.state?.success) {
-  //     navigate("/");
-  //   }
-  // }, [navigate, location.state]);
+  useEffect(() => {
+    if (!location.state?.success) {
+      navigate("/");
+    }
+  }, [navigate, location.state]);
 
   return (
     <S.PageContainer>
