@@ -38,6 +38,7 @@ export const PurchasedContainer = styled.div`
   ${({ theme }) => theme.scroll};
 
   background-color: ${({ theme }) => theme.color.greyScale7};
+  margin-top: 56px;
 `;
 
 export const PurchasedWrapper = styled.div`

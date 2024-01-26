@@ -9,8 +9,9 @@ export const SearchContainer = styled.div`
   width: 100%;
   height: 100%;
 
-  padding-top: 68px;
+  padding-top: 116px;
   color: ${({ theme }) => theme.color.black};
+  padding-bottom: 100px;
 `;
 
 export const SearchItemFlex = styled.div`

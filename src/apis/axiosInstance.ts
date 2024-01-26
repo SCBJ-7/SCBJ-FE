@@ -5,12 +5,18 @@ import type {
   InternalAxiosRequestConfig,
 } from "axios";
 import { fetchNewToken } from "./fetchNewToken";
-import { ACCESS_TOKEN, REFRESH_TOKEN, ERROR_CODE } from "@constants/api";
+import {
+  ACCESS_TOKEN,
+  REFRESH_TOKEN,
+  STATUS_CODE,
+  ERROR_CODE,
+  BASE_URL,
+} from "@constants/api";
 import { PATH } from "@constants/path";
-import { AxiosResponseError } from "@components/error/Error";
+import { ResponseError } from "@components/error/Error";
 
 export const axiosInstance = axios.create({
-  baseURL: "https://3.34.147.187.nip.io",
+  baseURL: BASE_URL,
   timeout: 5000,
   withCredentials: true,
 });
@@ -21,8 +27,7 @@ const addToken = (config: InternalAxiosRequestConfig) => {
   const accessToken = localStorage.getItem(ACCESS_TOKEN);
 
   if (!accessToken) {
-    alert("다시 로그인 해 주세요."); // or 로그인
-    window.location.href = `${PATH.LOGIN}?redirect=${window.location.pathname}`;
+    throw new ResponseError(401, "토큰이 없습니다.");
   }
 
   config.headers.Authorization = `${accessToken}`;
@@ -39,14 +44,16 @@ interface AxiosRequestConfigWithRetry extends AxiosRequestConfig {
 }
 
 const handleExpiredToken = async (error: AxiosError<ResponseDataType>) => {
+  if (!error.response) return Promise.reject(error);
+
   const originalRequest = error.config as AxiosRequestConfigWithRetry;
 
-  if (!error.response || !originalRequest.headers)
-    throw new Error("에러가 발생했습니다.");
+  if (!originalRequest || !originalRequest.headers)
+    return Promise.reject(error);
 
   const { data, status } = error.response;
 
-  if (status === ERROR_CODE.EXPIRED_TOKEN && !originalRequest._retry) {
+  if (status === STATUS_CODE.UNAUTHORIZED && !originalRequest._retry) {
     try {
       originalRequest._retry = true; // 무한루프 되지 않도록
       const { accessToken, refreshToken } = await fetchNewToken();
@@ -65,7 +72,7 @@ const handleExpiredToken = async (error: AxiosError<ResponseDataType>) => {
     localStorage.removeItem(ACCESS_TOKEN);
     localStorage.removeItem(REFRESH_TOKEN);
 
-    throw new AxiosResponseError(status, data.message);
+    throw new ResponseError(status, data.message);
   }
 
   return Promise.reject(error);

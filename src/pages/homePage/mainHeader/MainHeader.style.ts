@@ -1,5 +1,5 @@
 import { styled } from "styled-components";
-import { LuBell } from "react-icons/lu";
+import { PiBellBold } from "react-icons/pi";
 
 export const HeaderContainer = styled.section`
   width: 100%;
@@ -38,7 +38,7 @@ export const HeaderWrapper = styled.div`
   }
 `;
 
-export const bellIcon = styled(LuBell)`
+export const bellIcon = styled(PiBellBold)`
   font-size: 24px;
   color: ${({ theme }) => theme.color.black};
   cursor: pointer;
