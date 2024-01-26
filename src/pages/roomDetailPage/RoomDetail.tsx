@@ -11,10 +11,11 @@ import * as S from "./RoomDetail.style";
 import { useEffect } from "react";
 
 const RoomDetail = () => {
-  const { roomId } = useParams();
-  if (!roomId) throw new Error("존재하지 않는 roomId 입니다.");
+  const { productId } = useParams();
 
-  const { data } = useRoomQuery(roomId);
+  if (!productId) throw new Error("존재하지 않는 roomId 입니다.");
+
+  const { data } = useRoomQuery(productId);
   const { rawData, discountRate } = data;
 
   const { handleToast } = useToastConfig();
@@ -38,7 +39,7 @@ const RoomDetail = () => {
         draggable={true}
       />
       <RoomInfo room={rawData} discount={discountRate} />
-      <RoomNavBar room={rawData} discount={discountRate} roomId={roomId} />
+      <RoomNavBar room={rawData} discount={discountRate} roomId={productId} />
     </S.Container>
   );
 };

@@ -1,20 +1,14 @@
 import * as S from "./MyPageNav.style";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { PATH } from "../../../../constants/path";
-import { useEffect } from "react";
 const MyPageNav = () => {
   const { pathname } = useLocation();
-  const navigate = useNavigate();
-  useEffect(() => {
-    if (pathname === PATH.MY_PAGE || pathname === "/my-page") {
-      navigate(PATH.PURCHASE_LIST);
-    }
-  }, [pathname, navigate]);
+
   const navList = [
     {
       id: 1,
       name: "구매내역",
-      path: PATH.PURCHASE_LIST,
+      path: PATH.MY_PAGE,
     },
     {
       id: 2,
@@ -22,6 +16,7 @@ const MyPageNav = () => {
       path: PATH.SALE_LIST,
     },
   ];
+
   return (
     <S.MyPageNavContainer>
       {navList.map((item) => {

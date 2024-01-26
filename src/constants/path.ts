@@ -6,8 +6,9 @@ export const PATH = {
   CREATE_TRIP: "/trip-new",
   SALE_LIST: "/my-page/sale-list",
   PURCHASE_LIST: "/my-page/purchase-list",
-  PURCAHSE_DEATAIL: "/my-page/purchase-detail",
-  DETAIL_ROOM: "/room",
+  PURCHASE_DEATAIL: "/my-page/purchase-detail",
+  SALE_DETAIL: "/my-page/sale-detail",
+  DETAIL_ROOM: (productId: string | number) => `/room/${productId}`,
   WRITE_TRANSFER: "/transfer/new",
   WRITE_TRANSFER_PRICE: "/transfer/new/price",
   WRITE_TRANSFER_SUCCESS: "/transfer/new/success",
@@ -22,7 +23,8 @@ export const PATH = {
   PASSWORD_RESET: "/password-reset",
   YANOLJA_ACCOUNT: "/account/yanolja",
   RELOAD: 0,
-  PAYMENT: "/payment",
+  PAYMENT: (productId: string) => `/payment/${productId}`,
+  PAYMENT_SUCCESS: (productId: string) => `/payment/${productId}/success`,
 } as const;
 // 참고
 

@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 const PuchaseItem = (props: IPurchaseItemWithRemainDate) => {
   const navigate = useNavigate();
   const handleClick = () => {
-    navigate(`${PATH.PURCAHSE_DEATAIL}?id=${props.id}`);
+    navigate(`${PATH.PURCHASE_DEATAIL}?id=${props.id}`);
   };
   return (
     <S.PurchaseItemContainer onClick={handleClick}>
@@ -20,7 +20,7 @@ const PuchaseItem = (props: IPurchaseItemWithRemainDate) => {
         <S.ArrowRightBtnIcon></S.ArrowRightBtnIcon>
       </S.PurchaseItemTitle>
       <S.PurchaseItemContent>
-        <S.PurchaseItemImage src={props.ImageUrl} />
+        <S.PurchaseItemImage src={props.imageUrl} />
         <S.PuchaseItemInfo>
           <S.PurchaseItemName>{props.name}</S.PurchaseItemName>
           <S.PuChaseItemType>{props.roomType}</S.PuChaseItemType>

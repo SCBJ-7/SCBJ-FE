@@ -19,6 +19,11 @@ const Header = () => {
     }
   }
 
+  if (pathname.includes(PATH.SALE_DETAIL)) {
+    undo = true;
+    title = "판매내역 상세";
+  }
+
   switch (pathname) {
     case PATH.ROOT:
       alarmIC = false;
@@ -37,25 +42,24 @@ const Header = () => {
       title = "판매할 내역 선택";
       undo = false;
       break;
-    case PATH.PURCHASE_LIST:
+    case PATH.MY_PAGE:
       alarmIC = true;
       settingIC = true;
-      title = "구매내역";
-      undo = true;
+      title = "마이페이지";
+      undo = false;
       break;
     case PATH.SALE_LIST:
       alarmIC = true;
       settingIC = true;
-      title = "판매내역";
+      title = "마이페이지";
       undo = true;
       break;
-    case PATH.PURCAHSE_DEATAIL:
+    case PATH.PURCHASE_DEATAIL:
       alarmIC = false;
       settingIC = false;
       title = "구매내역상세";
       undo = true;
       break;
-
     case PATH.SETTING:
       alarmIC = false;
       settingIC = false;

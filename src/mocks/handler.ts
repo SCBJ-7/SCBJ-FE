@@ -1,18 +1,20 @@
 import { http, HttpResponse } from "msw";
-
+import dummySaleList from "./data/dummySaleList.json";
+import dummySaleDetail from "./data/dummySaleDetail.json";
 import dummyPurchaseList from "./data/dummyPuchaseList.json";
 import dummyPurchaseDetail from "./data/dummyPurchaseDetail.json";
 import dummySearchList from "./data/dummySearchList.json";
 import dummyRoom from "./data/dummyRoomDetail.json";
-// import userInfo from "./data/userInfo.json";
-import { roomHandlers } from "./handlers/room";
+import roomHandlers from "./handlers/room";
 import { paymentHandler } from "./handlers/payment";
-// import emailHandlers from "./handlers/email";
+import emailHandlers from "./handlers/email";
+import yanoljaAccountHandlers from "./handlers/yanoljaAccount";
 
 export const handlers = [
   ...roomHandlers,
   ...paymentHandler,
-  // ...Object.values(emailHandlers),
+  ...Object.values(emailHandlers),
+  ...Object.values(yanoljaAccountHandlers),
   http.get("/api/roomId", () => {
     return HttpResponse.json(dummyRoom);
   }),
@@ -33,6 +35,12 @@ export const handlers = [
   }),
   http.get("/v1/products", () => {
     return HttpResponse.json(dummySearchList);
+  }),
+  http.get("/v1/members/sale-history", () => {
+    return HttpResponse.json(dummySaleList);
+  }),
+  http.get("/v1/sale-history/49", () => {
+    return HttpResponse.json(dummySaleDetail);
   }),
 
   /*

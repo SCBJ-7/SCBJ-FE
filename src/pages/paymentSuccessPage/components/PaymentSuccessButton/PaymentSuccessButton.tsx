@@ -14,7 +14,7 @@ const PaymentSuccessButton = ({ productId }: { productId: string }) => {
         type="button"
         variant="outline"
         aria-label="상세내역 확인"
-        onClick={() => navigate(PATH.PURCAHSE_DEATAIL)}
+        onClick={() => navigate(PATH.PURCHASE_DEATAIL)}
       >
         상세내역 확인
       </S.Button>

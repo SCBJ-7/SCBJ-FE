@@ -2,12 +2,19 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link
-      rel="icon"
-      type="image/svg+xml"
-      href="/src/assets/logos/favicon.svg"
-    />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="apple-mobile-eb-app-capable" content="yes" />
+    <meta name="theme-color" content="#FF7C17" />
+    <link rel="manifest" href="./manifest.json" />
+    <link
+      rel="apple-touch-icon"
+      href="/apple-touch-icon-180x180.png"
+      sizes="180x180"
+    />
+    <link rel="mask-icon" href="/mask-icon.svg" color="#FFFFFF" />
+    <link rel="apple-touch-icon" sizes="192x192" href="/icon-192.png" />
+    <link rel="apple-touch-icon" sizes="512x512" href="/icon-512.png" />
     <link
       rel="preconnect"
       href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css"
@@ -20,9 +27,23 @@
     />
     <title>퍼센트 호텔</title>
   </head>
+  <script type="module">
+    import "https://cdn.jsdelivr.net/npm/@pwabuilder/pwaupdate"; // PWA 업데이트 알림을 구현하기 위한 라이브러리
+    const el = document.createElement("pwa-update"); // PWA 업데이트 알림을 처리하고 표시하는 역할을 하는 <pwa-update> 요소를 동적으로 생성
+    document.body.appendChild(el); //<pwa-update> 요소를 문서의 <body> 요소에 추가
+  </script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      if ("serviceWorker" in navigator) {
+        navigator.serviceWorker.register("/pwabuilder-sw.js");
+      }
+    });
+  </script>
   <body>
+    <div id="modal-root"></div>
     <div id="root"></div>
     <div id="overlay-root"></div>
+    <div id="modalTwo-root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

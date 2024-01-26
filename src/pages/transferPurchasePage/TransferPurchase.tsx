@@ -1,11 +1,13 @@
-import { differenceInDays, parseISO } from "date-fns";
 import PurchaseNav from "./components/purchaseNav/PurchaseNav";
 import * as S from "./TransferPurchase.style";
-import { useEffect, useState } from "react";
+import { differenceInDays, parseISO } from "date-fns";
 import { useSearchParams } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
 import { fetchPurchaseList } from "@/apis/fetchPurchaseList";
 import PurchaseItem from "./components/puchaseItem/PuchaseItem";
 import { IPurchaseList } from "@/types/purchaseList";
+import Loading from "@components/loading/Loading";
+
 export interface IPurchaseItemWithRemainDate extends IPurchaseList {
   remainDate: number;
 }
@@ -30,47 +32,40 @@ const sortProductsByCheckInDate = (
 };
 
 const TransferPurchase = () => {
-  const [purchaseItems, setPurchaseItems] = useState<
-    IPurchaseItemWithRemainDate[]
-  >([]);
   const [searchParams] = useSearchParams();
   const status = searchParams.get("status");
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const res = await fetchPurchaseList();
-        const sortedPurchaseItems = sortProductsByCheckInDate(
-          res?.data?.products,
-        );
 
-        // Filter items based on status and remainDate
-        const filteredPurchaseItems = sortedPurchaseItems.filter((item) => {
-          if (status === "yet") {
-            return item.remainDate >= 0;
-          } else if (status === "done") {
-            return item.remainDate < 0;
-          } else {
-            return true;
-          }
-        });
+  const { data: purchaseData, isLoading } = useQuery({
+    queryKey: ["purchaseList"],
+    queryFn: fetchPurchaseList,
+  });
 
-        setPurchaseItems(filteredPurchaseItems);
-      } catch (error) {
-        console.error(error);
-      }
-    };
+  const sortedPurchaseItems = sortProductsByCheckInDate(purchaseData?.products);
 
-    fetchData();
-  }, [status]);
+  // Filter items based on status and remainDate
+  const filteredPurchaseItems = sortedPurchaseItems.filter((item) => {
+    if (status === "yet") {
+      return item.remainDate >= 0;
+    } else if (status === "done") {
+      return item.remainDate < 0;
+    } else {
+      return true;
+    }
+  });
+  console.log(sortedPurchaseItems);
+  if (isLoading) {
+    return <Loading />;
+  }
+
   return (
     <>
       <PurchaseNav />
       <S.PurchaseList>
-        {purchaseItems.map((item) => {
-          return (
+        {filteredPurchaseItems.length > 0 ? (
+          filteredPurchaseItems.map((item) => (
             <PurchaseItem
               key={item.id}
-              ImageUrl={item.ImageUrl}
+              imageUrl={item.imageUrl}
               checkInDate={item.checkInDate}
               checkOutDate={item.checkOutDate}
               id={item.id}
@@ -80,8 +75,35 @@ const TransferPurchase = () => {
               roomType={item.roomType}
               remainDate={item.remainDate}
             />
-          );
-        })}
+          ))
+        ) : status === "done" ? (
+          <>
+            <S.NoResult>구매내역이 없습니다</S.NoResult>
+            {!sortedPurchaseItems.length && (
+              <S.NoResultAll>
+                지금 상품을 구매하고 호캉스 떠나보세요!
+              </S.NoResultAll>
+            )}
+          </>
+        ) : status === "yet" ? (
+          <>
+            <S.NoResult>이용예정 내역이 없습니다</S.NoResult>
+            {!sortedPurchaseItems.length && (
+              <S.NoResultAll>
+                지금 상품을 구매하고 호캉스 떠나보세요!
+              </S.NoResultAll>
+            )}
+          </>
+        ) : (
+          <>
+            <S.NoResult>이용완료 내역이 없습니다</S.NoResult>
+            {!sortedPurchaseItems.length && (
+              <S.NoResultAll>
+                지금 상품을 구매하고 호캉스 떠나보세요!
+              </S.NoResultAll>
+            )}
+          </>
+        )}
       </S.PurchaseList>
     </>
   );
