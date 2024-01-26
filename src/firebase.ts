@@ -1,4 +1,5 @@
 import { initializeApp } from "firebase/app";
+import { getMessaging } from "firebase/messaging";
 
 // firebase
 const firebaseConfig = {
@@ -12,6 +13,7 @@ const firebaseConfig = {
 };
 
 export const app = initializeApp(firebaseConfig);
+export const messaging = getMessaging(app);
 
 // Get registration token. Initially this makes a network call, once retrieved
 // subsequent calls to getToken will return from cache.
