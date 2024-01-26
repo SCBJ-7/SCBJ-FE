@@ -211,7 +211,7 @@ const SaleDetail = () => {
   };
 
   return (
-    <>
+    <S.Container>
       {data && (
         <S.PurchasedContainer>
           {(data.saleStatus === "판매완료" ||
@@ -247,7 +247,7 @@ const SaleDetail = () => {
           </S.BottomWrapper>
         </S.PurchasedContainer>
       )}
-    </>
+    </S.Container>
   );
 };
 

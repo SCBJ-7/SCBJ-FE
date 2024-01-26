@@ -1,7 +1,9 @@
 import styled, { css } from "styled-components";
 
-export const SettingListContainer = styled.div`
-  padding: 32px 20px;
+export const SettingListContainer = styled.main`
+  padding: 56px 1.25rem 80px;
+
+  background-color: ${({ theme }) => theme.color.white};
 `;
 
 export const ListWrapper = css`

@@ -1,10 +1,11 @@
 import { motion } from "framer-motion";
 import styled from "styled-components";
 
-export const Container = styled(motion.section)`
+export const Container = styled(motion.main)`
   width: 100%;
   height: 100%;
   padding-top: 56px;
+  padding-bottom: 60px;
 
   background-color: ${({ theme }) => theme.color.greyScale7};
 

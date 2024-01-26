@@ -7,9 +7,10 @@ export const PasswordResetContainer = styled.form`
 
   background-color: white;
 
-  margin: 32px 0 0 0;
+  margin-top: 32px;
 
-  padding-bottom: 100px;
+  padding-top: 56px;
+  padding-bottom: 62px;
 `;
 
 export const PasswordResetTitleContainer = styled.div`
@@ -28,7 +29,7 @@ export const PasswordResetInputContainer = styled.div`
   flex-direction: column;
   gap: 24px;
 
-  margin: 80px 0 76px 0;
+  margin: 60px 0;
 
   width: calc(100% - 40px);
 `;

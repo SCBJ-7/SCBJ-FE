@@ -15,6 +15,7 @@ import usePreventLeave from "@hooks/common/usePreventLeave";
 import { PATH } from "@constants/path";
 import EnterAccountInfo from "./enterAccountInfo/EnterAccountInfo";
 import useToastConfig from "@hooks/common/useToastConfig";
+import TransferPricingHeader from "./transferWritingPriceHeader/TransferPricingHeaderTop";
 
 const TransferWritingPrice = () => {
   usePreventLeave(true);
@@ -234,6 +235,7 @@ const TransferWritingPrice = () => {
 
   return (
     <S.Container layout>
+      <TransferPricingHeader />
       {accountSetting === "none" && (
         <>
           <FirstPriceTag

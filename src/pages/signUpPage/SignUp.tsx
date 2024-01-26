@@ -13,14 +13,14 @@ const SignUp = () => {
 
   return (
     <S.SignUpContainer>
-      <S.SignUpTitle>회원가입</S.SignUpTitle>
+      <S.TitleWrapper>
+        <S.SignUpTitle>회원가입</S.SignUpTitle>
+      </S.TitleWrapper>
       <FormProvider {...methods}>
         <FieldValues />
-
         <S.SignUpCheckBoxContainer>
           <TermsAgreementSection />
         </S.SignUpCheckBoxContainer>
-
         <SignUpSubmitBtn />
       </FormProvider>
     </S.SignUpContainer>
