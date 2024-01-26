@@ -22,6 +22,7 @@ export const PATH = {
   PASSWORD_RESET: "/password-reset",
   YANOLJA_ACCOUNT: "/account/yanolja",
   YANOLJA_ACCOUNT_VERIFICATION: "/account/yanolja/verify",
+  YANOLJA_ACCOUNT_VERIFICATION_SUCCESS: "/account/yanolja/verify/success",
   RELOAD: 0,
   PAYMENT: (productId: string) => `/payment/${productId}`,
   PAYMENT_SUCCESS: (productId: string) => `/payment/${productId}/success`,

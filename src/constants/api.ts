@@ -30,10 +30,19 @@ export const END_POINTS = {
   SEARCH: "/v1/products/search",
 } as const;
 
-export const ERROR_CODE = {
-  INVALID_TOKEN: 402,
-  EXPIRED_TOKEN: 401,
+export const STATUS_CODE = {
+  UNAUTHORIZED: 401,
+  NOT_FOUND: 404,
+  BAD_REQUEST: 400,
+  INTERNAL_SERVER_ERROR: 500,
 } as const;
+
+export const ERROR_CODE = {
+  NULL_STOCK: 509,
+  INVALID_TOKEN: 402,
+  UNAUTHORIZED_WRITE_TRANSFER: 1002,
+  UNAUTHORIZED_YANOLJA: 5003,
+};
 
 export const ACCESS_TOKEN = "accessToken";
 export const REFRESH_TOKEN = "refreshToken";
