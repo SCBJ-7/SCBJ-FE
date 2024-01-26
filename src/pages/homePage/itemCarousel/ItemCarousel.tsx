@@ -4,7 +4,6 @@ import * as S from "./ItemCarousel.style";
 import type { LocaleItem } from "@type/saleSection";
 import ItemCarouselUnit from "./itemCarouselUnit/ItemCarouselUnit.tsx";
 import { useEffect } from "react";
-import { isMobile } from "@utils/isMobile.ts";
 
 interface CarouselProps {
   localeAndHotel: [number, string, LocaleItem[]][];
@@ -54,11 +53,10 @@ const ItemCarousel = ({
     // eslint-disable-next-line
   }, [currentIndex]);
 
-  const isMobileDevice = isMobile();
-
   return (
     <S.CarouselContainer
       $height={height}
+      onTouchStart={(e) => e.preventDefault()}
       onMouseEnter={() => setIsPlay(false)}
       onMouseLeave={() => setIsPlay(true)}
     >
@@ -79,7 +77,7 @@ const ItemCarousel = ({
           )}
         </S.SliderContainer>
       </S.SliderWrapper>
-      {arrows && !isMobileDevice && (
+      {arrows && (
         <>
           <S.LeftButton
             aria-label="뒤로가기"
