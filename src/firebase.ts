@@ -11,7 +11,7 @@ const firebaseConfig = {
   measurementId: "G-1YD7ZEM9HM",
 };
 
-initializeApp(firebaseConfig);
+export const app = initializeApp(firebaseConfig);
 
 // Get registration token. Initially this makes a network call, once retrieved
 // subsequent calls to getToken will return from cache.
