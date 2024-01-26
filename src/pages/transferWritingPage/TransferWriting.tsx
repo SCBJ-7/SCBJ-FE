@@ -63,24 +63,27 @@ const TransferWriting = () => {
     <>
       <S.Subtitle>판매할 내역을 선택해주세요.</S.Subtitle>
       <S.TransferItemList>
-        {transferData?.map((item) => {
-          return (
-            <AnimatePresence key={item.reservationId}>
-              <TransferItem
-                reservationId={item.reservationId}
-                hotelName={item.hotelName}
-                roomName={item.roomName}
-                startDate={item.startDate}
-                endDate={item.endDate}
-                refundPrice={item.refundPrice}
-                purchasePrice={item.purchasePrice}
-                remainingDays={item.remainingDays}
-                remainingTimes={item.remainingTimes}
-                imageUrl={item.imageUrl}
-              />
-            </AnimatePresence>
-          );
-        })}
+        {transferData &&
+          transferData.length !== 0 &&
+          transferData.map((item) => {
+            return (
+              <AnimatePresence key={item.reservationId}>
+                <TransferItem
+                  reservationId={item.reservationId}
+                  hotelName={item.hotelName}
+                  roomName={item.roomName}
+                  startDate={item.startDate}
+                  endDate={item.endDate}
+                  refundPrice={item.refundPrice}
+                  purchasePrice={item.purchasePrice}
+                  remainingDays={item.remainingDays}
+                  remainingTimes={item.remainingTimes}
+                  imageUrl={item.imageUrl}
+                />
+              </AnimatePresence>
+            );
+          })}
+        {transferData && transferData.length === 0 && <NoResult title="" />}
       </S.TransferItemList>
     </>
   );
