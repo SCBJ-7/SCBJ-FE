@@ -23,24 +23,28 @@ const ItemCarouselUnit = ({ item }: UnitProps) => {
     ? format(parseISO(hotel[1].checkOutDate), "MM.dd")
     : "";
 
-  const onClickHandler = (num: number) => {
-    navigate(PATH.DETAIL_ROOM(hotel[num].id));
+  const onClickHandler = (
+    number: number,
+    e: React.MouseEvent<Element, MouseEvent>,
+  ) => {
+    e.stopPropagation();
+    navigate(PATH.DETAIL_ROOM(hotel[number].id));
   };
 
   return (
     <S.LocaleWrapper $display={hotel ? "block" : "none"}>
       {hotel[0] && (
-        <S.ItemUnit onClick={() => onClickHandler(0)}>
-          <img src={hotel[0].imageUrl} onClick={() => onClickHandler(0)} />
+        <S.ItemUnit onClick={(e) => onClickHandler(0, e)}>
+          <img src={hotel[0].imageUrl} />
           <div className="item-info">
             <div className="hotel_title">
-              <h1 onClick={() => onClickHandler(0)}>{hotel[0].hotelName}</h1>
-              <h3 onClick={() => onClickHandler(0)}>{hotel[0].roomType}</h3>
+              <h1>{hotel[0].hotelName}</h1>
+              <h3>{hotel[0].roomType}</h3>
               <S.Sticker>
                 {CHKIN1} ~ {CHKOUT1}
               </S.Sticker>
             </div>
-            <div className="hotel_price" onClick={() => onClickHandler(0)}>
+            <div className="hotel_price">
               <h5>{hotel[0].originalPrice} 원</h5>
               <h1>
                 {priceFormat(hotel[0].salePrice)} 원
@@ -51,17 +55,17 @@ const ItemCarouselUnit = ({ item }: UnitProps) => {
         </S.ItemUnit>
       )}
       {hotel[1] && (
-        <S.ItemUnit onClick={() => onClickHandler(1)}>
-          <img src={hotel[1].imageUrl} onClick={() => onClickHandler(0)} />
+        <S.ItemUnit onClick={(e) => onClickHandler(1, e)}>
+          <img src={hotel[1].imageUrl} />
           <div className="item-info">
             <div className="hotel_title">
-              <h1 onClick={() => onClickHandler(0)}>{hotel[1].hotelName}</h1>
-              <h3 onClick={() => onClickHandler(0)}>{hotel[1].roomType}</h3>
+              <h1>{hotel[1].hotelName}</h1>
+              <h3>{hotel[1].roomType}</h3>
               <S.Sticker>
                 {CHKIN0} ~ {CHKOUT0}
               </S.Sticker>
             </div>
-            <div className="hotel_price" onClick={() => onClickHandler(0)}>
+            <div className="hotel_price">
               <h5>{hotel[1].originalPrice} 원</h5>
               <h1>
                 {priceFormat(hotel[1].salePrice)} 원
