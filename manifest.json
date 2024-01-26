@@ -1,7 +1,7 @@
 {
   "name": "퍼센트 호텔",
   "short_name": "Percent Hotel",
-  "start_url": "./index.html",
+  "start_url": "/",
   "display": "standalone",
   "background_color": "#FF7C17",
   "lang": "ko",
