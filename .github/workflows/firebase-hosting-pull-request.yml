@@ -8,8 +8,8 @@ jobs:
     if: "${{ github.event.pull_request.head.repo.full_name == github.repository }}"
     runs-on: ubuntu-latest
     env:
-      VITE_APIKEY: "${{secrets.VITE_APIKEY}}"
-      VITE_AUTH_DOMAIN: "${{secrets.VITE_AUTH_DOMAIN}}"
+      VITE_BASE_URL: "${{secrets.VITE_APIKEY}}"
+      VITE_APIKEY: "${{secrets.VITE_AUTH_DOMAIN}}"
       VITE_PROJECT_ID: "${{secrets.VITE_PROJECT_ID}}"
       VITE_STORAGE_BUCKET: "${{secrets.VITE_STORAGE_BUCKET}}"
       VITE_MESSAGING_SENDERID: "${{secrets.VITE_MESSAGING_SENDERID}}"
