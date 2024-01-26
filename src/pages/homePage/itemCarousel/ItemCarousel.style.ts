@@ -41,18 +41,14 @@ export const ImageShadowWrapper = styled.div`
   background-image: linear-gradient(rgba(39, 50, 60, 0.5), rgba(39, 50, 60, 0));
 `;
 
-export const ButtonContainer = styled.div`
-  position: absolute;
-  top: 50%;
-  width: 100%;
+// export const ButtonContainer = styled.div`
+//   position: absolute;
 
-  display: flex;
-  justify-content: space-between;
+//   display: flex;
+//   justify-content: space-between;
 
-  transform: translateY(-50%);
-
-  pointer-events: none;
-`;
+//   transform: translateY(-50%);
+// `;
 
 export const Button = styled.button<{ $visible: boolean }>`
   position: absolute;

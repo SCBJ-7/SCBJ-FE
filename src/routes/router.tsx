@@ -15,9 +15,8 @@ import MyPage from "@/pages/myPage/MyPage";
 import SignIn from "@/pages/signInPage/SignIn";
 import RoomDetail from "@pages/roomDetailPage/RoomDetail";
 import TransferPurchase from "@/pages/transferPurchasePage/TransferPurchase";
-import TransferSale from "@/pages/transferSalePage";
+import TransferSale from "@pages/transferSalePage/TransferSale";
 import TransferWriting from "@/pages/transferWritingPage/TransferWriting";
-
 import ManageAccount from "@/pages/myPage/manage/manageAccount/ManageAccount";
 import ManageProfile from "@/pages/myPage/manage/manageProfile/ManageProfile";
 import Setting from "@/pages/myPage/setting/Setting";
@@ -32,11 +31,16 @@ import TransferWritingSuccess from "@/pages/transferWritingSuccessPage/TransferW
 import PaymentSuccess from "@pages/paymentSuccessPage/PaymentSuccess";
 import EditAccount from "@pages/myPage/manage/editAccount/EditAccount";
 import Loading from "@components/loading/Loading";
+import SaleDetail from "@pages/saleDetailPage/SaleDetail";
 
 export const router = createBrowserRouter([
   {
     path: PATH.ROOT,
-    element: <App />,
+    element: (
+      <Suspense fallback={<Loading />}>
+        <App />
+      </Suspense>
+    ),
     errorElement: <NotFound />,
     children: [
       {
@@ -61,7 +65,7 @@ export const router = createBrowserRouter([
         element: <MyPage />,
         children: [
           {
-            path: PATH.PURCHASE_LIST,
+            index: true,
             element: <TransferPurchase />,
           },
 
@@ -91,7 +95,7 @@ export const router = createBrowserRouter([
         path: PATH.WRITE_TRANSFER,
         element: (
           <LocalErrorBoundary>
-            <Suspense fallback={<div>{/* loading */}</div>}>
+            <Suspense fallback={<Loading />}>
               <TransferWriting />
             </Suspense>
           </LocalErrorBoundary>
@@ -100,7 +104,7 @@ export const router = createBrowserRouter([
       {
         path: PATH.WRITE_TRANSFER_PRICE + `/:id`,
         element: (
-          <Suspense fallback={<div>{/* loading */}</div>}>
+          <Suspense fallback={<Loading />}>
             <TransferWritingPrice />
           </Suspense>
         ),
@@ -108,16 +112,16 @@ export const router = createBrowserRouter([
       {
         path: PATH.WRITE_TRANSFER_SUCCESS,
         element: (
-          <Suspense fallback={<div>{/* loading */}</div>}>
+          <Suspense fallback={<Loading />}>
             <TransferWritingSuccess />
           </Suspense>
         ),
       },
       {
-        path: PATH.DETAIL_ROOM + "/:roomId",
+        path: PATH.DETAIL_ROOM(":productId"),
         element: (
           <LocalErrorBoundary>
-            <Suspense fallback={<div>LOADING</div>}>
+            <Suspense fallback={<Loading />}>
               <RoomDetail />
             </Suspense>
           </LocalErrorBoundary>
@@ -138,11 +142,21 @@ export const router = createBrowserRouter([
         element: <PasswordReset />,
       },
       {
-        path: PATH.PURCAHSE_DEATAIL,
+        path: PATH.PURCHASE_DEATAIL,
         element: (
           <LocalErrorBoundary>
-            <Suspense fallback={<div>LOADING</div>}>
+            <Suspense fallback={<Loading />}>
               <PurchaseDetail />
+            </Suspense>
+          </LocalErrorBoundary>
+        ),
+      },
+      {
+        path: PATH.SALE_DETAIL + "/:saleId",
+        element: (
+          <LocalErrorBoundary>
+            <Suspense fallback={<Loading />}>
+              <SaleDetail />
             </Suspense>
           </LocalErrorBoundary>
         ),
@@ -176,7 +190,7 @@ export const router = createBrowserRouter([
         element: <SearchFilter />,
       },
       {
-        path: PATH.PAYMENT,
+        path: PATH.PAYMENT(":productId"),
         element: (
           <LocalErrorBoundary>
             <Suspense fallback={<Loading />}>
@@ -186,12 +200,20 @@ export const router = createBrowserRouter([
         ),
         children: [
           {
-            path: ":productId",
-            element: <Payment />,
+            path: "",
+            element: <Payment action="default" />,
           },
           {
-            path: "success/:productId",
+            path: "success",
             element: <PaymentSuccess />,
+          },
+          {
+            path: "ready",
+            element: <Payment action="ready" />,
+          },
+          {
+            path: "cancel",
+            element: <Payment action="cancel" />,
           },
         ],
       },

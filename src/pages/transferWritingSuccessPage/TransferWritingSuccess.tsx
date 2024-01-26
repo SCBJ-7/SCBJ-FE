@@ -8,7 +8,7 @@ import { useEffect, useState } from "react";
 
 const TransferWritingSuccess = () => {
   const [content, setContent] = useState<
-    "default" | "agreememt" | "firstlyNoAccount"
+    "default" | "agreement" | "firstlyNoAccount"
   >("default");
 
   const [searchParams] = useSearchParams();
@@ -18,11 +18,12 @@ const TransferWritingSuccess = () => {
     if (firstlyNoAccount === "true") {
       setContent("firstlyNoAccount");
     }
+    // eslint-disable-next-line
   }, []);
 
   const navigate = useNavigate();
   const doneHandler = () => {
-    navigate(PATH.PURCHASE_LIST);
+    navigate(PATH.MY_PAGE);
   };
 
   return (

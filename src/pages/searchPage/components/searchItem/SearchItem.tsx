@@ -21,7 +21,7 @@ const SearchItem = ({ item }: { item: ISearchList }) => {
     return formattedDate;
   };
   const handleClickItem = () => {
-    navigate(`${PATH.DETAIL_ROOM}/${item.id}`);
+    navigate(PATH.DETAIL_ROOM(item.id));
   };
   return (
     <>

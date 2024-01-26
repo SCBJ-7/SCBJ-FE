@@ -11,7 +11,6 @@ const PurchaseDetail = () => {
   const id = searchParams.get("id");
   if (!id) throw new Error("존재하지 않는 roomId 입니다.");
   const navigate = useNavigate();
-  const indexFee = 5000;
   const { data } = useSuspenseQuery<IPurchaseData, AxiosError>({
     queryKey: ["roomasDetail", id],
     queryFn: () => fetchPurchaseDetail(id),
@@ -110,9 +109,7 @@ const PurchaseDetail = () => {
           </S.PayInfo>
           <S.StandardFlex>
             <S.TotalPrice>총 결제 금액</S.TotalPrice>
-            <S.TotalPriceInfo>
-              {(data.price - indexFee).toLocaleString()}원
-            </S.TotalPriceInfo>
+            <S.TotalPriceInfo>{data.price.toLocaleString()}원</S.TotalPriceInfo>
           </S.StandardFlex>
         </S.PayContainer>
       </S.MainSection>

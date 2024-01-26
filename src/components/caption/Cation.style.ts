@@ -18,6 +18,7 @@ export const CaptionWrapper = styled.div`
 export const WarningIcon = styled(PiWarningCircle)`
   font-size: 1rem;
   color: ${({ theme }) => theme.color.cautionRed};
+  flex-shrink: 0;
 `;
 
 type VariantProps = {

@@ -6,21 +6,21 @@ export const getEmailVerification = (scenarioProps?: string) => {
     const pageParams = new URLSearchParams(window.location.search);
     const scenario = pageParams.get("scenario");
 
-    if (scenario || scenarioProps === "error1") {
+    if (scenario || scenarioProps === "E01") {
       return HttpResponse.json(
         { message: "공백이 없어야 합니다." },
         { status: 400 },
       );
     }
 
-    if (scenario || scenarioProps === "error2") {
+    if (scenario || scenarioProps === "E02") {
       return HttpResponse.json(
         { message: "유효하지 않은 이메일입니다." },
         { status: 400 },
       );
     }
 
-    if (scenario || scenarioProps === "error3") {
+    if (scenario || scenarioProps === "E03") {
       return HttpResponse.json(
         { message: "이메일 서버가 연결되지 않습니다." },
         { status: 500 },

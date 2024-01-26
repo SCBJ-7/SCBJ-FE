@@ -1,9 +1,10 @@
 import { Outlet } from "react-router-dom";
-import Layout from "./components/layout/Layout.tsx";
-import Toast from "./components/toast/Toast.tsx";
+import Layout from "./components/layout/Layout";
+import ScrollToTop from "@components/scrollToTop/ScrollToTop";
+import Toast from "./components/toast/Toast";
 import "./firebase.ts";
 
-import { useToastStore } from "./store/store.ts";
+import { useToastStore } from "./store/store";
 import { AnimatePresence } from "framer-motion";
 
 function App() {
@@ -12,6 +13,7 @@ function App() {
 
   return (
     <Layout>
+      <ScrollToTop />
       <AnimatePresence>{toastConfig.isShow && <Toast />}</AnimatePresence>
       <Outlet />
     </Layout>
