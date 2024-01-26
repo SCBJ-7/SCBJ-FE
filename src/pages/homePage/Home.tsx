@@ -11,6 +11,7 @@ import WeekendCarousel from "./weekendCarousel/WeekendCarousel";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import TextLocaleAnimator from "./textAnimator/TextAnimator";
 import PercentAnimator from "./percentAnimator/PercentAnimator";
+import MainHeader from "./mainHeader/MainHeader";
 
 const Home = () => {
   const { data: mainData } = useSuspenseQuery({
@@ -44,6 +45,7 @@ const Home = () => {
 
   return (
     <S.Container>
+      <MainHeader />
       <TitleSection />
       <NavToSearchSection />
 
