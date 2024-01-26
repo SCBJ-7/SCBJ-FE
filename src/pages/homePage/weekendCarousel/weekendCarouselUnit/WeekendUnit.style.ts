@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
 export const LocaleWrapper = styled.div`
-  width: 70%;
   height: 343px;
 
   background-color: ${({ theme }) => theme.color.greyScale7};
@@ -18,10 +17,14 @@ export const LocaleWrapper = styled.div`
     object-fit: cover;
   }
 
-  @media screen and (max-width: 500px) {
+  @media screen and (max-width: 499px) {
+    width: 240px;
     img {
       margin-bottom: 8px;
     }
+  }
+  @media screen and (min-width: 500px) {
+    width: 450px;
   }
 `;
 
