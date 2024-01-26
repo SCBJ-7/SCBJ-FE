@@ -4,7 +4,7 @@ export const Container = styled.section`
   width: 100%;
   height: 100%;
 
-  padding: 56px 1.25rem 80px;
+  padding: 56px 0 80px;
   background-color: white;
 `;
 

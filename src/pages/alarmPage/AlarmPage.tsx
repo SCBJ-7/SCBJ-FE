@@ -20,7 +20,7 @@ const AlarmPage = () => {
   });
 
   if (isLoading) {
-    return <Loading></Loading>;
+    return <Loading />;
   }
 
   return (
@@ -28,10 +28,8 @@ const AlarmPage = () => {
       {alarmData?.map((item) =>
         item.isRead ? (
           <S.OldMessage key={item.id}>
-            <S.OldMessage>
-              <h1>{item.content}</h1>
-              <h3>{format(parseISO(item.date), "yyyy. MM. dd. HH:mm")}</h3>
-            </S.OldMessage>
+            <h1>{item.content}</h1>
+            <h3>{format(parseISO(item.date), "yyyy. MM. dd. HH:mm")}</h3>
           </S.OldMessage>
         ) : (
           <S.NewMessage key={item.id}>
@@ -43,7 +41,7 @@ const AlarmPage = () => {
           </S.NewMessage>
         ),
       )}
-      {!alarmData && (
+      {alarmData && alarmData.length === 0 && (
         <NoResult
           title="알림 내역이 없습니다."
           desc="판매가 이루어지면 알림을 확인하실수 있어요."
