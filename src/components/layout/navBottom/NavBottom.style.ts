@@ -7,22 +7,23 @@ import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 import NavIconHome from "@/assets/icons/NavHome";
 
-export const BottomNavContainer = styled.section`
+export const BottomNavContainer = styled.section<{ $isMobile: boolean }>`
   display: flex;
   position: fixed;
   bottom: 0;
   width: 100%;
   max-width: 768px;
   z-index: 1;
-  height: 60px;
+  height: ${({ $isMobile }) => ($isMobile ? "78px" : "60px")};
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
 
   background-color: white;
   box-shadow: 0 0 10px 0 rgba(5, 44, 82, 0.1);
 `;
 
 export const BottomNavWrapper = styled.div`
+  margin-top: 4px;
   max-width: 768px;
   width: 100%;
 
