@@ -12,6 +12,7 @@ import { useSuspenseQuery } from "@tanstack/react-query";
 import TextLocaleAnimator from "./textAnimator/TextAnimator";
 import PercentAnimator from "./percentAnimator/PercentAnimator";
 import MainHeader from "./mainHeader/MainHeader";
+import SequenceSection from "./sequenceSection/SequenceSection";
 
 const Home = () => {
   const { data: mainData } = useSuspenseQuery({
@@ -70,21 +71,12 @@ const Home = () => {
           draggable={true}
         />
         <div className="divider"></div>
-        <S.SequneceSection>
-          <S.SequneceIndicator>
-            {indicatorRange.map((sequence) =>
-              sequence === currentLocale[0] ? (
-                <section key={sequence}>
-                  <span className="current"></span>
-                </section>
-              ) : (
-                <section key={sequence}>
-                  <span></span>
-                </section>
-              ),
-            )}
-          </S.SequneceIndicator>
-        </S.SequneceSection>
+        <SequenceSection
+          indicatorRange={indicatorRange}
+          currentLocale={currentLocale}
+          localeAndHotel={localeAndHotel}
+          onSetSequence={setCurrentLocale}
+        />
       </S.SaleCarouselContainer>
 
       <S.WeekendCarouselContainer className="week-container">
