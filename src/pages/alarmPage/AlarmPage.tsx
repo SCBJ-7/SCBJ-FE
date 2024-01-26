@@ -5,7 +5,7 @@ import { format, parseISO } from "date-fns";
 import { fetchUserInfo } from "@apis/fetchUserInfo";
 import NoResult from "@components/noResult/NoResult";
 import { PATH } from "@constants/path";
-import Loading from "@components/loading/Loading";
+import Loading from "@/components/lottie/loading/Loading";
 
 const AlarmPage = () => {
   const { data: userData } = useSuspenseQuery({
