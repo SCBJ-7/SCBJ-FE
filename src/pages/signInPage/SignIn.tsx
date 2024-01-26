@@ -1,13 +1,12 @@
 import * as S from "./SignIn.style";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import useToastConfig from "@hooks/common/useToastConfig";
-// import { PATH } from "@constants/path";
+import { PATH } from "@constants/path";
 import { useUserInfoStore } from "@/store/store";
 import { postLogin } from "@apis/fetchLogin";
 import { getMessaging, getToken } from "firebase/messaging";
 import { app } from "@/firebase";
-import { useState } from "react";
 
 type FormValues = {
   email: string;
@@ -15,10 +14,9 @@ type FormValues = {
 };
 
 const SignIn = () => {
-  const [token, SetToken] = useState("");
-  // const navigate = useNavigate();
-  // const [searchParams] = useSearchParams();
-  // const redirectUrl = searchParams.get("redirect");
+  const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const redirectUrl = searchParams.get("redirect");
   const { handleToast } = useToastConfig();
 
   const {
@@ -41,8 +39,6 @@ const SignIn = () => {
       vapidKey: import.meta.env.VITE_FIREBASE_VAPID,
     });
 
-    SetToken(fcmToken);
-
     await postLogin({ email, password, fcmToken })
       .then((loginData) => {
         const { memberResponse, tokenResponse } = loginData;
@@ -51,12 +47,12 @@ const SignIn = () => {
         // TODO: 임시로 localStorage에서 토큰 저장히지만 더 좋은 방법 찾기~!! 토스~!!
         localStorage.setItem("accessToken", tokenResponse.accessToken);
         localStorage.setItem("refreshToken", tokenResponse.refreshToken);
-        // if (redirectUrl) {
-        //   navigate(redirectUrl, { replace: true });
-        //   return;
-        // }
+        if (redirectUrl) {
+          navigate(redirectUrl, { replace: true });
+          return;
+        }
 
-        // navigate(PATH.ROOT, { replace: true });
+        navigate(PATH.ROOT, { replace: true });
       })
       .catch(() => {
         handleToast(false, [<>아이디 혹은 비밀번호를 확인해주세요</>]);
@@ -68,7 +64,6 @@ const SignIn = () => {
       <Link to="/">
         <S.SignInLogo />
       </Link>
-      <p>{token}</p>
       <S.SignInInputContainer>
         <S.SignInInputWrapper>
           <S.SignInInputTitle>이메일</S.SignInInputTitle>
