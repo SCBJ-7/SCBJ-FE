@@ -1,8 +1,8 @@
-import PercentHotelIcon from "@assets/icons/ic_percent_hotel.png";
 import PercentHotelLogo from "@assets/logos/Percent-hotel_logo_b.png";
 import { PATH } from "@constants/path";
 import { useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import Success from "@/components/lottie/success/Success";
 
 import * as S from "./SuccessPage.style.ts";
 
@@ -22,9 +22,9 @@ const SuccessPage = () => {
         <S.PercentHotelLogo>
           <img src={PercentHotelLogo} alt="퍼센트호텔 로고" />
         </S.PercentHotelLogo>
-        <S.PercentHotelIcon>
-          <img src={PercentHotelIcon} alt="퍼센트호텔 아이콘" />
-        </S.PercentHotelIcon>
+        <S.LottieWrapper>
+          <Success />
+        </S.LottieWrapper>
         <S.Title>계정 연동 완료!</S.Title>
         <S.SubTitle>
           매진된 야놀자 상품을 퍼센트 호텔에서

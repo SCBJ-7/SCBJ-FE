@@ -1,4 +1,5 @@
 import { hexToRgba } from "@utils/hexTorgba";
+import { breakpoints } from "@styles/theme";
 import styled, { DefaultTheme } from "styled-components";
 
 export const PageContainer = styled.div`
@@ -7,11 +8,6 @@ export const PageContainer = styled.div`
 
   background-color: ${({ theme }) => theme.color.black};
 `;
-
-const breakpoints = {
-  tablet: "768px",
-  mobile: "390px",
-};
 
 export const MainWrapper = styled.div`
   display: flex;
