@@ -1,8 +1,8 @@
 import * as S from "./SignIn.style";
 import { useForm } from "react-hook-form";
-import { Link, useNavigate, useSearchParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import useToastConfig from "@hooks/common/useToastConfig";
-import { PATH } from "@constants/path";
+// import { PATH } from "@constants/path";
 import { useUserInfoStore } from "@/store/store";
 import { postLogin } from "@apis/fetchLogin";
 import { getMessaging, getToken } from "firebase/messaging";
@@ -16,9 +16,9 @@ type FormValues = {
 
 const SignIn = () => {
   const [token, SetToken] = useState("");
-  const navigate = useNavigate();
-  const [searchParams] = useSearchParams();
-  const redirectUrl = searchParams.get("redirect");
+  // const navigate = useNavigate();
+  // const [searchParams] = useSearchParams();
+  // const redirectUrl = searchParams.get("redirect");
   const { handleToast } = useToastConfig();
 
   const {
