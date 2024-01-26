@@ -42,7 +42,11 @@ export const router = createBrowserRouter([
         <App />
       </LocalErrorBoundary>
     ),
-    errorElement: <NotFound />,
+    errorElement: (
+      <Layout isHeaderOn={true} isBottomNavOn={false}>
+        <NotFound />
+      </Layout>
+    ),
     children: [
       {
         path: "",
@@ -99,6 +103,18 @@ export const router = createBrowserRouter([
             <LocalErrorBoundary>
               <Suspense fallback={<Loading />}>
                 <Search />
+              </Suspense>
+            </LocalErrorBoundary>
+          </Layout>
+        ),
+      },
+      {
+        path: PATH.SEARCH_FILTER,
+        element: (
+          <Layout isHeaderOn={true} isBottomNavOn={false}>
+            <LocalErrorBoundary>
+              <Suspense fallback={<Loading />}>
+                <SearchFilter />
               </Suspense>
             </LocalErrorBoundary>
           </Layout>
@@ -277,21 +293,11 @@ export const router = createBrowserRouter([
           <Layout isHeaderOn={false} isBottomNavOn={false}>
             <LocalErrorBoundary>
               <Suspense fallback={<Loading />}>
-                <Outlet />
+                <IntroPage />,
               </Suspense>
             </LocalErrorBoundary>
           </Layout>
         ),
-        children: [
-          {
-            index: true,
-            element: <IntroPage />,
-          },
-          {
-            path: "verify/success",
-            element: <SuccessPage />,
-          },
-        ],
       },
       {
         path: PATH.YANOLJA_ACCOUNT_VERIFICATION,
@@ -306,12 +312,12 @@ export const router = createBrowserRouter([
         ),
       },
       {
-        path: PATH.SEARCH_FILTER,
+        path: PATH.YANOLJA_ACCOUNT_VERIFICATION_SUCCESS,
         element: (
-          <Layout isHeaderOn={true} isBottomNavOn={false}>
+          <Layout isHeaderOn={false} isBottomNavOn={true}>
             <LocalErrorBoundary>
               <Suspense fallback={<Loading />}>
-                <SearchFilter />
+                <SuccessPage />
               </Suspense>
             </LocalErrorBoundary>
           </Layout>
