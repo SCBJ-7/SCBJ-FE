@@ -5,7 +5,7 @@ export const PATH = {
   SEARCH_FILTER: "/search/filter",
   CREATE_TRIP: "/trip-new",
   SALE_LIST: "/my-page/sale-list",
-  PURCAHSE_DEATAIL: "/my-page/purchase-detail",
+  PURCAHSE_DETAIL: "/my-page/purchase-detail",
   SALE_DETAIL: "/my-page/sale-detail",
   DETAIL_ROOM: (productId: string | number) => `/room/${productId}`,
   WRITE_TRANSFER: "/transfer/new",
