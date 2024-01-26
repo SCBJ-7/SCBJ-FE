@@ -7,8 +7,8 @@ export const MyPageNavContainer = styled.section`
   justify-content: center;
   position: sticky;
   top: 56px;
-  background-color: white;
   color: ${({ theme }) => theme.color.greyScale3};
+  z-index: 10;
 `;
 
 export const MyPageNavCell = styled(Link)`
@@ -17,6 +17,7 @@ export const MyPageNavCell = styled(Link)`
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: white;
   border-bottom: 1px solid ${({ theme }) => theme.color.greyScale3};
   ${({ theme }) => theme.typo.title5}
   &.active {

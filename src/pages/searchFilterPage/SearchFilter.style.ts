@@ -5,7 +5,7 @@ export const FilterContainer = styled.div`
 
   height: 100%;
   background-color: white;
-  padding: 2rem 20px 0 20px;
+  padding: 5rem 20px 0 20px;
   color: ${({ theme }) => theme.color.black};
   ${({ theme }) => theme.scroll};
 `;
