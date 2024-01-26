@@ -9,10 +9,13 @@ import { fetchUserInfo } from "@apis/fetchUserInfo.ts";
 import NoResult from "@components/noResult/NoResult";
 import { PATH } from "@constants/path";
 import useToastConfig from "@hooks/common/useToastConfig";
+import { ACCESS_TOKEN, ERROR_CODE } from "@/constants/api";
+import { ResponseError } from "@/components/error/Error";
 
 const TransferWriting = () => {
   const { handleToast } = useToastConfig();
 
+  // FIXME: 유저 정보 전역으로 관리
   const { data: userData, isLoading } = useQuery({
     queryKey: ["UserInfo"],
     queryFn: fetchUserInfo,
@@ -24,38 +27,27 @@ const TransferWriting = () => {
     enabled: !!userData?.id,
   });
 
-  const token = localStorage.getItem("accessToken");
-  console.log(userData, "userData");
+  const token = localStorage.getItem(ACCESS_TOKEN);
 
   useEffect(() => {
     if (!userData?.linkedToYanolja || !token) return;
     handleToast(false, [<>야놀자</>, "에서 예약하신 상품만 판매 가능해요."]);
-  }, [handleToast, token, userData?.linkedToYanolja]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [token, userData?.linkedToYanolja]);
 
-  if (isLoading) {
-    return;
-  }
+  if (isLoading) return;
 
   if (!token) {
-    return (
-      <NoResult
-        title="로그인이 필요한 서비스입니다"
-        desc="로그인 후 숙박권을 판매해보세요!"
-        buttonDesc="로그인 하기"
-        navigateTo={PATH.LOGIN}
-      />
+    throw new ResponseError(
+      ERROR_CODE.UNAUTHORIZED_WRITE_TRANSFER,
+      "토큰이 없습니다.",
     );
   }
 
-  if (!userData || userData?.linkedToYanolja === false) {
-    console.log(userData, "userData!");
-    return (
-      <NoResult
-        title="야놀자 예약내역 확인이 필요합니다."
-        desc="야놀자 계정 연동으로 예약내역을 불러올 수 있어요"
-        buttonDesc="계정 연동하기"
-        navigateTo={PATH.YANOLJA_ACCOUNT}
-      />
+  if (!userData || !userData.linkedToYanolja) {
+    throw new ResponseError(
+      ERROR_CODE.UNAUTHORIZED_YANOLJA,
+      "야놀자 계정 연동이 필요합니다.",
     );
   }
 
