@@ -1,8 +1,11 @@
 import { PATH } from "@/constants/path";
 import { useLocation } from "react-router-dom";
 import * as S from "./NavBottom.style";
+import { isMobile } from "@/utils/isMobile";
 
 const BottomNav = () => {
+  const isMobileDevice = isMobile();
+
   const { pathname } = useLocation();
   const navList = [
     {
@@ -32,7 +35,7 @@ const BottomNav = () => {
   ];
 
   return (
-    <S.BottomNavContainer>
+    <S.BottomNavContainer $isMobile={isMobileDevice}>
       <S.BottomNavWrapper>
         {navList.map((item) => {
           return (
