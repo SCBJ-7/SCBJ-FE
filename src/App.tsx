@@ -7,7 +7,6 @@ import { useToastStore } from "./store/store";
 import { AnimatePresence } from "framer-motion";
 
 function App() {
-  // 토스트
   const toastConfig = useToastStore((state) => state.config);
 
   return (

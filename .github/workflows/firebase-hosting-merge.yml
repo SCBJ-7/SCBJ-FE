@@ -10,8 +10,8 @@ jobs:
   build_and_deploy:
     runs-on: ubuntu-latest
     env:
-      VITE_BASE_URL: "${{secrets.VITE_APIKEY}}"
-      VITE_APIKEY: "${{secrets.VITE_AUTH_DOMAIN}}"
+      VITE_APIKEY: "${{secrets.VITE_APIKEY}}"
+      VITE_AUTH_DOMAIN: "${{secrets.VITE_AUTH_DOMAIN}}"
       VITE_PROJECT_ID: "${{secrets.VITE_PROJECT_ID}}"
       VITE_STORAGE_BUCKET: "${{secrets.VITE_STORAGE_BUCKET}}"
       VITE_MESSAGING_SENDERID: "${{secrets.VITE_MESSAGING_SENDERID}}"
