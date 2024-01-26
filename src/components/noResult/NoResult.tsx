@@ -4,7 +4,7 @@ import * as S from "./NoResult.style";
 
 interface NoResultProps {
   title: string;
-  desc: string;
+  desc: string | React.ReactNode;
   buttonDesc: string;
   navigateTo: string;
 }
