@@ -24,7 +24,7 @@ const sortProductsByCheckInDate = (
         return { ...item, remainDate };
       })
       .sort((a, b) => {
-        return b.remainDate - a.remainDate;
+        return a.remainDate - b.remainDate;
       });
   } else {
     return [];

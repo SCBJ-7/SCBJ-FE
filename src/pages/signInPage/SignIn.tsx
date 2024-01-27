@@ -41,6 +41,7 @@ const SignIn = () => {
         // TODO: 임시로 localStorage에서 토큰 저장히지만 더 좋은 방법 찾기~!! 토스~!!
         localStorage.setItem("accessToken", tokenResponse.accessToken);
         localStorage.setItem("refreshToken", tokenResponse.refreshToken);
+        if (fcmToken) localStorage.setItem("fcmToken", fcmToken);
         if (redirectUrl) {
           navigate(redirectUrl, { replace: true });
           return;
