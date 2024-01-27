@@ -18,8 +18,6 @@ const RoomDetail = () => {
 
   const isLoggedIn = useAuthStore((state) => state.isLoggedIn);
 
-  console.log(isLoggedIn);
-
   const { data } = useRoomQuery(productId, isLoggedIn);
   const { rawData, discountRate } = data;
 
