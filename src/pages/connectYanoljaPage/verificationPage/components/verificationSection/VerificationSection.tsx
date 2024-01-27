@@ -1,5 +1,5 @@
 import InputField from "@components/inputField/InputField";
-import { useValidateEmailMutation } from "@hooks/api/mutation/useValidateEmailMutation";
+import { useValidateEmailMutation } from "@/hooks/api/useValidateEmailMutation.ts";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useFormContext } from "react-hook-form";

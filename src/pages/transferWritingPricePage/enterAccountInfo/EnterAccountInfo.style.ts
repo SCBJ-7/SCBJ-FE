@@ -75,14 +75,17 @@ export const BankInput = styled.div<BankInputProps>`
 export const BackgroundBlur = styled.div<{ $isVisible: boolean }>`
   position: absolute;
   top: 0;
-  left: 0;
 
   display: ${({ $isVisible }) => ($isVisible ? "block" : "none")};
 
   width: 100%;
+  max-width: 768px;
   height: 100%;
 
   background-color: rgba(0, 0, 0, 0.45);
+
+  left: 50%;
+  transform: translateX(-50%);
 `;
 
 export const BankListBottomSheet = styled(motion.div).attrs<{
@@ -96,7 +99,7 @@ export const BankListBottomSheet = styled(motion.div).attrs<{
   bottom: 0;
 
   padding: 64px 20px 100px;
-
+  z-index: 10;
   background-color: ${({ theme }) => theme.color.greyScale7};
 
   border-radius: 28px 28px 0px 0px;

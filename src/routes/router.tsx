@@ -1,12 +1,9 @@
-import IntroPage from "@pages/connectYanoljaPage/IntroPage/IntroPage.tsx";
-import SuccessPage from "@pages/connectYanoljaPage/successPage/SuccessPage.tsx";
-import VerificationPage from "@pages/connectYanoljaPage/verificationPage/VerificationPage";
 import { Suspense } from "react";
-import { Outlet, createBrowserRouter } from "react-router-dom";
+import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
 
-import App from "@/App";
 import { PATH } from "@/constants/path";
 
+import App from "@/App";
 import Home from "@/pages/homePage/Home";
 import NotFound from "@/pages/notFoundPage";
 import Search from "@/pages/searchPage/Search";
@@ -24,35 +21,38 @@ import PasswordReset from "@/pages/passwordResetPage/PasswordReset";
 import PurchaseDetail from "@/pages/purchaseDetailPage/PurchaseDetail";
 import SearchFilter from "@/pages/searchFilterPage/SearchFilter";
 import TransferWritingPrice from "@/pages/transferWritingPricePage/TransferWritingPrice";
-import LocalErrorBoundary from "@components/errorBoundary/LocalErrorBoundary";
+import ApiErrorBoundary from "@/components/errorBoundary/ErrorBoundary";
 import Alarm from "@pages/alarmPage/AlarmPage";
 import Payment from "@pages/paymentPage/Payment";
 import TransferWritingSuccess from "@/pages/transferWritingSuccessPage/TransferWritingSuccess";
 import PaymentSuccess from "@pages/paymentSuccessPage/PaymentSuccess";
 import EditAccount from "@pages/myPage/manage/editAccount/EditAccount";
-import Loading from "@components/loading/Loading";
+import Loading from "@/components/lottie/loading/Loading";
 import SaleDetail from "@pages/saleDetailPage/SaleDetail";
 import Layout from "@components/layout/Layout";
+import IntroPage from "@pages/connectYanoljaPage/IntroPage/IntroPage.tsx";
+import SuccessPage from "@pages/connectYanoljaPage/successPage/SuccessPage.tsx";
+import VerificationPage from "@pages/connectYanoljaPage/verificationPage/VerificationPage";
 
-export const router = createBrowserRouter([
+const routes = createBrowserRouter([
   {
     path: PATH.ROOT,
-    element: (
-      <LocalErrorBoundary>
-        <Suspense fallback={<Loading />}>
-          <App />
-        </Suspense>
-      </LocalErrorBoundary>
+    element: <App />,
+    errorElement: (
+      <Layout isHeaderOn={true} isBottomNavOn={false}>
+        <NotFound />
+      </Layout>
     ),
-    errorElement: <NotFound />,
     children: [
       {
         path: "",
         element: (
           <Layout isHeaderOn={false} isBottomNavOn={true}>
-            <Suspense fallback={<Loading />}>
-              <Home />
-            </Suspense>
+            <ApiErrorBoundary>
+              <Suspense fallback={<Loading />}>
+                <Home />
+              </Suspense>
+            </ApiErrorBoundary>
           </Layout>
         ),
       },
@@ -60,7 +60,11 @@ export const router = createBrowserRouter([
         path: PATH.LOGIN,
         element: (
           <Layout isHeaderOn={false} isBottomNavOn={false}>
-            <SignIn />
+            <ApiErrorBoundary>
+              <Suspense fallback={<Loading />}>
+                <SignIn />
+              </Suspense>
+            </ApiErrorBoundary>
           </Layout>
         ),
       },
@@ -68,7 +72,11 @@ export const router = createBrowserRouter([
         path: PATH.SIGNUP,
         element: (
           <Layout isHeaderOn={true} isBottomNavOn={false}>
-            <SignUp />
+            <ApiErrorBoundary>
+              <Suspense fallback={<Loading />}>
+                <SignUp />
+              </Suspense>
+            </ApiErrorBoundary>
           </Layout>
         ),
       },
@@ -76,7 +84,11 @@ export const router = createBrowserRouter([
         path: PATH.PASSWORD_RESET,
         element: (
           <Layout isHeaderOn={true} isBottomNavOn={false}>
-            <PasswordReset />
+            <ApiErrorBoundary>
+              <Suspense fallback={<Loading />}>
+                <PasswordReset />
+              </Suspense>
+            </ApiErrorBoundary>
           </Layout>
         ),
       },
@@ -84,9 +96,23 @@ export const router = createBrowserRouter([
         path: PATH.SEARCHLIST,
         element: (
           <Layout isHeaderOn={false} isBottomNavOn={true}>
-            <Suspense fallback={<Loading />}>
-              <Search />
-            </Suspense>
+            <ApiErrorBoundary>
+              <Suspense fallback={<Loading />}>
+                <Search />
+              </Suspense>
+            </ApiErrorBoundary>
+          </Layout>
+        ),
+      },
+      {
+        path: PATH.SEARCH_FILTER,
+        element: (
+          <Layout isHeaderOn={true} isBottomNavOn={false}>
+            <ApiErrorBoundary>
+              <Suspense fallback={<Loading />}>
+                <SearchFilter />
+              </Suspense>
+            </ApiErrorBoundary>
           </Layout>
         ),
       },
@@ -94,9 +120,11 @@ export const router = createBrowserRouter([
         path: PATH.WRITE_TRANSFER,
         element: (
           <Layout isHeaderOn={true} isBottomNavOn={true}>
-            <Suspense fallback={<Loading />}>
-              <TransferWriting />
-            </Suspense>
+            <ApiErrorBoundary>
+              <Suspense fallback={<Loading />}>
+                <TransferWriting />
+              </Suspense>
+            </ApiErrorBoundary>
           </Layout>
         ),
       },
@@ -104,9 +132,11 @@ export const router = createBrowserRouter([
         path: PATH.WRITE_TRANSFER,
         element: (
           <Layout isHeaderOn={true} isBottomNavOn={true}>
-            <Suspense fallback={<Loading />}>
-              <TransferWriting />
-            </Suspense>
+            <ApiErrorBoundary>
+              <Suspense fallback={<Loading />}>
+                <TransferWriting />
+              </Suspense>
+            </ApiErrorBoundary>
           </Layout>
         ),
       },
@@ -114,9 +144,11 @@ export const router = createBrowserRouter([
         path: PATH.WRITE_TRANSFER_PRICE + `/:id`,
         element: (
           <Layout isHeaderOn={false} isBottomNavOn={true}>
-            <Suspense fallback={<Loading />}>
-              <TransferWritingPrice />
-            </Suspense>
+            <ApiErrorBoundary>
+              <Suspense fallback={<Loading />}>
+                <TransferWritingPrice />
+              </Suspense>
+            </ApiErrorBoundary>
           </Layout>
         ),
       },
@@ -124,9 +156,11 @@ export const router = createBrowserRouter([
         path: PATH.WRITE_TRANSFER_SUCCESS,
         element: (
           <Layout isHeaderOn={true} isBottomNavOn={true}>
-            <Suspense fallback={<Loading />}>
-              <TransferWritingSuccess />
-            </Suspense>
+            <ApiErrorBoundary>
+              <Suspense fallback={<Loading />}>
+                <TransferWritingSuccess />
+              </Suspense>
+            </ApiErrorBoundary>
           </Layout>
         ),
       },
@@ -134,7 +168,11 @@ export const router = createBrowserRouter([
         path: PATH.MY_PAGE,
         element: (
           <Layout isHeaderOn={true} isBottomNavOn={true}>
-            <MyPage />
+            <ApiErrorBoundary>
+              <Suspense fallback={<Loading />}>
+                <MyPage />
+              </Suspense>
+            </ApiErrorBoundary>
           </Layout>
         ),
         children: [
@@ -153,7 +191,11 @@ export const router = createBrowserRouter([
         path: PATH.SETTING,
         element: (
           <Layout isHeaderOn={true} isBottomNavOn={true}>
-            <Setting />
+            <ApiErrorBoundary>
+              <Suspense fallback={<Loading />}>
+                <Setting />
+              </Suspense>
+            </ApiErrorBoundary>
           </Layout>
         ),
       },
@@ -161,7 +203,11 @@ export const router = createBrowserRouter([
         path: PATH.MANAGE_PROFILE,
         element: (
           <Layout isHeaderOn={true} isBottomNavOn={true}>
-            <ManageProfile />
+            <ApiErrorBoundary>
+              <Suspense fallback={<Loading />}>
+                <ManageProfile />
+              </Suspense>
+            </ApiErrorBoundary>
           </Layout>
         ),
       },
@@ -169,7 +215,11 @@ export const router = createBrowserRouter([
         path: PATH.MANAGE_ACCOUNT,
         element: (
           <Layout isHeaderOn={true} isBottomNavOn={true}>
-            <ManageAccount />
+            <ApiErrorBoundary>
+              <Suspense fallback={<Loading />}>
+                <ManageAccount />
+              </Suspense>
+            </ApiErrorBoundary>
           </Layout>
         ),
       },
@@ -177,7 +227,11 @@ export const router = createBrowserRouter([
         path: PATH.ACCOUNT_EDIT,
         element: (
           <Layout isHeaderOn={true} isBottomNavOn={true}>
-            <EditAccount />
+            <ApiErrorBoundary>
+              <Suspense fallback={<Loading />}>
+                <EditAccount />
+              </Suspense>
+            </ApiErrorBoundary>
           </Layout>
         ),
       },
@@ -185,9 +239,11 @@ export const router = createBrowserRouter([
         path: PATH.DETAIL_ROOM(":productId"),
         element: (
           <Layout isHeaderOn={false} isBottomNavOn={false}>
-            <Suspense fallback={<Loading />}>
-              <RoomDetail />
-            </Suspense>
+            <ApiErrorBoundary>
+              <Suspense fallback={<Loading />}>
+                <RoomDetail />
+              </Suspense>
+            </ApiErrorBoundary>
           </Layout>
         ),
       },
@@ -195,9 +251,11 @@ export const router = createBrowserRouter([
         path: PATH.ALARM,
         element: (
           <Layout isHeaderOn={true} isBottomNavOn={true}>
-            <Suspense fallback={<Loading />}>
-              <Alarm />
-            </Suspense>
+            <ApiErrorBoundary>
+              <Suspense fallback={<Loading />}>
+                <Alarm />
+              </Suspense>
+            </ApiErrorBoundary>
           </Layout>
         ),
       },
@@ -205,9 +263,11 @@ export const router = createBrowserRouter([
         path: PATH.PURCAHSE_DETAIL,
         element: (
           <Layout isHeaderOn={true} isBottomNavOn={true}>
-            <Suspense fallback={<Loading />}>
-              <PurchaseDetail />
-            </Suspense>
+            <ApiErrorBoundary>
+              <Suspense fallback={<Loading />}>
+                <PurchaseDetail />
+              </Suspense>
+            </ApiErrorBoundary>
           </Layout>
         ),
       },
@@ -215,9 +275,11 @@ export const router = createBrowserRouter([
         path: PATH.SALE_DETAIL + "/:saleId",
         element: (
           <Layout isHeaderOn={true} isBottomNavOn={true}>
-            <Suspense fallback={<Loading />}>
-              <SaleDetail />
-            </Suspense>
+            <ApiErrorBoundary>
+              <Suspense fallback={<Loading />}>
+                <SaleDetail />
+              </Suspense>
+            </ApiErrorBoundary>
           </Layout>
         ),
       },
@@ -225,35 +287,35 @@ export const router = createBrowserRouter([
         path: PATH.YANOLJA_ACCOUNT,
         element: (
           <Layout isHeaderOn={false} isBottomNavOn={false}>
-            <Suspense fallback={<Loading />}>
-              <Outlet />
-            </Suspense>
+            <ApiErrorBoundary>
+              <Suspense fallback={<Loading />}>
+                <IntroPage />,
+              </Suspense>
+            </ApiErrorBoundary>
           </Layout>
         ),
-        children: [
-          {
-            index: true,
-            element: <IntroPage />,
-          },
-          {
-            path: "verify/success",
-            element: <SuccessPage />,
-          },
-        ],
       },
       {
         path: PATH.YANOLJA_ACCOUNT_VERIFICATION,
         element: (
           <Layout isHeaderOn={true} isBottomNavOn={false}>
-            <VerificationPage />
+            <ApiErrorBoundary>
+              <Suspense fallback={<Loading />}>
+                <VerificationPage />
+              </Suspense>
+            </ApiErrorBoundary>
           </Layout>
         ),
       },
       {
-        path: PATH.SEARCH_FILTER,
+        path: PATH.YANOLJA_ACCOUNT_VERIFICATION_SUCCESS,
         element: (
-          <Layout isHeaderOn={true} isBottomNavOn={false}>
-            <SearchFilter />
+          <Layout isHeaderOn={false} isBottomNavOn={true}>
+            <ApiErrorBoundary>
+              <Suspense fallback={<Loading />}>
+                <SuccessPage />
+              </Suspense>
+            </ApiErrorBoundary>
           </Layout>
         ),
       },
@@ -261,9 +323,11 @@ export const router = createBrowserRouter([
         path: PATH.PAYMENT(":productId"),
         element: (
           <Layout isHeaderOn={true} isBottomNavOn={false}>
-            <Suspense fallback={<Loading />}>
-              <Outlet />
-            </Suspense>
+            <ApiErrorBoundary>
+              <Suspense fallback={<Loading />}>
+                <Outlet />
+              </Suspense>
+            </ApiErrorBoundary>
           </Layout>
         ),
         children: [
@@ -288,3 +352,9 @@ export const router = createBrowserRouter([
     ],
   },
 ]);
+
+const AppRouter = () => {
+  return <RouterProvider router={routes} />;
+};
+
+export default AppRouter;

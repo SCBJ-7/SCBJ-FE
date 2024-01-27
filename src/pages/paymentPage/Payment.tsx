@@ -7,7 +7,7 @@ import {
   usePaymentCancelQuery,
   usePaymentQuery,
   usePaymentSuccessQuery,
-} from "@hooks/api/query/usePaymentQuery";
+} from "@/hooks/api/usePaymentQuery";
 import { useNavigate, useParams } from "react-router-dom";
 import PaymentButton from "./components/paymentButton/PaymentButton";
 import { useLocation } from "react-router-dom";
@@ -17,6 +17,8 @@ import Modal from "@components/modal/Modal";
 import { useEffect, useState } from "react";
 import { isAxiosError } from "axios";
 import { paymentCaptions } from "@constants/caption";
+import { ERROR_CODE } from "@/constants/api";
+import { PATH } from "@/constants/path";
 
 interface PaymentProps {
   action: "default" | "cancel" | "ready";
@@ -52,21 +54,6 @@ const Payment = ({ action }: PaymentProps) => {
   useEffect(() => {
     if (action === "ready") {
       paymentSuccessQuery();
-
-      if (isSuccess) {
-        navigate(`/payment/${successData.paymentHistoryId}/success`);
-      }
-
-      if (isError && isAxiosError(error)) {
-        if (error.response?.status === 409) {
-          setErrorMessage("이미 판매완료된 상품입니다.");
-        } else {
-          setErrorMessage(
-            error.response?.data.message || "오류가 발생했습니다.",
-          );
-        }
-        setIsModalOpen(true);
-      }
     }
 
     if (action === "cancel") {
@@ -76,7 +63,25 @@ const Payment = ({ action }: PaymentProps) => {
     }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [action, error, isError, isSuccess]);
+  }, [action]);
+
+  useEffect(() => {
+    if (isSuccess) {
+      navigate(PATH.PAYMENT_SUCCESS(successData.paymentHistoryId), {
+        replace: true,
+      });
+    }
+
+    if (isError && isAxiosError(error)) {
+      if (error.response?.status === ERROR_CODE.NULL_STOCK) {
+        setErrorMessage("이미 판매완료된 상품입니다.");
+      } else {
+        setErrorMessage(error.response?.data.message || "오류가 발생했습니다.");
+      }
+      setIsModalOpen(true);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isSuccess, isError]);
 
   const closeModal = () => {
     setIsModalOpen(false);

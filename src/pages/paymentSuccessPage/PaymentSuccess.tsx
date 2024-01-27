@@ -1,5 +1,6 @@
 import { useParams } from "react-router-dom";
-import { usePurchaseDetailQuery } from "@hooks/api/query/usePurchaseQuery";
+import { usePurchaseDetailQuery } from "@/hooks/api/usePurchaseQuery";
+import { formatDateString } from "@utils/dateFormatter";
 
 import PaymentSuccessInfo from "@pages/paymentSuccessPage/components/PaymentSuccessInfo/PaymentSuccessInfo";
 import PaymentSuccessButton from "@pages/paymentSuccessPage/components/PaymentSuccessButton/PaymentSuccessButton";
@@ -19,7 +20,7 @@ const PaymentSuccess = () => {
       <S.HeaderWrapper>
         <S.TitleText variant="title3">구매 완료되었습니다.</S.TitleText>
         <S.SubtitleText variant="body3" color="greyScale2">
-          구매일시 {data.paymentHistoryDate}
+          구매일시 {formatDateString(data.paymentHistoryDate)}
         </S.SubtitleText>
         <S.SubtitleText variant="body3">
           예약번호 {data.paymentHistoryId}

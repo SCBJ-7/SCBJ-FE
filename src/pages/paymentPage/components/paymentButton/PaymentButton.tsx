@@ -1,5 +1,5 @@
 import { useFormContext } from "react-hook-form";
-import { usePaymentMutation } from "@hooks/api/mutation/usePaymentMutation";
+import { usePaymentMutation } from "@/hooks/api/usePaymentMutation";
 
 import * as S from "./PaymentButton.style";
 

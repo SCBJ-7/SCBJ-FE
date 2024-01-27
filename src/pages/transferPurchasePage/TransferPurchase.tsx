@@ -6,7 +6,7 @@ import { useQuery } from "@tanstack/react-query";
 import { fetchPurchaseList } from "@/apis/fetchPurchaseList";
 import PurchaseItem from "./components/puchaseItem/PuchaseItem";
 import { IPurchaseList } from "@/types/purchaseList";
-import Loading from "@components/loading/Loading";
+import Loading from "@/components/lottie/loading/Loading";
 
 export interface IPurchaseItemWithRemainDate extends IPurchaseList {
   remainDate: number;

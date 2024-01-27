@@ -10,10 +10,10 @@ interface RoomQueryData {
   discountRate: string;
 }
 
-export const useRoomQuery = (roomId: string) => {
+export const useRoomQuery = (roomId: string, isLoggedIn: boolean) => {
   return useSuspenseQuery<RoomData, AxiosError, RoomQueryData>({
     queryKey: ["room", roomId],
-    queryFn: () => getRoom(roomId),
+    queryFn: () => getRoom(roomId, isLoggedIn),
     select: (data) => {
       const discountRate = calculateDiscount(
         data.originalPrice,

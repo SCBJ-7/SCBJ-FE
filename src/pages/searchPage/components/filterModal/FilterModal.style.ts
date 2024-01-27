@@ -12,7 +12,7 @@ export const ModalContainer = styled.div`
   height: 100%;
   background-color: rgba(0, 0, 0, 0.4);
 
-  z-index: 100;
+  z-index: 11;
 `;
 
 export const ModalContent = styled.div`

@@ -6,6 +6,7 @@ export const Wrapper = styled.section`
   width: 100%;
   max-width: 768px;
   height: 60px;
+
   padding: 1.2rem 1.25rem;
   position: fixed;
   bottom: 0;
@@ -17,6 +18,8 @@ export const Wrapper = styled.section`
   box-shadow: 0 0 0.4rem rgba(5, 44, 82, 0.1);
   -webkit-clip-path: inset(-0.4rem 0 0 0);
   clip-path: inset(-0.4rem 0 0 0);
+
+  z-index: 10;
 `;
 
 export const Flex = styled.div`

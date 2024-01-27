@@ -1,18 +1,6 @@
 import { hexToRgba } from "@utils/hexTorgba";
 import styled, { DefaultTheme } from "styled-components";
-
-export const Container = styled.div`
-  width: 100%;
-  height: 100%;
-  background-color: white;
-
-  padding-bottom: 92px;
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-`;
+import { breakpoints } from "@styles/theme";
 
 export const PageContainer = styled.div`
   width: 100%;
@@ -20,11 +8,6 @@ export const PageContainer = styled.div`
 
   background-color: ${({ theme }) => theme.color.white};
 `;
-
-const breakpoints = {
-  tablet: "768px",
-  mobile: "390px",
-};
 
 export const MainWrapper = styled.div`
   display: flex;
@@ -35,10 +18,14 @@ export const MainWrapper = styled.div`
   height: 80%;
   gap: 2rem;
 
-  padding-top: 20%;
+  padding-top: 218px;
+
+  @media (max-width: ${breakpoints.tablet}) {
+    padding-top: 120px;
+  }
 
   @media (max-width: ${breakpoints.mobile}) {
-    padding-top: 30%;
+    padding-top: 120px;
   }
 `;
 
@@ -58,19 +45,15 @@ export const PercentHotelLogo = styled.div`
   }
 `;
 
-export const PercentHotelIcon = styled.div`
-  width: 80px;
-
-  & > img {
-    width: 100%;
-  }
+export const LottieWrapper = styled.div`
+  width: 90px;
 
   @media (max-width: ${breakpoints.tablet}) {
-    width: 70px;
+    width: 80px;
   }
 
   @media (max-width: ${breakpoints.mobile}) {
-    width: 60px;
+    width: 70px;
   }
 `;
 
@@ -93,7 +76,7 @@ export const Title = styled.p`
 
 export const SubTitle = styled.p`
   ${({ theme }) => theme.typo.body4};
-  color: ${({ theme }) => theme.color.black};
+  color: ${({ theme }) => theme.color.greyScale2};
   line-height: 1.5;
   text-align: center;
 `;

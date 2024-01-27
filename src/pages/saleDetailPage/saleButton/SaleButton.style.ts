@@ -3,13 +3,16 @@ import styled, { css } from "styled-components";
 export const dimmedStyle = css`
   position: fixed;
   top: 0;
-  left: 0;
-  z-index: 200;
+  z-index: 10;
 
   width: 100%;
+  max-width: 768px;
   height: 100%;
 
   background-color: rgba(0, 0, 0, 0.45);
+
+  left: 50%;
+  transform: translateX(-50%);
 `;
 
 export const DimmedBackground = styled.div`
