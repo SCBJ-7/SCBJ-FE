@@ -1,5 +1,6 @@
 import { useParams, useSearchParams } from "react-router-dom";
 import * as S from "./SaleDetail.style";
+import { parse, sub, format } from "date-fns";
 // import { useSaleDetailQuery } from "@hooks/api/query/useSaleDetailQuery";
 import Card from "@components/card/Card";
 import CardItem from "@components/cardItem/CardItem";
@@ -35,13 +36,38 @@ const SaleDetail = () => {
   useEffect(() => {
     fetch();
   }, []);
-  //
+  const formattedDate = (day: Date) => {
+    return format(day, "yy.MM.dd (EEE) HH:mm");
+  };
+  const calculateRemainingTime = (date: string) => {
+    const parsedDate = parse(date, "yy.MM.dd (EEE) HH:mm", new Date());
 
+    // 현재 날짜에서 1일을 빼서 전날로 이동하고, 시간을 자정으로 설정
+    const previousMidnight = sub(parsedDate, {
+      days: 1,
+      hours: parsedDate.getHours(),
+      minutes: parsedDate.getMinutes(),
+    });
+    const currentTime = new Date();
+
+    // previousMidnight와 currentTime의 차이를 밀리초로 계산
+    const timeDifference = previousMidnight.getTime() - currentTime.getTime();
+
+    // 밀리초를 시간으로 변환
+    const hoursDifference = Math.floor(timeDifference / (1000 * 60 * 60));
+
+    return hoursDifference;
+  };
+  console.log("data.leftHour", data?.checkIn);
   const StatusText = () => {
     if (!data) return;
 
     if (data.saleStatus === "판매중")
-      return <span>판매종료까지 {data.leftHour}시간 남았어요!</span>;
+      return (
+        <span>
+          판매종료까지 {calculateRemainingTime(data.checkIn)}시간 남았어요!
+        </span>
+      );
     if (data.saleStatus === "판매만료")
       return <span>체크인 시간이 지나 판매 종료된 상품입니다</span>;
     if (data.saleStatus === "정산완료")
@@ -107,7 +133,9 @@ const SaleDetail = () => {
             <S.PurchasedWrapper>
               <S.CardWrapper>
                 <S.SecondStartDate>
-                  {data.secondPrice.secondPriceStartDate + "부터 2차 판매 시작"}
+                  {formattedDate(
+                    new Date(data.secondPrice.secondPriceStartDate),
+                  ) + "부터 2차 판매 시작"}
                 </S.SecondStartDate>
                 <Card title="2차 판매 정산 정보">
                   <CardItem

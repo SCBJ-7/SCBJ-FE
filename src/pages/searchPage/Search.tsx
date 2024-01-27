@@ -109,11 +109,10 @@ const Search = () => {
         <S.SearchItemFlex>
           {data &&
             data.pages?.length > 0 &&
-            data.pages.map(
-              (page) =>
-                page?.content.map((item: ISearchList) => (
-                  <SearchItem key={item.id} item={item} />
-                )),
+            data.pages.map((page) =>
+              page?.content.map((item: ISearchList) => (
+                <SearchItem key={item.id} item={item} />
+              )),
             )}
         </S.SearchItemFlex>
 

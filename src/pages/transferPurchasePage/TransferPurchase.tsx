@@ -40,11 +40,12 @@ const TransferPurchase = () => {
     queryFn: fetchPurchaseList,
   });
 
-  const sortedPurchaseItems = sortProductsByCheckInDate(purchaseData?.products);
+  const sortedPurchaseItems = sortProductsByCheckInDate(purchaseData);
 
   // Filter items based on status and remainDate
   const filteredPurchaseItems = sortedPurchaseItems.filter((item) => {
     if (status === "yet") {
+      console.log("bb", item.remainDate);
       return item.remainDate >= 0;
     } else if (status === "done") {
       return item.remainDate < 0;
@@ -52,7 +53,6 @@ const TransferPurchase = () => {
       return true;
     }
   });
-  console.log(sortedPurchaseItems);
   if (isLoading) {
     return <Loading />;
   }
