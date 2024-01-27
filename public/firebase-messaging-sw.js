@@ -16,9 +16,21 @@ self.importScripts(
   "https://www.gstatic.com/firebasejs/9.2.0/firebase-messaging-compat.js",
 );
 
+var firebaseConfig = {
+  apiKey: "AIzaSyAc4XrxZs2G1EVp-NbpCh5rw9rVgnUG284",
+  authDomain: "scbj-af2e3.firebaseapp.com",
+  projectId: "scbj-af2e3",
+  storageBucket: "scbj-af2e3.appspot.com",
+  messagingSenderId: "177564796245",
+  appId: "1:177564796245:web:6b27b878cbc2ccacf39bdc",
+  measurementId: "G-1YD7ZEM9HM",
+};
+
+firebase.initializeApp(firebaseConfig);
+
 // // Retrieve an instance of Firebase Messaging so that it can handle background
 // // messages.
-// const messaging = firebase.messaging();
+const messaging = firebase.messaging();
 
 self.addEventListener("install", function () {
   console.log("fcm sw install..");
@@ -33,13 +45,14 @@ self.addEventListener("push", function (e) {
   console.log("push: ", e.data.json());
   if (!e.data.json()) return;
 
-  const resultData = e.data.json().notification;
+  console.log("디버깅용", e.data.json().notification);
+
+  const resultData = e.data.json().data;
   const notificationTitle = resultData.title;
   const notificationOptions = {
-    body: resultData.body,
+    body: resultData.message,
     icon: resultData.image,
     tag: resultData.tag,
-    ...resultData,
   };
   console.log("push: ", { resultData, notificationTitle, notificationOptions });
 
@@ -53,17 +66,14 @@ self.addEventListener("notificationclick", function (event) {
   event.waitUntil(self.clients.openWindow(url));
 });
 
-// messaging.onBackgroundMessage(function (payload) {
-//   console.log(
-//     "[firebase-messaging-sw.js] Received background message ",
-//     payload,
-//   );
-//   // Customize notification here
-//   const notificationTitle = "Background Message Title";
-//   const notificationOptions = {
-//     body: "Background Message body.",
-//     icon: "/firebase-logo.png",
-//   };
+messaging.onBackgroundMessage(function (payload) {
+  console.log("Received background message", payload);
+  // Customize notification here
+  const notificationTitle = payload.notification.title;
+  const notificationOptions = {
+    body: payload.notification.body,
+    icon: "/icon-192.png",
+  };
 
-//   self.registration.showNotification(notificationTitle, notificationOptions);
-// });
+  self.registration.showNotification(notificationTitle, notificationOptions);
+});

@@ -140,6 +140,5 @@ export const DismissButton = styled(Button)`
 
   &:hover {
     background-color: ${({ theme }) => theme.color.greyScale7};
-    border-radius: 50%;
   }
 `;
