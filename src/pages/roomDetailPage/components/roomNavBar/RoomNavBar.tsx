@@ -19,16 +19,9 @@ interface RoomNavBarProps {
 const RoomNavBar = ({ room, roomId, discount }: RoomNavBarProps) => {
   const navigate = useNavigate();
   const [error, setError] = useState<unknown>(null);
-  const setIsLoggedIn = useAuthStore((state) => state.setIsLoggedIn);
   const isLoggedIn = useAuthStore((state) => state.isLoggedIn);
   const { handleToast } = useToastConfig();
   const { refetch } = useStockQuery(roomId);
-
-  useLayoutEffect(() => {
-    if (localStorage.getItem(ACCESS_TOKEN)) {
-      setIsLoggedIn(true);
-    }
-  }, [setIsLoggedIn]);
 
   const checkLoggedIn = () => {
     if (!isLoggedIn) {
