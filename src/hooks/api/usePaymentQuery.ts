@@ -11,6 +11,10 @@ export const usePaymentQuery = (productId: string) => {
   const paymentQuery = useSuspenseQuery<PaymentData>({
     queryKey: ["payment", productId],
     queryFn: async () => await getPayment(productId),
+    staleTime: 5 * 60 * 1000,
+    gcTime: 60 * 1000,
+    refetchOnWindowFocus: true,
+    refetchOnReconnect: true,
   });
 
   return paymentQuery;
@@ -28,7 +32,10 @@ export const usePaymentSuccessQuery = ({
   const paymentSuccessQuery = useQuery({
     queryKey: ["payment"],
     queryFn: async () => await getPaymentSuccess({ paymentType, pgToken }),
-    enabled: false,
+    enabled: !!pgToken,
+    refetchOnWindowFocus: false,
+    refetchOnReconnect: false,
+    refetchInterval: false,
   });
 
   return paymentSuccessQuery;
