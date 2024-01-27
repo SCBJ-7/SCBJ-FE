@@ -1,5 +1,5 @@
 import { useQueryErrorResetBoundary } from "@tanstack/react-query";
-import { ComponentType, ReactNode, useEffect } from "react";
+import { ComponentType, ReactNode } from "react";
 import { ErrorBoundary, FallbackProps } from "react-error-boundary";
 import ErrorFallback from "./ErrorFallback";
 import { useLocation } from "react-router-dom";
