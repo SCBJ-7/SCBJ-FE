@@ -65,10 +65,23 @@ const TransferWritingPrice = () => {
   const [firstlyNoAccount] = useState(userData?.accountNumber ? false : true);
 
   useEffect(() => {
+    setBank(userData?.bank ?? null);
+    setAccountNumber(userData?.accountNumber ?? null);
+  }, [userData]);
+
+  useEffect(() => {
     setReadyToSubmit(() => {
-      if (firstPrice && opt1 && opt2 && opt3 && optFinal) {
+      if (
+        firstPrice &&
+        opt1 &&
+        opt2 &&
+        opt3 &&
+        optFinal &&
+        bank &&
+        accountNumber
+      ) {
         // accountNumber 추가
-        if (!is2ndChecked) return true; // 2차 가격 설정하기 체크 안 한 경우
+        if (!is2ndChecked) return true; // 2차 가격 설정하기 체크 안 하고 계좌 등록된 경우
 
         if (is2ndChecked && secondPrice && downTimeAfter) {
           return true; // 2차 가격 설정한 경우
@@ -95,6 +108,8 @@ const TransferWritingPrice = () => {
     secondPrice,
     downTimeAfter,
     userData,
+    bank,
+    accountNumber,
   ]);
 
   // 페이지 전환 시 적용할 효과
@@ -283,11 +298,14 @@ const TransferWritingPrice = () => {
             onSetAccount={setAccountSetting}
           />
           <AgreementSection
+            opt1={opt1}
+            opt2={opt2}
+            opt3={opt3}
+            optFinal={optFinal}
             setOpt1={setOpt1}
             setOpt2={setOpt2}
             setOpt3={setOpt3}
             setOptFinal={setOptFinal}
-            optFinal={optFinal}
           />
           <S.ButtonSection $readyToSubmit={readyToSubmit}>
             <button onClick={submitHandler}>판매 게시물 올리기</button>
