@@ -7,7 +7,7 @@ import SearchItem from "./components/searchItem/SearchItem";
 import { useSearchFilterInfoStore } from "@store/store";
 import { fetchSearchList } from "@apis/fetchSeachList";
 import { useInfiniteQuery } from "@tanstack/react-query";
-import UseIntersectionObserver from "@hooks/useIntersectionObserver";
+import UseIntersectionObserver from "@/hooks/common/useIntersectionObserver";
 import Loading from "@/components/lottie/loading/Loading";
 
 const Search = () => {

@@ -4,11 +4,14 @@ import { useNavigate } from "react-router-dom";
 import { PATH } from "@constants/path";
 import { logout } from "@apis/logout";
 import useToastConfig from "@hooks/common/useToastConfig";
+import useAuthStore from "@/store/authStore";
 
 const Info = () => {
   const navigate = useNavigate();
   const { handleToast } = useToastConfig();
   const [showLogoutModal, setShowLogoutModal] = useState<boolean>(false);
+  const setIsLoggedIn = useAuthStore((state) => state.setIsLoggedIn);
+
   const infoList = [
     { name: "문의하기", handler: () => alert("문의하기") },
     { name: "로그아웃", handler: () => setShowLogoutModal(true) },
@@ -22,7 +25,7 @@ const Info = () => {
     try {
       await logout();
       localStorage.clear();
-      handleToast(false, ["로그아웃 성공"]);
+      setIsLoggedIn(false);
       navigate(PATH.ROOT);
     } catch (err) {
       handleToast(true, [<>로그아웃 실패. 잠시 후 다시 시도해 주세요</>]);

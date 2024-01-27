@@ -7,7 +7,7 @@ import {
   usePaymentCancelQuery,
   usePaymentQuery,
   usePaymentSuccessQuery,
-} from "@hooks/api/query/usePaymentQuery";
+} from "@/hooks/api/usePaymentQuery";
 import { useNavigate, useParams } from "react-router-dom";
 import PaymentButton from "./components/paymentButton/PaymentButton";
 import { useLocation } from "react-router-dom";
@@ -17,6 +17,7 @@ import Modal from "@components/modal/Modal";
 import { useEffect, useState } from "react";
 import { isAxiosError } from "axios";
 import { paymentCaptions } from "@constants/caption";
+import { ERROR_CODE } from "@/constants/api";
 
 interface PaymentProps {
   action: "default" | "cancel" | "ready";
@@ -58,7 +59,7 @@ const Payment = ({ action }: PaymentProps) => {
       }
 
       if (isError && isAxiosError(error)) {
-        if (error.response?.status === 409) {
+        if (error.response?.status === ERROR_CODE.NULL_STOCK) {
           setErrorMessage("이미 판매완료된 상품입니다.");
         } else {
           setErrorMessage(

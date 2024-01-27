@@ -4,7 +4,8 @@ import { PATH } from "@constants/path";
 import useToastConfig from "@hooks/common/useToastConfig";
 
 import * as S from "./RoomNavBar.style";
-import { useStockQuery } from "@hooks/api/useStockQuery";
+import { useStockQuery } from "@/hooks/api/useStockQuery";
+import useAuthStore from "@/store/authStore";
 
 interface RoomNavBarProps {
   room: RoomNavBarData;
@@ -14,10 +15,13 @@ interface RoomNavBarProps {
 
 const RoomNavBar = ({ room, roomId, discount }: RoomNavBarProps) => {
   const navigate = useNavigate();
+  const isLoggedIn = useAuthStore((state) => state.isLoggedIn);
   const { handleToast } = useToastConfig();
   const { refetch } = useStockQuery(roomId);
 
   const handlePurchaseClick = async () => {
+    if (!isLoggedIn) return;
+
     if (room.isSeller) {
       handleToast(true, [<>내가 판매하는 상품은 구매가 불가합니다</>]);
       return;
@@ -26,6 +30,7 @@ const RoomNavBar = ({ room, roomId, discount }: RoomNavBarProps) => {
     }
 
     const stockData = await refetch();
+
     if (stockData?.data?.hasStock) {
       navigate(PATH.PAYMENT(roomId));
     } else {

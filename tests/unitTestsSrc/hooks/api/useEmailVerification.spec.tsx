@@ -1,4 +1,4 @@
-import { useValidateEmailMutation } from "@hooks/api/mutation/useValidateEmailMutation";
+import { useValidateEmailMutation } from "@/hooks/api/useValidateEmailMutation";
 import { getEmailVerification } from "@mocks/handlers/email";
 import { server } from "@mocks/server";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
