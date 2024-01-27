@@ -1,9 +1,9 @@
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { PATH } from "@constants/path";
 import * as S from "./AccountBottomSheet.style";
 import { useEffect, useRef, useState } from "react";
-import { postAccount } from "@apis/postAccount";
 import { useMutation } from "@tanstack/react-query";
+import { patchAccount } from "@/apis/patchAccount";
 
 interface BottomSheetProps {
   content: string;
@@ -23,8 +23,10 @@ const AccountBottomSheet = ({ content, onSetContent }: BottomSheetProps) => {
   const ageRef = useRef(null);
   const privacyRef = useRef(null);
 
-  const accountNumber = localStorage.getItem("newAccount");
-  const bank = localStorage.getItem("newBank");
+  const { state } = useLocation();
+  const { bank, accountNumber } = state;
+  console.log(bank, accountNumber, "bank account");
+
   if (!accountNumber || !bank) {
     onSetContent("default");
   }
@@ -63,18 +65,12 @@ const AccountBottomSheet = ({ content, onSetContent }: BottomSheetProps) => {
 
   const { mutate } = useMutation({
     mutationFn: () =>
-      postAccount({
-        bank: bank as string,
-        accountNumber: accountNumber as string,
+      patchAccount({
+        bank,
+        accountNumber,
       }),
     onSuccess: () => {
-      try {
-        localStorage.removeItem("newAccount");
-        localStorage.removeItem("newBank");
-        navigate(PATH.MY_PAGE);
-      } catch {
-        navigate(PATH.MY_PAGE);
-      }
+      navigate(PATH.MY_PAGE);
     },
   });
 

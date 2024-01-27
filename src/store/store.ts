@@ -99,7 +99,7 @@ export const useUserInfoStore = create<UserState>((set) => ({
 //     })),
 // }));
 
-type configType = {
+export type configType = {
   isShow: boolean;
   isError: boolean;
   strings: (string | ReactNode)[];
