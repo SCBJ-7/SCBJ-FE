@@ -41,13 +41,12 @@ const TransferPurchase = () => {
   });
 
   const sortedPurchaseItems = sortProductsByCheckInDate(purchaseData);
-
-  // Filter items based on status and remainDate
+  console.log("item", sortedPurchaseItems);
   const filteredPurchaseItems = sortedPurchaseItems.filter((item) => {
     if (status === "yet") {
-      return item.remainDate >= 0;
+      return item.remainDate > 0;
     } else if (status === "done") {
-      return item.remainDate < 0;
+      return item.remainDate <= 0;
     } else {
       return true;
     }
