@@ -2,11 +2,12 @@ import * as S from "./SignIn.style";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import useToastConfig from "@hooks/common/useToastConfig";
-import { PATH } from "@constants/path";
+// import { PATH } from "@constants/path";
 import { useUserInfoStore } from "@/store/store";
 import { postLogin } from "@apis/fetchLogin";
 import { getMessaging, getToken } from "firebase/messaging";
 import { app } from "@/firebase";
+import { useState } from "react";
 
 type FormValues = {
   email: string;
@@ -18,6 +19,7 @@ const SignIn = () => {
   const [searchParams] = useSearchParams();
   const redirectUrl = searchParams.get("redirect");
   const { handleToast } = useToastConfig();
+  const [token, setToken] = useState<string>("");
 
   const {
     register,
@@ -30,16 +32,16 @@ const SignIn = () => {
     },
   });
 
-  let fcmToken = "";
-
   const handleOnSubmit = async (data: FormValues) => {
     const { email, password } = data;
 
     const messaging = getMessaging(app);
 
-    fcmToken = await getToken(messaging, {
+    const fcmToken = await getToken(messaging, {
       vapidKey: import.meta.env.VITE_FIREBASE_VAPID,
     });
+    setToken(fcmToken);
+    console.log(token);
 
     await postLogin({ email, password, fcmToken })
       .then((loginData) => {
@@ -54,7 +56,7 @@ const SignIn = () => {
           return;
         }
 
-        navigate(PATH.ROOT, { replace: true });
+        // navigate(PATH.ROOT, { replace: true });
       })
       .catch(() => {
         handleToast(false, [<>아이디 혹은 비밀번호를 확인해주세요</>]);
@@ -66,7 +68,7 @@ const SignIn = () => {
       <Link to="/">
         <S.SignInLogo />
       </Link>
-      <p>{fcmToken}</p>
+      <p>{token}</p>
       <S.SignInInputContainer>
         <S.SignInInputWrapper>
           <S.SignInInputTitle>이메일</S.SignInInputTitle>
