@@ -16,7 +16,7 @@ export const Container = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  z-index: 10;
+  z-index: 2;
 `;
 
 export const Wrapper = styled.section`

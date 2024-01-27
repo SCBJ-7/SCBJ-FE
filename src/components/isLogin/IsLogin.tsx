@@ -1,6 +1,7 @@
 import { ACCESS_TOKEN } from "@/constants/api";
 import useAuthStore from "@/store/authStore";
-import { useLayoutEffect } from "react";
+import { useEffect } from "react";
+import { useLocation } from "react-router-dom";
 
 interface IsLoginProps {
   children: React.ReactNode;
@@ -9,11 +10,14 @@ interface IsLoginProps {
 const IsLogin = ({ children }: IsLoginProps) => {
   const setIsLoggedIn = useAuthStore((state) => state.setIsLoggedIn);
 
-  useLayoutEffect(() => {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
     if (localStorage.getItem(ACCESS_TOKEN)) {
       setIsLoggedIn(true);
     }
-  }, [setIsLoggedIn]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [pathname]);
 
   return <>{children}</>;
 };

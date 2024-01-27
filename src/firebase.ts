@@ -19,11 +19,14 @@ export const app = initializeApp(firebaseConfig);
 export const messaging = !isMobileSafari() && getMessaging(app);
 
 // isLoggedIn wrapper로 만든걸 사용하고 싶었는데 만료 여부도 확인해야돼서 localStorage.getItem을 썼습니다!
-const accessToken = localStorage.getItem("accessToken");
-if (accessToken && isAccessTokenExpired(accessToken)) {
-  await getNotificationPermission();
-  // 로그인을 안 하더라도 로컬 스토리지의 accessToken이 만료되지 않았다면 getNotification을 실행
+async function checkAccessToken() {
+  const accessToken = localStorage.getItem("accessToken");
+  if (accessToken && isAccessTokenExpired(accessToken)) {
+    await getNotificationPermission();
+  }
 }
+
+checkAccessToken();
 
 // Get registration token. Initially this makes a network call, once retrieved
 // subsequent calls to getToken will return from cache.

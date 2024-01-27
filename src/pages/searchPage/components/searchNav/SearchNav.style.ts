@@ -14,7 +14,7 @@ export const SearchNavContainer = styled.div`
   height: 44px;
   padding: 0.5rem 1.5rem;
   position: fixed;
-  z-index: 10;
+  z-index: 1;
   top: 72px;
 `;
 

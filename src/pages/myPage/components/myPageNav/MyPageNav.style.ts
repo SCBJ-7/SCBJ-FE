@@ -8,7 +8,7 @@ export const MyPageNavContainer = styled.section`
   position: sticky;
   top: 56px;
   color: ${({ theme }) => theme.color.greyScale3};
-  z-index: 10;
+  z-index: 1;
 `;
 
 export const MyPageNavCell = styled(Link)`

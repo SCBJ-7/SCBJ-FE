@@ -107,7 +107,7 @@ export const BankListBottomSheet = styled(motion.div).attrs<{
   bottom: 0;
 
   padding: 64px 20px 100px;
-
+  z-index: 10;
   background-color: ${({ theme }) => theme.color.greyScale7};
 
   border-radius: 28px 28px 0px 0px;
