@@ -53,21 +53,6 @@ const Payment = ({ action }: PaymentProps) => {
   useEffect(() => {
     if (action === "ready") {
       paymentSuccessQuery();
-
-      if (isSuccess) {
-        navigate(`/payment/${successData.paymentHistoryId}/success`);
-      }
-
-      if (isError && isAxiosError(error)) {
-        if (error.response?.status === ERROR_CODE.NULL_STOCK) {
-          setErrorMessage("이미 판매완료된 상품입니다.");
-        } else {
-          setErrorMessage(
-            error.response?.data.message || "오류가 발생했습니다.",
-          );
-        }
-        setIsModalOpen(true);
-      }
     }
 
     if (action === "cancel") {
@@ -77,7 +62,23 @@ const Payment = ({ action }: PaymentProps) => {
     }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [action, error, isError, isSuccess]);
+  }, [action]);
+
+  useEffect(() => {
+    if (isSuccess) {
+      navigate(`/payment/${successData.paymentHistoryId}/success`);
+    }
+
+    if (isError && isAxiosError(error)) {
+      if (error.response?.status === ERROR_CODE.NULL_STOCK) {
+        setErrorMessage("이미 판매완료된 상품입니다.");
+      } else {
+        setErrorMessage(error.response?.data.message || "오류가 발생했습니다.");
+      }
+      setIsModalOpen(true);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isSuccess, isError]);
 
   const closeModal = () => {
     setIsModalOpen(false);
