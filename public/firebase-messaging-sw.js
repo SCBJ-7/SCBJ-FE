@@ -16,10 +16,6 @@ self.importScripts(
   "https://www.gstatic.com/firebasejs/9.2.0/firebase-messaging-compat.js",
 );
 
-var icon = "/icon-192.png";
-
-console.log(icon);
-
 var firebaseConfig = {
   apiKey: "AIzaSyAc4XrxZs2G1EVp-NbpCh5rw9rVgnUG284",
   authDomain: "scbj-af2e3.firebaseapp.com",
@@ -70,9 +66,9 @@ self.addEventListener("notificationclick", function (event) {
 messaging.onBackgroundMessage(function (payload) {
   console.log("Received background message", payload);
   // Customize notification here
-  const notificationTitle = payload.notification.title;
+  const notificationTitle = payload.data.title;
   const notificationOptions = {
-    body: payload.notification.message,
+    body: payload.data.message,
     icon: "/icon-192.png",
   };
 
