@@ -298,11 +298,14 @@ const TransferWritingPrice = () => {
             onSetAccount={setAccountSetting}
           />
           <AgreementSection
+            opt1={opt1}
+            opt2={opt2}
+            opt3={opt3}
+            optFinal={optFinal}
             setOpt1={setOpt1}
             setOpt2={setOpt2}
             setOpt3={setOpt3}
             setOptFinal={setOptFinal}
-            optFinal={optFinal}
           />
           <S.ButtonSection $readyToSubmit={readyToSubmit}>
             <button onClick={submitHandler}>판매 게시물 올리기</button>

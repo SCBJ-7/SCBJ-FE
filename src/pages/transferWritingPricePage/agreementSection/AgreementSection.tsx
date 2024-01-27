@@ -1,15 +1,22 @@
 import * as S from "./AgreementSection.style";
 import CheckBoxSection from "../checkBox/CheckBoxSection";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 
 interface AgreementProps {
+  opt1: boolean;
+  opt2: boolean;
+  opt3: boolean;
+  optFinal: boolean;
   setOpt1: React.Dispatch<React.SetStateAction<boolean>>;
   setOpt2: React.Dispatch<React.SetStateAction<boolean>>;
   setOpt3: React.Dispatch<React.SetStateAction<boolean>>;
   setOptFinal: React.Dispatch<React.SetStateAction<boolean>>;
-  optFinal: boolean;
 }
 const TermsSection = ({
+  opt1,
+  opt2,
+  opt3,
+  optFinal,
   setOpt1,
   setOpt2,
   setOpt3,
@@ -19,6 +26,21 @@ const TermsSection = ({
   const check2Ref = useRef(null);
   const check3Ref = useRef(null);
   const check4Ref = useRef(null);
+
+  useEffect(() => {
+    if (opt1 && check1Ref.current) {
+      (check1Ref.current as HTMLInputElement).checked = true;
+    }
+    if (opt2 && check2Ref.current) {
+      (check2Ref.current as HTMLInputElement).checked = true;
+    }
+    if (opt3 && check3Ref.current) {
+      (check3Ref.current as HTMLInputElement).checked = true;
+    }
+    if (optFinal && check4Ref.current) {
+      (check4Ref.current as HTMLInputElement).checked = true;
+    }
+  });
 
   return (
     <S.Container initial={{ y: -5, opacity: 0 }} animate={{ y: 0, opacity: 1 }}>
