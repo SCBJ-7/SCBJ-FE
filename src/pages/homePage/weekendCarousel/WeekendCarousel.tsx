@@ -3,7 +3,6 @@ import { useCarouselSize } from "@hooks/common/useCarouselSize";
 import * as S from "./WeekendCarousel.style.ts";
 import { LocaleItem, WeekendItem } from "@type/saleSection.ts";
 import WeekendUnit from "./weekendCarouselUnit/WeekendUnit.tsx";
-import { useEffect } from "react";
 
 interface CarouselProps {
   weekendHotels: [number, WeekendItem][];
@@ -16,7 +15,7 @@ interface CarouselProps {
   draggable?: boolean;
   innerShadow?: boolean;
 }
-let Slidingwidth = 0;
+
 const WeekendCarousel = ({
   weekendHotels,
   height = 300,
@@ -25,23 +24,6 @@ const WeekendCarousel = ({
   draggable = false,
 }: CarouselProps) => {
   const { sliderRef } = useCarouselSize();
-
-  useEffect(() => {
-    const calcWidth = () => {
-      const containerWidth = document.querySelector(
-        ".week-container",
-      ) as HTMLDivElement;
-
-      return containerWidth.getBoundingClientRect().width;
-    };
-    Slidingwidth = calcWidth();
-
-    window.addEventListener("resize", calcWidth);
-
-    return () => {
-      window.removeEventListener("resize", calcWidth);
-    };
-  });
 
   const {
     currentIndex,
@@ -53,7 +35,7 @@ const WeekendCarousel = ({
   } = useCarousel({
     slideLength: weekendHotels.length,
     infinite,
-    slideWidth: Slidingwidth * 0.7,
+    slideWidth: window.innerWidth > 500 ? 450 + 24 : 240 + 24,
   });
 
   return (

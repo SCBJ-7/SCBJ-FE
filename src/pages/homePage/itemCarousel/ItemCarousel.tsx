@@ -6,11 +6,11 @@ import ItemCarouselUnit from "./itemCarouselUnit/ItemCarouselUnit.tsx";
 import { useEffect } from "react";
 
 interface CarouselProps {
+  currentLocale: [number, string, LocaleItem[]];
   localeAndHotel: [number, string, LocaleItem[]][];
   onChangeLocale: React.Dispatch<
     React.SetStateAction<[number, string, LocaleItem[]]>
   >;
-  currentLocale: [number, string, LocaleItem[]];
   height?: number;
   arrows?: boolean;
   infinite?: boolean;
@@ -19,6 +19,7 @@ interface CarouselProps {
 }
 
 const ItemCarousel = ({
+  currentLocale,
   localeAndHotel,
   onChangeLocale,
   height = 300,
@@ -37,6 +38,7 @@ const ItemCarousel = ({
     handlerSliderMoueDown,
     handleSliderTouchStart,
     setIsPlay,
+    setCurrentIndex,
   } = useAnimateCarousel({
     slideLength: localeAndHotel.length,
     infinite,
@@ -52,6 +54,11 @@ const ItemCarousel = ({
     ]);
     // eslint-disable-next-line
   }, [currentIndex]);
+
+  useEffect(() => {
+    setCurrentIndex(currentLocale[0]);
+    // eslint-disable-next-line
+  }, [currentLocale]);
 
   return (
     <S.CarouselContainer
