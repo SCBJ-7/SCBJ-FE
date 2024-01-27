@@ -39,6 +39,8 @@ const SignIn = () => {
       vapidKey: import.meta.env.VITE_FIREBASE_VAPID,
     });
 
+    console.log(fcmToken);
+
     await postLogin({ email, password, fcmToken })
       .then((loginData) => {
         const { memberResponse, tokenResponse } = loginData;
@@ -54,7 +56,8 @@ const SignIn = () => {
 
         navigate(PATH.ROOT, { replace: true });
       })
-      .catch(() => {
+      .catch((err) => {
+        console.log(err);
         handleToast(false, [<>아이디 혹은 비밀번호를 확인해주세요</>]);
       });
   };
