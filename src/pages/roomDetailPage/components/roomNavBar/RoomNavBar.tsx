@@ -7,8 +7,8 @@ import * as S from "./RoomNavBar.style";
 import { useStockQuery } from "@/hooks/api/useStockQuery";
 import useAuthStore from "@/store/authStore";
 import { ResponseError } from "@/components/error/Error";
-import { ACCESS_TOKEN, STATUS_CODE } from "@/constants/api";
-import { useEffect, useLayoutEffect, useState } from "react";
+import { STATUS_CODE } from "@/constants/api";
+import { useEffect, useState } from "react";
 
 interface RoomNavBarProps {
   room: RoomNavBarData;
