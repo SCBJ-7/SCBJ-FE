@@ -16,6 +16,10 @@ self.importScripts(
   "https://www.gstatic.com/firebasejs/9.2.0/firebase-messaging-compat.js",
 );
 
+var icon = "/icon-192.png";
+
+console.log(icon);
+
 var firebaseConfig = {
   apiKey: "AIzaSyAc4XrxZs2G1EVp-NbpCh5rw9rVgnUG284",
   authDomain: "scbj-af2e3.firebaseapp.com",
@@ -45,16 +49,13 @@ self.addEventListener("push", function (e) {
   console.log("push: ", e.data.json());
   if (!e.data.json()) return;
 
-  console.log("디버깅용", e.data.json().notification);
-
   const resultData = e.data.json().data;
   const notificationTitle = resultData.title;
   const notificationOptions = {
     body: resultData.message,
-    icon: resultData.image,
-    tag: resultData.tag,
+    icon: "/icon-192.png",
   };
-  console.log("push: ", { resultData, notificationTitle, notificationOptions });
+  console.log("push: ", { notificationTitle, notificationOptions });
 
   self.registration.showNotification(notificationTitle, notificationOptions);
 });
@@ -71,7 +72,7 @@ messaging.onBackgroundMessage(function (payload) {
   // Customize notification here
   const notificationTitle = payload.notification.title;
   const notificationOptions = {
-    body: payload.notification.body,
+    body: payload.notification.message,
     icon: "/icon-192.png",
   };
 
