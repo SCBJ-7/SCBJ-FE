@@ -9,7 +9,6 @@ interface IsLoginProps {
 
 const IsLogin = ({ children }: IsLoginProps) => {
   const setIsLoggedIn = useAuthStore((state) => state.setIsLoggedIn);
-  const isLoggedIn = useAuthStore((state) => state.isLoggedIn);
 
   const { pathname } = useLocation();
 
@@ -17,9 +16,8 @@ const IsLogin = ({ children }: IsLoginProps) => {
     if (localStorage.getItem(ACCESS_TOKEN)) {
       setIsLoggedIn(true);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pathname]);
-
-  console.log(isLoggedIn);
 
   return <>{children}</>;
 };
