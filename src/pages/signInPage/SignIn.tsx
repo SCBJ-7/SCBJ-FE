@@ -5,7 +5,8 @@ import useToastConfig from "@hooks/common/useToastConfig";
 import { PATH } from "@constants/path";
 import { useUserInfoStore } from "@/store/store";
 import { postLogin } from "@apis/fetchLogin";
-import getNotificationPermission from "@/utils/getNotificationPermission";
+import { getMessaging, getToken } from "firebase/messaging";
+import { app } from "@/firebase";
 
 type FormValues = {
   email: string;
@@ -32,7 +33,11 @@ const SignIn = () => {
   const handleOnSubmit = async (data: FormValues) => {
     const { email, password } = data;
 
-    const fcmToken = await getNotificationPermission();
+    const messaging = getMessaging(app);
+
+    const fcmToken = await getToken(messaging, {
+      vapidKey: import.meta.env.VITE_FIREBASE_VAPID,
+    });
 
     await postLogin({ email, password, fcmToken })
       .then((loginData) => {

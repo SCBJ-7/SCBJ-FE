@@ -17,6 +17,8 @@ async function getNotificationPermission() {
       "BNJnISNECPJrEzIQ8Mbjvw2bu3GQrwo52ChZT0E8BX243r9WAlXS7yYZJntYKt537lSs4188KsLJLJFFdPyRL3Q",
   });
 
+  console.log(fcmToken);
+
   if (fcmToken) console.log("token: ", fcmToken);
   else console.log("Can not get Token");
 
