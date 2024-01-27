@@ -30,18 +30,16 @@ const SignIn = () => {
     },
   });
 
+  let fcmToken = "";
+
   const handleOnSubmit = async (data: FormValues) => {
     const { email, password } = data;
 
     const messaging = getMessaging(app);
 
-    const fcmToken = await getToken(messaging, {
-      vapidKey:
-        "BNJnISNECPJrEzIQ8Mbjvw2bu3GQrwo52ChZT0E8BX243r9WAlXS7yYZJntYKt537lSs4188KsLJLJFFdPyRL3Q",
+    fcmToken = await getToken(messaging, {
+      vapidKey: import.meta.env.VITE_FIREBASE_VAPID,
     });
-
-    console.log(fcmToken);
-    console.log("성공?");
 
     await postLogin({ email, password, fcmToken })
       .then((loginData) => {
@@ -58,8 +56,7 @@ const SignIn = () => {
 
         navigate(PATH.ROOT, { replace: true });
       })
-      .catch((err) => {
-        console.log(err);
+      .catch(() => {
         handleToast(false, [<>아이디 혹은 비밀번호를 확인해주세요</>]);
       });
   };
@@ -69,6 +66,7 @@ const SignIn = () => {
       <Link to="/">
         <S.SignInLogo />
       </Link>
+      <p>{fcmToken}</p>
       <S.SignInInputContainer>
         <S.SignInInputWrapper>
           <S.SignInInputTitle>이메일</S.SignInInputTitle>
