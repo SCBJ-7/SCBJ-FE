@@ -1,6 +1,6 @@
 import { useRef, useState } from "react";
 import * as S from "./SearchModalButton.style";
-import useOnClickOutside from "@hooks/useOnClickOutside";
+import useOnClickOutside from "@/hooks/common/useOnClickOutside";
 import { useSearchFilterInfoStore } from "@store/store";
 import FilterModal from "../filterModal/FilterModal";
 import ModalPortal from "@components/portal/ModalPortal";

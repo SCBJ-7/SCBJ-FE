@@ -4,8 +4,9 @@ import RoomInfo from "@pages/roomDetailPage/components/roomInfo/RoomInfo";
 import RoomNavBar from "@pages/roomDetailPage/components/roomNavBar/RoomNavBar";
 
 import useToastConfig from "@hooks/common/useToastConfig";
-import { useRoomQuery } from "@hooks/api/useRoomQuery";
+import { useRoomQuery } from "@/hooks/api/useRoomQuery";
 import { useParams } from "react-router-dom";
+import useAuthStore from "@/store/authStore";
 
 import * as S from "./RoomDetail.style";
 import { useEffect } from "react";
@@ -15,7 +16,9 @@ const RoomDetail = () => {
 
   if (!productId) throw new Error("존재하지 않는 roomId 입니다.");
 
-  const { data } = useRoomQuery(productId);
+  const isLoggedIn = useAuthStore((state) => state.isLoggedIn);
+
+  const { data } = useRoomQuery(productId, isLoggedIn);
   const { rawData, discountRate } = data;
 
   const { handleToast } = useToastConfig();

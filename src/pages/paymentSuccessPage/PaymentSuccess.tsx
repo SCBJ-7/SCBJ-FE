@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import { usePurchaseDetailQuery } from "@hooks/api/query/usePurchaseQuery";
+import { usePurchaseDetailQuery } from "@/hooks/api/usePurchaseQuery";
 
 import PaymentSuccessInfo from "@pages/paymentSuccessPage/components/PaymentSuccessInfo/PaymentSuccessInfo";
 import PaymentSuccessButton from "@pages/paymentSuccessPage/components/PaymentSuccessButton/PaymentSuccessButton";

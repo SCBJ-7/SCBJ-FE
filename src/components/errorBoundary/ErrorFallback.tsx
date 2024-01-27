@@ -17,7 +17,7 @@ const ErrorFallback = ({ error, resetErrorBoundary }: FallbackProps) => {
   };
 
   return (
-    <S.Container>
+    <S.ErrorContainer>
       <S.MainWrapper>
         <S.LogoWrapper>
           <Blank />
@@ -32,7 +32,7 @@ const ErrorFallback = ({ error, resetErrorBoundary }: FallbackProps) => {
           {button}
         </S.Button>
       </S.BottomWrapper>
-    </S.Container>
+    </S.ErrorContainer>
   );
 };
 

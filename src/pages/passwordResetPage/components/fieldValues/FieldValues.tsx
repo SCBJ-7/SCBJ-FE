@@ -3,7 +3,7 @@ import * as S from "../../PasswordReset.style";
 import { EMAIL_REGEX } from "@constants/regex";
 import { useFormContext } from "react-hook-form";
 import { useEffect, useState } from "react";
-import { useValidateEmailMutation } from "@hooks/api/mutation/useValidateEmailMutation";
+import { useValidateEmailMutation } from "@/hooks/api/useValidateEmailMutation";
 import axios from "axios";
 
 type FormValues = {
