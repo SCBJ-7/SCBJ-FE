@@ -90,7 +90,7 @@ const TransferItem = ({
         </S.ItemTitleBtn>
       </S.ItemTitle>
       <S.ItemInfo>
-        <S.itemInfoImg src={imageUrl} />
+        <S.itemInfoImg src={imageUrl} loading="lazy" />
         <S.itemInfoDesc>
           <S.DescHotelName>{hotelName}</S.DescHotelName>
           <S.DescRoomName>{roomName}</S.DescRoomName>

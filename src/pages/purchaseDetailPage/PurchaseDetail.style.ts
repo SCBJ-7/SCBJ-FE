@@ -2,11 +2,10 @@ import styled from "styled-components";
 
 export const DetailContainer = styled.div`
   width: 100%;
-  height: 100%;
   background-color: ${({ theme }) => theme.color.greyScale7};
   padding-bottom: 100px;
   color: ${({ theme }) => theme.color.black};
-  ${({ theme }) => theme.scroll};
+  margin-top: 56px;
 `;
 
 export const TopSection = styled.section`

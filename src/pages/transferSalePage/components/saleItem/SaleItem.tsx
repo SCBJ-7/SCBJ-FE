@@ -64,7 +64,7 @@ const SaleItem = (props: ISaleItemWithRemainDate) => {
         <S.ArrowRightBtnIcon />
       </S.SaleItemTitle>
       <S.SaleItemContent>
-        <S.SaleItemImage src={props.imageUrl} />
+        <S.SaleItemImage src={props.imageUrl} loading="lazy" />
         <S.DimmedImage $saleStatus={props.saleStatus}>a</S.DimmedImage>
         <S.SaleItemInfo>
           <S.SaleItemName>{props.name}</S.SaleItemName>

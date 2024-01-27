@@ -2,7 +2,7 @@ import styled from "styled-components";
 import FilterIcon from "@assets/icons/ic_arrows-down-up.svg?react";
 
 export const SearchFilterCover = styled.div`
-  width: 55px;
+  padding: 10px;
   height: 28px;
   display: flex;
   justify-content: center;

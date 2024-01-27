@@ -27,7 +27,7 @@ const SearchItem = ({ item }: { item: ISearchList }) => {
     <>
       <S.ItemContainer>
         <S.ItemContent onClick={handleClickItem}>
-          <S.ItemImage src={item.imageUrl} />
+          <S.ItemImage src={item.imageUrl} loading="lazy" />
           <S.ItemName>{item.name}</S.ItemName>
           <S.ItemRoomName>{item.roomType}</S.ItemRoomName>
           <S.ItemOriginalPrice>
