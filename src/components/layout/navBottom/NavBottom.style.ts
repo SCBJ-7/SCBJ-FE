@@ -13,7 +13,7 @@ export const BottomNavContainer = styled.section<{ $isMobile: boolean }>`
   bottom: 0;
   width: 100%;
   max-width: 768px;
-  z-index: 10;
+  z-index: 1;
   height: ${({ $isMobile }) => ($isMobile ? "78px" : "60px")};
   justify-content: center;
   align-items: flex-start;
