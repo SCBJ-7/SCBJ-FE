@@ -1,4 +1,4 @@
-import { format } from "date-fns";
+import { format, parse } from "date-fns";
 import { ko } from "date-fns/locale";
 import { TIME_UNIT } from "@constants/time";
 
@@ -10,6 +10,19 @@ import { TIME_UNIT } from "@constants/time";
 export const formatDate = (date: string): string => {
   const parseIoDate = new Date(date);
   return format(parseIoDate, "yy.MM.dd(E) HH:mm", { locale: ko });
+};
+
+/**
+ * 날짜 문자열을 특정 형식으로 변환합니다.
+ * @param {string} dateString - 변환할 날짜 문자열 (예: "24.01.27 (Sat) 14:47")
+ * @returns {string} 변환된 날짜 문자열 (예: "2023. 01. 27 (금) 14:47")
+ */
+export const formatDateString = (dateString: string) => {
+  // 날짜 파싱 (예: "24.01.27 (Sat) 14:47" -> Date 객체)
+  const parsedDate = parse(dateString, "yy.MM.dd (EEE) HH:mm", new Date());
+
+  // 포매팅 (예: Date 객체 -> "2023. 01. 27 (금) 14:47")
+  return format(parsedDate, "yyyy. MM. dd (eee) HH:mm", { locale: ko });
 };
 
 export const formatDateWithoutTime = (date: string): string => {
