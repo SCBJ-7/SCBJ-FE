@@ -3,8 +3,6 @@ import { getToken, onMessage } from "firebase/messaging";
 
 async function getNotificationPermission() {
   console.log("권한 요청 중...");
-  // isMobileSafari일 경우 false일 가능성이 생김.
-  // messaging이 false일 경우 return
   if (!messaging) return;
 
   const permission = await Notification.requestPermission();
@@ -18,8 +16,6 @@ async function getNotificationPermission() {
   const fcmToken = await getToken(messaging, {
     vapidKey: import.meta.env.VITE_FIREBASE_VAPID,
   });
-
-  console.log(fcmToken);
 
   if (fcmToken) console.log("token: ", fcmToken);
   else console.log("Can not get Token");

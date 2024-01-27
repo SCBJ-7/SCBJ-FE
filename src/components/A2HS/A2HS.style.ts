@@ -39,6 +39,14 @@ export const A2HSContainer = styled(motion.div)`
   z-index: 3;
 
   transform: translateX(-50%);
+
+  @media (max-width: ${breakpoints.tablet}) {
+    width: 100%;
+  }
+
+  @media (max-width: ${breakpoints.mobile}) {
+    width: 100%;
+  }
 `;
 
 export const CloseButton = styled.button`
