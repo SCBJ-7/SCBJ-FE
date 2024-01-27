@@ -1,28 +1,27 @@
 import { useQueryErrorResetBoundary } from "@tanstack/react-query";
-import { ComponentType, ReactNode } from "react";
+import { ComponentType, ReactNode, useEffect } from "react";
 import { ErrorBoundary, FallbackProps } from "react-error-boundary";
 import ErrorFallback from "./ErrorFallback";
+import { useLocation } from "react-router-dom";
 
 export interface LocalErrorBoundaryProps {
   children: ReactNode;
   fallback?: ComponentType<FallbackProps>;
 }
 
-const LocalErrorBoundary = ({
-  children,
-  fallback,
-}: LocalErrorBoundaryProps) => {
+const ApiErrorBoundary = ({ children }: LocalErrorBoundaryProps) => {
   const { reset } = useQueryErrorResetBoundary();
+  const { pathname } = useLocation();
 
   return (
     <ErrorBoundary
-      FallbackComponent={fallback ? fallback : ErrorFallback}
+      FallbackComponent={ErrorFallback}
       onReset={reset}
-      resetKeys={[location.pathname]}
+      resetKeys={[pathname]}
     >
       {children}
     </ErrorBoundary>
   );
 };
 
-export default LocalErrorBoundary;
+export default ApiErrorBoundary;

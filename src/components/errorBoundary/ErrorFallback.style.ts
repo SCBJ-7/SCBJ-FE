@@ -2,7 +2,7 @@ import { hexToRgba } from "@utils/hexTorgba";
 import styled, { DefaultTheme } from "styled-components";
 import { breakpoints } from "@styles/theme";
 
-export const Container = styled.main`
+export const ErrorContainer = styled.main`
   width: 100%;
   height: 100%;
 
