@@ -4,17 +4,16 @@ import { getToken, onMessage } from "firebase/messaging";
 async function getNotificationPermission() {
   console.log("권한 요청 중...");
 
-  // const permission = await Notification.requestPermission();
-  // if (permission === "denied") {
-  //   console.log("알림 권한 허용 안됨");
-  //   return;
-  // }
+  const permission = await Notification.requestPermission();
+  if (permission === "denied") {
+    console.log("알림 권한 허용 안됨");
+    return;
+  }
 
-  // console.log("알림 권한이 허용됨");
+  console.log("알림 권한이 허용됨");
 
   const fcmToken = await getToken(messaging, {
-    vapidKey:
-      "BNJnISNECPJrEzIQ8Mbjvw2bu3GQrwo52ChZT0E8BX243r9WAlXS7yYZJntYKt537lSs4188KsLJLJFFdPyRL3Q",
+    vapidKey: import.meta.env.VITE_FIREBASE_VAPID,
   });
 
   console.log(fcmToken);
