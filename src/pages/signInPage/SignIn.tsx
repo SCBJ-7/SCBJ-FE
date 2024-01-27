@@ -33,7 +33,6 @@ const SignIn = () => {
     const { email, password } = data;
 
     const fcmToken = await getNotificationPermission();
-
     await postLogin({ email, password, fcmToken })
       .then((loginData) => {
         const { memberResponse, tokenResponse } = loginData;
