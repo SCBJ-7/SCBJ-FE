@@ -30,14 +30,14 @@ const A2HS = () => {
             animate="visible"
             exit="hidden"
             variants={backdropVariants}
-            transition={{ duration: 0.5 }}
+            transition={{ duration: 0.5, delay: 1 }}
           />
           <S.A2HSContainer
             initial="hidden"
             animate="visible"
             exit="hidden"
             variants={modalVariants}
-            transition={{ duration: 0.5 }}
+            transition={{ duration: 0.5, delay: 1 }}
           >
             <S.CloseButton type="button" onClick={clearPrompt}>
               <S.CloseIcon />
