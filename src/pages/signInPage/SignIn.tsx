@@ -32,12 +32,7 @@ const SignIn = () => {
   const handleOnSubmit = async (data: FormValues) => {
     const { email, password } = data;
 
-    let fcmToken;
-    try {
-      fcmToken = await getNotificationPermission();
-    } catch {
-      fcmToken = undefined;
-    }
+    const fcmToken = await getNotificationPermission();
     await postLogin({ email, password, fcmToken })
       .then((loginData) => {
         const { memberResponse, tokenResponse } = loginData;

@@ -1,5 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { getMessaging } from "firebase/messaging";
+import { isMobileSafari } from "./utils/isMobileSafari";
 
 // firebase
 const firebaseConfig = {
@@ -13,7 +14,7 @@ const firebaseConfig = {
 };
 
 export const app = initializeApp(firebaseConfig);
-export const messaging = getMessaging(app);
+export const messaging = !isMobileSafari() && getMessaging(app);
 
 // Get registration token. Initially this makes a network call, once retrieved
 // subsequent calls to getToken will return from cache.
