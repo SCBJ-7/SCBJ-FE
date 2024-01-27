@@ -6,7 +6,6 @@ interface AccountProps {
   bank: string;
 }
 
-// 유저 정보를 불러오는 api입니다.
 export const postAccount = async (accountInfo: AccountProps) => {
   try {
     const response = await axiosInstance.post(END_POINTS.ACCOUNT, accountInfo, {

@@ -159,9 +159,9 @@ const TransferWritingPrice = () => {
       }),
     onSuccess: () => {
       alert("판매 게시물이 성공적으로 등록되었습니다!");
-      localStorage.setItem("newAccount", accountNumber as string);
-      localStorage.setItem("newBank", bank as string);
-      navigate(PATH.WRITE_TRANSFER_SUCCESS + "?FNA=" + `${firstlyNoAccount}`);
+      navigate(PATH.WRITE_TRANSFER_SUCCESS + "?FNA=" + `${firstlyNoAccount}`, {
+        state: { bank, accountNumber },
+      });
     },
   });
 
