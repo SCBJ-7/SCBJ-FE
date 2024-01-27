@@ -1,6 +1,6 @@
 import * as S from "./UserInfoSection.style";
 import Checkbox from "@components/checkbox/Checkbox";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useLoadUserInfo } from "@hooks/common/useLoadUserInfo";
 import { Controller, useFormContext } from "react-hook-form";
 import { EMAIL_REGEX, PHONE_NUMBER_REGEX } from "@constants/regex";
@@ -11,8 +11,11 @@ const UserInfoSection = () => {
     register,
     watch,
     setValue,
+    resetField,
     formState: { errors },
   } = useFormContext();
+
+  const [userEdited, setUserEdited] = useState(false);
 
   const isDiffUser = watch("isDiffUser");
 
@@ -29,7 +32,18 @@ const UserInfoSection = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isDiffUser, setValue, userInfo]);
 
+  const handleCheckboxChange = (checked: boolean) => {
+    if (!userEdited) {
+      resetField("name");
+      resetField("email");
+      resetField("phone");
+    }
+    setUserEdited(false);
+    setValue("isDiffUser", checked);
+  };
+
   const handleFieldChange = () => {
+    if (!userEdited) setUserEdited(true);
     setValue("isDiffUser", false);
   };
 
@@ -43,7 +57,7 @@ const UserInfoSection = () => {
           <Checkbox
             id="isDiffUser"
             isChecked={field.value}
-            onChange={field.onChange}
+            onChange={(e) => handleCheckboxChange(e.target.checked)}
             variant="caption"
             ariaLabel="구매자 정보와 동일합니다."
           >

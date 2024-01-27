@@ -18,6 +18,7 @@ import { useEffect, useState } from "react";
 import { isAxiosError } from "axios";
 import { paymentCaptions } from "@constants/caption";
 import { ERROR_CODE } from "@/constants/api";
+import { PATH } from "@/constants/path";
 
 interface PaymentProps {
   action: "default" | "cancel" | "ready";
@@ -66,7 +67,9 @@ const Payment = ({ action }: PaymentProps) => {
 
   useEffect(() => {
     if (isSuccess) {
-      navigate(`/payment/${successData.paymentHistoryId}/success`);
+      navigate(PATH.PAYMENT_SUCCESS(successData.paymentHistoryId), {
+        replace: true,
+      });
     }
 
     if (isError && isAxiosError(error)) {
