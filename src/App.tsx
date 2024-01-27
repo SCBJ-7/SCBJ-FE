@@ -9,7 +9,6 @@ import IsLogin from "@components/isLogin/IsLogin";
 
 const App = () => {
   const toastConfig = useToastStore((state) => state.config);
-
   return (
     <IsLogin>
       <ScrollToTop />
