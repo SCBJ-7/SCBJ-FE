@@ -156,11 +156,11 @@ const SaleDetail = () => {
             </S.PurchasedWrapper>
           )}
           <S.PurchasedWrapper>
-            <S.CardWrapper>
+            <S.CardWrapperBoxShadowOn>
               <Card title="입금 계좌">
                 <CardItem label={data.bank} content={data.accountNumber} />
               </Card>
-            </S.CardWrapper>
+            </S.CardWrapperBoxShadowOn>
           </S.PurchasedWrapper>
         </>
       );
@@ -202,11 +202,11 @@ const SaleDetail = () => {
             </S.CardWrapper>
           </S.PurchasedWrapper>
           <S.PurchasedWrapper>
-            <S.CardWrapper>
+            <S.CardWrapperBoxShadowOn>
               <Card title="입금 계좌">
                 <CardItem label={data.bank} content={data.accountNumber} />
               </Card>
-            </S.CardWrapper>
+            </S.CardWrapperBoxShadowOn>
           </S.PurchasedWrapper>
         </>
       );
@@ -248,7 +248,6 @@ const SaleDetail = () => {
               <S.TopSectionTitle>
                 <S.TopSectionPurchaseDate>판매일시</S.TopSectionPurchaseDate>
                 <S.TopSectionReserveNumber>
-                  {/* FIXME: checkIn 시간이 아닌 판매된 시간으로 변경 (백엔드 수정 후) */}
                   {data.checkIn}
                 </S.TopSectionReserveNumber>
               </S.TopSectionTitle>

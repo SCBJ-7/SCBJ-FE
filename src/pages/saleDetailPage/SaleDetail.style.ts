@@ -42,6 +42,10 @@ export const PurchasedContainer = styled.div`
 `;
 
 export const PurchasedWrapper = styled.div`
+  padding: 0.5rem 0.5rem 0 0.5rem;
+`;
+
+export const PurchasedWrapperPaddingOn = styled.div`
   padding: 0.5rem;
 `;
 
@@ -50,7 +54,13 @@ export const CardWrapper = styled.div`
 
   background-color: ${({ theme }) => theme.color.white};
   border-bottom: ${({ theme }) => theme.border.strokeThin};
-  box-shadow: 0 0.2rem 0.2rem 0 rgba(0, 0, 0, 0.1);
+`;
+export const CardWrapperBoxShadowOn = styled.div`
+  padding: 1.5rem 1rem;
+
+  background-color: ${({ theme }) => theme.color.white};
+  border-bottom: ${({ theme }) => theme.border.strokeThin};
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.1);
 `;
 
 export const SaleStatus = styled.div<{ $saleStatus: string }>`
@@ -133,4 +143,5 @@ export const Text = styled.p.withConfig({
 
 export const BottomWrapper = styled.div`
   padding: 1rem 1.25rem;
+  margin-bottom: 2.5rem;
 `;

@@ -24,7 +24,7 @@ const sortProductsByCheckInDate = (
         return { ...item, remainDate };
       })
       .sort((a, b) => {
-        return b.remainDate - a.remainDate;
+        return a.remainDate - b.remainDate;
       });
   } else {
     return [];
@@ -45,7 +45,6 @@ const TransferPurchase = () => {
   // Filter items based on status and remainDate
   const filteredPurchaseItems = sortedPurchaseItems.filter((item) => {
     if (status === "yet") {
-      console.log("bb", item.remainDate);
       return item.remainDate >= 0;
     } else if (status === "done") {
       return item.remainDate < 0;
@@ -78,7 +77,7 @@ const TransferPurchase = () => {
           ))
         ) : status === "done" ? (
           <>
-            <S.NoResult>구매내역이 없습니다</S.NoResult>
+            <S.NoResult>이용완료 내역이 없습니다</S.NoResult>
             {!sortedPurchaseItems.length && (
               <S.NoResultAll>
                 지금 상품을 구매하고 호캉스 떠나보세요!
@@ -96,7 +95,7 @@ const TransferPurchase = () => {
           </>
         ) : (
           <>
-            <S.NoResult>이용완료 내역이 없습니다</S.NoResult>
+            <S.NoResult>구매내역이 없습니다</S.NoResult>
             {!sortedPurchaseItems.length && (
               <S.NoResultAll>
                 지금 상품을 구매하고 호캉스 떠나보세요!
