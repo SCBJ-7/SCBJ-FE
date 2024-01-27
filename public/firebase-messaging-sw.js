@@ -1,3 +1,4 @@
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 /* global firebase */
 /**
    * Here is is the code snippet to initialize Firebase Messaging in the Service
@@ -15,19 +16,9 @@ self.importScripts(
   "https://www.gstatic.com/firebasejs/9.2.0/firebase-messaging-compat.js",
 );
 
-firebase.initializeApp({
-  apiKey: "AIzaSyAc4XrxZs2G1EVp-NbpCh5rw9rVgnUG284",
-  authDomain: "scbj-af2e3.firebaseapp.com",
-  projectId: "scbj-af2e3",
-  storageBucket: "scbj-af2e3.appspot.com",
-  messagingSenderId: "177564796245",
-  appId: "G-1YD7ZEM9HM",
-  measurementId: "BNJnISNECPJrEzIQ8Mbjvw2bu3GQrwo52ChZT0E8BX243r9",
-});
-
 // // Retrieve an instance of Firebase Messaging so that it can handle background
 // // messages.
-const messaging = firebase.messaging();
+// const messaging = firebase.messaging();
 
 self.addEventListener("install", function () {
   console.log("fcm sw install..");
@@ -62,17 +53,17 @@ self.addEventListener("notificationclick", function (event) {
   event.waitUntil(self.clients.openWindow(url));
 });
 
-messaging.onBackgroundMessage(function (payload) {
-  console.log(
-    "[firebase-messaging-sw.js] Received background message ",
-    payload,
-  );
-  // Customize notification here
-  const notificationTitle = "Background Message Title";
-  const notificationOptions = {
-    body: "Background Message body.",
-    icon: "/firebase-logo.png",
-  };
+// messaging.onBackgroundMessage(function (payload) {
+//   console.log(
+//     "[firebase-messaging-sw.js] Received background message ",
+//     payload,
+//   );
+//   // Customize notification here
+//   const notificationTitle = "Background Message Title";
+//   const notificationOptions = {
+//     body: "Background Message body.",
+//     icon: "/firebase-logo.png",
+//   };
 
-  self.registration.showNotification(notificationTitle, notificationOptions);
-});
+//   self.registration.showNotification(notificationTitle, notificationOptions);
+// });
