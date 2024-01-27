@@ -95,7 +95,7 @@ const Search = () => {
       <SearchBar />
       <SearchNav />
 
-      <S.SearchContainer ref={scrollContainerRef}>
+      <S.SearchContainer>
         {isLoading && <Loading />}
         {!isLoading && data && !data?.pages?.[0]?.content?.length && (
           <S.NoResultCover>
