@@ -33,6 +33,7 @@ import Layout from "@components/layout/Layout";
 import IntroPage from "@pages/connectYanoljaPage/IntroPage/IntroPage.tsx";
 import SuccessPage from "@pages/connectYanoljaPage/successPage/SuccessPage.tsx";
 import VerificationPage from "@pages/connectYanoljaPage/verificationPage/VerificationPage";
+import A2HS from "@/components/A2HS/A2HS";
 
 const routes = createBrowserRouter([
   {
@@ -171,6 +172,7 @@ const routes = createBrowserRouter([
             <ApiErrorBoundary>
               <Suspense fallback={<Loading />}>
                 <MyPage />
+                <A2HS />
               </Suspense>
             </ApiErrorBoundary>
           </Layout>

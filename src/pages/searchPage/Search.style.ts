@@ -27,7 +27,7 @@ interface TopButtonProps {
 }
 
 export const TopButton = styled(TopButtonIcon)<TopButtonProps>`
-  z-index: 100;
+  z-index: 10;
   position: absolute;
   bottom: 100px;
   right: 23px;

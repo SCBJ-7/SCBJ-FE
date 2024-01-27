@@ -5,7 +5,7 @@ export const SearchBarFixContainer = styled.div`
   height: 72px;
   max-width: 768px;
   min-width: 360px;
-  z-index: 100;
+  z-index: 1;
   top: 0;
   width: 100%;
   background-color: white;
