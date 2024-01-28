@@ -4,7 +4,6 @@ import { Helmet } from "react-helmet-async";
 export const HelmetTag = ({ text }: { text: string }) => {
   return (
     <Helmet>
-      <meta charSet="utf-8" />
       <title>{text} | 퍼센트호텔</title>
       <meta name="description" content="양도 거래? 취소 보다 빠른 거래!"></meta>
 
