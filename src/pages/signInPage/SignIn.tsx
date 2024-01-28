@@ -68,8 +68,8 @@ const SignIn = () => {
     <S.SignInContainer onSubmit={handleSubmit(handleOnSubmit)}>
       <Link to="/">
         <S.SignInLogo />
-        <h3>{state}</h3>
       </Link>
+      <p>{state}</p>
       <S.SignInInputContainer>
         <S.SignInInputWrapper>
           <S.SignInInputTitle>이메일</S.SignInInputTitle>
