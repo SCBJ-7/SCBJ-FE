@@ -6,6 +6,7 @@ export const HelmetTag = ({ text }: { text: string }) => {
     <Helmet>
       <meta charSet="utf-8" />
       <title>{text} | 퍼센트호텔</title>
+      <meta name="퍼센트호텔" content={text} data-react-helmet="true"></meta>
       <meta property="og:site_name" content="퍼센트 호텔" />
       <meta property="og:title" content={text} />
       <meta property="og:url" content={PATH.ROOT} />
