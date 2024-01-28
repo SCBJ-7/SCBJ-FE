@@ -5,6 +5,7 @@ import { useNavigate, useSearchParams } from "react-router-dom";
 import * as S from "./PurchaseDetail.style";
 import { PATH } from "@/constants/path";
 import { AxiosError } from "axios";
+import { formatDateString } from "@/utils/dateFormatter";
 
 const PurchaseDetail = () => {
   const [searchParams] = useSearchParams();
@@ -20,7 +21,7 @@ const PurchaseDetail = () => {
       <S.TopSection>
         <S.TopSectionTitle>
           <S.TopSectionPurchaseDate>
-            {data.paymentHistoryDate}
+            {formatDateString(data.paymentHistoryDate)}
           </S.TopSectionPurchaseDate>
           <S.TopSectionReserveNumber>
             예약번호 {data.paymentHistoryId}
@@ -56,11 +57,11 @@ const PurchaseDetail = () => {
             <S.DateContainer>
               <S.CheckInDate>
                 <div>체크인</div>
-                <div>{data.checkIn}</div>
+                <div>{formatDateString(data.checkIn)}</div>
               </S.CheckInDate>
               <S.CheckOutDate>
                 <div>체크아웃</div>
-                <div>{data.checkOut}</div>
+                <div>{formatDateString(data.checkOut)}</div>
               </S.CheckOutDate>
             </S.DateContainer>
           </S.ItemInfoContent>
