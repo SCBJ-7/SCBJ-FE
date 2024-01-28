@@ -10,6 +10,7 @@ import * as S from "./Info.style";
 import { ACCESS_TOKEN, REFRESH_TOKEN } from "@/constants/api";
 import { KEY } from "@/constants/queryKey";
 import useAuthStore from "@/store/authStore";
+import { useUserInfoStore } from "@/store/store";
 
 const Info = () => {
   const navigate = useNavigate();
@@ -18,6 +19,7 @@ const Info = () => {
   const [showLogoutModal, setShowLogoutModal] = useState<boolean>(false);
   const isLoggedIn = useAuthStore((state) => state.isLoggedIn);
   const setIsLoggedIn = useAuthStore((state) => state.setIsLoggedIn);
+  const setUserInfo = useUserInfoStore((state) => state.setUserInfo);
 
   const infoList = [
     { name: "문의하기", handler: () => alert("문의하기") },
@@ -35,7 +37,9 @@ const Info = () => {
       localStorage.removeItem(ACCESS_TOKEN);
       localStorage.removeItem(REFRESH_TOKEN);
       setIsLoggedIn(false);
+      setUserInfo(null);
       queryClient.removeQueries({ queryKey: [KEY.PURCHASE_LIST] });
+      queryClient.removeQueries({ queryKey: [KEY.SALE] });
       navigate(PATH.ROOT);
     } catch (err) {
       handleToast(true, [<>로그아웃 실패. 잠시 후 다시 시도해 주세요</>]);
