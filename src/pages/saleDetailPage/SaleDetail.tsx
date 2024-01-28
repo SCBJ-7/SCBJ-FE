@@ -12,6 +12,7 @@ import SaleButton from "./saleButton/SaleButton";
 import { calculateFee } from "@utils/calculator";
 import { CaptionWrapper } from "@pages/paymentPage/Payment.style";
 import Caption from "@components/caption/Caption";
+import { formatDateString } from "@/utils/dateFormatter";
 
 const SaleDetail = () => {
   const { saleId } = useParams();
@@ -249,7 +250,7 @@ const SaleDetail = () => {
               <S.TopSectionTitle>
                 <S.TopSectionPurchaseDate>판매일시</S.TopSectionPurchaseDate>
                 <S.TopSectionReserveNumber>
-                  {data.checkIn}
+                  {formatDateString(data.checkIn)}
                 </S.TopSectionReserveNumber>
               </S.TopSectionTitle>
             </S.TopSection>

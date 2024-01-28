@@ -1,5 +1,6 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import { HelmetProvider } from "react-helmet-async";
 import ReactDOM from "react-dom/client";
 import { ThemeProvider } from "styled-components";
 import AppRouter from "./routes/router";
@@ -10,7 +11,12 @@ import { hydrate } from "react-dom";
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
-      retry: 0,
+      retry: 1,
+      throwOnError: true,
+    },
+    mutations: {
+      retry: 1,
+      throwOnError: true,
     },
   },
 });
@@ -21,7 +27,9 @@ if (rootElement?.hasChildNodes()) {
     <QueryClientProvider client={queryClient}>
       <ThemeProvider theme={theme}>
         <GlobalStyle />
-        <AppRouter />
+        <HelmetProvider>
+          <AppRouter />
+        </HelmetProvider>
       </ThemeProvider>
       <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>,
@@ -32,7 +40,9 @@ if (rootElement?.hasChildNodes()) {
     <QueryClientProvider client={queryClient}>
       <ThemeProvider theme={theme}>
         <GlobalStyle />
-        <AppRouter />
+        <HelmetProvider>
+          <AppRouter />
+        </HelmetProvider>
       </ThemeProvider>
       <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>,

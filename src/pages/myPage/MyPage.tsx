@@ -8,8 +8,8 @@ import useAuthStore from "@/store/authStore";
 
 const MyPage = () => {
   const navigate = useNavigate();
-  const userInfo = useLoadUserInfo(true);
   const isLoggedIn = useAuthStore((state) => state.isLoggedIn);
+  const userInfo = useLoadUserInfo(isLoggedIn);
   const isConnected = userInfo?.linkedToYanolja;
   localStorage.setItem("isConnected", JSON.stringify(isConnected));
 

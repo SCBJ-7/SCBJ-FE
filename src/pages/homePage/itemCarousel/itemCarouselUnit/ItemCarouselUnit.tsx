@@ -35,7 +35,7 @@ const ItemCarouselUnit = ({ item }: UnitProps) => {
     <S.LocaleWrapper $display={hotel ? "block" : "none"}>
       {hotel[0] && (
         <S.ItemUnit onClick={(e) => onClickHandler(0, e)}>
-          <img src={hotel[0].imageUrl} />
+          <img src={hotel[0].imageUrl} alt={hotel[0].hotelName} />
           <div className="item-info">
             <div className="hotel_title">
               <h1>{hotel[0].hotelName}</h1>
@@ -56,7 +56,7 @@ const ItemCarouselUnit = ({ item }: UnitProps) => {
       )}
       {hotel[1] && (
         <S.ItemUnit onClick={(e) => onClickHandler(1, e)}>
-          <img src={hotel[1].imageUrl} />
+          <img src={hotel[1].imageUrl} alt={hotel[1].hotelName} />
           <div className="item-info">
             <div className="hotel_title">
               <h1>{hotel[1].hotelName}</h1>

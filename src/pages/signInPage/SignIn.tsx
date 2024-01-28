@@ -32,7 +32,13 @@ const SignIn = () => {
   const handleOnSubmit = async (data: FormValues) => {
     const { email, password } = data;
 
-    const fcmToken = await getNotificationPermission();
+    let fcmToken = await getNotificationPermission();
+
+    if (!fcmToken) {
+      fcmToken = localStorage.getItem("fcmToken") ?? "";
+      console.log("토큰발급:", fcmToken);
+    }
+
     await postLogin({ email, password, fcmToken })
       .then((loginData) => {
         const { memberResponse, tokenResponse } = loginData;

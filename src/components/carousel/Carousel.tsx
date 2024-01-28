@@ -52,7 +52,12 @@ const Carousel = ({
           {innerShadow && <S.ImageShadowWrapper />}
           {slideList.map((imageUrl, index) => (
             <S.ImageWrapper key={index} $height={height}>
-              <img src={imageUrl} alt={`Slide ${index}`} draggable={false} />
+              <img
+                src={imageUrl}
+                alt={`Slide ${index}`}
+                draggable={false}
+                loading="lazy"
+              />
             </S.ImageWrapper>
           ))}
         </S.SliderContainer>

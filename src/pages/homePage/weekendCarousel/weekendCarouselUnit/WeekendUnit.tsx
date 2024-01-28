@@ -21,7 +21,7 @@ const WeekendUnit = ({ item }: UnitProps) => {
 
   return (
     <S.LocaleWrapper onClick={onClickHandler}>
-      <img src={item[1].imageUrl} alt="" />
+      <img src={item[1].imageUrl} alt={item[1].hotelName} />
       <S.Stickers>
         {item[1].isBrunchIncluded && (
           <section>{item[1].isBrunchIncluded && "조식제공"}</section>

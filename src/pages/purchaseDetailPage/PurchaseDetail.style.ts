@@ -193,7 +193,6 @@ export const PayContainer = styled.div`
   padding: 1.5rem 1rem 3rem 1rem;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.1);
   position: relative;
-  z-index: 10;
 `;
 
 export const PayInfo = styled.div`
