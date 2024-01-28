@@ -36,9 +36,13 @@ const MyPage = () => {
   return (
     <S.Container>
       <S.ProfileSection>
-        <h3>{userProfile?.email} 님</h3>
+        {userProfile ? (
+          <h3>{userProfile.email} 님</h3>
+        ) : (
+          <h3>로그인 후 판매글을 작성해보세요</h3>
+        )}
         {!userProfile ? (
-          <S.EmptyDiv />
+          <button onClick={() => navigate(PATH.LOGIN)}>로그인 하기</button>
         ) : isConnected ? (
           <span>야놀자와 연동된 계정입니다</span>
         ) : (
