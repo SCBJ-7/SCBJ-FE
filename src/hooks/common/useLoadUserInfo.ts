@@ -6,8 +6,8 @@ import { fetchUserInfo } from "@/apis/fetchUserInfo";
 export const useLoadUserInfo = (isShow: boolean) => {
   const userInfo = useUserInfoStore((state) => state.userInfo);
   const setUserInfo = useUserInfoStore((state) => state.setUserInfo);
+
   useEffect(() => {
-    console.log();
     const getUserInfo = async () => {
       if (isShow && userInfo === null) {
         const response = await fetchUserInfo();

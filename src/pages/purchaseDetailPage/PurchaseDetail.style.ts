@@ -64,17 +64,17 @@ export const ImageContainer = styled.div`
   display: flex;
   color: ${({ theme }) => theme.color.black};
   margin: 1rem 0;
-`;
 
-export const Image = styled.img`
-  width: 80px;
-  height: 80px;
-  flex-shrink: 0;
-  background-color: #f9f9f9;
-  border-radius: 12px;
-  object-fit: cover;
-  margin-right: 1rem;
-  cursor: pointer;
+  & > img {
+    width: 80px;
+    height: 80px;
+    flex-shrink: 0;
+    background-color: #f9f9f9;
+    border-radius: 12px;
+    object-fit: cover;
+    margin-right: 1rem;
+    cursor: pointer;
+  }
 `;
 
 export const ImageContent = styled.div`

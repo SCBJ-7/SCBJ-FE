@@ -5,33 +5,36 @@ import { useMutation } from "@tanstack/react-query";
 import { isAxiosError } from "axios";
 import { useNavigate } from "react-router-dom";
 
+import { STATUS_CODE } from "@/constants/api";
+
 export const useConnectAccountMutation = () => {
   const navigate = useNavigate();
   const { handleToast } = useToastConfig();
 
+  const errorMessageMap = {
+    [STATUS_CODE.NOT_FOUND]: <>입력한 정보를 다시 확인해주세요</>,
+    [STATUS_CODE.INTERNAL_SERVER_ERROR]: <>잠시후 다시 시도하세요</>,
+  };
+
+  const handleError = (error: Error) => {
+    if (isAxiosError(error) && error.response) {
+      const message =
+        errorMessageMap[error.response.status as keyof typeof errorMessageMap];
+      if (message) {
+        handleToast(true, [message]);
+      }
+    }
+  };
+
   const connectAccountMutation = useMutation({
     mutationFn: (email: string) => postYanoljaAccount(email),
     onSuccess: () => {
-      navigate(PATH.YANOLJA_ACCOUNT + "/verify/success", {
+      navigate(PATH.YANOLJA_ACCOUNT_VERIFICATION_SUCCESS, {
         state: { success: true },
         replace: true,
       });
     },
-    onError: (error): void => {
-      if (
-        isAxiosError(error) &&
-        error.response &&
-        error.response.status === 404
-      ) {
-        handleToast(true, [<>입력한 정보를 다시 확인해주세요</>]);
-      } else if (
-        isAxiosError(error) &&
-        error.response &&
-        error.response.status === 500
-      ) {
-        handleToast(true, [<>잠시후 다시 시도하세요</>]);
-      }
-    },
+    onError: handleError,
     throwOnError: (error) => {
       return !isAxiosError(error);
     },

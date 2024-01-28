@@ -8,9 +8,11 @@ import { useQuery, useSuspenseQuery } from "@tanstack/react-query";
 import type { Nullable } from "@type/nullable";
 import type { PaymentData } from "@type/payment";
 
+import { KEY } from "@/constants/queryKey";
+
 export const usePaymentQuery = (productId: string) => {
   const paymentQuery = useSuspenseQuery<PaymentData>({
-    queryKey: ["payment", productId],
+    queryKey: [KEY.PAYMENT, productId],
     queryFn: async () => await getPayment(productId),
     staleTime: 5 * 60 * 1000,
     gcTime: 60 * 1000,
@@ -31,7 +33,7 @@ export const usePaymentSuccessQuery = ({
   pgToken,
 }: PaymentSuccessProps) => {
   const paymentSuccessQuery = useQuery({
-    queryKey: ["payment"],
+    queryKey: [KEY.PAYMENT, pgToken],
     queryFn: async () => await getPaymentSuccess({ paymentType, pgToken }),
     enabled: !!pgToken,
     refetchOnWindowFocus: false,
@@ -44,7 +46,7 @@ export const usePaymentSuccessQuery = ({
 
 export const usePaymentCancelQuery = (paymentType: string) => {
   const paymentCancelQuery = useQuery({
-    queryKey: ["payment"],
+    queryKey: [KEY.PAYMENT],
     queryFn: async () => await getPaymentCancel(paymentType),
     enabled: false,
   });

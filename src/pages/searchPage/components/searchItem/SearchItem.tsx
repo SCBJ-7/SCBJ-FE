@@ -1,9 +1,11 @@
-import { ISearchList } from "@/types/searchList";
 import { PATH } from "@constants/path";
 import { format, parseISO } from "date-fns";
 import { useNavigate } from "react-router-dom";
 
 import * as S from "./SearchItem.style";
+
+import ProgressiveImg from "@/components/progressiveImg/ProgressiveImg";
+import { ISearchList } from "@/types/searchList";
 
 const SearchItem = ({ item }: { item: ISearchList }) => {
   const navigate = useNavigate();
@@ -28,7 +30,7 @@ const SearchItem = ({ item }: { item: ISearchList }) => {
     <>
       <S.ItemContainer>
         <S.ItemContent onClick={handleClickItem}>
-          <S.ItemImage src={item.imageUrl} loading="lazy" />
+          <ProgressiveImg src={item.imageUrl} loading="lazy" />
           <S.ItemName>{item.name}</S.ItemName>
           <S.ItemRoomName>{item.roomType}</S.ItemRoomName>
           <S.ItemOriginalPrice>

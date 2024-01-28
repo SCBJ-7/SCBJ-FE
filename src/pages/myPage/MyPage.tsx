@@ -25,7 +25,7 @@ const MyPage = () => {
         ) : (
           <h3>로그인 후 판매글을 작성해보세요</h3>
         )}
-        {!userInfo ? (
+        {!isLoggedIn ? (
           <button onClick={() => navigate(PATH.LOGIN)}>로그인 하기</button>
         ) : isConnected ? (
           <span>야놀자와 연동된 계정입니다</span>

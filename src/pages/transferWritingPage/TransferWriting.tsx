@@ -11,10 +11,13 @@ import * as S from "./TransferWriting.style";
 
 import { fetchTransferItems } from "@/apis/fetchTransferItems";
 import { ResponseError } from "@/components/error/Error";
-import { ACCESS_TOKEN, ERROR_CODE } from "@/constants/api";
+import { ERROR_CODE } from "@/constants/api";
+import useAuthStore from "@/store/authStore";
 
 const TransferWriting = () => {
   const { handleToast } = useToastConfig();
+
+  const isLoggedIn = useAuthStore((state) => state.isLoggedIn);
 
   const { data: userData, isLoading } = useQuery({
     queryKey: ["UserInfo"],
@@ -27,20 +30,18 @@ const TransferWriting = () => {
     enabled: !!userData?.id,
   });
 
-  const token = localStorage.getItem(ACCESS_TOKEN);
-
   useEffect(() => {
-    if (!userData?.linkedToYanolja || !token) return;
+    if (!userData?.linkedToYanolja || !isLoggedIn) return;
     handleToast(false, [<>야놀자</>, "에서 예약하신 상품만 판매 가능해요."]);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [token, userData?.linkedToYanolja]);
+  }, [isLoggedIn, userData?.linkedToYanolja]);
 
   if (isLoading) return;
 
-  if (!token) {
+  if (!isLoggedIn) {
     throw new ResponseError(
       ERROR_CODE.UNAUTHORIZED_WRITE_TRANSFER,
-      "토큰이 없습니다.",
+      "로그인이 필요합니다.",
     );
   }
 

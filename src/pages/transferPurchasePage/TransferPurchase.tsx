@@ -1,8 +1,3 @@
-import { fetchPurchaseList } from "@/apis/fetchPurchaseList";
-import Loading from "@/components/lottie/loading/Loading";
-import useAuthStore from "@/store/authStore";
-import { useUserInfoStore } from "@/store/store";
-import { IPurchaseList } from "@/types/purchaseList";
 import { useQuery } from "@tanstack/react-query";
 import { differenceInDays, parseISO } from "date-fns";
 import { useSearchParams } from "react-router-dom";
@@ -10,6 +5,12 @@ import { useSearchParams } from "react-router-dom";
 import PurchaseItem from "./components/puchaseItem/PuchaseItem";
 import PurchaseNav from "./components/purchaseNav/PurchaseNav";
 import * as S from "./TransferPurchase.style";
+
+import { fetchPurchaseList } from "@/apis/fetchPurchaseList";
+import { KEY } from "@/constants/queryKey";
+import useAuthStore from "@/store/authStore";
+import { useUserInfoStore } from "@/store/store";
+import { IPurchaseList } from "@/types/purchaseList";
 
 export interface IPurchaseItemWithRemainDate extends IPurchaseList {
   remainDate: number;
@@ -40,11 +41,19 @@ const TransferPurchase = () => {
   const userInfo = useUserInfoStore((state) => state.userInfo);
   const isLoggedIn = useAuthStore((state) => state.isLoggedIn);
 
-  const { data: purchaseData, isLoading } = useQuery({
-    queryKey: ["purchaseList"],
+  const {
+    data: purchaseData,
+    isLoading,
+    isSuccess,
+  } = useQuery({
+    queryKey: [KEY.PURCHASE_LIST],
     queryFn: fetchPurchaseList,
     enabled: !!userInfo && !!isLoggedIn,
   });
+
+  if (isLoading && !isSuccess) {
+    return <div>Loading...</div>;
+  }
 
   const sortedPurchaseItems = sortProductsByCheckInDate(purchaseData);
   const filteredPurchaseItems = sortedPurchaseItems.filter((item) => {
@@ -56,10 +65,6 @@ const TransferPurchase = () => {
       return true;
     }
   });
-
-  if (isLoading) {
-    return <Loading />;
-  }
 
   return (
     <>
