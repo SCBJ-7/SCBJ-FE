@@ -48,7 +48,7 @@ export const useSelectedItemStore = create(
 
 interface UserState {
   userInfo: ProfileData | null;
-  setUserInfo: (userInfo: Partial<ProfileData>) => void;
+  setUserInfo: (userInfo: Partial<ProfileData | null>) => void;
 }
 
 export const useUserInfoStore = create<UserState>((set) => ({
