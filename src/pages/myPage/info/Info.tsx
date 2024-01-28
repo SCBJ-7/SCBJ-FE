@@ -1,5 +1,3 @@
-import { ACCESS_TOKEN, REFRESH_TOKEN } from "@/constants/api";
-import useAuthStore from "@/store/authStore";
 import { logout } from "@apis/logout";
 import { PATH } from "@constants/path";
 import useToastConfig from "@hooks/common/useToastConfig";
@@ -8,6 +6,10 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import * as S from "./Info.style";
+
+import { ACCESS_TOKEN, REFRESH_TOKEN } from "@/constants/api";
+import { KEY } from "@/constants/queryKey";
+import useAuthStore from "@/store/authStore";
 
 const Info = () => {
   const navigate = useNavigate();
@@ -33,7 +35,7 @@ const Info = () => {
       localStorage.removeItem(ACCESS_TOKEN);
       localStorage.removeItem(REFRESH_TOKEN);
       setIsLoggedIn(false);
-      queryClient.removeQueries({ queryKey: ["purchaseList"] });
+      queryClient.removeQueries({ queryKey: [KEY.PURCHASE_LIST] });
       navigate(PATH.ROOT);
     } catch (err) {
       handleToast(true, [<>로그아웃 실패. 잠시 후 다시 시도해 주세요</>]);

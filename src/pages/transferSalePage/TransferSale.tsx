@@ -10,6 +10,9 @@ import * as S from "./TransferSale.style";
 
 import type { ISaleList } from "@type/saleList";
 
+import { useLoadUserInfo } from "@/hooks/common/useLoadUserInfo";
+import useAuthStore from "@/store/authStore";
+
 export interface ISaleItemWithRemainDate extends ISaleList {
   remainDate: number;
 }
@@ -37,7 +40,10 @@ const TransferSale = () => {
   const [saleItems, setSaleItems] = useState<ISaleItemWithRemainDate[]>([]);
   const [searchParams] = useSearchParams();
   const status = searchParams.get("status");
-  const isConnected = localStorage.getItem("isConnected");
+  const isLoggedIn = useAuthStore((state) => state.isLoggedIn);
+  const userInfo = useLoadUserInfo(isLoggedIn);
+  const isConnected = userInfo?.linkedToYanolja;
+
   const fetchData = async () => {
     try {
       const { data } = await fetchSaleList();
@@ -69,17 +75,14 @@ const TransferSale = () => {
     fetchData();
     // eslint-disable-next-line
   }, [status]);
+
   if (saleItems.length === 0)
     return (
       <>
         <SaleNav />
         <S.NoSaleItems>
           <NoItemText />
-          {isConnected === "true" ? (
-            ""
-          ) : (
-            <span>계정을 연동하고 판매글을 작성해보세요!</span>
-          )}
+          {!isConnected && <span>계정을 연동하고 판매글을 작성해보세요!</span>}
         </S.NoSaleItems>
       </>
     );

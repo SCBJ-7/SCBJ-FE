@@ -42,7 +42,6 @@ const SignIn = () => {
 
     if (!fcmToken) {
       fcmToken = localStorage.getItem("fcmToken") ?? "";
-      console.log("토큰발급:", fcmToken);
     }
 
     await postLogin({ email, password, fcmToken })
@@ -52,6 +51,7 @@ const SignIn = () => {
 
         localStorage.setItem("accessToken", tokenResponse.accessToken);
         localStorage.setItem("refreshToken", tokenResponse.refreshToken);
+
         if (redirectUrl) {
           navigate(redirectUrl, { replace: true });
           return;

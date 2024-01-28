@@ -1,5 +1,6 @@
-import NoResult from "@/components/noResult/NoResult";
 import { PATH } from "@constants/path";
+
+import NoResult from "@/components/noResult/NoResult";
 
 const NotFound = () => {
   const content = {
