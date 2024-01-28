@@ -1,6 +1,7 @@
 import { postLogin } from "@apis/fetchLogin";
-import { PATH } from "@constants/path";
+// import { PATH } from "@constants/path";
 import useToastConfig from "@hooks/common/useToastConfig";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate, useSearchParams } from "react-router-dom";
 
@@ -19,6 +20,8 @@ const SignIn = () => {
   const [searchParams] = useSearchParams();
   const redirectUrl = searchParams.get("redirect");
   const { handleToast } = useToastConfig();
+
+  const [state, setState] = useState("");
 
   const {
     register,
@@ -39,6 +42,7 @@ const SignIn = () => {
     if (!fcmToken) {
       fcmToken = localStorage.getItem("fcmToken") ?? "";
       console.log("토큰발급:", fcmToken);
+      setState(fcmToken);
     }
 
     await postLogin({ email, password, fcmToken })
@@ -46,7 +50,6 @@ const SignIn = () => {
         const { memberResponse, tokenResponse } = loginData;
         useUserInfoStore.getState().setUserInfo(memberResponse);
 
-        // TODO: 임시로 localStorage에서 토큰 저장히지만 더 좋은 방법 찾기~!! 토스~!!
         localStorage.setItem("accessToken", tokenResponse.accessToken);
         localStorage.setItem("refreshToken", tokenResponse.refreshToken);
         if (redirectUrl) {
@@ -54,7 +57,7 @@ const SignIn = () => {
           return;
         }
 
-        navigate(PATH.ROOT, { replace: true });
+        // navigate(PATH.ROOT, { replace: true });
       })
       .catch(() => {
         handleToast(false, [<>아이디 혹은 비밀번호를 확인해주세요</>]);
@@ -65,6 +68,7 @@ const SignIn = () => {
     <S.SignInContainer onSubmit={handleSubmit(handleOnSubmit)}>
       <Link to="/">
         <S.SignInLogo />
+        <h4>{state}</h4>
       </Link>
       <S.SignInInputContainer>
         <S.SignInInputWrapper>

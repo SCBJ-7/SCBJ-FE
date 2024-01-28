@@ -1,17 +1,17 @@
-import { useLoadUserInfo } from "@/hooks/common/useLoadUserInfo";
-import useAuthStore from "@/store/authStore";
 import { PATH } from "@constants/path";
 import { Outlet, useNavigate } from "react-router-dom";
 
 import MyPageNav from "./components/myPageNav/MyPageNav";
 import * as S from "./MyPage.style";
 
+import { useLoadUserInfo } from "@/hooks/common/useLoadUserInfo";
+import useAuthStore from "@/store/authStore";
+
 const MyPage = () => {
   const navigate = useNavigate();
   const isLoggedIn = useAuthStore((state) => state.isLoggedIn);
   const userInfo = useLoadUserInfo(isLoggedIn);
   const isConnected = userInfo?.linkedToYanolja;
-  localStorage.setItem("isConnected", JSON.stringify(isConnected));
 
   const connectToYanolja = () => {
     navigate(PATH.YANOLJA_ACCOUNT);

@@ -1,4 +1,3 @@
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 /* global firebase */
 /**
    * Here is is the code snippet to initialize Firebase Messaging in the Service
