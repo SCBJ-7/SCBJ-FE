@@ -21,7 +21,7 @@ const SignIn = () => {
   const redirectUrl = searchParams.get("redirect");
   const { handleToast } = useToastConfig();
 
-  const [state, setState] = useState("");
+  const [state, setState] = useState<string | undefined>("");
 
   const {
     register,
@@ -38,11 +38,11 @@ const SignIn = () => {
     const { email, password } = data;
 
     let fcmToken = await getNotificationPermission();
+    setState(fcmToken);
 
     if (!fcmToken) {
       fcmToken = localStorage.getItem("fcmToken") ?? "";
       console.log("토큰발급:", fcmToken);
-      setState(fcmToken);
     }
 
     await postLogin({ email, password, fcmToken })
@@ -68,7 +68,7 @@ const SignIn = () => {
     <S.SignInContainer onSubmit={handleSubmit(handleOnSubmit)}>
       <Link to="/">
         <S.SignInLogo />
-        <h4>{state}</h4>
+        <h3>{state}</h3>
       </Link>
       <S.SignInInputContainer>
         <S.SignInInputWrapper>
