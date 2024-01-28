@@ -12,8 +12,7 @@
     "preview": "vite preview",
     "prepare": "husky install",
     "test": "vitest",
-    "generate-pwa-assets": "pwa-assets-generator --preset minimal public/logo.svg",
-    "postbuild": "react-snap"
+    "generate-pwa-assets": "pwa-assets-generator --preset minimal public/logo.svg"
   },
   "lint-staged": {
     "*.{ts,tsx}": [
@@ -81,13 +80,6 @@
   "msw": {
     "workerDirectory": [
       "public"
-    ]
-  },
-  "reactSnap": {
-    "source": "./dist",
-    "include": [
-      "/index",
-      "/"
     ]
   }
 }
