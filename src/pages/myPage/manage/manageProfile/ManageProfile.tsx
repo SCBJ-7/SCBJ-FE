@@ -1,9 +1,8 @@
+import { useUserInfoQuery } from "@/hooks/api/useUserInfoQuery";
 import ManageEmail from "../manageEmail/ManageEmail";
 import ManageName from "../manageName/ManageName";
 import ManagePhoneNumber from "../managePhoneNumber/ManagePhoneNumber";
 import * as S from "./ManageProfile.style";
-
-import { useUserInfoQuery } from "@/hooks/api/useUserInfoQuery";
 
 const ManageProfile = () => {
   const { data: userInfo } = useUserInfoQuery();

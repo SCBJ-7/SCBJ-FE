@@ -1,6 +1,8 @@
-import { formatDateString } from "@/utils/dateFormatter";
 import * as S from "@pages/saleDetailPage/SaleDetail.style";
+
 import type { ISaleData } from "@type/saleDetail";
+
+import { formatDateString } from "@/utils/dateFormatter";
 
 interface SaleInfoProps {
   info: ISaleData;

@@ -1,5 +1,7 @@
 import * as S from "./SequenceSection.style";
+
 import type { LocaleItem } from "@type/saleSection";
+
 interface indicatorProps {
   indicatorRange: number[];
   currentLocale: [number, string, LocaleItem[]];

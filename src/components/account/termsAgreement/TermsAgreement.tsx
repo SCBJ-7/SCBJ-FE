@@ -1,10 +1,12 @@
-import { useRef, useState } from "react";
-import * as S from "./TermsAgreement.style";
-import { ColorKeys, TypoKeys } from "@styles/theme";
-import { PRIVACY_POLICY } from "./PrivacyPolicy";
-import usePreventLeave from "@/hooks/common/usePreventLeave";
 import useToastConfig from "@hooks/common/useToastConfig";
+import { ColorKeys, TypoKeys } from "@styles/theme";
+import { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
+
+import { PRIVACY_POLICY } from "./PrivacyPolicy";
+import * as S from "./TermsAgreement.style";
+
+import usePreventLeave from "@/hooks/common/usePreventLeave";
 
 interface Term {
   id: string;

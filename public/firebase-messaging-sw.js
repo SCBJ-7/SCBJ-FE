@@ -1,4 +1,3 @@
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 /* global firebase */
 /**
    * Here is is the code snippet to initialize Firebase Messaging in the Service
@@ -63,14 +62,14 @@ self.addEventListener("notificationclick", function (event) {
   event.waitUntil(self.clients.openWindow(url));
 });
 
-messaging.onBackgroundMessage(function (payload) {
-  console.log("Received background message", payload);
-  // Customize notification here
-  const notificationTitle = payload.data.title;
-  const notificationOptions = {
-    body: payload.data.message,
-    icon: "/icon-192.png",
-  };
+// messaging.onBackgroundMessage(function (payload) {
+//   console.log("Received background message", payload);
+//   // Customize notification here
+//   const notificationTitle = payload.data.title;
+//   const notificationOptions = {
+//     body: payload.data.message,
+//     icon: "/icon-192.png",
+//   };
 
-  self.registration.showNotification(notificationTitle, notificationOptions);
-});
+//   self.registration.showNotification(notificationTitle, notificationOptions);
+// });

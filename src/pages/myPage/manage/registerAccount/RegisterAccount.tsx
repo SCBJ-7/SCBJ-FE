@@ -1,10 +1,12 @@
-import { useEffect, useState } from "react";
-import * as S from "./RegisterAccount.style";
-import { useNavigate, useSearchParams } from "react-router-dom";
-import TermsAgreement from "@/components/account/termsAgreement/TermsAgreement";
 import EnterAccountInfo from "@/components/account/enterAccountInfo/EnterAccountInfo";
-import { PATH } from "@constants/path";
+import TermsAgreement from "@/components/account/termsAgreement/TermsAgreement";
+
 import type { AccountData } from "@/types/profile";
+import { PATH } from "@constants/path";
+import { useEffect, useState } from "react";
+import { useNavigate, useSearchParams } from "react-router-dom";
+
+import * as S from "./RegisterAccount.style";
 
 const RegisterAccount = () => {
   const navigate = useNavigate();

@@ -1,9 +1,10 @@
-import { useNavigate } from "react-router-dom";
-import * as S from "./MainHeader.style";
+import { fetchHasAlarm } from "@apis/fetchHasAlarm";
 import MainLogo from "@assets/logos/main_logo.svg?react";
 import { PATH } from "@constants/path";
-import { fetchHasAlarm } from "@apis/fetchHasAlarm";
 import { useSuspenseQuery } from "@tanstack/react-query";
+import { useNavigate } from "react-router-dom";
+
+import * as S from "./MainHeader.style";
 
 const MainHeader = () => {
   const { data: hasAlarmData } = useSuspenseQuery({

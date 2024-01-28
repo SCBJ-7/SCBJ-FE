@@ -1,4 +1,5 @@
 import styled, { css } from "styled-components";
+
 import { ListElement, ListWrapper } from "../setting/Setting.style";
 
 export const dimmedStyle = css`

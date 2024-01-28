@@ -1,9 +1,10 @@
-import * as S from "./UserInfoSection.style";
 import Checkbox from "@components/checkbox/Checkbox";
-import { useEffect, useState } from "react";
-import { useLoadUserInfo } from "@hooks/common/useLoadUserInfo";
-import { Controller, useFormContext } from "react-hook-form";
 import { EMAIL_REGEX, PHONE_NUMBER_REGEX } from "@constants/regex";
+import { useLoadUserInfo } from "@hooks/common/useLoadUserInfo";
+import { useEffect, useState } from "react";
+import { Controller, useFormContext } from "react-hook-form";
+
+import * as S from "./UserInfoSection.style";
 
 const UserInfoSection = () => {
   const {
@@ -29,7 +30,6 @@ const UserInfoSection = () => {
       setValue("email", userInfo.email, { shouldValidate: true });
       setValue("phone", userInfo.phone, { shouldValidate: true });
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isDiffUser, setValue, userInfo]);
 
   const handleCheckboxChange = (checked: boolean) => {

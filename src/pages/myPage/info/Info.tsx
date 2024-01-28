@@ -1,12 +1,13 @@
-import { useState } from "react";
-import * as S from "./Info.style";
-import { useNavigate } from "react-router-dom";
-import { PATH } from "@constants/path";
-import { logout } from "@apis/logout";
-import useToastConfig from "@hooks/common/useToastConfig";
-import useAuthStore from "@/store/authStore";
 import { ACCESS_TOKEN, REFRESH_TOKEN } from "@/constants/api";
+import useAuthStore from "@/store/authStore";
+import { logout } from "@apis/logout";
+import { PATH } from "@constants/path";
+import useToastConfig from "@hooks/common/useToastConfig";
 import { useQueryClient } from "@tanstack/react-query";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+
+import * as S from "./Info.style";
 
 const Info = () => {
   const navigate = useNavigate();

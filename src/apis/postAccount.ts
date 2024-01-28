@@ -1,5 +1,5 @@
-import { axiosInstance } from "@apis/axiosInstance";
 import { END_POINTS } from "@/constants/api";
+import { axiosInstance } from "@apis/axiosInstance";
 
 interface AccountProps {
   accountNumber: string;

@@ -1,7 +1,7 @@
 import useIsVisible from "@hooks/common/useIsVisible";
+import { useNavigate } from "react-router-dom";
 
 import * as S from "./RoomHeader.style";
-import { useNavigate } from "react-router-dom";
 
 interface RoomHeaderProps {
   title: string;

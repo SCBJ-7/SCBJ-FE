@@ -1,12 +1,13 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-import { HelmetProvider } from "react-helmet-async";
+import { hydrate } from "react-dom";
 import ReactDOM from "react-dom/client";
+import { HelmetProvider } from "react-helmet-async";
 import { ThemeProvider } from "styled-components";
+
 import AppRouter from "./routes/router";
 import { GlobalStyle } from "./styles/globalStyle";
 import { theme } from "./styles/theme";
-import { hydrate } from "react-dom";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -20,6 +21,17 @@ const queryClient = new QueryClient({
     },
   },
 });
+
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker
+    .register("/firebase-messaging-sw.js")
+    .then((registration) => {
+      console.log("Service Worker 등록 성공:", registration);
+    })
+    .catch((error) => {
+      console.log("Service Worker 등록 실패:", error);
+    });
+}
 
 const rootElement = document.getElementById("root");
 if (rootElement?.hasChildNodes()) {

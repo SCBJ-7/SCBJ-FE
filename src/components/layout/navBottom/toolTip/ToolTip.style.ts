@@ -1,5 +1,5 @@
-import styled from "styled-components";
 import { IoIosClose } from "react-icons/io";
+import styled from "styled-components";
 
 export const Container = styled.div`
   position: absolute;

@@ -1,11 +1,12 @@
 import InputField from "@components/inputField/InputField";
-import { useValidateEmailMutation } from "@/hooks/api/useValidateEmailMutation.ts";
+import { EMAIL_REGEX } from "@constants/regex";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useFormContext } from "react-hook-form";
 
 import * as S from "./VerificationSection.style.ts";
-import { EMAIL_REGEX } from "@constants/regex";
+
+import { useValidateEmailMutation } from "@/hooks/api/useValidateEmailMutation.ts";
 
 const VerificationSection = () => {
   const { control, getValues, setError, clearErrors, watch } = useFormContext();

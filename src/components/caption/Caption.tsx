@@ -1,4 +1,5 @@
 import { Children } from "react";
+
 import * as S from "./Cation.style";
 
 interface CaptionProps {

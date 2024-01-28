@@ -1,12 +1,13 @@
-import { useEffect, useRef, useState } from "react";
-import * as S from "./EnterAccountInfo.style";
 import { BANK_LIST } from "@/constants/bank";
-import { AnimatePresence, useAnimation } from "framer-motion";
-import { useLocation } from "react-router-dom";
 import { PATH } from "@/constants/path";
-import useToastConfig from "@hooks/common/useToastConfig";
 import usePreventLeave from "@hooks/common/usePreventLeave";
+import useToastConfig from "@hooks/common/useToastConfig";
 import { Nullable } from "@type/nullable";
+import { AnimatePresence, useAnimation } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
+import { useLocation } from "react-router-dom";
+
+import * as S from "./EnterAccountInfo.style";
 
 const EnterAccountInfo = ({
   bank,

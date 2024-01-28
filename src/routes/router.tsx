@@ -1,17 +1,16 @@
-import App from "@/App";
-
+import Layout from "@components/layout/Layout";
 import { Suspense } from "react";
 import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
 
-import ApiErrorBoundary from "@/components/errorBoundary/ErrorBoundary";
-import NotFound from "@/pages/notFoundPage";
-import Redirect from "@/components/redirect/Redirect";
-import Layout from "@components/layout/Layout";
-import Loading from "@/components/lottie/loading/Loading";
-import { HelmetTag } from "@/components/Helmet/Helmet";
+import * as Lazy from "./lazy.ts";
 
-import { PATH } from "@/constants/path";
-import * as Lazy from "./lazy";
+import App from "@/App.tsx";
+import ApiErrorBoundary from "@/components/errorBoundary/ErrorBoundary.tsx";
+import { HelmetTag } from "@/components/Helmet/Helmet.tsx";
+import Loading from "@/components/lottie/loading/Loading.tsx";
+import Redirect from "@/components/redirect/Redirect.tsx";
+import { PATH } from "@/constants/path.ts";
+import NotFound from "@/pages/notFoundPage";
 
 const AppRouter = () => {
   const routes = createBrowserRouter([

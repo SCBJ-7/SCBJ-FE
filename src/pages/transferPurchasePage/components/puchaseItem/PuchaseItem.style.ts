@@ -1,5 +1,5 @@
-import styled from "styled-components";
 import { PiCaretRightBold } from "react-icons/pi";
+import styled from "styled-components";
 
 export const PurchaseItemContainer = styled.div`
   border-bottom: 1px solid ${({ theme }) => theme.color.greyScale6};

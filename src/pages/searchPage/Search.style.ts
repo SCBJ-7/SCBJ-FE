@@ -1,5 +1,5 @@
-import styled from "styled-components";
 import TopButtonIcon from "@assets/icons/ic_top_button.svg?react";
+import styled from "styled-components";
 
 export const Container = styled.div`
   background-color: ${({ theme }) => theme.color.white};

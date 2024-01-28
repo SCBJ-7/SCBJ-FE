@@ -1,9 +1,10 @@
 import {
-  END_POINTS,
   ACCESS_TOKEN,
-  REFRESH_TOKEN,
   BASE_URL,
+  END_POINTS,
+  REFRESH_TOKEN,
 } from "@constants/api";
+
 import type { TokenData } from "@type/login";
 import type { ResponseData } from "@type/responseType";
 import axios from "axios";

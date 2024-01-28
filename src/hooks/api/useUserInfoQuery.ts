@@ -1,7 +1,8 @@
 import { useSuspenseQuery } from "@tanstack/react-query";
 
-import { fetchUserInfo } from "@/apis/fetchUserInfo";
 import type { AccountData, ProfileData } from "@/types/profile";
+
+import { fetchUserInfo } from "@/apis/fetchUserInfo";
 
 interface AccountQueryProps {
   accountData: AccountData;

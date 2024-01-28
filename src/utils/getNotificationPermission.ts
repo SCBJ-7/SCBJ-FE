@@ -1,6 +1,7 @@
 import { app } from "@/firebase";
 import { isMobileSafari } from "@utils/isMobileSafari";
 import { getMessaging, getToken, onMessage } from "firebase/messaging";
+
 import { isAccessTokenExpired } from "./checkToken";
 
 export const messaging = !isMobileSafari() && getMessaging(app);

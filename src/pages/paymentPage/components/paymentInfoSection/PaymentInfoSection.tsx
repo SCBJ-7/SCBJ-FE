@@ -1,8 +1,10 @@
-import * as S from "./PaymentInfoSection.style";
-import { formatDate } from "@utils/dateFormatter";
-import type { PaymentData } from "@type/payment";
 import Card from "@components/card/Card";
 import CardItem from "@components/cardItem/CardItem";
+
+import type { PaymentData } from "@type/payment";
+import { formatDate } from "@utils/dateFormatter";
+
+import * as S from "./PaymentInfoSection.style";
 
 interface PaymentInfoSectionProps {
   payment: PaymentData;
