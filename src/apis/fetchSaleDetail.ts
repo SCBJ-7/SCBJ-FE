@@ -1,25 +1,16 @@
-import {END_POINTS} from '@constants/api'
+import { END_POINTS } from "@constants/api";
 
-import type {ResponseData} from '@type/responseType'
-import type {ISaleData} from '@type/saleDetail'
+import { axiosInstance } from "./axiosInstance";
 
-import {axiosInstance} from './axiosInstance'
+import type { ResponseData } from "@type/responseType";
+import type { ISaleData } from "@type/saleDetail";
 
-// FIXME as below (백엔드 수정 후)
 export const fetchSaleDetail = async (
   id: number,
   isPaymentId: boolean,
 ): Promise<ISaleData> => {
-  const response = await axiosInstance.get<ResponseData<ISaleData>>(
+  const { data } = await axiosInstance.get<ResponseData<ISaleData>>(
     END_POINTS.SALE_DETAIL(id, isPaymentId),
   );
-  console.log("res", response.data.data);
-  return response.data.data;
+  return data.data;
 };
-
-// export const fetchSaleDetail = async () => {
-//   const { data } = await axios.get<ResponseData<ISaleData>>(
-//     "/v1/sale-history/49",
-//   );
-//   return data.data;
-// };
