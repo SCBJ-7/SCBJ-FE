@@ -1,47 +1,32 @@
-import { fetchSaleDetail } from "@apis/fetchSaleDetail";
 import Caption from "@components/caption/Caption";
 import Card from "@components/card/Card";
 import CardItem from "@components/cardItem/CardItem";
 import { CaptionWrapper } from "@pages/paymentPage/Payment.style";
-import { ISaleData } from "@type/saleDetail";
 import { calculateFee } from "@utils/calculator";
 import { parse, sub, format } from "date-fns";
-import { useEffect, useState } from "react";
 import { useParams, useSearchParams } from "react-router-dom";
 
 import SaleButton from "./saleButton/SaleButton";
 import * as S from "./SaleDetail.style";
-// import { useSaleDetailQuery } from "@hooks/api/query/useSaleDetailQuery";
-
 import SaleInfo from "./saleInfo/SaleInfo";
 
-
+import { useSaleDetailQuery } from "@/hooks/api/useSaleQuery";
 import { formatDateString } from "@/utils/dateFormatter";
 
 const SaleDetail = () => {
   const { saleId } = useParams();
   const [searchParams] = useSearchParams();
-  const isPaymentId: string | null = searchParams.get("isPaymentId");
+  const isPaymentId = searchParams.get("isPaymentId");
   if (!saleId) throw new Error("존재하지 않는 saleId 입니다.");
+  if (!isPaymentId) throw new Error("존재하지 않는 isPaymentId 입니다.");
 
-  // FIXME as below (백엔드 수정 후)
-  // const { data } = useSaleDetailQuery(saleId);
+  const { data, isSuccess } = useSaleDetailQuery(
+    Number(saleId),
+    JSON.parse(isPaymentId),
+  );
 
-  // 아래 부분 대신 위로 수정\
-  const [data, setData] = useState<ISaleData>();
-  const fetch = async () => {
-    if (isPaymentId) {
-      const res = await fetchSaleDetail(
-        Number(saleId),
-        JSON.parse(isPaymentId),
-      );
-      setData(res);
-    }
-  };
-  useEffect(() => {
-    fetch();
-    // eslint-disable-next-line
-  }, []);
+  if (isSuccess) null;
+
   const formattedDate = (day: Date) => {
     return format(day, "yy.MM.dd (EEE) HH:mm");
   };
