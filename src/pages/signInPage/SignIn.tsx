@@ -40,7 +40,8 @@ const SignIn = () => {
     const messaging = getMessaging(app);
 
     const fcmToken = await getToken(messaging, {
-      vapidKey: import.meta.env.VITE_FIREBASE_VAPID,
+      vapidKey:
+        "BNJnISNECPJrEzIQ8Mbjvw2bu3GQrwo52ChZT0E8BX243r9WAlXS7yYZJntYKt537lSs4188KsLJLJFFdPyRL3Q",
     });
 
     SetToken(fcmToken);
