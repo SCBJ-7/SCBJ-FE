@@ -12,7 +12,8 @@
     "preview": "vite preview",
     "prepare": "husky install",
     "test": "vitest",
-    "generate-pwa-assets": "pwa-assets-generator --preset minimal public/logo.svg"
+    "generate-pwa-assets": "pwa-assets-generator --preset minimal public/logo.svg",
+    "postbuild": "react-snap"
   },
   "lint-staged": {
     "*.{ts,tsx}": [
@@ -32,6 +33,7 @@
     "react-datepicker": "^4.25.0",
     "react-dom": "^18.2.0",
     "react-error-boundary": "^4.0.12",
+    "react-helmet": "^6.1.0",
     "react-hook-form": "^7.49.3",
     "react-icons": "^4.12.0",
     "react-modal": "^3.16.1",
@@ -50,6 +52,7 @@
     "@types/react": "^18.2.43",
     "@types/react-datepicker": "^4.19.5",
     "@types/react-dom": "^18.2.17",
+    "@types/react-helmet": "^6.1.11",
     "@typescript-eslint/eslint-plugin": "^6.14.0",
     "@typescript-eslint/parser": "^6.14.0",
     "@vite-pwa/assets-generator": "^0.2.3",
@@ -63,6 +66,7 @@
     "lint-staged": "^15.2.0",
     "msw": "^2.0.11",
     "prettier": "^3.1.1",
+    "react-snap": "^1.23.0",
     "ts-node": "^10.9.2",
     "tsconfig-paths": "^4.2.0",
     "typescript": "^5.2.2",

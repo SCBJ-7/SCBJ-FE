@@ -35,6 +35,7 @@ const SaleDetail = () => {
   };
   useEffect(() => {
     fetch();
+    // eslint-disable-next-line
   }, []);
   const formattedDate = (day: Date) => {
     return format(day, "yy.MM.dd (EEE) HH:mm");

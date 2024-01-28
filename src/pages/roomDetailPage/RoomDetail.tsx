@@ -10,6 +10,7 @@ import useAuthStore from "@/store/authStore";
 
 import * as S from "./RoomDetail.style";
 import { useEffect } from "react";
+import { HelmetTag } from "@/components/Helmet/Helmet";
 
 const RoomDetail = () => {
   const { productId } = useParams();
@@ -32,6 +33,7 @@ const RoomDetail = () => {
 
   return (
     <S.Container>
+      <HelmetTag text={rawData.hotelName} />
       <RoomHeader title={rawData.hotelName} />
       <Carousel
         images={rawData.hotelImageUrlList}
