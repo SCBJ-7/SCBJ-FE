@@ -260,7 +260,6 @@ const routes = createBrowserRouter([
         path: PATH.DETAIL_ROOM(":productId"),
         element: (
           <Layout isHeaderOn={false} isBottomNavOn={false}>
-            <HelmetTag text="상세페이지" />
             <ApiErrorBoundary>
               <Suspense fallback={<Loading />}>
                 <RoomDetail />
