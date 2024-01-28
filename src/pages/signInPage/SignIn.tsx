@@ -5,7 +5,9 @@ import useToastConfig from "@hooks/common/useToastConfig";
 // import { PATH } from "@constants/path";
 import { useUserInfoStore } from "@/store/store";
 import { postLogin } from "@apis/fetchLogin";
-import getNotificationPermission from "@/utils/getNotificationPermission";
+// import getNotificationPermission from "@/utils/getNotificationPermission";
+import { getMessaging, getToken } from "firebase/messaging";
+import { app } from "@/firebase";
 import { useState } from "react";
 
 type FormValues = {
@@ -18,7 +20,8 @@ const SignIn = () => {
   const [searchParams] = useSearchParams();
   const redirectUrl = searchParams.get("redirect");
   const { handleToast } = useToastConfig();
-  const [visible, SetVisible] = useState<string | undefined>("");
+  // const [visible, SetVisible] = useState<string | undefined>("");
+  const [token, SetToken] = useState("");
 
   const {
     register,
@@ -34,13 +37,21 @@ const SignIn = () => {
   const handleOnSubmit = async (data: FormValues) => {
     const { email, password } = data;
 
-    let fcmToken = await getNotificationPermission();
+    const messaging = getMessaging(app);
 
-    if (!fcmToken) {
-      fcmToken = localStorage.getItem("fcmToken") ?? "";
-      console.log("토큰발급:", fcmToken);
-    }
-    SetVisible(fcmToken);
+    const fcmToken = await getToken(messaging, {
+      vapidKey: import.meta.env.VITE_FIREBASE_VAPID,
+    });
+
+    SetToken(fcmToken);
+
+    // let fcmToken = await getNotificationPermission();
+
+    // if (!fcmToken) {
+    //   fcmToken = localStorage.getItem("fcmToken") ?? "";
+    //   console.log("토큰발급:", fcmToken);
+    // }
+    // SetVisible(fcmToken);
 
     await postLogin({ email, password, fcmToken })
       .then((loginData) => {
@@ -66,7 +77,7 @@ const SignIn = () => {
     <S.SignInContainer onSubmit={handleSubmit(handleOnSubmit)}>
       <Link to="/">
         <S.SignInLogo />
-        <p>{visible}</p>
+        <p>{token}</p>
       </Link>
       <S.SignInInputContainer>
         <S.SignInInputWrapper>
