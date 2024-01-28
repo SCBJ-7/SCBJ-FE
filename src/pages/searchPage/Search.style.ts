@@ -8,9 +8,6 @@ export const Container = styled.div`
 export const SearchContainer = styled.div`
   width: 100%;
   height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   padding-top: 116px;
   color: ${({ theme }) => theme.color.black};
   padding-bottom: 100px;
