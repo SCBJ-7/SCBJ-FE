@@ -17,6 +17,7 @@ const RoomHeader = ({ title }: RoomHeaderProps) => {
   });
 
   const navigate = useNavigate();
+
   return (
     <>
       <S.HeaderContainer $visible={isVisible}>

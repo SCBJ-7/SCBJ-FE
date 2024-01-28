@@ -44,18 +44,20 @@ const SaleItem = (props: ISaleItemWithRemainDate) => {
           </div>
         </>
       );
-    } else if (props.saleStatus === "판매만료") {
-      return <span>판매 시간이 지나 자동 만료된 상품입니다</span>;
-    } else {
-      return (
-        <span className="price">
-          {props.secondPrice
-            ? `${props.secondPrice.toLocaleString()}원`
-            : `${props.firstPrice.toLocaleString()}원`}
-        </span>
-      );
     }
+
+    if (props.saleStatus === "판매만료") {
+      return <span>판매 시간이 지나 자동 만료된 상품입니다</span>;
+    }
+
+    return (
+      <span className="price">
+        {`${props.secondPrice.toLocaleString()}원` ||
+          `${props.firstPrice.toLocaleString()}원`}
+      </span>
+    );
   };
+
   return (
     <S.SaleItemContainer $saleStatus={props.saleStatus} onClick={handleClick}>
       <S.SaleItemTitle $saleStatus={props.saleStatus}>

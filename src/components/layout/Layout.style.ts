@@ -7,6 +7,13 @@ export const Container = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  overflow-x: hidden;
+
+  -ms-overflow-style: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 `;
 
 export const Wrapper = styled.div`
@@ -16,5 +23,4 @@ export const Wrapper = styled.div`
   height: 100%;
   position: relative;
   background-color: white;
-  margin: 0 auto;
 `;

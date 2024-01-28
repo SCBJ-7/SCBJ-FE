@@ -1,6 +1,6 @@
-import styled from "styled-components";
 import CloseButton from "@assets/icons/ic_close-button.svg?react";
 import ResetIcon from "@assets/icons/ic_reset.svg?react";
+import styled from "styled-components";
 
 export const ModalContainer = styled.div`
   display: flex;
@@ -147,13 +147,8 @@ export const CalendarContainer = styled.div`
     color: white;
     background-color: ${({ theme }) => theme.color.percentOrange};
   }
-  .react-datepicker__day--today {
-    &:hover {
-      background-color: ${({ theme }) => theme.color.greyScale6};
-    }
-  }
   .react-datepicker__day--in-selecting-range {
-    background-color: white !important;
+    background-color: white;
     color: ${({ theme }) => theme.color.percentOrange};
     border: 2px solid ${({ theme }) => theme.color.percentOrange};
     font-weight: bold;
