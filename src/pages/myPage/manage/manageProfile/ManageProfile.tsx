@@ -2,46 +2,23 @@ import ManageEmail from "../manageEmail/ManageEmail";
 import ManageName from "../manageName/ManageName";
 import ManagePhoneNumber from "../managePhoneNumber/ManagePhoneNumber";
 import * as S from "./ManageProfile.style";
-import useProfileApi from "@/apis/useProfileApi";
-import type { ProfileData } from "./ManageProfile.type";
-import { useEffect, useState } from "react";
-import { END_POINTS } from "@constants/api";
+
+import { useUserInfoQuery } from "@/hooks/api/useUserInfoQuery";
 
 const ManageProfile = () => {
-  const { getProfileData } = useProfileApi();
-  const [userProfile, setUserProfile] = useState<ProfileData>();
-  const [isLoading, setIsLoading] = useState<boolean>(true);
-
-  const fetchUserProfile = async () => {
-    try {
-      const res = await getProfileData(END_POINTS.USER_INFO);
-      setUserProfile(res);
-    } catch (err) {
-      console.log(err);
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
-  useEffect(() => {
-    fetchUserProfile();
-    // eslint-disable-next-line
-  }, []);
-
-  if (isLoading) return <div>Loading...</div>;
-
-  if (!userProfile) return <div>Data Fetching Error</div>;
+  const { data: userInfo } = useUserInfoQuery();
+  if (!userInfo) throw new Error("계정을 찾을 수 없습니다");
 
   return (
     <S.ManageContainer>
-      <h1>나의 계정</h1>
       <S.ManageInfoWrapper>
-        <ManageEmail email={userProfile?.email} />
+        <h1>나의 계정</h1>
+        <ManageEmail email={userInfo?.email} />
         <ManageName
-          prevName={userProfile?.name}
-          linkedToYanolja={userProfile?.linkedToYanolja}
+          prevName={userInfo?.name}
+          linkedToYanolja={userInfo?.linkedToYanolja}
         />
-        <ManagePhoneNumber prevPhoneNumber={userProfile?.phone} />
+        <ManagePhoneNumber prevPhoneNumber={userInfo?.phone} />
       </S.ManageInfoWrapper>
     </S.ManageContainer>
   );

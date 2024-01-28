@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const ManageContainer = styled.div`
-  padding: 32px 20px;
+  padding-top: 56px;
 
   h1 {
     ${({ theme }) => theme.typo.body2}
@@ -12,6 +12,8 @@ export const ManageContainer = styled.div`
 `;
 
 export const ManageInfoWrapper = styled.div`
+  padding: 1.25rem;
+
   ${({ theme }) => theme.typo.body4}
   color: ${({ theme }) => theme.color.black};
 

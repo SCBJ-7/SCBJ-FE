@@ -9,6 +9,7 @@ import useToastConfig from "@hooks/common/useToastConfig";
 import usePreventLeave from "@hooks/common/usePreventLeave";
 import { patchAccount } from "@apis/patchAccount";
 import type { AccountData } from "@type/profile";
+import { useUserInfoStore } from "@/store/store";
 
 const EnterAccountInfo = ({
   accountInfo,
@@ -20,6 +21,7 @@ const EnterAccountInfo = ({
   usePreventLeave(true);
   const { pathname } = useLocation();
   const navigate = useNavigate();
+  const setUserInfo = useUserInfoStore((state) => state.setUserInfo);
   const { handleToast } = useToastConfig();
   const controls = useAnimation();
   const accountNumberRef = useRef<HTMLInputElement>(null);
@@ -98,6 +100,7 @@ const EnterAccountInfo = ({
       try {
         await patchAccount(updatedInfo).then(() => {
           setAccountInfo(updatedInfo);
+          setUserInfo(updatedInfo);
           handleToast(false, ["계좌 등록이 완료되었습니다!"]);
 
           navigate(PATH.MANAGE_ACCOUNT, { replace: true });
@@ -114,20 +117,13 @@ const EnterAccountInfo = ({
       try {
         await patchAccount(updatedInfo).then(() => {
           handleToast(false, ["계좌 변경이 완료되었습니다"]);
-
+          setUserInfo(updatedInfo);
           navigate(PATH.MANAGE_ACCOUNT, { replace: true });
         });
       } catch (err) {
         handleToast(true, [<>계좌 변경 실패. 다시 시도해 주세요</>]);
       }
     }
-
-    /** 양도글 작성 일 때,
-     if (pathname === PATH.양도글작성 && setAccountInfo) {
-       로직 작성...
-       return;
-     }
-    */
 
     return;
   };

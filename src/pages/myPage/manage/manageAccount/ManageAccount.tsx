@@ -5,7 +5,7 @@ import AccountInfo from "../accountInfo/AccountInfo";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { PATH } from "@constants/path";
 import useToastConfig from "@hooks/common/useToastConfig";
-import { useAccountQuery } from "@/hooks/api/useMyPageQuery";
+import { useAccountQuery } from "@/hooks/api/useUserInfoQuery";
 
 const ManageAccount = () => {
   const navigate = useNavigate();
@@ -22,6 +22,7 @@ const ManageAccount = () => {
     if (search.get("step") && search.get("step") !== "first") {
       navigate(PATH.MANAGE_ACCOUNT, { replace: true });
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [search]);
 
   const { data } = useAccountQuery();

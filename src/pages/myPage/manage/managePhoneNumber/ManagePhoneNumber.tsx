@@ -1,7 +1,8 @@
 import { useRef, useState } from "react";
 import * as S from "./ManagePhoneNumber.style";
-import useProfileApi from "@/apis/useProfileApi";
 import useToastConfig from "@hooks/common/useToastConfig";
+import { changeNumber } from "@/apis/fetchUserInfo";
+import { useUserInfoStore } from "@/store/store";
 
 const ManagePhoneNumber = ({
   prevPhoneNumber,
@@ -11,8 +12,8 @@ const ManagePhoneNumber = ({
   const [phoneNumber, setPhoneNumber] = useState<string>(prevPhoneNumber);
   const [isChanging, setIsChanging] = useState<boolean>(false);
   const inputRef = useRef<HTMLInputElement>(null);
-  const { changeNumber } = useProfileApi();
   const { handleToast } = useToastConfig();
+  const setUserInfo = useUserInfoStore((state) => state.setUserInfo);
 
   const phoneNumberChangeHandler = (
     event: React.ChangeEvent<HTMLInputElement>,
@@ -30,7 +31,8 @@ const ManagePhoneNumber = ({
     setIsChanging(false);
     if (prevPhoneNumber === phoneNumber) return;
     try {
-      await changeNumber("/v1/members/phone", phoneNumber).then(() => {
+      await changeNumber(phoneNumber).then(() => {
+        setUserInfo({ phone: phoneNumber });
         handleToast(true, [<>전화번호가 성공적으로 변경되었습니다!</>]);
       });
     } catch (err) {
