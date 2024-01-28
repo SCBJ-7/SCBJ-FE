@@ -1,5 +1,6 @@
-import styled from "styled-components";
 import ResetIcon from "@assets/icons/ic_reset.svg?react";
+import styled from "styled-components";
+
 export const FilterContainer = styled.div`
   width: 100%;
 

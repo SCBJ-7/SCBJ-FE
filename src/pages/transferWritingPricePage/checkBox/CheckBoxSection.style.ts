@@ -1,4 +1,4 @@
-import { theme, TypoKeys, ColorKeys } from "@/styles/theme";
+import { ColorKeys, theme, TypoKeys } from "@/styles/theme";
 import styled from "styled-components";
 
 export const CheckContainer = styled.section`

@@ -1,5 +1,4 @@
 import { motion } from "framer-motion";
-
 import { PiCaretRightBold } from "react-icons/pi";
 import styled from "styled-components";
 

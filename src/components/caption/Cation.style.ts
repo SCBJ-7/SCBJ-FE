@@ -1,5 +1,5 @@
-import { PiWarningCircle } from "react-icons/pi";
 import type { ColorKeys, TypoKeys } from "@styles/theme";
+import { PiWarningCircle } from "react-icons/pi";
 import styled from "styled-components";
 
 export const CaptionContainer = styled.div`

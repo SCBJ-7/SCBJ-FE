@@ -1,8 +1,10 @@
-import { useState } from "react";
-import * as S from "./SearchNav.style";
 import { useSearchFilterInfoStore } from "@store/store";
 import { ISearchFilterInfo } from "@type/searchFilterInfo";
+import { useState } from "react";
 import SearchModalButton from "../searchModalButton/SearchModalButton";
+
+import * as S from "./SearchNav.style";
+
 type ActiveState = Record<string, boolean>;
 
 const SeachNav = () => {

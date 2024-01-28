@@ -1,10 +1,11 @@
-import { useEffect } from "react";
-import InputSection from "../inputSection/InputSection";
-import * as S from "./SecondPriceTag.style";
-import { useAnimate, stagger } from "framer-motion";
-
 import { format } from "date-fns";
 import { ko } from "date-fns/locale";
+import { stagger, useAnimate } from "framer-motion";
+import { useEffect } from "react";
+
+import * as S from "./SecondPriceTag.style";
+import InputSection from "../inputSection/InputSection";
+
 import priceFormat from "@/utils/priceFormat";
 
 interface PriceTagProps {

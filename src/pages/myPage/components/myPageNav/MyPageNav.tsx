@@ -1,6 +1,8 @@
-import * as S from "./MyPageNav.style";
 import { useLocation } from "react-router-dom";
 import { PATH } from "../../../../constants/path";
+
+import * as S from "./MyPageNav.style";
+
 const MyPageNav = () => {
   const { pathname } = useLocation();
 

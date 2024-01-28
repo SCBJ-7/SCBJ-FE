@@ -1,9 +1,10 @@
-import ReactDOM from "react-dom";
-import useA2HS from "@hooks/common/useA2HS";
 import IcPercentHotelSrc from "@assets/icons/ic_percent_hotel-app.png";
-import * as S from "./A2HS.style";
+import useA2HS from "@hooks/common/useA2HS";
 import { AnimatePresence } from "framer-motion";
 import { useState } from "react";
+import ReactDOM from "react-dom";
+
+import * as S from "./A2HS.style";
 
 const A2HS = () => {
   const { deferredPrompt, install, clearPrompt } = useA2HS();

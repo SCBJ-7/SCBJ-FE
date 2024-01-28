@@ -1,4 +1,5 @@
 import styled, { DefaultTheme } from "styled-components";
+
 import { ManageInfoElement } from "../manageProfile/ManageProfile.style";
 
 const helpMessageColor = ({

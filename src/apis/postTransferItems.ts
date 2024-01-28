@@ -1,7 +1,8 @@
-import { PostTransferProps } from "./../types/postTransferItem";
 // import axios from "axios";
-import { axiosInstance } from "@apis/axiosInstance";
-import { END_POINTS } from "@/constants/api";
+import {END_POINTS} from '@/constants/api'
+import {axiosInstance} from '@apis/axiosInstance'
+
+import {PostTransferProps} from './../types/postTransferItem'
 
 export const postTransferItems = async ({
   pathVariable,

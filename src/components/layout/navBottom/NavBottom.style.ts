@@ -1,3 +1,4 @@
+import NavIconHome from "@/assets/icons/NavHome";
 import {
   PiListMagnifyingGlassFill,
   PiNewspaperClippingFill,
@@ -5,7 +6,6 @@ import {
 } from "react-icons/pi";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
-import NavIconHome from "@/assets/icons/NavHome";
 
 export const BottomNavContainer = styled.section<{ $isMobile: boolean }>`
   display: flex;

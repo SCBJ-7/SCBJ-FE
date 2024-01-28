@@ -1,6 +1,7 @@
 import priceFormat from "@/utils/priceFormat";
-import * as S from "./InputSection.style";
 import useToastConfig from "@hooks/common/useToastConfig";
+
+import * as S from "./InputSection.style";
 
 interface InputProps {
   inputPosition: "left" | "center" | "right";

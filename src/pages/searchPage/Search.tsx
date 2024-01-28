@@ -1,14 +1,15 @@
+import Loading from "@/components/lottie/loading/Loading";
+import UseIntersectionObserver from "@/hooks/common/useIntersectionObserver";
+import { ISearchList } from "@/types/searchList";
+import { fetchSearchList } from "@apis/fetchSeachList";
+import { useSearchFilterInfoStore } from "@store/store";
+import { useInfiniteQuery } from "@tanstack/react-query";
+import { useEffect, useRef, useState } from "react";
+
 import SearchBar from "./components/searchBar/SearchBar";
+import SearchItem from "./components/searchItem/SearchItem";
 import SearchNav from "./components/searchNav/SearchNav";
 import * as S from "./Search.style";
-import { useEffect, useRef, useState } from "react";
-import { ISearchList } from "@/types/searchList";
-import SearchItem from "./components/searchItem/SearchItem";
-import { useSearchFilterInfoStore } from "@store/store";
-import { fetchSearchList } from "@apis/fetchSeachList";
-import { useInfiniteQuery } from "@tanstack/react-query";
-import UseIntersectionObserver from "@/hooks/common/useIntersectionObserver";
-import Loading from "@/components/lottie/loading/Loading";
 
 const Search = () => {
   const pageSize = 10;
@@ -110,10 +111,11 @@ const Search = () => {
         <S.SearchItemFlex>
           {data &&
             data.pages?.length > 0 &&
-            data.pages.map((page) =>
-              page?.content.map((item: ISearchList) => (
-                <SearchItem key={item.id} item={item} />
-              )),
+            data.pages.map(
+              (page) =>
+                page?.content.map((item: ISearchList) => (
+                  <SearchItem key={item.id} item={item} />
+                )),
             )}
         </S.SearchItemFlex>
 

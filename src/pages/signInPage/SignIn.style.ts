@@ -1,6 +1,7 @@
-import styled from "styled-components";
-import LoginLogo from "../../assets/logos/loginlogo.svg?react";
 import { Link } from "react-router-dom";
+import styled from "styled-components";
+
+import LoginLogo from "../../assets/logos/loginlogo.svg?react";
 
 export const SignInContainer = styled.form`
   display: flex;

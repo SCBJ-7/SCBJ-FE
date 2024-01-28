@@ -1,4 +1,3 @@
-import { theme } from "@/styles/theme";
 import {
   fireEvent,
   render,
@@ -6,10 +5,12 @@ import {
   waitFor,
   waitForElementToBeRemoved,
 } from "@testing-library/react";
-
 import { MemoryRouter } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
+
 import App from "../../src/App";
+
+import { theme } from "@/styles/theme";
 
 describe("Transfer Component", () => {
   beforeEach(() => {

@@ -1,8 +1,9 @@
 import { PATH } from "@/constants/path";
+import useTooltip from "@/hooks/common/useTooltip";
 import { useLocation } from "react-router-dom";
+
 import * as S from "./NavBottom.style";
 import ToolTip from "./toolTip/ToolTip";
-import useTooltip from "@/hooks/common/useTooltip";
 
 interface BottomNavProps {
   isMobile: boolean;

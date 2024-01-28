@@ -1,5 +1,6 @@
 import { fetchPurchaseDetail } from "@apis/fetchPurchaseDetail";
 import { useSuspenseQuery } from "@tanstack/react-query";
+
 import type { IPurchaseData } from "@type/purchaseDetail";
 
 export const usePurchaseDetailQuery = (productId: string) => {

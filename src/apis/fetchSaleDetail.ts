@@ -1,7 +1,9 @@
-import { END_POINTS } from "@constants/api";
-import { axiosInstance } from "./axiosInstance";
-import type { ResponseData } from "@type/responseType";
-import type { ISaleData } from "@type/saleDetail";
+import {END_POINTS} from '@constants/api'
+
+import type {ResponseData} from '@type/responseType'
+import type {ISaleData} from '@type/saleDetail'
+
+import {axiosInstance} from './axiosInstance'
 
 // FIXME as below (백엔드 수정 후)
 export const fetchSaleDetail = async (
