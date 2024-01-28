@@ -12,7 +12,8 @@
     "preview": "vite preview",
     "prepare": "husky install",
     "test": "vitest",
-    "generate-pwa-assets": "pwa-assets-generator --preset minimal public/logo.svg"
+    "generate-pwa-assets": "pwa-assets-generator --preset minimal public/logo.svg",
+    "postbuild": "react-snap"
   },
   "lint-staged": {
     "*.{ts,tsx}": [
