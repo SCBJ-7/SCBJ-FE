@@ -56,7 +56,7 @@ const SignIn = () => {
         navigate(PATH.ROOT, { replace: true });
       })
       .catch(() => {
-        handleToast(false, [<>아이디 혹은 비밀번호를 확인해주세요</>]);
+        handleToast(true, [<>아이디 혹은 비밀번호를 확인해주세요</>]);
       });
   };
 
