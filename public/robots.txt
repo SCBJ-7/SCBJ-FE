@@ -1,3 +1,3 @@
-Sitemap: https://https://percenthotel.web.app/sitemap.xml // 제작된 sitemap 경로
-User-agent: *   // 모든 검색엔진 (AdsBot 크롤러는 직접 입력해주어야 함)
-Allow: /        // 모든 페이지 접근 허용
+Sitemap: https://percenthotel.web.app/sitemap.xml
+User-agent: *   
+Allow: /       
