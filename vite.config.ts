@@ -1,15 +1,13 @@
 /// <reference types="vitest" />
 
-import path from "path";
-
-import react from "@vitejs/plugin-react";
-import vike from "vike/plugin";
-import { defineConfig } from "vite";
-import svgr from "vite-plugin-svgr";
+import react from '@vitejs/plugin-react'
+import path from 'path'
+import {defineConfig} from 'vite'
+import svgr from 'vite-plugin-svgr'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react(), svgr(), vike()],
+  plugins: [react(), svgr()],
   test: {
     globals: true,
     environment: "jsdom",
