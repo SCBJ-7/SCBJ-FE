@@ -64,12 +64,10 @@ const Search = () => {
   });
 
   const MoveToTop = () => {
-    if (scrollContainerRef.current) {
-      scrollContainerRef.current.scrollTo({
-        top: 0,
-        behavior: "smooth",
-      });
-    }
+    window.scroll({
+      top: 0,
+      behavior: "smooth",
+    });
   };
 
   useEffect(() => {
@@ -90,12 +88,13 @@ const Search = () => {
       };
     }
   }, []);
+  console.log(window.scrollY > 500);
   return (
     <S.Container>
       <SearchBar />
       <SearchNav />
 
-      <S.SearchContainer>
+      <S.SearchContainer ref={scrollContainerRef}>
         {isLoading && <Loading />}
         {!isLoading && data && !data?.pages?.[0]?.content?.length && (
           <S.NoResultCover>
@@ -105,7 +104,6 @@ const Search = () => {
             </S.NoResultTextTwo>
           </S.NoResultCover>
         )}
-        <S.TopButton $visible={scrollPosition > 500} onClick={MoveToTop} />
         <S.SearchItemFlex>
           {data &&
             data.pages?.length > 0 &&
@@ -118,6 +116,7 @@ const Search = () => {
 
         <div ref={setTarget} />
       </S.SearchContainer>
+      <S.TopButton $visible={window.scrollY > 100} onClick={MoveToTop} />
     </S.Container>
   );
 };

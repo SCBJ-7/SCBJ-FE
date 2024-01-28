@@ -30,7 +30,6 @@ export const TopButton = styled(TopButtonIcon)<TopButtonProps>`
   z-index: 10;
   position: absolute;
   bottom: 100px;
-  right: 23px;
   color: black;
   cursor: pointer;
   visibility: ${({ $visible }) => ($visible ? "visible" : "hidden").toString()};
