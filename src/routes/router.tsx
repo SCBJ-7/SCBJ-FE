@@ -1,5 +1,6 @@
 import { Suspense } from "react";
 import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
+import { HelmetTag } from "@/components/Helmet/Helmet.tsx";
 
 import { PATH } from "@/constants/path";
 
@@ -48,6 +49,7 @@ const routes = createBrowserRouter([
         path: "",
         element: (
           <Layout isHeaderOn={false} isBottomNavOn={true}>
+            <HelmetTag text="메인" />
             <ApiErrorBoundary>
               <Suspense fallback={<Loading />}>
                 <Home />
@@ -60,6 +62,7 @@ const routes = createBrowserRouter([
         path: PATH.LOGIN,
         element: (
           <Layout isHeaderOn={false} isBottomNavOn={false}>
+            <HelmetTag text="로그인" />
             <ApiErrorBoundary>
               <Suspense fallback={<Loading />}>
                 <SignIn />
@@ -72,6 +75,7 @@ const routes = createBrowserRouter([
         path: PATH.SIGNUP,
         element: (
           <Layout isHeaderOn={true} isBottomNavOn={false}>
+            <HelmetTag text="회원가입" />
             <ApiErrorBoundary>
               <Suspense fallback={<Loading />}>
                 <SignUp />
@@ -84,6 +88,7 @@ const routes = createBrowserRouter([
         path: PATH.PASSWORD_RESET,
         element: (
           <Layout isHeaderOn={true} isBottomNavOn={false}>
+            <HelmetTag text="비밀번호 재설정" />
             <ApiErrorBoundary>
               <Suspense fallback={<Loading />}>
                 <PasswordReset />
@@ -96,6 +101,7 @@ const routes = createBrowserRouter([
         path: PATH.SEARCHLIST,
         element: (
           <Layout isHeaderOn={false} isBottomNavOn={true}>
+            <HelmetTag text="검색" />
             <ApiErrorBoundary>
               <Suspense fallback={<Loading />}>
                 <Search />
@@ -108,6 +114,7 @@ const routes = createBrowserRouter([
         path: PATH.SEARCH_FILTER,
         element: (
           <Layout isHeaderOn={true} isBottomNavOn={false}>
+            <HelmetTag text="검색" />
             <ApiErrorBoundary>
               <Suspense fallback={<Loading />}>
                 <SearchFilter />
@@ -132,6 +139,7 @@ const routes = createBrowserRouter([
         path: PATH.WRITE_TRANSFER,
         element: (
           <Layout isHeaderOn={true} isBottomNavOn={true}>
+            <HelmetTag text="판매하기" />
             <ApiErrorBoundary>
               <Suspense fallback={<Loading />}>
                 <TransferWriting />
@@ -145,6 +153,7 @@ const routes = createBrowserRouter([
         element: (
           <Layout isHeaderOn={false} isBottomNavOn={true}>
             <ApiErrorBoundary>
+              <HelmetTag text="판매글 작성" />
               <Suspense fallback={<Loading />}>
                 <TransferWritingPrice />
               </Suspense>
@@ -156,6 +165,7 @@ const routes = createBrowserRouter([
         path: PATH.WRITE_TRANSFER_SUCCESS,
         element: (
           <Layout isHeaderOn={true} isBottomNavOn={true}>
+            <HelmetTag text="판매 성공" />
             <ApiErrorBoundary>
               <Suspense fallback={<Loading />}>
                 <TransferWritingSuccess />
@@ -168,6 +178,7 @@ const routes = createBrowserRouter([
         path: PATH.MY_PAGE,
         element: (
           <Layout isHeaderOn={true} isBottomNavOn={true}>
+            <HelmetTag text="마이 페이지" />
             <ApiErrorBoundary>
               <Suspense fallback={<Loading />}>
                 <MyPage />
@@ -178,12 +189,22 @@ const routes = createBrowserRouter([
         children: [
           {
             index: true,
-            element: <TransferPurchase />,
+            element: (
+              <>
+                <HelmetTag text="마이 페이지" />
+                <TransferPurchase />
+              </>
+            ),
           },
 
           {
             path: PATH.SALE_LIST,
-            element: <TransferSale />,
+            element: (
+              <>
+                <HelmetTag text="판매내역 상세" />
+                <TransferSale />
+              </>
+            ),
           },
         ],
       },
@@ -239,6 +260,7 @@ const routes = createBrowserRouter([
         path: PATH.DETAIL_ROOM(":productId"),
         element: (
           <Layout isHeaderOn={false} isBottomNavOn={false}>
+            <HelmetTag text="상세페이지" />
             <ApiErrorBoundary>
               <Suspense fallback={<Loading />}>
                 <RoomDetail />
@@ -251,6 +273,7 @@ const routes = createBrowserRouter([
         path: PATH.ALARM,
         element: (
           <Layout isHeaderOn={true} isBottomNavOn={true}>
+            <HelmetTag text="알림" />
             <ApiErrorBoundary>
               <Suspense fallback={<Loading />}>
                 <Alarm />
@@ -263,6 +286,7 @@ const routes = createBrowserRouter([
         path: PATH.PURCAHSE_DETAIL,
         element: (
           <Layout isHeaderOn={true} isBottomNavOn={true}>
+            <HelmetTag text="구매내역상세" />
             <ApiErrorBoundary>
               <Suspense fallback={<Loading />}>
                 <PurchaseDetail />
@@ -275,6 +299,7 @@ const routes = createBrowserRouter([
         path: PATH.SALE_DETAIL + "/:saleId",
         element: (
           <Layout isHeaderOn={true} isBottomNavOn={true}>
+            <HelmetTag text="판매 상세" />
             <ApiErrorBoundary>
               <Suspense fallback={<Loading />}>
                 <SaleDetail />
@@ -287,6 +312,7 @@ const routes = createBrowserRouter([
         path: PATH.YANOLJA_ACCOUNT,
         element: (
           <Layout isHeaderOn={false} isBottomNavOn={false}>
+            <HelmetTag text="야놀자인증" />
             <ApiErrorBoundary>
               <Suspense fallback={<Loading />}>
                 <IntroPage />,
@@ -299,6 +325,8 @@ const routes = createBrowserRouter([
         path: PATH.YANOLJA_ACCOUNT_VERIFICATION,
         element: (
           <Layout isHeaderOn={true} isBottomNavOn={false}>
+            <HelmetTag text="야놀자 인증" />
+            <HelmetTag text="야놀자 인증" />
             <ApiErrorBoundary>
               <Suspense fallback={<Loading />}>
                 <VerificationPage />
@@ -311,6 +339,7 @@ const routes = createBrowserRouter([
         path: PATH.YANOLJA_ACCOUNT_VERIFICATION_SUCCESS,
         element: (
           <Layout isHeaderOn={false} isBottomNavOn={true}>
+            <HelmetTag text="야놀자 인증 성공" />
             <ApiErrorBoundary>
               <Suspense fallback={<Loading />}>
                 <SuccessPage />
@@ -323,6 +352,7 @@ const routes = createBrowserRouter([
         path: PATH.PAYMENT(":productId"),
         element: (
           <Layout isHeaderOn={true} isBottomNavOn={false}>
+            <HelmetTag text="결제" />
             <ApiErrorBoundary>
               <Suspense fallback={<Loading />}>
                 <Outlet />
@@ -337,7 +367,12 @@ const routes = createBrowserRouter([
           },
           {
             path: "success",
-            element: <PaymentSuccess />,
+            element: (
+              <>
+                <HelmetTag text="구매 내역 상세" />
+                <PaymentSuccess />
+              </>
+            ),
           },
           {
             path: "ready",
