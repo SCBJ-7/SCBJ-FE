@@ -1,7 +1,5 @@
-import { fetchSaleList } from "@apis/fetchSaleList";
 import { NAV_LIST } from "@constants/sale";
 import { differenceInDays } from "date-fns";
-import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 
 import SaleItem from "./components/saleItem/SaleItem";
@@ -10,6 +8,7 @@ import * as S from "./TransferSale.style";
 
 import type { ISaleList } from "@type/saleList";
 
+import { useSaleListQuery } from "@/hooks/api/useSaleQuery";
 import { useLoadUserInfo } from "@/hooks/common/useLoadUserInfo";
 import useAuthStore from "@/store/authStore";
 
@@ -18,7 +17,7 @@ export interface ISaleItemWithRemainDate extends ISaleList {
 }
 
 const sortProductsByCheckInDate = (
-  data: ISaleList[] | undefined,
+  data: ISaleList[],
 ): ISaleItemWithRemainDate[] => {
   if (data) {
     return data
@@ -37,44 +36,31 @@ const sortProductsByCheckInDate = (
 };
 
 const TransferSale = () => {
-  const [saleItems, setSaleItems] = useState<ISaleItemWithRemainDate[]>([]);
   const [searchParams] = useSearchParams();
   const status = searchParams.get("status");
+
   const isLoggedIn = useAuthStore((state) => state.isLoggedIn);
   const userInfo = useLoadUserInfo(isLoggedIn);
   const isConnected = userInfo?.linkedToYanolja;
 
-  const fetchData = async () => {
-    try {
-      const { data } = await fetchSaleList();
-      const sortedSaleItems = sortProductsByCheckInDate(data);
-      const filteredSaleItems = sortedSaleItems.filter((item) => {
-        const navItem = NAV_LIST.find((nav) => nav.status === status);
-        if (!navItem || navItem.status === "") {
-          return true;
-        }
-        return item.saleStatus === navItem.label;
-      });
+  const { data } = useSaleListQuery(isLoggedIn, userInfo);
 
-      setSaleItems(filteredSaleItems);
-    } catch (error) {
-      console.error(error);
+  const saleItems = sortProductsByCheckInDate(data || []).filter((item) => {
+    const navItem = NAV_LIST.find((nav) => nav.status === status);
+    if (!navItem || navItem.status === "") {
+      return true;
     }
-  };
+    return item.saleStatus === navItem.label;
+  });
+
   const NoItemText = () => {
     if (status === "for-sale") return <h2>판매중인 내역이 없습니다</h2>;
     if (status === "sale-completed") return <h2>판매완료 내역이 없습니다</h2>;
     if (status === "calculate-completed")
       return <h2>정산완료 내역이 없습니다</h2>;
     if (status === "sale-expired") return <h2>판매만료 내역이 없습니다</h2>;
-
     return <h2>판매내역이 없습니다</h2>;
   };
-
-  useEffect(() => {
-    fetchData();
-    // eslint-disable-next-line
-  }, [status]);
 
   if (saleItems.length === 0)
     return (
