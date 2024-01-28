@@ -1,11 +1,12 @@
-import { useSuspenseQuery } from "@tanstack/react-query";
-import { fetchPurchaseDetail } from "../../apis/fetchPurchaseDetail";
-import { IPurchaseData } from "@/types/purchaseDetail";
-import { useNavigate, useSearchParams } from "react-router-dom";
-import * as S from "./PurchaseDetail.style";
 import { PATH } from "@/constants/path";
-import { AxiosError } from "axios";
+import { IPurchaseData } from "@/types/purchaseDetail";
 import { formatDateString } from "@/utils/dateFormatter";
+import { useSuspenseQuery } from "@tanstack/react-query";
+import { AxiosError } from "axios";
+import { useNavigate, useSearchParams } from "react-router-dom";
+import { fetchPurchaseDetail } from "../../apis/fetchPurchaseDetail";
+
+import * as S from "./PurchaseDetail.style";
 
 const PurchaseDetail = () => {
   const [searchParams] = useSearchParams();
@@ -40,8 +41,8 @@ const PurchaseDetail = () => {
                 {data.remainingDays > 0
                   ? `체크인까지 ${data.remainingDays}일 남았어요!`
                   : data.remainingDays === 0
-                    ? "오늘이 체크인이에요!"
-                    : ""}
+                  ? "오늘이 체크인이에요!"
+                  : ""}
               </div>
             )}
             <S.ImageContainer>

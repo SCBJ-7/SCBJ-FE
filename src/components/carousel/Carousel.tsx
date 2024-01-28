@@ -1,5 +1,6 @@
 import { useCarousel } from "@hooks/common/useCarousel";
 import { useCarouselSize } from "@hooks/common/useCarouselSize";
+
 import * as S from "./Carousel.style.ts";
 
 interface CarouselProps {

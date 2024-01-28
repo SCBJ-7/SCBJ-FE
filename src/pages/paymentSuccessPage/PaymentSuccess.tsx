@@ -1,11 +1,10 @@
-import { useParams } from "react-router-dom";
 import { usePurchaseDetailQuery } from "@/hooks/api/usePurchaseQuery";
-import { formatDateString } from "@utils/dateFormatter";
-
-import PaymentSuccessInfo from "@pages/paymentSuccessPage/components/PaymentSuccessInfo/PaymentSuccessInfo";
-import PaymentSuccessButton from "@pages/paymentSuccessPage/components/PaymentSuccessButton/PaymentSuccessButton";
 import Card from "@components/card/Card";
 import CardItem from "@components/cardItem/CardItem";
+import PaymentSuccessButton from "@pages/paymentSuccessPage/components/PaymentSuccessButton/PaymentSuccessButton";
+import PaymentSuccessInfo from "@pages/paymentSuccessPage/components/PaymentSuccessInfo/PaymentSuccessInfo";
+import { formatDateString } from "@utils/dateFormatter";
+import { useParams } from "react-router-dom";
 
 import * as S from "./PaymentSuccess.style";
 

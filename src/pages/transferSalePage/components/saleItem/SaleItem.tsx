@@ -1,9 +1,10 @@
+import { useNavigate } from "react-router-dom";
+
 import * as S from "./SaleItem.style";
 import { ISaleItemWithRemainDate } from "../../TransferSale";
+
 import { PATH } from "@/constants/path";
-import { remainTime } from "@/utils/dateFormatter";
-import { useNavigate } from "react-router-dom";
-import { formatDateWithoutTime } from "@/utils/dateFormatter";
+import { formatDateWithoutTime, remainTime } from "@/utils/dateFormatter";
 
 const SaleItem = (props: ISaleItemWithRemainDate) => {
   const navigate = useNavigate();
@@ -69,9 +70,9 @@ const SaleItem = (props: ISaleItemWithRemainDate) => {
           <S.SaleItemType>{props.roomType}</S.SaleItemType>
           <S.SaleItemDate>
             <S.SaleItemDate>
-              {`${formatDateWithoutTime(props.checkInDate)} ~ ${formatDateWithoutTime(
-                props.checkOutDate,
-              )}`}
+              {`${formatDateWithoutTime(
+                props.checkInDate,
+              )} ~ ${formatDateWithoutTime(props.checkOutDate)}`}
             </S.SaleItemDate>
           </S.SaleItemDate>
 

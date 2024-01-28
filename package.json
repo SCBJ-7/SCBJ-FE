@@ -12,7 +12,8 @@
     "preview": "vite preview",
     "prepare": "husky install",
     "test": "vitest",
-    "generate-pwa-assets": "pwa-assets-generator --preset minimal public/logo.svg"
+    "generate-pwa-assets": "pwa-assets-generator --preset minimal public/logo.svg",
+    "postbuild": "react-snap"
   },
   "lint-staged": {
     "*.{ts,tsx}": [
@@ -37,6 +38,7 @@
     "react-icons": "^4.12.0",
     "react-modal": "^3.16.1",
     "react-router-dom": "^6.21.1",
+    "react-snap": "^1.23.0",
     "react-window": "^1.8.10",
     "styled-components": "^6.1.6",
     "zustand": "^4.4.7"
@@ -60,6 +62,7 @@
     "@vitejs/plugin-react": "^4.2.1",
     "eslint": "^8.55.0",
     "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-import": "^2.29.1",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.5",
     "husky": "^8.0.3",
@@ -87,6 +90,6 @@
     "include": [
       "/"
     ],
-    "sorce": {}
+    "source": "./dist"
   }
 }

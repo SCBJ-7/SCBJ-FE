@@ -1,6 +1,7 @@
-import { theme, TypoKeys, ColorKeys } from "@/styles/theme";
-import styled from "styled-components";
 import { PiXBold } from "react-icons/pi";
+import styled from "styled-components";
+
+import { ColorKeys, theme, TypoKeys } from "@/styles/theme";
 
 export const TermsAgreementContainer = styled.div`
   padding: 10px 20px 32px;

@@ -1,5 +1,4 @@
 import IconCheck from "@assets/icons/ic_check.svg?react";
-
 import * as S from "@pages/roomDetailPage/RoomDetail.style";
 import { theme } from "@styles/theme";
 

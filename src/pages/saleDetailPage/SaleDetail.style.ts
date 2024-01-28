@@ -1,5 +1,7 @@
-import type { ColorKeys, TypoKeys } from "@styles/theme";
 import styled from "styled-components";
+
+import type { ColorKeys, TypoKeys } from "@styles/theme";
+
 export {
   Row,
   VStack3,

@@ -1,7 +1,8 @@
 import { useSearchFilterInfoStore } from "@store/store";
-import * as S from "./FilterModal.style";
-import { forwardRef } from "react";
 import { AnimatePresence } from "framer-motion";
+import { forwardRef } from "react";
+
+import * as S from "./FilterModal.style";
 
 interface FilterModalProps {
   setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>;

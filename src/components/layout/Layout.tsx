@@ -1,9 +1,10 @@
+import { isMobile } from "@/utils/isMobile";
 import React from "react";
+import A2HS from "../A2HS/A2HS";
+
 import Header from "./header/HeaderTop";
 import * as S from "./Layout.style";
 import BottomNav from "./navBottom/NavBottom";
-import A2HS from "../A2HS/A2HS";
-import { isMobile } from "@/utils/isMobile";
 
 interface ChildrenProps {
   children: React.ReactNode;

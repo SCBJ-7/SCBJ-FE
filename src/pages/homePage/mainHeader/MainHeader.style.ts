@@ -1,5 +1,5 @@
-import { styled } from "styled-components";
 import { PiBellBold } from "react-icons/pi";
+import { styled } from "styled-components";
 
 export const HeaderContainer = styled.section`
   width: 100%;

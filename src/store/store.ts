@@ -1,9 +1,12 @@
+import type { ReactNode } from "react";
+
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
-import { ISearchFilterInfo } from "@/types/searchFilterInfo";
+
 import type { ProfileData } from "@/types/profile";
-import type { ReactNode } from "react";
 import type { IReservation } from "@/types/reservationList";
+
+import { ISearchFilterInfo } from "@/types/searchFilterInfo";
 
 // 예약내역 선택 아이템 전역상태 타입
 interface ReservationState {

@@ -1,5 +1,5 @@
-import { hexToRgba } from "@utils/hexTorgba";
 import { breakpoints } from "@styles/theme";
+import { hexToRgba } from "@utils/hexTorgba";
 import styled, { DefaultTheme } from "styled-components";
 
 export const PageContainer = styled.div`

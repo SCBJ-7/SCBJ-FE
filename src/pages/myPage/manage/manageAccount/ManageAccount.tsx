@@ -1,11 +1,11 @@
-import RegisterAccount from "../registerAccount/RegisterAccount";
-
-import { useEffect } from "react";
-import AccountInfo from "../accountInfo/AccountInfo";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useAccountQuery } from "@/hooks/api/useUserInfoQuery";
 import { PATH } from "@constants/path";
 import useToastConfig from "@hooks/common/useToastConfig";
-import { useAccountQuery } from "@/hooks/api/useUserInfoQuery";
+import { useEffect } from "react";
+import { useNavigate, useSearchParams } from "react-router-dom";
+
+import AccountInfo from "../accountInfo/AccountInfo";
+import RegisterAccount from "../registerAccount/RegisterAccount";
 
 const ManageAccount = () => {
   const navigate = useNavigate();

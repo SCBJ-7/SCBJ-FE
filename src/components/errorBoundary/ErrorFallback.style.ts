@@ -1,6 +1,6 @@
+import { breakpoints } from "@styles/theme";
 import { hexToRgba } from "@utils/hexTorgba";
 import styled, { DefaultTheme } from "styled-components";
-import { breakpoints } from "@styles/theme";
 
 export const ErrorContainer = styled.main`
   width: 100%;

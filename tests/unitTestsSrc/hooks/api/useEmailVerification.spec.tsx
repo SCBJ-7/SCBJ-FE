@@ -1,8 +1,9 @@
-import { useValidateEmailMutation } from "@/hooks/api/useValidateEmailMutation";
 import { getEmailVerification } from "@mocks/handlers/email";
 import { server } from "@mocks/server";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { act, renderHook, waitFor } from "@testing-library/react";
+
+import { useValidateEmailMutation } from "@/hooks/api/useValidateEmailMutation";
 
 const queryClient = new QueryClient({
   defaultOptions: {

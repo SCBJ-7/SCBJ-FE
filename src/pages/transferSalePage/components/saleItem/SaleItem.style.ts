@@ -1,5 +1,5 @@
-import styled, { DefaultTheme } from "styled-components";
 import { PiCaretRightBold } from "react-icons/pi";
+import styled, { DefaultTheme } from "styled-components";
 
 const stateColor = ({
   $saleStatus,

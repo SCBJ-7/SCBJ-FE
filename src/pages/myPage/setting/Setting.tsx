@@ -1,6 +1,6 @@
 import * as S from "./Setting.style";
-import Manage from "../manage/Manage";
 import Info from "../info/Info";
+import Manage from "../manage/Manage";
 
 const Setting = () => {
   return (

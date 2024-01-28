@@ -1,9 +1,9 @@
-import * as S from "./SignUp.style";
+import TermsAgreementSection from "@pages/connectYanoljaPage/verificationPage/components/termsAgreementSection/TermsAgreementSection";
 import { FormProvider, useForm } from "react-hook-form";
 
-import TermsAgreementSection from "@pages/connectYanoljaPage/verificationPage/components/termsAgreementSection/TermsAgreementSection";
 import FieldValues from "./components/fieldValues/FieldValues";
 import SignUpSubmitBtn from "./components/signUpSubmitBtn/SignUpSubmitBtn";
+import * as S from "./SignUp.style";
 
 const SignUp = () => {
   const methods = useForm({
