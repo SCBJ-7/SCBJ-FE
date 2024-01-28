@@ -289,7 +289,7 @@ const routes = createBrowserRouter([
           <Layout isHeaderOn={false} isBottomNavOn={false}>
             <ApiErrorBoundary>
               <Suspense fallback={<Loading />}>
-                <IntroPage />,
+                <IntroPage />
               </Suspense>
             </ApiErrorBoundary>
           </Layout>
