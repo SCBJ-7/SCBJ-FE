@@ -20,6 +20,7 @@ const queryClient = new QueryClient({
   },
 });
 
+// hydrateRoot로 변경
 const rootElement = document.getElementById("root");
 if (rootElement?.hasChildNodes()) {
   ReactDOM.hydrateRoot(
