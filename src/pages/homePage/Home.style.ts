@@ -54,7 +54,7 @@ export const WeekendCarouselContainer = styled.div`
   height: 467px;
   margin: 0 20px;
   background-color: white;
-  margin-bottom: 80px;
+  margin-bottom: 60px;
 `;
 
 export const TitleSection = styled.div`
