@@ -37,15 +37,15 @@ export const PurchaseItemContent = styled.div`
   justify-content: start;
   align-items: center;
   gap: 1rem;
-`;
 
-export const PurchaseItemImage = styled.img`
-  width: 88px;
-  height: 88px;
-  flex-shrink: 0;
-  background-color: #f9f9f9;
-  border-radius: 12px;
-  object-fit: cover;
+  & > img {
+    width: 88px;
+    height: 88px;
+    flex-shrink: 0;
+    background-color: #f9f9f9;
+    border-radius: 12px;
+    object-fit: cover;
+  }
 `;
 
 export const PuchaseItemInfo = styled.div`

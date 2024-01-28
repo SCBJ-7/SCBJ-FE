@@ -17,13 +17,13 @@ export const ItemContent = styled.div`
 
   width: 100%;
   height: 100%;
-`;
 
-export const ItemImage = styled.img`
-  width: 100%;
-  height: 192px;
-  object-fit: cover;
-  border-radius: 12px 12px 0 0;
+  & > img {
+    width: 100%;
+    height: 192px;
+    object-fit: cover;
+    border-radius: 12px 12px 0 0;
+  }
 `;
 
 export const ItemName = styled.div`

@@ -6,6 +6,8 @@ import { useNavigate } from "react-router-dom";
 
 import * as S from "./IntroPage.style.ts";
 
+import ProgressiveImg from "@/components/progressiveImg/ProgressiveImg.tsx";
+
 const IntroPage = () => {
   const navigate = useNavigate();
 
@@ -47,13 +49,13 @@ const IntroPage = () => {
         animate="visible"
       >
         <S.PercentHotelLogo>
-          <img src={PercentHotelLogo} alt="퍼센트호텔 로고" />
+          <ProgressiveImg src={PercentHotelLogo} alt="퍼센트호텔 로고" />
         </S.PercentHotelLogo>
         <S.XIcon>
-          <img src={XIcon} alt="x" />
+          <ProgressiveImg src={XIcon} alt="x" />
         </S.XIcon>
         <S.YanoljaLogo>
-          <img src={YanoljaLogo} alt="야놀자 로고" />
+          <ProgressiveImg src={YanoljaLogo} alt="야놀자 로고" />
         </S.YanoljaLogo>
         <S.Title variants={titleVariants} initial="hidden" animate="visible">
           야놀자 계정 연동하고

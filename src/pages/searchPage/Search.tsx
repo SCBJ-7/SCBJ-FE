@@ -1,14 +1,15 @@
+import { fetchSearchList } from "@apis/fetchSeachList";
+import { useSearchFilterInfoStore } from "@store/store";
+import { useInfiniteQuery } from "@tanstack/react-query";
+import { useEffect, useState } from "react";
+
 import SearchBar from "./components/searchBar/SearchBar";
+import SearchItem from "./components/searchItem/SearchItem";
 import SearchNav from "./components/searchNav/SearchNav";
 import * as S from "./Search.style";
-import { useEffect, useState } from "react";
-import { ISearchList } from "@/types/searchList";
-import SearchItem from "./components/searchItem/SearchItem";
-import { useSearchFilterInfoStore } from "@store/store";
-import { fetchSearchList } from "@apis/fetchSeachList";
-import { useInfiniteQuery } from "@tanstack/react-query";
+
 import UseIntersectionObserver from "@/hooks/common/useIntersectionObserver";
-import Loading from "@/components/lottie/loading/Loading";
+import { ISearchList } from "@/types/searchList";
 
 const Search = () => {
   const pageSize = 10;
@@ -87,7 +88,6 @@ const Search = () => {
       <SearchNav />
 
       <S.SearchContainer>
-        {isLoading && <Loading />}
         {!isLoading && data && !data?.pages?.[0]?.content?.length && (
           <S.NoResultCover>
             <S.NoResultText>검색 조건에 맞는 호텔이 없어요</S.NoResultText>

@@ -1,6 +1,3 @@
-import { HelmetTag } from "@/components/Helmet/Helmet";
-import { useRoomQuery } from "@/hooks/api/useRoomQuery";
-import useAuthStore from "@/store/authStore";
 import Carousel from "@components/carousel/Carousel";
 import useToastConfig from "@hooks/common/useToastConfig";
 import RoomHeader from "@pages/roomDetailPage/components/roomHeader/RoomHeader";
@@ -10,6 +7,10 @@ import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 
 import * as S from "./RoomDetail.style";
+
+import { HelmetTag } from "@/components/Helmet/Helmet";
+import { useRoomQuery } from "@/hooks/api/useRoomQuery";
+import useAuthStore from "@/store/authStore";
 
 const RoomDetail = () => {
   const { productId } = useParams();
