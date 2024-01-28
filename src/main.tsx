@@ -10,7 +10,12 @@ import { hydrate } from "react-dom";
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
-      retry: 0,
+      retry: 1,
+      throwOnError: true,
+    },
+    mutations: {
+      retry: 1,
+      throwOnError: true,
     },
   },
 });
