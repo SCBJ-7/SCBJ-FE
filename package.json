@@ -12,8 +12,7 @@
     "preview": "vite preview",
     "prepare": "husky install",
     "test": "vitest",
-    "generate-pwa-assets": "pwa-assets-generator --preset minimal public/logo.svg",
-    "postbuild": "react-snap"
+    "generate-pwa-assets": "pwa-assets-generator --preset minimal public/logo.svg"
   },
   "lint-staged": {
     "*.{ts,tsx}": [
@@ -38,7 +37,6 @@
     "react-icons": "^4.12.0",
     "react-modal": "^3.16.1",
     "react-router-dom": "^6.21.1",
-    "react-snap": "^1.23.0",
     "react-window": "^1.8.10",
     "styled-components": "^6.1.6",
     "zustand": "^4.4.7"
