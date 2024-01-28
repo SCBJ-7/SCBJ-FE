@@ -1,6 +1,6 @@
 import { useSuspenseQuery } from "@tanstack/react-query";
-import { END_POINTS } from "@/constants/api";
-import useProfileApi from "@/apis/useProfileApi";
+
+import { fetchUserInfo } from "@/apis/fetchUserInfo";
 import type { AccountData, ProfileData } from "@/types/profile";
 
 interface AccountQueryProps {
@@ -9,11 +9,9 @@ interface AccountQueryProps {
 }
 
 export const useAccountQuery = () => {
-  const { getProfileData } = useProfileApi();
-
   const accountQuery = useSuspenseQuery<ProfileData, Error, AccountQueryProps>({
     queryKey: ["myProfile"],
-    queryFn: async () => await getProfileData(END_POINTS.USER_INFO),
+    queryFn: async () => await fetchUserInfo(),
     refetchOnWindowFocus: false,
     refetchOnReconnect: false,
     refetchInterval: false,
@@ -25,4 +23,15 @@ export const useAccountQuery = () => {
   });
 
   return accountQuery;
+};
+
+export const useUserInfoQuery = () => {
+  const userInfoQuery = useSuspenseQuery<ProfileData>({
+    queryKey: ["userInfo"],
+    queryFn: async () => await fetchUserInfo(),
+    refetchOnWindowFocus: false,
+    refetchOnReconnect: false,
+    refetchInterval: false,
+  });
+  return userInfoQuery;
 };

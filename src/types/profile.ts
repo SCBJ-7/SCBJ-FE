@@ -1,11 +1,13 @@
+import { Nullable } from "./nullable";
+
 export interface AccountData {
-  accountNumber: string | undefined;
-  bank: string | undefined;
+  accountNumber: Nullable<string>;
+  bank: Nullable<string>;
 }
 
 export interface ProfileData {
-  accountNumber: string | undefined;
-  bank: string | undefined;
+  accountNumber: Nullable<string>;
+  bank: Nullable<string>;
   email: string;
   id: number;
   linkedToYanolja: boolean;

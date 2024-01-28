@@ -1,28 +1,9 @@
-import type { ReactNode } from "react";
-import { IReservation } from "@/types/reservationList";
-
-import { create } from "zustand"; // create로 zustand를 불러옵니다.
+import { create } from "zustand";
 import { persist } from "zustand/middleware";
-import type { MemberResponse } from "@type/login";
 import { ISearchFilterInfo } from "@/types/searchFilterInfo";
-
-/* 
-  zustand 사용법:
-  기본적으로 storeState 타입을 만들고, 이걸 
-    create<StoreState>(() => ({ ...storeState }))
-  식으로 쓰면 됩니다!
-*/
-
-/*
-  storeState는 보통 아래처럼 구성합니다.
-  {
-    데이터,
-    데이터 조작 set함수1,
-    데이터 조작 set함수2,
-    데이터 조작 set함수3,
-    ...
-  }
-*/
+import type { ProfileData } from "@/types/profile";
+import type { ReactNode } from "react";
+import type { IReservation } from "@/types/reservationList";
 
 // 예약내역 선택 아이템 전역상태 타입
 interface ReservationState {
@@ -62,42 +43,20 @@ export const useSelectedItemStore = create(
   ),
 );
 
-// 유저정보 전역상태
 interface UserState {
-  userInfo: MemberResponse | null;
-  setUserInfo: (userInfo: MemberResponse) => void;
+  userInfo: ProfileData | null;
+  setUserInfo: (userInfo: Partial<ProfileData>) => void;
 }
 
-// 유저정보 전역상태 store
 export const useUserInfoStore = create<UserState>((set) => ({
   userInfo: null,
   setUserInfo: (updatedInfo) =>
     set((state) => ({
-      userInfo: {
-        ...state.userInfo,
-        ...updatedInfo,
-      },
+      userInfo: state.userInfo
+        ? { ...state.userInfo, ...updatedInfo }
+        : (updatedInfo as ProfileData),
     })),
 }));
-
-// export const useUserInfoStore = create<UserState>((set) => ({
-//   userInfo: {
-//     id: 0,
-//     email: "",
-//     name: "",
-//     phone: "",
-//     accountNumber: "",
-//     bank: "",
-//     linkedToYanolja: false,
-//   },
-//   setUserInfo: (updatedInfo) =>
-//     set((state) => ({
-//       userInfo: {
-//         ...state.userInfo,
-//         ...updatedInfo,
-//       },
-//     })),
-// }));
 
 export type configType = {
   isShow: boolean;
