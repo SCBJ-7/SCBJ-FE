@@ -5,6 +5,7 @@ import { ThemeProvider } from "styled-components";
 import AppRouter from "./routes/router";
 import { GlobalStyle } from "./styles/globalStyle";
 import { theme } from "./styles/theme";
+import { hydrate } from "react-dom";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -14,12 +15,26 @@ const queryClient = new QueryClient({
   },
 });
 
-ReactDOM.createRoot(document.getElementById("root")!).render(
-  <QueryClientProvider client={queryClient}>
-    <ThemeProvider theme={theme}>
-      <GlobalStyle />
-      <AppRouter />
-    </ThemeProvider>
-    <ReactQueryDevtools initialIsOpen={false} />
-  </QueryClientProvider>,
-);
+const rootElement = document.getElementById("root");
+if (rootElement?.hasChildNodes()) {
+  hydrate(
+    <QueryClientProvider client={queryClient}>
+      <ThemeProvider theme={theme}>
+        <GlobalStyle />
+        <AppRouter />
+      </ThemeProvider>
+      <ReactQueryDevtools initialIsOpen={false} />
+    </QueryClientProvider>,
+    rootElement,
+  );
+} else {
+  ReactDOM.createRoot(document.getElementById("root")!).render(
+    <QueryClientProvider client={queryClient}>
+      <ThemeProvider theme={theme}>
+        <GlobalStyle />
+        <AppRouter />
+      </ThemeProvider>
+      <ReactQueryDevtools initialIsOpen={false} />
+    </QueryClientProvider>,
+  );
+}
