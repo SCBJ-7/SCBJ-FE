@@ -8,7 +8,9 @@ export const Container = styled.div`
 export const SearchContainer = styled.div`
   width: 100%;
   height: 100%;
-
+  display: flex;
+  justify-content: center;
+  align-items: center;
   padding-top: 116px;
   color: ${({ theme }) => theme.color.black};
   padding-bottom: 100px;
@@ -25,12 +27,17 @@ export const SearchItemFlex = styled.div`
 interface TopButtonProps {
   $visible: boolean;
 }
-
-export const TopButton = styled(TopButtonIcon)<TopButtonProps>`
-  z-index: 10;
-  position: absolute;
+export const TopButtonCover = styled.div`
+  position: fixed;
+  width: 100%;
+  max-width: 768px;
   bottom: 100px;
-  color: black;
+  margin: 0 auto;
+  display: flex;
+  justify-content: flex-end;
+`;
+export const TopButton = styled(TopButtonIcon)<TopButtonProps>`
+  margin-right: 20px;
   cursor: pointer;
   visibility: ${({ $visible }) => ($visible ? "visible" : "hidden").toString()};
   opacity: ${({ $visible }) => ($visible ? 1 : 0)};

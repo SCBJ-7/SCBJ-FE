@@ -1,9 +1,20 @@
-import { IUserInfo } from "./../types/userInfo";
+import { ProfileData } from "@type/profile";
 import { axiosInstance } from "@apis/axiosInstance";
 import { END_POINTS } from "@/constants/api";
 
-// 유저 정보를 불러오는 api입니다.
-export const fetchUserInfo = async (): Promise<IUserInfo | undefined> => {
+export const fetchUserInfo = async (): Promise<ProfileData> => {
   const { data } = await axiosInstance.get(END_POINTS.USER_INFO);
-  return data.data as IUserInfo;
+  return data.data;
+};
+
+export const changeName = async (name: string) => {
+  const res = await axiosInstance.patch(END_POINTS.CHANGE_NAME, { name });
+  return res;
+};
+
+export const changeNumber = async (number: string) => {
+  const res = await axiosInstance.patch(END_POINTS.CHANGE_NUMBER, {
+    phone: number,
+  });
+  return res;
 };

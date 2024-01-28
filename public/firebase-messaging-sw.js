@@ -45,16 +45,13 @@ self.addEventListener("push", function (e) {
   console.log("push: ", e.data.json());
   if (!e.data.json()) return;
 
-  console.log("디버깅용", e.data.json().notification);
-
   const resultData = e.data.json().data;
   const notificationTitle = resultData.title;
   const notificationOptions = {
     body: resultData.message,
-    icon: resultData.image,
-    tag: resultData.tag,
+    icon: "/icon-192.png",
   };
-  console.log("push: ", { resultData, notificationTitle, notificationOptions });
+  console.log("push: ", { notificationTitle, notificationOptions });
 
   self.registration.showNotification(notificationTitle, notificationOptions);
 });
@@ -69,9 +66,9 @@ self.addEventListener("notificationclick", function (event) {
 messaging.onBackgroundMessage(function (payload) {
   console.log("Received background message", payload);
   // Customize notification here
-  const notificationTitle = payload.notification.title;
+  const notificationTitle = payload.data.title;
   const notificationOptions = {
-    body: payload.notification.body,
+    body: payload.data.message,
     icon: "/icon-192.png",
   };
 

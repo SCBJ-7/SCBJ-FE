@@ -16,4 +16,5 @@ export const Wrapper = styled.div`
   height: 100%;
   position: relative;
   background-color: white;
+  margin: 0 auto;
 `;

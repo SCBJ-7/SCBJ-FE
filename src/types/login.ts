@@ -1,15 +1,6 @@
-export interface MemberResponse {
-  id: number;
-  email: string;
-  name: string;
-  phone: string;
-  accountNumber: string;
-  bank: string;
-  linkedToYanolja: boolean;
-}
-
+import type { ProfileData } from "./profile";
 export interface LoginData {
-  memberResponse: MemberResponse;
+  memberResponse: ProfileData;
   tokenResponse: {
     accessToken: string;
     refreshToken: string;

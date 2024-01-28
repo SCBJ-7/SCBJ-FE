@@ -4,7 +4,7 @@ import TermsAgreementSection from "@pages/connectYanoljaPage/verificationPage/co
 import VerificationSection from "@pages/connectYanoljaPage/verificationPage/components/verificationSection/VerificationSection";
 import { FormProvider, useForm } from "react-hook-form";
 
-import * as S from "./VerificationPage.style.ts";
+import * as S from "./VerificationPage.style";
 
 const VerificationPage = () => {
   const methods = useForm({

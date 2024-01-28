@@ -12,9 +12,8 @@ import Loading from "@/components/lottie/loading/Loading";
 
 const Search = () => {
   const pageSize = 10;
-
-  const scrollContainerRef = useRef<HTMLDivElement>(null);
   const [scrollPosition, setScrollPosition] = useState(0);
+  const [isTopButtonVisible, setIsTopButtonVisible] = useState(false);
   const searchInfo = useSearchFilterInfoStore((state) => state.searchInfo);
   const { data, fetchNextPage, isLoading, hasNextPage } = useInfiniteQuery({
     queryKey: [
@@ -41,6 +40,8 @@ const Search = () => {
         pageParam,
         pageSize,
       ),
+    refetchOnMount: false,
+    refetchOnWindowFocus: false,
     initialPageParam: 0,
     getNextPageParam: (lastPage) => {
       const lastData = lastPage?.content;
@@ -62,6 +63,17 @@ const Search = () => {
     onIntersect: handleIntersect,
     threshold: 0.5,
   });
+  const handleScroll = () => {
+    const currentPosition = window.scrollY;
+    setScrollPosition(currentPosition);
+    setIsTopButtonVisible(currentPosition > 500);
+  };
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [scrollPosition]);
 
   const MoveToTop = () => {
     window.scroll({
@@ -69,32 +81,12 @@ const Search = () => {
       behavior: "smooth",
     });
   };
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (scrollContainerRef.current) {
-        const currentPosition = scrollContainerRef.current.scrollTop;
-        setScrollPosition(currentPosition);
-      }
-    };
-
-    const container = scrollContainerRef.current;
-
-    if (container) {
-      container.addEventListener("scroll", handleScroll);
-
-      return () => {
-        container.removeEventListener("scroll", handleScroll);
-      };
-    }
-  }, []);
-  console.log(window.scrollY > 500);
   return (
     <S.Container>
       <SearchBar />
       <SearchNav />
 
-      <S.SearchContainer ref={scrollContainerRef}>
+      <S.SearchContainer>
         {isLoading && <Loading />}
         {!isLoading && data && !data?.pages?.[0]?.content?.length && (
           <S.NoResultCover>
@@ -113,10 +105,11 @@ const Search = () => {
               )),
             )}
         </S.SearchItemFlex>
-
         <div ref={setTarget} />
+        <S.TopButtonCover>
+          <S.TopButton $visible={isTopButtonVisible} onClick={MoveToTop} />
+        </S.TopButtonCover>{" "}
       </S.SearchContainer>
-      <S.TopButton $visible={window.scrollY > 100} onClick={MoveToTop} />
     </S.Container>
   );
 };

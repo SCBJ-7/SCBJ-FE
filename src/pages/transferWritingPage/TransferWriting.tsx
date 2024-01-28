@@ -15,7 +15,6 @@ import { ResponseError } from "@/components/error/Error";
 const TransferWriting = () => {
   const { handleToast } = useToastConfig();
 
-  // FIXME: 유저 정보 전역으로 관리
   const { data: userData, isLoading } = useQuery({
     queryKey: ["UserInfo"],
     queryFn: fetchUserInfo,

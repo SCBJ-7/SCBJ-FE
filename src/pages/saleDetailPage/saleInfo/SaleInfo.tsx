@@ -1,3 +1,4 @@
+import { formatDateString } from "@/utils/dateFormatter";
 import * as S from "@pages/saleDetailPage/SaleDetail.style";
 import type { ISaleData } from "@type/saleDetail";
 
@@ -25,13 +26,13 @@ const SaleInfo = ({ info }: SaleInfoProps) => {
           <S.Text variant="body3" color="greyScale1">
             체크인
           </S.Text>
-          <S.Text variant="body3">{info.checkIn}</S.Text>
+          <S.Text variant="body3">{formatDateString(info.checkIn)}</S.Text>
         </S.LeftBox>
         <S.RightBox>
           <S.Text variant="body3" color="greyScale1">
             체크아웃
           </S.Text>
-          <S.Text variant="body3">{info.checkOut}</S.Text>
+          <S.Text variant="body3">{formatDateString(info.checkOut)}</S.Text>
         </S.RightBox>
       </S.VStack3>
     </>

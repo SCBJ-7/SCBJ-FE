@@ -135,7 +135,7 @@ const EnterAccountInfo = ({
                     onChange={(e) => bankOnChange(e)}
                     checked={item.name === bank}
                   />
-                  <img src={item.img} />
+                  <img src={item.img} alt={item.name} />
                   {item.name}
                 </S.BankListWrapper>
               );

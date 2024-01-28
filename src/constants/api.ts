@@ -28,6 +28,8 @@ export const END_POINTS = {
   STOCK: (productId: string) => `/v1/products/${productId}/stock`,
   NEW_TOKEN: "/v1/token/refresh",
   SEARCH: "/v1/products/search",
+  CHANGE_NAME: "/v1/members/name",
+  CHANGE_NUMBER: "/v1/members/phone",
 } as const;
 
 export const STATUS_CODE = {
@@ -46,3 +48,4 @@ export const ERROR_CODE = {
 
 export const ACCESS_TOKEN = "accessToken";
 export const REFRESH_TOKEN = "refreshToken";
+export const FCM_TOKEN = "fcmToken";

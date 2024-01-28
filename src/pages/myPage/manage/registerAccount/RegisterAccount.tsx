@@ -3,16 +3,16 @@ import * as S from "./RegisterAccount.style";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import TermsAgreement from "@/components/account/termsAgreement/TermsAgreement";
 import EnterAccountInfo from "@/components/account/enterAccountInfo/EnterAccountInfo";
-import type { AccountProps } from "@/types/account";
 import { PATH } from "@constants/path";
+import type { AccountData } from "@/types/profile";
 
 const RegisterAccount = () => {
   const navigate = useNavigate();
   const [step, setStep] = useState<string>("first");
   const [path, setPath] = useSearchParams();
-  const [accountInfo, setAccountInfo] = useState<AccountProps>({
-    accountNumber: undefined,
-    bank: undefined,
+  const [accountInfo, setAccountInfo] = useState<AccountData>({
+    accountNumber: null,
+    bank: null,
   });
 
   const handleStep = (step: string) => {

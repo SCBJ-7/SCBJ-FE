@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import CloseButton from "@assets/icons/ic_close-button.svg?react";
 import WarningIcon from "@assets/icons/ic_warning.svg?react";
+import { motion } from "framer-motion";
 
 export const ModalContainer = styled.div`
   display: flex;
@@ -15,7 +16,7 @@ export const ModalContainer = styled.div`
   z-index: 11;
 `;
 
-export const ModalContent = styled.div`
+export const ModalContent = styled(motion.div)`
   max-width: 768px;
   min-width: 360px;
   width: 100%;

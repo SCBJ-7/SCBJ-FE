@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="ko">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -26,11 +26,6 @@
     />
     <title>퍼센트 호텔</title>
   </head>
-  <!-- <script type="module">
-    import "https://cdn.jsdelivr.net/npm/@pwabuilder/pwaupdate"; // PWA 업데이트 알림을 구현하기 위한 라이브러리
-    const el = document.createElement("pwa-update"); // PWA 업데이트 알림을 처리하고 표시하는 역할을 하는 <pwa-update> 요소를 동적으로 생성
-    document.body.appendChild(el); //<pwa-update> 요소를 문서의 <body> 요소에 추가
-  </script> -->
   <script>
     document.addEventListener("DOMContentLoaded", function () {
       if ("serviceWorker" in navigator) {
@@ -39,10 +34,11 @@
     });
   </script>
   <body>
-    <div id="modal-root"></div>
     <div id="root"></div>
+    <div id="modal-root"></div>
     <div id="overlay-root"></div>
     <div id="modalTwo-root"></div>
+    <div id="app-install-pop"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

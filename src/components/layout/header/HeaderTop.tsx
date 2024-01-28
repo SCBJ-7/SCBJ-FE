@@ -52,7 +52,7 @@ const Header = () => {
       alarmIC = true;
       settingIC = true;
       title = "마이페이지";
-      undo = true;
+      undo = false;
       break;
     case PATH.PURCAHSE_DETAIL:
       alarmIC = false;

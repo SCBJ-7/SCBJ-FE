@@ -1,10 +1,10 @@
-import { IUserInfo } from "@/types/userInfo";
+import type { ProfileData } from "@/types/profile";
 import * as S from "./AccountSection.style";
 
 interface AccountProps {
   bank: string | null;
   accountNumber: string | null;
-  userInfo?: IUserInfo;
+  userInfo?: ProfileData;
   onSetAccount: React.Dispatch<React.SetStateAction<"none" | "enter">>;
 }
 
