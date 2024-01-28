@@ -1,0 +1,3 @@
+Sitemap: https://percenthotel.web.app/sitemap.xml
+User-agent: *   
+Allow: /       
