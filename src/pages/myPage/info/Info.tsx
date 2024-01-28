@@ -5,18 +5,21 @@ import { PATH } from "@constants/path";
 import { logout } from "@apis/logout";
 import useToastConfig from "@hooks/common/useToastConfig";
 import useAuthStore from "@/store/authStore";
+import { ACCESS_TOKEN, REFRESH_TOKEN } from "@/constants/api";
 
 const Info = () => {
   const navigate = useNavigate();
   const { handleToast } = useToastConfig();
   const [showLogoutModal, setShowLogoutModal] = useState<boolean>(false);
+  const isLoggedIn = useAuthStore((state) => state.isLoggedIn);
   const setIsLoggedIn = useAuthStore((state) => state.setIsLoggedIn);
 
   const infoList = [
     { name: "문의하기", handler: () => alert("문의하기") },
-    { name: "로그아웃", handler: () => setShowLogoutModal(true) },
+    isLoggedIn
+      ? { name: "로그아웃", handler: () => setShowLogoutModal(true) }
+      : { name: "로그인", handler: () => navigate(PATH.LOGIN) },
   ];
-
   const logoutCancelHandler = () => {
     setShowLogoutModal(false);
   };
@@ -24,7 +27,8 @@ const Info = () => {
   const logoutConfirmHandler = async () => {
     try {
       await logout();
-      localStorage.clear();
+      localStorage.removeItem(ACCESS_TOKEN);
+      localStorage.removeItem(REFRESH_TOKEN);
       setIsLoggedIn(false);
       navigate(PATH.ROOT);
     } catch (err) {

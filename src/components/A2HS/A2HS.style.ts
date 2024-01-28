@@ -14,7 +14,7 @@ export const BackDrop = styled(motion.div)`
   height: 100%;
   background-color: rgba(0, 0, 0, 0.45);
   transition: opacity 0.5s ease;
-  z-index: 3;
+  z-index: 11;
 `;
 
 export const A2HSContainer = styled(motion.div)`
@@ -27,16 +27,16 @@ export const A2HSContainer = styled(motion.div)`
   left: 50%;
   width: 90%;
   max-width: 518px;
-  bottom: 60px;
+  bottom: 0px;
 
   background-color: ${({ theme }) => theme.color.white};
-  padding: 2.5rem 1.25rem;
-  gap: 1.2rem;
+  padding: 4rem 1.25rem 3rem;
+  gap: 1.5rem;
 
   box-shadow: 0px -2px 5px rgba(0, 0, 0, 0.2);
   border-radius: 28px 28px 0px 0px;
 
-  z-index: 3;
+  z-index: 12;
 
   transform: translateX(-50%);
 
@@ -96,6 +96,8 @@ export const ButtonWrapper = styled.div`
   align-items: center;
 
   width: 100%;
+
+  margin-top: 1rem;
 `;
 
 export const Message = styled.span`
@@ -112,10 +114,10 @@ const Button = styled.button`
 
   ${({ theme }) => theme.typo.button2};
 
-  width: 60%;
+  width: 70%;
 
   @media (max-width: ${breakpoints.tablet}) {
-    width: 80%;
+    width: 90%;
   }
 
   @media (max-width: ${breakpoints.mobile}) {

@@ -1,21 +1,21 @@
-import useProfileApi from "@apis/useProfileApi";
+import { fetchUserInfo } from "@/apis/fetchUserInfo";
 import { useUserInfoStore } from "@store/store";
 import { useEffect } from "react";
 
 export const useLoadUserInfo = (isShow: boolean) => {
   const userInfo = useUserInfoStore((state) => state.userInfo);
   const setUserInfo = useUserInfoStore((state) => state.setUserInfo);
-  const { getProfileData } = useProfileApi();
-
   useEffect(() => {
-    const fetchUserInfo = async () => {
+    console.log();
+    const getUserInfo = async () => {
       if (isShow && userInfo === null) {
-        const response = await getProfileData("/v1/members");
+        const response = await fetchUserInfo();
+        console.log(response);
         setUserInfo(response);
       }
     };
 
-    fetchUserInfo();
+    getUserInfo();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isShow, userInfo]);
 

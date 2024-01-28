@@ -3,41 +3,45 @@ import useA2HS from "@hooks/common/useA2HS";
 import IcPercentHotelSrc from "@assets/icons/ic_percent_hotel-app.png";
 import * as S from "./A2HS.style";
 import { AnimatePresence } from "framer-motion";
+import { useState } from "react";
 
 const A2HS = () => {
   const { deferredPrompt, install, clearPrompt } = useA2HS();
-  const modalRoot = document.getElementById("modal-root");
+  const appRoot = document.getElementById("app-install-pop");
+  const [isShow, SetIsShow] = useState(true);
 
   const backdropVariants = {
     hidden: { opacity: 0 },
     visible: { opacity: 1 },
+    exit: { opacity: 0 },
   };
 
   const modalVariants = {
     hidden: { y: "100vh", x: "50", opacity: 0 },
     visible: { y: 0, x: "50", opacity: 1 },
-    exit: { y: "100vh", x: "50", opacity: 0 },
+    exit: { y: "-100", x: "50", opacity: 0 },
   };
 
-  if (!deferredPrompt || !modalRoot) return null;
+  if (!deferredPrompt || !appRoot) return null;
 
   return ReactDOM.createPortal(
     <AnimatePresence mode="wait">
-      {deferredPrompt && (
+      {isShow && (
         <>
           <S.BackDrop
             initial="hidden"
             animate="visible"
             exit="hidden"
+            onClick={() => SetIsShow(false)}
             variants={backdropVariants}
-            transition={{ duration: 0.5, delay: 1 }}
+            transition={{ duration: 0.5 }}
           />
           <S.A2HSContainer
             initial="hidden"
             animate="visible"
             exit="hidden"
             variants={modalVariants}
-            transition={{ duration: 0.5, delay: 1 }}
+            transition={{ duration: 0.5 }}
           >
             <S.CloseButton type="button" onClick={clearPrompt}>
               <S.CloseIcon />
@@ -60,7 +64,7 @@ const A2HS = () => {
         </>
       )}
     </AnimatePresence>,
-    modalRoot,
+    appRoot,
   );
 };
 

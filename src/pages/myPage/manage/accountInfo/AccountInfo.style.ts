@@ -12,6 +12,8 @@ export const AccountInfoWrapper = styled.div`
   ${({ theme }) => theme.typo.body4}
   color: ${({ theme }) => theme.color.black};
 
+  padding-top: 1.25rem;
+
   div {
     height: 33px;
     line-height: 33px;
