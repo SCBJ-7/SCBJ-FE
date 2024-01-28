@@ -2,10 +2,11 @@ import * as S from "./SignIn.style";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import useToastConfig from "@hooks/common/useToastConfig";
-import { PATH } from "@constants/path";
+// import { PATH } from "@constants/path";
 import { useUserInfoStore } from "@/store/store";
 import { postLogin } from "@apis/fetchLogin";
 import getNotificationPermission from "@/utils/getNotificationPermission";
+import { useState } from "react";
 
 type FormValues = {
   email: string;
@@ -17,6 +18,7 @@ const SignIn = () => {
   const [searchParams] = useSearchParams();
   const redirectUrl = searchParams.get("redirect");
   const { handleToast } = useToastConfig();
+  const [token, SetToken] = useState<string | undefined>("");
 
   const {
     register,
@@ -33,6 +35,7 @@ const SignIn = () => {
     const { email, password } = data;
 
     const fcmToken = await getNotificationPermission();
+    SetToken(fcmToken);
     await postLogin({ email, password, fcmToken })
       .then((loginData) => {
         const { memberResponse, tokenResponse } = loginData;
@@ -46,7 +49,7 @@ const SignIn = () => {
           return;
         }
 
-        navigate(PATH.ROOT, { replace: true });
+        // navigate(PATH.ROOT, { replace: true });
       })
       .catch(() => {
         handleToast(false, [<>아이디 혹은 비밀번호를 확인해주세요</>]);
@@ -57,6 +60,7 @@ const SignIn = () => {
     <S.SignInContainer onSubmit={handleSubmit(handleOnSubmit)}>
       <Link to="/">
         <S.SignInLogo />
+        <p>{token}</p>
       </Link>
       <S.SignInInputContainer>
         <S.SignInInputWrapper>
