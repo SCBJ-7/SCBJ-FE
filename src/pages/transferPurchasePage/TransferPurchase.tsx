@@ -7,6 +7,8 @@ import { fetchPurchaseList } from "@/apis/fetchPurchaseList";
 import PurchaseItem from "./components/puchaseItem/PuchaseItem";
 import { IPurchaseList } from "@/types/purchaseList";
 import Loading from "@/components/lottie/loading/Loading";
+import { useUserInfoStore } from "@/store/store";
+import useAuthStore from "@/store/authStore";
 
 export interface IPurchaseItemWithRemainDate extends IPurchaseList {
   remainDate: number;
@@ -34,14 +36,16 @@ const sortProductsByCheckInDate = (
 const TransferPurchase = () => {
   const [searchParams] = useSearchParams();
   const status = searchParams.get("status");
+  const userInfo = useUserInfoStore((state) => state.userInfo);
+  const isLoggedIn = useAuthStore((state) => state.isLoggedIn);
 
   const { data: purchaseData, isLoading } = useQuery({
     queryKey: ["purchaseList"],
     queryFn: fetchPurchaseList,
+    enabled: !!userInfo && !!isLoggedIn,
   });
 
   const sortedPurchaseItems = sortProductsByCheckInDate(purchaseData);
-  console.log("item", sortedPurchaseItems);
   const filteredPurchaseItems = sortedPurchaseItems.filter((item) => {
     if (status === "yet") {
       return item.remainDate > 0;
@@ -51,6 +55,7 @@ const TransferPurchase = () => {
       return true;
     }
   });
+
   if (isLoading) {
     return <Loading />;
   }
