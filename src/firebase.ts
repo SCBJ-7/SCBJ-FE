@@ -1,8 +1,4 @@
 import { initializeApp } from "firebase/app";
-import { getMessaging } from "firebase/messaging";
-import { isMobileSafari } from "./utils/isMobileSafari";
-import { isAccessTokenExpired } from "./utils/checkToken";
-import getNotificationPermission from "./utils/getNotificationPermission";
 
 // firebase
 const firebaseConfig = {
@@ -16,16 +12,3 @@ const firebaseConfig = {
 };
 
 export const app = initializeApp(firebaseConfig);
-export const messaging = !isMobileSafari() && getMessaging(app);
-
-// isLoggedIn wrapper로 만든걸 사용하고 싶었는데 만료 여부도 확인해야돼서 localStorage.getItem을 썼습니다!
-async function checkAccessToken() {
-  const accessToken = localStorage.getItem("accessToken");
-  if (accessToken && isAccessTokenExpired(accessToken)) {
-    await getNotificationPermission();
-  }
-}
-
-checkAccessToken();
-// Get registration token. Initially this makes a network call, once retrieved
-// subsequent calls to getToken will return from cache.
