@@ -1,6 +1,7 @@
-import { useSearchParams } from "react-router-dom";
-import * as S from "./PurchaseNav.style";
 import { PATH } from "@constants/path";
+import { useSearchParams } from "react-router-dom";
+
+import * as S from "./PurchaseNav.style";
 
 const navList = [
   { status: "", label: "전체" },

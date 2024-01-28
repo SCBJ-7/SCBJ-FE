@@ -1,18 +1,18 @@
-import ItemCarousel from "./itemCarousel/ItemCarousel";
-import { useState } from "react";
-import * as S from "./Home.style";
-import TitleSection from "./titleSection/TitleSection";
-import NavToSearchSection from "./navToSearchSection/NavToSearchSection";
-import { LocaleItem, WeekendItem } from "@type/saleSection";
 import { fetchMainItem } from "@apis/fetchMainItems";
-
 import { locale } from "@constants/locale";
-import WeekendCarousel from "./weekendCarousel/WeekendCarousel";
 import { useSuspenseQuery } from "@tanstack/react-query";
-import TextLocaleAnimator from "./textAnimator/TextAnimator";
-import PercentAnimator from "./percentAnimator/PercentAnimator";
+import { LocaleItem, WeekendItem } from "@type/saleSection";
+import { useState } from "react";
+
+import * as S from "./Home.style";
+import ItemCarousel from "./itemCarousel/ItemCarousel";
 import MainHeader from "./mainHeader/MainHeader";
+import NavToSearchSection from "./navToSearchSection/NavToSearchSection";
+import PercentAnimator from "./percentAnimator/PercentAnimator";
 import SequenceSection from "./sequenceSection/SequenceSection";
+import TextLocaleAnimator from "./textAnimator/TextAnimator";
+import TitleSection from "./titleSection/TitleSection";
+import WeekendCarousel from "./weekendCarousel/WeekendCarousel";
 
 const Home = () => {
   const { data: mainData } = useSuspenseQuery({

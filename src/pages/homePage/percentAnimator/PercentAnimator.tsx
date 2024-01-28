@@ -1,6 +1,7 @@
-import { AnimatePresence } from "framer-motion";
-import * as S from "./PercentAnimator.style";
 import { LocaleItem } from "@type/saleSection";
+import { AnimatePresence } from "framer-motion";
+
+import * as S from "./PercentAnimator.style";
 
 const PercentAnimator = ({
   percent,

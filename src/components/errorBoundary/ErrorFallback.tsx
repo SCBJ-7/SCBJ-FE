@@ -1,8 +1,9 @@
-import { FallbackProps } from "react-error-boundary";
-import * as S from "./ErrorFallback.style";
-import Blank from "@components/lottie/blank/Blank";
 import getErrorMessage from "@/utils/getErrorMessage";
+import Blank from "@components/lottie/blank/Blank";
+import { FallbackProps } from "react-error-boundary";
 import { useNavigate } from "react-router-dom";
+
+import * as S from "./ErrorFallback.style";
 
 const ErrorFallback = ({ error, resetErrorBoundary }: FallbackProps) => {
   const navigate = useNavigate();

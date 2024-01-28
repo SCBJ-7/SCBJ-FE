@@ -1,5 +1,6 @@
-import { useNavigate } from "react-router-dom";
 import Blank from "@components/lottie/blank/Blank";
+import { useNavigate } from "react-router-dom";
+
 import * as S from "./NoResult.style";
 
 interface NoResultProps {

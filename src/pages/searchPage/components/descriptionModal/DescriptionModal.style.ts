@@ -1,5 +1,5 @@
-import styled from "styled-components";
 import CloseButton from "@assets/icons/ic_close-button.svg?react";
+import styled from "styled-components";
 
 export const ModalTwoContainer = styled.div`
   display: flex;

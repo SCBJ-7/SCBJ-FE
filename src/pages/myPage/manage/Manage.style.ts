@@ -1,6 +1,7 @@
-import styled from "styled-components";
-import { ListElement, ListWrapper } from "../setting/Setting.style";
 import { Link } from "react-router-dom";
+import styled from "styled-components";
+
+import { ListElement, ListWrapper } from "../setting/Setting.style";
 
 export const ManageListWrapper = styled.section`
   ${ListWrapper}

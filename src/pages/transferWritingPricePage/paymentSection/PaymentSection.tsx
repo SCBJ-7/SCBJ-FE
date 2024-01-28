@@ -1,7 +1,8 @@
 import priceFormat from "@/utils/priceFormat";
-import * as S from "./PaymentSection.style";
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
+
+import * as S from "./PaymentSection.style";
 
 interface PaymentProps {
   price: string;

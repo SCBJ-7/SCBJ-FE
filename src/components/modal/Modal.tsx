@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import ReactDOM from "react-dom";
+
 import * as S from "./Modal.style";
 
 type CustomModalProps = {

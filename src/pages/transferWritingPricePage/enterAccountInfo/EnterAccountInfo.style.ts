@@ -1,5 +1,5 @@
-import styled, { css } from "styled-components";
 import { AnimationControls, motion } from "framer-motion";
+import styled, { css } from "styled-components";
 
 interface BankInputProps {
   $bank: string | undefined;

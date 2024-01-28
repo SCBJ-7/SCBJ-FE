@@ -1,6 +1,7 @@
-import * as S from "./AgreementSection.style";
-import CheckBoxSection from "../checkBox/CheckBoxSection";
 import { useEffect, useRef } from "react";
+import CheckBoxSection from "../checkBox/CheckBoxSection";
+
+import * as S from "./AgreementSection.style";
 
 interface AgreementProps {
   opt1: boolean;

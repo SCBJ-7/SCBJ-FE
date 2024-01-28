@@ -1,14 +1,15 @@
-import PurchaseNav from "./components/purchaseNav/PurchaseNav";
-import * as S from "./TransferPurchase.style";
+import { fetchPurchaseList } from "@/apis/fetchPurchaseList";
+import Loading from "@/components/lottie/loading/Loading";
+import useAuthStore from "@/store/authStore";
+import { useUserInfoStore } from "@/store/store";
+import { IPurchaseList } from "@/types/purchaseList";
+import { useQuery } from "@tanstack/react-query";
 import { differenceInDays, parseISO } from "date-fns";
 import { useSearchParams } from "react-router-dom";
-import { useQuery } from "@tanstack/react-query";
-import { fetchPurchaseList } from "@/apis/fetchPurchaseList";
+
 import PurchaseItem from "./components/puchaseItem/PuchaseItem";
-import { IPurchaseList } from "@/types/purchaseList";
-import Loading from "@/components/lottie/loading/Loading";
-import { useUserInfoStore } from "@/store/store";
-import useAuthStore from "@/store/authStore";
+import PurchaseNav from "./components/purchaseNav/PurchaseNav";
+import * as S from "./TransferPurchase.style";
 
 export interface IPurchaseItemWithRemainDate extends IPurchaseList {
   remainDate: number;

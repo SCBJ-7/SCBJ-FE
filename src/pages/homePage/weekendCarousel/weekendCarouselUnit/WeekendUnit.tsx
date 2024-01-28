@@ -1,10 +1,10 @@
-import priceFormat from "@utils/priceFormat";
-import * as S from "./WeekendUnit.style";
-import { WeekendItem } from "@type/saleSection";
-import { format } from "date-fns";
-import { useNavigate } from "react-router-dom";
 import { PATH } from "@constants/path";
-import { parseISO } from "date-fns";
+import { WeekendItem } from "@type/saleSection";
+import priceFormat from "@utils/priceFormat";
+import { format, parseISO } from "date-fns";
+import { useNavigate } from "react-router-dom";
+
+import * as S from "./WeekendUnit.style";
 
 interface UnitProps {
   item: [number, WeekendItem];

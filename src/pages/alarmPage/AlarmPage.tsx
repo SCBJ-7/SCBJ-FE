@@ -1,12 +1,13 @@
-import * as S from "./AlarmPage.style";
-import { useQuery, useSuspenseQuery } from "@tanstack/react-query";
+import Loading from "@/components/lottie/loading/Loading";
+import { isMobileSafari } from "@/utils/isMobileSafari";
 import { fetchAlarm } from "@apis/fetchAlarm";
-import { format, parseISO } from "date-fns";
 import { fetchUserInfo } from "@apis/fetchUserInfo";
 import NoResult from "@components/noResult/NoResult";
 import { PATH } from "@constants/path";
-import Loading from "@/components/lottie/loading/Loading";
-import { isMobileSafari } from "@/utils/isMobileSafari";
+import { useQuery, useSuspenseQuery } from "@tanstack/react-query";
+import { format, parseISO } from "date-fns";
+
+import * as S from "./AlarmPage.style";
 
 const AlarmPage = () => {
   const mobileSafari = isMobileSafari();

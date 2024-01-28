@@ -1,21 +1,22 @@
+import { PATH } from "@constants/path";
+import usePreventLeave from "@hooks/common/usePreventLeave";
+import useToastConfig from "@hooks/common/useToastConfig";
+import { useMutation, useSuspenseQuery } from "@tanstack/react-query";
 import { useEffect, useRef, useState } from "react";
-import * as S from "./TransferWritingPrice.style";
+import { useNavigate } from "react-router-dom";
 
-import FirstPriceTag from "./firstPriceTag/FirstPriceTag";
-import SecondPriceTag from "./secondPriceTag/SecondPriceTag";
-import PaymentSection from "./paymentSection/PaymentSection";
 import AccountSection from "./accountSection/AccountSection";
 import AgreementSection from "./agreementSection/AgreementSection";
-import { useSelectedItemStore, useStateHeaderStore } from "@/store/store";
-import { postTransferItems } from "@/apis/postTransferItems";
-import { useMutation, useSuspenseQuery } from "@tanstack/react-query";
-import { useNavigate } from "react-router-dom";
-import { fetchUserInfo } from "@/apis/fetchUserInfo";
-import usePreventLeave from "@hooks/common/usePreventLeave";
-import { PATH } from "@constants/path";
 import EnterAccountInfo from "./enterAccountInfo/EnterAccountInfo";
-import useToastConfig from "@hooks/common/useToastConfig";
+import FirstPriceTag from "./firstPriceTag/FirstPriceTag";
+import PaymentSection from "./paymentSection/PaymentSection";
+import SecondPriceTag from "./secondPriceTag/SecondPriceTag";
+import * as S from "./TransferWritingPrice.style";
 import TransferPricingHeader from "./transferWritingPriceHeader/TransferPricingHeaderTop";
+
+import { fetchUserInfo } from "@/apis/fetchUserInfo";
+import { postTransferItems } from "@/apis/postTransferItems";
+import { useSelectedItemStore, useStateHeaderStore } from "@/store/store";
 
 const TransferWritingPrice = () => {
   usePreventLeave(true);

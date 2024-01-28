@@ -1,5 +1,5 @@
-import Lottie from "lottie-react";
 import loading from "@assets/lottie/loading.json";
+import Lottie from "lottie-react";
 
 import * as S from "./Loading.style";
 

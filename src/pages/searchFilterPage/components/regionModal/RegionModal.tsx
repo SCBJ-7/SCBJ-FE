@@ -1,13 +1,14 @@
-import React from "react";
-import * as S from "./RegionModal.style";
-import Seoul from "@assets/regionImages/seoul.jpg";
 import Busan from "@assets/regionImages/busan.jpg";
-import Jeju from "@assets/regionImages/jeju.jpg";
-import Gyeonggi from "@assets/regionImages/gyeonggi.jpg";
-import Gangwon from "@assets/regionImages/gangwon.jpg";
-import Jeolla from "@assets/regionImages/jeolla.jpg";
 import Chungcheong from "@assets/regionImages/chungcheong.jpg";
+import Gangwon from "@assets/regionImages/gangwon.jpg";
+import Gyeonggi from "@assets/regionImages/gyeonggi.jpg";
 import Gyeongsang from "@assets/regionImages/gyeongsang.jpg";
+import Jeju from "@assets/regionImages/jeju.jpg";
+import Jeolla from "@assets/regionImages/jeolla.jpg";
+import Seoul from "@assets/regionImages/seoul.jpg";
+import React from "react";
+
+import * as S from "./RegionModal.style";
 
 interface RegionModalProps {
   setRegionIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>;

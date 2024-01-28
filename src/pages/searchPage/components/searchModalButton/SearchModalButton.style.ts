@@ -1,5 +1,5 @@
-import styled from "styled-components";
 import FilterIcon from "@assets/icons/ic_arrows-down-up.svg?react";
+import styled from "styled-components";
 
 export const SearchFilterCover = styled.div`
   padding: 10px;

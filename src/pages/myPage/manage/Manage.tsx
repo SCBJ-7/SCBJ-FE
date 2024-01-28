@@ -1,7 +1,8 @@
-import { PATH } from "@constants/path";
-import * as S from "./Manage.style";
-import rightArrow from "@assets/icons/RightArrow.svg";
 import { useLoadUserInfo } from "@/hooks/common/useLoadUserInfo";
+import rightArrow from "@assets/icons/RightArrow.svg";
+import { PATH } from "@constants/path";
+
+import * as S from "./Manage.style";
 
 const Manage = () => {
   const manageList = [

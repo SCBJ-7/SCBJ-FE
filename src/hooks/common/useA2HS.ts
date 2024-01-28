@@ -1,5 +1,6 @@
-import { a2hs } from "@/utils/a2hs";
 import { useEffect, useState } from "react";
+
+import { a2hs } from "@/utils/a2hs";
 
 interface BeforeInstallPromptEvent extends Event {
   readonly platforms: string[];
