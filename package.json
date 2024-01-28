@@ -82,5 +82,12 @@
     "workerDirectory": [
       "public"
     ]
+  },
+  "reactSnap": {
+    "source": "./dist",
+    "include": [
+      "/index",
+      "/"
+    ]
   }
 }
