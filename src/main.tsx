@@ -6,6 +6,7 @@ import { ThemeProvider } from "styled-components";
 import AppRouter from "./routes/router";
 import { GlobalStyle } from "./styles/globalStyle";
 import { theme } from "./styles/theme";
+import { hydrate } from "react-dom";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -22,8 +23,7 @@ const queryClient = new QueryClient({
 
 const rootElement = document.getElementById("root");
 if (rootElement?.hasChildNodes()) {
-  ReactDOM.hydrateRoot(
-    rootElement,
+  hydrate(
     <QueryClientProvider client={queryClient}>
       <ThemeProvider theme={theme}>
         <GlobalStyle />
@@ -33,6 +33,7 @@ if (rootElement?.hasChildNodes()) {
       </ThemeProvider>
       <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>,
+    rootElement,
   );
 } else {
   ReactDOM.createRoot(document.getElementById("root")!).render(
