@@ -10,6 +10,7 @@ import { useToastStore } from "./store/store";
 
 const App = () => {
   const toastConfig = useToastStore((state) => state.config);
+
   return (
     <IsLogin>
       <ScrollToTop />

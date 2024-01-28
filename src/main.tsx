@@ -22,6 +22,17 @@ const queryClient = new QueryClient({
   },
 });
 
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker
+    .register("/firebase-messaging-sw.js")
+    .then((registration) => {
+      console.log("Service Worker 등록 성공:", registration);
+    })
+    .catch((error) => {
+      console.log("Service Worker 등록 실패:", error);
+    });
+}
+
 const rootElement = document.getElementById("root");
 if (rootElement?.hasChildNodes()) {
   hydrate(
