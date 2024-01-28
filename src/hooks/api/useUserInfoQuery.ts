@@ -10,7 +10,7 @@ interface AccountQueryProps {
 
 export const useAccountQuery = () => {
   const accountQuery = useSuspenseQuery<ProfileData, Error, AccountQueryProps>({
-    queryKey: ["myProfile"],
+    queryKey: ["userInfo", "account"],
     queryFn: async () => await fetchUserInfo(),
     refetchOnWindowFocus: false,
     refetchOnReconnect: false,
