@@ -1,5 +1,5 @@
-import styled from "styled-components";
 import type { ColorKeys, TypoKeys } from "@styles/theme";
+import styled from "styled-components";
 
 export const Container = styled.main`
   background-color: ${({ theme }) => theme.color.greyScale7};

@@ -1,5 +1,5 @@
+import { PiBellBold, PiCaretLeftBold, PiGearBold } from "react-icons/pi";
 import { styled } from "styled-components";
-import { PiCaretLeftBold, PiBellBold, PiGearBold } from "react-icons/pi";
 
 export const HeaderContainer = styled.section`
   width: 100%;

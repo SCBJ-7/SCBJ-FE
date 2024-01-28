@@ -1,12 +1,14 @@
-import { differenceInDays } from "date-fns";
-import SaleNav from "./components/saleNav/SaleNav";
-import * as S from "./TransferSale.style";
-import { useEffect, useState } from "react";
-import { useSearchParams } from "react-router-dom";
-import SaleItem from "./components/saleItem/SaleItem";
-import type { ISaleList } from "@type/saleList";
 import { fetchSaleList } from "@apis/fetchSaleList";
 import { NAV_LIST } from "@constants/sale";
+import { differenceInDays } from "date-fns";
+import { useEffect, useState } from "react";
+import { useSearchParams } from "react-router-dom";
+
+import SaleItem from "./components/saleItem/SaleItem";
+import SaleNav from "./components/saleNav/SaleNav";
+import * as S from "./TransferSale.style";
+
+import type { ISaleList } from "@type/saleList";
 
 export interface ISaleItemWithRemainDate extends ISaleList {
   remainDate: number;

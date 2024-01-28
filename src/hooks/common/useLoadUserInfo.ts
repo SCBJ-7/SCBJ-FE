@@ -1,6 +1,7 @@
-import { fetchUserInfo } from "@/apis/fetchUserInfo";
 import { useUserInfoStore } from "@store/store";
 import { useEffect } from "react";
+
+import { fetchUserInfo } from "@/apis/fetchUserInfo";
 
 export const useLoadUserInfo = (isShow: boolean) => {
   const userInfo = useUserInfoStore((state) => state.userInfo);

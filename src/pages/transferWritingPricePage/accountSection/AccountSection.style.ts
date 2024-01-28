@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
-import styled from "styled-components";
 import { FaChevronRight } from "react-icons/fa6";
+import styled from "styled-components";
 
 export const Container = styled(motion.div)`
   padding: 16px 20px 24px;

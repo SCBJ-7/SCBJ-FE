@@ -1,7 +1,7 @@
-import { hexToRgba } from "@utils/hexTorgba";
 import { breakpoints } from "@styles/theme";
-import styled, { DefaultTheme } from "styled-components";
+import { hexToRgba } from "@utils/hexTorgba";
 import { motion } from "framer-motion";
+import styled, { DefaultTheme } from "styled-components";
 
 export const PageContainer = styled.div`
   width: 100%;

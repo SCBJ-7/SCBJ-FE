@@ -1,7 +1,7 @@
-import styled from "styled-components";
 import { breakpoints } from "@/styles/theme";
-import { IoIosClose } from "react-icons/io";
 import { motion } from "framer-motion";
+import { IoIosClose } from "react-icons/io";
+import styled from "styled-components";
 
 export const BackDrop = styled(motion.div)`
   position: fixed;

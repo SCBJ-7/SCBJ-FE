@@ -1,6 +1,6 @@
-import { useNavigate } from "react-router-dom";
 import { PATH } from "@constants/path";
 import * as S from "@pages/paymentSuccessPage/PaymentSuccess.style";
+import { useNavigate } from "react-router-dom";
 
 const PaymentSuccessButton = ({ productId }: { productId: string }) => {
   const navigate = useNavigate();

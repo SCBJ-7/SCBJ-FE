@@ -1,4 +1,5 @@
 import { AnimatePresence } from "framer-motion";
+
 import * as S from "./TextAnimator.style";
 
 const TextAnimator = ({ text }: { text: string }) => {

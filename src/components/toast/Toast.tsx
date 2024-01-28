@@ -1,4 +1,5 @@
 import * as S from "./Toast.style";
+
 import { useToastStore } from "@/store/store";
 
 const Toast = () => {

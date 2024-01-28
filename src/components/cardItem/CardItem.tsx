@@ -1,5 +1,5 @@
-import * as S from "./CardItem.style";
 import type { CardItemStyleProps } from "./CardItem.style";
+import * as S from "./CardItem.style";
 
 interface CardItemProps extends CardItemStyleProps {
   label: string;

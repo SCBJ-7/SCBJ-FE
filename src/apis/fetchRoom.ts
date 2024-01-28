@@ -1,8 +1,9 @@
-import axios from "axios";
+import { ResponseError } from "@/components/error/Error";
 import { ACCESS_TOKEN, BASE_URL, END_POINTS } from "@constants/api";
+
 import type { ResponseData } from "@type/responseType";
 import type { RoomData } from "@type/room";
-import { ResponseError } from "@/components/error/Error";
+import axios from "axios";
 
 export const getRoom = async (
   productId: string,

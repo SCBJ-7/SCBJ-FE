@@ -1,6 +1,7 @@
-import { useNavigate } from "react-router-dom";
-import * as S from "./NavToSearchSection.style";
 import { PATH } from "@constants/path";
+import { useNavigate } from "react-router-dom";
+
+import * as S from "./NavToSearchSection.style";
 
 const NavToSearchSection = () => {
   const navigate = useNavigate();

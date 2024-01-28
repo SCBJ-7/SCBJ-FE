@@ -1,5 +1,8 @@
+import borderImgSrc from "@assets/icons/border.svg";
+
 import type { ColorKeys, TypoKeys } from "@styles/theme";
 import styled, { DefaultTheme } from "styled-components";
+
 export {
   Row,
   VStack3,
@@ -8,7 +11,6 @@ export {
   TitleWrapper,
 } from "@pages/paymentPage/components/paymentInfoSection/PaymentInfoSection.style";
 export { LeftBox, RightBox } from "@pages/roomDetailPage/RoomDetail.style";
-import borderImgSrc from "@assets/icons/border.svg";
 
 export const PurchasedContainer = styled.main`
   padding-top: 56px;

@@ -1,10 +1,11 @@
-import InputField from "@components/inputField/InputField";
-import * as S from "../../SignUp.style";
-import { EMAIL_REGEX, PHONE_NUMBER_REGEX } from "@constants/regex";
-import { useFormContext } from "react-hook-form";
-import { useEffect, useState } from "react";
 import { useValidateEmailMutation } from "@/hooks/api/useValidateEmailMutation";
+import InputField from "@components/inputField/InputField";
+import { EMAIL_REGEX, PHONE_NUMBER_REGEX } from "@constants/regex";
 import axios from "axios";
+import { useEffect, useState } from "react";
+import { useFormContext } from "react-hook-form";
+
+import * as S from "../../SignUp.style";
 
 type FormValues = {
   email: string;

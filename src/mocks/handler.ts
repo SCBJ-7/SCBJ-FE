@@ -1,13 +1,14 @@
 import { http, HttpResponse } from "msw";
-import dummySaleList from "./data/dummySaleList.json";
-import dummySaleDetail from "./data/dummySaleDetail.json";
+
 import dummyPurchaseList from "./data/dummyPuchaseList.json";
 import dummyPurchaseDetail from "./data/dummyPurchaseDetail.json";
-import dummySearchList from "./data/dummySearchList.json";
 import dummyRoom from "./data/dummyRoomDetail.json";
-import roomHandlers from "./handlers/room";
-import { paymentHandler } from "./handlers/payment";
+import dummySaleDetail from "./data/dummySaleDetail.json";
+import dummySaleList from "./data/dummySaleList.json";
+import dummySearchList from "./data/dummySearchList.json";
 import emailHandlers from "./handlers/email";
+import { paymentHandler } from "./handlers/payment";
+import roomHandlers from "./handlers/room";
 import yanoljaAccountHandlers from "./handlers/yanoljaAccount";
 
 export const handlers = [

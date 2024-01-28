@@ -1,8 +1,9 @@
 import { ISearchList } from "@/types/searchList";
-import * as S from "./SearchItem.style";
+import { PATH } from "@constants/path";
 import { format, parseISO } from "date-fns";
 import { useNavigate } from "react-router-dom";
-import { PATH } from "@constants/path";
+
+import * as S from "./SearchItem.style";
 
 const SearchItem = ({ item }: { item: ISearchList }) => {
   const navigate = useNavigate();

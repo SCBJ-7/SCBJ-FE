@@ -1,4 +1,5 @@
 import { ColorKeys, TypoKeys } from "@styles/theme";
+
 import * as S from "./CheckBoxSection.style";
 
 interface CheckProps {

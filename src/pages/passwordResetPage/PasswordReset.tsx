@@ -1,7 +1,8 @@
 import { FormProvider, useForm } from "react-hook-form";
-import * as S from "./PasswordReset.style";
+
 import FieldValues from "./components/fieldValues/FieldValues";
 import PasswordResetSubmitBtn from "./components/passwordResetSubmitBtn.tsx/PasswordResetSubmitBtn";
+import * as S from "./PasswordReset.style";
 
 const PasswordReset = () => {
   const method = useForm({

@@ -1,4 +1,5 @@
 import * as S from "@pages/paymentSuccessPage/PaymentSuccess.style";
+
 import type { IPurchaseData } from "@type/purchaseDetail";
 import { formatDateString } from "@utils/dateFormatter";
 

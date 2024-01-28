@@ -1,17 +1,21 @@
-import { useParams, useSearchParams } from "react-router-dom";
-import * as S from "./SaleDetail.style";
-import { parse, sub, format } from "date-fns";
-// import { useSaleDetailQuery } from "@hooks/api/query/useSaleDetailQuery";
+import { fetchSaleDetail } from "@apis/fetchSaleDetail";
+import Caption from "@components/caption/Caption";
 import Card from "@components/card/Card";
 import CardItem from "@components/cardItem/CardItem";
-import { fetchSaleDetail } from "@apis/fetchSaleDetail";
-import { useEffect, useState } from "react";
-import { ISaleData } from "@type/saleDetail";
-import SaleInfo from "./saleInfo/SaleInfo";
-import SaleButton from "./saleButton/SaleButton";
-import { calculateFee } from "@utils/calculator";
 import { CaptionWrapper } from "@pages/paymentPage/Payment.style";
-import Caption from "@components/caption/Caption";
+import { ISaleData } from "@type/saleDetail";
+import { calculateFee } from "@utils/calculator";
+import { parse, sub, format } from "date-fns";
+import { useEffect, useState } from "react";
+import { useParams, useSearchParams } from "react-router-dom";
+
+import SaleButton from "./saleButton/SaleButton";
+import * as S from "./SaleDetail.style";
+// import { useSaleDetailQuery } from "@hooks/api/query/useSaleDetailQuery";
+
+import SaleInfo from "./saleInfo/SaleInfo";
+
+
 import { formatDateString } from "@/utils/dateFormatter";
 
 const SaleDetail = () => {
