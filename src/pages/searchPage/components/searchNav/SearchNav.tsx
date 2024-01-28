@@ -37,24 +37,22 @@ const SeachNav = () => {
   };
 
   return (
-    <>
-      <S.SearchNavContainer>
-        <S.StandardFlex>
-          <S.SearchCellCover>
-            {navList.map(({ id, label, name }) => (
-              <S.SearchNavCell
-                key={id}
-                onClick={() => handleCellClick(label)}
-                className={isActive[label] ? "active" : ""}
-              >
-                {name}
-              </S.SearchNavCell>
-            ))}
-          </S.SearchCellCover>
-          <SearchModalButton />
-        </S.StandardFlex>
-      </S.SearchNavContainer>
-    </>
+    <S.SearchNavContainer>
+      <S.StandardFlex>
+        <S.SearchCellCover>
+          {navList.map(({ id, label, name }) => (
+            <S.SearchNavCell
+              key={id}
+              onClick={() => handleCellClick(label)}
+              className={isActive[label] ? "active" : ""}
+            >
+              {name}
+            </S.SearchNavCell>
+          ))}
+        </S.SearchCellCover>
+        <SearchModalButton />
+      </S.StandardFlex>
+    </S.SearchNavContainer>
   );
 };
 

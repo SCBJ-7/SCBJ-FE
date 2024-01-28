@@ -1,15 +1,15 @@
 import { useNavigate } from "react-router-dom";
-import { ProfileData } from "../manageProfile/ManageProfile.type";
+
 import * as S from "./AccountInfo.style";
 import { PATH } from "@constants/path";
-import type { AccountProps } from "@type/account";
+import type { ProfileData, AccountData } from "@/type/profile";
 
 const AccountInfo = ({
   data,
   accountInfo,
 }: {
   data: ProfileData;
-  accountInfo: AccountProps;
+  accountInfo: AccountData;
 }) => {
   const { bank, accountNumber, name } = data;
   const navigate = useNavigate();

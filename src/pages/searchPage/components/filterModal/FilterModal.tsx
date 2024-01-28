@@ -1,6 +1,7 @@
 import { useSearchFilterInfoStore } from "@store/store";
 import * as S from "./FilterModal.style";
 import { forwardRef } from "react";
+import { AnimatePresence } from "framer-motion";
 
 interface FilterModalProps {
   setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
@@ -47,37 +48,51 @@ const FilterModal = forwardRef<HTMLDivElement, FilterModalProps>(
       setIsModalOpen(false);
     };
 
+    const modalVariants = {
+      hidden: { y: "100vh", opacity: 0 },
+      visible: { y: 0, opacity: 1, transition: { duration: 0.5 } },
+      exit: { y: "100vh", opacity: 0, transition: { duration: 0.2 } },
+    };
+
     return (
-      <S.ModalContainer>
-        <S.ModalContent ref={ref}>
-          <S.ModalTop>
-            <div></div>
-            <S.ModalTitle>정렬</S.ModalTitle>
-            <div>
-              <S.ModalCloseButton onClick={handleCloseModal} />
-            </div>
-          </S.ModalTop>
-          {navList.map(({ id, name }) => (
-            <S.ModalFitlerName
-              key={id}
-              onClick={(e) => registerFilter(e, name)}
-              className={searchInfo.sorted === name ? "active" : ""}
-            >
-              {id === 1 ? (
-                <>
-                  <span>{name}</span>{" "}
-                  <S.WarningButton
-                    className="modal-two-button"
-                    onClick={handleOpenModalTwo}
-                  />
-                </>
-              ) : (
-                name
-              )}
-            </S.ModalFitlerName>
-          ))}
-        </S.ModalContent>
-      </S.ModalContainer>
+      <AnimatePresence mode="wait">
+        <S.ModalContainer>
+          <S.ModalContent
+            ref={ref}
+            variants={modalVariants}
+            initial="hidden"
+            animate="visible"
+            exit="exit"
+          >
+            <S.ModalTop>
+              <div></div>
+              <S.ModalTitle>정렬</S.ModalTitle>
+              <div>
+                <S.ModalCloseButton onClick={handleCloseModal} />
+              </div>
+            </S.ModalTop>
+            {navList.map(({ id, name }) => (
+              <S.ModalFitlerName
+                key={id}
+                onClick={(e) => registerFilter(e, name)}
+                className={searchInfo.sorted === name ? "active" : ""}
+              >
+                {id === 1 ? (
+                  <>
+                    <span>{name}</span>{" "}
+                    <S.WarningButton
+                      className="modal-two-button"
+                      onClick={handleOpenModalTwo}
+                    />
+                  </>
+                ) : (
+                  name
+                )}
+              </S.ModalFitlerName>
+            ))}
+          </S.ModalContent>
+        </S.ModalContainer>
+      </AnimatePresence>
     );
   },
 );

@@ -41,6 +41,8 @@ const Search = () => {
         pageParam,
         pageSize,
       ),
+    refetchOnMount: false,
+    refetchOnWindowFocus: false,
     initialPageParam: 0,
     getNextPageParam: (lastPage) => {
       const lastData = lastPage?.content;
@@ -94,7 +96,6 @@ const Search = () => {
     <S.Container>
       <SearchBar />
       <SearchNav />
-
       <S.SearchContainer>
         {isLoading && <Loading />}
         {!isLoading && data && !data?.pages?.[0]?.content?.length && (
