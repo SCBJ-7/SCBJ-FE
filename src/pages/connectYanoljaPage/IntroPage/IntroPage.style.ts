@@ -1,15 +1,16 @@
 import { hexToRgba } from "@utils/hexTorgba";
 import { breakpoints } from "@styles/theme";
 import styled, { DefaultTheme } from "styled-components";
+import { motion } from "framer-motion";
 
 export const PageContainer = styled.div`
   width: 100%;
-  height: 100%;
+  height: 100vh;
 
-  background-color: ${({ theme }) => theme.color.black};
+  background-color: ${({ theme }) => theme.color.white};
 `;
 
-export const MainWrapper = styled.div`
+export const MainWrapper = styled(motion.div)`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -73,9 +74,9 @@ export const XIcon = styled.div`
   }
 `;
 
-export const Title = styled.p`
+export const Title = styled(motion.p)`
   ${({ theme }) => theme.typo.title4};
-  color: ${({ theme }) => theme.color.percentOrange};
+  color: ${({ theme }) => theme.color.greyScale1};
   line-height: 1.8;
 `;
 
