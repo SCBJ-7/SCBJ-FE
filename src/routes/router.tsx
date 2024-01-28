@@ -1,38 +1,17 @@
+import App from "@/App";
+
 import { Suspense } from "react";
 import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
-import { HelmetTag } from "@/components/Helmet/Helmet.tsx";
-import { PATH } from "@/constants/path";
-import App from "@/App";
-import Home from "@/pages/homePage/Home";
-import NotFound from "@/pages/notFoundPage";
-import Search from "@/pages/searchPage/Search";
-import SignUp from "@/pages/signUpPage/SignUp";
-import MyPage from "@/pages/myPage/MyPage";
-import SignIn from "@/pages/signInPage/SignIn";
-import RoomDetail from "@pages/roomDetailPage/RoomDetail";
-import TransferPurchase from "@/pages/transferPurchasePage/TransferPurchase";
-import TransferSale from "@pages/transferSalePage/TransferSale";
-import TransferWriting from "@/pages/transferWritingPage/TransferWriting";
-import ManageAccount from "@/pages/myPage/manage/manageAccount/ManageAccount";
-import ManageProfile from "@/pages/myPage/manage/manageProfile/ManageProfile";
-import Setting from "@/pages/myPage/setting/Setting";
-import PasswordReset from "@/pages/passwordResetPage/PasswordReset";
-import PurchaseDetail from "@/pages/purchaseDetailPage/PurchaseDetail";
-import SearchFilter from "@/pages/searchFilterPage/SearchFilter";
-import TransferWritingPrice from "@/pages/transferWritingPricePage/TransferWritingPrice";
+
 import ApiErrorBoundary from "@/components/errorBoundary/ErrorBoundary";
-import Alarm from "@pages/alarmPage/AlarmPage";
-import Payment from "@pages/paymentPage/Payment";
-import TransferWritingSuccess from "@/pages/transferWritingSuccessPage/TransferWritingSuccess";
-import PaymentSuccess from "@pages/paymentSuccessPage/PaymentSuccess";
-import EditAccount from "@pages/myPage/manage/editAccount/EditAccount";
-import Loading from "@/components/lottie/loading/Loading";
-import SaleDetail from "@pages/saleDetailPage/SaleDetail";
-import Layout from "@components/layout/Layout";
-import IntroPage from "@pages/connectYanoljaPage/IntroPage/IntroPage.tsx";
-import SuccessPage from "@pages/connectYanoljaPage/successPage/SuccessPage.tsx";
-import VerificationPage from "@pages/connectYanoljaPage/verificationPage/VerificationPage";
+import NotFound from "@/pages/notFoundPage";
 import Redirect from "@/components/redirect/Redirect";
+import Layout from "@components/layout/Layout";
+import Loading from "@/components/lottie/loading/Loading";
+import { HelmetTag } from "@/components/Helmet/Helmet";
+
+import { PATH } from "@/constants/path";
+import * as Lazy from "./lazy";
 
 const AppRouter = () => {
   const routes = createBrowserRouter([
@@ -52,7 +31,7 @@ const AppRouter = () => {
               <HelmetTag text="메인" />
               <ApiErrorBoundary>
                 <Suspense fallback={<Loading />}>
-                  <Home />
+                  <Lazy.Home />
                 </Suspense>
               </ApiErrorBoundary>
             </Layout>
@@ -65,7 +44,7 @@ const AppRouter = () => {
               <HelmetTag text="로그인" />
               <ApiErrorBoundary>
                 <Suspense fallback={<Loading />}>
-                  <SignIn />
+                  <Lazy.SignIn />
                 </Suspense>
               </ApiErrorBoundary>
             </Layout>
@@ -78,7 +57,7 @@ const AppRouter = () => {
               <HelmetTag text="회원가입" />
               <ApiErrorBoundary>
                 <Suspense fallback={<Loading />}>
-                  <SignUp />
+                  <Lazy.SignUp />
                 </Suspense>
               </ApiErrorBoundary>
             </Layout>
@@ -91,7 +70,7 @@ const AppRouter = () => {
               <HelmetTag text="비밀번호 재설정" />
               <ApiErrorBoundary>
                 <Suspense fallback={<Loading />}>
-                  <PasswordReset />
+                  <Lazy.PasswordReset />
                 </Suspense>
               </ApiErrorBoundary>
             </Layout>
@@ -104,7 +83,7 @@ const AppRouter = () => {
               <HelmetTag text="검색" />
               <ApiErrorBoundary>
                 <Suspense fallback={<Loading />}>
-                  <Search />
+                  <Lazy.Search />
                 </Suspense>
               </ApiErrorBoundary>
             </Layout>
@@ -117,7 +96,7 @@ const AppRouter = () => {
               <HelmetTag text="검색" />
               <ApiErrorBoundary>
                 <Suspense fallback={<Loading />}>
-                  <SearchFilter />
+                  <Lazy.SearchFilter />
                 </Suspense>
               </ApiErrorBoundary>
             </Layout>
@@ -129,7 +108,7 @@ const AppRouter = () => {
             <Layout isHeaderOn={true} isBottomNavOn={true}>
               <ApiErrorBoundary>
                 <Suspense fallback={<Loading />}>
-                  <TransferWriting />
+                  <Lazy.TransferWriting />
                 </Suspense>
               </ApiErrorBoundary>
             </Layout>
@@ -142,7 +121,7 @@ const AppRouter = () => {
               <HelmetTag text="판매하기" />
               <ApiErrorBoundary>
                 <Suspense fallback={<Loading />}>
-                  <TransferWriting />
+                  <Lazy.TransferWriting />
                 </Suspense>
               </ApiErrorBoundary>
             </Layout>
@@ -155,7 +134,7 @@ const AppRouter = () => {
               <ApiErrorBoundary>
                 <HelmetTag text="판매글 작성" />
                 <Suspense fallback={<Loading />}>
-                  <TransferWritingPrice />
+                  <Lazy.TransferWritingPrice />
                 </Suspense>
               </ApiErrorBoundary>
             </Layout>
@@ -168,7 +147,7 @@ const AppRouter = () => {
               <HelmetTag text="판매 성공" />
               <ApiErrorBoundary>
                 <Suspense fallback={<Loading />}>
-                  <TransferWritingSuccess />
+                  <Lazy.TransferWritingSuccess />
                 </Suspense>
               </ApiErrorBoundary>
             </Layout>
@@ -181,7 +160,7 @@ const AppRouter = () => {
               <HelmetTag text="마이 페이지" />
               <ApiErrorBoundary>
                 <Suspense fallback={<Loading />}>
-                  <MyPage />
+                  <Lazy.MyPage />
                 </Suspense>
               </ApiErrorBoundary>
             </Layout>
@@ -192,7 +171,7 @@ const AppRouter = () => {
               element: (
                 <>
                   <HelmetTag text="마이 페이지" />
-                  <TransferPurchase />
+                  <Lazy.TransferPurchase />
                 </>
               ),
             },
@@ -202,7 +181,7 @@ const AppRouter = () => {
               element: (
                 <>
                   <HelmetTag text="판매내역 상세" />
-                  <TransferSale />
+                  <Lazy.TransferSale />
                 </>
               ),
             },
@@ -214,7 +193,7 @@ const AppRouter = () => {
             <Layout isHeaderOn={true} isBottomNavOn={true}>
               <ApiErrorBoundary>
                 <Suspense fallback={<Loading />}>
-                  <Setting />
+                  <Lazy.Setting />
                 </Suspense>
               </ApiErrorBoundary>
             </Layout>
@@ -226,7 +205,7 @@ const AppRouter = () => {
             <Layout isHeaderOn={true} isBottomNavOn={true}>
               <ApiErrorBoundary>
                 <Suspense fallback={<Loading />}>
-                  <ManageProfile />
+                  <Lazy.ManageProfile />
                 </Suspense>
               </ApiErrorBoundary>
             </Layout>
@@ -238,7 +217,7 @@ const AppRouter = () => {
             <Layout isHeaderOn={true} isBottomNavOn={true}>
               <ApiErrorBoundary>
                 <Suspense fallback={<Loading />}>
-                  <ManageAccount />
+                  <Lazy.ManageAccount />
                 </Suspense>
               </ApiErrorBoundary>
             </Layout>
@@ -250,7 +229,7 @@ const AppRouter = () => {
             <Layout isHeaderOn={true} isBottomNavOn={true}>
               <ApiErrorBoundary>
                 <Suspense fallback={<Loading />}>
-                  <EditAccount />
+                  <Lazy.EditAccount />
                 </Suspense>
               </ApiErrorBoundary>
             </Layout>
@@ -262,7 +241,7 @@ const AppRouter = () => {
             <Layout isHeaderOn={false} isBottomNavOn={false}>
               <ApiErrorBoundary>
                 <Suspense fallback={<Loading />}>
-                  <RoomDetail />
+                  <Lazy.RoomDetail />
                 </Suspense>
               </ApiErrorBoundary>
             </Layout>
@@ -275,7 +254,7 @@ const AppRouter = () => {
               <HelmetTag text="알림" />
               <ApiErrorBoundary>
                 <Suspense fallback={<Loading />}>
-                  <Alarm />
+                  <Lazy.Alarm />
                 </Suspense>
               </ApiErrorBoundary>
             </Layout>
@@ -288,7 +267,7 @@ const AppRouter = () => {
               <HelmetTag text="구매내역상세" />
               <ApiErrorBoundary>
                 <Suspense fallback={<Loading />}>
-                  <PurchaseDetail />
+                  <Lazy.PurchaseDetail />
                 </Suspense>
               </ApiErrorBoundary>
             </Layout>
@@ -301,7 +280,7 @@ const AppRouter = () => {
               <HelmetTag text="판매 상세" />
               <ApiErrorBoundary>
                 <Suspense fallback={<Loading />}>
-                  <SaleDetail />
+                  <Lazy.SaleDetail />
                 </Suspense>
               </ApiErrorBoundary>
             </Layout>
@@ -314,7 +293,7 @@ const AppRouter = () => {
               <HelmetTag text="야놀자인증" />
               <ApiErrorBoundary>
                 <Suspense fallback={<Loading />}>
-                  <IntroPage />
+                  <Lazy.IntroPage />
                 </Suspense>
               </ApiErrorBoundary>
             </Layout>
@@ -328,7 +307,7 @@ const AppRouter = () => {
               <ApiErrorBoundary>
                 <Redirect>
                   <Suspense fallback={<Loading />}>
-                    <VerificationPage />
+                    <Lazy.VerificationPage />
                   </Suspense>
                 </Redirect>
               </ApiErrorBoundary>
@@ -342,7 +321,7 @@ const AppRouter = () => {
               <HelmetTag text="야놀자 인증 성공" />
               <ApiErrorBoundary>
                 <Suspense fallback={<Loading />}>
-                  <SuccessPage />
+                  <Lazy.SuccessPage />
                 </Suspense>
               </ApiErrorBoundary>
             </Layout>
@@ -363,24 +342,24 @@ const AppRouter = () => {
           children: [
             {
               path: "",
-              element: <Payment action="default" />,
+              element: <Lazy.Payment action="default" />,
             },
             {
               path: "success",
               element: (
                 <>
                   <HelmetTag text="구매 내역 상세" />
-                  <PaymentSuccess />
+                  <Lazy.PaymentSuccess />
                 </>
               ),
             },
             {
               path: "ready",
-              element: <Payment action="ready" />,
+              element: <Lazy.Payment action="ready" />,
             },
             {
               path: "cancel",
-              element: <Payment action="cancel" />,
+              element: <Lazy.Payment action="cancel" />,
             },
           ],
         },
