@@ -1,7 +1,6 @@
 import { postLogin } from "@apis/fetchLogin";
-// import { PATH } from "@constants/path";
+import { PATH } from "@constants/path";
 import useToastConfig from "@hooks/common/useToastConfig";
-import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate, useSearchParams } from "react-router-dom";
 
@@ -21,8 +20,6 @@ const SignIn = () => {
   const redirectUrl = searchParams.get("redirect");
   const { handleToast } = useToastConfig();
 
-  const [state, setState] = useState<string | undefined>("");
-
   const {
     register,
     formState: { errors },
@@ -38,7 +35,6 @@ const SignIn = () => {
     const { email, password } = data;
 
     let fcmToken = await getNotificationPermission();
-    setState(fcmToken);
 
     if (!fcmToken) {
       fcmToken = localStorage.getItem("fcmToken") ?? "";
@@ -57,7 +53,7 @@ const SignIn = () => {
           return;
         }
 
-        // navigate(PATH.ROOT, { replace: true });
+        navigate(PATH.ROOT, { replace: true });
       })
       .catch(() => {
         handleToast(false, [<>아이디 혹은 비밀번호를 확인해주세요</>]);
@@ -69,7 +65,6 @@ const SignIn = () => {
       <Link to="/">
         <S.SignInLogo />
       </Link>
-      <p>{state}</p>
       <S.SignInInputContainer>
         <S.SignInInputWrapper>
           <S.SignInInputTitle>이메일</S.SignInInputTitle>
