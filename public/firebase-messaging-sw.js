@@ -32,11 +32,6 @@ firebase.initializeApp(firebaseConfig);
 // // messages.
 const messaging = firebase.messaging();
 
-if (!("PushManager" in window)) {
-  console.log("Push messaging isn't supported.");
-  return;
-}
-
 self.addEventListener("install", function () {
   console.log("fcm sw install..");
   self.skipWaiting();
