@@ -147,8 +147,13 @@ export const CalendarContainer = styled.div`
     color: white;
     background-color: ${({ theme }) => theme.color.percentOrange};
   }
+  .react-datepicker__day--today {
+    &:hover {
+      background-color: ${({ theme }) => theme.color.greyScale6};
+    }
+  }
   .react-datepicker__day--in-selecting-range {
-    background-color: white;
+    background-color: white !important;
     color: ${({ theme }) => theme.color.percentOrange};
     border: 2px solid ${({ theme }) => theme.color.percentOrange};
     font-weight: bold;
