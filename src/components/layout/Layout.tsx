@@ -17,20 +17,10 @@ const Layout = ({ children, isHeaderOn, isBottomNavOn }: ChildrenProps) => {
   return (
     <S.Container>
       <S.Wrapper>
-        {isHeaderOn && (
-          <>
-            <Header />
-            <S.HeaderSpace />
-          </>
-        )}
+        {isHeaderOn && <Header />}
         {children}
         <A2HS />
-        {isBottomNavOn && (
-          <>
-            <S.BottomSpace $isMobile={isMobileDevice} />
-            <BottomNav isMobile={isMobileDevice} />
-          </>
-        )}
+        {isBottomNavOn && <BottomNav isMobile={isMobileDevice} />}
       </S.Wrapper>
     </S.Container>
   );

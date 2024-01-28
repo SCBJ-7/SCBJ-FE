@@ -1,12 +1,14 @@
 import { PATH } from "@/constants/path";
 import { useLocation } from "react-router-dom";
 import * as S from "./NavBottom.style";
-import { isMobile } from "@/utils/isMobile";
 import ToolTip from "./toolTip/ToolTip";
 import useTooltip from "@/hooks/common/useTooltip";
 
-const BottomNav = () => {
-  const isMobileDevice = isMobile();
+interface BottomNavProps {
+  isMobile: boolean;
+}
+
+const BottomNav = ({ isMobile }: BottomNavProps) => {
   const { isToolTipVisible, hideTooltipForWeek } = useTooltip();
 
   const { pathname } = useLocation();
@@ -38,7 +40,7 @@ const BottomNav = () => {
   ];
 
   return (
-    <S.BottomNavContainer $isMobile={isMobileDevice}>
+    <S.BottomNavContainer $isMobile={isMobile}>
       {isToolTipVisible && (
         <ToolTip onClickClose={hideTooltipForWeek}>
           숙박권을 판매해보세요.

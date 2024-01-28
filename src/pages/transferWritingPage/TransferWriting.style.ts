@@ -11,6 +11,8 @@ export const Subtitle = styled.p`
 
   position: sticky;
   top: 56px;
+
+  z-index: 1;
 `;
 
 export const TransferItemList = styled.div`

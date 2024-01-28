@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 
 import * as S from "./AccountInfo.style";
 import { PATH } from "@constants/path";
-import type { ProfileData, AccountData } from "@/type/profile";
+import type { ProfileData, AccountData } from "@type/profile";
 
 const AccountInfo = ({
   data,
