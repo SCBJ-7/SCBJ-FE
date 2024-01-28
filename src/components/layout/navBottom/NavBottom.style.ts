@@ -17,7 +17,6 @@ export const BottomNavContainer = styled.section<{ $isMobile: boolean }>`
   height: ${({ $isMobile }) => ($isMobile ? "78px" : "60px")};
   justify-content: center;
   align-items: flex-start;
-
   background-color: white;
   box-shadow: 0 0 10px 0 rgba(5, 44, 82, 0.1);
 `;
