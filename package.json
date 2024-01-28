@@ -22,12 +22,6 @@
       "npm run lint"
     ]
   },
-  "reactSnap": {
-    "include": [
-      "/",
-      "/details"
-    ]
-  },
   "dependencies": {
     "@tanstack/react-query": "^5.17.9",
     "axios": "^1.6.4",

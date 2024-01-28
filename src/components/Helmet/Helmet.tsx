@@ -4,7 +4,6 @@ import { Helmet } from "react-helmet";
 export const HelmetTag = ({ text }: { text: string }) => {
   return (
     <Helmet>
-      <meta charSet="utf-8" />
       <title>{text} | 퍼센트호텔</title>
       <meta name="퍼센트호텔" content={text} data-react-helmet="true"></meta>
       <meta property="og:site_name" content="퍼센트 호텔" />
