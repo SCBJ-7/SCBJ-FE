@@ -170,6 +170,16 @@ _가격 걱정 없이 합리적인 가격으로 득텔 하세요!_
 ![Git](https://img.shields.io/badge/git-%23F05033.svg?style=for-the-badge&logo=git&logoColor=white)
 ![GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)
 
+### 알림 및 모바일 대응
+
+![FCM](https://img.shields.io/badge/Firebase_Messaging-%2300000.svg?style=for-the-badge&logo=firebase&logoColor=white)
+![PWA](https://img.shields.io/badge/PWA-%23000.svg?style=for-the-badge&logo=pwa&logoColor=white)
+
+### SEO 최적화
+
+![ReactHelmet](https://img.shields.io/badge/React_Helmet-f1ff3f.svg?style=for-the-badge&logo=react&logoColor=black)
+![ReactSnap](https://img.shields.io/badge/React_Snap-%23000.svg?style=for-the-badge&logo=react&logoColor=white)
+
 ### 협업
 
 ![Discord](https://img.shields.io/badge/Discord-%235865F2.svg?style=for-the-badge&logo=discord&logoColor=white)
@@ -210,18 +220,25 @@ _가격 걱정 없이 합리적인 가격으로 득텔 하세요!_
 ## 🎨 페이지 별 디자인 및 기능
 
 ### 메인페이지
+![2024-01-298 47 41-ezgif com-video-to-gif-converter](https://github.com/SCBJ-7/SCBJ-FE/assets/126222848/aee9e236-72f8-4b9c-b52d-11ae2fa98251)
 
 _지역별 특가 상품과 주말 호캉스 특가상품을 볼 수 있습니다._
 자체적으로 만든 캐로셀의 props에 연동하여 wrapper에 있는 텍스트 애니메이션이 재생되며
 2초마다 자동으로 섹션 전환을 진행합니다.
 
-### 판매글 작성 페이지
+### 판매 상품 선택 페이지
+![판매글 작성](https://github.com/SCBJ-7/SCBJ-FE/assets/126222848/2116a3b0-76cf-4fa8-a69c-495fa1fdc3f0)
 
-_판매 게시물을 작성할 수 있습니다._
+_판매할 상품을 선택할 수 있습니다._
+야놀자 인증이 된 상품만을 취급하는 정책이 있기 때문에, 
+비로그인 시나 야놀자 인증이 안 된 상태에서는 서비스를 이용할 수 없게 예외처리를 하였습니다.
+
+### 판매 상품 가격설정 페이지 & 성공페이지
+
+![2024-01-299 20 59-ezgif com-video-to-gif-converter](https://github.com/SCBJ-7/SCBJ-FE/assets/126222848/c650dbf8-9c49-4fab-a994-ccc52a134fb8)
+_판매할 상품의 가격을 설정하고 2차 할인 가격, 정산 계좌까지 설정할 수 있습니다._
 입력해야되는 인풋과 정보량이 많아, 단계별로 불필요한 정보는
 shrink되는 인터랙션을 통해 자연스러운 입력과정을 제공합니다.
-
-### 판매글 작성 성공 페이지
 
 _판매 게시물 작성을 정상적으로 마치면 성공화면으로 전환합니다._
 판매글 작성페이지에서 성공페이지로 전환할때 처음 보는 계좌번호를 입력한 경우
@@ -229,6 +246,7 @@ _판매 게시물 작성을 정상적으로 마치면 성공화면으로 전환�
 이때 useNavigate의 state전달 기능을 통하여 민감한 계좌번호를 안전하게 전달받았습니다.
 
 ### 알림페이지
+
 
 _알림아이콘에 불이 들어오면 새로운 알림이 왔다는 신호입니다. 들어가서 정산 알림을 받을 수 있습니다_
 판매가 이루어졌을 때 푸시알림이 옵니다. 매일 12:00AM마다 당일 판매한 상품의 정산이 이루어지며 알림이 옵니다.
