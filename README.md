@@ -98,11 +98,11 @@
     <tr>
       <td>
         <ul>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
+          <li>결제 페이지</li>
+          <li>카카오 페이 API 결제 진행</li>
+          <li>상품 상세 페이지</li>
+          <li>야놀자 연동 페이지</li>
+          <li>Errorboundary, router 계층 설계</li>
         </ul>
       </td>
       <td>
