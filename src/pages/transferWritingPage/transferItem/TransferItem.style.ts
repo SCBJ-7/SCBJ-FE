@@ -58,18 +58,18 @@ export const ItemInfo = styled.div`
   padding: 8px 20px;
 
   display: flex;
-`;
 
-export const itemInfoImg = styled.img`
-  width: 76px;
-  height: 76px;
-  flex-shrink: 0;
+  & > img {
+    width: 76px;
+    height: 76px;
+    flex-shrink: 0;
 
-  background-color: #f9f9f9;
+    background-color: #f9f9f9;
 
-  border-radius: 12px;
+    border-radius: 12px;
 
-  object-fit: cover;
+    object-fit: cover;
+  }
 `;
 
 export const itemInfoDesc = styled.div`

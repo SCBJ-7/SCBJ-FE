@@ -4,10 +4,10 @@ import {
   END_POINTS,
   REFRESH_TOKEN,
 } from "@constants/api";
+import axios from "axios";
 
 import type { TokenData } from "@type/login";
 import type { ResponseData } from "@type/responseType";
-import axios from "axios";
 
 export const fetchNewToken = async (): Promise<TokenData> => {
   const { data } = await axios.post<ResponseData<TokenData>>(

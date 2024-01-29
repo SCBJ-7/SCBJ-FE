@@ -1,7 +1,8 @@
-import { breakpoints } from "@/styles/theme";
 import { motion } from "framer-motion";
 import { IoIosClose } from "react-icons/io";
 import styled from "styled-components";
+
+import { breakpoints } from "@/styles/theme";
 
 export const BackDrop = styled(motion.div)`
   position: fixed;
@@ -84,10 +85,10 @@ export const IconWrapper = styled.div`
     width: 80px;
     height: 80px;
   }
-`;
 
-export const Icon = styled.img`
-  width: 100%;
+  & > img {
+    width: 100&;
+  }
 `;
 
 export const ButtonWrapper = styled.div`

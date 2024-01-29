@@ -1,5 +1,3 @@
-import Loading from "@/components/lottie/loading/Loading";
-import { isMobileSafari } from "@/utils/isMobileSafari";
 import { fetchAlarm } from "@apis/fetchAlarm";
 import { fetchUserInfo } from "@apis/fetchUserInfo";
 import NoResult from "@components/noResult/NoResult";
@@ -9,6 +7,8 @@ import { format, parseISO } from "date-fns";
 
 import * as S from "./AlarmPage.style";
 
+import { isMobileSafari } from "@/utils/isMobileSafari";
+
 const AlarmPage = () => {
   const mobileSafari = isMobileSafari();
 
@@ -17,15 +17,11 @@ const AlarmPage = () => {
     queryFn: fetchUserInfo,
   });
 
-  const { data: alarmData, isLoading } = useQuery({
+  const { data: alarmData } = useQuery({
     queryKey: ["alarm", userData?.id],
     queryFn: fetchAlarm,
     enabled: !!userData?.id && !mobileSafari,
   });
-
-  if (isLoading) {
-    return <Loading />;
-  }
 
   if (mobileSafari) {
     return (

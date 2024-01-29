@@ -2,6 +2,7 @@ import { useCarousel } from "@hooks/common/useCarousel";
 import { useCarouselSize } from "@hooks/common/useCarouselSize";
 
 import * as S from "./Carousel.style.ts";
+import ProgressiveImg from "../progressiveImg/ProgressiveImg.tsx";
 
 interface CarouselProps {
   images: string[];
@@ -53,8 +54,8 @@ const Carousel = ({
           {innerShadow && <S.ImageShadowWrapper />}
           {slideList.map((imageUrl, index) => (
             <S.ImageWrapper key={index} $height={height}>
-              <img
-                src={imageUrl}
+              <ProgressiveImg
+                src={imageUrl ?? ""}
                 alt={`Slide ${index}`}
                 draggable={false}
                 loading="lazy"

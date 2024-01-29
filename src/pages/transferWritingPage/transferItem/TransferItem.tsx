@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 
 import * as S from "./TransferItem.style";
 
+import ProgressiveImg from "@/components/progressiveImg/ProgressiveImg";
 import { PATH } from "@/constants/path";
 import { useSelectedItemStore } from "@/store/store";
 import { theme } from "@/styles/theme";
@@ -92,7 +93,7 @@ const TransferItem = ({
         </S.ItemTitleBtn>
       </S.ItemTitle>
       <S.ItemInfo>
-        <S.itemInfoImg src={imageUrl} loading="lazy" />
+        <ProgressiveImg src={imageUrl} loading="lazy" />
         <S.itemInfoDesc>
           <S.DescHotelName>{hotelName}</S.DescHotelName>
           <S.DescRoomName>{roomName}</S.DescRoomName>

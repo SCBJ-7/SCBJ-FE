@@ -1,12 +1,14 @@
-import { PATH } from "@/constants/path";
-import { IPurchaseData } from "@/types/purchaseDetail";
-import { formatDateString } from "@/utils/dateFormatter";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { AxiosError } from "axios";
 import { useNavigate, useSearchParams } from "react-router-dom";
-import { fetchPurchaseDetail } from "../../apis/fetchPurchaseDetail";
 
 import * as S from "./PurchaseDetail.style";
+import { fetchPurchaseDetail } from "../../apis/fetchPurchaseDetail";
+
+import ProgressiveImg from "@/components/progressiveImg/ProgressiveImg";
+import { PATH } from "@/constants/path";
+import { IPurchaseData } from "@/types/purchaseDetail";
+import { formatDateString } from "@/utils/dateFormatter";
 
 const PurchaseDetail = () => {
   const [searchParams] = useSearchParams();
@@ -41,12 +43,12 @@ const PurchaseDetail = () => {
                 {data.remainingDays > 0
                   ? `체크인까지 ${data.remainingDays}일 남았어요!`
                   : data.remainingDays === 0
-                  ? "오늘이 체크인이에요!"
-                  : ""}
+                    ? "오늘이 체크인이에요!"
+                    : ""}
               </div>
             )}
             <S.ImageContainer>
-              <S.Image src={data.hotelImage} />
+              <ProgressiveImg src={data.hotelImage} alt={data.hotelName} />
               <S.ImageContent>
                 <div>{data.hotelName}</div>
                 <div>{data.roomName}</div>

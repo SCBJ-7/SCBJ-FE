@@ -5,6 +5,7 @@ import { useState } from "react";
 import ReactDOM from "react-dom";
 
 import * as S from "./A2HS.style";
+import ProgressiveImg from "../progressiveImg/ProgressiveImg";
 
 const A2HS = () => {
   const { deferredPrompt, install, clearPrompt } = useA2HS();
@@ -48,7 +49,10 @@ const A2HS = () => {
               <S.CloseIcon />
             </S.CloseButton>
             <S.IconWrapper>
-              <S.Icon src={IcPercentHotelSrc} alt="퍼센트 호텔 앱 아이콘" />
+              <ProgressiveImg
+                src={IcPercentHotelSrc}
+                alt="퍼센트 호텔 앱 아이콘"
+              />
             </S.IconWrapper>
             <S.Message>
               퍼센트호텔 어플 설치하면 <br /> 더욱 편리하게 거래 가능해요!
