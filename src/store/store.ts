@@ -70,6 +70,7 @@ export type configType = {
 interface ToastStates {
   config: configType;
   setToastConfig: (updatedConfig: configType) => void;
+  resetToast: () => void;
 }
 
 export const useToastStore = create<ToastStates>((set) => ({
@@ -83,6 +84,14 @@ export const useToastStore = create<ToastStates>((set) => ({
       config: {
         ...state.config,
         ...updated,
+      },
+    })),
+  resetToast: () =>
+    set(() => ({
+      config: {
+        isShow: false,
+        isError: false,
+        strings: [],
       },
     })),
 }));

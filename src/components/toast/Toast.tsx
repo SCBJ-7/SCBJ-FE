@@ -14,7 +14,7 @@ const Toast = () => {
         duration: 0.3,
         type: "spring",
         stiffness: 60,
-        delay: 0.5,
+        delay: 0,
       },
     },
     hidden: {
