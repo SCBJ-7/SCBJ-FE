@@ -1,3 +1,14 @@
+import Caption from "@components/caption/Caption";
+import Modal from "@components/modal/Modal";
+import { paymentCaptions } from "@constants/caption";
+import { isAxiosError } from "axios";
+import { useEffect, useState } from "react";
+import { FormProvider, useForm } from "react-hook-form";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
+
+import PaymentButton from "./components/paymentButton/PaymentButton";
+import * as S from "./Payment.style";
+
 import { ERROR_CODE } from "@/constants/api";
 import { PATH } from "@/constants/path";
 import {
@@ -9,16 +20,6 @@ import PaymentInfoSection from "@/pages/paymentPage/components/paymentInfoSectio
 import PaymentMethodSection from "@/pages/paymentPage/components/paymentMethodSection/PaymentMethodSection";
 import TermsAgreementSection from "@/pages/paymentPage/components/termsAgreementSection/TermsAgreementSection";
 import UserInfoSection from "@/pages/paymentPage/components/userInfoSection/UserInfoSection";
-import Caption from "@components/caption/Caption";
-import Modal from "@components/modal/Modal";
-import { paymentCaptions } from "@constants/caption";
-import { isAxiosError } from "axios";
-import { useEffect, useState } from "react";
-import { FormProvider, useForm } from "react-hook-form";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
-
-import PaymentButton from "./components/paymentButton/PaymentButton";
-import * as S from "./Payment.style";
 
 interface PaymentProps {
   action: "default" | "cancel" | "ready";
