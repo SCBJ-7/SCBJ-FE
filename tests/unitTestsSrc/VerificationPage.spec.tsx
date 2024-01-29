@@ -1,7 +1,7 @@
-import { getEmailVerification } from "@mocks/handlers/email";
-import { server } from "@mocks/server";
-import VerificationPage from "@pages/connectYanoljaPage/verificationPage/VerificationPage";
-import { theme } from "@styles/theme";
+import { getEmailVerification } from "@mocks/handlers/email.ts";
+import { server } from "@mocks/server.ts";
+import VerificationPage from "@pages/connectYanoljaPage/verificationPage/VerificationPage.tsx";
+import { theme } from "@styles/theme.ts";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
