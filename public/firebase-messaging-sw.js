@@ -40,20 +40,20 @@ self.addEventListener("activate", function () {
   console.log("fcm sw activate..");
 });
 
-// self.addEventListener("push", function (e) {
-//   console.log("push: ", e.data.json());
-//   if (!e.data.json()) return;
+self.addEventListener("push", function (e) {
+  console.log("push: ", e.data.json());
+  if (!e.data.json()) return;
 
-//   const resultData = e.data.json().data;
-//   const notificationTitle = resultData.title;
-//   const notificationOptions = {
-//     body: resultData.message,
-//     icon: "/icon-192.png",
-//   };
-//   console.log("push: ", { notificationTitle, notificationOptions });
+  const resultData = e.data.json().data;
+  const notificationTitle = resultData.title;
+  const notificationOptions = {
+    body: resultData.message,
+    icon: "/icon-192.png",
+  };
+  console.log("push: ", { notificationTitle, notificationOptions });
 
-//   self.registration.showNotification(notificationTitle, notificationOptions);
-// });
+  self.registration.showNotification(notificationTitle, notificationOptions);
+});
 
 self.addEventListener("notificationclick", function (event) {
   console.log("notification click");

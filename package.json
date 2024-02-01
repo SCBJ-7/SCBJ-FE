@@ -1,4 +1,5 @@
 {
+  "homepage": ".",
   "name": "scbj-fe",
   "private": true,
   "version": "0.0.0",
@@ -12,8 +13,7 @@
     "preview": "vite preview",
     "prepare": "husky install",
     "test": "vitest",
-    "generate-pwa-assets": "pwa-assets-generator --preset minimal public/logo.svg",
-    "postbuild": "react-snap"
+    "generate-pwa-assets": "pwa-assets-generator --preset minimal public/logo.svg"
   },
   "lint-staged": {
     "*.{ts,tsx}": [
@@ -88,8 +88,9 @@
   },
   "reactSnap": {
     "include": [
-      "/"
+      "/", "/search"
     ],
+    "puppeteerArgs": ["--no-sandbox", "--disable-setuid-sandbox"],
     "source": "./dist"
   }
 }

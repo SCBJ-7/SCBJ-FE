@@ -1,10 +1,14 @@
-<Img width="200px" src="./src/assets/logos/Percent-hotel_logo_b.png" />
+![transparent](https://capsule-render.vercel.app/api?type=waving&fontColor=FFFFFF&text=%%호텔&height=230&fontAlignY=40&fontSize=60&desc=Team.숙취방지&descAlignY=65&descAlign=74&color=FE5E0D&)
 
+<img src="https://avatars.githubusercontent.com/u/154401745?s=200&v=4SCBJ-BE" width=100 alt=숙취방지>
+<Img width="100px" src="./src/assets/logos/Percent-hotel_logo_b.png" />
 <br>
 
 ## 📝 프로젝트 소개
 
-_가격 걱정 없이 합리적인 가격으로 득텔 하세요!_
+> **무료 예약 취소 불가한 숙소의 양도/거래 플랫폼 "퍼센트 호텔"**
+>
+> 가격 걱정 없이 합리적인 가격으로 득텔 하세요!
 
 사기매물과 과도한 리셀 프리미엄으로 인해 신뢰도가 낮았던 숙소 양도거래를 혁신합니다. 국내 최대 숙박 플랫폼 야놀자에서 인증이 된 상품만을 취급합니다. 또한 과도한 프리미엄 매기기나 흥정이 불가능하도록 구매가보다 가격을 높이지 못하도록 설정하였습니다. 퍼센트호텔은 프리미엄 리셀 시장을 타겟으로 하지 않습니다. 판매자는 이용하지 못할 숙박상품을 빠르게 처리할 수 있고 구매자는 야놀자에서 검증된 상품을 저렴하게 구매할 수 있는 플랫폼입니다.
 
@@ -94,11 +98,11 @@ _가격 걱정 없이 합리적인 가격으로 득텔 하세요!_
     <tr>
       <td>
         <ul>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
+          <li>결제 페이지</li>
+          <li>카카오 페이 API 결제 진행</li>
+          <li>상품 상세 페이지</li>
+          <li>야놀자 연동 페이지</li>
+          <li>Errorboundary, router 계층 설계</li>
         </ul>
       </td>
       <td>
@@ -140,8 +144,8 @@ _가격 걱정 없이 합리적인 가격으로 득텔 하세요!_
 
 ## 📃 테스트 아이디 / 비밀번호
 
-테스트 아이디 1: @naver.com
-비밀번호: xxxxx
+테스트 아이디: calmness0729@gmail.com
+비밀번호: wjdqjaghks0729!
 
 ## 🛠️ 기술 스택
 
@@ -309,7 +313,7 @@ pwa를 통해 알림을 받을 수 있습니다.
 
 - 박나영
 
-  - (예시) 실시간 서버 통신을 구현하면서 정말 재밋게 배웠던 프로젝트였습니다. 그리고 팀원들과 같은 어려움을 겪으면서 해결방법을 공유했던 것도 정말 좋은 경험이 되었습니다!
+  - 너무 좋은 경험이였습니당!~ 
 
 - 정범환
 
