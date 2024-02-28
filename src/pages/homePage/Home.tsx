@@ -78,7 +78,7 @@ const Home = () => {
           onSetSequence={setCurrentLocale}
         />
       </S.SaleCarouselContainer>
-      {weekendHotels?.length && weekendHotels.length !== 0 && (
+      {weekendHotels && weekendHotels.length !== 0 && (
         <S.WeekendCarouselContainer className="week-container">
           <S.TitleSection>주말 호캉스 추천</S.TitleSection>
 
