@@ -1,7 +1,8 @@
-import {BASE_URL, END_POINTS} from '@/constants/api'
-import axios from 'axios'
+import axios from "axios";
 
-import {LocaleItemsType, WeekendItem} from './../types/saleSection'
+import { LocaleItemsType, WeekendItem } from "./../types/saleSection";
+
+import { BASE_URL, END_POINTS } from "@/constants/api";
 
 // 유저 정보를 불러오는 api입니다.
 export const fetchMainItem = async (): Promise<

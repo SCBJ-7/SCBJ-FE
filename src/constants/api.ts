@@ -1,4 +1,4 @@
-export const BASE_URL = "https://3.34.147.187.nip.io";
+export const BASE_URL = import.meta.env.VITE_BASE_URL;
 
 export const END_POINTS = {
   LOGIN: "/v1/members/signin",
