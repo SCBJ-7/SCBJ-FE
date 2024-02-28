@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 interface CarouselProps {
-  slideLength: number;
+  slideLength: number | undefined;
   slideWidth: number;
   infinite?: boolean;
 }
@@ -27,6 +27,7 @@ export const useCarousel = ({
   };
 
   const handleDragEnd = (deltaX: number) => {
+    if (!slideLength) return;
     const maxIndex = slideLength - 1;
 
     if (deltaX < -50) setCurrentIndex(inrange(currentIndex + 1, 0, maxIndex));
@@ -39,6 +40,7 @@ export const useCarousel = ({
   const handleSliderNavigationClick =
     (index: number) => (event: React.MouseEvent<HTMLButtonElement>) => {
       event.stopPropagation();
+      if (!slideLength) return;
 
       if (index < 0 || index >= slideLength) return;
 
@@ -105,6 +107,7 @@ export const useCarousel = ({
   };
 
   const handleSliderTransitionEnd = () => {
+    if (!slideLength) return;
     setAnimate(false);
 
     if (!infinite) return;
