@@ -43,7 +43,7 @@ self.addEventListener("activate", function () {
 // self.addEventListener("push", function (e) {
 //   console.log("push: ", e.data.json());
 //   if (!e.data.json()) return;
-//
+
 //   const resultData = e.data.json().data;
 //   const notificationTitle = resultData.title;
 //   const notificationOptions = {
@@ -51,7 +51,7 @@ self.addEventListener("activate", function () {
 //     icon: "/icon-192.png",
 //   };
 //   console.log("push: ", { notificationTitle, notificationOptions });
-//
+
 //   self.registration.showNotification(notificationTitle, notificationOptions);
 // });
 
@@ -70,7 +70,6 @@ messaging.onBackgroundMessage(function (payload) {
     body: payload.data.message,
     icon: "/icon-192.png",
   };
-  console.log("push: ", { notificationTitle, notificationOptions });
 
   self.registration.showNotification(notificationTitle, notificationOptions);
 });
