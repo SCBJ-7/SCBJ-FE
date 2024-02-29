@@ -10,7 +10,6 @@ jobs:
   build_and_deploy:
     runs-on: ubuntu-latest
     env:
-      VITE_BASE_URL: "${{secrets.VITE_BASE_URL}}"
       VITE_APIKEY: "${{secrets.VITE_APIKEY}}"
       VITE_AUTH_DOMAIN: "${{secrets.VITE_AUTH_DOMAIN}}"
       VITE_PROJECT_ID: "${{secrets.VITE_PROJECT_ID}}"
@@ -28,4 +27,3 @@ jobs:
           firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT_PERCENTHOTEL }}"
           channelId: live
           projectId: percenthotel
-        secrets: inherit
