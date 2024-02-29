@@ -38,8 +38,8 @@
       "@type/*": ["./src/types/*"],
       "@store/*": ["./src/store/*"],
       "@tests/*": ["./tests/*"],
-    }
+    },
   },
-  "include": ["src", "tests"],
-  "references": [{ "path": "./tsconfig.node.json" }]
+  "include": ["src", "tests", ".eslintrc.cjs"],
+  "references": [{ "path": "./tsconfig.node.json" }],
 }

@@ -1,3 +1,4 @@
+import NoResult from "@components/noResult/NoResult.tsx";
 import { useCarousel } from "@hooks/common/useCarousel";
 import { useCarouselSize } from "@hooks/common/useCarouselSize";
 import { LocaleItem, WeekendItem } from "@type/saleSection.ts";
@@ -6,7 +7,7 @@ import * as S from "./WeekendCarousel.style.ts";
 import WeekendUnit from "./weekendCarouselUnit/WeekendUnit.tsx";
 
 interface CarouselProps {
-  weekendHotels: [number, WeekendItem][];
+  weekendHotels: [number, WeekendItem][] | undefined;
   onChangeLocale: React.Dispatch<
     React.SetStateAction<[number, string, LocaleItem[]]>
   >;
@@ -34,7 +35,7 @@ const WeekendCarousel = ({
     handlerSliderMoueDown,
     handleSliderTouchStart,
   } = useCarousel({
-    slideLength: weekendHotels.length,
+    slideLength: weekendHotels?.length,
     infinite,
     slideWidth: window.innerWidth > 500 ? 450 + 24 : 240 + 24,
   });
@@ -50,12 +51,16 @@ const WeekendCarousel = ({
           onTouchStart={draggable ? handleSliderTouchStart : undefined}
           onTransitionEnd={draggable ? handleSliderTransitionEnd : undefined}
         >
-          {weekendHotels.map((item) => (
-            <WeekendUnit key={item[1].id} item={item} />
-          ))}
+          {weekendHotels ? (
+            weekendHotels.map((item) => (
+              <WeekendUnit key={item[1].id} item={item} />
+            ))
+          ) : (
+            <NoResult title="주말 특가 상품이 없습니다." desc=""></NoResult>
+          )}
         </S.SliderContainer>
       </S.SliderWrapper>
-      {arrows && (
+      {weekendHotels && arrows && (
         <S.ButtonContainer>
           <S.LeftButton
             aria-label="뒤로가기"

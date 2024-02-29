@@ -6,8 +6,8 @@ import * as S from "./NoResult.style";
 interface NoResultProps {
   title: string;
   desc: string | React.ReactNode;
-  buttonDesc: string;
-  navigateTo: string;
+  buttonDesc?: string;
+  navigateTo?: string;
 }
 
 const NoResult = ({ title, desc, buttonDesc, navigateTo }: NoResultProps) => {
@@ -25,13 +25,15 @@ const NoResult = ({ title, desc, buttonDesc, navigateTo }: NoResultProps) => {
         </S.TitleWrapper>
       </S.MainWrapper>
       <S.BottomWrapper>
-        <S.Button
-          type="button"
-          variant="solid"
-          onClick={() => navigate(navigateTo)}
-        >
-          {buttonDesc}
-        </S.Button>
+        {buttonDesc && navigateTo && (
+          <S.Button
+            type="button"
+            variant="solid"
+            onClick={() => navigate(navigateTo)}
+          >
+            {buttonDesc}
+          </S.Button>
+        )}
       </S.BottomWrapper>
     </S.Container>
   );
