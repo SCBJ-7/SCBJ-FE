@@ -3,7 +3,8 @@ import styled from "styled-components";
 export const Container = styled.section`
   background-color: ${({ theme }) => theme.color.greyScale6};
 
-  padding: 80px 0;
+  padding-top: 80px;
+  padding-bottom: 200px;
   display: flex;
   flex-direction: column;
   align-items: center;
