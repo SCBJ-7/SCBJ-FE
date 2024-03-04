@@ -42,7 +42,6 @@ const Home = () => {
     (v, i) => [i, v],
   );
   const [weekendHotels] = useState(WeekendMapped);
-  console.log(weekendHotels, "weekendHotels");
 
   return (
     <S.Container>

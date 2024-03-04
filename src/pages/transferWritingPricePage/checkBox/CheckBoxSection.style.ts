@@ -1,5 +1,6 @@
-import { ColorKeys, theme, TypoKeys } from "@/styles/theme";
 import styled from "styled-components";
+
+import { ColorKeys, theme, TypoKeys } from "@/styles/theme";
 
 export const CheckContainer = styled.section`
   display: flex;

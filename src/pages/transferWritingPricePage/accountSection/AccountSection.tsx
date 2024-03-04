@@ -1,5 +1,6 @@
-import type { ProfileData } from "@/types/profile";
 import * as S from "./AccountSection.style";
+
+import type { ProfileData } from "@/types/profile";
 
 interface AccountProps {
   bank: string | null;
