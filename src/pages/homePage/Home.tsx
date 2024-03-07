@@ -44,7 +44,7 @@ const Home = () => {
   const [weekendHotels] = useState(WeekendMapped);
 
   return (
-    <S.Container>
+    <S.Container $weekLength={weekendHotels?.length}>
       <MainHeader />
       <TitleSection />
       <NavToSearchSection />
