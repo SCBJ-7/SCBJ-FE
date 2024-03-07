@@ -1,9 +1,10 @@
-import priceFormat from "@/utils/priceFormat";
 import { useEffect } from "react";
+
+import * as S from "./FirstPriceTag.style";
 import CheckBoxSection from "../checkBox/CheckBoxSection";
 import InputSection from "../inputSection/InputSection";
 
-import * as S from "./FirstPriceTag.style";
+import priceFormat from "@/utils/priceFormat";
 
 interface PriceTagProps {
   checkRef: React.MutableRefObject<null>;

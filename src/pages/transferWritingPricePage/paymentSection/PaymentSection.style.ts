@@ -1,7 +1,8 @@
-import { theme } from "@/styles/theme";
 import { motion } from "framer-motion";
 import { PiCaretDownBold } from "react-icons/pi";
 import styled from "styled-components";
+
+import { theme } from "@/styles/theme";
 
 export const Container = styled(motion.div)<{ $is2ndChecked: boolean }>`
   padding: 16px 20px;

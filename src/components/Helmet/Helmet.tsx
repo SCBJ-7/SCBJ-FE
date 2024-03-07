@@ -1,5 +1,6 @@
-import { PATH } from "@/constants/path";
 import { Helmet } from "react-helmet-async";
+
+import { PATH } from "@/constants/path";
 
 export const HelmetTag = ({ text }: { text: string }) => {
   return (

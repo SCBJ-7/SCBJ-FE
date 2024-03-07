@@ -1,9 +1,5 @@
-import { PATH } from "@constants/path";
 import usePreventLeave from "@hooks/common/usePreventLeave";
-import useToastConfig from "@hooks/common/useToastConfig";
-import { useMutation, useSuspenseQuery } from "@tanstack/react-query";
 import { useEffect, useRef, useState } from "react";
-import { useNavigate } from "react-router-dom";
 
 import AccountSection from "./accountSection/AccountSection";
 import AgreementSection from "./agreementSection/AgreementSection";
@@ -13,241 +9,114 @@ import PaymentSection from "./paymentSection/PaymentSection";
 import SecondPriceTag from "./secondPriceTag/SecondPriceTag";
 import * as S from "./TransferWritingPrice.style";
 import TransferPricingHeader from "./transferWritingPriceHeader/TransferPricingHeaderTop";
+import usePostTransferItems from "../../hooks/api/usePostTransferItems";
+import useChangePage from "../../hooks/common/useChangePage";
+import useReadyToSubmit from "../../hooks/common/useReadyToSubmit";
+import useSubmitHandler from "../../hooks/common/useSubmitHandler";
 
-import { fetchUserInfo } from "@/apis/fetchUserInfo";
-import { postTransferItems } from "@/apis/postTransferItems";
-import { useSelectedItemStore, useStateHeaderStore } from "@/store/store";
+import { useUserInfoQuery } from "@/hooks/api/useUserInfoQuery";
+import { useSelectedItemStore } from "@/store/store";
 
 const TransferWritingPrice = () => {
-  usePreventLeave(true);
-  const navigate = useNavigate();
+  // 현재 선택된 숙박
   const selectedItem = useSelectedItemStore((state) => state.selectedItem);
-  const setHeaderConfig = useStateHeaderStore((state) => state.setHeaderConfig);
-  const { handleToast } = useToastConfig();
 
-  const { data: userData } = useSuspenseQuery({
-    queryKey: ["UserInfo"],
-    queryFn: fetchUserInfo,
-    staleTime: 5000000,
-  });
+  // 유저 정보
+  const userInfoQuery = useUserInfoQuery();
+  const { data: userData } = userInfoQuery;
 
-  // first price value
+  // 1차 가격
   const [firstPrice, setFirstPrice] = useState("");
-  const [is2ndChecked, setIs2ndChecked] = useState(false); // activating 2nd price value state
+  const [is2ndChecked, setIs2ndChecked] = useState(false); // 2차 가격 설정하기 체크 여부
+  // 1차 가격 HTMLElement
   const firstCheckRef = useRef(null); // 2차 가격 체크박스 ref
   const firstInputRef = useRef(null);
 
-  // second price value
+  // 2차 가격
   const [secondPrice, setSecondPrice] = useState("");
   const [downTimeAfter, setDownTimeAfter] = useState("");
+  // 2차 가격 HTMLElement
   const secondPriceInputRef = useRef(null);
   const secondTimeInputRef = useRef(null);
 
-  // Account setting Mode
-  const [accountSetting, setAccountSetting] = useState<"none" | "enter">(
-    "none",
-  );
   const [bank, setBank] = useState(userData?.bank ?? null);
   const [accountNumber, setAccountNumber] = useState(
     userData?.accountNumber ?? null,
   );
 
-  // Terms in second price Values
+  // 약관 동의
   const [opt1, setOpt1] = useState(false);
   const [opt2, setOpt2] = useState(false);
   const [opt3, setOpt3] = useState(false);
   const [optFinal, setOptFinal] = useState(false);
 
-  // finally able to submit
+  // 제출 가능 여부
   const [readyToSubmit, setReadyToSubmit] = useState(false);
-
-  // 처음 들어올 때 계좌가 있는지 여부.
-  // false : true여야 정상 작동함.
-  const [firstlyNoAccount] = useState(userData?.accountNumber ? false : true);
 
   useEffect(() => {
     setBank(userData?.bank ?? null);
     setAccountNumber(userData?.accountNumber ?? null);
   }, [userData]);
 
-  useEffect(() => {
-    setReadyToSubmit(() => {
-      if (
-        firstPrice &&
-        opt1 &&
-        opt2 &&
-        opt3 &&
-        optFinal &&
-        bank &&
-        accountNumber
-      ) {
-        // accountNumber 추가
-        if (!is2ndChecked) return true; // 2차 가격 설정하기 체크 안 하고 계좌 등록된 경우
+  // HOOKS
+  // 작성 중 나가면 경고하는 훅
+  usePreventLeave(true);
 
-        if (is2ndChecked && secondPrice && downTimeAfter) {
-          return true; // 2차 가격 설정한 경우
-        } else if (is2ndChecked && !secondPrice && !downTimeAfter) {
-          return false; // 2차 가격 체크했지만 아무것도 쓰지 않은 경우는 일단 가능
-        } else if (is2ndChecked && !secondPrice && downTimeAfter) {
-          return false; // 2차 가격 체크하고 2차 가격 입력 안 하고 시간만 입력한 경우
-        } else if (is2ndChecked && secondPrice && !downTimeAfter) {
-          return false; // 2차 가격 체크하고 2차 시간 입력 안 하고 가격만 입력한 경우
-        } else if (!userData?.bank || !userData?.accountNumber) {
-          return false;
-        }
-      }
-
-      return false; // 1차가격 설정과 약관 동의 안한 경우
-    });
-  }, [
+  // state변화에 따라 제출 버튼을 활성화/비활성화 하는 훅
+  useReadyToSubmit({
+    setReadyToSubmit,
     firstPrice,
     opt1,
     opt2,
     opt3,
     optFinal,
+    bank,
+    accountNumber,
     is2ndChecked,
     secondPrice,
     downTimeAfter,
     userData,
-    bank,
-    accountNumber,
-  ]);
-
-  // 페이지 전환 시 적용할 효과
-  useEffect(() => {
-    if (accountSetting === "none") {
-      setHeaderConfig({
-        title: selectedItem.hotelName,
-        undo: () => {
-          navigate(PATH.WRITE_TRANSFER);
-        },
-      });
-
-      if (is2ndChecked && firstCheckRef.current) {
-        (firstCheckRef.current as HTMLInputElement).checked = true;
-      }
-    }
-
-    if (accountSetting === "enter") {
-      setHeaderConfig({
-        title: "계좌 연동하기",
-        undo: () => {
-          setAccountSetting("none");
-        },
-      });
-
-      if (is2ndChecked && firstCheckRef.current) {
-        (firstCheckRef.current as HTMLInputElement).checked = false;
-      }
-    }
-    // eslint-disable-next-line
-  }, [accountSetting]);
-
-  const { mutate } = useMutation({
-    mutationFn: () =>
-      postTransferItems({
-        pathVariable: `${selectedItem.reservationId}`,
-        firstPrice: Number(firstPrice.split(",").join("")),
-        secondPrice: Number(secondPrice.split(",").join("")),
-        bank: bank as string,
-        accountNumber: accountNumber as string,
-        secondGrantPeriod: Number(downTimeAfter),
-        isRegistered: is2ndChecked,
-        standardTimeSellingPolicy: opt1,
-        totalAmountPolicy: opt2,
-        sellingModificationPolicy: opt3,
-        productAgreement: optFinal,
-      }),
-    onSuccess: () => {
-      alert("판매 게시물이 성공적으로 등록되었습니다!");
-      navigate(PATH.WRITE_TRANSFER_SUCCESS + "?FNA=" + `${firstlyNoAccount}`, {
-        state: { bank, accountNumber },
-      });
-    },
   });
 
-  const submitHandler = () => {
-    if (!readyToSubmit) {
-      const firstPriceNum = Number(firstPrice.split(",").join(""));
-      const secondPriceNum = Number(secondPrice.split(",").join(""));
-      const downTimeAfterNum = Number(downTimeAfter);
+  // 계좌 등록 페이지 <-> 판매글 작성 페이지 왔다갔다 할 때
+  // state상태에 따라 체크박스나 토글 풀려있는거 복구하는 훅
+  const { accountSetting, setAccountSetting } = useChangePage({
+    is2ndChecked,
+    firstCheckRef,
+  });
 
-      if (!firstPriceNum) {
-        handleToast(true, [<>1차 가격을 설정해주세요</>]);
-        if (firstInputRef.current) {
-          (firstInputRef.current as HTMLInputElement).focus();
-          // + 스크롤 상단으로 올리기
-        }
-        // 1차 가격이 판매가보다 높을 때
-      } else if (firstPriceNum > selectedItem.purchasePrice) {
-        handleToast(true, [
-          <>판매가격이 구매가보다 높아요! 판매가격을 확인해주세요</>,
-        ]);
+  // 판매글 작성 POST 리액트 쿼리 훅
+  const { mutate } = usePostTransferItems({
+    firstPrice,
+    secondPrice,
+    downTimeAfter,
+    is2ndChecked,
+    opt1,
+    opt2,
+    opt3,
+    optFinal,
+    bank,
+    accountNumber,
+    userData,
+  });
 
-        if (firstInputRef.current) {
-          (firstInputRef.current as HTMLInputElement).focus();
-          // + 스크롤 상단으로 올리기
-        }
-        // 2차 가격이 1차 가격보다 높을 때
-      } else if (secondPriceNum > firstPriceNum) {
-        handleToast(true, [<>2차가격은 1차 가격보다 낮게 설정해주세요</>]);
-
-        if (secondPriceInputRef.current) {
-          (secondPriceInputRef.current as HTMLInputElement).focus();
-          // + 스크롤 상단으로 올리기
-        }
-        // 2차가격 인하 시간을 3시간 이하로 설정했을 때
-      } else if (downTimeAfterNum && downTimeAfterNum < 3) {
-        handleToast(true, [
-          <>체크인 3시간 전까지만 2차 가격 설정이 가능해요</>,
-        ]);
-
-        if (secondTimeInputRef.current) {
-          (secondTimeInputRef.current as HTMLInputElement).focus();
-          // + 스크롤 상단으로 올리기
-        }
-        // 2차 가격만 입력하고 2차 기준시간은 입력 안 했을 때
-      } else if (is2ndChecked && secondPrice && !downTimeAfter) {
-        handleToast(true, [<>2차 가격으로 내릴 시간을 입력해주세요</>]);
-
-        if (secondTimeInputRef.current) {
-          (secondTimeInputRef.current as HTMLInputElement).focus();
-          // + 스크롤 상단으로 올리기
-        }
-        // 2차 기준시간만 입력하고 2차 가격은 입력 안 했을 때
-      } else if (is2ndChecked && !secondPrice && downTimeAfter) {
-        handleToast(true, [<>2차 가격을 입력해주세요</>]);
-
-        if (secondPriceInputRef.current) {
-          (secondPriceInputRef.current as HTMLInputElement).focus();
-          // + 스크롤 상단으로 올리기
-        }
-        // 2차 가격 설정을 체크해놓고 2차 가격과 시간 모두 입력 안 했을 때
-      } else if (is2ndChecked && !secondPrice && !downTimeAfter) {
-        handleToast(true, [<>2차 가격을 입력해주세요</>]);
-
-        if (secondTimeInputRef.current) {
-          (secondTimeInputRef.current as HTMLInputElement).focus();
-          // + 스크롤 상단으로 올리기
-        }
-      }
-      // 약관 동의를 다 안 했을 때
-      else if (!opt1 || !opt2 || !opt3 || !optFinal) {
-        handleToast(true, [<>판매 진행 약관에 동의해주세요</>]);
-
-        // 계좌를 입력 안 한 경우
-      } else if (!userData?.accountNumber) {
-        handleToast(true, [<>계좌를 입력해주세요</>]);
-      }
-
-      return;
-    }
-
-    const confirmToProceed = confirm("판매 게시물을 등록하시겠어요?");
-    if (confirmToProceed) {
-      mutate();
-    }
-  };
+  // 정책들을 모두 검토하고 마지막에 usePostTransferItems API를 POST요청하는 훅
+  const [submitHandler] = useSubmitHandler({
+    readyToSubmit,
+    firstPrice,
+    secondPrice,
+    downTimeAfter,
+    firstInputRef,
+    secondPriceInputRef,
+    secondTimeInputRef,
+    is2ndChecked,
+    userData,
+    mutate,
+    opt1,
+    opt2,
+    opt3,
+    optFinal,
+  });
 
   return (
     <S.Container layout>
