@@ -1,10 +1,10 @@
 import styled from "styled-components";
 
-export const Container = styled.section`
+export const Container = styled.section<{ weekLength: undefined | number }>`
   background-color: ${({ theme }) => theme.color.greyScale6};
 
   padding-top: 80px;
-  padding-bottom: 200px;
+  padding-bottom: ${({ weekLength }) => weekLength && "200px"};
   display: flex;
   flex-direction: column;
   align-items: center;
