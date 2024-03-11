@@ -1,4 +1,5 @@
-import axios from "axios";
+import { postSignup, SignupProps } from "@apis/postSignup.ts";
+import { PATH } from "@constants/path.ts";
 import { useFormContext } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 
@@ -14,25 +15,18 @@ const SignUpSubmitBtn = () => {
   } = useFormContext();
 
   const handleOnSubmit = async () => {
-    const data = getValues([
-      "email",
-      "password",
-      "name",
-      "phone",
-      "term1",
-      "term2",
-    ]);
-    await axios
-      .post("https://3.34.147.187.nip.io/v1/members/signup", {
-        email: data[0],
-        password: data[1],
-        name: data[2],
-        phone: data[3],
-        privacyPolicy: data[4],
-        termOfUse: data[5],
-      })
+    const signupInfo: SignupProps = {
+      email: getValues("email"),
+      password: getValues("password"),
+      name: getValues("name"),
+      phone: getValues("phone"),
+      privacyPolicy: getValues("term1"),
+      termOfUse: getValues("term2"),
+    };
+
+    await postSignup(signupInfo)
       .then(() => {
-        navigate("/signin");
+        navigate(PATH.LOGIN);
       })
       .catch(({ response }) => {
         alert(response.data.message);
