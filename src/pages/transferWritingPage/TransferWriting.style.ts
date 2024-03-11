@@ -26,4 +26,6 @@ export const Container = styled.main`
   padding-top: 56px;
   padding-bottom: 62px;
   background-color: ${({ theme }) => theme.color.white};
+
+  height: 100%;
 `;

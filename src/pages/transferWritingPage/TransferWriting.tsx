@@ -78,8 +78,8 @@ const TransferWriting = () => {
           })}
         {transferData && transferData.length === 0 && (
           <NoResult
-            title="판매 가능한 상품이 없습니다."
-            desc="야놀자에서 예약한 데이터들이 "
+            title="판매 가능한 상품이 없습니다"
+            desc="야놀자에서 예약한 데이터들이 없습니다"
             buttonDesc="홈으로 가기"
             navigateTo={PATH.ROOT}
           />
