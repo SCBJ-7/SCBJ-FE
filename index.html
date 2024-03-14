@@ -25,27 +25,33 @@
       href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css"
     />
     <title>퍼센트 호텔</title>
+    <meta name="description" content="양도 거래? 취소 보다 빠른 거래!" />
   </head>
   <script>
     (function (m, a, z, e) {
       var s, t;
       try {
-        t = m.sessionStorage.getItem('maze-us');
+        t = m.sessionStorage.getItem("maze-us");
       } catch (err) {}
 
       if (!t) {
         t = new Date().getTime();
         try {
-          m.sessionStorage.setItem('maze-us', t);
+          m.sessionStorage.setItem("maze-us", t);
         } catch (err) {}
       }
 
-      s = a.createElement('script');
-      s.src = z + '?apiKey=' + e;
+      s = a.createElement("script");
+      s.src = z + "?apiKey=" + e;
       s.async = true;
-      a.getElementsByTagName('head')[0].appendChild(s);
+      a.getElementsByTagName("head")[0].appendChild(s);
       m.mazeUniversalSnippetApiKey = e;
-    })(window, document, 'https://snippet.maze.co/maze-universal-loader.js', '5317cd33-b13c-477a-ab7d-3f015720eb52');
+    })(
+      window,
+      document,
+      "https://snippet.maze.co/maze-universal-loader.js",
+      "5317cd33-b13c-477a-ab7d-3f015720eb52",
+    );
   </script>
   <script>
     document.addEventListener("DOMContentLoaded", function () {
