@@ -36,7 +36,7 @@ export const fetchSearchList = async (
         },
       },
     );
-
+    console.log("response data", response);
     return response.data.data;
   } catch (error) {
     throw new Error("호텔 검색에 실패했습니다");
