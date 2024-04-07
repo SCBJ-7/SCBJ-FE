@@ -7,7 +7,7 @@ interface CarouselProps {
 }
 
 const inrange = (v: number, min: number, max: number) => {
-  // v는 current number?
+  // v는 델타x
   if (v < min) return min;
   if (v > max) return max;
   return v;
@@ -38,6 +38,7 @@ export const useAnimateCarousel = ({
 
   const handleDragChange = (deltaX: number) => {
     setTransX(inrange(deltaX, -slideWidth, slideWidth));
+    console.log(deltaX, "deltaX");
   };
 
   const handleDragEnd = (deltaX: number) => {
@@ -68,6 +69,7 @@ export const useAnimateCarousel = ({
     const handleTouchMove = (moveEvent: globalThis.TouchEvent) => {
       if (moveEvent.cancelable) moveEvent.preventDefault();
 
+      console.log(moveEvent.touches, "moveEvent.touches");
       const delta = moveEvent.touches[0].pageX - touchEvent.touches[0].pageX;
       handleDragChange(delta);
     };
@@ -94,6 +96,8 @@ export const useAnimateCarousel = ({
     clickEvent.preventDefault();
 
     const handleMouseMove = (moveEvent: MouseEvent) => {
+      console.log(moveEvent.pageX, "mouseEvent pageX");
+      console.log(clickEvent.pageX, "clickevent pageX");
       const deltaX = moveEvent.pageX - clickEvent.pageX;
       handleDragChange(deltaX);
     };

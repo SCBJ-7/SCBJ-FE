@@ -1,5 +1,6 @@
-import { ACCESS_TOKEN, END_POINTS, REFRESH_TOKEN } from "@/constants/api";
 import { axiosInstance } from "@apis/axiosInstance";
+
+import { ACCESS_TOKEN, END_POINTS, REFRESH_TOKEN } from "@/constants/api";
 
 export const logout = async () => {
   await axiosInstance.post(`${END_POINTS.USER_INFO}/logout`, {

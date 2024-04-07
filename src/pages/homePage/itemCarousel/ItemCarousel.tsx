@@ -1,7 +1,6 @@
 import { useAnimateCarousel } from "@hooks/common/useAnimateCarousel";
 import { useCarouselSize } from "@hooks/common/useCarouselSize";
-
-import type { LocaleItem } from "@type/saleSection";
+import { type LocaleItem } from "@type/saleSection";
 import { useEffect } from "react";
 
 import * as S from "./ItemCarousel.style";

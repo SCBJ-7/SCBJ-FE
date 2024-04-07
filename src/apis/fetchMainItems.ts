@@ -14,10 +14,7 @@ export const fetchMainItem = async (): Promise<
       "?cityNames=서울&cityNames=강원&cityNames=부산&cityNames=제주&cityNames=경상&cityNames=전라",
   );
 
-  console.log(data);
-
   const { weekend, ...locale } = data.data;
-  console.log(locale, "locale");
   const temp = weekend.content.length ? weekend.content : [];
 
   return [locale, temp];
