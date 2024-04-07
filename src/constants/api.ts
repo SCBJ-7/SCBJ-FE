@@ -1,4 +1,4 @@
-export const BASE_URL = "https://3.35.83.30.nip.io";
+export const BASE_URL = "https://43.200.52.7.nip.io";
 
 export const END_POINTS = {
   LOGIN: "/v1/members/signin",
