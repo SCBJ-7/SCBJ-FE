@@ -1,4 +1,4 @@
-import { PATH } from "@/constants/path";
+import { PATH } from "@constants/path";
 import { useSearchFilterInfoStore } from "@store/store";
 import { formatDateMonthAndDay } from "@utils/dateFomaterMonthDay";
 import { useNavigate } from "react-router-dom";
