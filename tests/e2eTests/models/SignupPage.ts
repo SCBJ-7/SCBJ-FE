@@ -1,5 +1,7 @@
 import { Page } from "@playwright/test";
 
+import { BASE_URL, END_POINTS } from "@/constants/api";
+
 export class Signup {
   page: Page;
 
@@ -56,7 +58,7 @@ export class Signup {
 
     const response = await this.page.waitForResponse(
       (response) =>
-        response.url() === "https://3.34.147.187.nip.io/v1/members/email" &&
+        response.url() === `${BASE_URL}${END_POINTS.EMAIL}` &&
         response.status() === 200,
     );
 

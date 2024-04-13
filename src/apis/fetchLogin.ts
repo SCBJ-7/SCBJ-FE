@@ -1,8 +1,9 @@
-import { BASE_URL, END_POINTS } from "@/constants/api";
+import axios from "axios";
 
 import type { EmailValidateData, LoginData } from "@type/login";
 import type { ResponseData } from "@type/responseType";
-import axios from "axios";
+
+import { BASE_URL, END_POINTS } from "@/constants/api";
 
 interface LoginProps {
   email: string;

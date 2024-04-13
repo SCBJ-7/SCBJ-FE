@@ -25,6 +25,7 @@ export const Input = styled(motion.input)`
   box-shadow: 4px 4px 10px 0 rgba(0, 0, 0, 0.04);
 
   text-align: center;
+  /* padding-right: 40px; */
   transition: 0.2s;
 
   &::placeholder {

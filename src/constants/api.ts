@@ -1,10 +1,11 @@
-export const BASE_URL = "https://3.35.83.30.nip.io";
+export const BASE_URL = "https://43.200.52.7.nip.io";
 
 export const END_POINTS = {
   LOGIN: "/v1/members/signin",
   LOGOUT: "/v1/members/logout",
   SIGNUP: "/v1/members/signup",
   ALARM: "/v1/alarms",
+  PASSWORD: "/v1/members/password",
   HASALARM: "/v1/alarms/status",
   ROOM: (productId: string) => `/v1/products/${productId}`,
   RESERVATION: "/v1/reservations",
