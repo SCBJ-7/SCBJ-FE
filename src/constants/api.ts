@@ -5,6 +5,7 @@ export const END_POINTS = {
   LOGOUT: "/v1/members/logout",
   SIGNUP: "/v1/members/signup",
   ALARM: "/v1/alarms",
+  PASSWORD: "/v1/members/password",
   HASALARM: "/v1/alarms/status",
   ROOM: (productId: string) => `/v1/products/${productId}`,
   RESERVATION: "/v1/reservations",

@@ -1,8 +1,8 @@
-import { END_POINTS } from "@constants/api";
+import { BASE_URL, END_POINTS } from "@constants/api";
 import { http, HttpResponse } from "msw";
 
 export const getEmailVerification = (scenarioProps?: string) => {
-  return http.post(`https://3.34.147.187.nip.io${END_POINTS.EMAIL}`, () => {
+  return http.post(`${BASE_URL}${END_POINTS.EMAIL}`, () => {
     const pageParams = new URLSearchParams(window.location.search);
     const scenario = pageParams.get("scenario");
 

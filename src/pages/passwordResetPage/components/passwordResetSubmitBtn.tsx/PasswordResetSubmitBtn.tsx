@@ -4,6 +4,8 @@ import { useNavigate } from "react-router-dom";
 
 import * as S from "../../PasswordReset.style";
 
+import { BASE_URL, END_POINTS } from "@/constants/api";
+
 const PasswordResetSubmitBtn = () => {
   const navigate = useNavigate();
   const {
@@ -15,7 +17,7 @@ const PasswordResetSubmitBtn = () => {
   const handleOnSubmit = async () => {
     const data = getValues(["email", "password"]);
     await axios
-      .patch("https://3.34.147.187.nip.io/v1/members/password", {
+      .patch(`${BASE_URL}${END_POINTS.PASSWORD}`, {
         email: data[0],
         password: data[1],
       })

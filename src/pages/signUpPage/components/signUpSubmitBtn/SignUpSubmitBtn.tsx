@@ -4,6 +4,8 @@ import { useNavigate } from "react-router-dom";
 
 import * as S from "../../SignUp.style";
 
+import { BASE_URL, END_POINTS } from "@/constants/api";
+
 const SignUpSubmitBtn = () => {
   const navigate = useNavigate();
 
@@ -23,7 +25,7 @@ const SignUpSubmitBtn = () => {
       "term2",
     ]);
     await axios
-      .post("https://3.34.147.187.nip.io/v1/members/signup", {
+      .post(`${BASE_URL}${END_POINTS.SIGNUP}`, {
         email: data[0],
         password: data[1],
         name: data[2],

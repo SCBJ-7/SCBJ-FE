@@ -7,14 +7,15 @@ import {
   STATUS_CODE,
 } from "@constants/api";
 import { PATH } from "@constants/path";
+import axios from "axios";
+
+import { fetchNewToken } from "./fetchNewToken";
+
 import type {
   AxiosError,
   AxiosRequestConfig,
   InternalAxiosRequestConfig,
 } from "axios";
-import axios from "axios";
-
-import { fetchNewToken } from "./fetchNewToken";
 
 export const axiosInstance = axios.create({
   baseURL: BASE_URL,
