@@ -28,28 +28,50 @@ const SearchItem = ({ item }: { item: ISearchList }) => {
   };
   return (
     <>
-      <S.ItemContainer>
-        <S.ItemContent onClick={handleClickItem}>
-          <ProgressiveImg src={item.imageUrl} loading="lazy" />
-          <S.ItemName>{item.name}</S.ItemName>
-          <S.ItemRoomName>{item.roomType}</S.ItemRoomName>
-          <S.ItemOriginalPrice>
-            {item.originalPrice.toLocaleString()}
-          </S.ItemOriginalPrice>
+      <S.ItemContainer onClick={handleClickItem}>
+        <ProgressiveImg src={item.imageUrl} loading="lazy" />
+        <S.ItemContent>
+          <S.ItemTop>
+            <S.ItemRates>
+              <div>
+                <S.StartImg />
+              </div>
+              <div>{item.reviewRate}</div>
+              <div>&middot;</div>
+              <div>{`${item.hotelRate}성급`}</div>
+            </S.ItemRates>
+            <S.ItemName>{item.name}</S.ItemName>
+            <S.ItemRoomName>{item.roomType}</S.ItemRoomName>
+          </S.ItemTop>
+
           <S.ItemBottom>
+            <S.ItemDateCover>
+              <div></div>
+              <S.ItemDate>
+                {`${formatDateString(item.checkIn)} ~ ${formatDateString(
+                  item.checkOut,
+                )}`}
+              </S.ItemDate>
+            </S.ItemDateCover>
             <div>
-              <S.ItemPrice>
-                {item.salePrice.toLocaleString() + "원"}
-              </S.ItemPrice>
-              <S.ItemSalePercent>
-                {`${calculatePercentage(item.salePercentage)}%`}
-              </S.ItemSalePercent>
+              <S.ItemOriginalPriceCover>
+                <div>정가</div>
+                <div>
+                  <S.ItemSalePercent>
+                    {`${calculatePercentage(item.salePercentage)}%`}
+                  </S.ItemSalePercent>
+                  <S.ItemOriginalPrice>
+                    {" " + item.originalPrice.toLocaleString() + "원"}
+                  </S.ItemOriginalPrice>
+                </div>
+              </S.ItemOriginalPriceCover>
+              <S.ItemPriceCover>
+                <div>구매가</div>
+                <S.ItemPrice>
+                  {item.salePrice.toLocaleString() + "원"}
+                </S.ItemPrice>
+              </S.ItemPriceCover>
             </div>
-            <S.ItemDate>
-              {`${formatDateString(item.checkIn)} ~ ${formatDateString(
-                item.checkOut,
-              )}`}
-            </S.ItemDate>
           </S.ItemBottom>
           {!item.isFirstPrice && <S.SecondSaleText>마감 특가</S.SecondSaleText>}
         </S.ItemContent>
