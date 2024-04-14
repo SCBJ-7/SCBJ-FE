@@ -1,23 +1,16 @@
 import styled from "styled-components";
+import { FaStar } from "react-icons/fa6";
 
 export const ItemContainer = styled.div`
   width: 100%;
-  height: 344px;
-  padding: 1rem 0 1.5rem 0;
+  height: 373px;
   color: ${({ theme }) => theme.color.black};
   @media screen and (min-width: 568px) {
     width: calc(50% - 8px);
   }
+  background-color: white;
   cursor: pointer;
-`;
-
-export const ItemContent = styled.div`
-  min-width: 240px;
-  position: relative;
-
-  width: 100%;
-  height: 100%;
-
+  border-radius: 12px;
   & > img {
     width: 100%;
     height: 192px;
@@ -26,36 +19,94 @@ export const ItemContent = styled.div`
   }
 `;
 
+export const ItemContent = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-width: 240px;
+  height: 181px;
+  position: relative;
+  width: 100%;
+  padding: 24px 16px;
+`;
+
+export const ItemTop = styled.div`
+  width: 100%;
+  height: 66px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+`;
+
+export const StartImg = styled(FaStar)`
+  color: ${({ theme }) => theme.color.percentOrange};
+`;
+
+export const ItemRates = styled.div`
+  display: flex;
+  ${({ theme }) => theme.typo.caption2}
+  > div {
+    padding-right: 0.1rem;
+  }
+`;
+
 export const ItemName = styled.div`
   ${({ theme }) => theme.typo.body2}
-  margin-top: 1rem;
+
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 `;
+
 export const ItemRoomName = styled.div`
   ${({ theme }) => theme.typo.body3}
-  margin-top:0.5rem;
-`;
-export const ItemOriginalPrice = styled.div`
-  color: ${({ theme }) => theme.color.greyScale2};
-  ${({ theme }) => theme.typo.body3}
-
-  text-decoration-line:  line-through;
-  margin-top: 0.5rem;
 `;
 
 export const ItemBottom = styled.div`
+  height: 35px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+
   ${({ theme }) => theme.typo.body1}
 `;
-export const ItemPrice = styled.span`
-  margin-right: 0.5rem;
+
+export const ItemOriginalPriceCover = styled.div`
+  width: 127px;
+  display: flex;
+  justify-content: space-between;
+  ${({ theme }) => theme.typo.body5}
 `;
+
+export const ItemOriginalPrice = styled.span`
+  color: ${({ theme }) => theme.color.greyScale3};
+  text-decoration-line: line-through;
+`;
+
 export const ItemSalePercent = styled.span`
   color: ${({ theme }) => theme.color.percentBlue};
+`;
+
+export const ItemPriceCover = styled.div`
+  width: 127px;
+  display: flex;
+  justify-content: space-between;
+  ${({ theme }) => theme.typo.body5}
+  >div:first-child {
+    margin-top: 5px;
+  }
+`;
+
+export const ItemPrice = styled.span`
+  font-size: 18px;
+  font-weight: 700;
+`;
+
+export const ItemDateCover = styled.div`
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 `;
 
 export const ItemDate = styled.div`

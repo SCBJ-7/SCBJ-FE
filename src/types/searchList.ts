@@ -9,4 +9,6 @@ export interface ISearchList {
   isFirstPrice: boolean;
   checkIn: string;
   checkOut: string;
+  hotelRate: number;
+  reviewRate: number;
 }
