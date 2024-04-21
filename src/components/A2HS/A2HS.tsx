@@ -7,7 +7,7 @@ import ReactDOM from "react-dom";
 import * as S from "./A2HS.style";
 import ProgressiveImg from "../progressiveImg/ProgressiveImg";
 
-const A2HS = () => {
+export const A2HS = () => {
   const { deferredPrompt, install, clearPrompt } = useA2HS();
   const appRoot = document.getElementById("app-install-pop");
   const [isShow, SetIsShow] = useState(true);
@@ -72,5 +72,3 @@ const A2HS = () => {
     appRoot,
   );
 };
-
-export default A2HS;
