@@ -13,5 +13,5 @@ export const usePaymentMutation = () => {
     },
   });
 
-  return paymentMutation;
+  return { mutatePayment: paymentMutation.mutate };
 };
