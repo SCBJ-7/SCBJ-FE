@@ -1,7 +1,8 @@
-import { usePaymentMutation } from "@/hooks/api/usePaymentMutation";
 import { useFormContext } from "react-hook-form";
 
 import * as S from "./PaymentButton.style";
+
+import { usePaymentMutation } from "@/hooks/api/usePaymentMutation";
 
 interface PaymentButtonProps {
   productId: string;
@@ -15,7 +16,7 @@ const PaymentButton = ({ productId, price }: PaymentButtonProps) => {
     formState: { isValid },
   } = useFormContext();
 
-  const paymentMutation = usePaymentMutation();
+  const { mutatePayment } = usePaymentMutation();
 
   const onSubmit = () => {
     const paymentType = getValues("paymentMethod");
@@ -43,8 +44,7 @@ const PaymentButton = ({ productId, price }: PaymentButtonProps) => {
       thirdPartySharing,
     };
 
-    console.log(paymentRequest);
-    paymentMutation.mutate(paymentRequest);
+    mutatePayment(paymentRequest);
   };
 
   return (
