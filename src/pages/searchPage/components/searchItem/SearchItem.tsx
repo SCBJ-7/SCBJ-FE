@@ -38,7 +38,7 @@ const SearchItem = ({ item }: { item: ISearchList }) => {
               </div>
               <div>{item.reviewRate}</div>
               <div>&middot;</div>
-              <div>{`${item.hotelRate}성급`}</div>
+              <div>{item.hotelRate}</div>
             </S.ItemRates>
             <S.ItemName>{item.name}</S.ItemName>
             <S.ItemRoomName>{item.roomType}</S.ItemRoomName>
@@ -66,7 +66,7 @@ const SearchItem = ({ item }: { item: ISearchList }) => {
                 </div>
               </S.ItemOriginalPriceCover>
               <S.ItemPriceCover>
-                <div>구매가</div>
+                <div>거래가</div>
                 <S.ItemPrice>
                   {item.salePrice.toLocaleString() + "원"}
                 </S.ItemPrice>
