@@ -9,7 +9,7 @@ const SearchBar = () => {
   const navigate = useNavigate();
   const searchInfo = useSearchFilterInfoStore((state) => state.searchInfo);
 
-  let searchBarContent = "언제 어디로 여행가세요?";
+  let searchBarContent = "언제 어디로 떠나세요?";
   if (searchInfo.location && searchInfo.checkOut && searchInfo.quantityPeople) {
     searchBarContent = `${searchInfo.location} / ${formatDateMonthAndDay(
       searchInfo.checkIn,

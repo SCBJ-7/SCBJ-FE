@@ -2,15 +2,15 @@ import styled from "styled-components";
 import TopButtonIcon from "@assets/icons/ic_top_button.svg?react";
 
 export const Container = styled.div`
-  background-color: ${({ theme }) => theme.color.white};
+  background-color: ${({ theme }) => theme.color.greyScale7};
 `;
 
 export const SearchContainer = styled.div`
   width: 100%;
   height: 100%;
+  min-height: 100vh;
   color: ${({ theme }) => theme.color.black};
   padding: 130px 0 130px 0;
-  background-color: ${({ theme }) => theme.color.greyScale7};
 `;
 
 export const SearchItemFlex = styled.div`

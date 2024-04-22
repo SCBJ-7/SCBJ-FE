@@ -5,6 +5,7 @@ export const ItemContainer = styled.div`
   width: 100%;
   height: 373px;
   color: ${({ theme }) => theme.color.black};
+  position: relative;
   @media screen and (min-width: 568px) {
     width: calc(50% - 8px);
   }
@@ -25,7 +26,6 @@ export const ItemContent = styled.div`
   justify-content: space-between;
   min-width: 240px;
   height: 181px;
-  position: relative;
   width: 100%;
   padding: 24px 16px;
 `;

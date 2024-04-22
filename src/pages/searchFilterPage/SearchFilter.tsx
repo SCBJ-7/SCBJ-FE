@@ -53,7 +53,7 @@ const SearchFilter = () => {
     <>
       <S.FilterContainer>
         <S.FilterContent>
-          <S.FilterTitle>언제 어디로 여행가세요?</S.FilterTitle>
+          <S.FilterTitle>언제 어디로 떠나세요?</S.FilterTitle>
           <S.FilterBlock onClick={handleRegionModal}>
             <S.FilterSubTitle>지역</S.FilterSubTitle>
             <S.FilterModalButton>
