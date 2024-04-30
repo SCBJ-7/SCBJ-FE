@@ -62,3 +62,7 @@ export const SuccessPage = lazy(
 export const VerificationPage = lazy(
   () => import("@pages/connectYanoljaPage/verificationPage/VerificationPage"),
 );
+
+export const RoomMap = lazy(
+  () => import("@pages/roomDetailPage/RoomDetailMap"),
+);
