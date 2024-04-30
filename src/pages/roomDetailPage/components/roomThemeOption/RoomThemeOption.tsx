@@ -28,7 +28,7 @@ const RoomThemeOption = ({ option }: RoomThemeOptionProps) => {
       {filteredOptions.map((key) => (
         <S.OptionWrapper key={key}>
           <IconCheck fill={theme.color.percentOrange} />
-          <S.Text variant="body3" color="percentOrange">
+          <S.Text variant="body4" color="percentOrange">
             {optionNames[key]}
           </S.Text>
         </S.OptionWrapper>

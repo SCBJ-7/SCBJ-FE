@@ -7,12 +7,13 @@ import IconUser from "@assets/icons/ic_users.svg?react";
 import RoomThemeOption from "@pages/roomDetailPage/components/roomThemeOption/RoomThemeOption";
 import * as S from "@pages/roomDetailPage/RoomDetail.style";
 import { formatDateAndTime } from "@utils/dateFormatter";
+import { useLocation } from "react-router-dom";
+
+import ExpandableContent from "./ExpandableContent";
 
 import type { RoomData } from "@type/room";
 
 import Tag from "@/components/tag/Tag";
-import { useLocation } from "react-router-dom";
-import ExpandableContent from "./ExpandableContent";
 
 interface RoomInfoProps {
   room: RoomData;
