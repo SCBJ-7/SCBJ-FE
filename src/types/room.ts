@@ -26,3 +26,12 @@ export type RoomNavBarData = Pick<
   RoomData,
   "originalPrice" | "sellingPrice" | "saleStatus" | "isSeller"
 >;
+
+export interface MapData {
+  documents: TLatLng[];
+}
+
+export type TLatLng = {
+  x: string;
+  y: string;
+};
