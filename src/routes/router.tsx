@@ -235,16 +235,33 @@ const AppRouter = () => {
           ),
         },
         {
-          path: PATH.DETAIL_ROOM(":productId"),
-          element: (
-            <Layout isHeaderOn={false} isBottomNavOn={false}>
-              <ApiErrorBoundary>
-                <Suspense fallback={<LoadingFallback />}>
-                  <Lazy.RoomDetail />
-                </Suspense>
-              </ApiErrorBoundary>
-            </Layout>
-          ),
+          path: PATH.DETAIL_ROOM(),
+          children: [
+            {
+              index: true,
+              element: (
+                <Layout isHeaderOn={false} isBottomNavOn={false}>
+                  <ApiErrorBoundary>
+                    <Suspense fallback={<LoadingFallback />}>
+                      <Lazy.RoomDetail />
+                    </Suspense>
+                  </ApiErrorBoundary>
+                </Layout>
+              ),
+            },
+            {
+              path: "map",
+              element: (
+                <Layout isHeaderOn isBottomNavOn={false}>
+                  <ApiErrorBoundary>
+                    <Suspense fallback={<LoadingFallback />}>
+                      <Lazy.RoomMap />
+                    </Suspense>
+                  </ApiErrorBoundary>
+                </Layout>
+              ),
+            },
+          ],
         },
         {
           path: PATH.ALARM,
