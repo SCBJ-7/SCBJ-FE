@@ -1,19 +1,21 @@
-import styled from "styled-components";
+import IconHeart from "@assets/icons/ic_heart-fill.svg?react";
+import { hexToRgba } from "@utils/hexTorgba.ts";
+import styled, { css, DefaultTheme } from "styled-components";
 
 export { Text } from "@pages/roomDetailPage/RoomDetail.style";
 
 export const Wrapper = styled.section`
   width: 100%;
   max-width: 768px;
-  height: 60px;
 
-  padding: 1.2rem 1.25rem;
+  padding: 1.25rem 1rem;
   position: fixed;
   bottom: 0;
   background-color: ${({ theme }) => theme.color.white};
 
   display: flex;
   align-items: center;
+  gap: 1rem;
 
   box-shadow: 0 0 0.4rem rgba(5, 44, 82, 0.1);
   -webkit-clip-path: inset(-0.4rem 0 0 0);
@@ -36,17 +38,58 @@ export const Row2 = styled(Flex)`
   gap: 0.5rem;
 `;
 
-export const Button = styled.button<{ $status: boolean }>`
-  ${({ theme }) => theme.typo.button2}
-  padding: 0.7rem 3rem;
-  color: ${({ theme }) => theme.color.white};
-  border-radius: 8px;
-  background-color: ${({ $status, theme }) =>
-    $status ? theme.color.percentOrange : theme.color.greyScale5};
-  transition: background-color 0.2s ease-in;
+export type TButtonVariant = keyof ReturnType<typeof variantStyles>;
 
-  &:hover {
-    background-color: ${({ $status, theme }) =>
-      $status ? theme.color.darkOrange : theme.color.greyScale4};
+const variantStyles = (theme: DefaultTheme) => ({
+  fill: css`
+    background-color: ${theme.color.percentOrange};
+    color: ${theme.color.white};
+    &:hover {background-color: ${({ theme }) => theme.color.darkOrange};
+  `,
+  outline: css`
+    border: 1px solid ${theme.color.percentOrange};
+    color: ${theme.color.percentOrange};
+    &:hover {background-color: ${({ theme }) =>
+      hexToRgba(theme.color.percentOrange, 0.1)};
+  `,
+});
+
+export const Button = styled.button.withConfig({
+  shouldForwardProp: (prop) => prop !== "variant",
+})<{ variant?: TButtonVariant }>`
+  ${({ theme }) => theme.typo.button3}
+  padding: 0.7rem 1rem;
+  border-radius: 8px;
+
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+
+  transition:
+    background-color,
+    border-color 0.2s ease-in;
+
+  ${({ variant, theme }) =>
+    variant ? variantStyles(theme)[variant] : variantStyles(theme)["fill"]}
+
+  &:disabled {
+    background-color: ${({ theme }) => theme.color.greyScale5};
+    color: ${({ theme }) => theme.color.white};
+
+    &:hover {
+      background-color: ${({ theme }) => theme.color.greyScale4};
+    }
   }
+`;
+
+export const ButtonWrapper = styled.div`
+  display: flex;
+  gap: 8px;
+  width: 100%;
+`;
+
+export const Heart = styled(IconHeart)`
+  display: flex;
+  align-items: center;
 `;
