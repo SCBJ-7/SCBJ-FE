@@ -4,7 +4,6 @@ import { StyledIcon, StyledTag } from "./Tag.styles";
 
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   tag?: "span" | "button";
-  icon?: boolean;
   variant?: "outline";
   radius?: "rectangle" | "pill";
 }
@@ -12,37 +11,29 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 const Tag = ({
   children,
   tag = "span",
-  icon = true,
   variant = "outline",
   radius = "pill",
   ...props
 }: PropsWithChildren<ButtonProps>) => {
   const contentProps = {
-    icon,
     children,
   };
 
   return (
-    <StyledTag
-      as={tag}
-      variant={variant}
-      radius={radius}
-      $isTextOnly={!icon}
-      {...props}
-    >
+    <StyledTag as={tag} variant={variant} radius={radius} {...props}>
       <ButtonContent {...contentProps} />
     </StyledTag>
   );
 };
 
-type ButtonContentProps = Pick<ButtonProps, "icon" | "children">;
+type ButtonContentProps = Pick<ButtonProps, "children">;
 
 const ButtonContent = (props: ButtonContentProps) => {
-  const { icon, children } = props;
+  const { children } = props;
 
   return (
     <>
-      {icon && <StyledIcon>#</StyledIcon>}
+      <StyledIcon>#</StyledIcon>
       {children}
     </>
   );

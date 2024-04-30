@@ -18,7 +18,6 @@ const getRadiusStyle = () => ({
 
 type ButtonProps = {
   variant: "outline";
-  $isTextOnly: boolean;
   radius: "rectangle" | "pill";
 };
 
@@ -36,8 +35,6 @@ export const StyledTag = styled.button.withConfig({
 
   ${({ theme, variant }) => getVariantStyle(theme)[variant]};
   ${({ radius }) => getRadiusStyle()[radius]};
-
-  aspect-ratio: ${({ $isTextOnly }) => ($isTextOnly ? "1/1" : "auto")}};
 `;
 
 export const StyledIcon = styled.span`
