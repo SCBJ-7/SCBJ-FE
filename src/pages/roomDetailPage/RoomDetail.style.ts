@@ -38,6 +38,10 @@ export const Row = styled(Flex)`
   align-items: center;
 `;
 
+export const TitleWrapper = styled(Row)`
+  margin-bottom: 1rem;
+`;
+
 export const Row1 = styled(Row)`
   gap: 2px;
 `;
@@ -112,10 +116,6 @@ export const HStack5 = styled(HStack1)`
 
 export const VStack5 = styled(Flex)`
   gap: 2rem;
-`;
-
-export const VStack3 = styled(HStack1)`
-  gap: 1rem;
 `;
 
 export const TagWrapper = styled(Flex)`
