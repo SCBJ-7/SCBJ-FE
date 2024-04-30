@@ -14,7 +14,7 @@ export const theme = {
     darkOrange: "#E76500",
 
     lightBlue: "#D5EBFF",
-    percentBlue: "#0A76DA",
+    percentBlue: "#005AF2",
     darkBlue: "#004789",
 
     cautionRed: "#FF4949",
