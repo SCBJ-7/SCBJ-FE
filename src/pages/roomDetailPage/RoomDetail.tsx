@@ -44,7 +44,7 @@ const RoomDetail = () => {
         draggable={true}
       />
       <RoomInfo room={rawData} discount={discountRate} />
-      <RoomNavBar room={rawData} discount={discountRate} roomId={productId} />
+      <RoomNavBar room={rawData} roomId={productId} />
     </S.Container>
   );
 };

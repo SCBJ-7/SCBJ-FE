@@ -1,8 +1,9 @@
-import ArrowSvg from "@/assets/icons/ic_arrow.svg?react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 import type { ColorKeys, TypoKeys } from "@/styles/theme";
+
+import ArrowSvg from "@/assets/icons/ic_arrow.svg?react";
 
 export const Container = styled.main`
   background-color: ${({ theme }) => theme.color.greyScale7};
