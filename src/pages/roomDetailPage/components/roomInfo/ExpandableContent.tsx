@@ -145,7 +145,9 @@ const TagWrapper = styled.div`
 `;
 
 const Button = styled.button`
+  display: block;
   margin-left: auto;
+  margin-top: 0.5rem;
 `;
 
 const Arrow = styled(ArrowSvg)`
