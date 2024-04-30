@@ -30,22 +30,27 @@
     (function (m, a, z, e) {
       var s, t;
       try {
-        t = m.sessionStorage.getItem('maze-us');
+        t = m.sessionStorage.getItem("maze-us");
       } catch (err) {}
 
       if (!t) {
         t = new Date().getTime();
         try {
-          m.sessionStorage.setItem('maze-us', t);
+          m.sessionStorage.setItem("maze-us", t);
         } catch (err) {}
       }
 
-      s = a.createElement('script');
-      s.src = z + '?apiKey=' + e;
+      s = a.createElement("script");
+      s.src = z + "?apiKey=" + e;
       s.async = true;
-      a.getElementsByTagName('head')[0].appendChild(s);
+      a.getElementsByTagName("head")[0].appendChild(s);
       m.mazeUniversalSnippetApiKey = e;
-    })(window, document, 'https://snippet.maze.co/maze-universal-loader.js', '5317cd33-b13c-477a-ab7d-3f015720eb52');
+    })(
+      window,
+      document,
+      "https://snippet.maze.co/maze-universal-loader.js",
+      "5317cd33-b13c-477a-ab7d-3f015720eb52",
+    );
   </script>
   <script>
     document.addEventListener("DOMContentLoaded", function () {
@@ -61,6 +66,10 @@
       }
     });
   </script>
+  <script
+    type="text/javascript"
+    src="//dapi.kakao.com/v2/maps/sdk.js?appkey=59401a86fbc79d3425ba93876b64c813&libraries=services"
+  ></script>
   <body>
     <div id="root"></div>
     <div id="modal-root"></div>
