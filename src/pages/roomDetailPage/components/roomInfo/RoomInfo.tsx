@@ -98,17 +98,15 @@ const RoomInfo = ({ room, discount }: RoomInfoProps) => {
 
       {room.sellerCommentList && (
         <S.DetailSection>
-          <S.VStack3>
-            <S.Row>
-              <IconChat />
-              <S.Text variant="body2">판매자 코멘트</S.Text>
-            </S.Row>
-            <ExpandableContent>
-              {room.sellerCommentList.map((item, index) => (
-                <Tag key={index}>{item}</Tag>
-              ))}
-            </ExpandableContent>
-          </S.VStack3>
+          <S.TitleWrapper>
+            <IconChat />
+            <S.Text variant="body2">판매자 코멘트</S.Text>
+          </S.TitleWrapper>
+          <ExpandableContent>
+            {room.sellerCommentList.map((item, index) => (
+              <Tag key={index}>{item}</Tag>
+            ))}
+          </ExpandableContent>
         </S.DetailSection>
       )}
 
@@ -135,11 +133,14 @@ const RoomInfo = ({ room, discount }: RoomInfoProps) => {
           </S.HStack1>
           <S.HStack1>
             <S.Text variant="body3">추가 정보</S.Text>
-            <S.VStack5>
-              <S.Text variant="body4" color="greyScale2">
-                {room.facilityInformation}
-              </S.Text>
-            </S.VStack5>
+
+            {room.facilityInformation.split("\n").map((line) => {
+              return (
+                <S.Text variant="body4" color="greyScale2">
+                  {line}
+                </S.Text>
+              );
+            })}
           </S.HStack1>
           <a
             href={room.hotelInfoUrl}
