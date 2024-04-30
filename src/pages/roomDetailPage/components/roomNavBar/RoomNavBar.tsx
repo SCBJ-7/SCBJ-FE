@@ -1,23 +1,45 @@
-import { ResponseError } from "@/components/error/Error";
-import { STATUS_CODE } from "@/constants/api";
-import { useStockQuery } from "@/hooks/api/useStockQuery";
-import useAuthStore from "@/store/authStore";
+import IconInfoMark from "@assets/icons/ic_question-mark.svg?react";
 import { PATH } from "@constants/path";
 import useToastConfig from "@hooks/common/useToastConfig";
-
-import type { RoomNavBarData } from "@type/room";
-import { useEffect, useState } from "react";
+import { ReactElement, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import * as S from "./RoomNavBar.style";
 
+import type { TButtonVariant } from "./RoomNavBar.style";
+import type { RoomNavBarData } from "@type/room";
+
+import { ResponseError } from "@/components/error/Error";
+import { STATUS_CODE } from "@/constants/api";
+import { useStockQuery } from "@/hooks/api/useStockQuery";
+import useAuthStore from "@/store/authStore";
+
+interface ButtonProps {
+  text: ReactElement;
+  action: () => void;
+  status: boolean;
+  variant?: TButtonVariant;
+}
+
+const Button = ({ text, action, status, variant }: ButtonProps) => {
+  return (
+    <S.Button
+      type="button"
+      variant={variant}
+      disabled={!status}
+      onClick={action}
+    >
+      {text}
+    </S.Button>
+  );
+};
+
 interface RoomNavBarProps {
   room: RoomNavBarData;
   roomId: string;
-  discount: string;
 }
 
-const RoomNavBar = ({ room, roomId, discount }: RoomNavBarProps) => {
+const RoomNavBar = ({ room, roomId }: RoomNavBarProps) => {
   const navigate = useNavigate();
   const [error, setError] = useState<unknown>(null);
   const isLoggedIn = useAuthStore((state) => state.isLoggedIn);
@@ -61,6 +83,36 @@ const RoomNavBar = ({ room, roomId, discount }: RoomNavBarProps) => {
     }
   };
 
+  const buttonConfig = {
+    propose: {
+      buyer: {
+        text: (
+          <>
+            가격 제안
+            <IconInfoMark />
+          </>
+        ),
+        action: () => console.log("가격 제안 페이지로 이동"),
+      },
+      seller: {
+        text: "받은 가격 제안",
+        action: () => console.log("받은 가격 제안으로 이동"),
+      },
+    },
+    purchase: {
+      buyer: {
+        text: "즉시 구매",
+        action: handlePurchaseClick,
+      },
+      seller: {
+        text: "판매 취소",
+        action: () => console.log("판매 취소 로직"),
+      },
+    },
+  };
+
+  const userType = room.isSeller ? "seller" : "buyer";
+
   useEffect(() => {
     if (error) {
       throw error;
@@ -69,27 +121,19 @@ const RoomNavBar = ({ room, roomId, discount }: RoomNavBarProps) => {
 
   return (
     <S.Wrapper>
-      <S.ColWrapper>
-        <S.Text variant="body3" color="greyScale3">
-          <s>{room.originalPrice.toLocaleString()}원</s>
-        </S.Text>
-        <S.Row2>
-          <S.Text variant="title2" color="percentBlue">
-            {discount}%
-          </S.Text>
-          <S.Text variant="title2">
-            {room.sellingPrice.toLocaleString()}원
-          </S.Text>
-        </S.Row2>
-      </S.ColWrapper>
-      <S.Button
-        type="button"
-        $status={room.saleStatus}
-        aria-label="구매하기"
-        onClick={handlePurchaseClick}
-      >
-        구매하기
-      </S.Button>
+      <S.Heart />
+      <S.ButtonWrapper>
+        <Button
+          {...buttonConfig.propose[userType]}
+          status={room.saleStatus}
+          variant="outline"
+        />
+        <Button
+          {...buttonConfig.purchase[userType]}
+          status={room.saleStatus}
+          variant="fill"
+        />
+      </S.ButtonWrapper>
     </S.Wrapper>
   );
 };
