@@ -64,11 +64,13 @@ const Search = () => {
     onIntersect: handleIntersect,
     threshold: 0.5,
   });
+
   const handleScroll = () => {
     const currentPosition = window.scrollY;
     setScrollPosition(currentPosition);
     setIsTopButtonVisible(currentPosition > 500);
   };
+
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
     return () => {

@@ -1,0 +1,131 @@
+import { useEffect, useState } from "react";
+
+import RegionButton from "./components/RegionButton/RegionButton";
+import * as S from "./MainDetail.style";
+import SearchItem from "@pages/searchPage/components/searchItem/SearchItem";
+import { useInfiniteQuery } from "@tanstack/react-query";
+import { fetchSearchList } from "@/apis/fetchSeachList";
+import UseIntersectionObserver from "@/hooks/common/useIntersectionObserver";
+import { ISearchList } from "@/types/searchList";
+import MainTheme from "./components/MainTheme/MainTheme";
+
+const MainDetail = () => {
+  const pageSize = 10;
+  const [selectedRegion, setSelectedRegion] = useState("전체");
+  const [scrollPosition, setScrollPosition] = useState(0);
+
+  const [isTopButtonVisible, setIsTopButtonVisible] = useState(false);
+  const searchInfo = {
+    brunch: null,
+    checkIn: null,
+    checkOut: null,
+    location: selectedRegion === "전체" ? null : selectedRegion,
+    oceanView: null,
+    pool: null,
+    quantityPeople: 0,
+    sorted: null,
+  };
+  const { data, fetchNextPage, isLoading, hasNextPage } = useInfiniteQuery({
+    queryKey: [
+      "searchItems",
+      searchInfo.location,
+      searchInfo.checkIn,
+      searchInfo.checkOut,
+      searchInfo.quantityPeople,
+      searchInfo.sorted,
+      searchInfo.brunch,
+      searchInfo.pool,
+      searchInfo.oceanView,
+    ],
+    queryFn: ({ pageParam = 0 }) =>
+      fetchSearchList(
+        searchInfo.location,
+        searchInfo.checkIn,
+        searchInfo.checkOut,
+        searchInfo.quantityPeople,
+        searchInfo.sorted,
+        searchInfo.brunch,
+        searchInfo.pool,
+        searchInfo.oceanView,
+        pageParam,
+        pageSize,
+      ),
+    refetchOnMount: false,
+    refetchOnWindowFocus: false,
+    initialPageParam: 0,
+    getNextPageParam: (lastPage) => {
+      const lastData = lastPage?.content;
+      return lastData && lastData.length === pageSize
+        ? lastPage?.number + 1
+        : undefined;
+    },
+  });
+
+  const handleIntersect: IntersectionObserverCallback = (entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting && hasNextPage) {
+        fetchNextPage();
+      }
+    });
+  };
+
+  const { setTarget } = UseIntersectionObserver({
+    onIntersect: handleIntersect,
+    threshold: 0.5,
+  });
+
+  const handleScroll = () => {
+    const currentPosition = window.scrollY;
+    setScrollPosition(currentPosition);
+    setIsTopButtonVisible(currentPosition > 500);
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [scrollPosition]);
+
+  const MoveToTop = () => {
+    window.scroll({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
+  console.log("a", searchInfo);
+  return (
+    <S.Container>
+      <MainTheme />
+      <RegionButton
+        selectedRegion={selectedRegion}
+        setSelectedRegion={setSelectedRegion}
+      />
+
+      <S.SearchContainer>
+        {!isLoading && data && !data?.pages?.[0]?.content?.length && (
+          <S.NoResultCover>
+            <S.NoResultText>검색 조건에 맞는 호텔이 없어요</S.NoResultText>
+            <S.NoResultTextTwo>
+              다른 지역과 날짜로 변경해보세요
+            </S.NoResultTextTwo>
+          </S.NoResultCover>
+        )}
+        <S.SearchItemFlex>
+          {data &&
+            data.pages?.length > 0 &&
+            data.pages.map((page) =>
+              page?.content.map((item: ISearchList) => (
+                <SearchItem key={item.id} item={item} />
+              )),
+            )}
+        </S.SearchItemFlex>
+        <div ref={setTarget} />
+        <S.TopButtonCover>
+          <S.TopButton $visible={isTopButtonVisible} onClick={MoveToTop} />
+        </S.TopButtonCover>{" "}
+      </S.SearchContainer>
+    </S.Container>
+  );
+};
+export default MainDetail;

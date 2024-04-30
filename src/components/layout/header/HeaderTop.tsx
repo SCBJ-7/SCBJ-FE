@@ -91,6 +91,12 @@ const Header = () => {
       title = "알림";
       undo = true;
       break;
+    case PATH.MAIN_DETAIL:
+      alarmIC = false;
+      settingIC = false;
+      title = "메인상세";
+      undo = true;
+      break;
     default: // 없음
   }
   const undoHandler = () => {

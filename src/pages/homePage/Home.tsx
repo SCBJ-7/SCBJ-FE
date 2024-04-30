@@ -11,7 +11,7 @@ import NavToSearchSection from "./navToSearchSection/NavToSearchSection";
 import PercentAnimator from "./percentAnimator/PercentAnimator";
 import SequenceSection from "./sequenceSection/SequenceSection";
 import TextLocaleAnimator from "./textAnimator/TextAnimator";
-import TitleSection from "./titleSection/TitleSection";
+// import TitleSection from "./titleSection/TitleSection";
 import WeekendCarousel from "./weekendCarousel/WeekendCarousel";
 
 const Home = () => {
@@ -46,7 +46,6 @@ const Home = () => {
   return (
     <S.Container $weekLength={weekendHotels?.length}>
       <MainHeader />
-      <TitleSection />
       <NavToSearchSection />
 
       <S.SaleCarouselContainer>
@@ -60,7 +59,15 @@ const Home = () => {
           <span>할인 호텔</span>
         </S.TextSlider>
         <div className="divider"></div>
-        <ItemCarousel
+        {/* <Carousel
+          images={rawData.hotelImageUrlList}
+          height={300}
+          arrows={true}
+          infinite={false}
+          innerShadow={true}
+          draggable={true}
+        /> */}
+        {/* <ItemCarousel
           currentLocale={currentLocale}
           localeAndHotel={localeAndHotel}
           onChangeLocale={setCurrentLocale}
@@ -68,7 +75,7 @@ const Home = () => {
           arrows={true}
           infinite={false}
           draggable={true}
-        />
+        /> */}
         <div className="divider"></div>
         <SequenceSection
           indicatorRange={indicatorRange}

@@ -21,7 +21,6 @@ const RoomDetail = () => {
 
   const { data } = useRoomQuery(productId, isLoggedIn);
   const { rawData, discountRate } = data;
-
   const { handleToast } = useToastConfig();
 
   useEffect(() => {
