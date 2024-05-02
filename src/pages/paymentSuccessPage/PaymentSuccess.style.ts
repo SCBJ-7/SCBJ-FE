@@ -1,6 +1,6 @@
-import borderImgSrc from "@assets/icons/border.svg";
+import borderImgSrc from "@/assets/icons/border.svg";
 
-import type { ColorKeys, TypoKeys } from "@styles/theme";
+import type { ColorKeys, TypoKeys } from "@/styles/theme";
 import styled, { DefaultTheme } from "styled-components";
 
 export {
@@ -9,8 +9,8 @@ export {
   ThumbnailWrapper,
   Thumbnail,
   TitleWrapper,
-} from "@pages/paymentPage/components/paymentInfoSection/PaymentInfoSection.style";
-export { LeftBox, RightBox } from "@pages/roomDetailPage/RoomDetail.style";
+} from "@/pages/paymentPage/components/paymentInfoSection/PaymentInfoSection.style";
+export { LeftBox, RightBox } from "@/pages/roomDetailPage/RoomDetail.style";
 
 export const PurchasedContainer = styled.main`
   padding-top: 56px;

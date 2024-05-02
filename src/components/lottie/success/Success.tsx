@@ -1,4 +1,4 @@
-import success from "@assets/lottie/success.json";
+import success from "@/assets/lottie/success.json";
 import Lottie from "lottie-react";
 
 const Success = () => {

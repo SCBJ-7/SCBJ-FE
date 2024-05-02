@@ -1,4 +1,3 @@
-import Layout from "@components/layout/Layout";
 import { Suspense } from "react";
 import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
 
@@ -8,6 +7,7 @@ import App from "@/App.tsx";
 import LoadingFallback from "@/components/deferredComponent/LoadingFallback.tsx";
 import ApiErrorBoundary from "@/components/errorBoundary/ErrorBoundary.tsx";
 import { HelmetTag } from "@/components/Helmet/Helmet.tsx";
+import Layout from "@/components/layout/Layout.tsx";
 import Redirect from "@/components/redirect/Redirect.tsx";
 import { PATH } from "@/constants/path.ts";
 import NotFound from "@/pages/notFoundPage";

@@ -1,11 +1,11 @@
 import { BANK_LIST } from "@/constants/bank";
 import { PATH } from "@/constants/path";
 import { useUserInfoStore } from "@/store/store";
-import { patchAccount } from "@apis/patchAccount";
-import usePreventLeave from "@hooks/common/usePreventLeave";
-import useToastConfig from "@hooks/common/useToastConfig";
+import { patchAccount } from "@/apis/patchAccount";
+import usePreventLeave from "@/hooks/common/usePreventLeave";
+import useToastConfig from "@/hooks/common/useToastConfig";
 
-import type { AccountData } from "@type/profile";
+import type { AccountData } from "@/types/profile";
 import { AnimatePresence, useAnimation } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";

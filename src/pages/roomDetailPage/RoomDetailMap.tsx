@@ -1,4 +1,4 @@
-import IconMapPin from "@assets/icons/ic_map-pin.svg?react";
+import IconMapPin from "@/assets/icons/ic_map-pin.svg?react";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { useEffect, useRef } from "react";
 import { useSearchParams } from "react-router-dom";

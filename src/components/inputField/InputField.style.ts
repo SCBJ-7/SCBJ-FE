@@ -1,4 +1,4 @@
-import { hexToRgba } from "@utils/hexTorgba.ts";
+import { hexToRgba } from "@/utils/styleFormatter";
 import styled, { DefaultTheme } from "styled-components";
 
 import { ColorKeys } from "@/styles/theme";

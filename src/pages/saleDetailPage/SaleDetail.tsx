@@ -1,8 +1,8 @@
-import Caption from "@components/caption/Caption";
-import Card from "@components/card/Card";
-import CardItem from "@components/cardItem/CardItem";
-import { CaptionWrapper } from "@pages/paymentPage/Payment.style";
-import { calculateFee } from "@utils/calculator";
+import Caption from "@/components/caption/Caption";
+import Card from "@/components/card/Card";
+import CardItem from "@/components/cardItem/CardItem";
+import { CaptionWrapper } from "@/pages/paymentPage/Payment.style";
+import { calculateFee } from "@/utils/calculator";
 import { parse, sub, format } from "date-fns";
 import { useParams, useSearchParams } from "react-router-dom";
 

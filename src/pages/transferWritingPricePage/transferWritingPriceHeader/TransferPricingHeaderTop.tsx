@@ -1,4 +1,4 @@
-import { useStateHeaderStore } from "@store/store";
+import { useStateHeaderStore } from "@/store/store";
 import { useLocation } from "react-router-dom";
 
 import * as S from "./TransferPricingHeaderTop.style";

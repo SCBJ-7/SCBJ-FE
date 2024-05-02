@@ -1,4 +1,4 @@
-import { TIME_UNIT } from "@constants/time";
+import { TIME_UNIT } from "@/constants/time";
 import { format, parse } from "date-fns";
 import { ko } from "date-fns/locale";
 

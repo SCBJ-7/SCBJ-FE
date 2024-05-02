@@ -1,4 +1,4 @@
-import { NAV_LIST } from "@constants/sale";
+import { NAV_LIST } from "@/constants/sale";
 import { differenceInDays } from "date-fns";
 import { useSearchParams } from "react-router-dom";
 
@@ -6,7 +6,7 @@ import SaleItem from "./components/saleItem/SaleItem";
 import SaleNav from "./components/saleNav/SaleNav";
 import * as S from "./TransferSale.style";
 
-import type { ISaleList } from "@type/saleList";
+import type { ISaleList } from "@/types/saleList";
 
 import { useSaleListQuery } from "@/hooks/api/useSaleQuery";
 import { useLoadUserInfo } from "@/hooks/common/useLoadUserInfo";

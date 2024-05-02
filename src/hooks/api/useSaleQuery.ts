@@ -1,5 +1,5 @@
-import { fetchSaleDetail } from "@apis/fetchSaleDetail";
-import { fetchSaleList } from "@apis/fetchSaleList";
+import { fetchSaleDetail } from "@/apis/fetchSaleDetail";
+import { fetchSaleList } from "@/apis/fetchSaleList";
 import { useQuery, useSuspenseQuery } from "@tanstack/react-query";
 
 import type { ProfileData } from "@/types/profile";

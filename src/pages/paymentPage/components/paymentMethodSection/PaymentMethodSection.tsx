@@ -1,4 +1,4 @@
-import kakaopaySrc from "@assets/icons/ic_kakao_pay.png";
+import kakaopaySrc from "@/assets/icons/ic_kakao_pay.png";
 import { useFormContext } from "react-hook-form";
 
 import * as S from "./PaymentMethodSection.style";

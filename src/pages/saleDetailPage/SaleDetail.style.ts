@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import type { ColorKeys, TypoKeys } from "@styles/theme";
+import type { ColorKeys, TypoKeys } from "@/styles/theme";
 
 export {
   Row,
@@ -8,8 +8,8 @@ export {
   ThumbnailWrapper,
   Thumbnail,
   TitleWrapper,
-} from "@pages/paymentPage/components/paymentInfoSection/PaymentInfoSection.style";
-import borderImgSrc from "@assets/icons/border.svg";
+} from "@/pages/paymentPage/components/paymentInfoSection/PaymentInfoSection.style";
+import borderImgSrc from "@/assets/icons/border.svg";
 
 export const TopSection = styled.section`
   width: 100%;

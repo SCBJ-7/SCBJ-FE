@@ -1,4 +1,4 @@
-import { END_POINTS } from "@constants/api";
+import { END_POINTS } from "@/constants/api";
 
 import { axiosInstance } from "./axiosInstance";
 

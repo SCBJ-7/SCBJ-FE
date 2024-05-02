@@ -1,6 +1,6 @@
 import { changeNumber } from "@/apis/fetchUserInfo";
 import { useUserInfoStore } from "@/store/store";
-import useToastConfig from "@hooks/common/useToastConfig";
+import useToastConfig from "@/hooks/common/useToastConfig";
 import { useRef, useState } from "react";
 
 import * as S from "./ManagePhoneNumber.style";

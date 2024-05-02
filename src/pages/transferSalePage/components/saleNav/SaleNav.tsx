@@ -1,5 +1,5 @@
-import { PATH } from "@constants/path";
-import { NAV_LIST } from "@constants/sale";
+import { PATH } from "@/constants/path";
+import { NAV_LIST } from "@/constants/sale";
 import { useSearchParams } from "react-router-dom";
 
 import * as S from "./SaleNav.style";
@@ -17,8 +17,8 @@ const SaleNav = () => {
             !status && itemStatus === ""
               ? "active"
               : status === itemStatus
-              ? "active"
-              : ""
+                ? "active"
+                : ""
           }
           to={itemStatus ? `?status=${itemStatus}` : PATH.SALE_LIST}
         >

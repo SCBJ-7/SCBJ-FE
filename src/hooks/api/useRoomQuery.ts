@@ -1,8 +1,8 @@
-import { getRoom } from "@apis/fetchRoom";
+import { getRoom } from "@/apis/fetchRoom";
 import { useSuspenseQuery } from "@tanstack/react-query";
-import { calculateDiscount } from "@utils/calculator";
+import { calculateDiscount } from "@/utils/calculator";
 
-import type { RoomData } from "@type/room";
+import type { RoomData } from "@/types/room";
 import type { AxiosError } from "axios";
 
 interface RoomQueryData {

@@ -1,6 +1,6 @@
-import { logout } from "@apis/logout";
-import { PATH } from "@constants/path";
-import useToastConfig from "@hooks/common/useToastConfig";
+import { logout } from "@/apis/logout";
+import { PATH } from "@/constants/path";
+import useToastConfig from "@/hooks/common/useToastConfig";
 import { useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";

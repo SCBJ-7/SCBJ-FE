@@ -1,4 +1,4 @@
-import useToastConfig from "@hooks/common/useToastConfig";
+import useToastConfig from "@/hooks/common/useToastConfig";
 import { format, isSaturday, isSunday, subDays } from "date-fns";
 import { ko } from "date-fns/locale";
 import { useState } from "react";

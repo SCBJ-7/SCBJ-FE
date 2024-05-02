@@ -1,6 +1,6 @@
 import useOnClickOutside from "@/hooks/common/useOnClickOutside";
-import ModalPortal from "@components/portal/ModalPortal";
-import { useSearchFilterInfoStore } from "@store/store";
+import ModalPortal from "@/components/portal/ModalPortal";
+import { useSearchFilterInfoStore } from "@/store/store";
 import { useRef, useState } from "react";
 import DescriptionModal from "../descriptionModal/DescriptionModal";
 import FilterModal from "../filterModal/FilterModal";

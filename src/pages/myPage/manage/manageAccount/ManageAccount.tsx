@@ -1,6 +1,6 @@
 import { useAccountQuery } from "@/hooks/api/useUserInfoQuery";
-import { PATH } from "@constants/path";
-import useToastConfig from "@hooks/common/useToastConfig";
+import { PATH } from "@/constants/path";
+import useToastConfig from "@/hooks/common/useToastConfig";
 import { useEffect } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 
