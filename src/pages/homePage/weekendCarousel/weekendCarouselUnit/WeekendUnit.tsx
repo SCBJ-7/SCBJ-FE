@@ -20,6 +20,7 @@ const WeekendUnit = ({ item }: UnitProps) => {
   const onClickHandler = () => {
     navigate(PATH.DETAIL_ROOM(item[1].id));
   };
+  console.log("item", item[1]);
 
   return (
     <S.LocaleWrapper onClick={onClickHandler}>
@@ -35,6 +36,7 @@ const WeekendUnit = ({ item }: UnitProps) => {
           <section>{item[1].isOceanViewIncluded && "오션뷰"}</section>
         )}
       </S.Stickers>
+      <S.HotelRate>{item[1]?.hotelRate}</S.HotelRate>
       <S.Titles>
         <h1>{item[1].hotelName}</h1>
         <h3>{item[1].roomType}</h3>

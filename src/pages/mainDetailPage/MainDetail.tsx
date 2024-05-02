@@ -93,7 +93,7 @@ const MainDetail = () => {
       behavior: "smooth",
     });
   };
-  console.log("a", searchInfo);
+
   return (
     <S.Container>
       <MainTheme />

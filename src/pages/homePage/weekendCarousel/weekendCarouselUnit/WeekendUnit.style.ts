@@ -103,3 +103,5 @@ export const Period = styled.div`
   background-color: ${({ theme }) => theme.color.greyScale6};
   border-radius: 4px;
 `;
+
+export const HotelRate = styled.div``;

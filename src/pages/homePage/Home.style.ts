@@ -52,15 +52,20 @@ export const TextSlider = styled.div`
 
 export const WeekendCarouselContainer = styled.div`
   width: 100%;
-  height: 467px;
+  height: 497px;
   margin: 0 20px;
   background-color: white;
   margin-bottom: 60px;
 `;
 
 export const TitleSection = styled.div`
-  margin: 40px 20px 0;
-  height: 46px;
+  margin: 40px 20px 8px;
   font-size: 18px;
   font-weight: 800;
+`;
+
+export const SubTitle = styled.div`
+  width: 100%;
+  ${({ theme }) => theme.typo.body3}
+  margin: 0 20px 25px;
 `;

@@ -67,7 +67,7 @@ const Home = () => {
           innerShadow={true}
           draggable={true}
         /> */}
-        {/* <ItemCarousel
+        <ItemCarousel
           currentLocale={currentLocale}
           localeAndHotel={localeAndHotel}
           onChangeLocale={setCurrentLocale}
@@ -75,7 +75,7 @@ const Home = () => {
           arrows={true}
           infinite={false}
           draggable={true}
-        /> */}
+        />
         <div className="divider"></div>
         <SequenceSection
           indicatorRange={indicatorRange}
@@ -86,7 +86,8 @@ const Home = () => {
       </S.SaleCarouselContainer>
       {weekendHotels && weekendHotels.length !== 0 && (
         <S.WeekendCarouselContainer className="week-container">
-          <S.TitleSection>주말 호캉스 추천</S.TitleSection>
+          <S.TitleSection>프리미엄 호캉스</S.TitleSection>
+          <S.SubTitle>퍼센특가로 만나는 4-5성급 호텔 모음</S.SubTitle>
 
           <WeekendCarousel
             weekendHotels={weekendHotels}
