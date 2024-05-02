@@ -1,4 +1,4 @@
-import priceFormat from "@utils/priceFormat";
+import priceFormat from "@/utils/priceFormat";
 import { format } from "date-fns";
 import { ko } from "date-fns/locale";
 import { motion, useAnimate } from "framer-motion";

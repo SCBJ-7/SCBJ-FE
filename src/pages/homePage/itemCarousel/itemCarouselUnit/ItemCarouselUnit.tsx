@@ -1,6 +1,6 @@
-import { PATH } from "@constants/path";
-import { LocaleItem } from "@type/saleSection";
-import priceFormat from "@utils/priceFormat";
+import { PATH } from "@/constants/path";
+import { LocaleItem } from "@/types/saleSection";
+import priceFormat from "@/utils/priceFormat";
 import { format, parseISO } from "date-fns";
 import { useNavigate } from "react-router-dom";
 

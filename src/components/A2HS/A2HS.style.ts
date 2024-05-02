@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { IoIosClose } from "react-icons/io";
 import styled from "styled-components";
 
-import { breakpoints } from "@/styles/theme";
+import breakpoints from "@/styles/breakpoints";
 
 export const BackDrop = styled(motion.div)`
   position: fixed;
@@ -41,11 +41,11 @@ export const A2HSContainer = styled(motion.div)`
 
   transform: translateX(-50%);
 
-  @media (max-width: ${breakpoints.tablet}) {
+  @media (max-width: ${breakpoints.md}) {
     width: 100%;
   }
 
-  @media (max-width: ${breakpoints.mobile}) {
+  @media (max-width: ${breakpoints.sm}) {
     width: 100%;
   }
 `;
@@ -76,12 +76,12 @@ export const IconWrapper = styled.div`
   border-radius: 16px;
   overflow: hidden;
 
-  @media (max-width: ${breakpoints.tablet}) {
+  @media (max-width: ${breakpoints.md}) {
     width: 80px;
     height: 80px;
   }
 
-  @media (max-width: ${breakpoints.mobile}) {
+  @media (max-width: ${breakpoints.sm}) {
     width: 80px;
     height: 80px;
   }
@@ -117,11 +117,11 @@ const Button = styled.button`
 
   width: 70%;
 
-  @media (max-width: ${breakpoints.tablet}) {
+  @media (max-width: ${breakpoints.md}) {
     width: 90%;
   }
 
-  @media (max-width: ${breakpoints.mobile}) {
+  @media (max-width: ${breakpoints.sm}) {
     width: 100%;
   }
 

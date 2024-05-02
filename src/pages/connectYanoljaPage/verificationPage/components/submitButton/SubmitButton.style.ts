@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import { hexToRgba } from "@/utils/hexTorgba";
+import { hexToRgba } from "@/utils/styleFormatter";
 
 export const BottomWrapper = styled.div`
   margin-top: 3.5em;

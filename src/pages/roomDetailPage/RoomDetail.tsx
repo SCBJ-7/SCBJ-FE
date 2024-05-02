@@ -1,15 +1,15 @@
-import Carousel from "@components/carousel/Carousel";
-import useToastConfig from "@hooks/common/useToastConfig";
-import RoomHeader from "@pages/roomDetailPage/components/roomHeader/RoomHeader";
-import RoomInfo from "@pages/roomDetailPage/components/roomInfo/RoomInfo";
-import RoomNavBar from "@pages/roomDetailPage/components/roomNavBar/RoomNavBar";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 
 import * as S from "./RoomDetail.style";
 
+import Carousel from "@/components/carousel/Carousel";
 import { HelmetTag } from "@/components/Helmet/Helmet";
 import { useRoomQuery } from "@/hooks/api/useRoomQuery";
+import useToastConfig from "@/hooks/common/useToastConfig";
+import RoomHeader from "@/pages/roomDetailPage/components/roomHeader/RoomHeader";
+import RoomInfo from "@/pages/roomDetailPage/components/roomInfo/RoomInfo";
+import RoomNavBar from "@/pages/roomDetailPage/components/roomNavBar/RoomNavBar";
 import useAuthStore from "@/store/authStore";
 
 const RoomDetail = () => {

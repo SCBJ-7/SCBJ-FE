@@ -1,5 +1,5 @@
-import { fetchSearchList } from "@apis/fetchSeachList";
-import { useSearchFilterInfoStore } from "@store/store";
+import { fetchSearchList } from "@/apis/fetchSeachList";
+import { useSearchFilterInfoStore } from "@/store/store";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
 

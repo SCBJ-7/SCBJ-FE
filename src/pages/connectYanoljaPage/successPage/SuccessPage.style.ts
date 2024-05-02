@@ -1,5 +1,5 @@
-import { breakpoints } from "@styles/theme";
-import { hexToRgba } from "@utils/hexTorgba";
+import breakpoints from "@/styles/breakpoints";
+import { hexToRgba } from "@/utils/styleFormatter";
 import styled, { DefaultTheme } from "styled-components";
 
 export const PageContainer = styled.div`
@@ -20,11 +20,11 @@ export const MainWrapper = styled.div`
 
   padding-top: 218px;
 
-  @media (max-width: ${breakpoints.tablet}) {
+  @media (max-width: ${breakpoints.md}) {
     padding-top: 120px;
   }
 
-  @media (max-width: ${breakpoints.mobile}) {
+  @media (max-width: ${breakpoints.sm}) {
     padding-top: 120px;
   }
 `;
@@ -36,11 +36,11 @@ export const PercentHotelLogo = styled.div`
     width: 100%;
   }
 
-  @media (max-width: ${breakpoints.tablet}) {
+  @media (max-width: ${breakpoints.md}) {
     width: 170px;
   }
 
-  @media (max-width: ${breakpoints.mobile}) {
+  @media (max-width: ${breakpoints.sm}) {
     width: 150px;
   }
 `;
@@ -48,11 +48,11 @@ export const PercentHotelLogo = styled.div`
 export const LottieWrapper = styled.div`
   width: 90px;
 
-  @media (max-width: ${breakpoints.tablet}) {
+  @media (max-width: ${breakpoints.md}) {
     width: 80px;
   }
 
-  @media (max-width: ${breakpoints.mobile}) {
+  @media (max-width: ${breakpoints.sm}) {
     width: 70px;
   }
 `;
@@ -64,7 +64,7 @@ export const XIcon = styled.div`
     width: 100%;
   }
 
-  @media (max-width: ${breakpoints.mobile}) {
+  @media (max-width: ${breakpoints.sm}) {
     width: 12px;
   }
 `;
@@ -125,11 +125,11 @@ export const Button = styled.button.withConfig({
 })<ButtonVariantProps>`
   width: 60%;
 
-  @media (max-width: ${breakpoints.tablet}) {
+  @media (max-width: ${breakpoints.md}) {
     width: 80%;
   }
 
-  @media (max-width: ${breakpoints.mobile}) {
+  @media (max-width: ${breakpoints.sm}) {
     width: 100%;
   }
 

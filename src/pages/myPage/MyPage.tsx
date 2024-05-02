@@ -1,4 +1,4 @@
-import { PATH } from "@constants/path";
+import { PATH } from "@/constants/path";
 import { Outlet, useNavigate } from "react-router-dom";
 
 import MyPageNav from "./components/myPageNav/MyPageNav";

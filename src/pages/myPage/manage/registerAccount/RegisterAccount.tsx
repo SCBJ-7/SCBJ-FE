@@ -2,7 +2,7 @@ import EnterAccountInfo from "@/components/account/enterAccountInfo/EnterAccount
 import TermsAgreement from "@/components/account/termsAgreement/TermsAgreement";
 
 import type { AccountData } from "@/types/profile";
-import { PATH } from "@constants/path";
+import { PATH } from "@/constants/path";
 import { useEffect, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 

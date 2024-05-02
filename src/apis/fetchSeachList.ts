@@ -1,4 +1,4 @@
-import { BASE_URL, END_POINTS } from "@constants/api";
+import { BASE_URL, END_POINTS } from "@/constants/api";
 import axios from "axios";
 
 export const fetchSearchList = async (

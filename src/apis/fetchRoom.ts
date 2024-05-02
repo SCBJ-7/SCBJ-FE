@@ -1,8 +1,8 @@
-import { ACCESS_TOKEN, BASE_URL, END_POINTS } from "@constants/api";
+import { ACCESS_TOKEN, BASE_URL, END_POINTS } from "@/constants/api";
 import axios from "axios";
 
-import type { ResponseData } from "@type/responseType";
-import type { RoomData } from "@type/room";
+import type { ResponseData } from "@/types/responseType";
+import type { RoomData } from "@/types/room";
 
 export const getRoom = async (
   productId: string,

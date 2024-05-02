@@ -1,4 +1,4 @@
-import { PATH } from "@constants/path";
+import { PATH } from "@/constants/path";
 import { format, parseISO } from "date-fns";
 import { useNavigate } from "react-router-dom";
 

@@ -1,6 +1,6 @@
 import { changeName } from "@/apis/fetchUserInfo";
 import { KOREAN_REGEX } from "@/constants/regex";
-import useToastConfig from "@hooks/common/useToastConfig";
+import useToastConfig from "@/hooks/common/useToastConfig";
 import { useRef, useState } from "react";
 
 import * as S from "./ManageName.style";

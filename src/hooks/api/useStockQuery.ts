@@ -1,4 +1,4 @@
-import { getStock } from "@apis/fetchPayment";
+import { getStock } from "@/apis/fetchPayment";
 import { useQuery } from "@tanstack/react-query";
 
 export const useStockQuery = (productId: string) => {

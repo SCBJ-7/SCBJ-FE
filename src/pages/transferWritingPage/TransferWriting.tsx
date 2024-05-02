@@ -1,7 +1,7 @@
-import { fetchUserInfo } from "@apis/fetchUserInfo.ts";
-import NoResult from "@components/noResult/NoResult";
-import { PATH } from "@constants/path";
-import useToastConfig from "@hooks/common/useToastConfig";
+import { fetchUserInfo } from "@/apis/fetchUserInfo.ts";
+import NoResult from "@/components/noResult/NoResult";
+import { PATH } from "@/constants/path";
+import useToastConfig from "@/hooks/common/useToastConfig";
 import { useQuery } from "@tanstack/react-query";
 import { AnimatePresence } from "framer-motion";
 import { useEffect } from "react";

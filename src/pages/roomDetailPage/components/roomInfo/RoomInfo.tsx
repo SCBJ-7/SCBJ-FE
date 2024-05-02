@@ -1,19 +1,19 @@
-import IconBed from "@assets/icons/ic_bed.svg?react";
-import IconCaretRight from "@assets/icons/ic_caret_right.svg?react";
-import IconChat from "@assets/icons/ic_chat-fill.svg?react";
-import IconMapPin from "@assets/icons/ic_map-pin.svg?react";
-import IconStar from "@assets/icons/ic_star-fill.svg?react";
-import IconUser from "@assets/icons/ic_users.svg?react";
-import RoomThemeOption from "@pages/roomDetailPage/components/roomThemeOption/RoomThemeOption";
-import * as S from "@pages/roomDetailPage/RoomDetail.style";
-import { formatDateAndTime } from "@utils/dateFormatter";
 import { useLocation } from "react-router-dom";
 
 import ExpandableContent from "./ExpandableContent";
 
-import type { RoomData } from "@type/room";
+import type { RoomData } from "@/types/room";
 
+import IconBed from "@/assets/icons/ic_bed.svg?react";
+import IconCaretRight from "@/assets/icons/ic_caret_right.svg?react";
+import IconChat from "@/assets/icons/ic_chat-fill.svg?react";
+import IconMapPin from "@/assets/icons/ic_map-pin.svg?react";
+import IconStar from "@/assets/icons/ic_star-fill.svg?react";
+import IconUser from "@/assets/icons/ic_users.svg?react";
 import Tag from "@/components/tag/Tag";
+import RoomThemeOption from "@/pages/roomDetailPage/components/roomThemeOption/RoomThemeOption";
+import * as S from "@/pages/roomDetailPage/RoomDetail.style";
+import { formatDateAndTime } from "@/utils/dateFormatter";
 
 interface RoomInfoProps {
   room: RoomData;
@@ -123,7 +123,9 @@ const RoomInfo = ({ room, discount }: RoomInfoProps) => {
               </S.Row>
               <S.Row>
                 <IconBed />
-                <S.Text variant="body4">{room.bedType}</S.Text>
+                <S.Text variant="body4" color="greyScale2">
+                  {room.bedType}
+                </S.Text>
               </S.Row>
             </S.VStack5>
           </S.HStack1>
@@ -134,7 +136,7 @@ const RoomInfo = ({ room, discount }: RoomInfoProps) => {
           <S.HStack1>
             <S.Text variant="body3">추가 정보</S.Text>
 
-            {room.facilityInformation.split("\n").map((line) => {
+            {room.facilityInformation?.split("\n").map((line) => {
               return (
                 <S.Text variant="body4" color="greyScale2">
                   {line}

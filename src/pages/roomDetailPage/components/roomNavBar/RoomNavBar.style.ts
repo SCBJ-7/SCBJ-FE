@@ -1,20 +1,26 @@
-import IconHeart from "@assets/icons/ic_heart-fill.svg?react";
-import { hexToRgba } from "@utils/hexTorgba.ts";
 import styled, { css, DefaultTheme } from "styled-components";
 
-export { Text } from "@pages/roomDetailPage/RoomDetail.style";
+import IconHeart from "@/assets/icons/ic_heart-fill.svg?react";
+import { hexToRgba } from "@/utils/styleFormatter";
+
+export { Text } from "@/pages/roomDetailPage/RoomDetail.style";
 
 export const Wrapper = styled.section`
   width: 100%;
   max-width: 768px;
 
-  padding: 1.25rem 1rem;
+  padding-block-start: 0.825rem;
+  padding-block-end: 1.875rem;
+
+  padding-inline: 1.25rem;
+
   position: fixed;
   bottom: 0;
   background-color: ${({ theme }) => theme.color.white};
 
   display: flex;
   align-items: center;
+  justify-content: space-between;
   gap: 1rem;
 
   box-shadow: 0 0 0.4rem rgba(5, 44, 82, 0.1);
@@ -86,7 +92,16 @@ export const Button = styled.button.withConfig({
 export const ButtonWrapper = styled.div`
   display: flex;
   gap: 8px;
-  width: 100%;
+
+  width: 70%;
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.md}) {
+    width: 75%;
+  }
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.sm}) {
+    width: 100%;
+  }
 `;
 
 export const Heart = styled(IconHeart)`

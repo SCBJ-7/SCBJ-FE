@@ -1,4 +1,4 @@
-import FilterIcon from "@assets/icons/ic_arrows-down-up.svg?react";
+import FilterIcon from "@/assets/icons/ic_arrows-down-up.svg?react";
 import styled from "styled-components";
 
 export const SearchFilterCover = styled.div`

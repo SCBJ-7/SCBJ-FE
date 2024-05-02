@@ -1,4 +1,4 @@
-import blank from "@assets/lottie/blank.json";
+import blank from "@/assets/lottie/blank.json";
 import Lottie from "lottie-react";
 
 const Blank = () => {

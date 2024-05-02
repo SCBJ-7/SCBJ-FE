@@ -30,3 +30,4 @@ dist-ssr
 .eslintcache
 .env
 auth.json
+*storybook.log

@@ -1,6 +1,6 @@
-import Caption from "@components/caption/Caption";
-import Modal from "@components/modal/Modal";
-import { paymentCaptions } from "@constants/caption";
+import Caption from "@/components/caption/Caption";
+import Modal from "@/components/modal/Modal";
+import { paymentCaptions } from "@/constants/caption";
 import { isAxiosError } from "axios";
 import { useEffect, useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
