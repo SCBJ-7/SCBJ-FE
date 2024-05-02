@@ -1,6 +1,6 @@
-import * as S from "@pages/saleDetailPage/SaleDetail.style";
+import * as S from "@/pages/saleDetailPage/SaleDetail.style";
 
-import type { ISaleData } from "@type/saleDetail";
+import type { ISaleData } from "@/types/saleDetail";
 
 import { formatDateString } from "@/utils/dateFormatter";
 

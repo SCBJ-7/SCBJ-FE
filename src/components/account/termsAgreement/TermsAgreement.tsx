@@ -1,5 +1,5 @@
-import useToastConfig from "@hooks/common/useToastConfig";
-import { ColorKeys, TypoKeys } from "@styles/theme";
+import useToastConfig from "@/hooks/common/useToastConfig";
+import { ColorKeys, TypoKeys } from "@/styles/theme";
 import { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 

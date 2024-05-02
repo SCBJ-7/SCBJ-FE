@@ -1,6 +1,6 @@
 import axios from "axios";
 
-import type { MapData } from "@type/room";
+import type { MapData } from "@/types/room";
 
 export const getGeoCoder = async (query: string): Promise<MapData> => {
   const { data } = await axios.get<MapData>(

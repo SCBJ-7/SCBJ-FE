@@ -1,12 +1,12 @@
-import { ResponseError } from "@components/error/Error";
+import { ResponseError } from "@/components/error/Error";
 import {
   ACCESS_TOKEN,
   BASE_URL,
   ERROR_CODE,
   REFRESH_TOKEN,
   STATUS_CODE,
-} from "@constants/api";
-import { PATH } from "@constants/path";
+} from "@/constants/api";
+import { PATH } from "@/constants/path";
 import axios from "axios";
 
 import { fetchNewToken } from "./fetchNewToken";

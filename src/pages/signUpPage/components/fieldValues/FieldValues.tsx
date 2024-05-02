@@ -1,6 +1,6 @@
 import { useValidateEmailMutation } from "@/hooks/api/useValidateEmailMutation";
-import InputField from "@components/inputField/InputField";
-import { EMAIL_REGEX, PHONE_NUMBER_REGEX } from "@constants/regex";
+import InputField from "@/components/inputField/InputField";
+import { EMAIL_REGEX, PHONE_NUMBER_REGEX } from "@/constants/regex";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useFormContext } from "react-hook-form";

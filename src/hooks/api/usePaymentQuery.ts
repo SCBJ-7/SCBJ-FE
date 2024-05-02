@@ -2,11 +2,11 @@ import {
   getPayment,
   getPaymentCancel,
   getPaymentSuccess,
-} from "@apis/fetchPayment";
+} from "@/apis/fetchPayment";
 import { useQuery, useSuspenseQuery } from "@tanstack/react-query";
 
-import type { Nullable } from "@type/nullable";
-import type { PaymentData } from "@type/payment";
+import type { Nullable } from "@/types/nullable";
+import type { PaymentData } from "@/types/payment";
 
 import { KEY } from "@/constants/queryKey";
 

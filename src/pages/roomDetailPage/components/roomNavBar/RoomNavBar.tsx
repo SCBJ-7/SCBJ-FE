@@ -1,38 +1,18 @@
-import IconInfoMark from "@assets/icons/ic_question-mark.svg?react";
-import { PATH } from "@constants/path";
-import useToastConfig from "@hooks/common/useToastConfig";
-import { ReactNode, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import * as S from "./RoomNavBar.style";
 
-import type { TButtonVariant } from "./RoomNavBar.style";
-import type { RoomNavBarData } from "@type/room";
+import type { RoomNavBarData } from "@/types/room";
 
+import IconInfoMark from "@/assets/icons/ic_question-mark.svg?react";
 import { ResponseError } from "@/components/error/Error";
+import { Button } from "@/components/ui/button";
 import { STATUS_CODE } from "@/constants/api";
+import { PATH } from "@/constants/path";
 import { useStockQuery } from "@/hooks/api/useStockQuery";
+import useToastConfig from "@/hooks/common/useToastConfig";
 import useAuthStore from "@/store/authStore";
-
-interface ButtonProps {
-  text: ReactNode;
-  action: () => void;
-  status: boolean;
-  variant?: TButtonVariant;
-}
-
-const Button = ({ text, action, status, variant }: ButtonProps) => {
-  return (
-    <S.Button
-      type="button"
-      variant={variant}
-      disabled={!status}
-      onClick={action}
-    >
-      {text}
-    </S.Button>
-  );
-};
 
 interface RoomNavBarProps {
   room: RoomNavBarData;
@@ -86,12 +66,7 @@ const RoomNavBar = ({ room, roomId }: RoomNavBarProps) => {
   const buttonConfig = {
     propose: {
       buyer: {
-        text: (
-          <>
-            가격 제안
-            <IconInfoMark />
-          </>
-        ),
+        text: "가격 제안",
         action: () => console.log("가격 제안 페이지로 이동"),
       },
       seller: {
@@ -124,15 +99,26 @@ const RoomNavBar = ({ room, roomId }: RoomNavBarProps) => {
       <S.Heart />
       <S.ButtonWrapper>
         <Button
-          {...buttonConfig.propose[userType]}
-          status={room.saleStatus}
+          type="button"
           variant="outline"
-        />
+          size="md"
+          width="full"
+          disabled={room.saleStatus}
+          onClick={buttonConfig.propose[userType].action}
+          rightAddon={room.isSeller || <IconInfoMark />}
+        >
+          {buttonConfig.propose[userType].text}
+        </Button>
         <Button
-          {...buttonConfig.purchase[userType]}
-          status={room.saleStatus}
-          variant="fill"
-        />
+          type="button"
+          variant="solid"
+          size="md"
+          width="full"
+          disabled={room.saleStatus}
+          onClick={buttonConfig.purchase[userType].action}
+        >
+          {buttonConfig.purchase[userType].text}
+        </Button>
       </S.ButtonWrapper>
     </S.Wrapper>
   );

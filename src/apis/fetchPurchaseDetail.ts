@@ -1,7 +1,7 @@
-import { END_POINTS } from "@constants/api";
+import { END_POINTS } from "@/constants/api";
 
-import type { IPurchaseData } from "@type/purchaseDetail";
-import type { ResponseData } from "@type/responseType";
+import type { IPurchaseData } from "@/types/purchaseDetail";
+import type { ResponseData } from "@/types/responseType";
 
 import { axiosInstance } from "./axiosInstance";
 

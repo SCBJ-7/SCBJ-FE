@@ -1,4 +1,4 @@
-import ArrowSvg from "@assets/icons/ic_arrow.svg?react";
+import ArrowSvg from "@/assets/icons/ic_arrow.svg?react";
 import React, { useState, useEffect, useRef, PropsWithChildren } from "react";
 import styled from "styled-components";
 

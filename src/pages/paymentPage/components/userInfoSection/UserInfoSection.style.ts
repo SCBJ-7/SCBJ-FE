@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export { HStack, Text } from "@pages/paymentPage/Payment.style";
+export { HStack, Text } from "@/pages/paymentPage/Payment.style";
 
 export const Flex = styled.div`
   display: flex;

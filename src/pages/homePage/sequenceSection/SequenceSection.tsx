@@ -1,6 +1,6 @@
 import * as S from "./SequenceSection.style";
 
-import type { LocaleItem } from "@type/saleSection";
+import type { LocaleItem } from "@/types/saleSection";
 
 interface indicatorProps {
   indicatorRange: number[];

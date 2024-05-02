@@ -1,7 +1,7 @@
-import { fetchMainItem } from "@apis/fetchMainItems";
-import { locale } from "@constants/locale";
+import { fetchMainItem } from "@/apis/fetchMainItems";
+import { locale } from "@/constants/locale";
 import { useSuspenseQuery } from "@tanstack/react-query";
-import { LocaleItem, WeekendItem } from "@type/saleSection";
+import { LocaleItem, WeekendItem } from "@/types/saleSection";
 import { useState } from "react";
 
 import * as S from "./Home.style";

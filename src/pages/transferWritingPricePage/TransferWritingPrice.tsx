@@ -1,4 +1,4 @@
-import usePreventLeave from "@hooks/common/usePreventLeave";
+import usePreventLeave from "@/hooks/common/usePreventLeave";
 import { useEffect, useRef, useState } from "react";
 
 import AccountSection from "./accountSection/AccountSection";

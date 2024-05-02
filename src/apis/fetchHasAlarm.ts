@@ -1,6 +1,6 @@
-import { BASE_URL, END_POINTS } from "@constants/api";
-import { ReadType } from "@type/alarm";
-import { isAccessTokenExpired } from "@utils/checkToken";
+import { BASE_URL, END_POINTS } from "@/constants/api";
+import { ReadType } from "@/types/alarm";
+import { isAccessTokenExpired } from "@/utils/checkToken";
 import axios from "axios";
 
 export const fetchHasAlarm = async (): Promise<ReadType> => {

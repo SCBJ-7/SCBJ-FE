@@ -1,5 +1,5 @@
-import rightArrow from "@assets/icons/RightArrow.svg";
-import { PATH } from "@constants/path";
+import ic_arrow from "@/assets/icons/ic_arrow.svg";
+import { PATH } from "@/constants/path";
 
 import * as S from "./Manage.style";
 
@@ -23,7 +23,7 @@ const Manage = () => {
           <S.ManageListElement key={item.name} $visible={!hideAccountManage}>
             <S.ManageLink to={item.path}>
               <span>{item.name}</span>
-              <img src={rightArrow} alt={`${item.name}으로 이동하기`} />
+              <img src={ic_arrow} alt={`${item.name}으로 이동하기`} />
             </S.ManageLink>
           </S.ManageListElement>
         );

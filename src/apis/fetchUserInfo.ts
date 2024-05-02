@@ -1,6 +1,6 @@
 import { END_POINTS } from "@/constants/api";
-import { axiosInstance } from "@apis/axiosInstance";
-import { ProfileData } from "@type/profile";
+import { axiosInstance } from "@/apis/axiosInstance";
+import { ProfileData } from "@/types/profile";
 
 export const fetchUserInfo = async (): Promise<ProfileData> => {
   const { data } = await axiosInstance.get(END_POINTS.USER_INFO);

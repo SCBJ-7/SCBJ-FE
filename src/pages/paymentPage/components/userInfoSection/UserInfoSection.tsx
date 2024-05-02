@@ -1,6 +1,6 @@
-import Checkbox from "@components/checkbox/Checkbox";
-import { EMAIL_REGEX, PHONE_NUMBER_REGEX } from "@constants/regex";
-import { useLoadUserInfo } from "@hooks/common/useLoadUserInfo";
+import Checkbox from "@/components/checkbox/Checkbox";
+import { EMAIL_REGEX, PHONE_NUMBER_REGEX } from "@/constants/regex";
+import { useLoadUserInfo } from "@/hooks/common/useLoadUserInfo";
 import { useEffect, useState } from "react";
 import { Controller, useFormContext } from "react-hook-form";
 
