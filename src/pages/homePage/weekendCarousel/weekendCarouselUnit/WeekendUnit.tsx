@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import * as S from "./WeekendUnit.style";
 
 import ProgressiveImg from "@/components/progressiveImg/ProgressiveImg";
+import { StartImg } from "@/pages/searchPage/components/searchItem/SearchItem.style";
 
 interface UnitProps {
   item: [number, WeekendItem];
@@ -20,40 +21,32 @@ const WeekendUnit = ({ item }: UnitProps) => {
   const onClickHandler = () => {
     navigate(PATH.DETAIL_ROOM(item[1].id));
   };
-  console.log("item", item[1]);
 
   return (
     <S.LocaleWrapper onClick={onClickHandler}>
       <ProgressiveImg src={item[1].imageUrl} alt={item[1].hotelName} />
-      <S.Stickers>
-        {item[1].isBrunchIncluded && (
-          <section>{item[1].isBrunchIncluded && "조식제공"}</section>
-        )}
-        {item[1].isPoolIncluded && (
-          <section>{item[1].isPoolIncluded && "수영장"}</section>
-        )}
-        {item[1].isOceanViewIncluded && (
-          <section>{item[1].isOceanViewIncluded && "오션뷰"}</section>
-        )}
-      </S.Stickers>
-      <S.HotelRate>{item[1]?.hotelRate}</S.HotelRate>
+      <S.HotelRate>
+        <StartImg />
+
+        <div>{item[1]?.hotelRate}</div>
+        <div>&middot;</div>
+        <div>{item[1]?.reviewRate}</div>
+      </S.HotelRate>
       <S.Titles>
         <h1>{item[1].hotelName}</h1>
         <h3>{item[1].roomType}</h3>
       </S.Titles>
       <S.Price>
-        <h4>{priceFormat(item[1].originalPrice)}원</h4>
-        <section>
-          <S.Discounted>
-            <h1>{priceFormat(item[1].salePrice)} 원</h1>
-            <h1 className="percentage">
-              {Math.round(item[1].salePercentage * 100)}%
-            </h1>
-          </S.Discounted>
-          <S.Period>
-            {CHKIN} ~ {CHKOUT}
-          </S.Period>
-        </section>
+        <h4>{priceFormat(item[1].originalPrice)} 원</h4>
+        <S.Period>
+          {CHKIN} ~ {CHKOUT}
+        </S.Period>
+        <S.Discounted>
+          <h1>{priceFormat(item[1].salePrice)} 원</h1>
+          <h1 className="percentage">
+            {Math.round(item[1].salePercentage * 100)}%
+          </h1>
+        </S.Discounted>
       </S.Price>
     </S.LocaleWrapper>
   );

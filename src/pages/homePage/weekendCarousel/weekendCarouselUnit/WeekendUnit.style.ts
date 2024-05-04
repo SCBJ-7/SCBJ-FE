@@ -1,7 +1,8 @@
 import styled from "styled-components";
 
 export const LocaleWrapper = styled.div`
-  height: 343px;
+  margin-top: 30px;
+  height: 390px;
 
   background-color: ${({ theme }) => theme.color.greyScale7};
   border-radius: 12px;
@@ -12,7 +13,7 @@ export const LocaleWrapper = styled.div`
 
   & img {
     width: 100%;
-    height: 169px;
+    height: 195px;
     margin-bottom: 16px;
     object-fit: cover;
   }
@@ -104,4 +105,11 @@ export const Period = styled.div`
   border-radius: 4px;
 `;
 
-export const HotelRate = styled.div``;
+export const HotelRate = styled.div`
+  display: flex;
+  margin: 0 0 8px 16px;
+  ${({ theme }) => theme.typo.caption2}
+  > div {
+    padding-right: 0.1rem;
+  }
+`;

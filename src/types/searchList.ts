@@ -10,5 +10,5 @@ export interface ISearchList {
   checkIn: string;
   checkOut: string;
   hotelRate: number;
-  reviewRate: number;
+  reviewRate: string;
 }

@@ -11,10 +11,8 @@ export interface LocaleItem {
   checkInDate: string;
   checkOutDate: string;
   hotelRate: string;
-  isBrunchIncluded: boolean;
-  isPoolIncluded: boolean;
-  isOceanViewIncluded: boolean;
   roomThemeCount: number;
+  reviewRate: string;
 }
 
 export interface LocaleItemsType {
