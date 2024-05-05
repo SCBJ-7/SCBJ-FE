@@ -1,5 +1,5 @@
 import { fetchMainItem } from "@apis/fetchMainItems";
-import { locale } from "@constants/locale";
+
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { LocaleItem, WeekendItem } from "@type/saleSection";
 import { useState } from "react";
@@ -7,11 +7,10 @@ import { useState } from "react";
 import * as S from "./Home.style";
 import ItemCarousel from "./itemCarousel/ItemCarousel";
 import MainHeader from "./mainHeader/MainHeader";
+import EventCarousel from "./eventCarousel/EventCarousel";
+
 import NavToSearchSection from "./navToSearchSection/NavToSearchSection";
-import PercentAnimator from "./percentAnimator/PercentAnimator";
-import SequenceSection from "./sequenceSection/SequenceSection";
-import TextLocaleAnimator from "./textAnimator/TextAnimator";
-// import TitleSection from "./titleSection/TitleSection";
+
 import WeekendCarousel from "./weekendCarousel/WeekendCarousel";
 
 const Home = () => {
@@ -29,7 +28,7 @@ const Home = () => {
     .map((v, i) => [i, v[0], v[1]]);
 
   const [localeAndHotel] = useState(localeEntries);
-
+  console.log("localeEntries", localeEntries);
   const [currentLocale, setCurrentLocale] = useState<
     [number, string, LocaleItem[]]
   >(localeAndHotel[0]);
@@ -37,19 +36,19 @@ const Home = () => {
     .fill("")
     .map((_, i) => i);
 
-  // 주말 특가 관련 데이터
+  console.log(weekendProds);
   const WeekendMapped: [number, WeekendItem][] | undefined = weekendProds?.map(
     (v, i) => [i, v],
   );
   const [weekendHotels] = useState(WeekendMapped);
-
+  console.log("currentLocale", currentLocale);
   return (
     <S.Container $weekLength={weekendHotels?.length}>
       <MainHeader />
       <NavToSearchSection />
 
       <S.SaleCarouselContainer>
-        <S.TextSlider>
+        {/* <S.TextSlider>
           <TextLocaleAnimator text={locale[currentLocale[1]]} />
           <span>지역</span>
           <PercentAnimator
@@ -59,14 +58,6 @@ const Home = () => {
           <span>할인 호텔</span>
         </S.TextSlider>
         <div className="divider"></div>
-        {/* <Carousel
-          images={rawData.hotelImageUrlList}
-          height={300}
-          arrows={true}
-          infinite={false}
-          innerShadow={true}
-          draggable={true}
-        /> */}
         <ItemCarousel
           currentLocale={currentLocale}
           localeAndHotel={localeAndHotel}
@@ -82,12 +73,22 @@ const Home = () => {
           currentLocale={currentLocale}
           localeAndHotel={localeAndHotel}
           onSetSequence={setCurrentLocale}
+        /> */}
+        <EventCarousel />
+        <ItemCarousel
+          currentLocale={currentLocale}
+          localeAndHotel={localeAndHotel}
+          onChangeLocale={setCurrentLocale}
+          height={312}
+          arrows={true}
+          infinite={false}
+          draggable={true}
         />
       </S.SaleCarouselContainer>
       {weekendHotels && weekendHotels.length !== 0 && (
         <S.WeekendCarouselContainer className="week-container">
           <S.TitleSection>프리미엄 호캉스</S.TitleSection>
-          <S.SubTitle>퍼센특가로 만나는 4-5성급 호텔 모음</S.SubTitle>
+          <S.SubTitle>퍼센특가로 만나는 4-5성급 호텔 모음 </S.SubTitle>
 
           <WeekendCarousel
             weekendHotels={weekendHotels}

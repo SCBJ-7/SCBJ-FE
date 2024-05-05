@@ -21,15 +21,12 @@ export const Container = styled.section<{ $weekLength: undefined | number }>`
 `;
 
 export const SaleCarouselContainer = styled.div`
-  width: calc(100% - 40px);
+  width: 100%;
   height: 434px;
 
   background-color: white;
-  margin-bottom: 32px;
 
-  border-radius: 12px;
   overflow: hidden;
-  box-shadow: 4px 4px 10px 0 rgba(0, 0, 0, 0.1);
 `;
 
 export const TextSlider = styled.div`

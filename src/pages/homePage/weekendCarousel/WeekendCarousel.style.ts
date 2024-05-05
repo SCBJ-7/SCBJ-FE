@@ -15,7 +15,6 @@ export const CarouselContainer = styled.div<{
   gap: 8px;
 
   cursor: grab;
-
   touch-action: pan-y;
 `;
 
