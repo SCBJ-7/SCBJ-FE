@@ -124,7 +124,7 @@ const Home = () => {
             onChangeLocale={setCurrentLocale}
             height={343}
             arrows={true}
-            infinite={true}
+            infinite={false}
             draggable={true}
           />
         </S.WeekendCarouselContainer>

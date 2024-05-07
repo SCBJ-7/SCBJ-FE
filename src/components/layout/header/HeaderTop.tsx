@@ -1,7 +1,8 @@
-import { PATH } from "@/constants/path";
 import { useLocation, useNavigate } from "react-router-dom";
 
 import * as S from "./HeaderTop.style";
+
+import { PATH } from "@/constants/path";
 
 const Header = () => {
   const navigate = useNavigate();
@@ -13,16 +14,26 @@ const Header = () => {
   let title = "";
   let undo = true;
 
-  if (pathname.includes(PATH.WRITE_TRANSFER_PRICE)) {
-    const hotelName = params.get("hotelName");
-    if (hotelName) {
-      title = hotelName;
+  if (pathname.includes(PATH.MAIN_DETAIL)) {
+    const id = params.get("id");
+    undo = true;
+    if (id === "0") {
+      title = "봄 여행 숙소 추천";
+    } else if (id === "1") {
+      title = "가정의 달 숙소 추천";
     }
   }
 
   if (pathname.includes(PATH.SALE_DETAIL)) {
     undo = true;
     title = "판매내역 상세";
+  }
+
+  if (pathname.includes(PATH.WRITE_TRANSFER_PRICE)) {
+    const hotelName = params.get("id");
+    if (hotelName) {
+      title = hotelName;
+    }
   }
 
   switch (pathname) {
@@ -89,12 +100,6 @@ const Header = () => {
       alarmIC = false;
       settingIC = false;
       title = "알림";
-      undo = true;
-      break;
-    case PATH.MAIN_DETAIL:
-      alarmIC = false;
-      settingIC = false;
-      title = "메인상세";
       undo = true;
       break;
     default: // 없음

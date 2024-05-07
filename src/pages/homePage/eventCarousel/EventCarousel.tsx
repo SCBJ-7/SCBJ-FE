@@ -1,7 +1,9 @@
+import { PATH } from "@/constants/path";
 import * as S from "./EventCarousel.style";
 
 import { useCarousel } from "@/hooks/common/useCarousel";
 import { useCarouselSize } from "@/hooks/common/useCarouselSize";
+import { useNavigate } from "react-router-dom";
 
 interface EventItem {
   id: number;
@@ -27,6 +29,7 @@ const EventCarousel: React.FC<EventCarouselProps> = ({
   draggable,
   auto,
 }) => {
+  const navigate = useNavigate();
   const { slideWidth, sliderRef } = useCarouselSize();
   const slideList = infinite
     ? [
@@ -48,8 +51,11 @@ const EventCarousel: React.FC<EventCarouselProps> = ({
     infinite,
     slideWidth,
   });
-  console.log;
-  console.log("currentIndex", currentIndex);
+
+  const onClickHandler = (id: number) => {
+    navigate(`${PATH.MAIN_DETAIL}?id=${id}`);
+  };
+
   return (
     <>
       <S.Container $height={height}>
@@ -63,7 +69,10 @@ const EventCarousel: React.FC<EventCarouselProps> = ({
         >
           {slideList?.map((content, index) => (
             <S.ImageWrapper key={index} $height={height}>
-              <img src={content?.image} />
+              <img
+                src={content?.image}
+                onClick={() => onClickHandler(content?.id ?? 0)}
+              />
               <S.Title>
                 <div>{content?.title1}</div>
                 <div>{content?.title2}</div>

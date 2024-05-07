@@ -21,8 +21,8 @@ export const SliderContainer = styled.div`
 
 export const Title = styled.div`
   position: absolute;
-  bottom: 30%;
-  left: 24px;
+  bottom: 28%;
+  left: 30px;
 
   display: flex;
   flex-direction: column;
@@ -98,11 +98,11 @@ export const Button = styled.button<{ $visible: boolean }>`
 `;
 
 export const LeftButton = styled(Button)`
-  left: 16px;
+  left: 6px;
 `;
 
 export const RightButton = styled(Button)`
-  right: 16px;
+  right: 6px;
 `;
 
 export const IconStyle = css`

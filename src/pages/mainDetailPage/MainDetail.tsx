@@ -1,13 +1,14 @@
-import { useEffect, useState } from "react";
-
-import RegionButton from "./components/RegionButton/RegionButton";
-import * as S from "./MainDetail.style";
 import SearchItem from "@pages/searchPage/components/searchItem/SearchItem";
 import { useInfiniteQuery } from "@tanstack/react-query";
+import { useEffect, useState } from "react";
+
+import MainTheme from "./components/MainTheme/MainTheme";
+import RegionButton from "./components/RegionButton/RegionButton";
+import * as S from "./MainDetail.style";
+
 import { fetchSearchList } from "@/apis/fetchSeachList";
 import UseIntersectionObserver from "@/hooks/common/useIntersectionObserver";
 import { ISearchList } from "@/types/searchList";
-import MainTheme from "./components/MainTheme/MainTheme";
 
 const MainDetail = () => {
   const pageSize = 10;
@@ -123,7 +124,7 @@ const MainDetail = () => {
         <div ref={setTarget} />
         <S.TopButtonCover>
           <S.TopButton $visible={isTopButtonVisible} onClick={MoveToTop} />
-        </S.TopButtonCover>{" "}
+        </S.TopButtonCover>
       </S.SearchContainer>
     </S.Container>
   );
