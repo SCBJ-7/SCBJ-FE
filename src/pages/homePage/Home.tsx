@@ -13,6 +13,8 @@ import EventCarousel from "./eventCarousel/EventCarousel";
 import NavToSearchSection from "./navToSearchSection/NavToSearchSection";
 
 import WeekendCarousel from "./weekendCarousel/WeekendCarousel";
+import SequenceSection from "./sequenceSection/SequenceSection";
+import PercentAnimator from "./percentAnimator/PercentAnimator";
 
 interface EventItem {
   id: number;
@@ -57,19 +59,19 @@ const Home = () => {
     .fill("")
     .map((_, i) => i);
 
-  console.log(weekendProds);
   const WeekendMapped: [number, WeekendItem][] | undefined = weekendProds?.map(
     (v, i) => [i, v],
   );
   const [weekendHotels] = useState(WeekendMapped);
   console.log("currentLocale", currentLocale);
+  console.log("localeAndHotel", localeAndHotel);
   return (
     <S.Container $weekLength={weekendHotels?.length}>
       <MainHeader />
       <NavToSearchSection />
 
       <S.SaleCarouselContainer>
-        {/* <S.TextSlider>
+        <S.TextSlider>
           <TextLocaleAnimator text={locale[currentLocale[1]]} />
           <span>지역</span>
           <PercentAnimator
@@ -94,7 +96,7 @@ const Home = () => {
           currentLocale={currentLocale}
           localeAndHotel={localeAndHotel}
           onSetSequence={setCurrentLocale}
-        /> */}
+        />
         <EventCarousel
           EventCarouselContents={EventCarouselContents}
           height={304}
@@ -104,15 +106,6 @@ const Home = () => {
           draggable={true}
           auto={true}
         />
-        {/* <ItemCarousel
-          currentLocale={currentLocale}
-          localeAndHotel={localeAndHotel}
-          onChangeLocale={setCurrentLocale}
-          height={312}
-          arrows={true}
-          infinite={false}
-          draggable={true}
-        /> */}
       </S.SaleCarouselContainer>
       {weekendHotels && weekendHotels.length !== 0 && (
         <S.WeekendCarouselContainer className="week-container">

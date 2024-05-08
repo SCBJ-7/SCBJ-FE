@@ -38,7 +38,6 @@ const EventCarousel: React.FC<EventCarouselProps> = ({
         EventCarouselContents.at(0),
       ]
     : EventCarouselContents;
-  console.log(EventCarouselContents.at(-1));
   const {
     currentIndex,
     getSliderStyle,
@@ -51,7 +50,6 @@ const EventCarousel: React.FC<EventCarouselProps> = ({
     infinite,
     slideWidth,
   });
-
   const onClickHandler = (id: number) => {
     navigate(`${PATH.MAIN_DETAIL}?id=${id}`);
   };

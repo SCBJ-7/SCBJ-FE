@@ -16,7 +16,13 @@ const MainTheme = () => {
   return (
     <S.Container>
       <S.Title>{title}</S.Title>
-      <FestivalCarousel festivals={festivals} />
+      <FestivalCarousel
+        festivals={festivals}
+        height={120}
+        arrows={true}
+        infinite={false}
+        draggable={true}
+      />
     </S.Container>
   );
 };

@@ -30,7 +30,6 @@ const ItemCarousel = ({
   innerShadow = false,
 }: CarouselProps) => {
   const { slideWidth, sliderRef } = useCarouselSize();
-
   const {
     currentIndex,
     getSliderStyle,
