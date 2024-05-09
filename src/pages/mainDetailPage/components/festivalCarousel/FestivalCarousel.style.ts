@@ -26,7 +26,6 @@ export const SliderWrapper = styled.div`
 
 export const SliderContainer = styled.div`
   display: flex;
-
   width: 100%;
   height: 100%;
 `;

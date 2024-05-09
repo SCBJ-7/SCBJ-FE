@@ -22,6 +22,8 @@ export const Container = styled.section<{ $weekLength: undefined | number }>`
 
 export const SaleCarouselContainer = styled.div`
   width: 100%;
+  background-color: white;
+  margin-bottom: 50px;
 `;
 
 export const TextSlider = styled.div`
@@ -47,7 +49,6 @@ export const WeekendCarouselContainer = styled.div`
   height: 497px;
   margin: 0 20px;
   background-color: white;
-  margin-bottom: 60px;
 `;
 
 export const TitleSection = styled.div`
