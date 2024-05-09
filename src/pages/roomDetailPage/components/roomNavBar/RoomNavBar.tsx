@@ -103,9 +103,13 @@ const RoomNavBar = ({ room, roomId }: RoomNavBarProps) => {
           variant="outline"
           size="md"
           width="full"
-          disabled={room.saleStatus}
+          disabled={!room.saleStatus}
           onClick={buttonConfig.propose[userType].action}
-          rightAddon={room.isSeller || <IconInfoMark />}
+          rightAddon={
+            room.isSeller || (
+              <IconInfoMark fill={room.saleStatus ? "#FF7C17" : "#CDCDCD"} />
+            )
+          }
         >
           {buttonConfig.propose[userType].text}
         </Button>
@@ -114,7 +118,7 @@ const RoomNavBar = ({ room, roomId }: RoomNavBarProps) => {
           variant="solid"
           size="md"
           width="full"
-          disabled={room.saleStatus}
+          disabled={!room.saleStatus}
           onClick={buttonConfig.purchase[userType].action}
         >
           {buttonConfig.purchase[userType].text}
