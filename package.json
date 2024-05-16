@@ -45,7 +45,6 @@
   },
   "devDependencies": {
     "@playwright/test": "^1.40.1",
-    "@svgr/rollup": "^8.1.0",
     "@tanstack/eslint-plugin-query": "^5.17.7",
     "@tanstack/react-query-devtools": "^5.17.9",
     "@testing-library/jest-dom": "^6.1.6",
