@@ -1,8 +1,9 @@
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+
 import { PATH } from "@/constants/path";
 import useAuthStore from "@/store/authStore";
 import { useUserInfoStore } from "@/store/store";
-import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 
 interface RedirectProps {
   children: React.ReactNode;
