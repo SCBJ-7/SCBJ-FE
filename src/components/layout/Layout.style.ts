@@ -1,20 +1,16 @@
 import { styled } from "styled-components";
 
-export const Container = styled.div`
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-`;
+import type { ColorKeys } from "@/styles/theme.ts";
 
-export const Wrapper = styled.div`
+export const Wrapper = styled.div.withConfig({
+  shouldForwardProp: (prop) => prop !== "bg",
+})<{ bg: ColorKeys }>`
+  width: 100%;
+  min-height: 100%;
   max-width: 768px;
   min-width: 360px;
-  width: 100%;
-  height: 100%;
   position: relative;
-  background-color: white;
   margin: 0 auto;
+
+  background-color: ${({ theme, bg }) => theme.color[bg]};
 `;
