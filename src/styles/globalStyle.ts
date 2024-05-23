@@ -30,4 +30,9 @@ export const GlobalStyle = createGlobalStyle`
     overflow-y: auto;
     overflow-x: hidden;
   }
+
+  #root {
+    width: 100vw;
+    height: 100vh;
+  }
 `;
