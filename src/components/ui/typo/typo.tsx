@@ -10,7 +10,7 @@ import {
 import type {
   PolymorphicComponentPropsWithRef,
   PolymorphicRef,
-} from "../polymorphic";
+} from "@components/ui/polymorphic";
 
 export type TextProps<C extends ElementType = "span"> =
   PolymorphicComponentPropsWithRef<C, IStyledTextProps & StyledEmEmProps>;
@@ -19,7 +19,14 @@ export const Typo = forwardRef(function Typo<C extends ElementType = "span">(
   props: TextProps<C>,
   ref?: PolymorphicRef<C>,
 ) {
-  const { as, color, typo, isEllipsis, children, ...rest } = props;
+  const {
+    as,
+    color = "black",
+    typo = "body1",
+    isEllipsis = false,
+    children,
+    ...rest
+  } = props;
 
   const styledChildren = Children.map(children, (child) => {
     if (isValidElement(child) && child.type === "em") {
