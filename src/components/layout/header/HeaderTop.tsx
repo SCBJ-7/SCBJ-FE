@@ -1,9 +1,14 @@
-import { PATH } from "@/constants/path";
 import { useLocation, useNavigate } from "react-router-dom";
 
 import * as S from "./HeaderTop.style";
 
-const Header = () => {
+import { PATH } from "@/constants/path";
+
+interface HeaderProps {
+  text?: string;
+}
+
+const Header = ({ text }: HeaderProps) => {
   const navigate = useNavigate();
   const { pathname, search } = useLocation();
   const params = new URLSearchParams(search); // 쿼리스트링 분리
@@ -110,7 +115,7 @@ const Header = () => {
       <S.HeaderCell>
         {undo && <S.UndoIcon onClick={undoHandler} />}
       </S.HeaderCell>
-      <S.HeaderCell>{title}</S.HeaderCell>
+      <S.HeaderCell>{text ?? title}</S.HeaderCell>
       <S.HeaderCell>
         {settingIC && <S.AlarmIcon onClick={alarmHandler} />}
         {alarmIC && <S.SettingIcon onClick={settingHandler} />}
