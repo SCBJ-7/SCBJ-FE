@@ -66,3 +66,5 @@ export const VerificationPage = lazy(
 export const RoomMap = lazy(
   () => import("@/pages/roomDetailPage/RoomDetailMap"),
 );
+
+export const WishList = lazy(() => import("@/pages/wishListPage/WishList"));

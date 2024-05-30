@@ -26,4 +26,5 @@ export const PATH = {
   RELOAD: 0,
   PAYMENT: (productId: string) => `/payment/${productId}`,
   PAYMENT_SUCCESS: (productId: string) => `/payment/${productId}/success`,
+  WISHLIST: "/wishlist",
 } as const;

@@ -357,7 +357,7 @@ const AppRouter = () => {
           ),
           children: [
             {
-              path: "",
+              index: true,
               element: <Lazy.Payment action="default" />,
             },
             {
@@ -378,6 +378,10 @@ const AppRouter = () => {
               element: <Lazy.Payment action="cancel" />,
             },
           ],
+        },
+        {
+          path: PATH.WISHLIST,
+          element: <Lazy.WishList />,
         },
       ],
     },
