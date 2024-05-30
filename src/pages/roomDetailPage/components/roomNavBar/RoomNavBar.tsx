@@ -5,9 +5,10 @@ import * as S from "./RoomNavBar.style";
 
 import type { RoomNavBarData } from "@/types/room";
 
-import IconInfoMark from "@/assets/icons/ic_question-mark.svg?react";
+import HeartFillIcon from "@/assets/icons/heart-fill.svg?react";
 import { ResponseError } from "@/components/error/Error";
 import { Button } from "@/components/ui/button";
+import { Typo } from "@/components/ui/typo";
 import { STATUS_CODE } from "@/constants/api";
 import { PATH } from "@/constants/path";
 import { useStockQuery } from "@/hooks/api/useStockQuery";
@@ -17,9 +18,10 @@ import useAuthStore from "@/store/authStore";
 interface RoomNavBarProps {
   room: RoomNavBarData;
   roomId: string;
+  discount: string;
 }
 
-const RoomNavBar = ({ room, roomId }: RoomNavBarProps) => {
+const RoomNavBar = ({ room, roomId, discount }: RoomNavBarProps) => {
   const navigate = useNavigate();
   const [error, setError] = useState<unknown>(null);
   const isLoggedIn = useAuthStore((state) => state.isLoggedIn);
@@ -64,25 +66,13 @@ const RoomNavBar = ({ room, roomId }: RoomNavBarProps) => {
   };
 
   const buttonConfig = {
-    propose: {
-      buyer: {
-        text: "가격 제안",
-        action: () => console.log("가격 제안 페이지로 이동"),
-      },
-      seller: {
-        text: "받은 가격 제안",
-        action: () => console.log("받은 가격 제안으로 이동"),
-      },
+    buyer: {
+      text: "즉시 구매",
+      action: handlePurchaseClick,
     },
-    purchase: {
-      buyer: {
-        text: "즉시 구매",
-        action: handlePurchaseClick,
-      },
-      seller: {
-        text: "판매 취소",
-        action: () => console.log("판매 취소 로직"),
-      },
+    seller: {
+      text: "판매 취소",
+      action: () => console.log("판매 취소 로직"),
     },
   };
 
@@ -96,34 +86,34 @@ const RoomNavBar = ({ room, roomId }: RoomNavBarProps) => {
 
   return (
     <S.Wrapper>
-      <S.Heart />
-      <S.ButtonWrapper>
-        <Button
-          type="button"
-          variant="outline"
-          size="md"
-          width="full"
-          disabled={!room.saleStatus}
-          onClick={buttonConfig.propose[userType].action}
-          rightAddon={
-            room.isSeller || (
-              <IconInfoMark fill={room.saleStatus ? "#FF7C17" : "#CDCDCD"} />
-            )
-          }
-        >
-          {buttonConfig.propose[userType].text}
-        </Button>
-        <Button
-          type="button"
-          variant="solid"
-          size="md"
-          width="full"
-          disabled={!room.saleStatus}
-          onClick={buttonConfig.purchase[userType].action}
-        >
-          {buttonConfig.purchase[userType].text}
-        </Button>
-      </S.ButtonWrapper>
+      <S.LikeButtonWrapper>
+        <HeartFillIcon />
+      </S.LikeButtonWrapper>
+      <S.Infowrapper>
+        <S.TextWrapper>
+          <S.PriceWrapper>
+            <Typo typo="button4" color="percentBlue">
+              {discount}%
+            </Typo>
+            <Typo typo="button5" color="greyScale3">
+              <s>{room.originalPrice.toLocaleString()}원</s>
+            </Typo>
+          </S.PriceWrapper>
+          <Typo typo="title3">{room.sellingPrice.toLocaleString()}원</Typo>
+        </S.TextWrapper>
+        <S.ButtonWrapper>
+          <Button
+            type="button"
+            variant="solid"
+            size="md"
+            width="full"
+            disabled={!room.saleStatus}
+            onClick={buttonConfig[userType].action}
+          >
+            {buttonConfig[userType].text}
+          </Button>
+        </S.ButtonWrapper>
+      </S.Infowrapper>
     </S.Wrapper>
   );
 };
