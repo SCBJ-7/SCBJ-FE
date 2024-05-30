@@ -2,6 +2,7 @@ import { spacing } from "./spacing";
 
 const overlay = {
   sheet: "518px",
+  dialog: "240px",
 };
 
 const container = {
