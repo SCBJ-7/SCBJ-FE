@@ -1,18 +1,19 @@
 import styled, { css, DefaultTheme } from "styled-components";
 
-import IconHeart from "@/assets/icons/heart-fill.svg?react";
-import { hexToRgba } from "@/utils/styleFormatter";
+import breakpoints from "@/styles/breakpoints.ts";
+import { hexToRgba, remCalc } from "@/utils/styleFormatter";
 
 export { Text } from "@/pages/roomDetailPage/RoomDetail.style";
 
 export const Wrapper = styled.section`
   width: 100%;
   max-width: 768px;
+  max-height: 78px;
 
-  padding-block-start: 0.825rem;
-  padding-block-end: 1.875rem;
+  padding-block-start: ${remCalc(24)};
+  padding-block-end: ${remCalc(30)};
 
-  padding-inline: 1.25rem;
+  padding-inline: ${remCalc(20)};
 
   position: fixed;
   bottom: 0;
@@ -28,20 +29,6 @@ export const Wrapper = styled.section`
   clip-path: inset(-0.4rem 0 0 0);
 
   z-index: 10;
-`;
-
-export const Flex = styled.div`
-  display: flex;
-`;
-
-export const ColWrapper = styled(Flex)`
-  flex-direction: column;
-  gap: 0.375rem;
-  flex: 1;
-`;
-
-export const Row2 = styled(Flex)`
-  gap: 0.5rem;
 `;
 
 export type TButtonVariant = keyof ReturnType<typeof variantStyles>;
@@ -92,19 +79,34 @@ export const Button = styled.button.withConfig({
 export const ButtonWrapper = styled.div`
   display: flex;
   gap: 8px;
+  width: 45%;
 
-  width: 70%;
-
-  @media (max-width: ${({ theme }) => theme.breakpoints.md}) {
-    width: 75%;
-  }
-
-  @media (max-width: ${({ theme }) => theme.breakpoints.sm}) {
-    width: 100%;
+  @media (max-width: ${breakpoints.sm}) {
+    width: 40%;
   }
 `;
 
-export const Heart = styled(IconHeart)`
+export const TextWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+`;
+
+export const PriceWrapper = styled.div`
   display: flex;
   align-items: center;
+  gap: 6px;
+`;
+
+export const Infowrapper = styled.div`
+  display: flex;
+  flex: 1;
+  justify-content: space-between;
+`;
+
+export const LikeButtonWrapper = styled.div`
+  display: inline-flex;
+  align-items: center;
+  padding-right: 1rem;
+  border-right: 1px solid ${({ theme }) => theme.color.greyScale6};
 `;
