@@ -1,6 +1,6 @@
 import styled, { css, DefaultTheme } from "styled-components";
 
-import IconHeart from "@/assets/icons/ic_heart-fill.svg?react";
+import IconHeart from "@/assets/icons/heart-fill.svg?react";
 import { hexToRgba } from "@/utils/styleFormatter";
 
 export { Text } from "@/pages/roomDetailPage/RoomDetail.style";
