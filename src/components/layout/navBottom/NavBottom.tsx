@@ -1,9 +1,10 @@
-import { PATH } from "@/constants/path";
-import useTooltip from "@/hooks/common/useTooltip";
 import { useLocation } from "react-router-dom";
 
 import * as S from "./NavBottom.style";
 import ToolTip from "./toolTip/ToolTip";
+
+import { PATH } from "@/constants/path";
+import useTooltip from "@/hooks/common/useTooltip";
 
 interface BottomNavProps {
   isMobile: boolean;
@@ -18,7 +19,7 @@ const BottomNav = ({ isMobile }: BottomNavProps) => {
       id: 1,
       name: "홈",
       path: PATH.ROOT,
-      icon: <S.NavIconHomes isActive={pathname === PATH.ROOT ? true : false} />,
+      icon: <S.NavIconHomes isActive={pathname === PATH.ROOT} />,
     },
     {
       id: 2,

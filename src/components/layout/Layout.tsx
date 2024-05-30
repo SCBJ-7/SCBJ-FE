@@ -5,28 +5,29 @@ import * as S from "./Layout.style";
 import BottomNav from "./navBottom/NavBottom";
 import { A2HS } from "../A2HS/A2HS";
 
-import { ColorKeys } from "@/styles/theme.ts";
+import type { LayoutStyleProps } from "./Layout.style";
+
 import { isMobile } from "@/utils/isMobile";
 
-interface ChildrenProps {
+interface ChildrenProps extends LayoutStyleProps {
   children: React.ReactNode;
   isHeaderOn?: boolean;
   isBottomNavOn?: boolean;
-  bg?: ColorKeys;
 }
 
-const Layout = ({
-  children,
-  isHeaderOn = false,
-  isBottomNavOn = false,
-  bg = "white",
-}: ChildrenProps) => {
+const Layout = (props: ChildrenProps) => {
   const isMobileDevice = isMobile();
+  const {
+    isHeaderOn = false,
+    isBottomNavOn = false,
+    children,
+    ...rest
+  } = props;
 
   return (
     <>
       {isHeaderOn && <Header />}
-      <S.Wrapper bg={bg}>
+      <S.Wrapper {...rest}>
         {children}
         <A2HS />
       </S.Wrapper>
