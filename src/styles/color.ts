@@ -13,7 +13,7 @@ const color = {
   yanoljaPink: "#FF3478",
   cautionRed: "#FF4949",
 
-  greyScale1: "hsl(240 3.8% 46.1%)",
+  greyScale1: "#404040",
   greyScale2: "#686868",
   greyScale3: "#999999",
   greyScale4: "#B8B8B8",
