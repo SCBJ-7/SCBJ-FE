@@ -1,14 +1,18 @@
 import type { PropsWithChildren } from "react";
 
-import { StyledSpaing } from "@/components/ui/dialog/dialog.styles.ts";
-import { Typo } from "@/components/ui/typo";
+import { StyledSpacing } from "@/components/ui/dialog/dialog.styles.ts";
+import { type TextProps, Typo } from "@/components/ui/typo";
 
-export const DialogDescription = ({ children }: PropsWithChildren) => {
+export const DialogDescription = ({
+  children,
+  ...props
+}: PropsWithChildren<Partial<TextProps>>) => {
+  const { typo = "body2", color = "greyScale3" } = props;
   return (
-    <StyledSpaing>
-      <Typo as={"p"} typo={"body2"} color={"greyScale3"} textAlign={"center"}>
+    <StyledSpacing>
+      <Typo as={"p"} typo={typo} color={color} textAlign={"center"}>
         {children}
       </Typo>
-    </StyledSpaing>
+    </StyledSpacing>
   );
 };
