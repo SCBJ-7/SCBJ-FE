@@ -1,5 +1,6 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import { OverlayProvider } from "@toss/use-overlay";
 import ReactDOM from "react-dom/client";
 import { HelmetProvider } from "react-helmet-async";
 import { ThemeProvider } from "styled-components";
@@ -46,7 +47,9 @@ if (rootElement?.hasChildNodes()) {
       <ThemeProvider theme={theme}>
         <GlobalStyle />
         <HelmetProvider>
-          <AppRouter />
+          <OverlayProvider>
+            <AppRouter />
+          </OverlayProvider>
         </HelmetProvider>
       </ThemeProvider>
       <ReactQueryDevtools initialIsOpen={false} />
