@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { type CSSProp } from "styled-components";
 
 import { StyledFooter } from "@/components/ui/bottom-sheet/styles.ts";
 import {
@@ -9,11 +9,9 @@ import {
 import breakpoints from "@/styles/breakpoints.ts";
 import { remCalc } from "@/utils/styleFormatter.ts";
 
-export const StyledDialog = styled.div.withConfig({
-  shouldForwardProp: (prop) => !["bg"].includes(prop),
-})<{ bg?: BgType }>`
+export const StyledDialog = styled.div`
   position: fixed;
-  top: 40%;
+  top: 50%;
   left: 0;
   right: 0;
   width: ${({ theme }) => theme.sizes.dialog};
@@ -21,14 +19,7 @@ export const StyledDialog = styled.div.withConfig({
   margin-left: auto;
   margin-right: auto;
 
-  border-radius: 16px;
-
-  background-color: ${({ theme, bg }) =>
-    bg ? theme.color[BgMap[bg]] : theme.color.white};
-
-  color: ${({ theme, bg }) =>
-    bg === BgMap.black ? theme.color.white : theme.color.black};
-  box-shadow: 0px -2px 5px rgba(0, 0, 0, 0.2);
+  transform: translateY(-50%);
   z-index: 10;
 
   @media (min-width: ${breakpoints.sm}) {
@@ -36,8 +27,19 @@ export const StyledDialog = styled.div.withConfig({
   }
 `;
 
-export const StyledDialogContent = styled.div`
+export const StyledDialogContent = styled.div.withConfig({
+  shouldForwardProp: (prop) => !["css", "bg"].includes(prop),
+})<{ css?: CSSProp; bg?: BgType }>`
+  background-color: ${({ theme, bg }) =>
+    bg ? theme.color[BgMap[bg]] : theme.color.white};
+  color: ${({ theme, bg }) =>
+    bg === BgMap.black ? theme.color.white : theme.color.black};
+
   padding: ${remCalc("40px")} ${remCalc("20px")};
+  border-radius: 16px;
+  box-shadow: 0px -2px 5px rgba(0, 0, 0, 0.2);
+
+  ${({ css }) => css};
 `;
 
 export const StyledDialogFooter = styled(StyledFooter).withConfig({
@@ -46,6 +48,6 @@ export const StyledDialogFooter = styled(StyledFooter).withConfig({
   padding-bottom: 0;
 `;
 
-export const StyledSpaing = styled.div`
+export const StyledSpacing = styled.div`
   margin-top: 1rem;
 `;
