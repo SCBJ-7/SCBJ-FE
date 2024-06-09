@@ -39,20 +39,20 @@ export const dialogTransition = {
   },
 };
 
-export const dialogAnimationVariants: Variants = {
+export const dialogAnimationVariants = {
   animate: {
     opacity: 1,
-    transform: "translate3d(0, 0, 0) scale3d(1, 1, 1)",
+    transform: "translate3d(0, -50%, 0) scale3d(1, 1, 1)",
     transition: dialogTransition,
   },
   exit: {
     opacity: 0,
-    transform: "translate3d(0, 10px, 0) scale3d(0.95, 0.95, 0.95)",
+    transform: "translate3d(0, -48%, 0) scale3d(0.95, 0.95, 0.95)",
     transition: dialogTransition,
   },
   initial: {
     opacity: 1,
-    transform: "translate3d(0, -10px, 0) scale3d(0.95, 0.95, 0.95)",
+    transform: "translate3d(0, -48%, 0) scale3d(0.95, 0.95, 0.95)",
     transition: dialogTransition,
   },
 };
