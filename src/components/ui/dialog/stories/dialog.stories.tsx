@@ -2,6 +2,7 @@ import { Meta, StoryFn } from "@storybook/react";
 import { useState } from "react";
 
 import { Button } from "../../button";
+import MiniAlertDialog from "../templates/mini-alert-dialog";
 
 import { Dialog } from "@/components/ui/dialog";
 
@@ -28,7 +29,7 @@ export default {
   },
 } as Meta<typeof Dialog>;
 
-const Template: StoryFn<typeof Dialog.Root> = (args) => {
+const DefaultTemplate: StoryFn<typeof Dialog.Root> = (args) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -69,4 +70,30 @@ const Template: StoryFn<typeof Dialog.Root> = (args) => {
   );
 };
 
-export const Default = Template.bind({});
+export const Default = DefaultTemplate.bind({});
+
+const MiniAlertTemplate: StoryFn<typeof Dialog.Root> = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  return (
+    <>
+      <Button colorScheme="black" onClick={() => setIsOpen(true)}>
+        Toggle Dialog
+      </Button>
+      <MiniAlertDialog
+        isOpen={isOpen}
+        onClose={() => setIsOpen(false)}
+        title={"판매를 취소할까요?"}
+        description={
+          "판매를 취소하시면 판매내역을 조회하거나 복구할 수 없어요."
+        }
+        actionFn={() => alert("확인했습니다")}
+        actionText={"확인"}
+        closeFn={() => setIsOpen(false)}
+        closeText={"닫기"}
+      />
+    </>
+  );
+};
+
+export const MiniAlert = MiniAlertTemplate.bind({});
