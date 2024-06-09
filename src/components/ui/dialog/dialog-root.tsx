@@ -50,7 +50,6 @@ export const DialogRoot = forwardRef(function DialogRoot<
       role="dialog"
       tabindex="-1"
       ref={ref}
-      bg={bg}
       as={motion.div}
       key="dialog"
       initial="initial"
@@ -66,7 +65,7 @@ export const DialogRoot = forwardRef(function DialogRoot<
     <Portal>
       <AnimatePresence mode="wait">
         {isOpen && (
-          <DialogProvider onClose={onClose}>
+          <DialogProvider onClose={onClose} bg={bg}>
             <Dimmer
               key="dimmer"
               as={motion.div}
