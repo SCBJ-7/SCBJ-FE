@@ -1,24 +1,15 @@
-import { useState } from "react";
-
+import WishButton from "./LikeButton.tsx";
 import * as S from "./WishCard.styles.ts";
 
 import type { ProductType } from "@/types/wish.ts";
 
-import HeartFill from "@/assets/icons/heart-fill.svg?react";
-import Heart from "@/assets/icons/heart.svg?react";
 import ProgressiveImg from "@/components/progressiveImg/ProgressiveImg.tsx";
 import { Typo } from "@/components/ui/typo";
 import { formatDateWithoutTime } from "@/utils/dateFormatter.ts";
 
 const WishCard = ({ product }: { product: ProductType }) => {
-  const [likes, setLikes] = useState<boolean>(true);
-
   const checkInDate = formatDateWithoutTime(product.checkInDate);
   const checkOutDate = formatDateWithoutTime(product.checkOutDate);
-
-  const handleToggleLike = () => {
-    setLikes((prev) => !prev);
-  };
 
   return (
     <S.CardContainer>
@@ -35,9 +26,7 @@ const WishCard = ({ product }: { product: ProductType }) => {
               <Typo typo="button4">{product.hotelName}</Typo>
               <Typo typo="body5">{product.roomType}</Typo>
             </S.TextWrapper>
-            <S.LikeButton onClick={handleToggleLike}>
-              {likes ? <HeartFill /> : <Heart />}
-            </S.LikeButton>
+            <WishButton productId={product.productId} />
           </S.TitleWrapper>
           <S.TextWrapper>
             <Typo typo="body5">
