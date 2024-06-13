@@ -381,7 +381,13 @@ const AppRouter = () => {
         },
         {
           path: PATH.WISHLIST,
-          element: <Lazy.WishList />,
+          element: (
+            <ApiErrorBoundary>
+              <Suspense fallback={<LoadingFallback />}>
+                <Lazy.WishList />
+              </Suspense>
+            </ApiErrorBoundary>
+          ),
         },
       ],
     },
