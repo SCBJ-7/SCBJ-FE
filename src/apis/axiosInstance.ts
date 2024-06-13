@@ -1,12 +1,3 @@
-import { ResponseError } from "@/components/error/Error";
-import {
-  ACCESS_TOKEN,
-  BASE_URL,
-  ERROR_CODE,
-  REFRESH_TOKEN,
-  STATUS_CODE,
-} from "@/constants/api";
-import { PATH } from "@/constants/path";
 import axios from "axios";
 
 import { fetchNewToken } from "./fetchNewToken";
@@ -16,6 +7,16 @@ import type {
   AxiosRequestConfig,
   InternalAxiosRequestConfig,
 } from "axios";
+
+import { ResponseError } from "@/components/error/Error";
+import {
+  ACCESS_TOKEN,
+  BASE_URL,
+  ERROR_CODE,
+  REFRESH_TOKEN,
+  STATUS_CODE,
+} from "@/constants/api";
+import { PATH } from "@/constants/path";
 
 export const axiosInstance = axios.create({
   baseURL: BASE_URL,
