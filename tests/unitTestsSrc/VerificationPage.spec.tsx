@@ -1,11 +1,12 @@
-import { getEmailVerification } from "@mocks/handlers/email.ts";
-import { server } from "@mocks/server.ts";
-import VerificationPage from "@/pages/connectYanoljaPage/verificationPage/VerificationPage.tsx";
-import { theme } from "@/styles/theme.ts";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
+
+import { getEmailVerification } from "@/mocks/handlers/email.ts";
+import { server } from "@/mocks/server.ts";
+import VerificationPage from "@/pages/connectYanoljaPage/verificationPage/VerificationPage.tsx";
+import { theme } from "@/styles/theme.ts";
 
 beforeAll(() => server.listen());
 afterEach(() => {

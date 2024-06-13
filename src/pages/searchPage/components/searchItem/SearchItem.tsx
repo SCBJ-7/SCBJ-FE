@@ -1,10 +1,10 @@
-import { PATH } from "@/constants/path";
 import { format, parseISO } from "date-fns";
 import { useNavigate } from "react-router-dom";
 
 import * as S from "./SearchItem.style";
 
 import ProgressiveImg from "@/components/progressiveImg/ProgressiveImg";
+import { PATH } from "@/constants/path";
 import { ISearchList } from "@/types/searchList";
 
 const SearchItem = ({ item }: { item: ISearchList }) => {

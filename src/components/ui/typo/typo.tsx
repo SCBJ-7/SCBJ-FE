@@ -10,7 +10,7 @@ import {
 import type {
   PolymorphicComponentPropsWithRef,
   PolymorphicRef,
-} from "@components/ui/polymorphic";
+} from "../polymorphic";
 
 export type TextProps<C extends ElementType = "span"> =
   PolymorphicComponentPropsWithRef<C, IStyledTextProps & StyledEmEmProps>;
