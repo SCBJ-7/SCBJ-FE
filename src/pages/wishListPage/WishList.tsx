@@ -2,14 +2,17 @@ import styled from "styled-components";
 
 import Header from "@/components/layout/header/HeaderTop.tsx";
 import Layout from "@/components/layout/Layout.tsx";
+import { useWishQuery } from "@/hooks/api/useWishQuery";
 import WishCard from "@/pages/wishListPage/components/wishCard/WishCard.tsx";
 import { WishDataType } from "@/types/wish.ts";
 import { remCalc } from "@/utils/styleFormatter.ts";
 
 const WishList = () => {
+  // const { data } = useWishQuery();
+
   return (
     <>
-      <Header text={`찜한 숙소(${mock.products.length})`} />
+      <Header text={`찜한 숙소(${mock?.products.length})`} />
       <Layout
         bg={"greyScale7"}
         pt={20}
@@ -18,7 +21,7 @@ const WishList = () => {
         isBottomNavOn
       >
         <ListWrapper>
-          {mock.products.map((product, index) => (
+          {mock?.products.map((product, index) => (
             <WishCard key={index} product={product} />
           ))}
         </ListWrapper>
@@ -38,6 +41,7 @@ const ListWrapper = styled.div`
 const mock: WishDataType = {
   products: [
     {
+      productId: 1,
       hotelName: "롯데시그니엘",
       roomType: "스탠다드 더블",
       imageUrl: "https://via.placeholder.com/150",
@@ -46,6 +50,7 @@ const mock: WishDataType = {
       price: 2400000,
     },
     {
+      productId: 2,
       hotelName: "롯데시그니엘",
       roomType: "디럭스 트윈",
       imageUrl: "https://via.placeholder.com/150",
@@ -54,6 +59,7 @@ const mock: WishDataType = {
       price: 2800000,
     },
     {
+      productId: 3,
       hotelName: "신라호텔",
       roomType: "스탠다드 더블",
       imageUrl: "https://via.placeholder.com/150",
@@ -62,6 +68,7 @@ const mock: WishDataType = {
       price: 2200000,
     },
     {
+      productId: 4,
       hotelName: "신라호텔",
       roomType: "디럭스 더블",
       imageUrl: "https://via.placeholder.com/150",
@@ -70,6 +77,7 @@ const mock: WishDataType = {
       price: 2600000,
     },
     {
+      productId: 5,
       hotelName: "파라다이스시티",
       roomType: "스탠다드 더블",
       imageUrl: "https://via.placeholder.com/150",
@@ -78,6 +86,7 @@ const mock: WishDataType = {
       price: 2300000,
     },
     {
+      productId: 6,
       hotelName: "파라다이스시티",
       roomType: "디럭스 더블",
       imageUrl: "https://via.placeholder.com/150",
@@ -86,6 +95,7 @@ const mock: WishDataType = {
       price: 2700000,
     },
     {
+      productId: 7,
       hotelName: "그랜드조선",
       roomType: "스탠다드 더블",
       imageUrl: "https://via.placeholder.com/150",
@@ -94,6 +104,7 @@ const mock: WishDataType = {
       price: 2500000,
     },
     {
+      productId: 8,
       hotelName: "그랜드조선",
       roomType: "디럭스 더블",
       imageUrl: "https://via.placeholder.com/150",
@@ -102,6 +113,7 @@ const mock: WishDataType = {
       price: 2900000,
     },
     {
+      productId: 9,
       hotelName: "인터컨티넨탈",
       roomType: "스탠다드 더블",
       imageUrl: "https://via.placeholder.com/150",
@@ -110,6 +122,7 @@ const mock: WishDataType = {
       price: 2400000,
     },
     {
+      productId: 10,
       hotelName: "인터컨티넨탈",
       roomType: "디럭스 더블",
       imageUrl: "https://via.placeholder.com/150",
@@ -118,6 +131,7 @@ const mock: WishDataType = {
       price: 2800000,
     },
     {
+      productId: 11,
       hotelName: "포시즌스",
       roomType: "스탠다드 더블",
       imageUrl: "https://via.placeholder.com/150",
@@ -126,6 +140,7 @@ const mock: WishDataType = {
       price: 2600000,
     },
     {
+      productId: 12,
       hotelName: "포시즌스",
       roomType: "디럭스 더블",
       imageUrl: "https://via.placeholder.com/150",
