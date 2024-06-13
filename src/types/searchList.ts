@@ -1,5 +1,5 @@
 export interface ISearchList {
-  id: string;
+  id: number;
   name: string;
   roomType: string;
   imageUrl: string;

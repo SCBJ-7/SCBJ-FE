@@ -1,6 +1,6 @@
 import { BASE_URL, END_POINTS } from "@/constants/api";
-import dummyPaymentInfo from "@mocks/data/dummyPaymentInfo.json";
-import dummyPaymentSuccess from "@mocks/data/dummyPaymentSuccess.json";
+import dummyPaymentInfo from "@/mocks/data/dummyPaymentInfo.json";
+import dummyPaymentSuccess from "@/mocks/data/dummyPaymentSuccess.json";
 import { http, HttpResponse } from "msw";
 
 export const paymentHandler = [

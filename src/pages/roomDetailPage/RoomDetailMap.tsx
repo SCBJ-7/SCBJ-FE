@@ -1,14 +1,15 @@
-import IconMapPin from "@/assets/icons/ic_map-pin.svg?react";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { useEffect, useRef } from "react";
 import { useSearchParams } from "react-router-dom";
 import styled from "styled-components";
 
 import { getGeoCoder } from "@/apis/map";
+import IconMapPin from "@/assets/icons/ic_map-pin.svg?react";
 import { ColorKeys, TypoKeys } from "@/styles/theme";
 
 declare global {
   interface Window {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     kakao: any;
   }
 }
@@ -50,6 +51,7 @@ export default function RoomDetailMaps() {
 
     const map = new window.kakao.maps.Map(container, options);
 
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const marker = new window.kakao.maps.Marker({
       map: map,
       position,
