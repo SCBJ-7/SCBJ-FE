@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+import LikeButton from "./LikeButton";
 import * as S from "./RoomNavBar.style";
 
 import type { RoomNavBarData } from "@/types/room";
 
-import HeartFillIcon from "@/assets/icons/heart-fill.svg?react";
 import { ResponseError } from "@/components/error/Error";
 import { Button } from "@/components/ui/button";
 import { Typo } from "@/components/ui/typo";
@@ -24,6 +24,7 @@ interface RoomNavBarProps {
 const RoomNavBar = ({ room, roomId, discount }: RoomNavBarProps) => {
   const navigate = useNavigate();
   const [error, setError] = useState<unknown>(null);
+
   const isLoggedIn = useAuthStore((state) => state.isLoggedIn);
   const { handleToast } = useToastConfig();
   const { refetch } = useStockQuery(roomId);
@@ -86,9 +87,7 @@ const RoomNavBar = ({ room, roomId, discount }: RoomNavBarProps) => {
 
   return (
     <S.Wrapper>
-      <S.LikeButtonWrapper>
-        <HeartFillIcon />
-      </S.LikeButtonWrapper>
+      <LikeButton productId={roomId} />
       <S.Infowrapper>
         <S.TextWrapper>
           <S.PriceWrapper>

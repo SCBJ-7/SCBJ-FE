@@ -104,9 +104,14 @@ export const Infowrapper = styled.div`
   justify-content: space-between;
 `;
 
-export const LikeButtonWrapper = styled.div`
+export const LikeButtonWrapper = styled.button`
   display: inline-flex;
   align-items: center;
   padding-right: 1rem;
   border-right: 1px solid ${({ theme }) => theme.color.greyScale6};
+
+  & > svg {
+    width: 32px;
+    height: 32px;
+  }
 `;
