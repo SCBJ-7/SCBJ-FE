@@ -5,6 +5,7 @@ export interface WishDataType {
 export interface ProductType {
   hotelName: string;
   roomType: string;
+  productId: number;
   imageUrl: string;
   checkInDate: string;
   checkOutDate: string;
