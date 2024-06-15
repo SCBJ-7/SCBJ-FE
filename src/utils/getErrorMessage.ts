@@ -1,7 +1,8 @@
+import type { AxiosError } from "axios";
+
 import { ResponseError } from "@/components/error/Error";
 import { ERROR_CODE, STATUS_CODE } from "@/constants/api";
 import { PATH } from "@/constants/path";
-import type { AxiosError } from "axios";
 
 const getErrorMessage = (
   error: AxiosError<{ message: string }> | ResponseError,
