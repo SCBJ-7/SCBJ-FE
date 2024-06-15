@@ -1,4 +1,4 @@
-import Checkbox from "@components/checkbox/Checkbox";
+import Checkbox from "@/components/checkbox/Checkbox";
 import { useEffect } from "react";
 import { Controller, useFormContext } from "react-hook-form";
 

@@ -1,12 +1,12 @@
-import { fetchAlarm } from "@apis/fetchAlarm";
-import { fetchUserInfo } from "@apis/fetchUserInfo";
-import NoResult from "@components/noResult/NoResult";
-import { PATH } from "@constants/path";
 import { useQuery, useSuspenseQuery } from "@tanstack/react-query";
 import { format, parseISO } from "date-fns";
 
 import * as S from "./AlarmPage.style";
 
+import { fetchAlarm } from "@/apis/fetchAlarm";
+import { fetchUserInfo } from "@/apis/fetchUserInfo";
+import NoResult from "@/components/noResult/NoResult";
+import { PATH } from "@/constants/path";
 import { isMobileSafari } from "@/utils/isMobileSafari";
 
 const AlarmPage = () => {

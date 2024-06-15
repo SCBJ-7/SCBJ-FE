@@ -1,5 +1,6 @@
 import { chromium, FullConfig } from "@playwright/test";
-import { LoginPage } from "@tests/e2eTests/models/LoginPage.ts";
+
+import { LoginPage } from "./models/LoginPage";
 
 async function globalSetup(config: FullConfig) {
   const { storageState } = config.projects[1].use;

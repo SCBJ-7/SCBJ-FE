@@ -1,5 +1,9 @@
-import type { ColorKeys, TypoKeys } from "@styles/theme";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
+
+import type { ColorKeys, TypoKeys } from "@/styles/theme";
+
+import ArrowSvg from "@/assets/icons/ic_arrow.svg?react";
 
 export const Container = styled.main`
   background-color: ${({ theme }) => theme.color.greyScale7};
@@ -17,7 +21,7 @@ export const ItemWrapper = styled.div`
   justify-content: space-between;
   align-items: center;
 
-  ${({ theme }) => theme.typo.body3}
+  ${({ theme }) => theme.typo.body2}
 `;
 
 const Flex = styled.div`
@@ -25,12 +29,31 @@ const Flex = styled.div`
 `;
 
 export const Col = styled(Flex)`
+  padding-top: 2rem;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 8px;
 `;
 
 export const Row = styled(Flex)`
-  gap: 0.5rem;
+  gap: 4px;
+  align-items: center;
+`;
+
+export const TitleWrapper = styled(Row)`
+  margin-bottom: 1rem;
+`;
+
+export const Row1 = styled(Row)`
+  gap: 2px;
+`;
+
+export const MapWrapper = styled.div`
+  padding: 1rem 0 1.5rem;
+`;
+
+export const MapLink = styled(Link)`
+  display: flex;
+  gap: 4px;
   align-items: center;
 `;
 
@@ -69,12 +92,18 @@ export type VariantProps = {
 export const Text = styled.p.withConfig({
   shouldForwardProp: (prop) => !["variant", "color"].includes(prop),
 })<VariantProps>`
-  ${({ variant, theme }) => variant && theme.typo[variant]}
-  color: ${({ color, theme }) => color && theme.color[color]}
+  ${({ variant, theme }) => variant && theme.typo[variant]};
+  color: ${({ color, theme }) => color && theme.color[color]};
+
+  &.underline {
+    text-decoration: underline;
+    text-underline-position: under;
+  }
 `;
 
 export const VStack1 = styled(Flex)`
-  gap: 0.375rem;
+  padding: 1rem 0;
+  gap: 0.5rem;
 `;
 
 export const HStack1 = styled(Flex)`
@@ -90,8 +119,17 @@ export const VStack5 = styled(Flex)`
   gap: 2rem;
 `;
 
+export const TagWrapper = styled(Flex)`
+  gap: 0.5rem;
+  flex-wrap: wrap;
+`;
+
 export const MoreInfoWrapper = styled(Flex)`
   justify-content: flex-end;
   align-items: center;
   gap: 0.3rem;
+`;
+
+export const IconArrow = styled(ArrowSvg)`
+  margin-left: auto;
 `;

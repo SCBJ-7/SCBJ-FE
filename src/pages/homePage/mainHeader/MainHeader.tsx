@@ -1,6 +1,6 @@
-import { fetchHasAlarm } from "@apis/fetchHasAlarm";
-import MainLogo from "@assets/logos/main_logo.svg?react";
-import { PATH } from "@constants/path";
+import { fetchHasAlarm } from "@/apis/fetchHasAlarm";
+import MainLogo from "@/assets/logos/main_logo.svg?react";
+import { PATH } from "@/constants/path";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
 

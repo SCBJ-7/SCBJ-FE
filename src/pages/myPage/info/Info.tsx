@@ -1,6 +1,6 @@
-import { logout } from "@apis/logout";
-import { PATH } from "@constants/path";
-import useToastConfig from "@hooks/common/useToastConfig";
+import { logout } from "@/apis/logout";
+import { PATH } from "@/constants/path";
+import useToastConfig from "@/hooks/common/useToastConfig";
 import { useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -36,10 +36,12 @@ const Info = () => {
       await logout();
       localStorage.removeItem(ACCESS_TOKEN);
       localStorage.removeItem(REFRESH_TOKEN);
+      localStorage.removeItem("searchFilterStorage");
       setIsLoggedIn(false);
       setUserInfo(null);
       queryClient.removeQueries({ queryKey: [KEY.PURCHASE_LIST] });
       queryClient.removeQueries({ queryKey: [KEY.SALE] });
+
       navigate(PATH.ROOT);
     } catch (err) {
       handleToast(true, [<>로그아웃 실패. 잠시 후 다시 시도해 주세요</>]);

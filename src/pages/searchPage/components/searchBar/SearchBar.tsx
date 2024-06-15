@@ -1,6 +1,6 @@
 import { PATH } from "@/constants/path";
-import { useSearchFilterInfoStore } from "@store/store";
-import { formatDateMonthAndDay } from "@utils/dateFomaterMonthDay";
+import { useSearchFilterInfoStore } from "@/store/store";
+import { formatDateMonthAndDay } from "@/utils/dateFomaterMonthDay";
 import { useNavigate } from "react-router-dom";
 
 import * as S from "./SearchBar.style";
@@ -9,7 +9,7 @@ const SearchBar = () => {
   const navigate = useNavigate();
   const searchInfo = useSearchFilterInfoStore((state) => state.searchInfo);
 
-  let searchBarContent = "언제 어디로 여행가세요?";
+  let searchBarContent = "언제 어디로 떠나세요?";
   if (searchInfo.location && searchInfo.checkOut && searchInfo.quantityPeople) {
     searchBarContent = `${searchInfo.location} / ${formatDateMonthAndDay(
       searchInfo.checkIn,

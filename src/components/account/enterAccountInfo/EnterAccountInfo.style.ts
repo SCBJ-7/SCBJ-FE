@@ -1,4 +1,4 @@
-import { dimmedStyle } from "@pages/myPage/info/Info.style";
+import { dimmedStyle } from "@/pages/myPage/info/Info.style";
 import { AnimationControls, motion } from "framer-motion";
 import styled, { css } from "styled-components";
 

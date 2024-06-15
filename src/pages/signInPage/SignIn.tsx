@@ -1,6 +1,7 @@
-import { postLogin } from "@apis/fetchLogin";
-import { PATH } from "@constants/path";
-import useToastConfig from "@hooks/common/useToastConfig";
+import { postLogin } from "@/apis/fetchLogin";
+import { PATH } from "@/constants/path";
+import useToastConfig from "@/hooks/common/useToastConfig";
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate, useSearchParams } from "react-router-dom";
 
@@ -18,6 +19,7 @@ const SignIn = () => {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const redirectUrl = searchParams.get("redirect");
+  const directUrl = searchParams.get("direct");
   const { handleToast } = useToastConfig();
 
   const {
@@ -30,6 +32,15 @@ const SignIn = () => {
       password: "",
     },
   });
+
+  useEffect(() => {
+    // TODO: UT용 다이렉트 로그인 처리
+    if (directUrl === "login") {
+      const email = "qwerty029369@gmail.com";
+      const password = "qwerty123@";
+      handleOnSubmit({ email, password });
+    }
+  }, [directUrl]);
 
   const handleOnSubmit = async (data: FormValues) => {
     const { email, password } = data;

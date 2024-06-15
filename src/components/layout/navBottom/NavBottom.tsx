@@ -1,14 +1,13 @@
-import IconHomeFill from "@assets/icons/navIcon/icon_home_fill.svg?react";
-import IconHomeLine from "@assets/icons/navIcon/icon_home_line.svg?react";
-import IconMyFill from "@assets/icons/navIcon/icon_my_fill.svg?react";
-import IconMyLine from "@assets/icons/navIcon/icon_my_line.svg?react";
-import IconSearchFill from "@assets/icons/navIcon/icon_search_fill.svg?react";
-import IconSearchLine from "@assets/icons/navIcon/icon_search_line.svg?react";
-import IconTransferWritingFill from "@assets/icons/navIcon/icon_transferWriting_fill.svg?react";
-import IconTransferWritingLine from "@assets/icons/navIcon/icon_transferWriting_line.svg?react";
-// 찜 페이지용
-// import IconWishFill from "@assets/icons/navIcon/icon_wish_fill.svg?react";
-// import IconWishLine from "@assets/icons/navIcon/icon_wish_Line.svg?react";
+import IconHomeFill from "@/assets/icons/navIcon/icon_home_fill.svg?react";
+import IconHomeLine from "@/assets/icons/navIcon/icon_home_line.svg?react";
+import IconMyFill from "@/assets/icons/navIcon/icon_my_fill.svg?react";
+import IconMyLine from "@/assets/icons/navIcon/icon_my_line.svg?react";
+import IconSearchFill from "@/assets/icons/navIcon/icon_search_fill.svg?react";
+import IconSearchLine from "@/assets/icons/navIcon/icon_search_line.svg?react";
+import IconTransferWritingFill from "@/assets/icons/navIcon/icon_transferWriting_fill.svg?react";
+import IconTransferWritingLine from "@/assets/icons/navIcon/icon_transferWriting_line.svg?react";
+import IconWishFill from "@/assets/icons/navIcon/icon_wish_fill.svg?react";
+import IconWishLine from "@/assets/icons/navIcon/icon_wish_line.svg?react";
 
 import * as S from "./NavBottom.style";
 import ToolTip from "./toolTip/ToolTip";
@@ -42,13 +41,12 @@ const BottomNav = ({ isMobile }: BottomNavProps) => {
       path: PATH.WRITE_TRANSFER,
       icon: [<IconTransferWritingFill />, <IconTransferWritingLine />],
     },
-    // 찜 페이지용
-    // {
-    //   id: 4,
-    //   name: "찜",
-    //   path: "/wish",
-    //   icon: [<IconWishFill />, <IconWishLine />],
-    // },
+    {
+      id: 4,
+      name: "찜",
+      path: PATH.WISHLIST,
+      icon: [<IconWishFill />, <IconWishLine />],
+    },
     {
       id: 5,
       name: "마이",

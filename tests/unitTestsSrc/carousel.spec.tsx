@@ -1,4 +1,4 @@
-import Carousel from "@components/carousel/Carousel";
+import Carousel from "@/components/carousel/Carousel";
 import { fireEvent, render, screen } from "@testing-library/react";
 
 const dummyImg = ["image1.jpg", "image2.jpg", "image3.jpg"];

@@ -1,4 +1,4 @@
-import { PATH } from "@constants/path";
+import { PATH } from "@/constants/path";
 import { useSearchParams } from "react-router-dom";
 
 import * as S from "./PurchaseNav.style";

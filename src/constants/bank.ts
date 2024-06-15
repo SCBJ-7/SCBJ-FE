@@ -1,19 +1,19 @@
-import bnk from "@assets/bankImages/bnk.png";
-import daegu from "@assets/bankImages/daegu.png";
-import gwangju from "@assets/bankImages/gwangju.png";
-import hana from "@assets/bankImages/hana.png";
-import ibk from "@assets/bankImages/ibk.png";
-import kakaoBank from "@assets/bankImages/kakaoBank.png";
-import kBank from "@assets/bankImages/kBank.png";
-import kookmin from "@assets/bankImages/kookmin.png";
-import nh from "@assets/bankImages/nh.png";
-import postOffice from "@assets/bankImages/postOffice.png";
-import saemaeul from "@assets/bankImages/saemaeul.png";
-import sc from "@assets/bankImages/sc.png";
-import sinhan from "@assets/bankImages/sinhan.png";
-import sinhyup from "@assets/bankImages/sinhyup.png";
-import tossBank from "@assets/bankImages/tossBank.png";
-import woori from "@assets/bankImages/woori.png";
+import bnk from "@/assets/bankImages/bnk.png";
+import daegu from "@/assets/bankImages/daegu.png";
+import gwangju from "@/assets/bankImages/gwangju.png";
+import hana from "@/assets/bankImages/hana.png";
+import ibk from "@/assets/bankImages/ibk.png";
+import kakaoBank from "@/assets/bankImages/kakaoBank.png";
+import kBank from "@/assets/bankImages/kBank.png";
+import kookmin from "@/assets/bankImages/kookmin.png";
+import nh from "@/assets/bankImages/nh.png";
+import postOffice from "@/assets/bankImages/postOffice.png";
+import saemaeul from "@/assets/bankImages/saemaeul.png";
+import sc from "@/assets/bankImages/sc.png";
+import sinhan from "@/assets/bankImages/sinhan.png";
+import sinhyup from "@/assets/bankImages/sinhyup.png";
+import tossBank from "@/assets/bankImages/tossBank.png";
+import woori from "@/assets/bankImages/woori.png";
 
 export const BANK_LIST = [
   { name: "케이뱅크", img: kBank },

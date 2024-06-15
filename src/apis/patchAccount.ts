@@ -1,6 +1,6 @@
-import { END_POINTS } from "@constants/api";
+import { END_POINTS } from "@/constants/api";
 
-import type { AccountData } from "@type/profile";
+import type { AccountData } from "@/types/profile";
 
 import { axiosInstance } from "./axiosInstance";
 

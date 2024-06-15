@@ -1,7 +1,7 @@
-import { postPayment } from "@apis/fetchPayment";
+import { postPayment } from "@/apis/fetchPayment";
 import { useMutation } from "@tanstack/react-query";
 
-import type { PaymentRequestProps } from "@apis/fetchPayment";
+import type { PaymentRequestProps } from "@/apis/fetchPayment";
 
 export const usePaymentMutation = () => {
   const paymentMutation = useMutation({
@@ -13,5 +13,5 @@ export const usePaymentMutation = () => {
     },
   });
 
-  return paymentMutation;
+  return { mutatePayment: paymentMutation.mutate };
 };

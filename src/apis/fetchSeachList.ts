@@ -1,4 +1,4 @@
-import { BASE_URL, END_POINTS } from "@constants/api";
+import { BASE_URL, END_POINTS } from "@/constants/api";
 import axios from "axios";
 
 export const fetchSearchList = async (
@@ -36,7 +36,7 @@ export const fetchSearchList = async (
         },
       },
     );
-
+    console.log("response data", response);
     return response.data.data;
   } catch (error) {
     throw new Error("호텔 검색에 실패했습니다");

@@ -1,6 +1,7 @@
-import { breakpoints } from "@styles/theme";
-import { hexToRgba } from "@utils/hexTorgba";
 import styled, { DefaultTheme } from "styled-components";
+
+import breakpoints from "@/styles/breakpoints";
+import { hexToRgba } from "@/utils/styleFormatter";
 
 export const Container = styled.main`
   width: 100%;
@@ -20,11 +21,11 @@ export const MainWrapper = styled.div`
 
   padding-top: 218px;
 
-  @media (max-width: ${breakpoints.tablet}) {
+  @media (max-width: ${breakpoints.md}) {
     padding-top: 120px;
   }
 
-  @media (max-width: ${breakpoints.mobile}) {
+  @media (max-width: ${breakpoints.sm}) {
     padding-top: 120px;
   }
 `;
@@ -32,11 +33,11 @@ export const MainWrapper = styled.div`
 export const LogoWrapper = styled.div`
   width: 90px;
 
-  @media (max-width: ${breakpoints.tablet}) {
+  @media (max-width: ${breakpoints.md}) {
     width: 80px;
   }
 
-  @media (max-width: ${breakpoints.mobile}) {
+  @media (max-width: ${breakpoints.sm}) {
     width: 70px;
   }
 `;
@@ -104,11 +105,11 @@ export const Button = styled.button.withConfig({
 })<ButtonVariantProps>`
   width: 60%;
 
-  @media (max-width: ${breakpoints.tablet}) {
+  @media (max-width: ${breakpoints.md}) {
     width: 80%;
   }
 
-  @media (max-width: ${breakpoints.mobile}) {
+  @media (max-width: ${breakpoints.sm}) {
     width: 100%;
   }
 

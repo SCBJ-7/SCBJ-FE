@@ -1,6 +1,6 @@
-import { PATH } from "@constants/path";
+import { PATH } from "@/constants/path";
 
-import type { AccountData, ProfileData } from "@type/profile";
+import type { AccountData, ProfileData } from "@/types/profile";
 import { useNavigate } from "react-router-dom";
 
 import * as S from "./AccountInfo.style";

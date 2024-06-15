@@ -1,4 +1,4 @@
-import CloseButton from "@assets/icons/ic_close-button.svg?react";
+import CloseButton from "@/assets/icons/ic_close-button.svg?react";
 import styled from "styled-components";
 
 export const ModalContainer = styled.div`

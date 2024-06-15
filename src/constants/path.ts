@@ -7,7 +7,7 @@ export const PATH = {
   SALE_LIST: "/my-page/sale-list",
   PURCAHSE_DETAIL: "/my-page/purchase-detail",
   SALE_DETAIL: "/my-page/sale-detail",
-  DETAIL_ROOM: (productId: string | number) => `/room/${productId}`,
+  DETAIL_ROOM: (productId?: number) => `/room/${productId ?? ":productId"}`,
   WRITE_TRANSFER: "/transfer/new",
   WRITE_TRANSFER_PRICE: "/transfer/new/price",
   WRITE_TRANSFER_SUCCESS: "/transfer/new/success",
@@ -26,4 +26,5 @@ export const PATH = {
   RELOAD: 0,
   PAYMENT: (productId: string) => `/payment/${productId}`,
   PAYMENT_SUCCESS: (productId: string) => `/payment/${productId}/success`,
+  WISHLIST: "/wishlist",
 } as const;

@@ -1,9 +1,13 @@
-import { axiosInstance } from "@apis/axiosInstance";
-import { END_POINTS } from "@constants/api";
+import { axiosInstance } from "@/apis/axiosInstance";
+import { END_POINTS } from "@/constants/api";
 
-import type { Nullable } from "@type/nullable";
-import type { PaymentData, PaymentRequestData, StockData } from "@type/payment";
-import type { ResponseData } from "@type/responseType";
+import type { Nullable } from "@/types/nullable";
+import type {
+  PaymentData,
+  PaymentRequestData,
+  StockData,
+} from "@/types/payment";
+import type { ResponseData } from "@/types/responseType";
 
 export const getStock = async (productId: string): Promise<StockData> => {
   const { data } = await axiosInstance.get<ResponseData<StockData>>(

@@ -1,15 +1,19 @@
-import { ResponseError } from "@/components/error/Error";
-import { STATUS_CODE } from "@/constants/api";
-import { useStockQuery } from "@/hooks/api/useStockQuery";
-import useAuthStore from "@/store/authStore";
-import { PATH } from "@constants/path";
-import useToastConfig from "@hooks/common/useToastConfig";
-
-import type { RoomNavBarData } from "@type/room";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+import LikeButton from "./LikeButton";
 import * as S from "./RoomNavBar.style";
+
+import type { RoomNavBarData } from "@/types/room";
+
+import { ResponseError } from "@/components/error/Error";
+import { Button } from "@/components/ui/button";
+import { Typo } from "@/components/ui/typo";
+import { STATUS_CODE } from "@/constants/api";
+import { PATH } from "@/constants/path";
+import { useStockQuery } from "@/hooks/api/useStockQuery";
+import useToastConfig from "@/hooks/common/useToastConfig";
+import useAuthStore from "@/store/authStore";
 
 interface RoomNavBarProps {
   room: RoomNavBarData;
@@ -20,6 +24,7 @@ interface RoomNavBarProps {
 const RoomNavBar = ({ room, roomId, discount }: RoomNavBarProps) => {
   const navigate = useNavigate();
   const [error, setError] = useState<unknown>(null);
+
   const isLoggedIn = useAuthStore((state) => state.isLoggedIn);
   const { handleToast } = useToastConfig();
   const { refetch } = useStockQuery(roomId);
@@ -61,6 +66,19 @@ const RoomNavBar = ({ room, roomId, discount }: RoomNavBarProps) => {
     }
   };
 
+  const buttonConfig = {
+    buyer: {
+      text: "즉시 구매",
+      action: handlePurchaseClick,
+    },
+    seller: {
+      text: "판매 취소",
+      action: () => console.log("판매 취소 로직"),
+    },
+  };
+
+  const userType = room.isSeller ? "seller" : "buyer";
+
   useEffect(() => {
     if (error) {
       throw error;
@@ -69,27 +87,32 @@ const RoomNavBar = ({ room, roomId, discount }: RoomNavBarProps) => {
 
   return (
     <S.Wrapper>
-      <S.ColWrapper>
-        <S.Text variant="body3" color="greyScale3">
-          <s>{room.originalPrice.toLocaleString()}원</s>
-        </S.Text>
-        <S.Row2>
-          <S.Text variant="title2" color="percentBlue">
-            {discount}%
-          </S.Text>
-          <S.Text variant="title2">
-            {room.sellingPrice.toLocaleString()}원
-          </S.Text>
-        </S.Row2>
-      </S.ColWrapper>
-      <S.Button
-        type="button"
-        $status={room.saleStatus}
-        aria-label="구매하기"
-        onClick={handlePurchaseClick}
-      >
-        구매하기
-      </S.Button>
+      <LikeButton productId={roomId} />
+      <S.Infowrapper>
+        <S.TextWrapper>
+          <S.PriceWrapper>
+            <Typo typo="button4" color="percentBlue">
+              {discount}%
+            </Typo>
+            <Typo typo="button5" color="greyScale3">
+              <s>{room.originalPrice.toLocaleString()}원</s>
+            </Typo>
+          </S.PriceWrapper>
+          <Typo typo="title3">{room.sellingPrice.toLocaleString()}원</Typo>
+        </S.TextWrapper>
+        <S.ButtonWrapper>
+          <Button
+            type="button"
+            variant="solid"
+            size="md"
+            width="full"
+            disabled={!room.saleStatus}
+            onClick={buttonConfig[userType].action}
+          >
+            {buttonConfig[userType].text}
+          </Button>
+        </S.ButtonWrapper>
+      </S.Infowrapper>
     </S.Wrapper>
   );
 };

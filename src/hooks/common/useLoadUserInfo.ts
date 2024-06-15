@@ -1,4 +1,4 @@
-import { useUserInfoStore } from "@store/store";
+import { useUserInfoStore } from "@/store/store";
 import { useEffect } from "react";
 
 import { fetchUserInfo } from "@/apis/fetchUserInfo";

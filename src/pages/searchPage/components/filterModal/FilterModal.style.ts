@@ -1,5 +1,5 @@
-import CloseButton from "@assets/icons/ic_close-button.svg?react";
-import WarningIcon from "@assets/icons/ic_warning.svg?react";
+import CloseButton from "@/assets/icons/ic_close-button.svg?react";
+import WarningIcon from "@/assets/icons/ic_warning.svg?react";
 import { motion } from "framer-motion";
 import styled from "styled-components";
 

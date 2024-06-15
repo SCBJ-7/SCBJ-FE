@@ -1,7 +1,7 @@
 export type RoomData = {
   hotelName: string;
-  roomName: string;
   hotelImageUrlList: string[];
+  roomName: string;
   checkIn: string;
   checkOut: string;
   originalPrice: number;
@@ -14,6 +14,11 @@ export type RoomData = {
   hotelInfoUrl: string;
   saleStatus: boolean;
   isSeller: boolean;
+  roomAllRating: number;
+  hotelLevel: string;
+  sellerCommentList: string[];
+  facilityInformation: string;
+  isLike: boolean;
 };
 type RoomTheme = {
   parkingZone: boolean;
@@ -26,3 +31,12 @@ export type RoomNavBarData = Pick<
   RoomData,
   "originalPrice" | "sellingPrice" | "saleStatus" | "isSeller"
 >;
+
+export interface MapData {
+  documents: TLatLng[];
+}
+
+export type TLatLng = {
+  x: string;
+  y: string;
+};

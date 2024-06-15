@@ -1,4 +1,4 @@
-import { PATH } from "@constants/path";
+import { PATH } from "@/constants/path";
 
 import NoResult from "@/components/noResult/NoResult";
 

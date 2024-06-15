@@ -1,5 +1,5 @@
 import { test } from "@playwright/test";
-import { Signup } from "@tests/e2eTests/models/SignupPage";
+import { Signup } from "tests/e2eTests/models/SignupPage";
 
 test.use({ storageState: { cookies: [], origins: [] } });
 

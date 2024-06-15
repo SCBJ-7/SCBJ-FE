@@ -1,5 +1,5 @@
 export interface ISearchList {
-  id: string;
+  id: number;
   name: string;
   roomType: string;
   imageUrl: string;
@@ -9,4 +9,6 @@ export interface ISearchList {
   isFirstPrice: boolean;
   checkIn: string;
   checkOut: string;
+  hotelRate: number;
+  reviewRate: number;
 }

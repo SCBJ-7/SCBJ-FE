@@ -1,4 +1,4 @@
-import type { ColorKeys, TypoKeys } from "@styles/theme";
+import type { ColorKeys, TypoKeys } from "@/styles/theme";
 import styled from "styled-components";
 
 export const CardContainer = styled.div`

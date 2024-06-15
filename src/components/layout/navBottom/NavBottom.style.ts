@@ -7,6 +7,9 @@ export const BottomNavContainer = styled.section<{ $isMobile: boolean }>`
   bottom: 0;
 
   width: 100%;
+  max-width: 768px;
+  min-width: 360px;
+  z-index: 1;
   height: ${({ $isMobile }) => ($isMobile ? "78px" : "60px")};
   max-width: 768px;
 
@@ -15,6 +18,11 @@ export const BottomNavContainer = styled.section<{ $isMobile: boolean }>`
   align-items: flex-start;
   background-color: white;
   box-shadow: 0 0 10px 0 rgba(5, 44, 82, 0.1);
+
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
 `;
 
 export const BottomNavWrapper = styled.div`

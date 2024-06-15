@@ -1,7 +1,8 @@
-import Blank from "@components/lottie/blank/Blank";
 import { useNavigate } from "react-router-dom";
 
 import * as S from "./NoResult.style";
+
+import Blank from "@/components/lottie/blank/Blank";
 
 interface NoResultProps {
   title: string;

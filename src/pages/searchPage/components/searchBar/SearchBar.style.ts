@@ -1,4 +1,4 @@
-import SearchIcon from "@assets/icons/ic_search.svg?react";
+import SearchIcon from "@/assets/icons/ic_search.svg?react";
 import styled from "styled-components";
 
 export const SearchBarFixContainer = styled.div`

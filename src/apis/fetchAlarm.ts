@@ -1,5 +1,5 @@
-import { END_POINTS } from "@constants/api";
-import { AlarmType } from "@type/alarm";
+import { END_POINTS } from "@/constants/api";
+import { AlarmType } from "@/types/alarm";
 
 import { axiosInstance } from "./axiosInstance";
 

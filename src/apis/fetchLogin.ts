@@ -1,7 +1,7 @@
 import axios from "axios";
 
-import type { EmailValidateData, LoginData } from "@type/login";
-import type { ResponseData } from "@type/responseType";
+import type { EmailValidateData, LoginData } from "@/types/login";
+import type { ResponseData } from "@/types/responseType";
 
 import { BASE_URL, END_POINTS } from "@/constants/api";
 

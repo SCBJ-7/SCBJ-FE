@@ -1,5 +1,5 @@
-import PercentHotelLogo from "@assets/logos/Percent-hotel_logo_b.png";
-import { PATH } from "@constants/path";
+import PercentHotelLogo from "@/assets/logos/Percent-hotel_logo_b.png";
+import { PATH } from "@/constants/path";
 import { useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 

@@ -1,7 +1,7 @@
-import * as S from "@pages/paymentSuccessPage/PaymentSuccess.style";
+import * as S from "@/pages/paymentSuccessPage/PaymentSuccess.style";
 
-import type { IPurchaseData } from "@type/purchaseDetail";
-import { formatDateString } from "@utils/dateFormatter";
+import type { IPurchaseData } from "@/types/purchaseDetail";
+import { formatDateString } from "@/utils/dateFormatter";
 
 interface PaymentSuccessInfoProps {
   info: IPurchaseData;

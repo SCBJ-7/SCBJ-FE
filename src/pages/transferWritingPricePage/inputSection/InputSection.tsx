@@ -1,4 +1,4 @@
-import useToastConfig from "@hooks/common/useToastConfig";
+import useToastConfig from "@/hooks/common/useToastConfig";
 
 import * as S from "./InputSection.style";
 

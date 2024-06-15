@@ -1,9 +1,9 @@
-import { END_POINTS } from "@constants/api";
+import { END_POINTS } from "@/constants/api";
 
 import { axiosInstance } from "./axiosInstance";
 
-import type { ResponseData } from "@type/responseType";
-import type { ISaleData } from "@type/saleDetail";
+import type { ResponseData } from "@/types/responseType";
+import type { ISaleData } from "@/types/saleDetail";
 
 export const fetchSaleDetail = async (
   id: number,

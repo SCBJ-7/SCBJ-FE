@@ -12,10 +12,11 @@ export const SearchNavContainer = styled.div`
   min-width: 360px;
   width: 100%;
   height: 44px;
-  padding: 0.5rem 1.5rem;
+  padding: 0.5rem 1.5rem 2.5rem 1.5rem;
   position: fixed;
   z-index: 1;
   top: 72px;
+  border-bottom: 1px solid ${({ theme }) => theme.color.greyScale6};
 `;
 
 export const SearchCellCover = styled.div`

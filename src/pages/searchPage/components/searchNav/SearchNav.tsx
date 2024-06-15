@@ -1,5 +1,5 @@
-import { useSearchFilterInfoStore } from "@store/store";
-import { ISearchFilterInfo } from "@type/searchFilterInfo";
+import { useSearchFilterInfoStore } from "@/store/store";
+import { ISearchFilterInfo } from "@/types/searchFilterInfo";
 import { useState } from "react";
 import SearchModalButton from "../searchModalButton/SearchModalButton";
 

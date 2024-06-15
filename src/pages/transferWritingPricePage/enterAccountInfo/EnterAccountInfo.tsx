@@ -1,6 +1,6 @@
-import usePreventLeave from "@hooks/common/usePreventLeave";
-import useToastConfig from "@hooks/common/useToastConfig";
-import { Nullable } from "@type/nullable";
+import usePreventLeave from "@/hooks/common/usePreventLeave";
+import useToastConfig from "@/hooks/common/useToastConfig";
+import { Nullable } from "@/types/nullable";
 import { AnimatePresence, useAnimation } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import { useLocation } from "react-router-dom";

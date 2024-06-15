@@ -7,8 +7,8 @@ export const SignInContainer = styled.form`
   display: flex;
   flex-direction: column;
   align-items: center;
-
-  margin: 100px 20px 0 20px;
+  padding: 100px 20px 30px 20px;
+  background-color: white;
 `;
 
 export const SignInLogo = styled(LoginLogo)``;
@@ -17,9 +17,7 @@ export const SignInInputContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 24px;
-
   margin: 80px 0 40px 0;
-
   width: 100%;
 `;
 
