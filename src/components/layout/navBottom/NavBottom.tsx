@@ -1,3 +1,6 @@
+import * as S from "./NavBottom.style";
+import ToolTip from "./toolTip/ToolTip";
+
 import IconHomeFill from "@/assets/icons/navIcon/icon_home_fill.svg?react";
 import IconHomeLine from "@/assets/icons/navIcon/icon_home_line.svg?react";
 import IconMyFill from "@/assets/icons/navIcon/icon_my_fill.svg?react";
@@ -8,10 +11,6 @@ import IconTransferWritingFill from "@/assets/icons/navIcon/icon_transferWriting
 import IconTransferWritingLine from "@/assets/icons/navIcon/icon_transferWriting_line.svg?react";
 import IconWishFill from "@/assets/icons/navIcon/icon_wish_fill.svg?react";
 import IconWishLine from "@/assets/icons/navIcon/icon_wish_line.svg?react";
-
-import * as S from "./NavBottom.style";
-import ToolTip from "./toolTip/ToolTip";
-
 import { PATH } from "@/constants/path";
 import useTooltip from "@/hooks/common/useTooltip";
 
