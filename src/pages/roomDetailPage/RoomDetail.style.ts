@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 import type { ColorKeys, TypoKeys } from "@/styles/theme";
@@ -51,7 +50,7 @@ export const MapWrapper = styled.div`
   padding: 1rem 0 1.5rem;
 `;
 
-export const MapLink = styled(Link)`
+export const MapLink = styled.button`
   display: flex;
   gap: 4px;
   align-items: center;
