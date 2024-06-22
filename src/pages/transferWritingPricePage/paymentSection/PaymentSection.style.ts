@@ -2,8 +2,6 @@ import { motion } from "framer-motion";
 import { PiCaretDownBold } from "react-icons/pi";
 import styled from "styled-components";
 
-import { theme } from "@/styles/theme";
-
 export const Container = styled(motion.div)<{ $is2ndChecked: boolean }>`
   padding: 16px 20px;
   background-color: white;
@@ -11,7 +9,7 @@ export const Container = styled(motion.div)<{ $is2ndChecked: boolean }>`
   border-top: ${({ $is2ndChecked }) =>
     $is2ndChecked ? "1px dashed #CDCDCD" : ""};
 `;
-theme;
+
 export const Contents = styled.div`
   ${({ theme }) => theme.typo.body4};
 
@@ -78,7 +76,7 @@ export const IconWrapper = styled.button`
   }
 `;
 
-export const downIcon = styled(PiCaretDownBold)`
+export const downIcon = styled(PiCaretDownBold)<{ $isOpen: boolean }>`
   font-size: 14px;
   transition: 0.2s;
   transform: ${({ $isOpen }) => ($isOpen ? "" : "rotate(-180deg)")};

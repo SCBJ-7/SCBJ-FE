@@ -27,7 +27,10 @@ export const useConnectAccountMutation = () => {
   };
 
   const connectAccountMutation = useMutation({
-    mutationFn: (email: string) => postYanoljaAccount(email),
+    mutationFn: (email: string) => {
+      console.log(email);
+      return postYanoljaAccount(email);
+    },
     onSuccess: () => {
       navigate(PATH.YANOLJA_ACCOUNT_VERIFICATION_SUCCESS, {
         state: { success: true },
@@ -36,6 +39,7 @@ export const useConnectAccountMutation = () => {
     },
     onError: handleError,
     throwOnError: (error) => {
+      console.log(error);
       return !isAxiosError(error);
     },
   });
