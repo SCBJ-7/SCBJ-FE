@@ -28,7 +28,6 @@ const SecondPriceTag = ({
   onSecondPriceChange,
   downTimeAfter,
   onDownTimeAfterChange,
-  // remainingDays,
   remainingTimes,
   // startDate,
   // endDate,
@@ -37,12 +36,6 @@ const SecondPriceTag = ({
 }: PriceTagProps) => {
   // const STD = format(startDate, "MM. dd (ccc) HH:mm", { locale: ko });
   // const ETD = format(endDate, "MM. dd (ccc) HH:mm", { locale: ko });
-
-  // const LEFTTIME = remainingTimes;
-  // let processedTime = `${remainingTimes}`;
-  // if (LEFTTIME > 72) {
-  //   processedTime = `${remainingDays} 일  ${remainingTimes % 24}`;
-  // }
 
   useEffect(() => {
     const processedfirstPrice = Number(firstPrice.split(",").join(""));

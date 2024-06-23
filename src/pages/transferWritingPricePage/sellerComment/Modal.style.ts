@@ -145,6 +145,7 @@ const Button = styled.button`
 export const InstallButton = styled(Button)`
   background-color: ${({ theme }) => theme.color.percentOrange};
   color: #ffffff;
+  width: 100%;
 
   &:hover {
     background-color: ${({ theme }) => theme.color.darkOrange};

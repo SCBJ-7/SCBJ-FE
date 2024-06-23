@@ -6,12 +6,12 @@ import { type SellerCommentType } from "@/types/sellerComments";
 
 interface SellerCommentsProps {
   sellerComments: SellerCommentType[];
-  setIsSellerCommentOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const SellerComment = ({
   sellerComments,
-  setIsSellerCommentOpen,
+  setIsModalOpen,
 }: SellerCommentsProps) => {
   return (
     <S.Container>
@@ -22,7 +22,7 @@ const SellerComment = ({
           <S.Badge># {item}</S.Badge>
         ))}
       </S.BadgesList>
-      <S.AddBadgeButton onClick={() => setIsSellerCommentOpen(true)}>
+      <S.AddBadgeButton onClick={() => setIsModalOpen(true)}>
         <AddIcon size={20} className="icon" />
         추가하기
       </S.AddBadgeButton>

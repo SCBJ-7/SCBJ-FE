@@ -1,22 +1,43 @@
 import { AnimatePresence } from "framer-motion";
 import ReactDOM from "react-dom";
 
-import * as S from "./CommentModal.style";
+import * as S from "./Modal.style";
+import TermsSection from "../agreementSection/AgreementSection";
 
 import { SELLERCOMMENTS, type SellerCommentType } from "@/types/sellerComments";
 
 interface CommentModalProps {
+  modalType: "SELLER" | "AGREEMENT";
   sellerComments: SellerCommentType[];
   setSellerComments: React.Dispatch<React.SetStateAction<SellerCommentType[]>>;
-  isCommentModalOpen: boolean;
-  setIsCommentModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  isModalOpen: boolean;
+  setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  submitHandler?: () => void;
+  opt1: boolean;
+  opt2: boolean;
+  opt3: boolean;
+  optFinal: boolean;
+  setOpt1: React.Dispatch<React.SetStateAction<boolean>>;
+  setOpt2: React.Dispatch<React.SetStateAction<boolean>>;
+  setOpt3: React.Dispatch<React.SetStateAction<boolean>>;
+  setOptFinal: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export const CommentModal = ({
+export const Modal = ({
+  modalType,
   sellerComments,
   setSellerComments,
-  isCommentModalOpen,
-  setIsCommentModalOpen,
+  isModalOpen,
+  setIsModalOpen,
+  submitHandler,
+  opt1,
+  opt2,
+  opt3,
+  optFinal,
+  setOpt1,
+  setOpt2,
+  setOpt3,
+  setOptFinal,
 }: CommentModalProps) => {
   const handleChoose = (badgeName: SellerCommentType) => {
     if (sellerComments.includes(badgeName)) {
@@ -32,7 +53,14 @@ export const CommentModal = ({
 
   const handleCancle = () => {
     setSellerComments([]);
-    setIsCommentModalOpen(false);
+    setIsModalOpen(false);
+  };
+
+  const handleSubmit = () => {
+    if (submitHandler) {
+      submitHandler();
+    }
+    setIsModalOpen(false);
   };
 
   const backdropVariants = {
@@ -51,22 +79,22 @@ export const CommentModal = ({
 
   return ReactDOM.createPortal(
     <AnimatePresence mode="wait">
-      {isCommentModalOpen && (
+      {isModalOpen && modalType === "SELLER" && (
         <>
           <S.BackDrop
             initial="hidden"
             animate="visible"
             exit="hidden"
-            onClick={() => setIsCommentModalOpen(false)}
+            onClick={() => setIsModalOpen(false)}
             variants={backdropVariants}
-            transition={{ duration: 0.5 }}
+            transition={{ duration: 0.3 }}
           />
           <S.CommentModalContainer
             initial="hidden"
             animate="visible"
             exit="hidden"
             variants={modalVariants}
-            transition={{ duration: 0.5 }}
+            transition={{ duration: 0.3 }}
           >
             <S.Section>
               <S.Title>판매자 코멘트 추가하기</S.Title>
@@ -107,8 +135,47 @@ export const CommentModal = ({
               <S.DismissButton onClick={handleCancle}>
                 키워드 없이 올리기
               </S.DismissButton>
-              <S.InstallButton onClick={() => setIsCommentModalOpen(false)}>
+              <S.InstallButton onClick={() => setIsModalOpen(false)}>
                 키워드 추가 완료
+              </S.InstallButton>
+            </S.ButtonWrapper>
+          </S.CommentModalContainer>
+        </>
+      )}
+      {isModalOpen && modalType === "AGREEMENT" && (
+        <>
+          <S.BackDrop
+            initial="hidden"
+            animate="visible"
+            exit="hidden"
+            onClick={() => setIsModalOpen(false)}
+            variants={backdropVariants}
+            transition={{ duration: 0.5 }}
+          />
+          <S.CommentModalContainer
+            initial="hidden"
+            animate="visible"
+            exit="hidden"
+            variants={modalVariants}
+            transition={{ duration: 0.5 }}
+          >
+            <S.Section>
+              <S.Title>마지막으로 확인해주세요!</S.Title>
+              <S.Message>판매게시물을 올린 후에는 수정할 수 없어요</S.Message>
+            </S.Section>
+            <TermsSection
+              opt1={opt1}
+              opt2={opt2}
+              opt3={opt3}
+              optFinal={optFinal}
+              setOpt1={setOpt1}
+              setOpt2={setOpt2}
+              setOpt3={setOpt3}
+              setOptFinal={setOptFinal}
+            />
+            <S.ButtonWrapper>
+              <S.InstallButton onClick={handleSubmit}>
+                판매글 올리기
               </S.InstallButton>
             </S.ButtonWrapper>
           </S.CommentModalContainer>

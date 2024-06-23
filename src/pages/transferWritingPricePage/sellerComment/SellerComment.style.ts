@@ -28,6 +28,9 @@ export const BadgesList = styled.ul`
   flex-wrap: wrap;
   gap: 8px;
   padding: 0 8px;
+
+  width: 100%;
+  min-height: 28px;
 `;
 
 export const Badge = styled.li`

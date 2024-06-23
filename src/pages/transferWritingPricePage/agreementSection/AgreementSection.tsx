@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import * as S from "./AgreementSection.style";
 import CheckBoxSection from "../checkBox/CheckBoxSection";
@@ -23,6 +23,8 @@ const TermsSection = ({
   setOpt3,
   setOptFinal,
 }: AgreementProps) => {
+  const [allChecked, setAllChecked] = useState(false);
+
   const check1Ref = useRef(null);
   const check2Ref = useRef(null);
   const check3Ref = useRef(null);
@@ -41,15 +43,21 @@ const TermsSection = ({
     if (optFinal && check4Ref.current) {
       (check4Ref.current as HTMLInputElement).checked = true;
     }
-  });
+
+    if (opt1 && opt2 && opt3 && optFinal) {
+      setAllChecked(true);
+    } else {
+      setAllChecked(false);
+    }
+  }, [opt1, opt2, opt3, optFinal]);
 
   return (
     <S.Container initial={{ y: -5, opacity: 0 }} animate={{ y: 0, opacity: 1 }}>
       <CheckBoxSection
         checkRef={check1Ref}
-        text="체크인 시간까지 상품이 판매되지 않으면 상품 판매가 자동 만료되며, 만료된 상품은 숙박종료일까지 야놀자에서 이용 가능합니다."
+        text="체크인 시간까지 상품이 판매되지 않으면 판매가 종료돼요."
         id="1"
-        isChecked={false}
+        isChecked={opt1}
         onChecked={setOpt1}
         fontSize="body6"
         color="greyScale2"
@@ -57,9 +65,9 @@ const TermsSection = ({
       />
       <CheckBoxSection
         checkRef={check2Ref}
-        text="설정한 상품 판매가와 중개 수수료를 포함한 정산 총액을 확인하였습니다."
+        text="판매 종료된 상품은 숙박종료일까지 야놀자에서 이용 가능해요."
         id="2"
-        isChecked={false}
+        isChecked={opt2}
         onChecked={setOpt2}
         fontSize="body6"
         color="greyScale2"
@@ -67,9 +75,9 @@ const TermsSection = ({
       />
       <CheckBoxSection
         checkRef={check3Ref}
-        text="설정한 상품 판매가는 이후 수정이 불가하며 이를 확인하였습니다."
+        text="설정한 상품 판매가와 중개수수료를 제한 정산받을 금액을 마지막으로 한번 더 확인해주세요."
         id="3"
-        isChecked={false}
+        isChecked={opt3}
         onChecked={setOpt3}
         fontSize="body6"
         color="greyScale2"
@@ -77,16 +85,17 @@ const TermsSection = ({
       />
       <CheckBoxSection
         checkRef={check4Ref}
-        text="판매 내용을 모두 확인 하였으며, 판매 진행에 동의 합니다."
+        text="설정한 상품 판매가는 이후 수정이 불가해요."
         id="4"
-        isChecked={false}
+        isChecked={optFinal}
         onChecked={setOptFinal}
-        onAllChecked={[setOpt1, setOpt2, setOpt3]}
-        onAllRef={[check1Ref, check2Ref, check3Ref]}
         fontSize="body6"
         color="greyScale2"
-        type="allCheck"
+        type="terms"
       />
+      <S.FinalTerm $allChecked={allChecked}>
+        판매 내용을 모두 확인 하였으며, 판매 진행에 동의 합니다.
+      </S.FinalTerm>
     </S.Container>
   );
 };

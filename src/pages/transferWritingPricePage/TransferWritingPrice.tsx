@@ -1,14 +1,13 @@
 import { useEffect, useRef, useState } from "react";
 
 import AccountSection from "./accountSection/AccountSection";
-import AgreementSection from "./agreementSection/AgreementSection";
 import EnterAccountInfo from "./enterAccountInfo/EnterAccountInfo";
 import FirstPriceTag from "./firstPriceTag/FirstPriceTag";
 import ItemInfoSection from "./itemInfo/ItemInfo";
 import PaymentSection from "./paymentSection/PaymentSection";
 import PriceSection from "./priceSection/PriceSection";
 import SecondPriceTag from "./secondPriceTag/SecondPriceTag";
-import { CommentModal } from "./sellerComment/CommentModal";
+import { Modal } from "./sellerComment/Modal";
 import SellerCommentSection from "./sellerComment/SellerComment";
 import TransferNavigation from "./transferNavigation/transferNavigation";
 import * as S from "./TransferWritingPrice.style";
@@ -27,7 +26,7 @@ import { type SellerCommentType } from "@/types/sellerComments";
 export type PhaseType = "1stInput" | "2ndInput" | "finalConfirm";
 
 const userData: ProfileData = {
-  accountNumber: "123123",
+  accountNumber: "123123123123123",
   bank: "신한",
   email: "jove0729@naver.com",
   id: 123,
@@ -35,19 +34,6 @@ const userData: ProfileData = {
   phone: "010-4922-3563",
   name: "Bumang",
 };
-
-// const selectedItem =  {
-//   reservationId: 0,
-//   hotelName: "",
-//   roomName: "",
-//   startDate: new Date(),
-//   endDate: new Date(),
-//   refundPrice: 0,
-//   purchasePrice: 0,
-//   remainingDays: 0,
-//   remainingTimes: 0,
-//   imageUrl: "",
-// },
 
 const TransferWritingPrice = () => {
   // 현재 선택된 숙박
@@ -76,9 +62,10 @@ const TransferWritingPrice = () => {
     userData?.accountNumber ?? null,
   );
 
-  // 판매자 코멘트
+  // 모달
+  const [modalType, setModalType] = useState<"SELLER" | "AGREEMENT">("SELLER");
   const [sellerComments, setSellerComments] = useState<SellerCommentType[]>([]);
-  const [isSellerCommentOpen, setIsSellerCommentOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   // 약관 동의
   const [opt1, setOpt1] = useState(false);
@@ -127,9 +114,15 @@ const TransferWritingPrice = () => {
     }
   };
 
-  // const handleSellerComments = () => {
-  //   setSellerComments()
-  // }
+  const handleOpenAgreement = () => {
+    setModalType("AGREEMENT");
+    setIsModalOpen(true);
+  };
+
+  const handleOpenSeller = () => {
+    setModalType("SELLER");
+    setIsModalOpen(true);
+  };
 
   // HOOKS
   // 작성 중 나가면 경고하는 훅
@@ -193,8 +186,6 @@ const TransferWritingPrice = () => {
     optFinal,
   });
 
-  console.log(isSellerCommentOpen, "isSellerCommentOpen");
-
   return (
     <S.Container>
       <TransferPricingHeader />
@@ -253,16 +244,9 @@ const TransferWritingPrice = () => {
           />
           <SellerCommentSection //
             sellerComments={sellerComments}
-            setIsSellerCommentOpen={setIsSellerCommentOpen}
+            setIsModalOpen={handleOpenSeller}
           />
-          {isSellerCommentOpen && <></>}
           <S.Gutters />
-          <CommentModal
-            sellerComments={sellerComments}
-            setSellerComments={setSellerComments}
-            isCommentModalOpen={isSellerCommentOpen}
-            setIsCommentModalOpen={setIsSellerCommentOpen}
-          />
         </>
       )}
 
@@ -280,9 +264,25 @@ const TransferWritingPrice = () => {
         <TransferNavigation //
           phase={phase}
           onAddHistory={handleAddPhaseHistory}
-          onSubmit={submitHandler}
+          onSubmit={handleOpenAgreement}
         />
       )}
+      <Modal
+        modalType={modalType}
+        sellerComments={sellerComments}
+        setSellerComments={setSellerComments}
+        isModalOpen={isModalOpen}
+        setIsModalOpen={setIsModalOpen}
+        submitHandler={submitHandler}
+        opt1={opt1}
+        opt2={opt2}
+        opt3={opt3}
+        optFinal={optFinal}
+        setOpt1={setOpt1}
+        setOpt2={setOpt2}
+        setOpt3={setOpt3}
+        setOptFinal={setOptFinal}
+      />
     </S.Container>
   );
 };
