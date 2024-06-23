@@ -29,7 +29,7 @@ const SecondPriceTag = ({
   downTimeAfter,
   onDownTimeAfterChange,
   // remainingDays,
-  // remainingTimes,
+  remainingTimes,
   // startDate,
   // endDate,
   secondPriceInputRef,
@@ -77,6 +77,7 @@ const SecondPriceTag = ({
         inputPosition="center"
         text={["체크인", "시간전에"]}
         inputData={downTimeAfter}
+        remainingTimes={remainingTimes}
         onDataChange={onDownTimeAfterChange}
         type="time"
       />

@@ -21,7 +21,7 @@ export const Desc = styled.span`
   margin-top: 4px;
 `;
 
-export const BadgesList = styled.div`
+export const BadgesList = styled.ul`
   margin-top: 12px;
   display: flex;
   justify-content: center;
@@ -30,7 +30,7 @@ export const BadgesList = styled.div`
   padding: 0 8px;
 `;
 
-export const Badge = styled.div`
+export const Badge = styled.li`
   flex-shrink: 0;
   height: 28px;
   color: ${({ theme }) => theme.color.percentOrange};

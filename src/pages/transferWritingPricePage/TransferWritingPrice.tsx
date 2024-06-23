@@ -8,6 +8,7 @@ import ItemInfoSection from "./itemInfo/ItemInfo";
 import PaymentSection from "./paymentSection/PaymentSection";
 import PriceSection from "./priceSection/PriceSection";
 import SecondPriceTag from "./secondPriceTag/SecondPriceTag";
+import { CommentModal } from "./sellerComment/CommentModal";
 import SellerCommentSection from "./sellerComment/SellerComment";
 import TransferNavigation from "./transferNavigation/transferNavigation";
 import * as S from "./TransferWritingPrice.style";
@@ -77,6 +78,7 @@ const TransferWritingPrice = () => {
 
   // 판매자 코멘트
   const [sellerComments, setSellerComments] = useState<SellerCommentType[]>([]);
+  const [isSellerCommentOpen, setIsSellerCommentOpen] = useState(false);
 
   // 약관 동의
   const [opt1, setOpt1] = useState(false);
@@ -191,6 +193,8 @@ const TransferWritingPrice = () => {
     optFinal,
   });
 
+  console.log(isSellerCommentOpen, "isSellerCommentOpen");
+
   return (
     <S.Container>
       <TransferPricingHeader />
@@ -247,8 +251,18 @@ const TransferWritingPrice = () => {
             accountNumber={accountNumber}
             onSetAccount={setAccountSetting}
           />
-          <SellerCommentSection />
+          <SellerCommentSection //
+            sellerComments={sellerComments}
+            setIsSellerCommentOpen={setIsSellerCommentOpen}
+          />
+          {isSellerCommentOpen && <></>}
           <S.Gutters />
+          <CommentModal
+            sellerComments={sellerComments}
+            setSellerComments={setSellerComments}
+            isCommentModalOpen={isSellerCommentOpen}
+            setIsCommentModalOpen={setIsSellerCommentOpen}
+          />
         </>
       )}
 
