@@ -5,7 +5,7 @@ import { useSelectedItemStore } from "@/store/store";
 
 interface PriceProps {
   phase: PhaseType;
-  firstPrice: number;
+  firstPrice: string;
 }
 
 const PriceSection = ({ phase, firstPrice }: PriceProps) => {

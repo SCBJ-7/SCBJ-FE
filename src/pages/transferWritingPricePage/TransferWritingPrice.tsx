@@ -8,6 +8,7 @@ import ItemInfoSection from "./itemInfo/ItemInfo";
 import PaymentSection from "./paymentSection/PaymentSection";
 import PriceSection from "./priceSection/PriceSection";
 import SecondPriceTag from "./secondPriceTag/SecondPriceTag";
+import SellerCommentSection from "./sellerComment/SellerComment";
 import TransferNavigation from "./transferNavigation/transferNavigation";
 import * as S from "./TransferWritingPrice.style";
 import TransferPricingHeader from "./transferWritingPriceHeader/TransferPricingHeaderTop";
@@ -20,12 +21,13 @@ import useSubmitHandler from "../../hooks/common/useSubmitHandler";
 import usePreventLeave from "@/hooks/common/usePreventLeave";
 import { useSelectedItemStore } from "@/store/store";
 import { ProfileData } from "@/types/profile";
+import { type SellerCommentType } from "@/types/sellerComments";
 
 export type PhaseType = "1stInput" | "2ndInput" | "finalConfirm";
 
 const userData: ProfileData = {
-  accountNumber: "123123-123123",
-  bank: "string",
+  accountNumber: "123123",
+  bank: "신한",
   email: "jove0729@naver.com",
   id: 123,
   linkedToYanolja: true,
@@ -73,6 +75,9 @@ const TransferWritingPrice = () => {
     userData?.accountNumber ?? null,
   );
 
+  // 판매자 코멘트
+  const [sellerComments, setSellerComments] = useState<SellerCommentType[]>([]);
+
   // 약관 동의
   const [opt1, setOpt1] = useState(false);
   const [opt2, setOpt2] = useState(false);
@@ -89,6 +94,12 @@ const TransferWritingPrice = () => {
     setBank(userData?.bank ?? null);
     setAccountNumber(userData?.accountNumber ?? null);
   }, [userData]);
+
+  useEffect(() => {
+    console.log(phase, "phase");
+
+    console.log(is2ndChecked, "is2ndChecked");
+  }, [phase]);
 
   const handleAddPhaseHistory = (newPhase: PhaseType) => {
     setPhaseHistory([...phaseHistory, newPhase]);
@@ -113,6 +124,10 @@ const TransferWritingPrice = () => {
       setIs2ndChecked(false);
     }
   };
+
+  // const handleSellerComments = () => {
+  //   setSellerComments()
+  // }
 
   // HOOKS
   // 작성 중 나가면 경고하는 훅
@@ -177,7 +192,7 @@ const TransferWritingPrice = () => {
   });
 
   return (
-    <S.Container layout>
+    <S.Container>
       <TransferPricingHeader />
       {accountSetting === "none" && <ItemInfoSection />}
       {accountSetting === "none" && phase !== "finalConfirm" && (
@@ -207,26 +222,35 @@ const TransferWritingPrice = () => {
           endDate={selectedItem.endDate}
         />
       )}
-      {accountSetting === "none" &&
-        !!is2ndChecked &&
-        phase === "finalConfirm" && (
-          <>
+      {accountSetting === "none" && phase === "finalConfirm" && (
+        <>
+          <PaymentSection
+            type="first"
+            price={firstPrice}
+            is2ndChecked={is2ndChecked}
+            title={
+              is2ndChecked
+                ? "1차 거래 체결 시 예상 정산금액"
+                : "거래 채결 시 예상 정산금액"
+            }
+          />
+          {is2ndChecked && (
             <PaymentSection
-              type="first"
-              price={firstPrice}
-              is2ndChecked={is2ndChecked}
-              title="1차 판매 체결 시 예상 정산금액"
+              type="second"
+              price={secondPrice}
+              is2ndChecked
+              title={"2차 거래 체결 시 예상 정산금액"}
             />
-            {is2ndChecked && (
-              <PaymentSection
-                type="second"
-                price={secondPrice}
-                is2ndChecked
-                title="2차 판매 체결 시 예상 정산금액"
-              />
-            )}
-          </>
-        )}
+          )}
+          <AccountSection
+            bank={bank}
+            accountNumber={accountNumber}
+            onSetAccount={setAccountSetting}
+          />
+          <SellerCommentSection />
+          <S.Gutters />
+        </>
+      )}
 
       {accountSetting === "enter" && (
         <EnterAccountInfo
