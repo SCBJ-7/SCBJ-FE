@@ -12,9 +12,15 @@ export const postWish = async (productId: string): Promise<void> => {
   return await axiosInstance.post(`${END_POINTS.WISH(productId)}`);
 };
 
-export const getWish = async (): Promise<WishDataType> => {
+export const getWish = async ({ pageParam = 0 }) => {
   const { data } = await axiosInstance.get<ResponseData<WishDataType>>(
     `${END_POINTS.WISH_LIST}`,
+    {
+      params: {
+        page: pageParam,
+        pageSize: 10,
+      },
+    },
   );
   return data.data;
 };
