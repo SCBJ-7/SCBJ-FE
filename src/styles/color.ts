@@ -1,7 +1,7 @@
 const color = {
   transparent: "transparent",
   current: "currentColor",
-  black: "hsl(273 10% 4% / 1);",
+  black: "#0a090b;",
   white: "#FFFFFF",
 
   lightOrange: "#FFEDDA",
