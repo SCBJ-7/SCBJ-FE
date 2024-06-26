@@ -24,7 +24,7 @@ const WishCard = ({ product }: { product: ProductType }) => {
           <S.TitleWrapper>
             <S.TextWrapper>
               <Typo typo="button4">{product.hotelName}</Typo>
-              <Typo typo="body5">{product.roomType}</Typo>
+              <Typo typo="body5">{product.bedType}</Typo>
             </S.TextWrapper>
             <WishButton productId={product.productId} />
           </S.TitleWrapper>
