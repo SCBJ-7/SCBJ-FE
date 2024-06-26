@@ -32,7 +32,8 @@ export const Img = styled.img`
 
 export const ImgWrapper = styled.div`
   max-width: 88px;
-  max-height: 88px;
+  height: 88px;
+  width: 100%;
 
   border-radius: 8px;
   overflow: hidden;
