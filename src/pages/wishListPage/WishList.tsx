@@ -33,7 +33,7 @@ const WishList = () => {
         isBottomNavOn
       >
         <ListWrapper>
-          {data.pages?.[0].empty ? (
+          {data.pages?.[0].empty || !data.pages?.[0].totalElements ? (
             <NoResultCover>
               <Typo typo="title4">찜 등록된 상품이 없어요</Typo>
             </NoResultCover>
@@ -57,10 +57,8 @@ const ListWrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: ${remCalc(16)};
-
-  height: 100%;
 `;
 
 const NoResultCover = styled.div`
-  margin: auto;
+  margin: 50% auto;
 `;
