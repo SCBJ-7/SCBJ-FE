@@ -29,7 +29,7 @@ export const Wrapper = styled.div.withConfig({
     !["bg", "pt", "pb", "paddingBlock", "paddingInline"].includes(prop),
 })<LayoutStyleProps>`
   width: 100%;
-  min-height: 100%;
+  height: 100%;
   max-width: 768px;
   min-width: 360px;
   position: relative;
