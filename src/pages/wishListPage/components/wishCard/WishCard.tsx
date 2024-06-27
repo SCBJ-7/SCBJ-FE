@@ -17,7 +17,6 @@ const WishCard = ({ product }: { product: ProductType }) => {
   const checkOutDate = formatDateWithoutTime(product.checkOutDate);
 
   useEffect(() => {
-    console.log(product.visible);
     if (product.visible === false) {
       const timer = setTimeout(() => {
         setIsVisible(false);
