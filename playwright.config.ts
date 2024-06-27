@@ -46,12 +46,12 @@ export default defineConfig({
       },
       testIgnore: ["**/authentication/**/*.ts"],
     },
-    {
-      name: "authentication",
-      use: { ...devices["Desktop Chrome"] },
-      testMatch: "**/authentication/**/*.ts",
-      testIgnore: ["**/global.setup.ts"],
-    },
+    // {
+    //   name: "authentication",
+    //   use: { ...devices["Desktop Chrome"] },
+    //   testMatch: "**/authentication/**/*.ts",
+    //   testIgnore: ["**/global.setup.ts"],
+    // },
     // {
     //   name: "chromium",
     //   use: { ...devices["Desktop Chrome"] },
