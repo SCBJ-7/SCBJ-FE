@@ -12,7 +12,7 @@ import roomHandlers from "./handlers/room";
 import yanoljaAccountHandlers from "./handlers/yanoljaAccount";
 
 export const handlers = [
-  ...roomHandlers,
+  // ...roomHandlers,
   ...paymentHandler,
   ...Object.values(emailHandlers),
   ...Object.values(yanoljaAccountHandlers),
