@@ -20,7 +20,7 @@ const WishCard = ({ product }: { product: ProductType }) => {
     if (product.visible === false) {
       const timer = setTimeout(() => {
         setIsVisible(false);
-      }, 1000);
+      }, 500);
 
       return () => clearTimeout(timer);
     } else {
@@ -77,18 +77,18 @@ const cardVariants = {
     opacity: 0,
     y: 50,
     scale: 0.95,
-    transition: { duration: 0.35 },
+    transition: { duration: 0.3 },
   },
   hidden: {
     opacity: 0,
     y: -10,
     scale: 0.95,
-    transition: { duration: 0.35 },
+    transition: { duration: 0.25 },
   },
   visible: {
     opacity: 1,
     y: 0,
     scale: 1,
-    transition: { duration: 0.35 },
+    transition: { duration: 0.3 },
   },
 };
