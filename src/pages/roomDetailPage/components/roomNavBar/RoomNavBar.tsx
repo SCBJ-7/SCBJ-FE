@@ -1,8 +1,9 @@
-import { useEffect, useState } from "react";
+import { useOverlay } from "@toss/use-overlay";
 import { useNavigate } from "react-router-dom";
 
 import LikeButton from "./LikeButton";
 import * as S from "./RoomNavBar.style";
+import DiscontinuePopup from "../discontinuePopup/DiscontinuePopup";
 
 import type { RoomNavBarData } from "@/types/room";
 
@@ -11,6 +12,7 @@ import { Button } from "@/components/ui/button";
 import { Typo } from "@/components/ui/typo";
 import { STATUS_CODE } from "@/constants/api";
 import { PATH } from "@/constants/path";
+import { useDiscontinueMutation } from "@/hooks/api/useDiscontinueQuery";
 import { useStockQuery } from "@/hooks/api/useStockQuery";
 import useToastConfig from "@/hooks/common/useToastConfig";
 import useAuthStore from "@/store/authStore";
@@ -23,28 +25,18 @@ interface RoomNavBarProps {
 
 const RoomNavBar = ({ room, roomId, discount }: RoomNavBarProps) => {
   const navigate = useNavigate();
-  const [error, setError] = useState<unknown>(null);
+  const overlay = useOverlay();
 
   const isLoggedIn = useAuthStore((state) => state.isLoggedIn);
   const { handleToast } = useToastConfig();
   const { refetch } = useStockQuery(roomId);
+  const { deleteProduct } = useDiscontinueMutation();
 
   const checkLoggedIn = () => {
     if (!isLoggedIn) {
       throw new ResponseError(STATUS_CODE.UNAUTHORIZED, "로그인이 필요합니다.");
     }
   };
-
-  const checkPurchaseConditions = () => {
-    if (room.isSeller) {
-      handleToast(true, [<>내가 판매하는 상품은 구매가 불가합니다</>]);
-      return false;
-    } else if (!room.saleStatus) {
-      return false;
-    }
-    return true;
-  };
-
   const processPurchase = async () => {
     const stockData = await refetch();
     if (stockData?.data?.hasStock) {
@@ -55,16 +47,25 @@ const RoomNavBar = ({ room, roomId, discount }: RoomNavBarProps) => {
   };
 
   const handlePurchaseClick = async () => {
-    try {
-      checkLoggedIn();
-      const canPurchase = checkPurchaseConditions();
-      if (canPurchase) {
-        await processPurchase();
-      }
-    } catch (err) {
-      setError(err);
-    }
+    checkLoggedIn();
+    await processPurchase();
   };
+
+  const handleDiscontinueProduct = () => {
+    deleteProduct(roomId),
+      {
+        onSuccess: () => overlay.close(),
+      };
+  };
+
+  const openDiscontinuePopup = () =>
+    overlay.open(({ isOpen, close }) => (
+      <DiscontinuePopup
+        isOpen={isOpen}
+        onClose={close}
+        action={handleDiscontinueProduct}
+      />
+    ));
 
   const buttonConfig = {
     buyer: {
@@ -73,17 +74,11 @@ const RoomNavBar = ({ room, roomId, discount }: RoomNavBarProps) => {
     },
     seller: {
       text: "판매 취소",
-      action: () => console.log("판매 취소 로직"),
+      action: openDiscontinuePopup,
     },
   };
 
   const userType = room.isSeller ? "seller" : "buyer";
-
-  useEffect(() => {
-    if (error) {
-      throw error;
-    }
-  }, [error]);
 
   return (
     <S.Wrapper>
