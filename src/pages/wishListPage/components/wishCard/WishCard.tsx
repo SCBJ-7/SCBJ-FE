@@ -1,5 +1,6 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 import WishButton from "./LikeButton.tsx";
 import * as S from "./WishCard.styles.ts";
@@ -8,6 +9,7 @@ import type { ProductType } from "@/types/wish.ts";
 
 import ProgressiveImg from "@/components/progressiveImg/ProgressiveImg.tsx";
 import { Typo } from "@/components/ui/typo";
+import { PATH } from "@/constants/path.ts";
 import { formatDateWithoutTime } from "@/utils/dateFormatter.ts";
 
 const WishCard = ({ product }: { product: ProductType }) => {
@@ -39,7 +41,7 @@ const WishCard = ({ product }: { product: ProductType }) => {
           variants={cardVariants}
           layout
         >
-          <S.CardWrapper>
+          <S.CardWrapper as={Link} to={PATH.DETAIL_ROOM(product.id)}>
             <S.ImgWrapper>
               <ProgressiveImg
                 src={product.imageUrl}
