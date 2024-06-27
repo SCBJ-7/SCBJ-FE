@@ -43,5 +43,11 @@ export const Container = styled.div`
   bottom: 0;
   z-index: 50;
 
+  width: 100%;
+  max-width: 768px;
+  min-width: 360px;
+
+  margin: 0 auto;
+
   background-color: ${(props) => props.theme.color.white};
 `;
