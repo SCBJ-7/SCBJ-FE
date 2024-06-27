@@ -365,11 +365,14 @@ const AppRouter = () => {
         {
           path: PATH.WISHLIST,
           element: (
-            <ApiErrorBoundary>
-              <Suspense fallback={<LoadingFallback />}>
-                <Lazy.WishList />
-              </Suspense>
-            </ApiErrorBoundary>
+            <>
+              <HelmetTag text="찜" />
+              <ApiErrorBoundary>
+                <Suspense fallback={<LoadingFallback />}>
+                  <Lazy.WishList />
+                </Suspense>
+              </ApiErrorBoundary>
+            </>
           ),
         },
       ],
