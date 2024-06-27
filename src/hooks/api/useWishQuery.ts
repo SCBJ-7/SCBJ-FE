@@ -6,6 +6,7 @@ import {
 } from "@tanstack/react-query";
 
 import { deleteWish, getWish, postWish } from "@/apis/fetchWish.ts";
+import useToastConfig from "@/hooks/common/useToastConfig";
 import { type WishDataType } from "@/types/wish";
 
 export function useWishInfiniteQuery() {
@@ -60,6 +61,7 @@ export function useDeleteWishInfiniteMutation() {
   return { deleteWish: mutate };
 }
 
+// 상품 상세 페이지 찜 등록
 export function useDeleteWishMutation() {
   const queryClient = useQueryClient();
 
@@ -73,14 +75,18 @@ export function useDeleteWishMutation() {
   return { deleteWish: mutate };
 }
 
+// 상품 상세 페이지 찜 삭제
 export function usePostWishMutation() {
   const queryClient = useQueryClient();
+  const { handleToast } = useToastConfig();
 
   const { mutate } = useMutation({
     mutationFn: postWish,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["wish"] });
     },
+    onError: () => handleToast(false, ["좋아요가 불가능 합니다"]),
+    throwOnError: false,
   });
 
   return { postWish: mutate };
