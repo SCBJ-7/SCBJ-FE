@@ -17,11 +17,11 @@ if (process.env.NODE_ENV === "development") {
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
-      retry: 1,
+      retry: false,
       throwOnError: true,
     },
     mutations: {
-      retry: 1,
+      retry: false,
       throwOnError: true,
     },
   },
