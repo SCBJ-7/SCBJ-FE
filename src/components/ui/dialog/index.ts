@@ -11,3 +11,5 @@ export const Dialog = {
   Footer,
   Desc,
 };
+
+export type { DialogProps } from "./dialog-root.tsx";

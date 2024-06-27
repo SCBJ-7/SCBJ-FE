@@ -17,21 +17,24 @@ import {
   dimmerAnimationVariants,
 } from "@/styles/animation";
 
-type DialogProps<C extends ElementType = "div"> =
+export interface DialogProps {
+  isOpen: boolean;
+  onClose: () => void;
+}
+
+type DialogRootProps<C extends ElementType = "div"> =
   PolymorphicComponentPropsWithRef<
     C,
     {
-      isOpen: boolean;
-      onClose: () => void;
       closeOnClickDim?: boolean;
       dimmer?: boolean;
       bg?: BgType;
-    }
+    } & DialogProps
   >;
 
 export const DialogRoot = forwardRef(function DialogRoot<
   C extends ElementType = "div",
->(props: DialogProps<C>, ref?: PolymorphicRef<C>) {
+>(props: DialogRootProps<C>, ref?: PolymorphicRef<C>) {
   const {
     children,
     isOpen,
