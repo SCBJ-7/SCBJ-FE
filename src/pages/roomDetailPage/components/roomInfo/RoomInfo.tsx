@@ -1,14 +1,13 @@
 import { useOverlay } from "@toss/use-overlay";
 import { Suspense } from "react";
 
-import ExpandableContent from "./ExpandableContent";
+import Comment from "../comment/Comment";
 import RoomMapPopup from "../roomMap/RoomMapPopup";
 
 import type { RoomData } from "@/types/room";
 
 import IconBed from "@/assets/icons/ic_bed.svg?react";
 import IconCaretRight from "@/assets/icons/ic_caret_right.svg?react";
-import IconChat from "@/assets/icons/ic_chat-fill.svg?react";
 import IconMapPin from "@/assets/icons/ic_map-pin.svg?react";
 import IconStar from "@/assets/icons/ic_star-fill.svg?react";
 import IconUser from "@/assets/icons/ic_users.svg?react";
@@ -58,7 +57,9 @@ const RoomInfo = ({ room, discount }: RoomInfoProps) => {
         <S.MapWrapper>
           <S.MapLink type="button" onClick={openMapPopup}>
             <IconMapPin />
-            <S.Text variant="body4">{room.hotelAddress}</S.Text>
+            <S.Text variant="body4" className="ellipsis">
+              {room.hotelAddress}
+            </S.Text>
             <S.IconArrow />
           </S.MapLink>
         </S.MapWrapper>
@@ -107,18 +108,12 @@ const RoomInfo = ({ room, discount }: RoomInfoProps) => {
         </S.Col>
       </S.DetailSection>
 
-      {room.sellerCommentList && (
-        <S.DetailSection>
-          <S.TitleWrapper>
-            <IconChat />
-            <S.Text variant="body2">판매자 코멘트</S.Text>
-          </S.TitleWrapper>
-          <ExpandableContent>
-            {room.sellerCommentList.map((item, index) => (
-              <Tag key={index}>{item}</Tag>
-            ))}
-          </ExpandableContent>
-        </S.DetailSection>
+      {room.sellerCommentList.length > 0 && (
+        <Comment>
+          {room.sellerCommentList.map((item, index) => (
+            <Tag key={index}>{item}</Tag>
+          ))}
+        </Comment>
       )}
 
       <S.DetailSection>

@@ -24,7 +24,7 @@ const RoomThemeOption = ({ option }: RoomThemeOptionProps) => {
   );
 
   return (
-    <S.VStack5>
+    <S.OptionContainer>
       {filteredOptions.map((key) => (
         <S.OptionWrapper key={key}>
           <IconCheck fill={theme.color.percentOrange} />
@@ -33,7 +33,7 @@ const RoomThemeOption = ({ option }: RoomThemeOptionProps) => {
           </S.Text>
         </S.OptionWrapper>
       ))}
-    </S.VStack5>
+    </S.OptionContainer>
   );
 };
 

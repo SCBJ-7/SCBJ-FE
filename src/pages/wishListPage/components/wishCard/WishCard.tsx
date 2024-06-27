@@ -1,6 +1,6 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import WishButton from "./LikeButton.tsx";
 import * as S from "./WishCard.styles.ts";
@@ -14,6 +14,7 @@ import { formatDateWithoutTime } from "@/utils/dateFormatter.ts";
 
 const WishCard = ({ product }: { product: ProductType }) => {
   const [isVisible, setIsVisible] = useState(true);
+  const navigate = useNavigate();
 
   const checkInDate = formatDateWithoutTime(product.checkInDate);
   const checkOutDate = formatDateWithoutTime(product.checkOutDate);
@@ -40,6 +41,7 @@ const WishCard = ({ product }: { product: ProductType }) => {
           exit="hidden"
           variants={cardVariants}
           layout
+          onClick={() => navigate(PATH.DETAIL_ROOM(product.id))}
         >
           <S.CardWrapper as={Link} to={PATH.DETAIL_ROOM(product.id)}>
             <S.ImgWrapper>
