@@ -5,7 +5,7 @@ import LikeButton from "./LikeButton";
 import * as S from "./RoomNavBar.style";
 import DiscontinuePopup from "../discontinuePopup/DiscontinuePopup";
 
-import type { RoomNavBarData } from "@/types/room";
+import type { RoomData } from "@/types/room";
 
 import { ResponseError } from "@/components/error/Error";
 import { Button } from "@/components/ui/button";
@@ -18,7 +18,7 @@ import useToastConfig from "@/hooks/common/useToastConfig";
 import useAuthStore from "@/store/authStore";
 
 interface RoomNavBarProps {
-  room: RoomNavBarData;
+  room: RoomData;
   roomId: string;
   discount: string;
 }
@@ -82,8 +82,8 @@ const RoomNavBar = ({ room, roomId, discount }: RoomNavBarProps) => {
 
   return (
     <S.Wrapper>
-      <LikeButton productId={roomId} />
-      <S.Infowrapper>
+      <LikeButton productId={roomId} isLike={room.isLike} />
+      <S.InfoWrapper>
         <S.TextWrapper>
           <S.PriceWrapper>
             <Typo typo="button4" color="percentBlue">
@@ -107,7 +107,7 @@ const RoomNavBar = ({ room, roomId, discount }: RoomNavBarProps) => {
             {buttonConfig[userType].text}
           </Button>
         </S.ButtonWrapper>
-      </S.Infowrapper>
+      </S.InfoWrapper>
     </S.Wrapper>
   );
 };
