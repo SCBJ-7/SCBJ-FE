@@ -9,8 +9,14 @@ import {
   usePostWishMutation,
 } from "@/hooks/api/useWishQuery";
 
-const LikeButton = ({ productId }: { productId: string }) => {
-  const [liked, setLiked] = useState<boolean>(false);
+const LikeButton = ({
+  productId,
+  isLike,
+}: {
+  productId: string;
+  isLike: boolean;
+}) => {
+  const [liked, setLiked] = useState<boolean>(isLike);
 
   const { deleteWish } = useDeleteWishMutation();
   const { postWish } = usePostWishMutation();
@@ -18,9 +24,9 @@ const LikeButton = ({ productId }: { productId: string }) => {
   const handleToggleLike = () => {
     setLiked((prev) => !prev);
     if (liked) {
-      deleteWish(productId);
+      deleteWish(parseInt(productId));
     } else {
-      postWish(productId);
+      postWish(parseInt(productId));
     }
   };
 

@@ -4,11 +4,11 @@ import type { WishDataType } from "@/types/wish.ts";
 import { axiosInstance } from "@/apis/axiosInstance.ts";
 import { END_POINTS } from "@/constants/api.ts";
 
-export const deleteWish = async (productId: string): Promise<void> => {
+export const deleteWish = async (productId: number): Promise<void> => {
   return await axiosInstance.delete(`${END_POINTS.WISH(productId)}`);
 };
 
-export const postWish = async (productId: string): Promise<void> => {
+export const postWish = async (productId: number): Promise<void> => {
   return await axiosInstance.post(`${END_POINTS.WISH(productId)}`);
 };
 
