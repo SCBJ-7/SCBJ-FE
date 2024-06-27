@@ -142,7 +142,7 @@ export const Dimmer = styled.div`
   outline: 0;
 
   background-color: rgba(20 18 24/ 0.4);
-  z-index: 9;
+  z-index: 10;
 `;
 
 const getAlignStyle = (align: AlignType) => {
