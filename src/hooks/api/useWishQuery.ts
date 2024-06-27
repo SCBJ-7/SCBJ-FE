@@ -2,11 +2,13 @@ import {
   useMutation,
   useSuspenseInfiniteQuery,
   useQueryClient,
+  type InfiniteData,
 } from "@tanstack/react-query";
 
 import { deleteWish, getWish, postWish } from "@/apis/fetchWish.ts";
+import { type WishDataType } from "@/types/wish";
 
-export function useWishQuery() {
+export function useWishInfiniteQuery() {
   return useSuspenseInfiniteQuery({
     queryKey: ["wish"],
     queryFn: getWish,
@@ -22,21 +24,48 @@ export function useWishQuery() {
   });
 }
 
+export function useDeleteWishInfiniteMutation() {
+  const queryClient = useQueryClient();
+
+  const { mutate } = useMutation({
+    mutationFn: deleteWish,
+    onMutate: async (productId) => {
+      await queryClient.cancelQueries({ queryKey: ["wish"] });
+      const previousWish = queryClient.getQueryData(["wish"]);
+
+      queryClient.setQueryData(
+        ["wish"],
+        (oldData: InfiniteData<WishDataType>) => {
+          return {
+            ...oldData,
+            pages: oldData.pages.map((page) => ({
+              ...page,
+              content: page.content.map((product) =>
+                product.id === productId
+                  ? { ...product, visible: false }
+                  : product,
+              ),
+              totalElements: page.totalElements - 1,
+            })),
+          };
+        },
+      );
+      return { previousWish };
+    },
+    onError: (err, productId, context) => {
+      queryClient.setQueryData(["wish"], context?.previousWish);
+    },
+  });
+
+  return { deleteWish: mutate };
+}
+
 export function useDeleteWishMutation() {
   const queryClient = useQueryClient();
 
   const { mutate } = useMutation({
     mutationFn: deleteWish,
-    onMutate: async (newLike) => {
-      await queryClient.cancelQueries({ queryKey: ["wish"] });
-      const previousWish = queryClient.getQueryData(["wish"]);
-      queryClient.setQueryData(["wish"], newLike);
-      return { previousWish };
-    },
-    onError: (err, newLike, context) => {
-      queryClient.setQueryData(["wish"], context?.previousWish);
-    },
-    onSettled: () => {
+    onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["wish"] });
     },
   });
@@ -49,16 +78,7 @@ export function usePostWishMutation() {
 
   const { mutate } = useMutation({
     mutationFn: postWish,
-    onMutate: async (newLike) => {
-      await queryClient.cancelQueries({ queryKey: ["wish"] });
-      const previousWish = queryClient.getQueryData(["wish"]);
-      queryClient.setQueryData(["wish"], newLike);
-      return { previousWish };
-    },
-    onError: (err, newLike, context) => {
-      queryClient.setQueryData(["wish"], context?.previousWish);
-    },
-    onSettled: () => {
+    onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["wish"] });
     },
   });
