@@ -11,7 +11,8 @@ const WishButton = ({ productId }: { productId: number }) => {
 
   const { deleteWish } = useDeleteWishInfiniteMutation();
 
-  const handleToggleLike = () => {
+  const handleToggleLike = (e: React.MouseEvent) => {
+    e.stopPropagation();
     setLiked((prev) => !prev);
     if (liked) {
       deleteWish(productId);

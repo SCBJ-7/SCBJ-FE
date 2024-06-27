@@ -8,6 +8,8 @@ export const CardContainer = styled.div`
 
   padding-block: ${remCalc(24)};
   padding-inline: ${remCalc(20)};
+
+  cursor: pointer;
 `;
 
 export const CardWrapper = styled.div`
