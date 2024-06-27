@@ -16,20 +16,15 @@ export interface WishDataType {
   empty: boolean;
 }
 
-interface ProductType {
+export interface ProductType {
   id: number;
-  name: string;
-  roomType: string;
+  hotelName: string;
+  price: number;
   imageUrl: string;
-  originalPrice: number;
-  isFirstPrice: boolean;
-  salePrice: number;
-  salePercentage: number;
-  checkIn: string;
-  checkOut: string;
-  createdAt: string;
-  reviewRate: string;
-  hotelRate: string;
+  bedType: string;
+  checkInDate: string;
+  checkOutDate: string;
+  visible?: boolean;
 }
 
 interface Pageable {
