@@ -37,11 +37,11 @@ const Comment = ({ children }: PropsWithChildren) => {
   useLayoutEffect(() => {
     if (contentRef.current) {
       const contentHeight = contentRef.current.scrollHeight;
-      setContentHeight(contentHeight);
+      setContentHeight(contentHeight + 1);
 
       if (childrenRef.current) {
         const childHeight = childrenRef.current.offsetHeight;
-        setChildHeight(childHeight);
+        setChildHeight(childHeight + 1);
         setExpandable(childHeight !== contentHeight);
       }
     }
@@ -74,10 +74,19 @@ const Comment = ({ children }: PropsWithChildren) => {
 
   return (
     <CommentContainer>
-      <TitleWrapper>
-        <IconChat />
-        <Typo typo="body2">판매자 코멘트</Typo>
-      </TitleWrapper>
+      <CommentHeader
+        type="button"
+        aria-expanded={expanded}
+        expand={expanded}
+        onClick={toggleExpanded}
+        onKeyDown={handleKeyPress}
+      >
+        <TitleWrapper>
+          <IconChat />
+          <Typo typo="body2">판매자 코멘트</Typo>
+        </TitleWrapper>
+        {expandable && <ArrowSvg className="chevron" />}
+      </CommentHeader>
       <ContentWrapper
         ref={contentRef}
         as={motion.div}
@@ -89,17 +98,6 @@ const Comment = ({ children }: PropsWithChildren) => {
       >
         {_children}
       </ContentWrapper>
-      {expandable && (
-        <Button
-          type="button"
-          aria-expanded={expanded}
-          expand={expanded}
-          onClick={toggleExpanded}
-          onKeyDown={handleKeyPress}
-        >
-          <ArrowSvg />
-        </Button>
-      )}
     </CommentContainer>
   );
 };
@@ -110,13 +108,6 @@ const CommentContainer = styled.section`
   padding: 2rem 1.25rem;
   margin-bottom: 0.5rem;
   background-color: ${({ theme }) => theme.color.white};
-`;
-
-const TitleWrapper = styled.div`
-  display: flex;
-  gap: 4px;
-  align-items: center;
-  margin-bottom: 1rem;
 `;
 
 const ContentWrapper = styled.div<{
@@ -131,25 +122,28 @@ const ContentWrapper = styled.div<{
   text-overflow: ellipsis;
 `;
 
-const Button = styled.button.withConfig({
+const CommentHeader = styled.button.withConfig({
   shouldForwardProp: (prop) => !["expand"].includes(prop),
 })<{ expand: boolean }>`
-  display: block;
-  margin-left: auto;
-  margin-top: 0.5rem;
+  margin-bottom: 1rem;
 
   display: flex;
-  flex: 1 1 0%;
+  width: 100%;
   justify-content: space-between;
   align-items: center;
 
-  & > svg {
+  & > svg.chevron {
     width: 20px;
     height: 20px;
 
     transform: ${({ expand }) => (expand ? "rotate(-90deg)" : "rotate(90deg)")};
     transition-property: all;
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-    transition-duration: 0.15s;
+    transition-duration: 0.3s;
   }
+`;
+
+const TitleWrapper = styled.div`
+  display: flex;
+  gap: 0.4rem;
 `;
