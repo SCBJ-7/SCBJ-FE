@@ -80,10 +80,6 @@ export const ButtonWrapper = styled.div`
   display: flex;
   gap: 8px;
   width: 45%;
-
-  @media (max-width: ${breakpoints.sm}) {
-    width: 40%;
-  }
 `;
 
 export const TextWrapper = styled.div`
@@ -98,7 +94,7 @@ export const PriceWrapper = styled.div`
   gap: 6px;
 `;
 
-export const Infowrapper = styled.div`
+export const InfoWrapper = styled.div`
   display: flex;
   flex: 1;
   justify-content: space-between;
