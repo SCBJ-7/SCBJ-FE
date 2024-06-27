@@ -122,6 +122,7 @@ const ContentWrapper = styled.div<{
   text-overflow: ellipsis;
 `;
 
+
 const CommentHeader = styled.button.withConfig({
   shouldForwardProp: (prop) => !["expand"].includes(prop),
 })<{ expand: boolean }>`
