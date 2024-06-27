@@ -2,13 +2,14 @@ import styled from "styled-components";
 
 import Header from "@/components/layout/header/HeaderTop.tsx";
 import Layout from "@/components/layout/Layout.tsx";
-import { useWishQuery } from "@/hooks/api/useWishQuery";
+import { Typo } from "@/components/ui/typo";
+import { useWishInfiniteQuery } from "@/hooks/api/useWishQuery";
 import { useIntersectionObserver } from "@/hooks/common/useIntersectionObserver";
 import WishCard from "@/pages/wishListPage/components/wishCard/WishCard.tsx";
 import { remCalc } from "@/utils/styleFormatter.ts";
 
 const WishList = () => {
-  const { data, fetchNextPage, hasNextPage } = useWishQuery();
+  const { data, fetchNextPage, hasNextPage } = useWishInfiniteQuery();
 
   const handleIntersect = (isIntersecting: boolean) => {
     if (isIntersecting && hasNextPage) {
@@ -32,10 +33,16 @@ const WishList = () => {
         isBottomNavOn
       >
         <ListWrapper>
-          {data.pages.map((page) =>
-            page.content.map((product, index) => (
-              <WishCard key={index} product={product} />
-            )),
+          {data.pages?.[0].empty ? (
+            <NoResultCover>
+              <Typo typo="title4">찜 등록된 상품이 없어요</Typo>
+            </NoResultCover>
+          ) : (
+            data.pages.map((page) =>
+              page.content.map((product) => (
+                <WishCard key={product.id} product={product} />
+              )),
+            )
           )}
           {hasNextPage && <div ref={ref} />}
         </ListWrapper>
@@ -50,4 +57,10 @@ const ListWrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: ${remCalc(16)};
+
+  height: 100%;
+`;
+
+const NoResultCover = styled.div`
+  margin: auto;
 `;
