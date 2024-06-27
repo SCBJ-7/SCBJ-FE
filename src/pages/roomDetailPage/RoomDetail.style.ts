@@ -60,6 +60,11 @@ export const OptionWrapper = styled(Flex)`
   gap: 0.3rem;
 `;
 
+export const OptionContainer = styled(Flex)`
+  flex-wrap: wrap;
+  gap: 0.5rem 2rem;
+`;
+
 const Box = styled.div`
   display: flex;
   flex-direction: column;
@@ -94,6 +99,11 @@ export const Text = styled.p.withConfig({
   ${({ variant, theme }) => variant && theme.typo[variant]};
   color: ${({ color, theme }) => color && theme.color[color]};
 
+  &.ellipsis {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
   &.underline {
     text-decoration: underline;
     text-underline-position: under;
@@ -115,12 +125,7 @@ export const HStack5 = styled(HStack1)`
 `;
 
 export const VStack5 = styled(Flex)`
-  gap: 2rem;
-`;
-
-export const TagWrapper = styled(Flex)`
-  gap: 0.5rem;
-  flex-wrap: wrap;
+  gap: 0.5rem 2rem;
 `;
 
 export const MoreInfoWrapper = styled(Flex)`
