@@ -147,9 +147,9 @@ const RoomInfo = ({ room, discount }: RoomInfoProps) => {
           <S.HStack1>
             <S.Text variant="body3">추가 정보</S.Text>
 
-            {room.facilityInformation?.split("\n").map((line) => {
+            {room.facilityInformation?.split("\n").map((line, index) => {
               return (
-                <S.Text variant="body4" color="greyScale2">
+                <S.Text key={index} variant="body4" color="greyScale2">
                   {line}
                 </S.Text>
               );
