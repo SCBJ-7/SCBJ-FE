@@ -43,7 +43,7 @@ const WishCard = ({ product }: { product: ProductType }) => {
           layout
           onClick={() => navigate(PATH.DETAIL_ROOM(product.id))}
         >
-          <S.CardWrapper>
+          <S.CardWrapper as={Link} to={PATH.DETAIL_ROOM(product.id)}>
             <S.ImgWrapper>
               <ProgressiveImg
                 src={product.imageUrl}
