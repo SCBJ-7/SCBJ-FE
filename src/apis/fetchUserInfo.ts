@@ -1,5 +1,5 @@
-import { END_POINTS } from "@/constants/api";
 import { axiosInstance } from "@/apis/axiosInstance";
+import { END_POINTS } from "@/constants/api";
 import { ProfileData } from "@/types/profile";
 
 export const fetchUserInfo = async (): Promise<ProfileData> => {

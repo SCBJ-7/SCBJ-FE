@@ -7,7 +7,7 @@ export const Container = styled.main`
   width: 100%;
   height: 100%;
 
-  background-color: ${({ theme }) => theme.color.white};
+  /* background-color: ${({ theme }) => theme.color.white}; */
 `;
 
 export const MainWrapper = styled.div`
@@ -117,7 +117,7 @@ export const Button = styled.button.withConfig({
 
   border-radius: 8px;
   padding: 0.9rem;
-
+  margin-top: 24px;
   ${({ variant, theme }) => buttonStyles[variant](theme)};
 
   transition: background-color 0.2s ease-in-out;

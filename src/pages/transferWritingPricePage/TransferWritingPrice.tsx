@@ -17,31 +17,31 @@ import useChangePage from "../../hooks/common/useChangePage";
 import useReadyToSubmit from "../../hooks/common/useReadyToSubmit";
 import useSubmitHandler from "../../hooks/common/useSubmitHandler";
 
-// import { useUserInfoQuery } from "@/hooks/api/useUserInfoQuery";
+import { useUserInfoQuery } from "@/hooks/api/useUserInfoQuery";
 import usePreventLeave from "@/hooks/common/usePreventLeave";
 import { useSelectedItemStore } from "@/store/store";
-import { ProfileData } from "@/types/profile";
+// import { ProfileData } from "@/types/profile";
 import { type SellerCommentType } from "@/types/sellerComments";
 
 export type PhaseType = "1stInput" | "2ndInput" | "finalConfirm";
 
-const userData: ProfileData = {
-  accountNumber: "123123123123123",
-  bank: "신한",
-  email: "jove0729@naver.com",
-  id: 123,
-  linkedToYanolja: true,
-  phone: "010-4922-3563",
-  name: "Bumang",
-};
+// const userData: ProfileData = {
+//   accountNumber: "123123123123123",
+//   bank: "신한",
+//   email: "jove0729@naver.com",
+//   id: 123,
+//   linkedToYanolja: true,
+//   phone: "010-4922-3563",
+//   name: "Bumang",
+// };
 
 const TransferWritingPrice = () => {
   // 현재 선택된 숙박
   const selectedItem = useSelectedItemStore((state) => state.selectedItem);
 
   // 유저 정보
-  // const userInfoQuery = useUserInfoQuery();
-  // const { data: userData } = userInfoQuery;
+  const userInfoQuery = useUserInfoQuery();
+  const { data: userData } = userInfoQuery;
 
   // 1차 가격
   const [firstPrice, setFirstPrice] = useState("");
@@ -88,6 +88,7 @@ const TransferWritingPrice = () => {
     console.log(phase, "phase");
 
     console.log(is2ndChecked, "is2ndChecked");
+    //eslint-disable-next-line
   }, [phase]);
 
   const handleAddPhaseHistory = (newPhase: PhaseType) => {
