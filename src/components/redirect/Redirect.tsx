@@ -16,6 +16,7 @@ const Redirect = ({ children }: RedirectProps) => {
 
   useEffect(() => {
     if (!isLoggedIn || !userInfo || userInfo.linkedToYanolja) {
+      console.log(userInfo?.linkedToYanolja, userInfo?.id);
       navigate(PATH.ROOT);
     }
   }, [isLoggedIn, userInfo, navigate]);

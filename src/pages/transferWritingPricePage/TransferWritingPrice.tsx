@@ -1,12 +1,15 @@
-import usePreventLeave from "@/hooks/common/usePreventLeave";
 import { useEffect, useRef, useState } from "react";
 
 import AccountSection from "./accountSection/AccountSection";
-import AgreementSection from "./agreementSection/AgreementSection";
 import EnterAccountInfo from "./enterAccountInfo/EnterAccountInfo";
 import FirstPriceTag from "./firstPriceTag/FirstPriceTag";
+import ItemInfoSection from "./itemInfo/ItemInfo";
 import PaymentSection from "./paymentSection/PaymentSection";
+import PriceSection from "./priceSection/PriceSection";
 import SecondPriceTag from "./secondPriceTag/SecondPriceTag";
+import { Modal } from "./sellerComment/Modal";
+import SellerCommentSection from "./sellerComment/SellerComment";
+import TransferNavigation from "./transferNavigation/transferNavigation";
 import * as S from "./TransferWritingPrice.style";
 import TransferPricingHeader from "./transferWritingPriceHeader/TransferPricingHeaderTop";
 import usePostTransferItems from "../../hooks/api/usePostTransferItems";
@@ -15,7 +18,22 @@ import useReadyToSubmit from "../../hooks/common/useReadyToSubmit";
 import useSubmitHandler from "../../hooks/common/useSubmitHandler";
 
 import { useUserInfoQuery } from "@/hooks/api/useUserInfoQuery";
+import usePreventLeave from "@/hooks/common/usePreventLeave";
 import { useSelectedItemStore } from "@/store/store";
+// import { ProfileData } from "@/types/profile";
+import { type SellerCommentType } from "@/types/sellerComments";
+
+export type PhaseType = "1stInput" | "2ndInput" | "finalConfirm";
+
+// const userData: ProfileData = {
+//   accountNumber: "123123123123123",
+//   bank: "신한",
+//   email: "jove0729@naver.com",
+//   id: 123,
+//   linkedToYanolja: true,
+//   phone: "010-4922-3563",
+//   name: "Bumang",
+// };
 
 const TransferWritingPrice = () => {
   // 현재 선택된 숙박
@@ -44,6 +62,11 @@ const TransferWritingPrice = () => {
     userData?.accountNumber ?? null,
   );
 
+  // 모달
+  const [modalType, setModalType] = useState<"SELLER" | "AGREEMENT">("SELLER");
+  const [sellerComments, setSellerComments] = useState<SellerCommentType[]>([]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   // 약관 동의
   const [opt1, setOpt1] = useState(false);
   const [opt2, setOpt2] = useState(false);
@@ -53,10 +76,54 @@ const TransferWritingPrice = () => {
   // 제출 가능 여부
   const [readyToSubmit, setReadyToSubmit] = useState(false);
 
+  const [phase, setPhase] = useState<PhaseType>("1stInput");
+  const [phaseHistory, setPhaseHistory] = useState<PhaseType[]>(["1stInput"]);
+
   useEffect(() => {
     setBank(userData?.bank ?? null);
     setAccountNumber(userData?.accountNumber ?? null);
   }, [userData]);
+
+  useEffect(() => {
+    console.log(phase, "phase");
+
+    console.log(is2ndChecked, "is2ndChecked");
+    //eslint-disable-next-line
+  }, [phase]);
+
+  const handleAddPhaseHistory = (newPhase: PhaseType) => {
+    setPhaseHistory([...phaseHistory, newPhase]);
+    setPhase(newPhase);
+
+    if (newPhase === "2ndInput") {
+      setIs2ndChecked(true);
+    }
+  };
+
+  const handleSubPhaseHistory = () => {
+    const newPhase = [...phaseHistory];
+    const pop = newPhase.pop();
+    setPhaseHistory(newPhase);
+    setPhase(newPhase[newPhase.length - 1] || "1stInput");
+
+    console.log(newPhase);
+
+    console.log(pop, "pop");
+
+    if (pop === "2ndInput") {
+      setIs2ndChecked(false);
+    }
+  };
+
+  const handleOpenAgreement = () => {
+    setModalType("AGREEMENT");
+    setIsModalOpen(true);
+  };
+
+  const handleOpenSeller = () => {
+    setModalType("SELLER");
+    setIsModalOpen(true);
+  };
 
   // HOOKS
   // 작성 중 나가면 경고하는 훅
@@ -83,6 +150,8 @@ const TransferWritingPrice = () => {
   const { accountSetting, setAccountSetting } = useChangePage({
     is2ndChecked,
     firstCheckRef,
+    phase,
+    handleSubPhaseHistory,
   });
 
   // 판매글 작성 POST 리액트 쿼리 훅
@@ -119,69 +188,69 @@ const TransferWritingPrice = () => {
   });
 
   return (
-    <S.Container layout>
+    <S.Container>
       <TransferPricingHeader />
-      {accountSetting === "none" && (
+      {accountSetting === "none" && <ItemInfoSection />}
+      {accountSetting === "none" && phase !== "finalConfirm" && (
+        <PriceSection phase={phase} firstPrice={firstPrice} />
+      )}
+      {accountSetting === "none" && phase === "1stInput" && (
+        <FirstPriceTag
+          checkRef={firstCheckRef}
+          inputRef={firstInputRef}
+          purchasePrice={selectedItem.purchasePrice}
+          inputData={firstPrice}
+          onFirstPriceChange={setFirstPrice}
+        />
+      )}
+      {accountSetting === "none" && phase === "2ndInput" && (
+        <SecondPriceTag
+          secondPriceInputRef={secondPriceInputRef}
+          secondTimeInputRef={secondTimeInputRef}
+          firstPrice={firstPrice}
+          secondPriceData={secondPrice}
+          onSecondPriceChange={setSecondPrice}
+          downTimeAfter={downTimeAfter}
+          onDownTimeAfterChange={setDownTimeAfter}
+          remainingDays={selectedItem.remainingDays}
+          remainingTimes={selectedItem.remainingTimes}
+          startDate={selectedItem.startDate}
+          endDate={selectedItem.endDate}
+        />
+      )}
+      {accountSetting === "none" && phase === "finalConfirm" && (
         <>
-          <FirstPriceTag
-            checkRef={firstCheckRef}
-            inputRef={firstInputRef}
-            purchasePrice={selectedItem.purchasePrice}
-            inputData={firstPrice}
-            onFirstPriceChange={setFirstPrice}
-            is2ndChecked={is2ndChecked}
-            on2ndChecked={setIs2ndChecked}
-          />
           <PaymentSection
             type="first"
             price={firstPrice}
             is2ndChecked={is2ndChecked}
-            title="1차 판매 체결 시 예상 정산금액"
+            title={
+              is2ndChecked
+                ? "1차 거래 체결 시 예상 정산금액"
+                : "거래 채결 시 예상 정산금액"
+            }
           />
           {is2ndChecked && (
-            <>
-              <SecondPriceTag
-                secondPriceInputRef={secondPriceInputRef}
-                secondTimeInputRef={secondTimeInputRef}
-                firstPrice={firstPrice}
-                secondPriceData={secondPrice}
-                onSecondPriceChange={setSecondPrice}
-                downTimeAfter={downTimeAfter}
-                onDownTimeAfterChange={setDownTimeAfter}
-                remainingDays={selectedItem.remainingDays}
-                remainingTimes={selectedItem.remainingTimes}
-                startDate={selectedItem.startDate}
-                endDate={selectedItem.endDate}
-              />
-              <PaymentSection
-                type="second"
-                price={secondPrice}
-                is2ndChecked
-                title="2차 판매 체결 시 예상 정산금액"
-              />
-            </>
+            <PaymentSection
+              type="second"
+              price={secondPrice}
+              is2ndChecked
+              title={"2차 거래 체결 시 예상 정산금액"}
+            />
           )}
           <AccountSection
             bank={bank}
             accountNumber={accountNumber}
-            userInfo={userData}
             onSetAccount={setAccountSetting}
           />
-          <AgreementSection
-            opt1={opt1}
-            opt2={opt2}
-            opt3={opt3}
-            optFinal={optFinal}
-            setOpt1={setOpt1}
-            setOpt2={setOpt2}
-            setOpt3={setOpt3}
-            setOptFinal={setOptFinal}
+          <SellerCommentSection //
+            sellerComments={sellerComments}
+            setIsModalOpen={handleOpenSeller}
           />
-          <S.ButtonSection $readyToSubmit={readyToSubmit}>
-            <button onClick={submitHandler}>판매 게시물 올리기</button>
-          </S.ButtonSection>
+          <S.Gutters />
         </>
       )}
+
       {accountSetting === "enter" && (
         <EnterAccountInfo
           accountNumber={accountNumber}
@@ -189,8 +258,32 @@ const TransferWritingPrice = () => {
           onSetAccountNumber={setAccountNumber}
           onSetBank={setBank}
           onSubmitAccount={setAccountSetting}
-        ></EnterAccountInfo>
+        />
       )}
+
+      {accountSetting === "none" && (
+        <TransferNavigation //
+          phase={phase}
+          onAddHistory={handleAddPhaseHistory}
+          onSubmit={handleOpenAgreement}
+        />
+      )}
+      <Modal
+        modalType={modalType}
+        sellerComments={sellerComments}
+        setSellerComments={setSellerComments}
+        isModalOpen={isModalOpen}
+        setIsModalOpen={setIsModalOpen}
+        submitHandler={submitHandler}
+        opt1={opt1}
+        opt2={opt2}
+        opt3={opt3}
+        optFinal={optFinal}
+        setOpt1={setOpt1}
+        setOpt2={setOpt2}
+        setOpt3={setOpt3}
+        setOptFinal={setOptFinal}
+      />
     </S.Container>
   );
 };

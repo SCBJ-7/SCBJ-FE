@@ -1,9 +1,8 @@
-import { motion } from "framer-motion";
 import styled from "styled-components";
 
-export const Container = styled(motion.main)`
+export const Container = styled.main`
   width: 100%;
-  height: 100%;
+  min-height: 100vh;
   padding-top: 56px;
   padding-bottom: 60px;
 
@@ -36,4 +35,9 @@ export const ButtonSection = styled.div<{ $readyToSubmit: boolean }>`
         $readyToSubmit ? theme.color.darkOrange : theme.color.greyScale5};
     }
   }
+`;
+
+export const Gutters = styled.div`
+  width: 100%;
+  height: 80px;
 `;

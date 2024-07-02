@@ -12,7 +12,7 @@ const typography = {
     title1: typoCreator("1.625rem", 600),
     title2: typoCreator("1.25rem", 600),
     title3: typoCreator("1.125rem", 600),
-    title4: typoCreator("1.125rem", 500),
+    title4: typoCreator("1.125rem", 600),
     title5: typoCreator("1rem", 400),
     body1: typoCreator("1rem", 600),
     body2: typoCreator("1rem", 500),

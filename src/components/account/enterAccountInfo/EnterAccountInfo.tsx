@@ -1,16 +1,17 @@
-import { BANK_LIST } from "@/constants/bank";
-import { PATH } from "@/constants/path";
-import { useUserInfoStore } from "@/store/store";
-import { patchAccount } from "@/apis/patchAccount";
-import usePreventLeave from "@/hooks/common/usePreventLeave";
-import useToastConfig from "@/hooks/common/useToastConfig";
-
-import type { AccountData } from "@/types/profile";
 import { AnimatePresence, useAnimation } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
 import * as S from "./EnterAccountInfo.style";
+
+import type { AccountData } from "@/types/profile";
+
+import { patchAccount } from "@/apis/patchAccount";
+import { BANK_LIST } from "@/constants/bank";
+import { PATH } from "@/constants/path";
+import usePreventLeave from "@/hooks/common/usePreventLeave";
+import useToastConfig from "@/hooks/common/useToastConfig";
+import { useUserInfoStore } from "@/store/store";
 
 const EnterAccountInfo = ({
   accountInfo,

@@ -105,18 +105,6 @@ const AppRouter = () => {
           path: PATH.WRITE_TRANSFER,
           element: (
             <Layout isHeaderOn={true} isBottomNavOn={true}>
-              <ApiErrorBoundary>
-                <Suspense fallback={<LoadingFallback />}>
-                  <Lazy.TransferWriting />
-                </Suspense>
-              </ApiErrorBoundary>
-            </Layout>
-          ),
-        },
-        {
-          path: PATH.WRITE_TRANSFER,
-          element: (
-            <Layout isHeaderOn={true} isBottomNavOn={true}>
               <HelmetTag text="판매하기" />
               <ApiErrorBoundary>
                 <Suspense fallback={<LoadingFallback />}>
@@ -129,7 +117,7 @@ const AppRouter = () => {
         {
           path: PATH.WRITE_TRANSFER_PRICE + `/:id`,
           element: (
-            <Layout isHeaderOn={false} isBottomNavOn={true}>
+            <Layout isHeaderOn={false} isBottomNavOn={false}>
               <ApiErrorBoundary>
                 <HelmetTag text="판매글 작성" />
                 <Suspense fallback={<LoadingFallback />}>

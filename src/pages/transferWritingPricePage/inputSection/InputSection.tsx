@@ -1,7 +1,6 @@
-import useToastConfig from "@/hooks/common/useToastConfig";
-
 import * as S from "./InputSection.style";
 
+import useToastConfig from "@/hooks/common/useToastConfig";
 import priceFormat from "@/utils/priceFormat";
 
 interface InputProps {
