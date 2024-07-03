@@ -1,13 +1,14 @@
-import IsLogin from "@/components/isLogin/IsLogin";
-import ScrollToTop from "@/components/scrollToTop/ScrollToTop";
-import Toast from "@/components/toast/Toast";
 import { AnimatePresence } from "framer-motion";
 import { useEffect } from "react";
 import { Outlet, useLocation } from "react-router-dom";
 
-import "./firebase.ts";
-
 import { useToastStore } from "./store/store";
+
+import IsLogin from "@/components/isLogin/IsLogin";
+import ScrollToTop from "@/components/scrollToTop/ScrollToTop";
+import Toast from "@/components/toast/Toast";
+
+import "./firebase.ts";
 
 const App = () => {
   const location = useLocation();

@@ -55,21 +55,21 @@ const TransferWriting = () => {
   const dtAfter14 = new Date();
   dtAfter14.setDate(dtAfter14.getDate() + 14);
 
-  // const dummy = [
-  //   {
-  //     reservationId: 10,
-  //     hotelName: "이쁜 호텔",
-  //     roomName: "스텐다드 더블",
-  //     startDate: new Date(),
-  //     endDate: dtAfter14,
-  //     refundPrice: 100000,
-  //     purchasePrice: 150000,
-  //     remainingDays: 14,
-  //     remainingTimes: 14 * 24,
-  //     imageUrl:
-  //       "https://storage.googleapis.com/gweb-uniblog-publish-prod/images/PxG_GVE_Blog_Header-bike_1.width-1300.png",
-  //   },
-  // ];
+  const dummy = [
+    {
+      reservationId: 10,
+      hotelName: "이쁜 호텔",
+      roomName: "스텐다드 더블",
+      startDate: new Date(),
+      endDate: dtAfter14,
+      refundPrice: 100000,
+      purchasePrice: 150000,
+      remainingDays: 14,
+      remainingTimes: 14 * 24,
+      imageUrl:
+        "https://storage.googleapis.com/gweb-uniblog-publish-prod/images/PxG_GVE_Blog_Header-bike_1.width-1300.png",
+    },
+  ];
 
   return (
     <S.Container>
