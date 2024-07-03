@@ -1,5 +1,5 @@
 import { type ElementType } from "react";
-import { type CSSProp, css } from "styled-components";
+import { css, type CSSProp } from "styled-components";
 
 import {
   type ButtonColorScheme,
@@ -169,7 +169,6 @@ export const getColorScheme = (
   >["colorScheme"] = "orange",
   variant: Pick<ButtonProps<ElementType>, "variant">["variant"] = "solid",
 ) => {
-  console.log("Color Scheme:", colorScheme, "Variant:", variant);
   return BUTTON_COLOR_SCHEME_MAP[colorScheme as ButtonColorScheme][
     variant as keyof ColorSchemeWithVariant
   ];

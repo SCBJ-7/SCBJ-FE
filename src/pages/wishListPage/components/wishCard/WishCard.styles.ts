@@ -8,6 +8,8 @@ export const CardContainer = styled.div`
 
   padding-block: ${remCalc(24)};
   padding-inline: ${remCalc(20)};
+
+  cursor: pointer;
 `;
 
 export const CardWrapper = styled.div`
@@ -32,7 +34,8 @@ export const Img = styled.img`
 
 export const ImgWrapper = styled.div`
   max-width: 88px;
-  max-height: 88px;
+  height: 88px;
+  width: 100%;
 
   border-radius: 8px;
   overflow: hidden;

@@ -27,11 +27,6 @@ type RoomTheme = {
   oceanView: boolean;
 };
 
-export type RoomNavBarData = Pick<
-  RoomData,
-  "originalPrice" | "sellingPrice" | "saleStatus" | "isSeller"
->;
-
 export interface MapData {
   documents: TLatLng[];
 }

@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 import type { ColorKeys, TypoKeys } from "@/styles/theme";
@@ -51,7 +50,7 @@ export const MapWrapper = styled.div`
   padding: 1rem 0 1.5rem;
 `;
 
-export const MapLink = styled(Link)`
+export const MapLink = styled.button`
   display: flex;
   gap: 4px;
   align-items: center;
@@ -59,6 +58,11 @@ export const MapLink = styled(Link)`
 
 export const OptionWrapper = styled(Flex)`
   gap: 0.3rem;
+`;
+
+export const OptionContainer = styled(Flex)`
+  flex-wrap: wrap;
+  gap: 0.5rem 2rem;
 `;
 
 const Box = styled.div`
@@ -95,6 +99,11 @@ export const Text = styled.p.withConfig({
   ${({ variant, theme }) => variant && theme.typo[variant]};
   color: ${({ color, theme }) => color && theme.color[color]};
 
+  &.ellipsis {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
   &.underline {
     text-decoration: underline;
     text-underline-position: under;
@@ -116,12 +125,7 @@ export const HStack5 = styled(HStack1)`
 `;
 
 export const VStack5 = styled(Flex)`
-  gap: 2rem;
-`;
-
-export const TagWrapper = styled(Flex)`
-  gap: 0.5rem;
-  flex-wrap: wrap;
+  gap: 0.5rem 2rem;
 `;
 
 export const MoreInfoWrapper = styled(Flex)`

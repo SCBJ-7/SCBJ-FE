@@ -1,15 +1,17 @@
-import { useLocation } from "react-router-dom";
+import { useOverlay } from "@toss/use-overlay";
+import { Suspense } from "react";
 
-import ExpandableContent from "./ExpandableContent";
+import Comment from "../comment/Comment";
+import RoomMapPopup from "../roomMap/RoomMapPopup";
 
 import type { RoomData } from "@/types/room";
 
 import IconBed from "@/assets/icons/ic_bed.svg?react";
 import IconCaretRight from "@/assets/icons/ic_caret_right.svg?react";
-import IconChat from "@/assets/icons/ic_chat-fill.svg?react";
 import IconMapPin from "@/assets/icons/ic_map-pin.svg?react";
 import IconStar from "@/assets/icons/ic_star-fill.svg?react";
 import IconUser from "@/assets/icons/ic_users.svg?react";
+import LoadingFallback from "@/components/deferredComponent/LoadingFallback";
 import Tag from "@/components/tag/Tag";
 import RoomThemeOption from "@/pages/roomDetailPage/components/roomThemeOption/RoomThemeOption";
 import * as S from "@/pages/roomDetailPage/RoomDetail.style";
@@ -21,14 +23,22 @@ interface RoomInfoProps {
 }
 
 const RoomInfo = ({ room, discount }: RoomInfoProps) => {
-  const location = useLocation();
-  const { pathname } = location;
-
   const checkInDate = formatDateAndTime(room.checkIn);
   const checkOutDate = formatDateAndTime(room.checkOut);
 
-  const params = new URLSearchParams();
-  params.append("address", room.hotelAddress);
+  const overlay = useOverlay();
+
+  const mapInfo = {
+    hotelName: room.hotelName,
+    address: room.hotelAddress,
+  };
+
+  const openMapPopup = () =>
+    overlay.open(({ isOpen, close }) => (
+      <Suspense fallback={<LoadingFallback />}>
+        <RoomMapPopup isOpen={isOpen} close={close} mapInfo={mapInfo} />
+      </Suspense>
+    ));
 
   return (
     <>
@@ -45,9 +55,11 @@ const RoomInfo = ({ room, discount }: RoomInfoProps) => {
         </S.HStack1>
 
         <S.MapWrapper>
-          <S.MapLink to={pathname + "/map?" + params}>
+          <S.MapLink type="button" onClick={openMapPopup}>
             <IconMapPin />
-            <S.Text variant="body4">{room.hotelAddress}</S.Text>
+            <S.Text variant="body4" className="ellipsis">
+              {room.hotelAddress}
+            </S.Text>
             <S.IconArrow />
           </S.MapLink>
         </S.MapWrapper>
@@ -96,18 +108,12 @@ const RoomInfo = ({ room, discount }: RoomInfoProps) => {
         </S.Col>
       </S.DetailSection>
 
-      {room.sellerCommentList && (
-        <S.DetailSection>
-          <S.TitleWrapper>
-            <IconChat />
-            <S.Text variant="body2">판매자 코멘트</S.Text>
-          </S.TitleWrapper>
-          <ExpandableContent>
-            {room.sellerCommentList.map((item, index) => (
-              <Tag key={index}>{item}</Tag>
-            ))}
-          </ExpandableContent>
-        </S.DetailSection>
+      {room.sellerCommentList.length > 0 && (
+        <Comment>
+          {room.sellerCommentList.map((item, index) => (
+            <Tag key={index}>{item}</Tag>
+          ))}
+        </Comment>
       )}
 
       <S.DetailSection>
@@ -136,9 +142,9 @@ const RoomInfo = ({ room, discount }: RoomInfoProps) => {
           <S.HStack1>
             <S.Text variant="body3">추가 정보</S.Text>
 
-            {room.facilityInformation?.split("\n").map((line) => {
+            {room.facilityInformation?.split("\n").map((line, index) => {
               return (
-                <S.Text variant="body4" color="greyScale2">
+                <S.Text key={index} variant="body4" color="greyScale2">
                   {line}
                 </S.Text>
               );

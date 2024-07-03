@@ -1,6 +1,5 @@
-import { fetchSearchList } from "@/apis/fetchSeachList";
-import { useSearchFilterInfoStore } from "@/store/store";
 import { useInfiniteQuery } from "@tanstack/react-query";
+import { throttle } from "lodash-es";
 import { useEffect, useState } from "react";
 
 import SearchBar from "./components/searchBar/SearchBar";
@@ -8,14 +7,18 @@ import SearchItem from "./components/searchItem/SearchItem";
 import SearchNav from "./components/searchNav/SearchNav";
 import * as S from "./Search.style";
 
-import UseIntersectionObserver from "@/hooks/common/useIntersectionObserver";
-import { ISearchList } from "@/types/searchList";
+import type { ISearchList } from "@/types/searchList";
+
+import { fetchSearchList } from "@/apis/fetchSeachList";
+import ArrowIcon from "@/assets/icons/ic_arrow.svg?react";
+import { useIntersectionObserver } from "@/hooks/common/useIntersectionObserver";
+import { useSearchFilterInfoStore } from "@/store/store";
 
 const Search = () => {
-  const pageSize = 10;
-  const [scrollPosition, setScrollPosition] = useState(0);
   const [isTopButtonVisible, setIsTopButtonVisible] = useState(false);
   const searchInfo = useSearchFilterInfoStore((state) => state.searchInfo);
+
+  const pageSize = 10;
   const { data, fetchNextPage, isLoading, hasNextPage } = useInfiniteQuery({
     queryKey: [
       "searchItems",
@@ -52,29 +55,28 @@ const Search = () => {
     },
   });
 
-  const handleIntersect: IntersectionObserverCallback = (entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting && hasNextPage) {
-        fetchNextPage();
-      }
-    });
+  const handleIntersect = (isIntersecting: boolean) => {
+    if (isIntersecting && hasNextPage) {
+      fetchNextPage();
+    }
   };
 
-  const { setTarget } = UseIntersectionObserver({
-    onIntersect: handleIntersect,
+  const { ref } = useIntersectionObserver({
+    onChange: handleIntersect,
     threshold: 0.5,
   });
-  const handleScroll = () => {
+
+  const handleScroll = throttle(() => {
     const currentPosition = window.scrollY;
-    setScrollPosition(currentPosition);
     setIsTopButtonVisible(currentPosition > 500);
-  };
+  }, 100);
+
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, [scrollPosition]);
+  }, []);
 
   const MoveToTop = () => {
     window.scroll({
@@ -82,13 +84,13 @@ const Search = () => {
       behavior: "smooth",
     });
   };
+
   return (
     <S.Container>
       <SearchBar />
       <SearchNav />
-
       <S.SearchContainer>
-        {!isLoading && data && !data?.pages?.[0]?.content?.length && (
+        {!isLoading && data?.pages?.[0]?.empty && (
           <S.NoResultCover>
             <S.NoResultText>검색 조건에 맞는 호텔이 없어요</S.NoResultText>
             <S.NoResultTextTwo>
@@ -98,17 +100,22 @@ const Search = () => {
         )}
         <S.SearchItemFlex>
           {data &&
-            data.pages?.length > 0 &&
+            !data.pages?.[0].empty &&
             data.pages.map((page) =>
               page?.content.map((item: ISearchList) => (
                 <SearchItem key={item.id} item={item} />
               )),
             )}
         </S.SearchItemFlex>
-        <div ref={setTarget} />
+        {!isLoading && hasNextPage && <div ref={ref} />}
         <S.TopButtonCover>
-          <S.TopButton $visible={isTopButtonVisible} onClick={MoveToTop} />
-        </S.TopButtonCover>{" "}
+          <S.TopButton
+            className={isTopButtonVisible ? "visible" : ""}
+            onClick={MoveToTop}
+          >
+            <ArrowIcon />
+          </S.TopButton>
+        </S.TopButtonCover>
       </S.SearchContainer>
     </S.Container>
   );

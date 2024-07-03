@@ -1,8 +1,11 @@
+import { OverlayProvider } from "@toss/use-overlay";
+
 import { AnimatePresence } from "framer-motion";
 import { useEffect } from "react";
 import { Outlet, useLocation } from "react-router-dom";
 
-import { useToastStore } from "./store/store";
+import { useToastStore } from "./store/store.ts";
+
 
 import IsLogin from "@/components/isLogin/IsLogin";
 import ScrollToTop from "@/components/scrollToTop/ScrollToTop";
@@ -20,11 +23,13 @@ const App = () => {
   }, [location, resetToast]);
 
   return (
-    <IsLogin>
-      <ScrollToTop />
-      <AnimatePresence>{toastConfig.isShow && <Toast />}</AnimatePresence>
-      <Outlet />
-    </IsLogin>
+    <OverlayProvider>
+      <IsLogin>
+        <ScrollToTop />
+        <AnimatePresence>{toastConfig.isShow && <Toast />}</AnimatePresence>
+        <Outlet />
+      </IsLogin>
+    </OverlayProvider>
   );
 };
 

@@ -1,4 +1,8 @@
-import type { ButtonHTMLAttributes, PropsWithChildren } from "react";
+import {
+  forwardRef,
+  type ButtonHTMLAttributes,
+  type PropsWithChildren,
+} from "react";
 
 import { StyledIcon, StyledTag } from "./Tag.styles";
 
@@ -8,23 +12,26 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   radius?: "rectangle" | "pill";
 }
 
-const Tag = ({
-  children,
-  tag = "span",
-  variant = "outline",
-  radius = "pill",
-  ...props
-}: PropsWithChildren<ButtonProps>) => {
+const Tag = forwardRef(function Tag(
+  {
+    children,
+    tag = "span",
+    variant = "outline",
+    radius = "pill",
+    ...props
+  }: PropsWithChildren<ButtonProps>,
+  ref: React.Ref<HTMLSpanElement>,
+) {
   const contentProps = {
     children,
   };
 
   return (
-    <StyledTag as={tag} variant={variant} radius={radius} {...props}>
+    <StyledTag ref={ref} as={tag} variant={variant} radius={radius} {...props}>
       <ButtonContent {...contentProps} />
     </StyledTag>
   );
-};
+});
 
 type ButtonContentProps = Pick<ButtonProps, "children">;
 

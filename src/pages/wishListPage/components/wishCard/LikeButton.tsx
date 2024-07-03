@@ -4,23 +4,18 @@ import { LikeButton } from "./WishCard.styles";
 
 import HeartFill from "@/assets/icons/heart-fill.svg?react";
 import Heart from "@/assets/icons/heart.svg?react";
-import {
-  useDeleteWishMutation,
-  usePostWishMutation,
-} from "@/hooks/api/useWishQuery";
+import { useDeleteWishInfiniteMutation } from "@/hooks/api/useWishQuery";
 
 const WishButton = ({ productId }: { productId: number }) => {
-  const [liked, setLiked] = useState<boolean>(false);
+  const [liked, setLiked] = useState<boolean>(true);
 
-  const { deleteWish } = useDeleteWishMutation();
-  const { postWish } = usePostWishMutation();
+  const { deleteWish } = useDeleteWishInfiniteMutation();
 
-  const handleToggleLike = () => {
+  const handleToggleLike = (e: React.MouseEvent) => {
+    e.stopPropagation();
     setLiked((prev) => !prev);
     if (liked) {
-      deleteWish(productId.toString());
-    } else {
-      postWish(productId.toString());
+      deleteWish(productId);
     }
   };
 

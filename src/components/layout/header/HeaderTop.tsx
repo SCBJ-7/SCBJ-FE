@@ -6,9 +6,10 @@ import { PATH } from "@/constants/path";
 
 interface HeaderProps {
   text?: string;
+  handleBackClick?: () => void;
 }
 
-const Header = ({ text }: HeaderProps) => {
+const Header = ({ text, handleBackClick }: HeaderProps) => {
   const navigate = useNavigate();
   const { pathname, search } = useLocation();
   const params = new URLSearchParams(search); // 쿼리스트링 분리
@@ -98,10 +99,6 @@ const Header = ({ text }: HeaderProps) => {
       break;
     default: // 없음
   }
-  const undoHandler = () => {
-    navigate(-1);
-  };
-
   const alarmHandler = () => {
     navigate(PATH.ALARM);
   };
@@ -109,6 +106,8 @@ const Header = ({ text }: HeaderProps) => {
   const settingHandler = () => {
     navigate(PATH.SETTING);
   };
+
+  const undoHandler = handleBackClick ? handleBackClick : () => navigate(-1);
 
   return (
     <S.HeaderContainer>

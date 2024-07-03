@@ -15,6 +15,7 @@ export const HeaderContainer = styled.header`
   z-index: 10;
 
   background-color: white;
+  border-bottom: 1px solid #edf0f2;
 
   margin-left: auto;
   margin-right: auto;

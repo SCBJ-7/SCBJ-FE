@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { LikeButtonWrapper } from "./RoomNavBar.style";
 
@@ -9,20 +9,33 @@ import {
   usePostWishMutation,
 } from "@/hooks/api/useWishQuery";
 
-const LikeButton = ({ productId }: { productId: string }) => {
-  const [liked, setLiked] = useState<boolean>(false);
+const LikeButton = ({
+  productId,
+  isLike,
+}: {
+  productId: string;
+  isLike: boolean;
+}) => {
+  const [liked, setLiked] = useState<boolean>(isLike);
 
   const { deleteWish } = useDeleteWishMutation();
   const { postWish } = usePostWishMutation();
 
   const handleToggleLike = () => {
-    setLiked((prev) => !prev);
     if (liked) {
-      deleteWish(productId);
+      deleteWish(parseInt(productId), {
+        onSuccess: () => setLiked(false),
+      });
     } else {
-      postWish(productId);
+      postWish(parseInt(productId), {
+        onSuccess: () => setLiked(true),
+      });
     }
   };
+
+  useEffect(() => {
+    setLiked(isLike);
+  }, [isLike]);
 
   return (
     <LikeButtonWrapper type="button" onClick={handleToggleLike}>
