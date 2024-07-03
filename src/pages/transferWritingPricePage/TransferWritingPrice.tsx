@@ -19,11 +19,10 @@ import useSubmitHandler from "../../hooks/common/useSubmitHandler";
 
 import { useUserInfoQuery } from "@/hooks/api/useUserInfoQuery";
 import usePreventLeave from "@/hooks/common/usePreventLeave";
+import useTransferNavigation from "@/hooks/common/useTransferNavigation";
 import { useSelectedItemStore } from "@/store/store";
 // import { ProfileData } from "@/types/profile";
 import { type SellerCommentType } from "@/types/sellerComments";
-
-export type PhaseType = "1stInput" | "2ndInput" | "finalConfirm";
 
 // const userData: ProfileData = {
 //   accountNumber: "123123123123123",
@@ -76,44 +75,13 @@ const TransferWritingPrice = () => {
   // 제출 가능 여부
   const [readyToSubmit, setReadyToSubmit] = useState(false);
 
-  const [phase, setPhase] = useState<PhaseType>("1stInput");
-  const [phaseHistory, setPhaseHistory] = useState<PhaseType[]>(["1stInput"]);
-
   useEffect(() => {
     setBank(userData?.bank ?? null);
     setAccountNumber(userData?.accountNumber ?? null);
   }, [userData]);
 
-  useEffect(() => {
-    console.log(phase, "phase");
-
-    console.log(is2ndChecked, "is2ndChecked");
-    //eslint-disable-next-line
-  }, [phase]);
-
-  const handleAddPhaseHistory = (newPhase: PhaseType) => {
-    setPhaseHistory([...phaseHistory, newPhase]);
-    setPhase(newPhase);
-
-    if (newPhase === "2ndInput") {
-      setIs2ndChecked(true);
-    }
-  };
-
-  const handleSubPhaseHistory = () => {
-    const newPhase = [...phaseHistory];
-    const pop = newPhase.pop();
-    setPhaseHistory(newPhase);
-    setPhase(newPhase[newPhase.length - 1] || "1stInput");
-
-    console.log(newPhase);
-
-    console.log(pop, "pop");
-
-    if (pop === "2ndInput") {
-      setIs2ndChecked(false);
-    }
-  };
+  const { handleAddPhaseHistory, handleSubPhaseHistory, phase } =
+    useTransferNavigation({ firstPrice, setIs2ndChecked });
 
   const handleOpenAgreement = () => {
     setModalType("AGREEMENT");

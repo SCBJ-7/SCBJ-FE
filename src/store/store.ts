@@ -62,6 +62,7 @@ export const useUserInfoStore = create<UserState>((set) => ({
 }));
 
 export type configType = {
+  isOverlap?: number;
   isShow: boolean;
   isError: boolean;
   strings: (string | ReactNode)[];
@@ -75,6 +76,7 @@ interface ToastStates {
 
 export const useToastStore = create<ToastStates>((set) => ({
   config: {
+    isOverlap: 0,
     isShow: false,
     isError: false,
     strings: [],
@@ -86,12 +88,13 @@ export const useToastStore = create<ToastStates>((set) => ({
         ...updated,
       },
     })),
+
   resetToast: () =>
-    set(() => ({
+    set((state) => ({
       config: {
         isShow: false,
-        isError: false,
-        strings: [],
+        isError: state.config.isError,
+        strings: state.config.strings,
       },
     })),
 }));
