@@ -54,8 +54,7 @@ const Home = () => {
     (v, i) => [i, v],
   );
   const [weekendHotels] = useState(WeekendMapped);
-  console.log("currentLocale", currentLocale);
-  console.log("localeAndHotel", localeAndHotel);
+
   return (
     <S.Container $weekLength={weekendHotels?.length}>
       <MainHeader />
