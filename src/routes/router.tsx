@@ -1,4 +1,3 @@
-import Layout from "@components/layout/Layout";
 import { Suspense } from "react";
 import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
 
@@ -8,6 +7,7 @@ import App from "@/App.tsx";
 import LoadingFallback from "@/components/deferredComponent/LoadingFallback.tsx";
 import ApiErrorBoundary from "@/components/errorBoundary/ErrorBoundary.tsx";
 import { HelmetTag } from "@/components/Helmet/Helmet.tsx";
+import Layout from "@/components/layout/Layout.tsx";
 import Redirect from "@/components/redirect/Redirect.tsx";
 import { PATH } from "@/constants/path.ts";
 import NotFound from "@/pages/notFoundPage";
@@ -118,18 +118,6 @@ const AppRouter = () => {
           path: PATH.WRITE_TRANSFER,
           element: (
             <Layout isHeaderOn={true} isBottomNavOn={true}>
-              <ApiErrorBoundary>
-                <Suspense fallback={<LoadingFallback />}>
-                  <Lazy.TransferWriting />
-                </Suspense>
-              </ApiErrorBoundary>
-            </Layout>
-          ),
-        },
-        {
-          path: PATH.WRITE_TRANSFER,
-          element: (
-            <Layout isHeaderOn={true} isBottomNavOn={true}>
               <HelmetTag text="판매하기" />
               <ApiErrorBoundary>
                 <Suspense fallback={<LoadingFallback />}>
@@ -142,7 +130,7 @@ const AppRouter = () => {
         {
           path: PATH.WRITE_TRANSFER_PRICE + `/:id`,
           element: (
-            <Layout isHeaderOn={false} isBottomNavOn={true}>
+            <Layout isHeaderOn={false} isBottomNavOn={false}>
               <ApiErrorBoundary>
                 <HelmetTag text="판매글 작성" />
                 <Suspense fallback={<LoadingFallback />}>
@@ -248,7 +236,7 @@ const AppRouter = () => {
           ),
         },
         {
-          path: PATH.DETAIL_ROOM(":productId"),
+          path: PATH.DETAIL_ROOM(),
           element: (
             <Layout isHeaderOn={false} isBottomNavOn={false}>
               <ApiErrorBoundary>
@@ -353,7 +341,7 @@ const AppRouter = () => {
           ),
           children: [
             {
-              path: "",
+              index: true,
               element: <Lazy.Payment action="default" />,
             },
             {
@@ -386,6 +374,19 @@ const AppRouter = () => {
                 </Suspense>
               </ApiErrorBoundary>
             </Layout>
+          ),
+        },
+        {
+          path: PATH.WISHLIST,
+          element: (
+            <>
+              <HelmetTag text="찜" />
+              <ApiErrorBoundary>
+                <Suspense fallback={<LoadingFallback />}>
+                  <Lazy.WishList />
+                </Suspense>
+              </ApiErrorBoundary>
+            </>
           ),
         },
       ],

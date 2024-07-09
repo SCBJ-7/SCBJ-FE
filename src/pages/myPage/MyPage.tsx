@@ -1,9 +1,9 @@
-import { PATH } from "@constants/path";
 import { Outlet, useNavigate } from "react-router-dom";
 
 import MyPageNav from "./components/myPageNav/MyPageNav";
 import * as S from "./MyPage.style";
 
+import { PATH } from "@/constants/path";
 import { useLoadUserInfo } from "@/hooks/common/useLoadUserInfo";
 import useAuthStore from "@/store/authStore";
 

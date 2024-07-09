@@ -1,6 +1,6 @@
-import { PATH } from "@constants/path";
-import { WeekendItem } from "@type/saleSection";
-import priceFormat from "@utils/priceFormat";
+import { PATH } from "@/constants/path";
+import { WeekendItem } from "@/types/saleSection";
+import priceFormat from "@/utils/priceFormat";
 import { format, parseISO } from "date-fns";
 import { useNavigate } from "react-router-dom";
 

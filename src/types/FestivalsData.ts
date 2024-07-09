@@ -1,33 +1,33 @@
-import First1 from "@assets/firstFestivalImages/First1.jpg";
-import First10 from "@assets/firstFestivalImages/First10.jpg";
-import First11 from "@assets/firstFestivalImages/First11.jpg";
-import First12 from "@assets/firstFestivalImages/First12.jpg";
-import First13 from "@assets/firstFestivalImages/First13.jpg";
-import First14 from "@assets/firstFestivalImages/First14.jpg";
-import First15 from "@assets/firstFestivalImages/First15.jpg";
-import First2 from "@assets/firstFestivalImages/First2.jpg";
-import First3 from "@assets/firstFestivalImages/First3.jpg";
-import First4 from "@assets/firstFestivalImages/First4.jpg";
-import First5 from "@assets/firstFestivalImages/First5.jpg";
-import First6 from "@assets/firstFestivalImages/First6.jpg";
-import First7 from "@assets/firstFestivalImages/First7.jpg";
-import First8 from "@assets/firstFestivalImages/First8.jpg";
-import First9 from "@assets/firstFestivalImages/First9.jpg";
-import Second1 from "@assets/secondFestivalImages/Second1.jpg";
-import Second10 from "@assets/secondFestivalImages/Second10.jpg";
-import Second11 from "@assets/secondFestivalImages/Second11.jpg";
-import Second12 from "@assets/secondFestivalImages/Second12.jpg";
-import Second13 from "@assets/secondFestivalImages/Second13.jpg";
-import Second14 from "@assets/secondFestivalImages/Second14.jpg";
-import Second15 from "@assets/secondFestivalImages/Second15.jpg";
-import Second2 from "@assets/secondFestivalImages/Second2.jpg";
-import Second3 from "@assets/secondFestivalImages/Second3.jpg";
-import Second4 from "@assets/secondFestivalImages/Second4.jpg";
-import Second5 from "@assets/secondFestivalImages/Second5.jpg";
-import Second6 from "@assets/secondFestivalImages/Second6.jpg";
-import Second7 from "@assets/secondFestivalImages/Second7.jpg";
-import Second8 from "@assets/secondFestivalImages/Second8.jpg";
-import Second9 from "@assets/secondFestivalImages/Second9.jpg";
+import First1 from "@/assets/firstFestivalImages/First1.jpg";
+import First10 from "@/assets/firstFestivalImages/First10.jpg";
+import First11 from "@/assets/firstFestivalImages/First11.jpg";
+import First12 from "@/assets/firstFestivalImages/First12.jpg";
+import First13 from "@/assets/firstFestivalImages/First13.jpg";
+import First14 from "@/assets/firstFestivalImages/First14.jpg";
+import First15 from "@/assets/firstFestivalImages/First15.jpg";
+import First2 from "@/assets/firstFestivalImages/First2.jpg";
+import First3 from "@/assets/firstFestivalImages/First3.jpg";
+import First4 from "@/assets/firstFestivalImages/First4.jpg";
+import First5 from "@/assets/firstFestivalImages/First5.jpg";
+import First6 from "@/assets/firstFestivalImages/First6.jpg";
+import First7 from "@/assets/firstFestivalImages/First7.jpg";
+import First8 from "@/assets/firstFestivalImages/First8.jpg";
+import First9 from "@/assets/firstFestivalImages/First9.jpg";
+import Second1 from "@/assets/secondFestivalImages/Second1.jpg";
+import Second10 from "@/assets/secondFestivalImages/Second10.jpg";
+import Second11 from "@/assets/secondFestivalImages/Second11.jpg";
+import Second12 from "@/assets/secondFestivalImages/Second12.jpg";
+import Second13 from "@/assets/secondFestivalImages/Second13.jpg";
+import Second14 from "@/assets/secondFestivalImages/Second14.jpg";
+import Second15 from "@/assets/secondFestivalImages/Second15.jpg";
+import Second2 from "@/assets/secondFestivalImages/Second2.jpg";
+import Second3 from "@/assets/secondFestivalImages/Second3.jpg";
+import Second4 from "@/assets/secondFestivalImages/Second4.jpg";
+import Second5 from "@/assets/secondFestivalImages/Second5.jpg";
+import Second6 from "@/assets/secondFestivalImages/Second6.jpg";
+import Second7 from "@/assets/secondFestivalImages/Second7.jpg";
+import Second8 from "@/assets/secondFestivalImages/Second8.jpg";
+import Second9 from "@/assets/secondFestivalImages/Second9.jpg";
 
 export interface FestivalData {
   name?: string;
@@ -36,6 +36,7 @@ export interface FestivalData {
   location?: string;
   link?: string;
   image?: string;
+  endDate?: string;
 }
 
 export const FirstFestivals = [

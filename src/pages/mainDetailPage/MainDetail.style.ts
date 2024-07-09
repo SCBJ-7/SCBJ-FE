@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import TopButtonIcon from "@assets/icons/ic_top_button.svg?react";
+import TopButtonIcon from "@/assets/icons/ic_top_button.svg?react";
 
 export const Container = styled.main`
   background-color: ${({ theme }) => theme.color.greyScale7};
@@ -29,19 +29,51 @@ export const TopButtonCover = styled.div`
   position: fixed;
   width: 100%;
   max-width: 768px;
-  bottom: 100px;
+  bottom: 11%;
   margin: 0 auto;
   display: flex;
   justify-content: flex-end;
 `;
-export const TopButton = styled(TopButtonIcon)<TopButtonProps>`
+
+export const TopButton = styled.div`
   margin-right: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 36px;
+  height: 36px;
+
+  background-color: ${({ theme }) => theme.color.white};
+  border-radius: 50%;
+  border: 1px solid #e4e4e7;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+
+  transform: rotate(270deg);
+
+  & > svg {
+    width: 28px;
+    height: 28px;
+    color: ${({ theme }) => theme.color.greyScale3};
+  }
+
+  &:hover {
+    background-color: #f4f4f5;
+  }
+
+  visibility: hidden;
+  opacity: 0;
+
+  &.visible {
+    visibility: visible;
+    opacity: 1;
+  }
+
   cursor: pointer;
-  visibility: ${({ $visible }) => ($visible ? "visible" : "hidden").toString()};
-  opacity: ${({ $visible }) => ($visible ? 1 : 0)};
-  transition:
-    visibility 0.2s,
-    opacity 0.2s;
+
+  transition-property: background-color, visibility, opacity;
+  transition-duration: 0.125s;
+  transition-timing-function: ease;
 `;
 
 export const NoResultCover = styled.div`

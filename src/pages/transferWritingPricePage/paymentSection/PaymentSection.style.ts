@@ -1,23 +1,14 @@
 import { motion } from "framer-motion";
-import { PiCaretDownBold } from "react-icons/pi";
 import styled from "styled-components";
 
-import { theme } from "@/styles/theme";
-
-export const Container = styled(motion.div)<{ $is2ndChecked: boolean }>`
-  padding: 16px 20px;
+export const Container = styled(motion.div)`
+  padding: 32px 20px;
   background-color: white;
-  margin-bottom: ${({ $is2ndChecked }) => ($is2ndChecked ? "8px" : "1px")};
-  border-top: ${({ $is2ndChecked }) =>
-    $is2ndChecked ? "1px dashed #CDCDCD" : ""};
+  margin-top: 8px;
 `;
-theme;
+
 export const Contents = styled.div`
   ${({ theme }) => theme.typo.body4};
-
-  h1 {
-    ${({ theme }) => theme.typo.body3};
-  }
 
   section {
     display: flex;
@@ -56,11 +47,12 @@ export const Result = styled(motion.div)`
   }
 `;
 
-export const Label = styled(motion.div)<{ $isOpen: boolean }>`
+export const Label = styled(motion.div)`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: ${({ $isOpen }) => ($isOpen ? "16px" : "0")};
+  margin-bottom: 16px;
+  ${({ theme }) => theme.typo.title4};
 `;
 
 export const IconWrapper = styled.button`
@@ -76,10 +68,4 @@ export const IconWrapper = styled.button`
   &:hover {
     background-color: ${({ theme }) => theme.color.greyScale7};
   }
-`;
-
-export const downIcon = styled(PiCaretDownBold)`
-  font-size: 14px;
-  transition: 0.2s;
-  transform: ${({ $isOpen }) => ($isOpen ? "" : "rotate(-180deg)")};
 `;

@@ -1,5 +1,5 @@
-import { breakpoints } from "@styles/theme";
-import { hexToRgba } from "@utils/hexTorgba";
+import breakpoints from "@/styles/breakpoints";
+import { hexToRgba } from "@/utils/styleFormatter";
 import { motion } from "framer-motion";
 import styled, { DefaultTheme } from "styled-components";
 
@@ -21,11 +21,11 @@ export const MainWrapper = styled(motion.div)`
 
   padding-top: 20%;
 
-  @media (max-width: ${breakpoints.tablet}) {
+  @media (max-width: ${breakpoints.md}) {
     padding-top: 30%;
   }
 
-  @media (max-width: ${breakpoints.mobile}) {
+  @media (max-width: ${breakpoints.sm}) {
     padding-top: 50%;
   }
 `;
@@ -37,11 +37,11 @@ export const PercentHotelLogo = styled.div`
     width: 100%;
   }
 
-  @media (max-width: ${breakpoints.tablet}) {
+  @media (max-width: ${breakpoints.md}) {
     width: 170px;
   }
 
-  @media (max-width: ${breakpoints.mobile}) {
+  @media (max-width: ${breakpoints.sm}) {
     width: 150px;
   }
 `;
@@ -53,11 +53,11 @@ export const YanoljaLogo = styled.div`
     width: 100%;
   }
 
-  @media (max-width: ${breakpoints.tablet}) {
+  @media (max-width: ${breakpoints.md}) {
     width: 138px;
   }
 
-  @media (max-width: ${breakpoints.mobile}) {
+  @media (max-width: ${breakpoints.sm}) {
     width: 118px;
   }
 `;
@@ -69,7 +69,7 @@ export const XIcon = styled.div`
     width: 100%;
   }
 
-  @media (max-width: ${breakpoints.mobile}) {
+  @media (max-width: ${breakpoints.sm}) {
     width: 12px;
   }
 `;
@@ -124,11 +124,11 @@ export const Button = styled.button.withConfig({
 })<ButtonVariantProps>`
   width: 60%;
 
-  @media (max-width: ${breakpoints.tablet}) {
+  @media (max-width: ${breakpoints.md}) {
     width: 80%;
   }
 
-  @media (max-width: ${breakpoints.mobile}) {
+  @media (max-width: ${breakpoints.sm}) {
     width: 100%;
   }
 

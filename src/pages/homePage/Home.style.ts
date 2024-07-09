@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Container = styled.section<{ $weekLength: undefined | number }>`
-  background-color: ${({ theme }) => theme.color.greyScale6};
+  background-color: ${({ theme }) => theme.color.greyScale7};
 
   padding-top: 80px;
   padding-bottom: ${({ $weekLength }) => !$weekLength && "200px"};
@@ -23,7 +23,8 @@ export const Container = styled.section<{ $weekLength: undefined | number }>`
 export const SaleCarouselContainer = styled.div`
   width: 100%;
   background-color: white;
-  margin-bottom: 50px;
+  margin-bottom: 70px;
+  margin-top: 10px;
 `;
 
 export const TextSlider = styled.div`
@@ -46,9 +47,10 @@ export const TextSlider = styled.div`
 
 export const WeekendCarouselContainer = styled.div`
   width: 100%;
-  height: 497px;
+  height: 520px;
   margin: 0 20px;
   background-color: white;
+  padding-bottom: 100px;
 `;
 
 export const TitleSection = styled.div`

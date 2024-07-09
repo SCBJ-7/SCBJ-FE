@@ -1,4 +1,4 @@
-import { Nullable } from "@type/nullable";
+import { Nullable } from "@/types/nullable";
 export interface LocaleItem {
   id: number;
   city: string;

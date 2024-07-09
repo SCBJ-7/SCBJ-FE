@@ -1,6 +1,7 @@
-import {TIME_UNIT} from '@constants/time'
-import {format, parse} from 'date-fns'
-import {ko} from 'date-fns/locale'
+import { format, parse } from "date-fns";
+import { ko } from "date-fns/locale";
+
+import { TIME_UNIT } from "@/constants/time";
 
 /**
  * ISO 형식의 날짜 문자열을 특정 포맷으로 변환합니다.
@@ -10,6 +11,23 @@ import {ko} from 'date-fns/locale'
 export const formatDate = (date: string): string => {
   const parseIoDate = new Date(date);
   return format(parseIoDate, "yy.MM.dd(E) HH:mm", { locale: ko });
+};
+
+/**
+ * ISO 형식의 날짜 문자열에서 날짜와 시간을 분리하여 반환합니다.
+ * @param {string} date - ISO 형식의 날짜 문자열
+ * @returns {{date: string, time: string}} 분리된 날짜와 시간
+ */
+export const formatDateAndTime = (
+  date: string,
+): { date: string; time: string } => {
+  const parsedDate = new Date(date);
+  const formattedDate = format(parsedDate, "yy.MM.dd(E)", { locale: ko });
+  const formattedTime = format(parsedDate, "HH:mm", { locale: ko });
+  return {
+    date: formattedDate,
+    time: formattedTime,
+  };
 };
 
 /**

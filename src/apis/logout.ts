@@ -1,4 +1,4 @@
-import { axiosInstance } from "@apis/axiosInstance";
+import { axiosInstance } from "@/apis/axiosInstance";
 
 import { ACCESS_TOKEN, END_POINTS, REFRESH_TOKEN } from "@/constants/api";
 

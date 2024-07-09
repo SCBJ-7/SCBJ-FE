@@ -6,13 +6,13 @@ export const SignUp = lazy(() => import("@/pages/signUpPage/SignUp"));
 export const MyPage = lazy(() => import("@/pages/myPage/MyPage"));
 export const SignIn = lazy(() => import("@/pages/signInPage/SignIn"));
 export const RoomDetail = lazy(
-  () => import("@pages/roomDetailPage/RoomDetail"),
+  () => import("@/pages/roomDetailPage/RoomDetail"),
 );
 export const TransferPurchase = lazy(
   () => import("@/pages/transferPurchasePage/TransferPurchase"),
 );
 export const TransferSale = lazy(
-  () => import("@pages/transferSalePage/TransferSale"),
+  () => import("@/pages/transferSalePage/TransferSale"),
 );
 export const TransferWriting = lazy(
   () => import("@/pages/transferWritingPage/TransferWriting"),
@@ -37,31 +37,33 @@ export const TransferWritingPrice = lazy(
   () => import("@/pages/transferWritingPricePage/TransferWritingPrice"),
 );
 
-export const Alarm = lazy(() => import("@pages/alarmPage/AlarmPage"));
-export const Payment = lazy(() => import("@pages/paymentPage/Payment"));
+export const Alarm = lazy(() => import("@/pages/alarmPage/AlarmPage"));
+export const Payment = lazy(() => import("@/pages/paymentPage/Payment"));
 export const TransferWritingSuccess = lazy(
   () => import("@/pages/transferWritingSuccessPage/TransferWritingSuccess"),
 );
 export const PaymentSuccess = lazy(
-  () => import("@pages/paymentSuccessPage/PaymentSuccess"),
+  () => import("@/pages/paymentSuccessPage/PaymentSuccess"),
 );
 export const EditAccount = lazy(
-  () => import("@pages/myPage/manage/editAccount/EditAccount"),
+  () => import("@/pages/myPage/manage/editAccount/EditAccount"),
 );
 
 export const SaleDetail = lazy(
-  () => import("@pages/saleDetailPage/SaleDetail"),
+  () => import("@/pages/saleDetailPage/SaleDetail"),
 );
 
 export const IntroPage = lazy(
-  () => import("@pages/connectYanoljaPage/IntroPage/IntroPage.tsx"),
+  () => import("@/pages/connectYanoljaPage/IntroPage/IntroPage.tsx"),
 );
 export const SuccessPage = lazy(
-  () => import("@pages/connectYanoljaPage/successPage/SuccessPage.tsx"),
+  () => import("@/pages/connectYanoljaPage/successPage/SuccessPage.tsx"),
 );
 export const VerificationPage = lazy(
-  () => import("@pages/connectYanoljaPage/verificationPage/VerificationPage"),
+  () => import("@/pages/connectYanoljaPage/verificationPage/VerificationPage"),
 );
 export const MainDetail = lazy(
   () => import("@/pages/mainDetailPage/MainDetail"),
 );
+
+export const WishList = lazy(() => import("@/pages/wishListPage/WishList"));

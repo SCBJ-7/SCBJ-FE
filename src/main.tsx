@@ -8,14 +8,20 @@ import AppRouter from "./routes/router";
 import { GlobalStyle } from "./styles/globalStyle";
 import { theme } from "./styles/theme";
 
+// import { worker } from "@/mocks/broswer.ts";
+
+// if (process.env.NODE_ENV === "development") {
+//   worker.start();
+// }
+
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
-      retry: 1,
+      retry: false,
       throwOnError: true,
     },
     mutations: {
-      retry: 1,
+      retry: false,
       throwOnError: true,
     },
   },

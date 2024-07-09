@@ -32,6 +32,8 @@ export const END_POINTS = {
   SEARCH: "/v1/products/search",
   CHANGE_NAME: "/v1/members/name",
   CHANGE_NUMBER: "/v1/members/phone",
+  WISH_LIST: "/v1/favorites",
+  WISH: (productId: number) => `/v1/favorites/${productId}`,
 } as const;
 
 export const STATUS_CODE = {

@@ -1,8 +1,9 @@
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+
 import { PATH } from "@/constants/path";
 import useAuthStore from "@/store/authStore";
 import { useUserInfoStore } from "@/store/store";
-import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 
 interface RedirectProps {
   children: React.ReactNode;
@@ -15,6 +16,7 @@ const Redirect = ({ children }: RedirectProps) => {
 
   useEffect(() => {
     if (!isLoggedIn || !userInfo || userInfo.linkedToYanolja) {
+      console.log(userInfo?.linkedToYanolja, userInfo?.id);
       navigate(PATH.ROOT);
     }
   }, [isLoggedIn, userInfo, navigate]);

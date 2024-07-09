@@ -1,7 +1,7 @@
-import NoResult from "@components/noResult/NoResult.tsx";
-import { useCarousel } from "@hooks/common/useCarousel";
-import { useCarouselSize } from "@hooks/common/useCarouselSize";
-import { LocaleItem, WeekendItem } from "@type/saleSection.ts";
+import NoResult from "@/components/noResult/NoResult.tsx";
+import { useCarousel } from "@/hooks/common/useCarousel";
+import { useCarouselSize } from "@/hooks/common/useCarouselSize";
+import { LocaleItem, WeekendItem } from "@/types/saleSection.ts";
 
 import * as S from "./WeekendCarousel.style.ts";
 import WeekendUnit from "./weekendCarouselUnit/WeekendUnit.tsx";

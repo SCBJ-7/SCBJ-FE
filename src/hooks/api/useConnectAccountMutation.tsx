@@ -1,6 +1,6 @@
-import { postYanoljaAccount } from "@apis/fetchYanoljaAccount";
-import { PATH } from "@constants/path";
-import useToastConfig from "@hooks/common/useToastConfig";
+import { postYanoljaAccount } from "@/apis/fetchYanoljaAccount";
+import { PATH } from "@/constants/path";
+import useToastConfig from "@/hooks/common/useToastConfig";
 import { useMutation } from "@tanstack/react-query";
 import { isAxiosError } from "axios";
 import { useNavigate } from "react-router-dom";
@@ -27,7 +27,10 @@ export const useConnectAccountMutation = () => {
   };
 
   const connectAccountMutation = useMutation({
-    mutationFn: (email: string) => postYanoljaAccount(email),
+    mutationFn: (email: string) => {
+      console.log(email);
+      return postYanoljaAccount(email);
+    },
     onSuccess: () => {
       navigate(PATH.YANOLJA_ACCOUNT_VERIFICATION_SUCCESS, {
         state: { success: true },
@@ -36,6 +39,7 @@ export const useConnectAccountMutation = () => {
     },
     onError: handleError,
     throwOnError: (error) => {
+      console.log(error);
       return !isAxiosError(error);
     },
   });

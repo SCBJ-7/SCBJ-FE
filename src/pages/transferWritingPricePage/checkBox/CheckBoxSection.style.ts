@@ -16,16 +16,6 @@ export const CheckContainer = styled.section`
   }
 `;
 
-export const CheckBox = styled.input.attrs({ type: "checkbox" })<{
-  $type: string;
-}>`
-  width: 14px;
-  height: 14px;
-  border-radius: 1px;
-  accent-color: ${({ theme, $type }) =>
-    $type === "trigger" ? theme.color.percentBlue : theme.color.greyScale1};
-`;
-
 export const Label = styled.label<{
   $isChecked: boolean;
   $color: ColorKeys;
@@ -37,4 +27,13 @@ export const Label = styled.label<{
     $isChecked ? theme.color.percentBlue : theme.color[$color]};
 
   ${theme.unableToDrag}
+`;
+
+export const CheckBox = styled.input.attrs({ type: "checkbox" })<{
+  $type: string;
+}>`
+  width: 14px;
+  height: 14px;
+  border-radius: 1px;
+  accent-color: ${({ theme }) => theme.color.percentBlue};
 `;

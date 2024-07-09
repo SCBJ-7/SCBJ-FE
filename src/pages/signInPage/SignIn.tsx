@@ -1,12 +1,12 @@
-import { postLogin } from "@apis/fetchLogin";
-import { PATH } from "@constants/path";
-import useToastConfig from "@hooks/common/useToastConfig";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate, useSearchParams } from "react-router-dom";
 
 import * as S from "./SignIn.style";
 
+import { postLogin } from "@/apis/fetchLogin";
+import { PATH } from "@/constants/path";
+import useToastConfig from "@/hooks/common/useToastConfig";
 import { useUserInfoStore } from "@/store/store";
 import getNotificationPermission from "@/utils/getNotificationPermission";
 

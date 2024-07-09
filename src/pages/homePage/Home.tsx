@@ -1,22 +1,18 @@
-import * as S from "./Home.style";
-
-import { fetchMainItem } from "@apis/fetchMainItems";
 import { useSuspenseQuery } from "@tanstack/react-query";
-import { LocaleItem, WeekendItem } from "@type/saleSection";
 import { useState } from "react";
-import secondMonth from "@assets/EventImages/secondMonth.png";
-import firstMonth from "@assets/EventImages/firstMonth.png";
-
-import ItemCarousel from "./itemCarousel/ItemCarousel";
-import MainHeader from "./mainHeader/MainHeader";
-
-import NavToSearchSection from "./navToSearchSection/NavToSearchSection";
-import SequenceSection from "./sequenceSection/SequenceSection";
-import PercentAnimator from "./percentAnimator/PercentAnimator";
 
 import EventCarousel from "./eventCarousel/EventCarousel";
+import * as S from "./Home.style";
+import ItemCarousel from "./itemCarousel/ItemCarousel";
+import MainHeader from "./mainHeader/MainHeader";
+import NavToSearchSection from "./navToSearchSection/NavToSearchSection";
+import PercentAnimator from "./percentAnimator/PercentAnimator";
+import SequenceSection from "./sequenceSection/SequenceSection";
 import WeekendCarousel from "./weekendCarousel/WeekendCarousel";
 
+import { fetchMainItem } from "@/apis/fetchMainItems";
+import secondMonth from "@/assets/EventImages/secondMonth.png";
+import { LocaleItem, WeekendItem } from "@/types/saleSection";
 interface EventItem {
   id: number;
   image: string;
@@ -32,15 +28,9 @@ const Home = () => {
   const [localeProds, weekendProds] = mainData;
   const EventCarouselContents: EventItem[] = [
     {
-      id: 0,
-      image: firstMonth,
-      title1: "봄맞이 꽃놀이 명소",
-      title2: "숙소 예약 놓쳤다면?",
-    },
-    {
       id: 1,
       image: secondMonth,
-      title1: "가정의 달 맞이",
+      title1: "성수기 숙소 예약 놓쳤다면?",
       title2: "황금연휴 호캉스 추천",
     },
   ];
@@ -73,7 +63,7 @@ const Home = () => {
       <EventCarousel
         EventCarouselContents={EventCarouselContents}
         height={304}
-        arrows={true}
+        arrows={false}
         infinite={true}
         innerShadow={true}
         draggable={true}
@@ -97,7 +87,6 @@ const Home = () => {
       )}
       <S.SaleCarouselContainer>
         <S.TextSlider>
-          {/* <TextLocaleAnimator text={locale[currentLocale[1]]} /> */}
           <span>지역</span>
           <PercentAnimator
             percent={currentLocale[2][0]?.salePercentage}

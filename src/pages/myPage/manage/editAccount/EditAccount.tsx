@@ -1,6 +1,6 @@
-import EnterAccountInfo from "@components/account/enterAccountInfo/EnterAccountInfo";
-import { PATH } from "@constants/path";
-import useToastConfig from "@hooks/common/useToastConfig";
+import EnterAccountInfo from "@/components/account/enterAccountInfo/EnterAccountInfo";
+import { PATH } from "@/constants/path";
+import useToastConfig from "@/hooks/common/useToastConfig";
 import { useLocation, useNavigate } from "react-router-dom";
 
 const EditAccount = () => {

@@ -7,7 +7,7 @@ export const Container = styled.div`
   height: 32px;
 
   top: -34px;
-  left: calc(37.5% - 80px);
+  left: calc(50% - 80px);
   border-radius: 16px;
 
   background-color: ${({ theme }) => theme.color.black};

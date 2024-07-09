@@ -1,4 +1,3 @@
-import SearchItem from "@pages/searchPage/components/searchItem/SearchItem";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
 
@@ -7,8 +6,10 @@ import RegionButton from "./components/RegionButton/RegionButton";
 import * as S from "./MainDetail.style";
 
 import { fetchSearchList } from "@/apis/fetchSeachList";
-import UseIntersectionObserver from "@/hooks/common/useIntersectionObserver";
+import { useIntersectionObserver } from "@/hooks/common/useIntersectionObserver";
+import SearchItem from "@/pages/searchPage/components/searchItem/SearchItem";
 import { ISearchList } from "@/types/searchList";
+import ArrowIcon from "@/assets/icons/ic_arrow.svg?react";
 
 const MainDetail = () => {
   const pageSize = 10;
@@ -62,16 +63,13 @@ const MainDetail = () => {
     },
   });
 
-  const handleIntersect: IntersectionObserverCallback = (entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting && hasNextPage) {
-        fetchNextPage();
-      }
-    });
+  const handleIntersect = (isIntersecting: boolean) => {
+    if (isIntersecting && hasNextPage) {
+      fetchNextPage();
+    }
   };
-
-  const { setTarget } = UseIntersectionObserver({
-    onIntersect: handleIntersect,
+  const { ref } = useIntersectionObserver({
+    onChange: handleIntersect,
     threshold: 0.5,
   });
 
@@ -121,9 +119,14 @@ const MainDetail = () => {
               )),
             )}
         </S.SearchItemFlex>
-        <div ref={setTarget} />
+        <div ref={ref} />
         <S.TopButtonCover>
-          <S.TopButton $visible={isTopButtonVisible} onClick={MoveToTop} />
+          <S.TopButton
+            className={isTopButtonVisible ? "visible" : ""}
+            onClick={MoveToTop}
+          >
+            <ArrowIcon />
+          </S.TopButton>
         </S.TopButtonCover>
       </S.SearchContainer>
     </S.Container>

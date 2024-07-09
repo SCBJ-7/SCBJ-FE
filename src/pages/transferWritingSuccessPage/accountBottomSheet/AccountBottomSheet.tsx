@@ -1,4 +1,4 @@
-import { PATH } from "@constants/path";
+import { PATH } from "@/constants/path";
 import { useMutation } from "@tanstack/react-query";
 import { useEffect, useRef, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";

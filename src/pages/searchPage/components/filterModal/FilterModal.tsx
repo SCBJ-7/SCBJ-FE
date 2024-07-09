@@ -1,4 +1,4 @@
-import { useSearchFilterInfoStore } from "@store/store";
+import { useSearchFilterInfoStore } from "@/store/store";
 import { AnimatePresence } from "framer-motion";
 import { forwardRef } from "react";
 

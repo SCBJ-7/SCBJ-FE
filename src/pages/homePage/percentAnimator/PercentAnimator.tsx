@@ -1,4 +1,4 @@
-import { LocaleItem } from "@type/saleSection";
+import { LocaleItem } from "@/types/saleSection";
 import { AnimatePresence } from "framer-motion";
 
 import * as S from "./PercentAnimator.style";

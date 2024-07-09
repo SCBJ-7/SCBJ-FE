@@ -1,4 +1,4 @@
-import TermsAgreementSection from "@pages/connectYanoljaPage/verificationPage/components/termsAgreementSection/TermsAgreementSection";
+import TermsAgreementSection from "@/pages/connectYanoljaPage/verificationPage/components/termsAgreementSection/TermsAgreementSection";
 import { FormProvider, useForm } from "react-hook-form";
 
 import FieldValues from "./components/fieldValues/FieldValues";

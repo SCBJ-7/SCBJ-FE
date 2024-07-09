@@ -4,7 +4,12 @@ import * as S from "./HeaderTop.style";
 
 import { PATH } from "@/constants/path";
 
-const Header = () => {
+interface HeaderProps {
+  text?: string;
+  handleBackClick?: () => void;
+}
+
+const Header = ({ text, handleBackClick }: HeaderProps) => {
   const navigate = useNavigate();
   const { pathname, search } = useLocation();
   const params = new URLSearchParams(search); // 쿼리스트링 분리
@@ -20,7 +25,7 @@ const Header = () => {
     if (id === "0") {
       title = "봄 여행 숙소 추천";
     } else if (id === "1") {
-      title = "가정의 달 숙소 추천";
+      title = "성수기 숙소 예약 놓쳤다면?";
     }
   }
 
@@ -104,10 +109,6 @@ const Header = () => {
       break;
     default: // 없음
   }
-  const undoHandler = () => {
-    navigate(-1);
-  };
-
   const alarmHandler = () => {
     navigate(PATH.ALARM);
   };
@@ -116,12 +117,14 @@ const Header = () => {
     navigate(PATH.SETTING);
   };
 
+  const undoHandler = handleBackClick ? handleBackClick : () => navigate(-1);
+
   return (
     <S.HeaderContainer>
       <S.HeaderCell>
         {undo && <S.UndoIcon onClick={undoHandler} />}
       </S.HeaderCell>
-      <S.HeaderCell>{title}</S.HeaderCell>
+      <S.HeaderCell>{text ?? title}</S.HeaderCell>
       <S.HeaderCell>
         {settingIC && <S.AlarmIcon onClick={alarmHandler} />}
         {alarmIC && <S.SettingIcon onClick={settingHandler} />}

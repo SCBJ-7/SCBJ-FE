@@ -4,6 +4,7 @@ import { styled } from "styled-components";
 export const HeaderContainer = styled.header`
   width: 100%;
   max-width: 768px;
+  min-width: 360px;
   height: 56px;
 
   display: flex;
@@ -14,6 +15,12 @@ export const HeaderContainer = styled.header`
   z-index: 10;
 
   background-color: white;
+  border-bottom: 1px solid #edf0f2;
+
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
 `;
 
 export const HeaderCell = styled.div`

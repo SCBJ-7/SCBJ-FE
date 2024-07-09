@@ -6,6 +6,7 @@ export const Container = styled(motion.div)`
   padding: 16px 20px 24px;
   background-color: white;
   margin-bottom: 1px;
+  margin-top: 8px;
 
   cursor: pointer;
 `;

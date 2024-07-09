@@ -1,4 +1,3 @@
-import { theme } from "@/styles/theme";
 import { PiCaretLeftBold, PiCaretRightBold } from "react-icons/pi";
 import styled, { css } from "styled-components";
 
@@ -20,13 +19,12 @@ export const Container = styled.div<{ $height: number }>`
 
 export const SliderWrapper = styled.div`
   width: 100%;
-  height: 100%;
   overflow: hidden;
 `;
 
 export const SliderContainer = styled.div`
   display: flex;
-  width: 100%;
+
   height: 100%;
 `;
 
@@ -45,21 +43,18 @@ export const ItemWrapper = styled.div<{
   display: flex;
   justify-content: center;
   position: relative;
-  width: 100%;
+  min-width: 351px;
   min-height: ${(props) => `${props.$height}px`};
   height: ${(props) => `${props.$height}px`};
   display: flex;
-  flex: 0 0 auto;
 `;
 
 export const Item = styled.div`
   display: flex;
   gap: 16px;
   align-items: center;
-  min-width: 296px;
-  width: 350px;
   align-items: center;
-  padding: 16px 20px;
+  padding: 0 20px;
   border-radius: 12px;
   border: 1px solid ${({ theme }) => theme.color.greyScale5};
   img {
@@ -70,17 +65,18 @@ export const Item = styled.div`
 `;
 
 export const ItemContent = styled.div`
+  width: 180px;
   display: flex;
   flex-direction: column;
   padding: 14px 0;
   gap: 8px;
   height: 88px;
-  overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 `;
 
 export const Name = styled.div`
+  overflow: hidden;
   text-overflow: ellipsis;
 
   ${({ theme }) => theme.typo.button4};
@@ -101,6 +97,7 @@ export const Place = styled.div`
   span {
     color: ${({ theme }) => theme.color.greyScale3};
   }
+  text-overflow: ellipsis;
 `;
 
 export const ButtonContainer = styled.div`

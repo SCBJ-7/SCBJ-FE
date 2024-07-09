@@ -1,9 +1,3 @@
-import NavIconHome from "@/assets/icons/NavHome";
-import {
-  PiListMagnifyingGlassFill,
-  PiNewspaperClippingFill,
-  PiUserFill,
-} from "react-icons/pi";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 
@@ -11,53 +5,55 @@ export const BottomNavContainer = styled.section<{ $isMobile: boolean }>`
   display: flex;
   position: fixed;
   bottom: 0;
+
   width: 100%;
   max-width: 768px;
+  min-width: 360px;
   z-index: 1;
   height: ${({ $isMobile }) => ($isMobile ? "78px" : "60px")};
+  max-width: 768px;
+
+  z-index: 1;
   justify-content: center;
   align-items: flex-start;
   background-color: white;
   box-shadow: 0 0 10px 0 rgba(5, 44, 82, 0.1);
+
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
 `;
 
 export const BottomNavWrapper = styled.div`
-  margin-top: 4px;
   max-width: 768px;
   width: 100%;
-
-  align-items: center;
+  height: 100%;
   display: flex;
+  align-items: center;
 `;
 
 export const BottomNavCell = styled(NavLink)`
-  width: 25%;
   height: 100%;
+  padding-top: 4px;
 
   display: flex;
+  flex-grow: 1;
   flex-direction: column;
   align-items: center;
   gap: 2px;
+`;
+
+export const BottomNavCellContent = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
   ${({ theme }) => theme.typo.caption5}
 
-  color: ${({ theme }) => theme.color.black};
+  color: ${({ theme }) => theme.color.greyScale3};
+
   &.active {
     color: ${({ theme }) => theme.color.percentOrange};
   }
-`;
-
-export const NavIconHomes = styled(NavIconHome)``;
-
-export const NavIconTransfer = styled(PiNewspaperClippingFill)`
-  font-size: 2rem;
-`;
-
-export const NavIconSearch = styled(PiListMagnifyingGlassFill)`
-  font-size: 2rem;
-  transform: translateY(-1px);
-`;
-
-export const NavIconMy = styled(PiUserFill)`
-  font-size: 2rem;
 `;

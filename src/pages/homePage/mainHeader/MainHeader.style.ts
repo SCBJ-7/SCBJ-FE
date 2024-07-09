@@ -3,6 +3,8 @@ import { styled } from "styled-components";
 
 export const HeaderContainer = styled.section`
   width: 100%;
+  max-width: 768px;
+  min-width: 360px;
   height: 56px;
 
   display: flex;
@@ -12,7 +14,11 @@ export const HeaderContainer = styled.section`
   top: 0;
   z-index: 10;
 
-  background-color: ${({ theme }) => theme.color.greyScale6};
+  background-color: ${({ theme }) => theme.color.greyScale7};
+
+  @media screen and(max-width: 768px) {
+    width: 100%;
+  }
 `;
 
 export const HeaderWrapper = styled.div`

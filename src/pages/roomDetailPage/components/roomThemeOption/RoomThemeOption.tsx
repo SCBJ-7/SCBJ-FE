@@ -1,6 +1,6 @@
-import IconCheck from "@assets/icons/ic_check.svg?react";
-import * as S from "@pages/roomDetailPage/RoomDetail.style";
-import { theme } from "@styles/theme";
+import IconCheck from "@/assets/icons/ic_check.svg?react";
+import * as S from "@/pages/roomDetailPage/RoomDetail.style";
+import { theme } from "@/styles/theme";
 
 interface RoomThemeOptionProps {
   option: {
@@ -24,16 +24,16 @@ const RoomThemeOption = ({ option }: RoomThemeOptionProps) => {
   );
 
   return (
-    <S.VStack5>
+    <S.OptionContainer>
       {filteredOptions.map((key) => (
         <S.OptionWrapper key={key}>
           <IconCheck fill={theme.color.percentOrange} />
-          <S.Text variant="body3" color="percentOrange">
+          <S.Text variant="body4" color="percentOrange">
             {optionNames[key]}
           </S.Text>
         </S.OptionWrapper>
       ))}
-    </S.VStack5>
+    </S.OptionContainer>
   );
 };
 

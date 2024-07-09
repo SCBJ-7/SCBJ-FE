@@ -1,8 +1,8 @@
-import Card from "@components/card/Card";
-import CardItem from "@components/cardItem/CardItem";
+import Card from "@/components/card/Card";
+import CardItem from "@/components/cardItem/CardItem";
 
-import type { PaymentData } from "@type/payment";
-import { formatDate } from "@utils/dateFormatter";
+import type { PaymentData } from "@/types/payment";
+import { formatDate } from "@/utils/dateFormatter";
 
 import * as S from "./PaymentInfoSection.style";
 

@@ -1,5 +1,5 @@
-import { format } from "date-fns";
-import { ko } from "date-fns/locale";
+// import { format } from "date-fns";
+// import { ko } from "date-fns/locale";
 import { stagger, useAnimate } from "framer-motion";
 import { useEffect } from "react";
 
@@ -28,21 +28,14 @@ const SecondPriceTag = ({
   onSecondPriceChange,
   downTimeAfter,
   onDownTimeAfterChange,
-  remainingDays,
   remainingTimes,
-  startDate,
-  endDate,
+  // startDate,
+  // endDate,
   secondPriceInputRef,
   secondTimeInputRef,
 }: PriceTagProps) => {
-  const STD = format(startDate, "MM. dd (ccc) HH:mm", { locale: ko });
-  const ETD = format(endDate, "MM. dd (ccc) HH:mm", { locale: ko });
-
-  const LEFTTIME = remainingTimes;
-  let processedTime = `${remainingTimes}`;
-  if (LEFTTIME > 72) {
-    processedTime = `${remainingDays} 일  ${remainingTimes % 24}`;
-  }
+  // const STD = format(startDate, "MM. dd (ccc) HH:mm", { locale: ko });
+  // const ETD = format(endDate, "MM. dd (ccc) HH:mm", { locale: ko });
 
   useEffect(() => {
     const processedfirstPrice = Number(firstPrice.split(",").join(""));
@@ -70,30 +63,15 @@ const SecondPriceTag = ({
 
   return (
     <S.Container ref={scope} initial={{ y: 20 }} animate={{ y: 0 }}>
-      <S.Contents className="children">
-        <section>
-          <h3>체크인</h3>
-          <span>
-            {LEFTTIME > 72
-              ? `${processedTime} 시간 남았어요`
-              : `${processedTime} 시간 남았어요`}
-          </span>
-        </section>
-        <section>
-          <h3>숙박일</h3>
-          <span>
-            {STD} - {ETD}
-          </span>
-        </section>
-      </S.Contents>
+      <S.Contents>2차 거래 희망가를 입력해주세요</S.Contents>
       <InputSection
         inputRef={secondTimeInputRef}
         placeHolder="지정 시간"
         inputPosition="center"
         text={["체크인", "시간전에"]}
         inputData={downTimeAfter}
+        remainingTimes={remainingTimes}
         onDataChange={onDownTimeAfterChange}
-        remainingTimes={LEFTTIME}
         type="time"
       />
       <InputSection

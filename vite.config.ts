@@ -16,21 +16,9 @@ export default defineConfig({
     dir: "./tests/unitTestsSrc",
   },
   resolve: {
+    preserveSymlinks: true,
     alias: {
       "@": path.resolve(__dirname, "./src"),
-      "@components": path.resolve(__dirname, "./src/components"),
-      "@hooks": path.resolve(__dirname, "./src/hooks"),
-      "@pages": path.resolve(__dirname, "./src/pages"),
-      "@styles": path.resolve(__dirname, "./src/styles"),
-      "@constants": path.resolve(__dirname, "./src/constants"),
-      "@assets": path.resolve(__dirname, "./src/assets"),
-      "@apis": path.resolve(__dirname, "./src/apis"),
-      "@mocks": path.resolve(__dirname, "./src/mocks"),
-      "@routes": path.resolve(__dirname, "./src/routes"),
-      "@utils": path.resolve(__dirname, "./src/utils"),
-      "@type": path.resolve(__dirname, "./src/types"),
-      "@store": path.resolve(__dirname, "./src/store"),
-      "@tests": path.resolve(__dirname, "./tests"),
     },
   },
 });

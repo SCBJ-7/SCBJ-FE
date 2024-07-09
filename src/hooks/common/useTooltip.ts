@@ -1,5 +1,6 @@
-import { tooltip } from "@utils/tooltip";
 import { useEffect, useState } from "react";
+
+import { tooltip } from "@/utils/tooltip";
 
 const useTooltip = () => {
   const [isToolTipVisible, setIsToolTipVisible] = useState(true);
