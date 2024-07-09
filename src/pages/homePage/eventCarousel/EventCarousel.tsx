@@ -1,9 +1,10 @@
-import { PATH } from "@/constants/path";
+import { useNavigate } from "react-router-dom";
+
 import * as S from "./EventCarousel.style";
 
+import { PATH } from "@/constants/path";
 import { useCarousel } from "@/hooks/common/useCarousel";
 import { useCarouselSize } from "@/hooks/common/useCarouselSize";
-import { useNavigate } from "react-router-dom";
 
 interface EventItem {
   id: number;
@@ -25,9 +26,7 @@ const EventCarousel: React.FC<EventCarouselProps> = ({
   arrows,
   height,
   infinite,
-  innerShadow,
   draggable,
-  auto,
 }) => {
   const navigate = useNavigate();
   const { slideWidth, sliderRef } = useCarouselSize();

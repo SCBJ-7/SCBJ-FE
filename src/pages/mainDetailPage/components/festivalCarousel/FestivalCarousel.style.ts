@@ -24,7 +24,6 @@ export const SliderWrapper = styled.div`
 
 export const SliderContainer = styled.div`
   display: flex;
-
   height: 100%;
 `;
 
@@ -46,13 +45,11 @@ export const ItemWrapper = styled.div<{
   min-width: 351px;
   min-height: ${(props) => `${props.$height}px`};
   height: ${(props) => `${props.$height}px`};
-  display: flex;
 `;
 
 export const Item = styled.div`
   display: flex;
   gap: 16px;
-  align-items: center;
   align-items: center;
   padding: 0 20px;
   border-radius: 12px;
@@ -62,6 +59,7 @@ export const Item = styled.div`
     height: 88px;
     object-fit: cover;
   }
+  cursor: pointer;
 `;
 
 export const ItemContent = styled.div`

@@ -6,10 +6,10 @@ import RegionButton from "./components/RegionButton/RegionButton";
 import * as S from "./MainDetail.style";
 
 import { fetchSearchList } from "@/apis/fetchSeachList";
+import ArrowIcon from "@/assets/icons/ic_arrow.svg?react";
 import { useIntersectionObserver } from "@/hooks/common/useIntersectionObserver";
 import SearchItem from "@/pages/searchPage/components/searchItem/SearchItem";
 import { ISearchList } from "@/types/searchList";
-import ArrowIcon from "@/assets/icons/ic_arrow.svg?react";
 
 const MainDetail = () => {
   const pageSize = 10;

@@ -35,6 +35,11 @@ const FestivalCarousel = ({
     infinite,
     slideWidth: 351,
   });
+
+  const handleItemClick = (url: string | undefined) => {
+    window.open(url, "_blank");
+  };
+
   return (
     <S.Container
       $height={height}
@@ -53,7 +58,7 @@ const FestivalCarousel = ({
           {innerShadow && <S.ImageShadowWrapper />}
           {festivals.map((festival, i) => (
             <S.ItemWrapper key={i} $height={height}>
-              <S.Item>
+              <S.Item onClick={() => handleItemClick(festival?.link)}>
                 <img src={festival?.image} />
                 <S.ItemContent>
                   <S.Name>{festival?.name}</S.Name>
