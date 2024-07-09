@@ -10,7 +10,6 @@ export const useCarouselSize = () => {
 
       const parentWidth =
         sliderRef.current.parentElement?.getBoundingClientRect().width ?? 0;
-      console.dir(sliderRef.current.parentElement);
       setSlideWidth(parentWidth);
     };
 

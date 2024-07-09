@@ -1,3 +1,6 @@
+import { PATH } from "@/constants/path";
+import { useSearchFilterInfoStore } from "@/store/store";
+import { formatDateMonthAndDay } from "@/utils/dateFomaterMonthDay";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -5,10 +8,6 @@ import CalendarModal from "./components/calendarModal/CalendarModal";
 import PeopleCounter from "./components/peopleCounter/PeopleCounter";
 import RegionModal from "./components/regionModal/RegionModal";
 import * as S from "./SearchFilter.style";
-
-import { PATH } from "@/constants/path";
-import { useSearchFilterInfoStore } from "@/store/store";
-import { formatDateMonthAndDay } from "@/utils/dateFomaterMonthDay";
 
 const SearchFilter = () => {
   const searchInfo = useSearchFilterInfoStore((state) => state.searchInfo);

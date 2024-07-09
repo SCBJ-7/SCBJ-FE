@@ -14,7 +14,9 @@ export const CarouselContainer = styled.div<{
   align-items: center;
   gap: 8px;
 
+  overflow: hidden;
   cursor: grab;
+
   touch-action: pan-y;
 `;
 

@@ -9,25 +9,23 @@ import { ISearchList } from "@/types/searchList";
 
 const SearchItem = ({ item }: { item: ISearchList }) => {
   const navigate = useNavigate();
-
   const calculatePercentage = (salePrice: number) => {
     const percentage = salePrice * 100;
+
     const roundedPercentage = Math.round(percentage);
 
     return roundedPercentage;
   };
-
   const formatDateString = (dateString: string) => {
     const dateObject = parseISO(dateString);
+
     const formattedDate = format(dateObject, "MM.dd");
 
     return formattedDate;
   };
-
   const handleClickItem = () => {
     navigate(PATH.DETAIL_ROOM(item.id));
   };
-
   return (
     <>
       <S.ItemContainer onClick={handleClickItem}>
@@ -35,7 +33,9 @@ const SearchItem = ({ item }: { item: ISearchList }) => {
         <S.ItemContent>
           <S.ItemTop>
             <S.ItemRates>
-              <S.StartImg />
+              <div>
+                <S.StartImg />
+              </div>
               <div>{item.reviewRate}</div>
               <div>&middot;</div>
               <div>{item.hotelRate}</div>
