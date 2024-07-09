@@ -19,16 +19,26 @@ const Header = ({ text, handleBackClick }: HeaderProps) => {
   let title = "";
   let undo = true;
 
-  if (pathname.includes(PATH.WRITE_TRANSFER_PRICE)) {
-    const hotelName = params.get("hotelName");
-    if (hotelName) {
-      title = hotelName;
+  if (pathname.includes(PATH.MAIN_DETAIL)) {
+    const id = params.get("id");
+    undo = true;
+    if (id === "0") {
+      title = "봄 여행 숙소 추천";
+    } else if (id === "1") {
+      title = "성수기 숙소 예약 놓쳤다면?";
     }
   }
 
   if (pathname.includes(PATH.SALE_DETAIL)) {
     undo = true;
     title = "판매내역 상세";
+  }
+
+  if (pathname.includes(PATH.WRITE_TRANSFER_PRICE)) {
+    const hotelName = params.get("id");
+    if (hotelName) {
+      title = hotelName;
+    }
   }
 
   switch (pathname) {

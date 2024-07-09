@@ -29,6 +29,7 @@ export const TopButtonCover = styled.div`
   display: flex;
   justify-content: flex-end;
 `;
+
 export const TopButton = styled.div`
   margin-right: 20px;
   display: flex;
