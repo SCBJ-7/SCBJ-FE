@@ -37,19 +37,6 @@ const AppRouter = () => {
           ),
         },
         {
-          path: "",
-          element: (
-            <Layout isHeaderOn={false} isBottomNavOn={true}>
-              <HelmetTag text="메인" />
-              <ApiErrorBoundary>
-                <Suspense fallback={<LoadingFallback />}>
-                  <Lazy.Home />
-                </Suspense>
-              </ApiErrorBoundary>
-            </Layout>
-          ),
-        },
-        {
           path: PATH.LOGIN,
           element: (
             <Layout isHeaderOn={false} isBottomNavOn={false}>
@@ -362,19 +349,6 @@ const AppRouter = () => {
               element: <Lazy.Payment action="cancel" />,
             },
           ],
-        },
-        {
-          path: PATH.MAIN_DETAIL,
-          element: (
-            <Layout isHeaderOn={true} isBottomNavOn={true}>
-              <HelmetTag text="메인상세" />
-              <ApiErrorBoundary>
-                <Suspense fallback={<LoadingFallback />}>
-                  <Lazy.MainDetail />
-                </Suspense>
-              </ApiErrorBoundary>
-            </Layout>
-          ),
         },
         {
           path: PATH.WISHLIST,

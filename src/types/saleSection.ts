@@ -10,9 +10,6 @@ export interface LocaleItem {
   salePercentage: number;
   checkInDate: string;
   checkOutDate: string;
-  hotelRate: string;
-  roomThemeCount: number;
-  reviewRate: string;
 }
 
 export interface LocaleItemsType {

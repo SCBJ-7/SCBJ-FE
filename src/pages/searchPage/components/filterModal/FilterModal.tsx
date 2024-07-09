@@ -1,9 +1,8 @@
+import { useSearchFilterInfoStore } from "@/store/store";
 import { AnimatePresence } from "framer-motion";
 import { forwardRef } from "react";
 
 import * as S from "./FilterModal.style";
-
-import { useSearchFilterInfoStore } from "@/store/store";
 
 interface FilterModalProps {
   setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
@@ -55,7 +54,7 @@ const FilterModal = forwardRef<HTMLDivElement, FilterModalProps>(
       visible: { y: 0, opacity: 1, transition: { duration: 0.5 } },
       exit: { y: "100vh", opacity: 0, transition: { duration: 0.2 } },
     };
-    console.log("searchinfosort", searchInfo.sorted);
+
     return (
       <AnimatePresence mode="wait">
         <S.ModalContainer>
@@ -81,11 +80,7 @@ const FilterModal = forwardRef<HTMLDivElement, FilterModalProps>(
               >
                 {id === 1 ? (
                   <>
-                    <span
-                      className={searchInfo.sorted === null ? "active" : ""}
-                    >
-                      {name}
-                    </span>{" "}
+                    <span>{name}</span>{" "}
                     <S.WarningButton
                       className="modal-two-button"
                       onClick={handleOpenModalTwo}

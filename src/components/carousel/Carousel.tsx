@@ -24,7 +24,7 @@ const Carousel = ({
   const slideList = infinite
     ? [images.at(-1), ...images, images.at(0)]
     : images;
-  console.log(images.at(-1));
+
   const { slideWidth, sliderRef } = useCarouselSize();
 
   const {
@@ -39,7 +39,7 @@ const Carousel = ({
     infinite,
     slideWidth,
   });
-  console.log("currentIndex", currentIndex);
+
   return (
     <S.CarouselContainer $height={height}>
       <S.SliderWrapper>

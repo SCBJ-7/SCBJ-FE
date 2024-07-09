@@ -16,6 +16,6 @@ export const fetchMainItem = async (): Promise<
 
   const { weekend, ...locale } = data.data;
   const temp = weekend.content.length ? weekend.content : [];
-  console.log(data);
+
   return [locale, temp];
 };
