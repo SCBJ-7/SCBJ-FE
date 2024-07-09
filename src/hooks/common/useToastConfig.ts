@@ -1,3 +1,5 @@
+import { useRef } from "react";
+
 import { useToastStore } from "@/store/store";
 
 interface ToastProps {
@@ -7,6 +9,7 @@ interface ToastProps {
 
 const useToastConfig = () => {
   const setToastConfig = useToastStore((state) => state.setToastConfig);
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   const handleToast = (isError: boolean, strings: React.ReactNode[]) => {
     const toastProps: ToastProps = { isError, strings };
@@ -14,9 +17,20 @@ const useToastConfig = () => {
     setToastConfig({
       isShow: true,
       isError: toastProps.isError,
+      strings: [""],
+    });
+
+    setToastConfig({
+      isShow: true,
+      isError: toastProps.isError,
       strings: toastProps.strings,
     });
-    setTimeout(() => {
+
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+    }
+
+    timeoutRef.current = setTimeout(() => {
       setToastConfig({
         isShow: false,
         isError: toastProps.isError,

@@ -34,6 +34,7 @@ export const CheckBox = styled.input.attrs({ type: "checkbox" })<{
 }>`
   width: 14px;
   height: 14px;
+
   border-radius: 1px;
   accent-color: ${({ theme }) => theme.color.percentBlue};
 `;
