@@ -13,6 +13,7 @@ import { ISearchList } from "@/types/searchList";
 
 const MainDetail = () => {
   const pageSize = 10;
+
   const [selectedRegion, setSelectedRegion] = useState("전체");
   const [scrollPosition, setScrollPosition] = useState(0);
 
@@ -92,7 +93,7 @@ const MainDetail = () => {
       behavior: "smooth",
     });
   };
-
+  console.log("a");
   return (
     <S.Container>
       <MainTheme />
