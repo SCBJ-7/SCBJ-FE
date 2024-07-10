@@ -1,5 +1,6 @@
 import * as S from "./transferNavigation.style";
-import { PhaseType } from "../TransferWritingPrice";
+
+import { PhaseType } from "@/hooks/common/useTransferNavigation";
 
 interface TransferNavProps {
   phase: PhaseType;
