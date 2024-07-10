@@ -62,7 +62,7 @@ const MainDetail = () => {
         : undefined;
     },
   });
-
+  console.log("a");
   const handleIntersect = (isIntersecting: boolean) => {
     if (isIntersecting && hasNextPage) {
       fetchNextPage();
