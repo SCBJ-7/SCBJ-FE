@@ -51,7 +51,7 @@ const EventCarousel: React.FC<EventCarouselProps> = ({
     infinite,
     slideWidth,
   });
-
+  console.log("a");
   const onClickHandler = (id: number) => {
     navigate(`${PATH.MAIN_DETAIL}?id=${id}`);
   };
