@@ -1,6 +1,6 @@
 import * as S from "./PriceSection.style";
-import { PhaseType } from "../TransferWritingPrice";
 
+import { PhaseType } from "@/hooks/common/useTransferNavigation";
 import { useSelectedItemStore } from "@/store/store";
 
 interface PriceProps {

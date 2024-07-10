@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { PATH } from "@/constants/path";
-import { PhaseType } from "@/pages/transferWritingPricePage/TransferWritingPrice";
+import { PhaseType } from "@/hooks/common/useTransferNavigation";
 import { useSelectedItemStore, useStateHeaderStore } from "@/store/store";
 
 interface changePageProps {
