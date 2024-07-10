@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import TopButtonIcon from "@/assets/icons/ic_top_button.svg?react";
 
 export const Container = styled.main`
   background-color: ${({ theme }) => theme.color.greyScale7};
@@ -22,9 +21,6 @@ export const SearchItemFlex = styled.div`
   padding: 0 20px;
 `;
 
-interface TopButtonProps {
-  $visible: boolean;
-}
 export const TopButtonCover = styled.div`
   position: fixed;
   width: 100%;
