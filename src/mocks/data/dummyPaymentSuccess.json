@@ -1,0 +1,20 @@
+{
+  "data": {
+    "hotelName": "호텔 인 나인 강남",
+    "roomName": "디럭스 킹 시티뷰",
+    "standardPeople": "2",
+    "maxPeople": "4",
+    "checkIn": "24.01.15 (월) 15:00",
+    "checkOut": "24.01.16 (화) 15:00",
+    "customerName": "양유림",
+    "customerPhoneNumber": "010-3996-6042",
+    "paymentHistoryId": 1,
+    "paymentType": "카카오페이",
+    "originalPrice": 500000,
+    "price": 40000,
+    "remainingDays": 3,
+    "paymentHistoryDate": "24.01.08 (월)",
+    "hotelImage": "https://media.discordapp.net/attachments/1175967240030531667/1179675297352790026/2154.png?ex=65b2043c&is=659f8f3c&hm=1641c5e6cb15d8cca58c5e97cefc8053a21092c331581cc57ce920df8bd0fb0d&=&format=webp&quality=lossless&width=714&height=536"
+  },
+  "message": "구매 내역 상세 조회를 성공했습니다."
+}

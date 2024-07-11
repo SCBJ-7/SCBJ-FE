@@ -1,0 +1,10 @@
+{
+  "status": 200,
+  "data": {
+    "products": [],
+    "totalProducts": 25,
+    "page": 0,
+    "pageSize": 10
+  },
+  "message": "조회가 성공하였습니다."
+}
