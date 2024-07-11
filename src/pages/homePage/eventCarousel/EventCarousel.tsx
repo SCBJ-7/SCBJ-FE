@@ -12,24 +12,27 @@ interface EventItem {
   title1: string;
   title2: string;
 }
+
 interface EventCarouselProps {
   EventCarouselContents: EventItem[];
   arrows?: boolean;
-  height?: number;
+  height?: number; // height props를 undefined로 허용
   infinite?: boolean;
   innerShadow?: boolean;
   draggable?: boolean;
   auto?: boolean;
 }
+
 const EventCarousel: React.FC<EventCarouselProps> = ({
   EventCarouselContents,
   arrows,
-  height,
+  height = 300,
   infinite,
   draggable,
 }) => {
   const navigate = useNavigate();
   const { slideWidth, sliderRef } = useCarouselSize();
+
   const slideList = infinite
     ? [
         EventCarouselContents.at(-1),
@@ -37,6 +40,7 @@ const EventCarousel: React.FC<EventCarouselProps> = ({
         EventCarouselContents.at(0),
       ]
     : EventCarouselContents;
+
   const {
     currentIndex,
     getSliderStyle,
@@ -49,6 +53,7 @@ const EventCarousel: React.FC<EventCarouselProps> = ({
     infinite,
     slideWidth,
   });
+
   const onClickHandler = (id: number) => {
     navigate(`${PATH.MAIN_DETAIL}?id=${id}`);
   };
