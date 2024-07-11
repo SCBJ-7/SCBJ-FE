@@ -1,14 +1,11 @@
-import styled from "styled-components";
 import { FaStar } from "react-icons/fa6";
+import styled from "styled-components";
 
 export const ItemContainer = styled.div`
   width: 100%;
   height: 373px;
   color: ${({ theme }) => theme.color.black};
   position: relative;
-  @media screen and (min-width: 568px) {
-    width: calc(50% - 8px);
-  }
   background-color: white;
   cursor: pointer;
   border-radius: 12px;
@@ -17,6 +14,10 @@ export const ItemContainer = styled.div`
     height: 192px;
     object-fit: cover;
     border-radius: 12px 12px 0 0;
+  }
+
+  @media screen and (min-width: 568px) {
+    width: calc(50% - 8px);
   }
 `;
 
