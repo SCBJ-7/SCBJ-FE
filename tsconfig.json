@@ -5,6 +5,7 @@
     "lib": ["ES2020", "DOM", "DOM.Iterable"],
     "module": "ESNext",
     "skipLibCheck": true,
+    "types": ["@testing-library/jest-dom", "vite-plugin-svgr/client"],
 
     /* Bundler mode */
     "moduleResolution": "bundler",
@@ -16,10 +17,14 @@
 
     /* Linting */
     "strict": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "noFallthroughCasesInSwitch": true
+    "noFallthroughCasesInSwitch": true,
+
+    /* Path aliases */
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"]
+    }
   },
-  "include": ["src"],
+  "include": ["src", "tests", ".eslintrc.cjs", "svg.d.ts"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
