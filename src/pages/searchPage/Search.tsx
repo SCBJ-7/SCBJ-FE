@@ -1,5 +1,4 @@
 import { useInfiniteQuery } from "@tanstack/react-query";
-import { throttle } from "lodash-es";
 import { useEffect, useState } from "react";
 
 import SearchBar from "./components/searchBar/SearchBar";
@@ -66,10 +65,10 @@ const Search = () => {
     threshold: 0.5,
   });
 
-  const handleScroll = throttle(() => {
+  const handleScroll = () => {
     const currentPosition = window.scrollY;
     setIsTopButtonVisible(currentPosition > 500);
-  }, 100);
+  };
 
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);

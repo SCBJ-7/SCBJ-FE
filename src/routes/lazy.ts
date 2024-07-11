@@ -62,5 +62,8 @@ export const SuccessPage = lazy(
 export const VerificationPage = lazy(
   () => import("@/pages/connectYanoljaPage/verificationPage/VerificationPage"),
 );
+export const MainDetail = lazy(
+  () => import("@/pages/mainDetailPage/MainDetail"),
+);
 
 export const WishList = lazy(() => import("@/pages/wishListPage/WishList"));

@@ -1,10 +1,11 @@
-import ResetIcon from "@/assets/icons/ic_reset.svg?react";
 import styled from "styled-components";
+
+import ResetIcon from "@/assets/icons/ic_reset.svg?react";
 
 export const FilterContainer = styled.div`
   width: 100%;
 
-  height: 100%;
+  height: 100vh;
   background-color: white;
   padding: 5rem 20px 0 20px;
   color: ${({ theme }) => theme.color.black};

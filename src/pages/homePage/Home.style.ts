@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Container = styled.section<{ $weekLength: undefined | number }>`
-  background-color: ${({ theme }) => theme.color.greyScale6};
+  background-color: ${({ theme }) => theme.color.greyScale7};
 
   padding-top: 80px;
   padding-bottom: ${({ $weekLength }) => !$weekLength && "200px"};
@@ -21,15 +21,10 @@ export const Container = styled.section<{ $weekLength: undefined | number }>`
 `;
 
 export const SaleCarouselContainer = styled.div`
-  width: calc(100% - 40px);
-  height: 434px;
-
+  width: 100%;
   background-color: white;
-  margin-bottom: 32px;
-
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 4px 4px 10px 0 rgba(0, 0, 0, 0.1);
+  margin-bottom: 70px;
+  margin-top: 10px;
 `;
 
 export const TextSlider = styled.div`
@@ -52,15 +47,20 @@ export const TextSlider = styled.div`
 
 export const WeekendCarouselContainer = styled.div`
   width: 100%;
-  height: 467px;
+  height: 520px;
   margin: 0 20px;
   background-color: white;
-  margin-bottom: 60px;
+  padding-bottom: 100px;
 `;
 
 export const TitleSection = styled.div`
-  margin: 40px 20px 0;
-  height: 46px;
+  margin: 40px 20px 8px;
   font-size: 18px;
   font-weight: 800;
+`;
+
+export const SubTitle = styled.div`
+  width: 100%;
+  ${({ theme }) => theme.typo.body3}
+  margin: 0 20px 25px;
 `;
