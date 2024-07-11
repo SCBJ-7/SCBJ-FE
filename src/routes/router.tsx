@@ -27,7 +27,7 @@ const AppRouter = () => {
           path: "",
           element: (
             <Layout isHeaderOn={false} isBottomNavOn={true}>
-              <HelmetTag text="메인" />
+              <HelmetTag />
               <ApiErrorBoundary>
                 <Suspense fallback={<LoadingFallback />}>
                   <Lazy.Home />
@@ -40,7 +40,7 @@ const AppRouter = () => {
           path: "",
           element: (
             <Layout isHeaderOn={false} isBottomNavOn={true}>
-              <HelmetTag text="메인" />
+              <HelmetTag title="메인" />
               <ApiErrorBoundary>
                 <Suspense fallback={<LoadingFallback />}>
                   <Lazy.Home />
@@ -53,7 +53,7 @@ const AppRouter = () => {
           path: PATH.LOGIN,
           element: (
             <Layout isHeaderOn={false} isBottomNavOn={false}>
-              <HelmetTag text="로그인" />
+              <HelmetTag title="로그인" />
               <ApiErrorBoundary>
                 <Suspense fallback={<LoadingFallback />}>
                   <Lazy.SignIn />
@@ -66,7 +66,7 @@ const AppRouter = () => {
           path: PATH.SIGNUP,
           element: (
             <Layout isHeaderOn={true} isBottomNavOn={false}>
-              <HelmetTag text="회원가입" />
+              <HelmetTag title="회원가입" />
               <ApiErrorBoundary>
                 <Suspense fallback={<LoadingFallback />}>
                   <Lazy.SignUp />
@@ -79,7 +79,7 @@ const AppRouter = () => {
           path: PATH.PASSWORD_RESET,
           element: (
             <Layout isHeaderOn={true} isBottomNavOn={false}>
-              <HelmetTag text="비밀번호 재설정" />
+              <HelmetTag title="비밀번호 재설정" />
               <ApiErrorBoundary>
                 <Suspense fallback={<LoadingFallback />}>
                   <Lazy.PasswordReset />
@@ -92,7 +92,7 @@ const AppRouter = () => {
           path: PATH.SEARCHLIST,
           element: (
             <Layout isHeaderOn={false} isBottomNavOn={true}>
-              <HelmetTag text="검색" />
+              <HelmetTag title="검색" />
               <ApiErrorBoundary>
                 <Suspense fallback={<LoadingFallback />}>
                   <Lazy.Search />
@@ -105,7 +105,7 @@ const AppRouter = () => {
           path: PATH.SEARCH_FILTER,
           element: (
             <Layout isHeaderOn={true} isBottomNavOn={false}>
-              <HelmetTag text="검색" />
+              <HelmetTag title="검색" />
               <ApiErrorBoundary>
                 <Suspense fallback={<LoadingFallback />}>
                   <Lazy.SearchFilter />
@@ -118,7 +118,7 @@ const AppRouter = () => {
           path: PATH.WRITE_TRANSFER,
           element: (
             <Layout isHeaderOn={true} isBottomNavOn={true}>
-              <HelmetTag text="판매하기" />
+              <HelmetTag title="판매하기" />
               <ApiErrorBoundary>
                 <Suspense fallback={<LoadingFallback />}>
                   <Lazy.TransferWriting />
@@ -132,7 +132,7 @@ const AppRouter = () => {
           element: (
             <Layout isHeaderOn={false} isBottomNavOn={false}>
               <ApiErrorBoundary>
-                <HelmetTag text="판매글 작성" />
+                <HelmetTag title="판매글 작성" />
                 <Suspense fallback={<LoadingFallback />}>
                   <Lazy.TransferWritingPrice />
                 </Suspense>
@@ -144,7 +144,7 @@ const AppRouter = () => {
           path: PATH.WRITE_TRANSFER_SUCCESS,
           element: (
             <Layout isHeaderOn={true} isBottomNavOn={true}>
-              <HelmetTag text="판매 성공" />
+              <HelmetTag title="판매 성공" />
               <ApiErrorBoundary>
                 <Suspense fallback={<LoadingFallback />}>
                   <Lazy.TransferWritingSuccess />
@@ -157,7 +157,7 @@ const AppRouter = () => {
           path: PATH.MY_PAGE,
           element: (
             <Layout isHeaderOn={true} isBottomNavOn={true}>
-              <HelmetTag text="마이 페이지" />
+              <HelmetTag title="마이 페이지" />
               <ApiErrorBoundary>
                 <Suspense fallback={<LoadingFallback />}>
                   <Lazy.MyPage />
@@ -170,7 +170,7 @@ const AppRouter = () => {
               index: true,
               element: (
                 <>
-                  <HelmetTag text="마이 페이지" />
+                  <HelmetTag title="마이 페이지" />
                   <Lazy.TransferPurchase />
                 </>
               ),
@@ -180,7 +180,7 @@ const AppRouter = () => {
               path: PATH.SALE_LIST,
               element: (
                 <>
-                  <HelmetTag text="판매내역" />
+                  <HelmetTag title="판매내역" />
                   <Lazy.TransferSale />
                 </>
               ),
@@ -251,7 +251,7 @@ const AppRouter = () => {
           path: PATH.ALARM,
           element: (
             <Layout isHeaderOn={true} isBottomNavOn={true}>
-              <HelmetTag text="알림" />
+              <HelmetTag title="알림" />
               <ApiErrorBoundary>
                 <Suspense fallback={<LoadingFallback />}>
                   <Lazy.Alarm />
@@ -264,7 +264,7 @@ const AppRouter = () => {
           path: PATH.PURCAHSE_DETAIL,
           element: (
             <Layout isHeaderOn={true} isBottomNavOn={true}>
-              <HelmetTag text="구매내역 상세" />
+              <HelmetTag title="구매내역 상세" />
               <ApiErrorBoundary>
                 <Suspense fallback={<LoadingFallback />}>
                   <Lazy.PurchaseDetail />
@@ -277,7 +277,7 @@ const AppRouter = () => {
           path: PATH.SALE_DETAIL + "/:saleId",
           element: (
             <Layout isHeaderOn={true} isBottomNavOn={true}>
-              <HelmetTag text="판매내역 상세" />
+              <HelmetTag title="판매내역 상세" />
               <ApiErrorBoundary>
                 <Suspense fallback={<LoadingFallback />}>
                   <Lazy.SaleDetail />
@@ -290,7 +290,7 @@ const AppRouter = () => {
           path: PATH.YANOLJA_ACCOUNT,
           element: (
             <Layout isHeaderOn={false} isBottomNavOn={false}>
-              <HelmetTag text="야놀자인증" />
+              <HelmetTag title="야놀자인증" />
               <ApiErrorBoundary>
                 <Suspense fallback={<LoadingFallback />}>
                   <Lazy.IntroPage />
@@ -303,7 +303,7 @@ const AppRouter = () => {
           path: PATH.YANOLJA_ACCOUNT_VERIFICATION,
           element: (
             <Layout isHeaderOn={true} isBottomNavOn={false}>
-              <HelmetTag text="야놀자 인증" />
+              <HelmetTag title="야놀자 인증" />
               <ApiErrorBoundary>
                 <Redirect>
                   <Suspense fallback={<LoadingFallback />}>
@@ -318,7 +318,7 @@ const AppRouter = () => {
           path: PATH.YANOLJA_ACCOUNT_VERIFICATION_SUCCESS,
           element: (
             <Layout isHeaderOn={false} isBottomNavOn={true}>
-              <HelmetTag text="야놀자 인증 성공" />
+              <HelmetTag title="야놀자 인증 성공" />
               <ApiErrorBoundary>
                 <Suspense fallback={<LoadingFallback />}>
                   <Lazy.SuccessPage />
@@ -331,7 +331,7 @@ const AppRouter = () => {
           path: PATH.PAYMENT(":productId"),
           element: (
             <Layout isHeaderOn={true} isBottomNavOn={false}>
-              <HelmetTag text="결제" />
+              <HelmetTag title="결제" />
               <ApiErrorBoundary>
                 <Suspense fallback={<LoadingFallback />}>
                   <Outlet />
@@ -348,7 +348,7 @@ const AppRouter = () => {
               path: "success",
               element: (
                 <>
-                  <HelmetTag text="구매 내역 상세" />
+                  <HelmetTag title="구매 내역 상세" />
                   <Lazy.PaymentSuccess />
                 </>
               ),
@@ -367,7 +367,7 @@ const AppRouter = () => {
           path: PATH.MAIN_DETAIL,
           element: (
             <Layout isHeaderOn={true} isBottomNavOn={true}>
-              <HelmetTag text="메인상세" />
+              <HelmetTag title="메인상세" />
               <ApiErrorBoundary>
                 <Suspense fallback={<LoadingFallback />}>
                   <Lazy.MainDetail />
@@ -380,7 +380,7 @@ const AppRouter = () => {
           path: PATH.WISHLIST,
           element: (
             <>
-              <HelmetTag text="찜" />
+              <HelmetTag title="찜" />
               <ApiErrorBoundary>
                 <Suspense fallback={<LoadingFallback />}>
                   <Lazy.WishList />

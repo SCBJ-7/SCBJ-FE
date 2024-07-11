@@ -1,34 +1,39 @@
 import { Helmet } from "react-helmet-async";
 
-import { PATH } from "@/constants/path";
+export const HelmetTag = ({
+  title,
+  description,
+}: {
+  title?: string;
+  description?: string;
+}) => {
+  const orig = location.origin;
+  const url = location.href;
+  const defaultDescription =
+    "못 가게된 숙박권 더 이상 돈 날리지 말고, 비싼 호캉스도 믿고 거래하자! 특가보다 저렴한 호캉스 예약.";
+  const fullTitle = `퍼센트호텔${title ? ` | ${title}` : ""}`;
 
-export const HelmetTag = ({ text }: { text: string }) => {
   return (
     <Helmet>
-      <title>{text} | 퍼센트호텔</title>
-      <meta name="description" content="양도 거래? 취소 보다 빠른 거래!"></meta>
+      <title>{fullTitle}</title>
+      <meta name="description" content={description || defaultDescription} />
 
-      <meta itemProp="name" content="퍼센트 호텔" />
-      <meta itemProp="description" content="양도 거래? 취소 보다 빠른 거래!" />
-      <meta itemProp="image" content="/icon-192.png" />
-
-      <meta property="og:url" content={PATH.ROOT} />
+      <meta property="og:url" content={url} />
       <meta property="og:type" content="website" />
-      <meta property="og:title" content={text} />
+      <meta property="og:title" content={fullTitle} />
       <meta property="og:site_name" content="퍼센트 호텔" />
-      <meta property="og:image" content="/icon-192.png" />
+      <meta property="og:image" content={`${orig}/og-img.png`} />
+      <meta property="og:description" content={defaultDescription} />
+
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:title" content={fullTitle} />
+      <meta name="twitter:description" content={defaultDescription} />
       <meta
-        property="og:description"
-        content="양도 거래? 취소 보다 빠른 거래!"
+        name="twitter:image"
+        content={`${orig}/assets/logos/main_logo.svg`}
       />
 
-      <meta property="twitter:card" content="/icon-192.png" />
-      <meta name="twitter:title" content={text} />
-      <meta
-        name="twitter:description"
-        content="양도 거래? 취소 보다 빠른 거래!"
-      />
-      <meta name="twitter:image" content="/src/assets/logos/main_logo.svg" />
+      <link rel="canonical" href={`${orig}${location.pathname}`} />
     </Helmet>
   );
 };
