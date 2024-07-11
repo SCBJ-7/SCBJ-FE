@@ -26,3 +26,8 @@ dist-ssr
 /playwright-report/
 /blob-report/
 /playwright/.cache/
+
+.eslintcache
+.env
+auth.json
+*storybook.log

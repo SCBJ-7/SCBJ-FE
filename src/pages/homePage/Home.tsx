@@ -42,7 +42,7 @@ const Home = () => {
     .map((v, i) => [i, v[0], v[1]]);
 
   const [localeAndHotel] = useState(localeEntries);
-  console.log("localeEntries", localeEntries);
+
   const [currentLocale, setCurrentLocale] = useState<
     [number, string, LocaleItem[]]
   >(localeAndHotel[0]);

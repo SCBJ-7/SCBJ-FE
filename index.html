@@ -1,13 +1,81 @@
 <!doctype html>
-<html lang="en">
+<html lang="ko">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + React + TS</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.ico" />
+    <meta name="apple-mobile-eb-app-capable" content="yes" />
+    <link rel="manifest" href="./manifest.json" />
+    <link
+      rel="apple-touch-icon"
+      href="/apple-touch-icon-180x180.png"
+      sizes="180x180"
+    />
+    <link rel="mask-icon" href="/mask-icon.svg" color="#FFFFFF" />
+    <link rel="apple-touch-icon" sizes="192x192" href="/icon-192.png" />
+    <link rel="apple-touch-icon" sizes="512x512" href="/icon-512.png" />
+    <link
+      rel="preconnect"
+      href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css"
+    />
+    <link
+      rel="stylesheet"
+      as="style"
+      crossorigin
+      href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css"
+    />
+    <title>퍼센트 호텔</title>
   </head>
+  <script>
+    (function (m, a, z, e) {
+      var s, t;
+      try {
+        t = m.sessionStorage.getItem("maze-us");
+      } catch (err) {}
+
+      if (!t) {
+        t = new Date().getTime();
+        try {
+          m.sessionStorage.setItem("maze-us", t);
+        } catch (err) {}
+      }
+
+      s = a.createElement("script");
+      s.src = z + "?apiKey=" + e;
+      s.async = true;
+      a.getElementsByTagName("head")[0].appendChild(s);
+      m.mazeUniversalSnippetApiKey = e;
+    })(
+      window,
+      document,
+      "https://snippet.maze.co/maze-universal-loader.js",
+      "5317cd33-b13c-477a-ab7d-3f015720eb52",
+    );
+  </script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      if ("serviceWorker" in navigator) {
+        navigator.serviceWorker.register("/pwabuilder-sw.js");
+      }
+    });
+  </script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      if ("serviceWorker" in navigator) {
+        navigator.serviceWorker.register("/pwabuilder-sw.js");
+      }
+    });
+  </script>
+  <script
+    type="text/javascript"
+    src="//dapi.kakao.com/v2/maps/sdk.js?appkey=59401a86fbc79d3425ba93876b64c813&libraries=services"
+  ></script>
   <body>
     <div id="root"></div>
+    <div id="modal-root"></div>
+    <div id="overlay-root"></div>
+    <div id="modalTwo-root"></div>
+    <div id="app-install-pop"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
