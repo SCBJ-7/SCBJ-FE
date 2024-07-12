@@ -1,10 +1,11 @@
-import { useAnimateCarousel } from "@/hooks/common/useAnimateCarousel";
-import { useCarouselSize } from "@/hooks/common/useCarouselSize";
-import { type LocaleItem } from "@/types/saleSection";
 import { useEffect } from "react";
 
 import * as S from "./ItemCarousel.style";
 import ItemCarouselUnit from "./itemCarouselUnit/ItemCarouselUnit.tsx";
+
+import { useAnimateCarousel } from "@/hooks/common/useAnimateCarousel";
+import { useCarouselSize } from "@/hooks/common/useCarouselSize";
+import { type LocaleItem } from "@/types/saleSection";
 
 interface CarouselProps {
   currentLocale: [number, string, LocaleItem[]];

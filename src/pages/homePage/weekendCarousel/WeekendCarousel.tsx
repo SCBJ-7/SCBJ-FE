@@ -11,7 +11,6 @@ interface CarouselProps {
   onChangeLocale: React.Dispatch<
     React.SetStateAction<[number, string, LocaleItem[]]>
   >;
-  height?: number;
   arrows?: boolean;
   infinite?: boolean;
   draggable?: boolean;
@@ -20,7 +19,6 @@ interface CarouselProps {
 
 const WeekendCarousel = ({
   weekendHotels,
-  height = 300,
   arrows = true,
   infinite = false,
   draggable = false,
@@ -41,7 +39,7 @@ const WeekendCarousel = ({
   });
 
   return (
-    <S.CarouselContainer $height={height}>
+    <S.CarouselContainer>
       <S.SliderWrapper>
         <S.SliderContainer
           ref={sliderRef}
