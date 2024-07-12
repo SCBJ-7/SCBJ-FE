@@ -12,7 +12,8 @@ import WeekendCarousel from "./weekendCarousel/WeekendCarousel";
 
 import { fetchMainItem } from "@/apis/fetchMainItems";
 import secondMonth from "@/assets/EventImages/secondMonth.png";
-import { LocaleItem, WeekendItem } from "@/types/saleSection";
+import { HelmetTag } from "@/components/Helmet/Helmet";
+import { LocaleItem, LocaleItemsType, WeekendItem } from "@/types/saleSection";
 interface EventItem {
   id: number;
   image: string;
@@ -20,12 +21,12 @@ interface EventItem {
   title2: string;
 }
 
-const Home = () => {
-  const { data: mainData } = useSuspenseQuery({
-    queryKey: ["main"],
-    queryFn: fetchMainItem,
-  });
-  const [localeProds, weekendProds] = mainData;
+const HomeView = ({
+  data,
+}: {
+  data: [LocaleItemsType, WeekendItem[] | null];
+}) => {
+  const [localeProds, weekendProds] = data;
   const EventCarouselContents: EventItem[] = [
     {
       id: 1,
@@ -73,11 +74,9 @@ const Home = () => {
         <S.WeekendCarouselContainer className="week-container">
           <S.TitleSection>프리미엄 호캉스</S.TitleSection>
           <S.SubTitle>퍼센특가로 만나는 4-5성급 호텔 모음 </S.SubTitle>
-
           <WeekendCarousel
             weekendHotels={weekendHotels}
             onChangeLocale={setCurrentLocale}
-            height={343}
             arrows={true}
             infinite={false}
             draggable={true}
@@ -86,12 +85,12 @@ const Home = () => {
       )}
       <S.SaleCarouselContainer>
         <S.TextSlider>
-          <span>지역</span>
+          <strong>지역</strong>
           <PercentAnimator
             percent={currentLocale[2][0]?.salePercentage}
             localeAndHotel={localeAndHotel}
           />
-          <span>할인 호텔</span>
+          <strong>할인 호텔</strong>
         </S.TextSlider>
         <div className="divider"></div>
         <ItemCarousel
@@ -112,6 +111,44 @@ const Home = () => {
         />
       </S.SaleCarouselContainer>
     </S.Container>
+  );
+};
+
+const Home = () => {
+  const { data } = useSuspenseQuery({
+    queryKey: ["main"],
+    queryFn: fetchMainItem,
+  });
+
+  const [localeProds, weekendProds] = data;
+
+  const schemaData = {
+    areaServed: Object.keys(localeProds),
+    makesOffer: [
+      {
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "TravelService",
+          name: "지역별 할인 호텔",
+          description: `${Object.keys(localeProds).length}개 지역의 할인 호텔 상품`,
+        },
+      },
+      {
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "TravelService",
+          name: "프리미엄 호캉스",
+          description: `${weekendProds?.length || 0}개의 프리미엄 호캉스 상품`,
+        },
+      },
+    ],
+  };
+
+  return (
+    <>
+      <HelmetTag schemaType="TravelAgency" schemaData={schemaData} />
+      <HomeView data={data} />
+    </>
   );
 };
 
