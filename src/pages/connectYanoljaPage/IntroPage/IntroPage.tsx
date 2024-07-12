@@ -1,12 +1,12 @@
-import XIcon from "@/assets/icons/ic_x.png";
-import PercentHotelLogo from "@/assets/logos/Percent-hotel_logo_b.png";
-import YanoljaLogo from "@/assets/logos/Yanolja_CI.png";
-import { PATH } from "@/constants/path";
 import { useNavigate } from "react-router-dom";
 
 import * as S from "./IntroPage.style.ts";
 
+import XIcon from "@/assets/icons/ic_x.png";
+import PercentHotelLogo from "@/assets/logos/Percent-hotel_logo_b.png";
+import YanoljaLogo from "@/assets/logos/Yanolja_CI.png";
 import ProgressiveImg from "@/components/progressiveImg/ProgressiveImg.tsx";
+import { PATH } from "@/constants/path";
 
 const IntroPage = () => {
   const navigate = useNavigate();

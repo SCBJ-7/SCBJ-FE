@@ -1,11 +1,11 @@
-import PercentHotelLogo from "@/assets/logos/Percent-hotel_logo_b.png";
-import { PATH } from "@/constants/path";
 import { useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
 import * as S from "./SuccessPage.style.ts";
 
+import PercentHotelLogo from "@/assets/logos/Percent-hotel_logo_b.png";
 import Success from "@/components/lottie/success/Success";
+import { PATH } from "@/constants/path";
 
 const SuccessPage = () => {
   const navigate = useNavigate();
