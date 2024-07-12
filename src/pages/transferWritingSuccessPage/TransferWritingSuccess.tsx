@@ -1,14 +1,15 @@
-import PercentHotelLogo from "@/assets/logos/Percent-hotel_logo_b.png";
-import { PATH } from "@/constants/path";
 import { useEffect, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 
 import AccountBottomSheet from "./accountBottomSheet/AccountBottomSheet";
 import * as S from "./TransferWritingSuccess.style";
 
+import PercentHotelLogo from "@/assets/logos/Percent-hotel_logo_b.png";
+import { HelmetTag } from "@/components/Helmet/Helmet";
 import Success from "@/components/lottie/success/Success";
+import { PATH } from "@/constants/path";
 
-const TransferWritingSuccess = () => {
+const TransferWritingSuccessView = () => {
   const [content, setContent] = useState<
     "default" | "agreement" | "firstlyNoAccount"
   >("default");
@@ -49,6 +50,23 @@ const TransferWritingSuccess = () => {
       </S.BottomWrapper>
       <AccountBottomSheet content={content} onSetContent={setContent} />
     </S.PageContainer>
+  );
+};
+
+const TransferWritingSuccess = () => {
+  const schemaData = {
+    "@type": "WebPage",
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": `${location.origin}${location.pathname}}`,
+    },
+  };
+
+  return (
+    <>
+      <HelmetTag title="판매 성공" schemaData={schemaData} />
+      <TransferWritingSuccessView />
+    </>
   );
 };
 
