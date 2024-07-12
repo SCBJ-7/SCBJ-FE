@@ -1,16 +1,10 @@
 import { PiCaretLeftBold, PiCaretRightBold } from "react-icons/pi";
 import styled, { css } from "styled-components";
 
-export const CarouselContainer = styled.div<{
-  $height: number;
-}>`
+export const CarouselContainer = styled.div`
   position: relative;
 
-  min-height: ${(props) => `${props.$height}px`};
-  height: ${(props) => `${props.$height}px`};
-
   overflow: hidden;
-  cursor: grab;
 
   touch-action: pan-y;
 `;

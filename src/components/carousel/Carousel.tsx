@@ -1,8 +1,8 @@
-import { useCarousel } from "@/hooks/common/useCarousel";
-import { useCarouselSize } from "@/hooks/common/useCarouselSize";
-
 import * as S from "./Carousel.style.ts";
 import ProgressiveImg from "../progressiveImg/ProgressiveImg.tsx";
+
+import { useCarousel } from "@/hooks/common/useCarousel";
+import { useCarouselSize } from "@/hooks/common/useCarouselSize";
 
 interface CarouselProps {
   images: string[];
@@ -41,7 +41,7 @@ const Carousel = ({
   });
   console.log("currentIndex", currentIndex);
   return (
-    <S.CarouselContainer $height={height}>
+    <S.CarouselContainer>
       <S.SliderWrapper>
         <S.SliderContainer
           ref={sliderRef}
