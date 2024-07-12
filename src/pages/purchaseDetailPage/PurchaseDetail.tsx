@@ -5,12 +5,13 @@ import { useNavigate, useSearchParams } from "react-router-dom";
 import * as S from "./PurchaseDetail.style";
 import { fetchPurchaseDetail } from "../../apis/fetchPurchaseDetail";
 
+import { HelmetTag } from "@/components/Helmet/Helmet";
 import ProgressiveImg from "@/components/progressiveImg/ProgressiveImg";
 import { PATH } from "@/constants/path";
 import { IPurchaseData } from "@/types/purchaseDetail";
 import { formatDateString } from "@/utils/dateFormatter";
 
-const PurchaseDetail = () => {
+const PurchaseDetailView = () => {
   const [searchParams] = useSearchParams();
   const id = searchParams.get("id");
   if (!id) throw new Error("존재하지 않는 roomId 입니다.");
@@ -121,6 +122,23 @@ const PurchaseDetail = () => {
         홈으로 가기
       </S.HomeButton>
     </S.DetailContainer>
+  );
+};
+
+const PurchaseDetail = () => {
+  const schemaData = {
+    "@type": "WebPage",
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": `${location.origin}${location.pathname}}`,
+    },
+  };
+
+  return (
+    <>
+      <HelmetTag title="구매내역 상세" schemaData={schemaData} />
+      <PurchaseDetailView />
+    </>
   );
 };
 
