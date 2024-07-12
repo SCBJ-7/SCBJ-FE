@@ -1,13 +1,17 @@
 import { Suspense } from "react";
-import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
+import {
+  createBrowserRouter,
+  Navigate,
+  RouterProvider,
+} from "react-router-dom";
 
 import * as Lazy from "./lazy.ts";
 
 import App from "@/App.tsx";
 import LoadingFallback from "@/components/deferredComponent/LoadingFallback.tsx";
 import ApiErrorBoundary from "@/components/errorBoundary/ErrorBoundary.tsx";
-import { HelmetTag } from "@/components/Helmet/Helmet.tsx";
 import Layout from "@/components/layout/Layout.tsx";
+import Outlet from "@/components/layout/Outlet.tsx";
 import Redirect from "@/components/redirect/Redirect.tsx";
 import { PATH } from "@/constants/path.ts";
 import NotFound from "@/pages/notFoundPage";
@@ -24,23 +28,9 @@ const AppRouter = () => {
       ),
       children: [
         {
-          path: "",
+          index: true,
           element: (
             <Layout isHeaderOn={false} isBottomNavOn={true}>
-              <HelmetTag />
-              <ApiErrorBoundary>
-                <Suspense fallback={<LoadingFallback />}>
-                  <Lazy.Home />
-                </Suspense>
-              </ApiErrorBoundary>
-            </Layout>
-          ),
-        },
-        {
-          path: "",
-          element: (
-            <Layout isHeaderOn={false} isBottomNavOn={true}>
-              <HelmetTag title="메인" />
               <ApiErrorBoundary>
                 <Suspense fallback={<LoadingFallback />}>
                   <Lazy.Home />
@@ -53,7 +43,6 @@ const AppRouter = () => {
           path: PATH.LOGIN,
           element: (
             <Layout isHeaderOn={false} isBottomNavOn={false}>
-              <HelmetTag title="로그인" />
               <ApiErrorBoundary>
                 <Suspense fallback={<LoadingFallback />}>
                   <Lazy.SignIn />
@@ -66,7 +55,6 @@ const AppRouter = () => {
           path: PATH.SIGNUP,
           element: (
             <Layout isHeaderOn={true} isBottomNavOn={false}>
-              <HelmetTag title="회원가입" />
               <ApiErrorBoundary>
                 <Suspense fallback={<LoadingFallback />}>
                   <Lazy.SignUp />
@@ -79,7 +67,6 @@ const AppRouter = () => {
           path: PATH.PASSWORD_RESET,
           element: (
             <Layout isHeaderOn={true} isBottomNavOn={false}>
-              <HelmetTag title="비밀번호 재설정" />
               <ApiErrorBoundary>
                 <Suspense fallback={<LoadingFallback />}>
                   <Lazy.PasswordReset />
@@ -90,74 +77,82 @@ const AppRouter = () => {
         },
         {
           path: PATH.SEARCHLIST,
-          element: (
-            <Layout isHeaderOn={false} isBottomNavOn={true}>
-              <HelmetTag title="검색" />
-              <ApiErrorBoundary>
-                <Suspense fallback={<LoadingFallback />}>
-                  <Lazy.Search />
-                </Suspense>
-              </ApiErrorBoundary>
-            </Layout>
-          ),
+          children: [
+            {
+              index: true,
+              element: (
+                <Layout isHeaderOn={false} isBottomNavOn={true}>
+                  <ApiErrorBoundary>
+                    <Suspense fallback={<LoadingFallback />}>
+                      <Lazy.Search />
+                    </Suspense>
+                  </ApiErrorBoundary>
+                </Layout>
+              ),
+            },
+            {
+              path: PATH.SEARCH_FILTER,
+              element: (
+                <Layout isHeaderOn={true} isBottomNavOn={false}>
+                  <ApiErrorBoundary>
+                    <Suspense fallback={<LoadingFallback />}>
+                      <Lazy.SearchFilter />
+                    </Suspense>
+                  </ApiErrorBoundary>
+                </Layout>
+              ),
+            },
+          ],
         },
         {
-          path: PATH.SEARCH_FILTER,
-          element: (
-            <Layout isHeaderOn={true} isBottomNavOn={false}>
-              <HelmetTag title="검색" />
-              <ApiErrorBoundary>
-                <Suspense fallback={<LoadingFallback />}>
-                  <Lazy.SearchFilter />
-                </Suspense>
-              </ApiErrorBoundary>
-            </Layout>
-          ),
-        },
-        {
-          path: PATH.WRITE_TRANSFER,
-          element: (
-            <Layout isHeaderOn={true} isBottomNavOn={true}>
-              <HelmetTag title="판매하기" />
-              <ApiErrorBoundary>
-                <Suspense fallback={<LoadingFallback />}>
-                  <Lazy.TransferWriting />
-                </Suspense>
-              </ApiErrorBoundary>
-            </Layout>
-          ),
-        },
-        {
-          path: PATH.WRITE_TRANSFER_PRICE + `/:id`,
-          element: (
-            <Layout isHeaderOn={false} isBottomNavOn={false}>
-              <ApiErrorBoundary>
-                <HelmetTag title="판매글 작성" />
-                <Suspense fallback={<LoadingFallback />}>
-                  <Lazy.TransferWritingPrice />
-                </Suspense>
-              </ApiErrorBoundary>
-            </Layout>
-          ),
-        },
-        {
-          path: PATH.WRITE_TRANSFER_SUCCESS,
-          element: (
-            <Layout isHeaderOn={true} isBottomNavOn={true}>
-              <HelmetTag title="판매 성공" />
-              <ApiErrorBoundary>
-                <Suspense fallback={<LoadingFallback />}>
-                  <Lazy.TransferWritingSuccess />
-                </Suspense>
-              </ApiErrorBoundary>
-            </Layout>
-          ),
+          path: "transfer",
+          children: [
+            {
+              index: true,
+              element: <Navigate to={PATH.WRITE_TRANSFER} />,
+            },
+            {
+              path: PATH.WRITE_TRANSFER,
+              element: (
+                <Layout isHeaderOn={true} isBottomNavOn={true}>
+                  <ApiErrorBoundary>
+                    <Suspense fallback={<LoadingFallback />}>
+                      <Lazy.TransferWriting />
+                    </Suspense>
+                  </ApiErrorBoundary>
+                </Layout>
+              ),
+            },
+            {
+              path: PATH.WRITE_TRANSFER_PRICE + `/:id`,
+              element: (
+                <Layout isHeaderOn={false} isBottomNavOn={false}>
+                  <ApiErrorBoundary>
+                    <Suspense fallback={<LoadingFallback />}>
+                      <Lazy.TransferWritingPrice />
+                    </Suspense>
+                  </ApiErrorBoundary>
+                </Layout>
+              ),
+            },
+            {
+              path: PATH.WRITE_TRANSFER_SUCCESS,
+              element: (
+                <Layout isHeaderOn={true} isBottomNavOn={true}>
+                  <ApiErrorBoundary>
+                    <Suspense fallback={<LoadingFallback />}>
+                      <Lazy.TransferWritingSuccess />
+                    </Suspense>
+                  </ApiErrorBoundary>
+                </Layout>
+              ),
+            },
+          ],
         },
         {
           path: PATH.MY_PAGE,
           element: (
             <Layout isHeaderOn={true} isBottomNavOn={true}>
-              <HelmetTag title="마이 페이지" />
               <ApiErrorBoundary>
                 <Suspense fallback={<LoadingFallback />}>
                   <Lazy.MyPage />
@@ -170,7 +165,6 @@ const AppRouter = () => {
               index: true,
               element: (
                 <>
-                  <HelmetTag title="마이 페이지" />
                   <Lazy.TransferPurchase />
                 </>
               ),
@@ -180,7 +174,6 @@ const AppRouter = () => {
               path: PATH.SALE_LIST,
               element: (
                 <>
-                  <HelmetTag title="판매내역" />
                   <Lazy.TransferSale />
                 </>
               ),
@@ -188,52 +181,86 @@ const AppRouter = () => {
           ],
         },
         {
-          path: PATH.SETTING,
-          element: (
-            <Layout isHeaderOn={true} isBottomNavOn={true}>
-              <ApiErrorBoundary>
-                <Suspense fallback={<LoadingFallback />}>
-                  <Lazy.Setting />
-                </Suspense>
-              </ApiErrorBoundary>
-            </Layout>
-          ),
-        },
-        {
-          path: PATH.MANAGE_PROFILE,
-          element: (
-            <Layout isHeaderOn={true} isBottomNavOn={true}>
-              <ApiErrorBoundary>
-                <Suspense fallback={<LoadingFallback />}>
-                  <Lazy.ManageProfile />
-                </Suspense>
-              </ApiErrorBoundary>
-            </Layout>
-          ),
-        },
-        {
-          path: PATH.MANAGE_ACCOUNT,
-          element: (
-            <Layout isHeaderOn={true} isBottomNavOn={true}>
-              <ApiErrorBoundary>
-                <Suspense fallback={<LoadingFallback />}>
-                  <Lazy.ManageAccount />
-                </Suspense>
-              </ApiErrorBoundary>
-            </Layout>
-          ),
-        },
-        {
-          path: PATH.ACCOUNT_EDIT,
-          element: (
-            <Layout isHeaderOn={true} isBottomNavOn={true}>
-              <ApiErrorBoundary>
-                <Suspense fallback={<LoadingFallback />}>
-                  <Lazy.EditAccount />
-                </Suspense>
-              </ApiErrorBoundary>
-            </Layout>
-          ),
+          path: PATH.MY_PAGE,
+          children: [
+            {
+              path: PATH.SETTING,
+              children: [
+                {
+                  index: true,
+                  element: (
+                    <Layout isHeaderOn={true} isBottomNavOn={true}>
+                      <ApiErrorBoundary>
+                        <Suspense fallback={<LoadingFallback />}>
+                          <Lazy.Setting />
+                        </Suspense>
+                      </ApiErrorBoundary>
+                    </Layout>
+                  ),
+                },
+                {
+                  path: PATH.MANAGE_PROFILE,
+                  element: (
+                    <Layout isHeaderOn={true} isBottomNavOn={true}>
+                      <ApiErrorBoundary>
+                        <Suspense fallback={<LoadingFallback />}>
+                          <Lazy.ManageProfile />
+                        </Suspense>
+                      </ApiErrorBoundary>
+                    </Layout>
+                  ),
+                },
+                {
+                  path: PATH.MANAGE_ACCOUNT,
+                  element: (
+                    <Layout isHeaderOn={true} isBottomNavOn={true}>
+                      <ApiErrorBoundary>
+                        <Suspense fallback={<LoadingFallback />}>
+                          <Lazy.ManageAccount />
+                        </Suspense>
+                      </ApiErrorBoundary>
+                    </Layout>
+                  ),
+                },
+                {
+                  path: PATH.ACCOUNT_EDIT,
+                  element: (
+                    <Layout isHeaderOn={true} isBottomNavOn={true}>
+                      <ApiErrorBoundary>
+                        <Suspense fallback={<LoadingFallback />}>
+                          <Lazy.EditAccount />
+                        </Suspense>
+                      </ApiErrorBoundary>
+                    </Layout>
+                  ),
+                },
+              ],
+            },
+            {
+              path: PATH.PURCAHSE_DETAIL,
+              element: (
+                <Layout isHeaderOn={true} isBottomNavOn={true}>
+                  <ApiErrorBoundary>
+                    <Suspense fallback={<LoadingFallback />}>
+                      <Lazy.PurchaseDetail />
+                    </Suspense>
+                  </ApiErrorBoundary>
+                </Layout>
+              ),
+            },
+            {
+              path: PATH.SALE_DETAIL + "/:saleId",
+              element: (
+                <Layout isHeaderOn={true} isBottomNavOn={true}>
+                  <ApiErrorBoundary>
+                    <Suspense fallback={<LoadingFallback />}>
+                      <Lazy.SaleDetail />
+                    </Suspense>
+                  </ApiErrorBoundary>
+                </Layout>
+              ),
+            },
+          ],
         },
         {
           path: PATH.DETAIL_ROOM(),
@@ -251,7 +278,6 @@ const AppRouter = () => {
           path: PATH.ALARM,
           element: (
             <Layout isHeaderOn={true} isBottomNavOn={true}>
-              <HelmetTag title="알림" />
               <ApiErrorBoundary>
                 <Suspense fallback={<LoadingFallback />}>
                   <Lazy.Alarm />
@@ -261,80 +287,56 @@ const AppRouter = () => {
           ),
         },
         {
-          path: PATH.PURCAHSE_DETAIL,
-          element: (
-            <Layout isHeaderOn={true} isBottomNavOn={true}>
-              <HelmetTag title="구매내역 상세" />
-              <ApiErrorBoundary>
-                <Suspense fallback={<LoadingFallback />}>
-                  <Lazy.PurchaseDetail />
-                </Suspense>
-              </ApiErrorBoundary>
-            </Layout>
-          ),
-        },
-        {
-          path: PATH.SALE_DETAIL + "/:saleId",
-          element: (
-            <Layout isHeaderOn={true} isBottomNavOn={true}>
-              <HelmetTag title="판매내역 상세" />
-              <ApiErrorBoundary>
-                <Suspense fallback={<LoadingFallback />}>
-                  <Lazy.SaleDetail />
-                </Suspense>
-              </ApiErrorBoundary>
-            </Layout>
-          ),
-        },
-        {
           path: PATH.YANOLJA_ACCOUNT,
-          element: (
-            <Layout isHeaderOn={false} isBottomNavOn={false}>
-              <HelmetTag title="야놀자인증" />
-              <ApiErrorBoundary>
-                <Suspense fallback={<LoadingFallback />}>
-                  <Lazy.IntroPage />
-                </Suspense>
-              </ApiErrorBoundary>
-            </Layout>
-          ),
-        },
-        {
-          path: PATH.YANOLJA_ACCOUNT_VERIFICATION,
-          element: (
-            <Layout isHeaderOn={true} isBottomNavOn={false}>
-              <HelmetTag title="야놀자 인증" />
-              <ApiErrorBoundary>
-                <Redirect>
-                  <Suspense fallback={<LoadingFallback />}>
-                    <Lazy.VerificationPage />
-                  </Suspense>
-                </Redirect>
-              </ApiErrorBoundary>
-            </Layout>
-          ),
-        },
-        {
-          path: PATH.YANOLJA_ACCOUNT_VERIFICATION_SUCCESS,
-          element: (
-            <Layout isHeaderOn={false} isBottomNavOn={true}>
-              <HelmetTag title="야놀자 인증 성공" />
-              <ApiErrorBoundary>
-                <Suspense fallback={<LoadingFallback />}>
-                  <Lazy.SuccessPage />
-                </Suspense>
-              </ApiErrorBoundary>
-            </Layout>
-          ),
+          element: <Outlet title="야놀자 인증" />,
+          children: [
+            {
+              index: true,
+              element: (
+                <Layout isHeaderOn={false} isBottomNavOn={false}>
+                  <ApiErrorBoundary>
+                    <Suspense fallback={<LoadingFallback />}>
+                      <Lazy.IntroPage />
+                    </Suspense>
+                  </ApiErrorBoundary>
+                </Layout>
+              ),
+            },
+            {
+              path: PATH.YANOLJA_ACCOUNT_VERIFICATION,
+              element: (
+                <Layout isHeaderOn={true} isBottomNavOn={false}>
+                  <ApiErrorBoundary>
+                    <Redirect>
+                      <Suspense fallback={<LoadingFallback />}>
+                        <Lazy.VerificationPage />
+                      </Suspense>
+                    </Redirect>
+                  </ApiErrorBoundary>
+                </Layout>
+              ),
+            },
+            {
+              path: PATH.YANOLJA_ACCOUNT_VERIFICATION_SUCCESS,
+              element: (
+                <Layout isHeaderOn={false} isBottomNavOn={true}>
+                  <ApiErrorBoundary>
+                    <Suspense fallback={<LoadingFallback />}>
+                      <Lazy.SuccessPage />
+                    </Suspense>
+                  </ApiErrorBoundary>
+                </Layout>
+              ),
+            },
+          ],
         },
         {
           path: PATH.PAYMENT(":productId"),
           element: (
             <Layout isHeaderOn={true} isBottomNavOn={false}>
-              <HelmetTag title="결제" />
               <ApiErrorBoundary>
                 <Suspense fallback={<LoadingFallback />}>
-                  <Outlet />
+                  <Outlet title="결제" />
                 </Suspense>
               </ApiErrorBoundary>
             </Layout>
@@ -346,12 +348,7 @@ const AppRouter = () => {
             },
             {
               path: "success",
-              element: (
-                <>
-                  <HelmetTag title="구매 내역 상세" />
-                  <Lazy.PaymentSuccess />
-                </>
-              ),
+              element: <Lazy.PaymentSuccess />,
             },
             {
               path: "ready",
@@ -367,7 +364,6 @@ const AppRouter = () => {
           path: PATH.MAIN_DETAIL,
           element: (
             <Layout isHeaderOn={true} isBottomNavOn={true}>
-              <HelmetTag title="메인상세" />
               <ApiErrorBoundary>
                 <Suspense fallback={<LoadingFallback />}>
                   <Lazy.MainDetail />
@@ -378,16 +374,19 @@ const AppRouter = () => {
         },
         {
           path: PATH.WISHLIST,
-          element: (
-            <>
-              <HelmetTag title="찜" />
-              <ApiErrorBoundary>
-                <Suspense fallback={<LoadingFallback />}>
-                  <Lazy.WishList />
-                </Suspense>
-              </ApiErrorBoundary>
-            </>
-          ),
+          element: <Outlet title="찜" />,
+          children: [
+            {
+              index: true,
+              element: (
+                <ApiErrorBoundary>
+                  <Suspense fallback={<LoadingFallback />}>
+                    <Lazy.WishList />
+                  </Suspense>
+                </ApiErrorBoundary>
+              ),
+            },
+          ],
         },
       ],
     },
