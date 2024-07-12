@@ -5,6 +5,7 @@ import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import * as S from "./SignIn.style";
 
 import { postLogin } from "@/apis/fetchLogin";
+import { HelmetTag } from "@/components/Helmet/Helmet";
 import { PATH } from "@/constants/path";
 import useToastConfig from "@/hooks/common/useToastConfig";
 import { useUserInfoStore } from "@/store/store";
@@ -15,7 +16,7 @@ type FormValues = {
   password: string;
 };
 
-const SignIn = () => {
+const SignInView = () => {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const redirectUrl = searchParams.get("redirect");
@@ -111,6 +112,23 @@ const SignIn = () => {
         <S.SignInLink to="/signup">회원가입 하기</S.SignInLink>
       </S.SignInLinkWrapper>
     </S.SignInContainer>
+  );
+};
+
+const SignIn = () => {
+  const schemaData = {
+    "@type": "WebPage",
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": `${location.origin}${PATH.LOGIN}`,
+    },
+  };
+
+  return (
+    <>
+      <HelmetTag title="로그인" schemaType="WebPage" schemaData={schemaData} />
+      <SignInView />
+    </>
   );
 };
 
