@@ -1,8 +1,3 @@
-import Caption from "@/components/caption/Caption";
-import Card from "@/components/card/Card";
-import CardItem from "@/components/cardItem/CardItem";
-import { CaptionWrapper } from "@/pages/paymentPage/Payment.style";
-import { calculateFee } from "@/utils/calculator";
 import { parse, sub, format } from "date-fns";
 import { useParams, useSearchParams } from "react-router-dom";
 
@@ -10,10 +5,16 @@ import SaleButton from "./saleButton/SaleButton";
 import * as S from "./SaleDetail.style";
 import SaleInfo from "./saleInfo/SaleInfo";
 
+import Caption from "@/components/caption/Caption";
+import Card from "@/components/card/Card";
+import CardItem from "@/components/cardItem/CardItem";
+import { HelmetTag } from "@/components/Helmet/Helmet";
 import { useSaleDetailQuery } from "@/hooks/api/useSaleQuery";
+import { CaptionWrapper } from "@/pages/paymentPage/Payment.style";
+import { calculateFee } from "@/utils/calculator";
 import { formatDateString } from "@/utils/dateFormatter";
 
-const SaleDetail = () => {
+const SaleDetailView = () => {
   const { saleId } = useParams();
   const [searchParams] = useSearchParams();
   const isPaymentId = searchParams.get("isPaymentId");
@@ -266,6 +267,23 @@ const SaleDetail = () => {
         </S.PurchasedContainer>
       )}
     </S.Container>
+  );
+};
+
+const SaleDetail = () => {
+  const schemaData = {
+    "@type": "WebPage",
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": `${location.origin}${location.pathname}}`,
+    },
+  };
+
+  return (
+    <>
+      <HelmetTag title="판매내역 상세" schemaData={schemaData} />
+      <SaleDetailView />
+    </>
   );
 };
 
