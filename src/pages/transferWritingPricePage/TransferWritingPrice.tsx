@@ -17,6 +17,7 @@ import useChangePage from "../../hooks/common/useChangePage";
 import useReadyToSubmit from "../../hooks/common/useReadyToSubmit";
 import useSubmitHandler from "../../hooks/common/useSubmitHandler";
 
+import { HelmetTag } from "@/components/Helmet/Helmet";
 import { useUserInfoQuery } from "@/hooks/api/useUserInfoQuery";
 import usePreventLeave from "@/hooks/common/usePreventLeave";
 import useTransferNavigation from "@/hooks/common/useTransferNavigation";
@@ -34,7 +35,7 @@ import { type SellerCommentType } from "@/types/sellerComments";
 //   name: "Bumang",
 // };
 
-const TransferWritingPrice = () => {
+const TransferWritingPriceView = () => {
   // 현재 선택된 숙박
   const selectedItem = useSelectedItemStore((state) => state.selectedItem);
 
@@ -253,6 +254,23 @@ const TransferWritingPrice = () => {
         setOptFinal={setOptFinal}
       />
     </S.Container>
+  );
+};
+
+const TransferWritingPrice = () => {
+  const schemaData = {
+    "@type": "WebPage",
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": `${location.origin}${location.pathname}}`,
+    },
+  };
+
+  return (
+    <>
+      <HelmetTag title="판매글 작성" schemaData={schemaData} />
+      <TransferWritingPriceView />
+    </>
   );
 };
 

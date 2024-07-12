@@ -8,13 +8,14 @@ import * as S from "./TransferWriting.style";
 import { fetchTransferItems } from "@/apis/fetchTransferItems";
 import { fetchUserInfo } from "@/apis/fetchUserInfo.ts";
 import { ResponseError } from "@/components/error/Error";
+import { HelmetTag } from "@/components/Helmet/Helmet";
 import NoResult from "@/components/noResult/NoResult";
 import { ERROR_CODE } from "@/constants/api";
 import { PATH } from "@/constants/path";
 import useToastConfig from "@/hooks/common/useToastConfig";
 import useAuthStore from "@/store/authStore";
 
-const TransferWriting = () => {
+const TransferWritingView = () => {
   const { handleToast } = useToastConfig();
 
   const isLoggedIn = useAuthStore((state) => state.isLoggedIn);
@@ -107,6 +108,23 @@ const TransferWriting = () => {
         )}
       </S.TransferItemList>
     </S.Container>
+  );
+};
+
+const TransferWriting = () => {
+  const schemaData = {
+    "@type": "WebPage",
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": `${location.origin}${PATH.WRITE_TRANSFER}`,
+    },
+  };
+
+  return (
+    <>
+      <HelmetTag title="판매하기" schemaData={schemaData} />
+      <TransferWritingView />
+    </>
   );
 };
 
