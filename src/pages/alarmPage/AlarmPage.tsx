@@ -8,8 +8,9 @@ import { fetchUserInfo } from "@/apis/fetchUserInfo";
 import NoResult from "@/components/noResult/NoResult";
 import { PATH } from "@/constants/path";
 import { isMobileSafari } from "@/utils/isMobileSafari";
+import { HelmetTag } from "@/components/Helmet/Helmet";
 
-const AlarmPage = () => {
+const AlarView = () => {
   const mobileSafari = isMobileSafari();
 
   const { data: userData } = useSuspenseQuery({
@@ -64,6 +65,23 @@ const AlarmPage = () => {
       </S.Container>
     );
   }
+};
+
+const AlarmPage = () => {
+  const schemaData = {
+    "@type": "WebPage",
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": `${location.origin}${location.pathname}}`,
+    },
+  };
+
+  return (
+    <>
+      <HelmetTag title="알림" schemaData={schemaData} />
+      <AlarView />
+    </>
+  );
 };
 
 export default AlarmPage;
