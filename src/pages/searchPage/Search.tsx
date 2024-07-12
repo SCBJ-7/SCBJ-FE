@@ -1,4 +1,3 @@
-import { useInfiniteQuery } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
 
 import SearchBar from "./components/searchBar/SearchBar";
@@ -6,53 +5,19 @@ import SearchItem from "./components/searchItem/SearchItem";
 import SearchNav from "./components/searchNav/SearchNav";
 import * as S from "./Search.style";
 
+import type { ISearchFilterInfo } from "@/types/searchFilterInfo";
 import type { ISearchList } from "@/types/searchList";
 
-import { fetchSearchList } from "@/apis/fetchSeachList";
 import ArrowIcon from "@/assets/icons/ic_arrow.svg?react";
+import { HelmetTag } from "@/components/Helmet/Helmet";
+import { useInfiniteSearchQuery } from "@/hooks/api/useSearchQuery";
 import { useIntersectionObserver } from "@/hooks/common/useIntersectionObserver";
 import { useSearchFilterInfoStore } from "@/store/store";
 
-const Search = () => {
+const SearchView = ({ searchInfo }: { searchInfo: ISearchFilterInfo }) => {
   const [isTopButtonVisible, setIsTopButtonVisible] = useState(false);
-  const searchInfo = useSearchFilterInfoStore((state) => state.searchInfo);
-
-  const pageSize = 10;
-  const { data, fetchNextPage, isLoading, hasNextPage } = useInfiniteQuery({
-    queryKey: [
-      "searchItems",
-      searchInfo.location,
-      searchInfo.checkIn,
-      searchInfo.checkOut,
-      searchInfo.quantityPeople,
-      searchInfo.sorted,
-      searchInfo.brunch,
-      searchInfo.pool,
-      searchInfo.oceanView,
-    ],
-    queryFn: ({ pageParam = 0 }) =>
-      fetchSearchList(
-        searchInfo.location,
-        searchInfo.checkIn,
-        searchInfo.checkOut,
-        searchInfo.quantityPeople,
-        searchInfo.sorted,
-        searchInfo.brunch,
-        searchInfo.pool,
-        searchInfo.oceanView,
-        pageParam,
-        pageSize,
-      ),
-    refetchOnMount: false,
-    refetchOnWindowFocus: false,
-    initialPageParam: 0,
-    getNextPageParam: (lastPage) => {
-      const lastData = lastPage?.content;
-      return lastData && lastData.length === pageSize
-        ? lastPage?.number + 1
-        : undefined;
-    },
-  });
+  const { data, fetchNextPage, isLoading, hasNextPage } =
+    useInfiniteSearchQuery(searchInfo);
 
   const handleIntersect = (isIntersecting: boolean) => {
     if (isIntersecting && hasNextPage) {
@@ -116,6 +81,50 @@ const Search = () => {
         </S.TopButtonCover>
       </S.SearchContainer>
     </S.Container>
+  );
+};
+
+const Search = () => {
+  const searchInfo = useSearchFilterInfoStore((state) => state.searchInfo);
+
+  const schemaData = {
+    "@type": "SearchResultsPage",
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": `${location.origin}/search`,
+    },
+    about: {
+      "@type": "HotelSearch",
+      checkinTime: searchInfo.checkIn,
+      checkoutTime: searchInfo.checkOut,
+      location: {
+        "@type": "Place",
+        name: searchInfo.location,
+      },
+      occupancy: {
+        "@type": "QuantitativeValue",
+        value: searchInfo.quantityPeople,
+      },
+    },
+    potentialAction: {
+      "@type": "SearchAction",
+      target: {
+        "@type": "EntryPoint",
+        urlTemplate: `${location.origin}/search?q={search_term_string}`,
+      },
+      "query-input": "required name=search_term_string",
+    },
+  };
+
+  return (
+    <>
+      <HelmetTag
+        title="검색 결과"
+        schemaType="SearchResultsPage"
+        schemaData={schemaData}
+      />
+      <SearchView searchInfo={searchInfo} />
+    </>
   );
 };
 

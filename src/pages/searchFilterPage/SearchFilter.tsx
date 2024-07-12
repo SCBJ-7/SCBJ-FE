@@ -6,11 +6,12 @@ import PeopleCounter from "./components/peopleCounter/PeopleCounter";
 import RegionModal from "./components/regionModal/RegionModal";
 import * as S from "./SearchFilter.style";
 
+import { HelmetTag } from "@/components/Helmet/Helmet";
 import { PATH } from "@/constants/path";
 import { useSearchFilterInfoStore } from "@/store/store";
 import { formatDateMonthAndDay } from "@/utils/dateFomaterMonthDay";
 
-const SearchFilter = () => {
+const SearchFilterView = () => {
   const searchInfo = useSearchFilterInfoStore((state) => state.searchInfo);
   const setSearchInfo = useSearchFilterInfoStore(
     (state) => state.setSearchInfo,
@@ -109,6 +110,59 @@ const SearchFilter = () => {
         </S.ResetButtonContent>
         <S.SearchButton onClick={handleSearch}>검색하기</S.SearchButton>
       </S.FilterBottom>
+    </>
+  );
+};
+
+const SearchFilter = () => {
+  const schemaData = {
+    "@type": "WebPage",
+    name: "퍼센트호텔 검색 필터",
+    description:
+      "퍼센트호텔에서 원하는 조건으로 호텔을 검색하세요. 지역, 날짜, 인원 수를 선택할 수 있습니다.",
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": `${location.origin}${PATH.SEARCH_FILTER}`,
+    },
+    potentialAction: {
+      "@type": "SearchAction",
+      target: {
+        "@type": "EntryPoint",
+        urlTemplate: `${location.origin}/search?location={location}&checkIn={checkIn}&checkOut={checkOut}&people={people}`,
+      },
+      "query-input": [
+        {
+          "@type": "PropertyValueSpecification",
+          valueRequired: true,
+          valueName: "location",
+        },
+        {
+          "@type": "PropertyValueSpecification",
+          valueRequired: true,
+          valueName: "checkIn",
+        },
+        {
+          "@type": "PropertyValueSpecification",
+          valueRequired: true,
+          valueName: "checkOut",
+        },
+        {
+          "@type": "PropertyValueSpecification",
+          valueRequired: true,
+          valueName: "people",
+        },
+      ],
+    },
+  };
+
+  return (
+    <>
+      <HelmetTag
+        title="검색 필터"
+        schemaType="WebPage"
+        schemaData={schemaData}
+      />
+      <SearchFilterView />
     </>
   );
 };
